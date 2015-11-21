@@ -52,10 +52,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WebApp\WebApp.csproj">
+    <ProjectReference Include="..\WebApp\SocialRequirements.WebApp.csproj">
       <Project>{267E697E-3D47-4292-9377-DF49F8785AEA}</Project>
-      <Name>WebApp</Name>
+      <Name>SocialRequirements.WebApp</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

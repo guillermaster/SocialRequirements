@@ -3,9 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{267E697E-3D47-4292-9377-DF49F8785AEA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialRequirements.WebApp", "WebApp\SocialRequirements.WebApp.csproj", "{267E697E-3D47-4292-9377-DF49F8785AEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{6B227A01-DD51-497C-8187-267AAACAE0CA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialRequirements.Tests", "Tests\SocialRequirements.Tests.csproj", "{6B227A01-DD51-497C-8187-267AAACAE0CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialRequirements.Context", "DataContext\SocialRequirements.Context.csproj", "{0D3DF9C2-7CC0-4891-8B55-786BFD9B412C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialRequirements.WebService", "WebService\SocialRequirements.WebService.csproj", "{3DFFA929-099C-4C46-8238-02A86078C1DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialRequirements.Data", "Data\SocialRequirements.Data.csproj", "{CAA6BE76-BD4B-4309-B067-0E940E50EF1F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialRequirements.Domain", "SocialRequirements.Domain\SocialRequirements.Domain.csproj", "{6195F799-B266-474F-B5BA-D870B9A082A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialRequirements.CompositionRoot", "SocialRequirements.CompositionRoot\SocialRequirements.CompositionRoot.csproj", "{29D1745D-EC8A-4A56-A5B1-68D17671749E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +31,26 @@ Global
 		{6B227A01-DD51-497C-8187-267AAACAE0CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B227A01-DD51-497C-8187-267AAACAE0CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B227A01-DD51-497C-8187-267AAACAE0CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D3DF9C2-7CC0-4891-8B55-786BFD9B412C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D3DF9C2-7CC0-4891-8B55-786BFD9B412C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D3DF9C2-7CC0-4891-8B55-786BFD9B412C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D3DF9C2-7CC0-4891-8B55-786BFD9B412C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DFFA929-099C-4C46-8238-02A86078C1DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DFFA929-099C-4C46-8238-02A86078C1DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DFFA929-099C-4C46-8238-02A86078C1DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DFFA929-099C-4C46-8238-02A86078C1DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAA6BE76-BD4B-4309-B067-0E940E50EF1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAA6BE76-BD4B-4309-B067-0E940E50EF1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAA6BE76-BD4B-4309-B067-0E940E50EF1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAA6BE76-BD4B-4309-B067-0E940E50EF1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6195F799-B266-474F-B5BA-D870B9A082A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6195F799-B266-474F-B5BA-D870B9A082A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6195F799-B266-474F-B5BA-D870B9A082A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6195F799-B266-474F-B5BA-D870B9A082A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29D1745D-EC8A-4A56-A5B1-68D17671749E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29D1745D-EC8A-4A56-A5B1-68D17671749E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29D1745D-EC8A-4A56-A5B1-68D17671749E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29D1745D-EC8A-4A56-A5B1-68D17671749E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -6,16 +6,37 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
+using Ninject;
+using System.Reflection;
+using Ninject.Parameters;
+using Ninject.Web.Common;
+
 
 namespace SocialRequirements
 {
-    public class Global : HttpApplication
+    public class Global : NinjectHttpApplication
     {
         void Application_Start(object sender, EventArgs e)
         {
-            // Code that runs on application startup
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+        }
+
+        //protected override IKernel CreateKernel()
+        //{
+            //var kernel = new StandardKernel();
+            //kernel.Load(Assembly.GetExecutingAssembly(),
+            //    Assembly
+            //        .Load("SocialRequirements.Domain"),
+            //    Assembly
+            //        .Load("SocialRequirements.Data"),
+            //    Assembly
+            //        .Load("SocialRequirements.CompositionRoot"));
+            //return kernel;
+        //}
+
+        protected override IKernel CreateKernel()
+        {
+            throw new NotImplementedException();
         }
     }
 }
