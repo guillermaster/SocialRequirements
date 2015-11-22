@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Web;
+using System.Web.UI;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using Owin;
 using SocialRequirements.Models;
 
 namespace SocialRequirements.Account
 {
-    public partial class RegisterExternalLogin : System.Web.UI.Page
+    public partial class RegisterExternalLogin : Page
     {
         protected string ProviderName
         {

@@ -1,7 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
+using SocialRequirements;
 
-[assembly: OwinStartupAttribute(typeof(SocialRequirements.Startup))]
+[assembly: OwinStartup(typeof(Startup))]
 namespace SocialRequirements
 {
     public partial class Startup {
