@@ -1,11 +1,10 @@
-namespace DataContext
-{
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
+namespace DataContext.Entities
+{
     [Table("Person")]
     public partial class Person
     {
@@ -21,7 +20,7 @@ namespace DataContext
 
         [Required]
         [StringLength(50)]
-        public string firt_name { get; set; }
+        public string first_name { get; set; }
 
         [Required]
         [StringLength(50)]
@@ -44,7 +43,7 @@ namespace DataContext
         public string mobile_phone { get; set; }
 
         [Required]
-        [StringLength(20)]
+        [StringLength(100)]
         public string user_name { get; set; }
 
         [Required]

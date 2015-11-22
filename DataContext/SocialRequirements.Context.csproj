@@ -55,6 +55,7 @@
     <Compile Include="Entities\CompanyProject.cs" />
     <Compile Include="Entities\CompanyProjectPerson.cs" />
     <Compile Include="Entities\CompanyProjectPersonRole.cs" />
+    <Compile Include="ContextModel.cs" />
     <Compile Include="Entities\Person.cs" />
     <Compile Include="Entities\Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -67,13 +68,11 @@
     <Compile Include="Entities\RequirementQuestionAnswer.cs" />
     <Compile Include="Entities\RequirementVersion.cs" />
     <Compile Include="Entities\Role.cs" />
-    <Compile Include="SocialRequirementsModel.cs" />
     <Compile Include="Entities\Status.cs" />
     <Compile Include="Entities\StatusValue.cs" />
-    <Compile Include="Entities\sysdiagrams.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.Config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,6 +46,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataContext\SocialRequirements.Context.csproj">
+      <Project>{0D3DF9C2-7CC0-4891-8B55-786BFD9B412C}</Project>
+      <Name>SocialRequirements.Context</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SocialRequirements.Domain\SocialRequirements.Domain.csproj">
       <Project>{6195F799-B266-474F-B5BA-D870B9A082A6}</Project>
       <Name>SocialRequirements.Domain</Name>

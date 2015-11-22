@@ -1,41 +1,22 @@
-namespace DataContext
-{
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
+namespace DataContext.Entities
+{
     [Table("RequirementModificationComment")]
     public partial class RequirementModificationComment
     {
-        [Key]
-        [Column(Order = 0)]
         public long id { get; set; }
 
-        [Key]
-        [Column(Order = 1)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long company_id { get; set; }
 
-        [Key]
-        [Column(Order = 2)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long project_id { get; set; }
 
-        [Key]
-        [Column(Order = 3)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long requirement_id { get; set; }
 
-        [Key]
-        [Column(Order = 4)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long requirement_modification_id { get; set; }
 
-        [Key]
-        [Column(Order = 5)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long requirement_modification_version_id { get; set; }
 
         [Column(TypeName = "text")]
@@ -49,7 +30,5 @@ namespace DataContext
         public virtual Company Company { get; set; }
 
         public virtual Project Project { get; set; }
-
-        public virtual RequirementModificationVersion RequirementModificationVersion { get; set; }
     }
 }

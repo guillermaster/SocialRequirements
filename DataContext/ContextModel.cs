@@ -1,3 +1,5 @@
+using DataContext.Entities;
+
 namespace DataContext
 {
     using System;
@@ -5,11 +7,10 @@ namespace DataContext
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class SocialRequirementsModel : DbContext
+    public partial class ContextModel : DbContext
     {
-        public SocialRequirementsModel(string connectionName)
-            : base(connectionName)
-            //: base("name=Model")
+        public ContextModel()
+            : base("name=cnxSocialRequirementsDB")
         {
         }
 
@@ -31,7 +32,6 @@ namespace DataContext
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<Status> Status { get; set; }
         public virtual DbSet<StatusValue> StatusValue { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -158,18 +158,6 @@ namespace DataContext
                 .Property(e => e.description)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Requirement>()
-                .HasMany(e => e.RequirementModification)
-                .WithRequired(e => e.Requirement)
-                .HasForeignKey(e => new { e.requirement_id, e.company_id, e.project_id })
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Requirement>()
-                .HasMany(e => e.RequirementVersion)
-                .WithRequired(e => e.Requirement)
-                .HasForeignKey(e => new { e.requirement_id, e.company_id, e.project_id })
-                .WillCascadeOnDelete(false);
-
             modelBuilder.Entity<RequirementComment>()
                 .Property(e => e.comment)
                 .IsUnicode(false);
@@ -177,12 +165,6 @@ namespace DataContext
             modelBuilder.Entity<RequirementModification>()
                 .Property(e => e.description)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<RequirementModification>()
-                .HasMany(e => e.RequirementModificationVersion)
-                .WithRequired(e => e.RequirementModification)
-                .HasForeignKey(e => new { e.requirement_modification_id, e.company_id, e.project_id, e.requirement_id })
-                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<RequirementModificationComment>()
                 .Property(e => e.comment)
@@ -192,18 +174,6 @@ namespace DataContext
                 .Property(e => e.description)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<RequirementModificationVersion>()
-                .HasMany(e => e.RequirementModificationComment)
-                .WithRequired(e => e.RequirementModificationVersion)
-                .HasForeignKey(e => new { e.requirement_modification_version_id, e.company_id, e.project_id, e.requirement_id, e.requirement_modification_id })
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<RequirementQuestion>()
-                .HasMany(e => e.RequirementQuestionAnswer)
-                .WithRequired(e => e.RequirementQuestion)
-                .HasForeignKey(e => new { e.requirement_question_id, e.company_id, e.project_id, e.requirement_id, e.requirement_version_id })
-                .WillCascadeOnDelete(false);
-
             modelBuilder.Entity<RequirementQuestionAnswer>()
                 .Property(e => e.answer)
                 .IsUnicode(false);
@@ -211,18 +181,6 @@ namespace DataContext
             modelBuilder.Entity<RequirementVersion>()
                 .Property(e => e.description)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<RequirementVersion>()
-                .HasMany(e => e.RequirementComment)
-                .WithRequired(e => e.RequirementVersion)
-                .HasForeignKey(e => new { e.requirement_version_id, e.company_id, e.project_id, e.requirement_id })
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<RequirementVersion>()
-                .HasMany(e => e.RequirementQuestion)
-                .WithRequired(e => e.RequirementVersion)
-                .HasForeignKey(e => new { e.requirement_version_id, e.company_id, e.project_id, e.requirement_id })
-                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Role>()
                 .HasMany(e => e.CompanyPersonRole)

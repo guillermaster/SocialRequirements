@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialRequirements.Domain",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialRequirements.CompositionRoot", "SocialRequirements.CompositionRoot\SocialRequirements.CompositionRoot.csproj", "{29D1745D-EC8A-4A56-A5B1-68D17671749E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialRequirements.Business", "SocialRequirements.Business\SocialRequirements.Business.csproj", "{C3A3CA07-550F-4078-B760-EBDD1BA9F7A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialRequirements.Utilities", "SocialRequirements.Utilities\SocialRequirements.Utilities.csproj", "{0729F5F8-ABAF-4179-A564-C6280AAB1DD3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,14 @@ Global
 		{29D1745D-EC8A-4A56-A5B1-68D17671749E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29D1745D-EC8A-4A56-A5B1-68D17671749E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29D1745D-EC8A-4A56-A5B1-68D17671749E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3A3CA07-550F-4078-B760-EBDD1BA9F7A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3A3CA07-550F-4078-B760-EBDD1BA9F7A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3A3CA07-550F-4078-B760-EBDD1BA9F7A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3A3CA07-550F-4078-B760-EBDD1BA9F7A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0729F5F8-ABAF-4179-A564-C6280AAB1DD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0729F5F8-ABAF-4179-A564-C6280AAB1DD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0729F5F8-ABAF-4179-A564-C6280AAB1DD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0729F5F8-ABAF-4179-A564-C6280AAB1DD3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

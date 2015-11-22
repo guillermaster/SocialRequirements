@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Services;
 using Ninject;
 using Ninject.Web;
-using SocialRequirements.Domain.Repository.Account;
+using SocialRequirements.Business.Account;
+using SocialRequirements.Domain.BusinessLogic.Account;
 
 namespace WebService
 {
@@ -16,17 +14,37 @@ namespace WebService
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
     // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
-    // [System.Web.Script.Services.ScriptService]
+    [System.Web.Script.Services.ScriptService]
     public class Account : WebServiceBase
     {
         [Inject]
-        public IPersonData PersonData { get; set; }
+        public IPersonBusiness PersonBusiness { get; set; }
 
         [WebMethod]
-        public bool CreateNewUser(string name, string lastname, string email, string password)
+        public int CreateNewUser(string name, string lastname, string primaryemail, string secondaryemail,
+            string password, string birthdate, string phone, string mobilephone)
         {
-            PersonData.Add(name, lastname, DateTime.Now, email, email, string.Empty, String.Empty, email, password);
-            return true;
+            try
+            {
+                PersonBusiness.Add(name, lastname, birthdate, primaryemail, secondaryemail, phone, mobilephone, password);
+                return 1;
+            }
+            catch (PersonBusiness.Excepction.WrongEmailFormat)
+            {
+                return 2;
+            }
+            catch (PersonBusiness.Excepction.MissingRequiredField)
+            {
+                return 3;
+            }
+            catch (PersonBusiness.Excepction.UserAlreadyExists)
+            {
+                return 4;
+            }
+            catch (Exception ex)
+            {
+                return 5;
+            }
         }
     }
 }

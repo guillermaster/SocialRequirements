@@ -1,14 +1,52 @@
 ﻿using System;
+using System.Linq;
+using DataContext;
+using DataContext.Entities;
 using SocialRequirements.Domain.Repository.Account;
 
-namespace Data.Account
+namespace SocialRequirements.Data.Account
 {
     public class PersonData : IPersonData
     {
+        private readonly ContextModel _context;
+
+        public PersonData(ContextModel context)
+        {
+            _context = context;
+        }
+
         public void Add(string firstName, string lastName, DateTime birthdate, string primaryEmail, string secondaryEmail, string phone,
             string mobilePhone, string username, string password)
         {
-            throw new NotImplementedException();
+            var person = CreatePersonEntityInstance(firstName, lastName, birthdate, primaryEmail, secondaryEmail, phone,
+                mobilePhone, username, password);
+
+            _context.Person.Add(person);
+            _context.SaveChanges();
+        }
+
+        public bool UserExists(string email)
+        {
+            var numberOfUsers = _context.Person.Count(p => p.user_name == email || p.primary_email == email);
+            return numberOfUsers > 0;
+        }
+
+        private static Person CreatePersonEntityInstance(string firstName, string lastName, DateTime birthdate, string primaryEmail, string secondaryEmail,
+            string phone, string mobilePhone, string username, string password)
+        {
+            var person = new Person()
+            {
+                first_name = firstName,
+                last_name = lastName,
+                birth_date = birthdate,
+                primary_email = primaryEmail,
+                secondary_email = secondaryEmail,
+                phone = phone,
+                mobile_phone = mobilePhone,
+                user_name = username,
+                password = password
+            };
+            return person;
         }
     }
 }

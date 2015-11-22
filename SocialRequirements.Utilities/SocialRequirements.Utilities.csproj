@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6195F799-B266-474F-B5BA-D870B9A082A6}</ProjectGuid>
+    <ProjectGuid>{0729F5F8-ABAF-4179-A564-C6280AAB1DD3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SocialRequirements.Domain</RootNamespace>
-    <AssemblyName>SocialRequirements.Domain</AssemblyName>
+    <RootNamespace>SocialRequirements.Utilities</RootNamespace>
+    <AssemblyName>SocialRequirements.Utilities</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -39,12 +39,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusinessLogic\Account\IPersonBusiness.cs" />
+    <Compile Include="EmailUtilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\Account\IPersonData.cs" />
-    <Compile Include="Utilities\IEmailUtilities.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\SocialRequirements.Domain\SocialRequirements.Domain.csproj">
+      <Project>{6195F799-B266-474F-B5BA-D870B9A082A6}</Project>
+      <Name>SocialRequirements.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

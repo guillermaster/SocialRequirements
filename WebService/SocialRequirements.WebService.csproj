@@ -38,6 +38,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -102,6 +109,10 @@
     <ProjectReference Include="..\Data\SocialRequirements.Data.csproj">
       <Project>{caa6be76-bd4b-4309-b067-0e940e50ef1f}</Project>
       <Name>SocialRequirements.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SocialRequirements.Business\SocialRequirements.Business.csproj">
+      <Project>{C3A3CA07-550F-4078-B760-EBDD1BA9F7A3}</Project>
+      <Name>SocialRequirements.Business</Name>
     </ProjectReference>
     <ProjectReference Include="..\SocialRequirements.CompositionRoot\SocialRequirements.CompositionRoot.csproj">
       <Project>{29d1745d-ec8a-4a56-a5b1-68d17671749e}</Project>
