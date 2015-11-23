@@ -4,6 +4,7 @@ using System.Web;
 using System.Web.UI;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using SocialRequirements.AccountService;
 using SocialRequirements.Models;
 
 namespace SocialRequirements.Account
@@ -32,6 +33,13 @@ namespace SocialRequirements.Account
             {
                 ErrorMessage.Text = result.Errors.FirstOrDefault();
             }
+        }
+
+        private bool CreateUser()
+        {
+            AccountService.AccountSoapClient personService = new AccountSoapClient();
+            personService.CreateNewUser(Name.Text, Lastname.Text, Email.Text, SecondaryEmail.Text, Password.Text,
+                Birthdate.Text, Phone.Text, MobilePhone.Text);
         }
     }
 }

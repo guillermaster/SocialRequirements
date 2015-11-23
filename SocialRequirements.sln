@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialRequirements.WebApp", "WebApp\SocialRequirements.WebApp.csproj", "{267E697E-3D47-4292-9377-DF49F8785AEA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3DFFA929-099C-4C46-8238-02A86078C1DD} = {3DFFA929-099C-4C46-8238-02A86078C1DD}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialRequirements.Tests", "Tests\SocialRequirements.Tests.csproj", "{6B227A01-DD51-497C-8187-267AAACAE0CA}"
 EndProject
