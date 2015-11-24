@@ -10,7 +10,7 @@
                 <hr />
                 <asp:Panel ID="SuccessPanel" runat="server" Visible="False">
                     <asp:Label runat="server" ID="SuccessMessage" />
-                    <asp:LinkButton runat="server" ID="ContinueLinkButton" PostBackUrl="../Default.aspx" Text="Continue"/>
+                    <asp:LinkButton runat="server" ID="ContinueLinkButton" PostBackUrl="../Default.aspx" Text="Continue" OnClick="ContinueLinkButton_Click"/>
                 </asp:Panel>
                 <asp:Panel ID="ErrorPanel" runat="server" Visible="False">
                     <p class="text-danger">

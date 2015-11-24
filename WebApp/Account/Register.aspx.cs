@@ -6,18 +6,24 @@ using SocialRequirements.Utilities.ResponseCodes.Account;
 
 namespace SocialRequirements.Account
 {
-    public partial class Register : Page
+    public partial class Register : SocialRequirementsPublicPage
     {
+        #region Form Events
 
         protected void CreateUser_Click(object sender, EventArgs e)
         {
-            if (CreateUser())
-            {
-                FormsAuthentication.RedirectFromLoginPage(Email.Text, true);
-            }
+            CreateUser();
         }
 
-        private bool CreateUser()
+        protected void ContinueLinkButton_Click(object sender, EventArgs e)
+        {
+            FormsAuthentication.RedirectFromLoginPage(Email.Text, true);
+        }
+        #endregion
+
+        #region Data
+        
+        private void CreateUser()
         {
             var personService = new AccountSoapClient();
             var personResponse = personService.CreateNewUser(Name.Text, Lastname.Text, Email.Text, SecondaryEmail.Text,
@@ -27,7 +33,6 @@ namespace SocialRequirements.Account
             {
                 case (int)PersonResponse.PersonRegistration.Success:
                     SetSuccessMessage("User successfully created");
-                    return true;
                     break;
                 case (int)PersonResponse.PersonRegistration.WrongEmailFormat:
                     SetErrorMessage("Wrong email format");
@@ -42,8 +47,8 @@ namespace SocialRequirements.Account
                     SetErrorMessage("A unknown error has occurred");
                     break;
             }
-            return false;
         }
+        #endregion
 
         #region Form Setup
 
@@ -63,6 +68,5 @@ namespace SocialRequirements.Account
             InputFormPanel.Visible = true;
         }
         #endregion
-
     }
 }
