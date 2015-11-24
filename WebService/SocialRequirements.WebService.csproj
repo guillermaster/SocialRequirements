@@ -123,6 +123,10 @@
       <Project>{6195F799-B266-474F-B5BA-D870B9A082A6}</Project>
       <Name>SocialRequirements.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SocialRequirements.Utilities\SocialRequirements.Utilities.csproj">
+      <Project>{0729f5f8-abaf-4179-a564-c6280aab1dd3}</Project>
+      <Name>SocialRequirements.Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

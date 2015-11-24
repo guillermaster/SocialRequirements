@@ -4,6 +4,7 @@ using Ninject;
 using Ninject.Web;
 using SocialRequirements.Business.Account;
 using SocialRequirements.Domain.BusinessLogic.Account;
+using SocialRequirements.Utilities.ResponseCodes.Account;
 
 namespace WebService
 {
@@ -27,23 +28,23 @@ namespace WebService
             try
             {
                 PersonBusiness.Add(name, lastname, birthdate, primaryemail, secondaryemail, phone, mobilephone, password);
-                return 1;
+                return (int)PersonResponse.PersonRegistration.Success;
             }
             catch (PersonBusiness.Excepction.WrongEmailFormat)
             {
-                return 2;
+                return (int)PersonResponse.PersonRegistration.WrongEmailFormat;
             }
             catch (PersonBusiness.Excepction.MissingRequiredField)
             {
-                return 3;
+                return (int)PersonResponse.PersonRegistration.MissingRequiredFields;
             }
             catch (PersonBusiness.Excepction.UserAlreadyExists)
             {
-                return 4;
+                return (int)PersonResponse.PersonRegistration.UserAlreadyExists;
             }
             catch (Exception ex)
             {
-                return 5;
+                return (int)PersonResponse.PersonRegistration.UnknownError;
             }
         }
     }

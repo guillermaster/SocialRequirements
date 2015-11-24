@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Linq;
-using System.Web;
+using System.Web.Security;
 using System.Web.UI;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
 using SocialRequirements.AccountService;
-using SocialRequirements.Models;
+using SocialRequirements.Utilities.ResponseCodes.Account;
 
 namespace SocialRequirements.Account
 {
@@ -14,32 +11,58 @@ namespace SocialRequirements.Account
 
         protected void CreateUser_Click(object sender, EventArgs e)
         {
-            
-            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
-            var user = new ApplicationUser() { UserName = Email.Text, Email = Email.Text };
-            IdentityResult result = manager.Create(user, Password.Text);
-            if (result.Succeeded)
+            if (CreateUser())
             {
-                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                //string code = manager.GenerateEmailConfirmationToken(user.Id);
-                //string callbackUrl = IdentityHelper.GetUserConfirmationRedirectUrl(code, user.Id, Request);
-                //manager.SendEmail(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>.");
-
-                signInManager.SignIn( user, isPersistent: false, rememberBrowser: false);
-                IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
-            }
-            else 
-            {
-                ErrorMessage.Text = result.Errors.FirstOrDefault();
+                FormsAuthentication.RedirectFromLoginPage(Email.Text, true);
             }
         }
 
         private bool CreateUser()
         {
-            AccountService.AccountSoapClient personService = new AccountSoapClient();
-            personService.CreateNewUser(Name.Text, Lastname.Text, Email.Text, SecondaryEmail.Text, Password.Text,
-                Birthdate.Text, Phone.Text, MobilePhone.Text);
+            var personService = new AccountSoapClient();
+            var personResponse = personService.CreateNewUser(Name.Text, Lastname.Text, Email.Text, SecondaryEmail.Text,
+                Password.Text, Birthdate.Text, Phone.Text, MobilePhone.Text);
+
+            switch (personResponse)
+            {
+                case (int)PersonResponse.PersonRegistration.Success:
+                    SetSuccessMessage("User successfully created");
+                    return true;
+                    break;
+                case (int)PersonResponse.PersonRegistration.WrongEmailFormat:
+                    SetErrorMessage("Wrong email format");
+                    break;
+                case (int)PersonResponse.PersonRegistration.MissingRequiredFields:
+                    SetErrorMessage("Some required fields are missing");
+                    break;
+                case (int)PersonResponse.PersonRegistration.UserAlreadyExists:
+                    SetErrorMessage("User already exists");
+                    break;
+                case (int)PersonResponse.PersonRegistration.UnknownError:
+                    SetErrorMessage("A unknown error has occurred");
+                    break;
+            }
+            return false;
         }
+
+        #region Form Setup
+
+        private void SetSuccessMessage(string message)
+        {
+            SuccessMessage.Text = message;
+            SuccessPanel.Visible = true;
+            ErrorPanel.Visible = false;
+            InputFormPanel.Visible = false;
+        }
+
+        private void SetErrorMessage(string message)
+        {
+            ErrorMessage.Text = message;
+            ErrorPanel.Visible = true;
+            SuccessPanel.Visible = false;
+            InputFormPanel.Visible = true;
+        }
+        #endregion
+
     }
 }
