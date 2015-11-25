@@ -12,6 +12,7 @@ namespace SocialRequirements.Account
 
         protected void CreateUser_Click(object sender, EventArgs e)
         {
+            if (!Page.IsValid) return;
             CreateUser();
         }
 

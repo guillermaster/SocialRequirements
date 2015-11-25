@@ -9,11 +9,13 @@
                 <div class="form-horizontal">
                     <h4>Create a new account</h4>
                     <hr />
-                    <asp:Panel ID="SuccessPanel" runat="server" Visible="False">
-                        <asp:Label runat="server" ID="SuccessMessage" />
-                        <asp:LinkButton runat="server" ID="ContinueLinkButton" PostBackUrl="../Default.aspx" Text="Continue" OnClick="ContinueLinkButton_Click" />
+                    <asp:Panel ID="SuccessPanel" runat="server" Visible="False" CssClass="alert alert-success">
+                        <p>
+                            <asp:Label runat="server" ID="SuccessMessage" />
+                        </p>
+                        <asp:LinkButton runat="server" ID="ContinueLinkButton" Text="Continue" OnClick="ContinueLinkButton_Click" />
                     </asp:Panel>
-                    <asp:Panel ID="ErrorPanel" runat="server" Visible="False">
+                    <asp:Panel ID="ErrorPanel" runat="server" Visible="False" CssClass="alert alert-error">
                         <p class="text-danger">
                             <asp:Literal runat="server" ID="ErrorMessage" />
                         </p>
@@ -48,8 +50,6 @@
                             <asp:Label runat="server" AssociatedControlID="SecondaryEmail" CssClass="col-md-2 control-label">Secondary email</asp:Label>
                             <div class="col-md-10">
                                 <asp:TextBox runat="server" ID="SecondaryEmail" CssClass="form-control" TextMode="Email" />
-                                <asp:RequiredFieldValidator runat="server" ControlToValidate="SecondaryEmail"
-                                    CssClass="text-danger" ErrorMessage="The email field is required." />
                             </div>
                         </div>
                         <div class="form-group">
