@@ -31,6 +31,14 @@ namespace SocialRequirements.Data.Account
             return numberOfUsers > 0;
         }
 
+        public string GetPassword(string username)
+        {
+            var user = _context.Person.FirstOrDefault(p => p.user_name == username);
+            if (user == null) throw new SocialRequirementsExcepction.UserNotFound();
+
+            return user.user_name;
+        }
+
         private static Person CreatePersonEntityInstance(string firstName, string lastName, DateTime birthdate, string primaryEmail, string secondaryEmail,
             string phone, string mobilePhone, string username, string password)
         {
@@ -47,6 +55,11 @@ namespace SocialRequirements.Data.Account
                 password = password
             };
             return person;
+        }
+
+        public class SocialRequirementsExcepction
+        {
+            public class UserNotFound : Exception { }
         }
     }
 }

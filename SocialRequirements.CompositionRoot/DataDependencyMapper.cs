@@ -4,7 +4,6 @@ using SocialRequirements.Business.Account;
 using SocialRequirements.Data.Account;
 using SocialRequirements.Domain.BusinessLogic.Account;
 using SocialRequirements.Domain.Repository.Account;
-using SocialRequirements.Domain.Utilities;
 using SocialRequirements.Utilities;
 
 namespace SocialRequirements.CompositionRoot
@@ -18,8 +17,6 @@ namespace SocialRequirements.CompositionRoot
             Bind<IPersonData>().To<PersonData>().WithConstructorArgument("context", dbContext);
 
             Bind<IPersonBusiness>().To<PersonBusiness>();
-
-            Bind<IEmailUtilities>().To<EmailUtilities>();
         }
 
         private static ContextModel GetContext()

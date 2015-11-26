@@ -10,6 +10,7 @@ namespace SocialRequirements.Account
     {
         #region Form Events
 
+
         protected void CreateUser_Click(object sender, EventArgs e)
         {
             if (!Page.IsValid) return;
@@ -53,6 +54,7 @@ namespace SocialRequirements.Account
 
         #region Form Setup
 
+
         private void SetSuccessMessage(string message)
         {
             SuccessMessage.Text = message;
@@ -67,6 +69,8 @@ namespace SocialRequirements.Account
             ErrorPanel.Visible = true;
             SuccessPanel.Visible = false;
             InputFormPanel.Visible = true;
+            ErrorPanel.Focus();
+            ClientScript.RegisterStartupScript(this.GetType(), "hash", "location.hash = '#ErrorPanel';", true);
         }
         #endregion
     }

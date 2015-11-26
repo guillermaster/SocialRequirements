@@ -8,5 +8,7 @@ namespace SocialRequirements.Domain.Repository.Account
             string mobilePhone, string username, string password);
 
         bool UserExists(string email);
+
+        string GetPassword(string username);
     }
 }

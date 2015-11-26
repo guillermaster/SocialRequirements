@@ -50,8 +50,13 @@
   <ItemGroup>
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SecurityTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SocialRequirements.Utilities\SocialRequirements.Utilities.csproj">
+      <Project>{0729f5f8-abaf-4179-a564-c6280aab1dd3}</Project>
+      <Name>SocialRequirements.Utilities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WebApp\SocialRequirements.WebApp.csproj">
       <Project>{267E697E-3D47-4292-9377-DF49F8785AEA}</Project>
       <Name>SocialRequirements.WebApp</Name>

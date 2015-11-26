@@ -72,6 +72,7 @@ namespace SocialRequirements
         {
             //Context.GetOwinContext().Authentication.SignOut();
         }
+
     }
 
 }

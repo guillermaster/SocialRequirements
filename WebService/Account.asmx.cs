@@ -30,15 +30,15 @@ namespace WebService
                 PersonBusiness.Add(name, lastname, birthdate, primaryemail, secondaryemail, phone, mobilephone, password);
                 return (int)PersonResponse.PersonRegistration.Success;
             }
-            catch (PersonBusiness.Excepction.WrongEmailFormat)
+            catch (PersonBusiness.SocialRequirementsExcepction.WrongEmailFormat)
             {
                 return (int)PersonResponse.PersonRegistration.WrongEmailFormat;
             }
-            catch (PersonBusiness.Excepction.MissingRequiredField)
+            catch (PersonBusiness.SocialRequirementsExcepction.MissingRequiredField)
             {
                 return (int)PersonResponse.PersonRegistration.MissingRequiredFields;
             }
-            catch (PersonBusiness.Excepction.UserAlreadyExists)
+            catch (PersonBusiness.SocialRequirementsExcepction.UserAlreadyExists)
             {
                 return (int)PersonResponse.PersonRegistration.UserAlreadyExists;
             }
@@ -46,6 +46,12 @@ namespace WebService
             {
                 return (int)PersonResponse.PersonRegistration.UnknownError;
             }
+        }
+
+        [WebMethod]
+        public bool ValidatePassword(string username, string password)
+        {
+            return PersonBusiness.ValidatePassword(username, password);
         }
     }
 }

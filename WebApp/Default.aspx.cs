@@ -2,7 +2,7 @@
 
 namespace SocialRequirements
 {
-    public partial class Default : SocialRequirementsPublicPage
+    public partial class Default : SocialRequirementsPage
     {
 
         protected override void Page_Load(object sender, EventArgs e)

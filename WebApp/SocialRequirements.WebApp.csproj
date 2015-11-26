@@ -423,6 +423,7 @@
     <Content Include="assets\img\flags\za.png" />
     <Content Include="assets\img\flags\zm.png" />
     <Content Include="assets\img\flags\zw.png" />
+    <Content Include="assets\img\loader.gif" />
     <Content Include="assets\img\login-logo.png" />
     <Content Include="assets\img\logo.png" />
     <Content Include="assets\img\navbar-links-toggle-default.png" />
@@ -2192,6 +2193,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Site.Public.Master" />
+    <Content Include="Service References\AccountService\SocialRequirements.AccountService.ValidatePasswordResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -47,6 +47,10 @@
       <Project>{6195F799-B266-474F-B5BA-D870B9A082A6}</Project>
       <Name>SocialRequirements.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SocialRequirements.Utilities\SocialRequirements.Utilities.csproj">
+      <Project>{0729F5F8-ABAF-4179-A564-C6280AAB1DD3}</Project>
+      <Name>SocialRequirements.Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

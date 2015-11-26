@@ -8,74 +8,73 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.CodeDom.Compiler;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.ServiceModel.Channels;
-using System.Threading.Tasks;
-
 namespace SocialRequirements.AccountService {
     
     
-    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
-    [ServiceContract(ConfigurationName="AccountService.AccountSoap")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="AccountService.AccountSoap")]
     public interface AccountSoap {
         
         // CODEGEN: Generating message contract since element name name from namespace http://tempuri.org/ is not marked nillable
-        [OperationContract(Action="http://tempuri.org/CreateNewUser", ReplyAction="*")]
-        CreateNewUserResponse CreateNewUser(CreateNewUserRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CreateNewUser", ReplyAction="*")]
+        SocialRequirements.AccountService.CreateNewUserResponse CreateNewUser(SocialRequirements.AccountService.CreateNewUserRequest request);
         
-        [OperationContract(Action="http://tempuri.org/CreateNewUser", ReplyAction="*")]
-        Task<CreateNewUserResponse> CreateNewUserAsync(CreateNewUserRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CreateNewUser", ReplyAction="*")]
+        System.Threading.Tasks.Task<SocialRequirements.AccountService.CreateNewUserResponse> CreateNewUserAsync(SocialRequirements.AccountService.CreateNewUserRequest request);
+        
+        // CODEGEN: Generating message contract since element name username from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ValidatePassword", ReplyAction="*")]
+        SocialRequirements.AccountService.ValidatePasswordResponse ValidatePassword(SocialRequirements.AccountService.ValidatePasswordRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ValidatePassword", ReplyAction="*")]
+        System.Threading.Tasks.Task<SocialRequirements.AccountService.ValidatePasswordResponse> ValidatePasswordAsync(SocialRequirements.AccountService.ValidatePasswordRequest request);
     }
     
-    [DebuggerStepThrough()]
-    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
-    [EditorBrowsable(EditorBrowsableState.Advanced)]
-    [MessageContract(IsWrapped=false)]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class CreateNewUserRequest {
         
-        [MessageBodyMember(Name="CreateNewUser", Namespace="http://tempuri.org/", Order=0)]
-        public CreateNewUserRequestBody Body;
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="CreateNewUser", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.AccountService.CreateNewUserRequestBody Body;
         
         public CreateNewUserRequest() {
         }
         
-        public CreateNewUserRequest(CreateNewUserRequestBody Body) {
+        public CreateNewUserRequest(SocialRequirements.AccountService.CreateNewUserRequestBody Body) {
             this.Body = Body;
         }
     }
     
-    [DebuggerStepThrough()]
-    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
-    [EditorBrowsable(EditorBrowsableState.Advanced)]
-    [DataContract(Namespace="http://tempuri.org/")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
     public partial class CreateNewUserRequestBody {
         
-        [DataMember(EmitDefaultValue=false, Order=0)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
         public string name;
         
-        [DataMember(EmitDefaultValue=false, Order=1)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
         public string lastname;
         
-        [DataMember(EmitDefaultValue=false, Order=2)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
         public string primaryemail;
         
-        [DataMember(EmitDefaultValue=false, Order=3)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
         public string secondaryemail;
         
-        [DataMember(EmitDefaultValue=false, Order=4)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=4)]
         public string password;
         
-        [DataMember(EmitDefaultValue=false, Order=5)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=5)]
         public string birthdate;
         
-        [DataMember(EmitDefaultValue=false, Order=6)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=6)]
         public string phone;
         
-        [DataMember(EmitDefaultValue=false, Order=7)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=7)]
         public string mobilephone;
         
         public CreateNewUserRequestBody() {
@@ -93,30 +92,30 @@ namespace SocialRequirements.AccountService {
         }
     }
     
-    [DebuggerStepThrough()]
-    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
-    [EditorBrowsable(EditorBrowsableState.Advanced)]
-    [MessageContract(IsWrapped=false)]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class CreateNewUserResponse {
         
-        [MessageBodyMember(Name="CreateNewUserResponse", Namespace="http://tempuri.org/", Order=0)]
-        public CreateNewUserResponseBody Body;
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="CreateNewUserResponse", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.AccountService.CreateNewUserResponseBody Body;
         
         public CreateNewUserResponse() {
         }
         
-        public CreateNewUserResponse(CreateNewUserResponseBody Body) {
+        public CreateNewUserResponse(SocialRequirements.AccountService.CreateNewUserResponseBody Body) {
             this.Body = Body;
         }
     }
     
-    [DebuggerStepThrough()]
-    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
-    [EditorBrowsable(EditorBrowsableState.Advanced)]
-    [DataContract(Namespace="http://tempuri.org/")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
     public partial class CreateNewUserResponseBody {
         
-        [DataMember(Order=0)]
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
         public int CreateNewUserResult;
         
         public CreateNewUserResponseBody() {
@@ -127,13 +126,85 @@ namespace SocialRequirements.AccountService {
         }
     }
     
-    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
-    public interface AccountSoapChannel : AccountSoap, IClientChannel {
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class ValidatePasswordRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="ValidatePassword", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.AccountService.ValidatePasswordRequestBody Body;
+        
+        public ValidatePasswordRequest() {
+        }
+        
+        public ValidatePasswordRequest(SocialRequirements.AccountService.ValidatePasswordRequestBody Body) {
+            this.Body = Body;
+        }
     }
     
-    [DebuggerStepThrough()]
-    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
-    public partial class AccountSoapClient : ClientBase<AccountSoap>, AccountSoap {
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class ValidatePasswordRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string username;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string password;
+        
+        public ValidatePasswordRequestBody() {
+        }
+        
+        public ValidatePasswordRequestBody(string username, string password) {
+            this.username = username;
+            this.password = password;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class ValidatePasswordResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="ValidatePasswordResponse", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.AccountService.ValidatePasswordResponseBody Body;
+        
+        public ValidatePasswordResponse() {
+        }
+        
+        public ValidatePasswordResponse(SocialRequirements.AccountService.ValidatePasswordResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class ValidatePasswordResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public bool ValidatePasswordResult;
+        
+        public ValidatePasswordResponseBody() {
+        }
+        
+        public ValidatePasswordResponseBody(bool ValidatePasswordResult) {
+            this.ValidatePasswordResult = ValidatePasswordResult;
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface AccountSoapChannel : SocialRequirements.AccountService.AccountSoap, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class AccountSoapClient : System.ServiceModel.ClientBase<SocialRequirements.AccountService.AccountSoap>, SocialRequirements.AccountService.AccountSoap {
         
         public AccountSoapClient() {
         }
@@ -146,22 +217,22 @@ namespace SocialRequirements.AccountService {
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public AccountSoapClient(string endpointConfigurationName, EndpointAddress remoteAddress) : 
+        public AccountSoapClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public AccountSoapClient(Binding binding, EndpointAddress remoteAddress) : 
+        public AccountSoapClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
         
-        [EditorBrowsable(EditorBrowsableState.Advanced)]
-        CreateNewUserResponse AccountSoap.CreateNewUser(CreateNewUserRequest request) {
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SocialRequirements.AccountService.CreateNewUserResponse SocialRequirements.AccountService.AccountSoap.CreateNewUser(SocialRequirements.AccountService.CreateNewUserRequest request) {
             return base.Channel.CreateNewUser(request);
         }
         
         public int CreateNewUser(string name, string lastname, string primaryemail, string secondaryemail, string password, string birthdate, string phone, string mobilephone) {
-            CreateNewUserRequest inValue = new CreateNewUserRequest();
-            inValue.Body = new CreateNewUserRequestBody();
+            SocialRequirements.AccountService.CreateNewUserRequest inValue = new SocialRequirements.AccountService.CreateNewUserRequest();
+            inValue.Body = new SocialRequirements.AccountService.CreateNewUserRequestBody();
             inValue.Body.name = name;
             inValue.Body.lastname = lastname;
             inValue.Body.primaryemail = primaryemail;
@@ -170,18 +241,18 @@ namespace SocialRequirements.AccountService {
             inValue.Body.birthdate = birthdate;
             inValue.Body.phone = phone;
             inValue.Body.mobilephone = mobilephone;
-            CreateNewUserResponse retVal = ((AccountSoap)(this)).CreateNewUser(inValue);
+            SocialRequirements.AccountService.CreateNewUserResponse retVal = ((SocialRequirements.AccountService.AccountSoap)(this)).CreateNewUser(inValue);
             return retVal.Body.CreateNewUserResult;
         }
         
-        [EditorBrowsable(EditorBrowsableState.Advanced)]
-        Task<CreateNewUserResponse> AccountSoap.CreateNewUserAsync(CreateNewUserRequest request) {
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SocialRequirements.AccountService.CreateNewUserResponse> SocialRequirements.AccountService.AccountSoap.CreateNewUserAsync(SocialRequirements.AccountService.CreateNewUserRequest request) {
             return base.Channel.CreateNewUserAsync(request);
         }
         
-        public Task<CreateNewUserResponse> CreateNewUserAsync(string name, string lastname, string primaryemail, string secondaryemail, string password, string birthdate, string phone, string mobilephone) {
-            CreateNewUserRequest inValue = new CreateNewUserRequest();
-            inValue.Body = new CreateNewUserRequestBody();
+        public System.Threading.Tasks.Task<SocialRequirements.AccountService.CreateNewUserResponse> CreateNewUserAsync(string name, string lastname, string primaryemail, string secondaryemail, string password, string birthdate, string phone, string mobilephone) {
+            SocialRequirements.AccountService.CreateNewUserRequest inValue = new SocialRequirements.AccountService.CreateNewUserRequest();
+            inValue.Body = new SocialRequirements.AccountService.CreateNewUserRequestBody();
             inValue.Body.name = name;
             inValue.Body.lastname = lastname;
             inValue.Body.primaryemail = primaryemail;
@@ -190,7 +261,34 @@ namespace SocialRequirements.AccountService {
             inValue.Body.birthdate = birthdate;
             inValue.Body.phone = phone;
             inValue.Body.mobilephone = mobilephone;
-            return ((AccountSoap)(this)).CreateNewUserAsync(inValue);
+            return ((SocialRequirements.AccountService.AccountSoap)(this)).CreateNewUserAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SocialRequirements.AccountService.ValidatePasswordResponse SocialRequirements.AccountService.AccountSoap.ValidatePassword(SocialRequirements.AccountService.ValidatePasswordRequest request) {
+            return base.Channel.ValidatePassword(request);
+        }
+        
+        public bool ValidatePassword(string username, string password) {
+            SocialRequirements.AccountService.ValidatePasswordRequest inValue = new SocialRequirements.AccountService.ValidatePasswordRequest();
+            inValue.Body = new SocialRequirements.AccountService.ValidatePasswordRequestBody();
+            inValue.Body.username = username;
+            inValue.Body.password = password;
+            SocialRequirements.AccountService.ValidatePasswordResponse retVal = ((SocialRequirements.AccountService.AccountSoap)(this)).ValidatePassword(inValue);
+            return retVal.Body.ValidatePasswordResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SocialRequirements.AccountService.ValidatePasswordResponse> SocialRequirements.AccountService.AccountSoap.ValidatePasswordAsync(SocialRequirements.AccountService.ValidatePasswordRequest request) {
+            return base.Channel.ValidatePasswordAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SocialRequirements.AccountService.ValidatePasswordResponse> ValidatePasswordAsync(string username, string password) {
+            SocialRequirements.AccountService.ValidatePasswordRequest inValue = new SocialRequirements.AccountService.ValidatePasswordRequest();
+            inValue.Body = new SocialRequirements.AccountService.ValidatePasswordRequestBody();
+            inValue.Body.username = username;
+            inValue.Body.password = password;
+            return ((SocialRequirements.AccountService.AccountSoap)(this)).ValidatePasswordAsync(inValue);
         }
     }
 }

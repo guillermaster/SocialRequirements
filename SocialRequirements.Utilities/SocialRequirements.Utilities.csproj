@@ -42,6 +42,8 @@
     <Compile Include="EmailUtilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResponseCodes\Account\PersonResponse.cs" />
+    <Compile Include="Security\Encryption.cs" />
+    <Compile Include="Security\PasswordHash.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SocialRequirements.Domain\SocialRequirements.Domain.csproj">

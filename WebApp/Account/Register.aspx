@@ -1,9 +1,23 @@
 ﻿<%@ Page Title="Register" Language="C#" MasterPageFile="~/Site.Public.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="SocialRequirements.Account.Register" %>
 
+<asp:Content runat="server" ID="TitleContent" ContentPlaceHolderID="TitleContent">
+    User Registration
+</asp:Content>
+
+<asp:Content runat="server" ID="ToolbarContent" ContentPlaceHolderID="ToolbarContent">
+    
+</asp:Content>
+
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <form runat="server" id="MainForm">
-        <h2>User Registration</h2>
         <asp:ScriptManager runat="server" ID="MainScriptManager" />
+        <asp:UpdateProgress ID="updProgress" DisplayAfter="10" AssociatedUpdatePanelID="UserRegistrationUpdatePanel" runat="server">
+            <ProgressTemplate>
+                <div class="divWaiting">
+                        <asp:Image ID="ImageLoader" runat="server" ImageUrl="~/assets/img/loader.gif" />
+                </div>
+            </ProgressTemplate>
+        </asp:UpdateProgress>
         <asp:UpdatePanel runat="server" ID="UserRegistrationUpdatePanel">
             <ContentTemplate>
                 <div class="form-horizontal">
@@ -15,7 +29,8 @@
                         </p>
                         <asp:LinkButton runat="server" ID="ContinueLinkButton" Text="Continue" OnClick="ContinueLinkButton_Click" />
                     </asp:Panel>
-                    <asp:Panel ID="ErrorPanel" runat="server" Visible="False" CssClass="alert alert-error">
+                    <asp:Panel ID="ErrorPanel" runat="server" Visible="False" CssClass="alert alert-danger">
+                        <a name="ErrorPanel"></a>
                         <p class="text-danger">
                             <asp:Literal runat="server" ID="ErrorMessage" />
                         </p>

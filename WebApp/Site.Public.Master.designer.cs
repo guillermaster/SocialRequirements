@@ -13,6 +13,24 @@ namespace SocialRequirements {
     public partial class SitePublicMaster {
         
         /// <summary>
+        /// TitleContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder TitleContent;
+        
+        /// <summary>
+        /// ToolbarContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder ToolbarContent;
+        
+        /// <summary>
         /// MainContent control.
         /// </summary>
         /// <remarks>

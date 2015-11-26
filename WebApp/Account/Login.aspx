@@ -1,7 +1,14 @@
-﻿<%@ Page Title="Log in" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="SocialRequirements.Account.Login" Async="true" %>
+﻿<%@ Page Title="Log in" Language="C#" MasterPageFile="~/Site.Public.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="SocialRequirements.Account.Login" Async="true" %>
+
+<asp:Content runat="server" ID="TitleContent" ContentPlaceHolderID="TitleContent">
+    User Registration
+</asp:Content>
+
+<asp:Content runat="server" ID="ToolbarContent" ContentPlaceHolderID="ToolbarContent">
+    
+</asp:Content>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-    <h2>User Login</h2>
     <form runat="server" id="MainForm">
         <div class="row">
             <div class="col-md-8">

@@ -8,5 +8,7 @@ namespace SocialRequirements.Domain.BusinessLogic.Account
             string mobilePhone, string password);
 
         bool UserExists(string email);
+
+        bool ValidatePassword(string username, string password);
     }
 }
