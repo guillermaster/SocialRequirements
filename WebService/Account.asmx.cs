@@ -5,6 +5,7 @@ using Ninject.Web;
 using SocialRequirements.Business.Account;
 using SocialRequirements.Domain.BusinessLogic.Account;
 using SocialRequirements.Utilities.ResponseCodes.Account;
+using SocialRequirements.Utilities.Security;
 
 namespace WebService
 {
@@ -22,11 +23,14 @@ namespace WebService
         public IPersonBusiness PersonBusiness { get; set; }
 
         [WebMethod]
-        public int CreateNewUser(string name, string lastname, string primaryemail, string secondaryemail,
-            string password, string birthdate, string phone, string mobilephone)
+        public int CreateNewUser(string name, string lastname, string encPrimaryemail, string encSecondaryemail,
+            string encPassword, string birthdate, string phone, string mobilephone)
         {
             try
             {
+                var primaryemail = Encryption.Decrypt(encPrimaryemail);
+                var secondaryemail = Encryption.Decrypt(encSecondaryemail);
+                var password = Encryption.Decrypt(encPassword);
                 PersonBusiness.Add(name, lastname, birthdate, primaryemail, secondaryemail, phone, mobilephone, password);
                 return (int)PersonResponse.PersonRegistration.Success;
             }

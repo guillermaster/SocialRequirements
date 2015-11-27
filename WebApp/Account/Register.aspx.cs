@@ -3,6 +3,7 @@ using System.Web.Security;
 using System.Web.UI;
 using SocialRequirements.AccountService;
 using SocialRequirements.Utilities.ResponseCodes.Account;
+using SocialRequirements.Utilities.Security;
 
 namespace SocialRequirements.Account
 {
@@ -28,8 +29,11 @@ namespace SocialRequirements.Account
         private void CreateUser()
         {
             var personService = new AccountSoapClient();
-            var personResponse = personService.CreateNewUser(Name.Text, Lastname.Text, Email.Text, SecondaryEmail.Text,
-                Password.Text, Birthdate.Text, Phone.Text, MobilePhone.Text);
+            var encPrimaryemail = Encryption.Decrypt(Email.Text);
+            var encSecondaryemail = Encryption.Decrypt(SecondaryEmail.Text);
+            var encPpassword = Encryption.Decrypt(Password.Text);
+            var personResponse = personService.CreateNewUser(Name.Text, Lastname.Text, encPrimaryemail, encSecondaryemail,
+                encPpassword, Birthdate.Text, Phone.Text, MobilePhone.Text);
 
             switch (personResponse)
             {
