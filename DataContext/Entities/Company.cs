@@ -9,6 +9,7 @@ namespace DataContext.Entities
     {
         public Company()
         {
+            CompanyPerson = new HashSet<CompanyPerson>();
             CompanyPersonRole = new HashSet<CompanyPersonRole>();
             CompanyProject = new HashSet<CompanyProject>();
             CompanyProjectPerson = new HashSet<CompanyProjectPerson>();
@@ -28,7 +29,11 @@ namespace DataContext.Entities
         [StringLength(70)]
         public string name { get; set; }
 
-        public short type { get; set; }
+        public int type_id { get; set; }
+
+        public virtual GeneralCatalogDetail GeneralCatalogDetail { get; set; }
+
+        public virtual ICollection<CompanyPerson> CompanyPerson { get; set; }
 
         public virtual ICollection<CompanyPersonRole> CompanyPersonRole { get; set; }
 

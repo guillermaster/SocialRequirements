@@ -2,6 +2,7 @@
 using System.Linq;
 using DataContext;
 using DataContext.Entities;
+using SocialRequirements.Domain.Exception.Account;
 using SocialRequirements.Domain.Repository.Account;
 
 namespace SocialRequirements.Data.Account
@@ -34,15 +35,23 @@ namespace SocialRequirements.Data.Account
         public string GetPassword(string username)
         {
             var user = _context.Person.FirstOrDefault(p => p.user_name == username);
-            if (user == null) throw new SocialRequirementsExcepction.UserNotFound();
+            if (user == null) throw new AccountException.UserNotFound();
 
-            return user.user_name;
+            return user.password;
+        }
+
+        public long GetPersonId(string username)
+        {
+            var user = _context.Person.FirstOrDefault(p => p.user_name == username);
+            if (user == null) throw new AccountException.UserNotFound();
+
+            return user.id;
         }
 
         private static Person CreatePersonEntityInstance(string firstName, string lastName, DateTime birthdate, string primaryEmail, string secondaryEmail,
             string phone, string mobilePhone, string username, string password)
         {
-            var person = new Person()
+            var person = new Person
             {
                 first_name = firstName,
                 last_name = lastName,
@@ -55,11 +64,6 @@ namespace SocialRequirements.Data.Account
                 password = password
             };
             return person;
-        }
-
-        public class SocialRequirementsExcepction
-        {
-            public class UserNotFound : Exception { }
         }
     }
 }

@@ -3,23 +3,17 @@ using System.Security.Cryptography;
 
 namespace SocialRequirements.Utilities.Security
 {
-    /// <summary>
-    /// Salted password hashing with PBKDF2-SHA1.
-    /// Author: havoc AT defuse.ca
-    /// www: http://crackstation.net/hashing-security.htm
-    /// Compatibility: .NET 3.0 and later.
-    /// </summary>
     public class PasswordHash
     {
         // The following constants may be changed without breaking existing hashes.
-        public const int SALT_BYTE_SIZE = 24;
-        public const int HASH_BYTE_SIZE = 24;
-        public const int PBKDF2_ITERATIONS = 1000;
+        public const int SaltByteSize = 8;
+        public const int HASH_BYTE_SIZE = 8;
+        public const int PBKDF2_ITERATIONS = 10;
 
         public const int ITERATION_INDEX = 0;
         public const int SALT_INDEX = 1;
         public const int PBKDF2_INDEX = 2;
-
+        
         /// <summary>
         /// Creates a salted PBKDF2 hash of the password.
         /// </summary>
@@ -29,7 +23,7 @@ namespace SocialRequirements.Utilities.Security
         {
             // Generate a random salt
             RNGCryptoServiceProvider csprng = new RNGCryptoServiceProvider();
-            byte[] salt = new byte[SALT_BYTE_SIZE];
+            byte[] salt = new byte[SaltByteSize];
             csprng.GetBytes(salt);
 
             // Hash the password and encode the parameters

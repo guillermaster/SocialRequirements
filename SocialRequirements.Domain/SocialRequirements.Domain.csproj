@@ -39,8 +39,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessLogic\Account\ICompanyBusiness.cs" />
     <Compile Include="BusinessLogic\Account\IPersonBusiness.cs" />
+    <Compile Include="DTO\CompanyDto.cs" />
+    <Compile Include="Exception\Account\AccountException.cs" />
+    <Compile Include="Exception\Account\CompanyException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\Account\ICompanyData.cs" />
     <Compile Include="Repository\Account\IPersonData.cs" />
   </ItemGroup>
   <ItemGroup />

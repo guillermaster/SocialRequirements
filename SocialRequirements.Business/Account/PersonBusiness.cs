@@ -1,5 +1,6 @@
 ﻿using System;
 using SocialRequirements.Domain.BusinessLogic.Account;
+using SocialRequirements.Domain.Exception.Account;
 using SocialRequirements.Domain.Repository.Account;
 using SocialRequirements.Utilities;
 using SocialRequirements.Utilities.Security;
@@ -21,29 +22,29 @@ namespace SocialRequirements.Business.Account
             var username = primaryEmail;
 
             // check first name
-            if (string.IsNullOrWhiteSpace(firstName)) throw new SocialRequirementsExcepction.MissingRequiredField();
+            if (string.IsNullOrWhiteSpace(firstName)) throw new AccountException.MissingRequiredField();
 
             // check last name
-            if (string.IsNullOrWhiteSpace(lastName)) throw new SocialRequirementsExcepction.MissingRequiredField();
+            if (string.IsNullOrWhiteSpace(lastName)) throw new AccountException.MissingRequiredField();
 
             // check birthdate
-            if (string.IsNullOrWhiteSpace(birthdate)) throw new SocialRequirementsExcepction.MissingRequiredField();
+            if (string.IsNullOrWhiteSpace(birthdate)) throw new AccountException.MissingRequiredField();
 
             // check birthdate
-            if (string.IsNullOrWhiteSpace(primaryEmail)) throw new SocialRequirementsExcepction.MissingRequiredField();
+            if (string.IsNullOrWhiteSpace(primaryEmail)) throw new AccountException.MissingRequiredField();
 
             // check password
-            if (string.IsNullOrWhiteSpace(password)) throw new SocialRequirementsExcepction.MissingRequiredField();
+            if (string.IsNullOrWhiteSpace(password)) throw new AccountException.MissingRequiredField();
 
             // check primary email
-            if (!EmailUtilities.IsValidEmail(primaryEmail)) throw new SocialRequirementsExcepction.WrongEmailFormat();
+            if (!EmailUtilities.IsValidEmail(primaryEmail)) throw new AccountException.WrongEmailFormat();
 
             // check secondary email
             if (!string.IsNullOrWhiteSpace(secondaryEmail) && !EmailUtilities.IsValidEmail(secondaryEmail))
-                throw new SocialRequirementsExcepction.WrongEmailFormat();
+                throw new AccountException.WrongEmailFormat();
 
             // check if user already exists
-            if (UserExists(primaryEmail)) throw new SocialRequirementsExcepction.UserAlreadyExists();
+            if (UserExists(primaryEmail)) throw new AccountException.UserAlreadyExists();
 
             // hash password
             var hashedPassword = PasswordHash.CreateHash(password);
@@ -60,17 +61,16 @@ namespace SocialRequirements.Business.Account
 
         public bool ValidatePassword(string username, string password)
         {
-            var hashedPasswordInDb = _personData.GetPassword(username);
-            return PasswordHash.ValidatePassword(password, hashedPasswordInDb);
+            try
+            {
+                var hashedPasswordInDb = _personData.GetPassword(username);
+                return PasswordHash.ValidatePassword(password, hashedPasswordInDb);
+            }
+            catch (AccountException.UserNotFound)
+            {
+                return false;
+            }
         }
 
-        public class SocialRequirementsExcepction
-        {
-            public class WrongEmailFormat : Exception { }
-
-            public class MissingRequiredField : Exception { }
-
-            public class UserAlreadyExists : Exception { }
-        }
     }
 }

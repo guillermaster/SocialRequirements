@@ -10,5 +10,7 @@ namespace SocialRequirements.Domain.Repository.Account
         bool UserExists(string email);
 
         string GetPassword(string username);
+
+        long GetPersonId(string username);
     }
 }

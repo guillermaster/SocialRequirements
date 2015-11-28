@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SocialRequirements.Utilities.Security;
 
 namespace SocialRequirements.Tests
@@ -10,7 +9,7 @@ namespace SocialRequirements.Tests
         [TestMethod]
         public void TestEncryption()
         {
-            var input = "GuillermoNelly";
+            var input = "guillermaster@gmail.com";
             var encrypted = Encryption.Encrypt(input);
             var decrypted = Encryption.Decrypt(encrypted);
 
@@ -20,7 +19,7 @@ namespace SocialRequirements.Tests
         [TestMethod]
         public void PasswordHash()
         {
-            var input = "NellyValentina";
+            var input = "123456";
             var hashed = Utilities.Security.PasswordHash.CreateHash(input);
             Assert.IsTrue(true);
         }
@@ -28,8 +27,9 @@ namespace SocialRequirements.Tests
         [TestMethod]
         public void CheckPassword()
         {
-            var hashed = "1000:wFOcsBVOOPOhvxRKxuiqLTX/IKavknv9:PZzvDCbavU/RbY0V26BeJ94dsADjdwon";
-            var passwordValidated = Utilities.Security.PasswordHash.ValidatePassword("NellyValentina", hashed);
+            //var hashed = "10:Czvc+Hq0TUs=:0NfCOg1TVjs=";
+            var hashed = "10:wEU7KeSiacY=:jpZQf1Vqvys=";
+            var passwordValidated = Utilities.Security.PasswordHash.ValidatePassword("123456", hashed);
             Assert.AreEqual(true, passwordValidated);
         }
     }

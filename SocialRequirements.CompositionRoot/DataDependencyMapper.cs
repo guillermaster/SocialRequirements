@@ -1,10 +1,9 @@
-﻿using Ninject.Modules;
-using DataContext;
+﻿using DataContext;
+using Ninject.Modules;
 using SocialRequirements.Business.Account;
 using SocialRequirements.Data.Account;
 using SocialRequirements.Domain.BusinessLogic.Account;
 using SocialRequirements.Domain.Repository.Account;
-using SocialRequirements.Utilities;
 
 namespace SocialRequirements.CompositionRoot
 {
@@ -15,8 +14,10 @@ namespace SocialRequirements.CompositionRoot
             var dbContext = GetContext();
 
             Bind<IPersonData>().To<PersonData>().WithConstructorArgument("context", dbContext);
+            Bind<ICompanyData>().To<CompanyData>();
 
             Bind<IPersonBusiness>().To<PersonBusiness>();
+            Bind<ICompanyBusiness>().To<CompanyBusiness>();
         }
 
         private static ContextModel GetContext()

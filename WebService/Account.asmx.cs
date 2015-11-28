@@ -1,9 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Web.Script.Services;
 using System.Web.Services;
 using Ninject;
 using Ninject.Web;
-using SocialRequirements.Business.Account;
 using SocialRequirements.Domain.BusinessLogic.Account;
+using SocialRequirements.Domain.DTO;
+using SocialRequirements.Domain.Exception.Account;
+using SocialRequirements.Utilities;
 using SocialRequirements.Utilities.ResponseCodes.Account;
 using SocialRequirements.Utilities.Security;
 
@@ -14,13 +19,15 @@ namespace WebService
     /// </summary>
     [WebService(Namespace = "http://tempuri.org/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
-    [System.ComponentModel.ToolboxItem(false)]
+    [ToolboxItem(false)]
     // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
-    [System.Web.Script.Services.ScriptService]
+    [ScriptService]
     public class Account : WebServiceBase
     {
         [Inject]
         public IPersonBusiness PersonBusiness { get; set; }
+        [Inject]
+        public ICompanyBusiness CompanyBusiness { get; set; }
 
         [WebMethod]
         public int CreateNewUser(string name, string lastname, string encPrimaryemail, string encSecondaryemail,
@@ -34,15 +41,15 @@ namespace WebService
                 PersonBusiness.Add(name, lastname, birthdate, primaryemail, secondaryemail, phone, mobilephone, password);
                 return (int)PersonResponse.PersonRegistration.Success;
             }
-            catch (PersonBusiness.SocialRequirementsExcepction.WrongEmailFormat)
+            catch (AccountException.WrongEmailFormat)
             {
                 return (int)PersonResponse.PersonRegistration.WrongEmailFormat;
             }
-            catch (PersonBusiness.SocialRequirementsExcepction.MissingRequiredField)
+            catch (AccountException.MissingRequiredField)
             {
                 return (int)PersonResponse.PersonRegistration.MissingRequiredFields;
             }
-            catch (PersonBusiness.SocialRequirementsExcepction.UserAlreadyExists)
+            catch (AccountException.UserAlreadyExists)
             {
                 return (int)PersonResponse.PersonRegistration.UserAlreadyExists;
             }
@@ -53,9 +60,20 @@ namespace WebService
         }
 
         [WebMethod]
-        public bool ValidatePassword(string username, string password)
+        public bool ValidatePassword(string encUsername, string encPassword)
         {
+            var username = Encryption.Decrypt(encUsername);
+            var password = Encryption.Decrypt(encPassword);
             return PersonBusiness.ValidatePassword(username, password);
+        }
+
+        [WebMethod]
+        public string GetUserCompanies(string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            var companies = CompanyBusiness.GetCompaniesByUser(username);
+            var serializer = new ObjectSerializer<List<CompanyDto>>(companies);
+            return serializer.ToXmlString();
         }
     }
 }

@@ -52,34 +52,36 @@
         <div id="layout-static">
             <div class="static-content-wrapper">
                 <div class="static-content">
-                    <div class="page-content">
-                        <div class="page-heading">
-                            <h1>
-                                <asp:ContentPlaceHolder ID="TitleContent" runat="server">
-                                        </asp:ContentPlaceHolder>
-                            </h1>
-                            <div class="options">
-                                <div class="btn-toolbar">
-                                    <asp:ContentPlaceHolder ID="ToolbarContent" runat="server">
+                    <form runat="server" id="MainForm">
+                        <div class="page-content">
+                            <div class="page-heading">
+                                <h1>
+                                    <asp:ContentPlaceHolder ID="TitleContent" runat="server">
                                     </asp:ContentPlaceHolder>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="container-fluid">
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div>
-                                        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                                </h1>
+                                <div class="options">
+                                    <div class="btn-toolbar">
+                                        <asp:ContentPlaceHolder ID="ToolbarContent" runat="server">
                                         </asp:ContentPlaceHolder>
                                     </div>
                                 </div>
                             </div>
+                            <div class="container-fluid">
 
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div>
+                                            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                                            </asp:ContentPlaceHolder>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- .container-fluid -->
                         </div>
-                        <!-- .container-fluid -->
-                    </div>
-                    <!-- #page-content -->
+                        <!-- #page-content -->
+                    </form>
                 </div>
                 <footer role="contentinfo">
                     <div class="clearfix">
@@ -95,7 +97,7 @@
             <!-- end of main content area -->
         </div>
     </div>
-    
+
     <!-- Load site level scripts -->
 
     <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -151,7 +153,7 @@
     <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/plugins/bootstrap-switch/bootstrap-switch.js") %>'></script>
     <!-- BS Switch -->
     <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/plugins/switchery/switchery.js") %>'></script>
-    
+
     <!-- End loading page level scripts-->
 
 </body>

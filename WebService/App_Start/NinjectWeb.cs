@@ -1,11 +1,12 @@
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(WebService.App_Start.NinjectWeb), "Start")]
+using Microsoft.Web.Infrastructure.DynamicModuleHelper;
+using Ninject.Web;
+using WebActivatorEx;
+using WebService.App_Start;
+
+[assembly: PreApplicationStartMethod(typeof(NinjectWeb), "Start")]
 
 namespace WebService.App_Start
 {
-    using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
-    using Ninject.Web;
-
     public static class NinjectWeb 
     {
         /// <summary>

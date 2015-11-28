@@ -119,6 +119,7 @@
     <Content Include="Account\Register.aspx" />
     <Content Include="Account\ResetPassword.aspx" />
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
+    <Content Include="Account\SetCompany.aspx" />
     <Content Include="assets\css\.gitignore" />
     <Content Include="assets\css\styles-blessed1.css" />
     <Content Include="assets\css\styles-blessed2.css" />
@@ -2196,6 +2197,9 @@
     <Content Include="Service References\AccountService\SocialRequirements.AccountService.ValidatePasswordResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Service References\AccountService\SocialRequirements.AccountService.GetUserCompaniesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2274,6 +2278,13 @@
     <Compile Include="Account\ResetPasswordConfirmation.aspx.designer.cs">
       <DependentUpon>ResetPasswordConfirmation.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Account\SetCompany.aspx.cs">
+      <DependentUpon>SetCompany.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\SetCompany.aspx.designer.cs">
+      <DependentUpon>SetCompany.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -2327,7 +2338,10 @@
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
-    <Compile Include="SocialRequirementsPage.cs">
+    <Compile Include="SocialRequirementsBasePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SocialRequirementsPrivatePage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="SocialRequirementsPublicPage.cs">

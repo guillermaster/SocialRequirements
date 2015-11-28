@@ -7,10 +7,49 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+
 namespace SocialRequirements {
     
     
     public partial class SiteMaster {
+        
+        /// <summary>
+        /// MainForm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected HtmlForm MainForm;
+        
+        /// <summary>
+        /// TitleContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected ContentPlaceHolder TitleContent;
+        
+        /// <summary>
+        /// ToolbarContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected ContentPlaceHolder ToolbarContent;
+        
+        /// <summary>
+        /// MessageSuccessPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected Panel MessageSuccessPanel;
         
         /// <summary>
         /// MainContent control.
@@ -19,6 +58,6 @@ namespace SocialRequirements {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+        protected ContentPlaceHolder MainContent;
     }
 }

@@ -10,6 +10,7 @@ namespace DataContext.Entities
     {
         public Person()
         {
+            CompanyPerson = new HashSet<CompanyPerson>();
             CompanyPersonRole = new HashSet<CompanyPersonRole>();
             CompanyProjectPerson = new HashSet<CompanyProjectPerson>();
             CompanyProjectPersonRole = new HashSet<CompanyProjectPersonRole>();
@@ -47,8 +48,10 @@ namespace DataContext.Entities
         public string user_name { get; set; }
 
         [Required]
-        [StringLength(25)]
+        [StringLength(250)]
         public string password { get; set; }
+
+        public virtual ICollection<CompanyPerson> CompanyPerson { get; set; }
 
         public virtual ICollection<CompanyPersonRole> CompanyPersonRole { get; set; }
 

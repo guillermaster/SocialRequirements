@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SocialRequirements.Domain.BusinessLogic.Account
+﻿namespace SocialRequirements.Domain.BusinessLogic.Account
 {
     public interface IPersonBusiness
     {

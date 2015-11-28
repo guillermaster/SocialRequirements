@@ -1,13 +1,23 @@
 ﻿using System;
-using System.Web.UI;
 
 namespace SocialRequirements
 {
-    public class SocialRequirementsPublicPage : Page
+    public class SocialRequirementsPublicPage : SocialRequirementsBasePage
     {
         protected virtual void Page_Load(object sender, EventArgs e)
         {
             
+        }
+
+        protected void InitUserSession(string username)
+        {
+            Username = username;
+            RedirectToPrivateArea();
+        }
+
+        private void RedirectToPrivateArea()
+        {
+            Response.Redirect("~/Default.aspx");
         }
     }
 }

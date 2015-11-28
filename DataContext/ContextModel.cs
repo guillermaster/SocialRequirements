@@ -1,12 +1,8 @@
+using System.Data.Entity;
 using DataContext.Entities;
 
 namespace DataContext
 {
-    using System;
-    using System.Data.Entity;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
-
     public partial class ContextModel : DbContext
     {
         public ContextModel()
@@ -15,6 +11,7 @@ namespace DataContext
         }
 
         public virtual DbSet<Company> Company { get; set; }
+        public virtual DbSet<CompanyPerson> CompanyPerson { get; set; }
         public virtual DbSet<CompanyPersonRole> CompanyPersonRole { get; set; }
         public virtual DbSet<CompanyProject> CompanyProject { get; set; }
         public virtual DbSet<CompanyProjectPerson> CompanyProjectPerson { get; set; }
@@ -32,6 +29,8 @@ namespace DataContext
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<Status> Status { get; set; }
         public virtual DbSet<StatusValue> StatusValue { get; set; }
+        public virtual DbSet<GeneralCatalogDetail> GeneralCatalogDetails { get; set; }
+        public virtual DbSet<GeneralCatalogHeader> GeneralCatalogHeaders { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -85,10 +84,10 @@ namespace DataContext
                 .WithRequired(e => e.Company)
                 .HasForeignKey(e => e.company_id);
 
-            modelBuilder.Entity<Company>()
-                .HasMany(e => e.Person)
-                .WithMany(e => e.Company)
-                .Map(m => m.ToTable("CompanyPerson").MapLeftKey("company_id").MapRightKey("person_id"));
+            //modelBuilder.Entity<Company>()
+            //    .HasMany(e => e.Person)
+            //    .WithMany(e => e.Company)
+            //    .Map(m => m.ToTable("CompanyPerson").MapLeftKey("company_id").MapRightKey("person_id"));
 
             modelBuilder.Entity<Person>()
                 .HasMany(e => e.CompanyPersonRole)
@@ -233,6 +232,26 @@ namespace DataContext
                 .WithRequired(e => e.StatusValue)
                 .HasForeignKey(e => e.status_id)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Company>()
+                .HasMany(e => e.CompanyPerson)
+                .WithRequired(e => e.Company)
+                .HasForeignKey(e => e.company_id);
+
+            modelBuilder.Entity<Person>()
+                .HasMany(e => e.CompanyPerson)
+                .WithRequired(e => e.Person)
+                .HasForeignKey(e => e.person_id);
+
+            modelBuilder.Entity<GeneralCatalogDetail>()
+                .HasMany(e => e.Companies)
+                .WithRequired(e => e.GeneralCatalogDetail)
+                .HasForeignKey(e => e.type_id);
+
+            modelBuilder.Entity<GeneralCatalogHeader>()
+                .HasMany(e => e.GeneralCatalogDetails)
+                .WithRequired(e => e.GeneralCatalogHeader)
+                .HasForeignKey(e => e.generalcatalog_id);
         }
     }
 }
