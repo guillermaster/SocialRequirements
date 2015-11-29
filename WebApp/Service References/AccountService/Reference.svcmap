@@ -19,11 +19,11 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:3211/Account.asmx" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:8081/Account.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="Account.wsdl" MetadataType="Wsdl" ID="1a79950c-c902-4541-ae40-79bd18deab8d" SourceId="1" SourceUrl="http://localhost:3211/Account.asmx?wsdl" />
-    <MetadataFile FileName="Account.disco" MetadataType="Disco" ID="8ee35214-33aa-4ae1-a2ab-9eba5ed12ab8" SourceId="1" SourceUrl="http://localhost:3211/Account.asmx?disco" />
+    <MetadataFile FileName="Account.wsdl" MetadataType="Wsdl" ID="1a79950c-c902-4541-ae40-79bd18deab8d" SourceId="1" SourceUrl="http://localhost:8081/Account.asmx?wsdl" />
+    <MetadataFile FileName="Account.disco" MetadataType="Disco" ID="8ee35214-33aa-4ae1-a2ab-9eba5ed12ab8" SourceId="1" SourceUrl="http://localhost:8081/Account.asmx?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

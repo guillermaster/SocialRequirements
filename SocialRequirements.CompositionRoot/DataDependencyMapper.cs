@@ -14,7 +14,7 @@ namespace SocialRequirements.CompositionRoot
             var dbContext = GetContext();
 
             Bind<IPersonData>().To<PersonData>().WithConstructorArgument("context", dbContext);
-            Bind<ICompanyData>().To<CompanyData>();
+            Bind<ICompanyData>().To<CompanyData>().WithConstructorArgument("context", dbContext);
 
             Bind<IPersonBusiness>().To<PersonBusiness>();
             Bind<ICompanyBusiness>().To<CompanyBusiness>();
