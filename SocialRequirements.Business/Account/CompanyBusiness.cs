@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using SocialRequirements.Domain;
 using SocialRequirements.Domain.BusinessLogic.Account;
 using SocialRequirements.Domain.DTO;
 using SocialRequirements.Domain.Exception.Account;
 using SocialRequirements.Domain.Repository.Account;
+using SocialRequirements.Domain.Repository.General;
 
 namespace SocialRequirements.Business.Account
 {
@@ -10,11 +12,13 @@ namespace SocialRequirements.Business.Account
     {
         private readonly IPersonData _personData;
         private readonly ICompanyData _companyData;
+        private readonly IGeneralCatalogData _generalCatalogData;
 
-        public CompanyBusiness(IPersonData personData, ICompanyData companyData)
+        public CompanyBusiness(IPersonData personData, ICompanyData companyData, IGeneralCatalogData generalCatalogData)
         {
             _personData = personData;
             _companyData = companyData;
+            _generalCatalogData = generalCatalogData;
         }
 
         public List<CompanyDto> GetCompaniesByUser(string username)
@@ -29,6 +33,11 @@ namespace SocialRequirements.Business.Account
             {
                 return new List<CompanyDto> {new CompanyDto {Error = "User not found"}};
             }
+        }
+
+        public List<GeneralCatalogDetailDto> GetCompanyTypes()
+        {
+            return _generalCatalogData.Get((int) GeneralCatalog.Header.CompanyType);
         }
     }
 }

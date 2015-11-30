@@ -6,5 +6,7 @@ namespace SocialRequirements.Domain.BusinessLogic.Account
     public interface ICompanyBusiness
     {
         List<CompanyDto> GetCompaniesByUser(string username);
+
+        List<GeneralCatalogDetailDto> GetCompanyTypes();
     }
 }
