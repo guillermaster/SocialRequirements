@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 
@@ -13,6 +14,10 @@ namespace SocialRequirements.Utilities
             ObjectToSerialize = objectToSerialize;
         }
 
+        public ObjectSerializer()
+        {
+        }
+
         public string ToXmlString()
         {
             try
@@ -25,6 +30,22 @@ namespace SocialRequirements.Utilities
             catch (Exception)
             {
                 return string.Empty;
+            }
+        }
+
+        public object Deserialize(string serializedXml)
+        {
+            try
+            {
+                TextReader reader = new StringReader(serializedXml);
+                var ser = new XmlSerializer(typeof(T));
+                var obj = ser.Deserialize(reader);
+                reader.Close();
+                return obj;
+            }
+            catch (Exception)
+            {
+                return null;
             }
         }
     }

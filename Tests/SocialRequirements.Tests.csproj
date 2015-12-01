@@ -53,6 +53,10 @@
     <Compile Include="SecurityTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SocialRequirements.Domain\SocialRequirements.Domain.csproj">
+      <Project>{6195f799-b266-474f-b5ba-d870b9a082a6}</Project>
+      <Name>SocialRequirements.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SocialRequirements.Utilities\SocialRequirements.Utilities.csproj">
       <Project>{0729f5f8-abaf-4179-a564-c6280aab1dd3}</Project>
       <Name>SocialRequirements.Utilities</Name>

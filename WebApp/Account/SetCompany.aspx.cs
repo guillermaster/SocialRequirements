@@ -1,16 +1,32 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
 using System.Web.UI;
+using System.Xml;
+using SocialRequirements.AccountService;
 using SocialRequirements.CompanyService;
 using SocialRequirements.Domain.BusinessLogic.Account;
+using SocialRequirements.Domain.DTO;
+using SocialRequirements.Utilities;
 
 namespace SocialRequirements.Account
 {
     public partial class SetCompany : SocialRequirementsPrivatePage
     {
         #region Global Events
-        protected void Page_Load(object sender, EventArgs e)
+        protected override void Page_Load(object sender, EventArgs e)
         {
             base.Page_Load(sender, e);
+
+            if (Page.IsPostBack) return;
+
+            SetCompanies();
+            SetCompanyType();
+        }
+
+        protected void ContinueLinkButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Default.aspx");
         }
         #endregion
 
@@ -39,11 +55,20 @@ namespace SocialRequirements.Account
         }
         #endregion
 
-        #region Set Form
+        #region Form Setup
 
         private void SetCompanies()
         {
-            
+            var accountSrv = new AccountSoapClient();
+            var companiesPerUserRes = accountSrv.GetUserCompanies(Username);
+
+            var serializer = new ObjectSerializer<List<GeneralCatalogDetailDto>>();
+            var result = serializer.Deserialize(companiesPerUserRes);
+
+            CompaniesDropDownList.DataSource = (List<CompanyDto>)result;
+            CompaniesDropDownList.DataTextField = CustomExpression.GetPropertyName<CompanyDto>(p => p.Name);
+            CompaniesDropDownList.DataValueField = CustomExpression.GetPropertyName<CompanyDto>(p => p.Id);
+            CompaniesDropDownList.DataBind();
         }
 
         private void SetCompanyType()
@@ -51,6 +76,31 @@ namespace SocialRequirements.Account
             var companySrv = new CompanySoapClient();
             var companyTypesRes = companySrv.GetCompanyTypes();
 
+            var serializer = new ObjectSerializer<List<GeneralCatalogDetailDto>>();
+            var result = serializer.Deserialize(companyTypesRes);
+            
+            TypeList.DataSource = (List<GeneralCatalogDetailDto>) result;
+            TypeList.DataTextField = CustomExpression.GetPropertyName<GeneralCatalogDetailDto>(p => p.Name);
+            TypeList.DataValueField = CustomExpression.GetPropertyName<GeneralCatalogDetailDto>(p => p.Id);
+            TypeList.DataBind();
+        }
+
+        private void SetSuccessMessage(string message)
+        {
+            SuccessMessage.Text = message;
+            SuccessPanel.Visible = true;
+            ErrorPanel.Visible = false;
+            ChooseCompanyPanel.Visible = false;
+            CreateCompanyPanel.Visible = false;
+        }
+
+        private void SetErrorMessage(string message)
+        {
+            ErrorMessage.Text = message;
+            ErrorPanel.Visible = true;
+            SuccessPanel.Visible = false;
+            ErrorPanel.Focus();
+            ClientScript.RegisterStartupScript(GetType(), "hash", "location.hash = '#ErrorPanel';", true);
         }
         #endregion
     }

@@ -1,4 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Collections.Generic;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SocialRequirements.Domain.DTO;
+using SocialRequirements.Utilities;
 
 namespace SocialRequirements.Tests
 {
@@ -8,6 +11,9 @@ namespace SocialRequirements.Tests
         [TestMethod]
         public void TestMethod1()
         {
+            /*var serializer = new ObjectSerializer<List<GeneralCatalogDetailDto>>();
+            var result =
+                serializer.Deserialize();*/
         }
     }
 }

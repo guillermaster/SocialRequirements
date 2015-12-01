@@ -23,9 +23,21 @@
     <asp:UpdatePanel runat="server" ID="SetCompanyUpdatePanel">
         <ContentTemplate>
             <div class="form-horizontal">
+                <asp:Panel ID="SuccessPanel" runat="server" Visible="False" CssClass="alert alert-success">
+                    <p>
+                        <asp:Label runat="server" ID="SuccessMessage" />
+                    </p>
+                    <asp:LinkButton runat="server" ID="ContinueLinkButton" Text="Continue" OnClick="ContinueLinkButton_Click" />
+                </asp:Panel>
+                <asp:Panel ID="ErrorPanel" runat="server" Visible="False" CssClass="alert alert-danger">
+                    <a name="ErrorPanel"></a>
+                    <p class="text-danger">
+                        <asp:Literal runat="server" ID="ErrorMessage" />
+                    </p>
+                </asp:Panel>
                 <asp:Panel runat="server" ID="ChooseCompanyPanel" Visible="True">
                     Please choose your company
-        <br />
+                    <br />
                     <asp:DropDownList runat="server" ID="CompaniesDropDownList" />
                     <br />
                     <asp:LinkButton runat="server" ID="CompanyNotFoundButton" Text="Can't find your company? Click here" OnClick="CompanyNotFoundButton_Click" />
@@ -35,7 +47,7 @@
                 <asp:Panel runat="server" ID="CreateCompanyPanel" Visible="False">
                     <asp:ValidationSummary runat="server" CssClass="text-danger" />
                     <div class="form-group">
-                        <asp:Label runat="server" ID="NameTitle" AssociatedControlID="Name" Text="Name" CssClass="col-sm-2 control-label"/>
+                        <asp:Label runat="server" ID="NameTitle" AssociatedControlID="Name" Text="Name" CssClass="col-sm-2 control-label" />
                         <div class="col-sm-10">
                             <asp:TextBox runat="server" ID="Name" CssClass="form-control" />
                             <asp:RequiredFieldValidator runat="server" ControlToValidate="Name"
@@ -43,7 +55,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <asp:Label runat="server" ID="TypeTitle" AssociatedControlID="Name" Text="Type" CssClass="col-sm-2 control-label"/>
+                        <asp:Label runat="server" ID="TypeTitle" AssociatedControlID="Name" Text="Type" CssClass="col-sm-2 control-label" />
                         <div class="col-md-10">
                             <asp:CheckBoxList runat="server" ID="TypeList" />
                         </div>
