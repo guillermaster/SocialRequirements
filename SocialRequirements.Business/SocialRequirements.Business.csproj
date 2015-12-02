@@ -42,6 +42,7 @@
     <Compile Include="Account\CompanyBusiness.cs" />
     <Compile Include="Account\PersonBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Requirement\RequirementBusiness.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SocialRequirements.Domain\SocialRequirements.Domain.csproj">

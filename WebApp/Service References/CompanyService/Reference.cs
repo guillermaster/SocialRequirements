@@ -28,6 +28,12 @@ namespace SocialRequirements.CompanyService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/AddCompany", ReplyAction="*")]
         System.Threading.Tasks.Task<SocialRequirements.CompanyService.AddCompanyResponse> AddCompanyAsync(SocialRequirements.CompanyService.AddCompanyRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/HaveRequirements", ReplyAction="*")]
+        bool HaveRequirements(long companyId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/HaveRequirements", ReplyAction="*")]
+        System.Threading.Tasks.Task<bool> HaveRequirementsAsync(long companyId);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -236,6 +242,14 @@ namespace SocialRequirements.CompanyService {
             inValue.Body.type = type;
             inValue.Body.encUsername = encUsername;
             return ((SocialRequirements.CompanyService.CompanySoap)(this)).AddCompanyAsync(inValue);
+        }
+        
+        public bool HaveRequirements(long companyId) {
+            return base.Channel.HaveRequirements(companyId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> HaveRequirementsAsync(long companyId) {
+            return base.Channel.HaveRequirementsAsync(companyId);
         }
     }
 }

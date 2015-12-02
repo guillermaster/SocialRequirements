@@ -24,6 +24,20 @@
       <s:element name="AddCompanyResponse">
         <s:complexType />
       </s:element>
+      <s:element name="HaveRequirements">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="companyId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HaveRequirementsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="HaveRequirementsResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="GetCompanyTypesSoapIn">
@@ -38,6 +52,12 @@
   <wsdl:message name="AddCompanySoapOut">
     <wsdl:part name="parameters" element="tns:AddCompanyResponse" />
   </wsdl:message>
+  <wsdl:message name="HaveRequirementsSoapIn">
+    <wsdl:part name="parameters" element="tns:HaveRequirements" />
+  </wsdl:message>
+  <wsdl:message name="HaveRequirementsSoapOut">
+    <wsdl:part name="parameters" element="tns:HaveRequirementsResponse" />
+  </wsdl:message>
   <wsdl:portType name="CompanySoap">
     <wsdl:operation name="GetCompanyTypes">
       <wsdl:input message="tns:GetCompanyTypesSoapIn" />
@@ -46,6 +66,10 @@
     <wsdl:operation name="AddCompany">
       <wsdl:input message="tns:AddCompanySoapIn" />
       <wsdl:output message="tns:AddCompanySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HaveRequirements">
+      <wsdl:input message="tns:HaveRequirementsSoapIn" />
+      <wsdl:output message="tns:HaveRequirementsSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="CompanySoap" type="tns:CompanySoap">
@@ -68,6 +92,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="HaveRequirements">
+      <soap:operation soapAction="http://tempuri.org/HaveRequirements" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="CompanySoap12" type="tns:CompanySoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -82,6 +115,15 @@
     </wsdl:operation>
     <wsdl:operation name="AddCompany">
       <soap12:operation soapAction="http://tempuri.org/AddCompany" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HaveRequirements">
+      <soap12:operation soapAction="http://tempuri.org/HaveRequirements" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

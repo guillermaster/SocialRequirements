@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Xml;
 using SocialRequirements.AccountService;
+using SocialRequirements.Domain.DTO;
 using SocialRequirements.Utilities.Security;
 
 namespace SocialRequirements
@@ -17,6 +19,12 @@ namespace SocialRequirements
             }
             set { ViewState["RequiredActionUrl"] = value; }
         }
+
+        protected List<CompanyDto> UserCompanies
+        {
+            get { return ViewState["UserCompanies"] != null ? (List<CompanyDto>)ViewState["UserCompanies"] : new List<CompanyDto>(); }
+            set { ViewState["UserCompanies"] = value; }
+        }
         #endregion
 
         #region Main Events
@@ -26,6 +34,7 @@ namespace SocialRequirements
 
             RequiredActionPanel.Visible = false;
             if (!CheckRelatedCompanies()) return;
+            CheckRequirements();
         }
         #endregion
 
@@ -36,16 +45,10 @@ namespace SocialRequirements
         /// </summary>
         private bool CheckRelatedCompanies()
         {
-            if (!UserLoggedIn()) return false;
+            UserCompanies = GetRelatedCompanies();
 
-            var personService = new AccountSoapClient();
-            var encUsername = Encryption.Encrypt(Username);
-            var companies = personService.GetUserCompanies(encUsername);
-
-            var xmlDocument = new XmlDocument();
-            xmlDocument.LoadXml(companies);
             // check if there is at least one company in the result
-            if (xmlDocument.ChildNodes[1].ChildNodes.Count > 0)
+            if (UserCompanies.Count > 0)
             {
                 return true;
             }
@@ -53,13 +56,26 @@ namespace SocialRequirements
             SetRequiredActionPanel("You are not related to any company. Please select the company you belong to.");
             return false;
         }
+
+        /// <summary>
+        /// Check if there is at least one requirement in 
+        /// any of the companies related to current user
+        /// </summary>
+        /// <returns>True if there is at least one requirement, false when none.</returns>
+        private void CheckRequirements()
+        {
+            var haveRequirements = CheckRequirements(UserCompanies);
+            if(!haveRequirements)
+                SetRequiredActionPanel("There is no requirements yet. You can add one below ;)", true);
+        }
         #endregion
 
         #region Required Action Panel
-        private void SetRequiredActionPanel(string message)
+        private void SetRequiredActionPanel(string message, bool hideActionButton = false)
         {
             RequiredActionMessage.Text = message;
             RequiredActionPanel.Visible = true;
+            RequiredActionExecute.Visible = !hideActionButton;
             RequiredActionUrl = "~/Account/SetCompany.aspx";
         }
         protected void RequiredActionExecute_Click(object sender, EventArgs e)

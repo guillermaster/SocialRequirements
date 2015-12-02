@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Security;
+using SocialRequirements.CompanyService;
+using SocialRequirements.Domain.DTO;
 
 namespace SocialRequirements
 {
@@ -20,6 +24,16 @@ namespace SocialRequirements
         {
             //FormsAuthentication.RedirectToLoginPage();
             Response.Redirect("~/Account/Login.aspx");
+        }
+
+        /// <summary>
+        /// Check if there is at least one requirement for the specified companies
+        /// </summary>
+        /// <returns>True if there is at least one requirement, false when none.</returns>
+        protected bool CheckRequirements(List<CompanyDto> companies)
+        {
+            var companySrv = new CompanySoapClient();
+            return companies.All(company => companySrv.HaveRequirements(company.Id));
         }
     }
 }

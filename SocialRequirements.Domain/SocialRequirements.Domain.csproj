@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="BusinessLogic\Account\ICompanyBusiness.cs" />
     <Compile Include="BusinessLogic\Account\IPersonBusiness.cs" />
+    <Compile Include="BusinessLogic\Requirement\IRequirementBusiness.cs" />
     <Compile Include="DTO\CompanyDto.cs" />
     <Compile Include="DTO\GeneralCatalogDetailDto.cs" />
     <Compile Include="Exception\Account\AccountException.cs" />
@@ -50,6 +51,7 @@
     <Compile Include="Repository\Account\ICompanyData.cs" />
     <Compile Include="Repository\Account\IPersonData.cs" />
     <Compile Include="Repository\General\IGeneralCatalogData.cs" />
+    <Compile Include="Repository\Requirement\IRequirementData.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,5 +1,8 @@
-﻿namespace SocialRequirements.Domain.DTO
+﻿using System;
+
+namespace SocialRequirements.Domain.DTO
 {
+    [Serializable]
     public class CompanyDto
     {
         public long Id { get; set; }
