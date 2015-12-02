@@ -2211,6 +2211,9 @@
     <Content Include="Service References\CompanyService\SocialRequirements.CompanyService.GetCompanyTypesResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Service References\CompanyService\SocialRequirements.CompanyService.AddCompanyResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

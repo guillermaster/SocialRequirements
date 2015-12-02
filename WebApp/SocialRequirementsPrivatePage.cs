@@ -18,7 +18,8 @@ namespace SocialRequirements
 
         private void RedirectToLogin()
         {
-            FormsAuthentication.RedirectToLoginPage();
+            //FormsAuthentication.RedirectToLoginPage();
+            Response.Redirect("~/Account/Login.aspx");
         }
     }
 }

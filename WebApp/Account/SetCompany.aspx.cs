@@ -8,6 +8,7 @@ using SocialRequirements.CompanyService;
 using SocialRequirements.Domain.BusinessLogic.Account;
 using SocialRequirements.Domain.DTO;
 using SocialRequirements.Utilities;
+using SocialRequirements.Utilities.Security;
 
 namespace SocialRequirements.Account
 {
@@ -46,7 +47,18 @@ namespace SocialRequirements.Account
         #region Create company events
         protected void CreateCompanyButton_Click(object sender, EventArgs e)
         {
+            if (!Page.IsValid) return;
 
+            if (string.IsNullOrWhiteSpace(Name.Text) || CompanyType.SelectedItem == null)
+            {
+                SetErrorMessage("Missing required fields");
+                return;
+            }
+
+            AddNewCompany(Name.Text, int.Parse(CompanyType.SelectedValue));
+            SetSuccessMessage("The company was successfully created");
+            ChooseCompanyPanel.Visible = false;
+            CreateCompanyPanel.Visible = false;
         }
 
         protected void CancelCreateCompanyButton_Click(object sender, EventArgs e)
@@ -60,7 +72,7 @@ namespace SocialRequirements.Account
         private void SetCompanies()
         {
             var accountSrv = new AccountSoapClient();
-            var companiesPerUserRes = accountSrv.GetUserCompanies(Username);
+            var companiesPerUserRes = accountSrv.GetUserCompanies(Encryption.Encrypt(Username));
 
             var serializer = new ObjectSerializer<List<GeneralCatalogDetailDto>>();
             var result = serializer.Deserialize(companiesPerUserRes);
@@ -78,11 +90,11 @@ namespace SocialRequirements.Account
 
             var serializer = new ObjectSerializer<List<GeneralCatalogDetailDto>>();
             var result = serializer.Deserialize(companyTypesRes);
-            
-            TypeList.DataSource = (List<GeneralCatalogDetailDto>) result;
-            TypeList.DataTextField = CustomExpression.GetPropertyName<GeneralCatalogDetailDto>(p => p.Name);
-            TypeList.DataValueField = CustomExpression.GetPropertyName<GeneralCatalogDetailDto>(p => p.Id);
-            TypeList.DataBind();
+
+            CompanyType.DataSource = (List<GeneralCatalogDetailDto>)result;
+            CompanyType.DataTextField = CustomExpression.GetPropertyName<GeneralCatalogDetailDto>(p => p.Name);
+            CompanyType.DataValueField = CustomExpression.GetPropertyName<GeneralCatalogDetailDto>(p => p.Id);
+            CompanyType.DataBind();
         }
 
         private void SetSuccessMessage(string message)
@@ -101,6 +113,15 @@ namespace SocialRequirements.Account
             SuccessPanel.Visible = false;
             ErrorPanel.Focus();
             ClientScript.RegisterStartupScript(GetType(), "hash", "location.hash = '#ErrorPanel';", true);
+        }
+        #endregion
+
+        #region Data Update
+
+        private void AddNewCompany(string name, int type)
+        {
+            var companySrv = new CompanySoapClient();
+            companySrv.AddCompany(name, type, Encryption.Encrypt(Username));
         }
         #endregion
     }

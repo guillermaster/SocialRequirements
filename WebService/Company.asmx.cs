@@ -6,6 +6,7 @@ using Ninject.Web;
 using SocialRequirements.Domain.BusinessLogic.Account;
 using SocialRequirements.Domain.DTO;
 using SocialRequirements.Utilities;
+using SocialRequirements.Utilities.Security;
 
 namespace WebService
 {
@@ -29,5 +30,13 @@ namespace WebService
             var serializer = new ObjectSerializer<List<GeneralCatalogDetailDto>>(types);
             return serializer.ToXmlString();
         }
+
+        [WebMethod]
+        public void AddCompany(string name, int type, string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            CompanyBusiness.Add(name, type, username);
+        }
     }
 }
+

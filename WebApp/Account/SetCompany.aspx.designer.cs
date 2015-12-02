@@ -157,13 +157,22 @@ namespace SocialRequirements.Account {
         protected global::System.Web.UI.WebControls.Label TypeTitle;
         
         /// <summary>
-        /// TypeList control.
+        /// CompanyType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList TypeList;
+        protected global::System.Web.UI.WebControls.RadioButtonList CompanyType;
+        
+        /// <summary>
+        /// CompanyTypeValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator CompanyTypeValidator;
         
         /// <summary>
         /// CreateCompanyButton control.

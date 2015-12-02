@@ -8,5 +8,7 @@ namespace SocialRequirements.Domain.BusinessLogic.Account
         List<CompanyDto> GetCompaniesByUser(string username);
 
         List<GeneralCatalogDetailDto> GetCompanyTypes();
+
+        void Add(string companyName, int companyType, string username);
     }
 }

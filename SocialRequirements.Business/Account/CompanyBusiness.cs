@@ -39,5 +39,11 @@ namespace SocialRequirements.Business.Account
         {
             return _generalCatalogData.Get((int) GeneralCatalog.Header.CompanyType);
         }
+
+        public void Add(string companyName, int companyType, string username)
+        {
+            var personId = _personData.GetPersonId(username);
+            _companyData.Add(companyName, companyType, personId);
+        }
     }
 }

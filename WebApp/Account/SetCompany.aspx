@@ -22,6 +22,21 @@
     </asp:UpdateProgress>
     <asp:UpdatePanel runat="server" ID="SetCompanyUpdatePanel">
         <ContentTemplate>
+            <script type="text/javascript">
+                function ValidateCompanyTypeList(sender, args) {
+                    debugger;
+                    var checkBoxList = document.getElementById("<%=CompanyType.ClientID %>");
+                    var checkboxes = checkBoxList.getElementsByTagName("input");
+                    var isValid = false;
+                    for (var i = 0; i < checkboxes.length; i++) {
+                        if (checkboxes[i].checked) {
+                            isValid = true;
+                            break;
+                        }
+                    }
+                    args.IsValid = isValid;
+                }
+            </script>
             <div class="form-horizontal">
                 <asp:Panel ID="SuccessPanel" runat="server" Visible="False" CssClass="alert alert-success">
                     <p>
@@ -57,7 +72,9 @@
                     <div class="form-group">
                         <asp:Label runat="server" ID="TypeTitle" AssociatedControlID="Name" Text="Type" CssClass="col-sm-2 control-label" />
                         <div class="col-md-10">
-                            <asp:CheckBoxList runat="server" ID="TypeList" />
+                            <asp:RadioButtonList runat="server" ID="CompanyType" />
+                            <asp:CustomValidator ID="CompanyTypeValidator" ErrorMessage="Please select at least one company type."
+                               CssClass="text-danger" ClientValidationFunction="ValidateCompanyTypeList" runat="server" />
                         </div>
                     </div>
                     <asp:Button runat="server" ID="CreateCompanyButton" Text="Create company" OnClick="CreateCompanyButton_Click" />
