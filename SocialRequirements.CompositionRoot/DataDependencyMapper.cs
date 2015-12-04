@@ -1,7 +1,7 @@
-﻿using DataContext;
-using Ninject.Modules;
+﻿using Ninject.Modules;
 using SocialRequirements.Business.Account;
 using SocialRequirements.Business.Requirement;
+using SocialRequirements.Context;
 using SocialRequirements.Data.Account;
 using SocialRequirements.Data.General;
 using SocialRequirements.Data.Requirement;

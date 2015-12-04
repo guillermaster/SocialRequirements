@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DataContext.Entities
+namespace SocialRequirements.Context.Entities
 {
     [Table("CompanyProject")]
     public partial class CompanyProject

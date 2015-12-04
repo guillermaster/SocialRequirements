@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Web.UI;
-using System.Xml;
 using SocialRequirements.AccountService;
 using SocialRequirements.Domain.DTO;
 using SocialRequirements.Utilities;

@@ -1,7 +1,7 @@
 using System.Data.Entity;
-using DataContext.Entities;
+using SocialRequirements.Context.Entities;
 
-namespace DataContext
+namespace SocialRequirements.Context
 {
     public partial class ContextModel : DbContext
     {

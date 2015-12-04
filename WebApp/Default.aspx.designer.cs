@@ -40,5 +40,23 @@ namespace SocialRequirements {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected LinkButton RequiredActionExecute;
+        
+        /// <summary>
+        /// PostContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected Panel PostContent;
+        
+        /// <summary>
+        /// ContentPost control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected TextBox ContentPost;
     }
 }

@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DataContext.Entities
+namespace SocialRequirements.Context.Entities
 {
     [Table("RequirementModificationVersion")]
     public partial class RequirementModificationVersion

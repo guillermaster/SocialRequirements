@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataContext;
-using DataContext.Entities;
+using SocialRequirements.Context;
+using SocialRequirements.Context.Entities;
 using SocialRequirements.Domain.DTO;
 using SocialRequirements.Domain.Repository.General;
 

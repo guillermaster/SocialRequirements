@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DataContext.Entities
+namespace SocialRequirements.Context.Entities
 {
     [Table("Person")]
     public partial class Person

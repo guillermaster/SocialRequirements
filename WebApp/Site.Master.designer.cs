@@ -7,6 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+
 namespace SocialRequirements {
     
     
@@ -19,7 +22,7 @@ namespace SocialRequirements {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm MainForm;
+        protected HtmlForm MainForm;
         
         /// <summary>
         /// TitleContent control.
@@ -28,7 +31,7 @@ namespace SocialRequirements {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder TitleContent;
+        protected ContentPlaceHolder TitleContent;
         
         /// <summary>
         /// ToolbarContent control.
@@ -37,7 +40,7 @@ namespace SocialRequirements {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ToolbarContent;
+        protected ContentPlaceHolder ToolbarContent;
         
         /// <summary>
         /// MessageSuccessPanel control.
@@ -46,7 +49,7 @@ namespace SocialRequirements {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel MessageSuccessPanel;
+        protected Panel MessageSuccessPanel;
         
         /// <summary>
         /// MainContent control.
@@ -55,6 +58,6 @@ namespace SocialRequirements {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+        protected ContentPlaceHolder MainContent;
     }
 }

@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SocialRequirements.Domain.DTO;
-using SocialRequirements.Utilities;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace SocialRequirements.Tests
 {

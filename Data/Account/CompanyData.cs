@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using DataContext;
-using DataContext.Entities;
+using SocialRequirements.Context;
+using SocialRequirements.Context.Entities;
 using SocialRequirements.Domain.DTO;
 using SocialRequirements.Domain.Repository.Account;
 

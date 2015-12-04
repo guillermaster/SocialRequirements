@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Xml;
-using SocialRequirements.AccountService;
 using SocialRequirements.Domain.DTO;
-using SocialRequirements.Utilities.Security;
 
 namespace SocialRequirements
 {
@@ -35,6 +32,7 @@ namespace SocialRequirements
             RequiredActionPanel.Visible = false;
             if (!CheckRelatedCompanies()) return;
             CheckRequirements();
+            PostContent.Visible = true;
         }
         #endregion
 

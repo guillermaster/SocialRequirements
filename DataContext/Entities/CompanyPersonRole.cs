@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DataContext.Entities
+namespace SocialRequirements.Context.Entities
 {
     [Table("CompanyPersonRole")]
     public partial class CompanyPersonRole

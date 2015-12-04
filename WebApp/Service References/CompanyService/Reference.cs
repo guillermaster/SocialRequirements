@@ -8,85 +8,93 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.ServiceModel.Channels;
+using System.Threading.Tasks;
+
 namespace SocialRequirements.CompanyService {
     
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CompanyService.CompanySoap")]
+    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
+    [ServiceContract(ConfigurationName="CompanyService.CompanySoap")]
     public interface CompanySoap {
         
         // CODEGEN: Generating message contract since element name GetCompanyTypesResult from namespace http://tempuri.org/ is not marked nillable
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetCompanyTypes", ReplyAction="*")]
-        SocialRequirements.CompanyService.GetCompanyTypesResponse GetCompanyTypes(SocialRequirements.CompanyService.GetCompanyTypesRequest request);
+        [OperationContract(Action="http://tempuri.org/GetCompanyTypes", ReplyAction="*")]
+        GetCompanyTypesResponse GetCompanyTypes(GetCompanyTypesRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetCompanyTypes", ReplyAction="*")]
-        System.Threading.Tasks.Task<SocialRequirements.CompanyService.GetCompanyTypesResponse> GetCompanyTypesAsync(SocialRequirements.CompanyService.GetCompanyTypesRequest request);
+        [OperationContract(Action="http://tempuri.org/GetCompanyTypes", ReplyAction="*")]
+        Task<GetCompanyTypesResponse> GetCompanyTypesAsync(GetCompanyTypesRequest request);
         
         // CODEGEN: Generating message contract since element name name from namespace http://tempuri.org/ is not marked nillable
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/AddCompany", ReplyAction="*")]
-        SocialRequirements.CompanyService.AddCompanyResponse AddCompany(SocialRequirements.CompanyService.AddCompanyRequest request);
+        [OperationContract(Action="http://tempuri.org/AddCompany", ReplyAction="*")]
+        AddCompanyResponse AddCompany(AddCompanyRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/AddCompany", ReplyAction="*")]
-        System.Threading.Tasks.Task<SocialRequirements.CompanyService.AddCompanyResponse> AddCompanyAsync(SocialRequirements.CompanyService.AddCompanyRequest request);
+        [OperationContract(Action="http://tempuri.org/AddCompany", ReplyAction="*")]
+        Task<AddCompanyResponse> AddCompanyAsync(AddCompanyRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/HaveRequirements", ReplyAction="*")]
+        [OperationContract(Action="http://tempuri.org/HaveRequirements", ReplyAction="*")]
         bool HaveRequirements(long companyId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/HaveRequirements", ReplyAction="*")]
-        System.Threading.Tasks.Task<bool> HaveRequirementsAsync(long companyId);
+        [OperationContract(Action="http://tempuri.org/HaveRequirements", ReplyAction="*")]
+        Task<bool> HaveRequirementsAsync(long companyId);
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    [DebuggerStepThrough()]
+    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(IsWrapped=false)]
     public partial class GetCompanyTypesRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetCompanyTypes", Namespace="http://tempuri.org/", Order=0)]
-        public SocialRequirements.CompanyService.GetCompanyTypesRequestBody Body;
+        [MessageBodyMember(Name="GetCompanyTypes", Namespace="http://tempuri.org/", Order=0)]
+        public GetCompanyTypesRequestBody Body;
         
         public GetCompanyTypesRequest() {
         }
         
-        public GetCompanyTypesRequest(SocialRequirements.CompanyService.GetCompanyTypesRequestBody Body) {
+        public GetCompanyTypesRequest(GetCompanyTypesRequestBody Body) {
             this.Body = Body;
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute()]
+    [DebuggerStepThrough()]
+    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [DataContract()]
     public partial class GetCompanyTypesRequestBody {
         
         public GetCompanyTypesRequestBody() {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    [DebuggerStepThrough()]
+    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(IsWrapped=false)]
     public partial class GetCompanyTypesResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetCompanyTypesResponse", Namespace="http://tempuri.org/", Order=0)]
-        public SocialRequirements.CompanyService.GetCompanyTypesResponseBody Body;
+        [MessageBodyMember(Name="GetCompanyTypesResponse", Namespace="http://tempuri.org/", Order=0)]
+        public GetCompanyTypesResponseBody Body;
         
         public GetCompanyTypesResponse() {
         }
         
-        public GetCompanyTypesResponse(SocialRequirements.CompanyService.GetCompanyTypesResponseBody Body) {
+        public GetCompanyTypesResponse(GetCompanyTypesResponseBody Body) {
             this.Body = Body;
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    [DebuggerStepThrough()]
+    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [DataContract(Namespace="http://tempuri.org/")]
     public partial class GetCompanyTypesResponseBody {
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        [DataMember(EmitDefaultValue=false, Order=0)]
         public string GetCompanyTypesResult;
         
         public GetCompanyTypesResponseBody() {
@@ -97,36 +105,36 @@ namespace SocialRequirements.CompanyService {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    [DebuggerStepThrough()]
+    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(IsWrapped=false)]
     public partial class AddCompanyRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="AddCompany", Namespace="http://tempuri.org/", Order=0)]
-        public SocialRequirements.CompanyService.AddCompanyRequestBody Body;
+        [MessageBodyMember(Name="AddCompany", Namespace="http://tempuri.org/", Order=0)]
+        public AddCompanyRequestBody Body;
         
         public AddCompanyRequest() {
         }
         
-        public AddCompanyRequest(SocialRequirements.CompanyService.AddCompanyRequestBody Body) {
+        public AddCompanyRequest(AddCompanyRequestBody Body) {
             this.Body = Body;
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    [DebuggerStepThrough()]
+    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [DataContract(Namespace="http://tempuri.org/")]
     public partial class AddCompanyRequestBody {
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        [DataMember(EmitDefaultValue=false, Order=0)]
         public string name;
         
-        [System.Runtime.Serialization.DataMemberAttribute(Order=1)]
+        [DataMember(Order=1)]
         public int type;
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
+        [DataMember(EmitDefaultValue=false, Order=2)]
         public string encUsername;
         
         public AddCompanyRequestBody() {
@@ -139,40 +147,40 @@ namespace SocialRequirements.CompanyService {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    [DebuggerStepThrough()]
+    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(IsWrapped=false)]
     public partial class AddCompanyResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="AddCompanyResponse", Namespace="http://tempuri.org/", Order=0)]
-        public SocialRequirements.CompanyService.AddCompanyResponseBody Body;
+        [MessageBodyMember(Name="AddCompanyResponse", Namespace="http://tempuri.org/", Order=0)]
+        public AddCompanyResponseBody Body;
         
         public AddCompanyResponse() {
         }
         
-        public AddCompanyResponse(SocialRequirements.CompanyService.AddCompanyResponseBody Body) {
+        public AddCompanyResponse(AddCompanyResponseBody Body) {
             this.Body = Body;
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute()]
+    [DebuggerStepThrough()]
+    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [DataContract()]
     public partial class AddCompanyResponseBody {
         
         public AddCompanyResponseBody() {
         }
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface CompanySoapChannel : SocialRequirements.CompanyService.CompanySoap, System.ServiceModel.IClientChannel {
+    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
+    public interface CompanySoapChannel : CompanySoap, IClientChannel {
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class CompanySoapClient : System.ServiceModel.ClientBase<SocialRequirements.CompanyService.CompanySoap>, SocialRequirements.CompanyService.CompanySoap {
+    [DebuggerStepThrough()]
+    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
+    public partial class CompanySoapClient : ClientBase<CompanySoap>, CompanySoap {
         
         public CompanySoapClient() {
         }
@@ -185,70 +193,70 @@ namespace SocialRequirements.CompanyService {
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public CompanySoapClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public CompanySoapClient(string endpointConfigurationName, EndpointAddress remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public CompanySoapClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public CompanySoapClient(Binding binding, EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SocialRequirements.CompanyService.GetCompanyTypesResponse SocialRequirements.CompanyService.CompanySoap.GetCompanyTypes(SocialRequirements.CompanyService.GetCompanyTypesRequest request) {
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        GetCompanyTypesResponse CompanySoap.GetCompanyTypes(GetCompanyTypesRequest request) {
             return base.Channel.GetCompanyTypes(request);
         }
         
         public string GetCompanyTypes() {
-            SocialRequirements.CompanyService.GetCompanyTypesRequest inValue = new SocialRequirements.CompanyService.GetCompanyTypesRequest();
-            inValue.Body = new SocialRequirements.CompanyService.GetCompanyTypesRequestBody();
-            SocialRequirements.CompanyService.GetCompanyTypesResponse retVal = ((SocialRequirements.CompanyService.CompanySoap)(this)).GetCompanyTypes(inValue);
+            GetCompanyTypesRequest inValue = new GetCompanyTypesRequest();
+            inValue.Body = new GetCompanyTypesRequestBody();
+            GetCompanyTypesResponse retVal = ((CompanySoap)(this)).GetCompanyTypes(inValue);
             return retVal.Body.GetCompanyTypesResult;
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SocialRequirements.CompanyService.GetCompanyTypesResponse> SocialRequirements.CompanyService.CompanySoap.GetCompanyTypesAsync(SocialRequirements.CompanyService.GetCompanyTypesRequest request) {
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<GetCompanyTypesResponse> CompanySoap.GetCompanyTypesAsync(GetCompanyTypesRequest request) {
             return base.Channel.GetCompanyTypesAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SocialRequirements.CompanyService.GetCompanyTypesResponse> GetCompanyTypesAsync() {
-            SocialRequirements.CompanyService.GetCompanyTypesRequest inValue = new SocialRequirements.CompanyService.GetCompanyTypesRequest();
-            inValue.Body = new SocialRequirements.CompanyService.GetCompanyTypesRequestBody();
-            return ((SocialRequirements.CompanyService.CompanySoap)(this)).GetCompanyTypesAsync(inValue);
+        public Task<GetCompanyTypesResponse> GetCompanyTypesAsync() {
+            GetCompanyTypesRequest inValue = new GetCompanyTypesRequest();
+            inValue.Body = new GetCompanyTypesRequestBody();
+            return ((CompanySoap)(this)).GetCompanyTypesAsync(inValue);
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SocialRequirements.CompanyService.AddCompanyResponse SocialRequirements.CompanyService.CompanySoap.AddCompany(SocialRequirements.CompanyService.AddCompanyRequest request) {
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        AddCompanyResponse CompanySoap.AddCompany(AddCompanyRequest request) {
             return base.Channel.AddCompany(request);
         }
         
         public void AddCompany(string name, int type, string encUsername) {
-            SocialRequirements.CompanyService.AddCompanyRequest inValue = new SocialRequirements.CompanyService.AddCompanyRequest();
-            inValue.Body = new SocialRequirements.CompanyService.AddCompanyRequestBody();
+            AddCompanyRequest inValue = new AddCompanyRequest();
+            inValue.Body = new AddCompanyRequestBody();
             inValue.Body.name = name;
             inValue.Body.type = type;
             inValue.Body.encUsername = encUsername;
-            SocialRequirements.CompanyService.AddCompanyResponse retVal = ((SocialRequirements.CompanyService.CompanySoap)(this)).AddCompany(inValue);
+            AddCompanyResponse retVal = ((CompanySoap)(this)).AddCompany(inValue);
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SocialRequirements.CompanyService.AddCompanyResponse> SocialRequirements.CompanyService.CompanySoap.AddCompanyAsync(SocialRequirements.CompanyService.AddCompanyRequest request) {
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<AddCompanyResponse> CompanySoap.AddCompanyAsync(AddCompanyRequest request) {
             return base.Channel.AddCompanyAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SocialRequirements.CompanyService.AddCompanyResponse> AddCompanyAsync(string name, int type, string encUsername) {
-            SocialRequirements.CompanyService.AddCompanyRequest inValue = new SocialRequirements.CompanyService.AddCompanyRequest();
-            inValue.Body = new SocialRequirements.CompanyService.AddCompanyRequestBody();
+        public Task<AddCompanyResponse> AddCompanyAsync(string name, int type, string encUsername) {
+            AddCompanyRequest inValue = new AddCompanyRequest();
+            inValue.Body = new AddCompanyRequestBody();
             inValue.Body.name = name;
             inValue.Body.type = type;
             inValue.Body.encUsername = encUsername;
-            return ((SocialRequirements.CompanyService.CompanySoap)(this)).AddCompanyAsync(inValue);
+            return ((CompanySoap)(this)).AddCompanyAsync(inValue);
         }
         
         public bool HaveRequirements(long companyId) {
             return base.Channel.HaveRequirements(companyId);
         }
         
-        public System.Threading.Tasks.Task<bool> HaveRequirementsAsync(long companyId) {
+        public Task<bool> HaveRequirementsAsync(long companyId) {
             return base.Channel.HaveRequirementsAsync(companyId);
         }
     }

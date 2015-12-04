@@ -44,6 +44,7 @@
     <Compile Include="BusinessLogic\Requirement\IRequirementBusiness.cs" />
     <Compile Include="DTO\CompanyDto.cs" />
     <Compile Include="DTO\GeneralCatalogDetailDto.cs" />
+    <Compile Include="DTO\Requirement\RequirementDto.cs" />
     <Compile Include="Exception\Account\AccountException.cs" />
     <Compile Include="Exception\Account\CompanyException.cs" />
     <Compile Include="GeneralCatalog.cs" />
@@ -53,7 +54,12 @@
     <Compile Include="Repository\General\IGeneralCatalogData.cs" />
     <Compile Include="Repository\Requirement\IRequirementData.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\DataContext\SocialRequirements.Context.csproj">
+      <Project>{0d3df9c2-7cc0-4891-8b55-786bfd9b412c}</Project>
+      <Name>SocialRequirements.Context</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

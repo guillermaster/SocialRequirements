@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
-using DataContext;
-using DataContext.Entities;
+using SocialRequirements.Context;
+using SocialRequirements.Context.Entities;
 using SocialRequirements.Domain.Exception.Account;
 using SocialRequirements.Domain.Repository.Account;
 

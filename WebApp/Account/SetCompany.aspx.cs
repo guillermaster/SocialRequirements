@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Web.UI;
-using System.Xml;
 using SocialRequirements.AccountService;
 using SocialRequirements.CompanyService;
-using SocialRequirements.Domain.BusinessLogic.Account;
 using SocialRequirements.Domain.DTO;
 using SocialRequirements.Utilities;
 using SocialRequirements.Utilities.Security;
