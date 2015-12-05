@@ -2,6 +2,8 @@
 using SocialRequirements.Domain;
 using SocialRequirements.Domain.BusinessLogic.Account;
 using SocialRequirements.Domain.DTO;
+using SocialRequirements.Domain.DTO.Account;
+using SocialRequirements.Domain.DTO.General;
 using SocialRequirements.Domain.Exception.Account;
 using SocialRequirements.Domain.Repository.Account;
 using SocialRequirements.Domain.Repository.General;

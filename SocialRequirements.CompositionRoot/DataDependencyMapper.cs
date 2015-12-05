@@ -18,11 +18,13 @@ namespace SocialRequirements.CompositionRoot
         public override void Load()
         {
             var dbContext = GetContext();
+            const string contextCnxStr = "context";
 
-            Bind<IPersonData>().To<PersonData>().WithConstructorArgument("context", dbContext);
-            Bind<ICompanyData>().To<CompanyData>().WithConstructorArgument("context", dbContext);
-            Bind<IGeneralCatalogData>().To<GeneralCatalogData>().WithConstructorArgument("context", dbContext);
-            Bind<IRequirementData>().To<RequirementData>().WithConstructorArgument("context", dbContext);
+            Bind<IPersonData>().To<PersonData>().WithConstructorArgument(contextCnxStr, dbContext);
+            Bind<ICompanyData>().To<CompanyData>().WithConstructorArgument(contextCnxStr, dbContext);
+            Bind<IGeneralCatalogData>().To<GeneralCatalogData>().WithConstructorArgument(contextCnxStr, dbContext);
+            Bind<IRequirementData>().To<RequirementData>().WithConstructorArgument(contextCnxStr, dbContext);
+            Bind<IRequirementVersionData>().To<RequirementVersionData>().WithConstructorArgument(contextCnxStr, dbContext);
 
             Bind<IPersonBusiness>().To<PersonBusiness>();
             Bind<ICompanyBusiness>().To<CompanyBusiness>();

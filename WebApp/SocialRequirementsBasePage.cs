@@ -2,6 +2,7 @@
 using System.Web.UI;
 using SocialRequirements.AccountService;
 using SocialRequirements.Domain.DTO;
+using SocialRequirements.Domain.DTO.Account;
 using SocialRequirements.Utilities;
 using SocialRequirements.Utilities.Security;
 

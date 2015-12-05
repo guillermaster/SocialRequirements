@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using SocialRequirements.Domain.DTO;
+using SocialRequirements.Domain.DTO.Account;
+using SocialRequirements.Domain.DTO.General;
 
 namespace SocialRequirements.Domain.BusinessLogic.Account
 {

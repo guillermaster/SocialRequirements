@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using SocialRequirements.Domain.DTO;
+using SocialRequirements.Domain.DTO.Account;
 
 namespace SocialRequirements.Domain.Repository.Account
 {

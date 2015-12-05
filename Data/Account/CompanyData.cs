@@ -3,6 +3,7 @@ using System.Linq;
 using SocialRequirements.Context;
 using SocialRequirements.Context.Entities;
 using SocialRequirements.Domain.DTO;
+using SocialRequirements.Domain.DTO.Account;
 using SocialRequirements.Domain.Repository.Account;
 
 namespace SocialRequirements.Data.Account
@@ -19,7 +20,7 @@ namespace SocialRequirements.Data.Account
         public List<CompanyDto> GetCompaniesByUser(long personId)
         {
             var companies = _context.CompanyPerson.Where(cp => cp.person_id == personId).ToList();
-            return companies.Select(GetCompanyDtoFromEntity).ToList();
+            return companies.Select(GetCompanyDto).ToList();
         }
 
         public void Add(string companyName, int companyType, long personId)
@@ -29,22 +30,9 @@ namespace SocialRequirements.Data.Account
                 try
                 {
                     // add new company
-                    var company = new Company
-                    {
-                        name = companyName,
-                        type_id = companyType
-                    };
-                    company = _context.Company.Add(company);
-                    _context.SaveChanges();
-
+                    var companyId = AddCompany(companyName, companyType);
                     // relate company to user
-                    var companyPerson = new CompanyPerson
-                    {
-                        company_id = company.id,
-                        person_id = personId
-                    };
-                    _context.CompanyPerson.Add(companyPerson);
-                    _context.SaveChanges();
+                    AddPersonRelationship(companyId, personId);
 
                     scope.Commit();
                 }
@@ -55,7 +43,30 @@ namespace SocialRequirements.Data.Account
             }
         }
 
-        private static CompanyDto GetCompanyDtoFromEntity(CompanyPerson companyPersonRel)
+        private long AddCompany(string companyName, int companyType)
+        {
+            var company = new Company
+            {
+                name = companyName,
+                type_id = companyType
+            };
+            company = _context.Company.Add(company);
+            _context.SaveChanges();
+            return company.id;
+        }
+
+        private void AddPersonRelationship(long companyId, long personId)
+        {
+            var companyPerson = new CompanyPerson
+            {
+                company_id = companyId,
+                person_id = personId
+            };
+            _context.CompanyPerson.Add(companyPerson);
+            _context.SaveChanges();
+        }
+
+        private static CompanyDto GetCompanyDto(CompanyPerson companyPersonRel)
         {
             var company = new CompanyDto
             {

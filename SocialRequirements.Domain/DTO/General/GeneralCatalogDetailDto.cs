@@ -1,4 +1,4 @@
-﻿namespace SocialRequirements.Domain.DTO
+﻿namespace SocialRequirements.Domain.DTO.General
 {
     public class GeneralCatalogDetailDto
     {

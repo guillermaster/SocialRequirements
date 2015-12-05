@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SocialRequirements.Domain.DTO
+namespace SocialRequirements.Domain.DTO.Account
 {
     [Serializable]
     public class CompanyDto

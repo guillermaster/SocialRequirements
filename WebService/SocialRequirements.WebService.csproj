@@ -93,6 +93,7 @@
   <ItemGroup>
     <Content Include="Account.asmx" />
     <Content Include="Global.asax" />
+    <Content Include="Project.asmx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -108,6 +109,10 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Project.asmx.cs">
+      <DependentUpon>Project.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

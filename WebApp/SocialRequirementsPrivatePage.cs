@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using SocialRequirements.CompanyService;
 using SocialRequirements.Domain.DTO;
+using SocialRequirements.Domain.DTO.Account;
 
 namespace SocialRequirements
 {

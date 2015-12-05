@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using SocialRequirements.AccountService;
 using SocialRequirements.CompanyService;
 using SocialRequirements.Domain.DTO;
+using SocialRequirements.Domain.DTO.Account;
+using SocialRequirements.Domain.DTO.General;
 using SocialRequirements.Utilities;
 using SocialRequirements.Utilities.Security;
 

@@ -3,6 +3,7 @@ using System.Linq;
 using SocialRequirements.Context;
 using SocialRequirements.Context.Entities;
 using SocialRequirements.Domain.DTO;
+using SocialRequirements.Domain.DTO.General;
 using SocialRequirements.Domain.Repository.General;
 
 namespace SocialRequirements.Data.General

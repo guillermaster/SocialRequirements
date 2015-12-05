@@ -41,9 +41,11 @@
   <ItemGroup>
     <Compile Include="BusinessLogic\Account\ICompanyBusiness.cs" />
     <Compile Include="BusinessLogic\Account\IPersonBusiness.cs" />
+    <Compile Include="BusinessLogic\Account\IProjectBusiness.cs" />
     <Compile Include="BusinessLogic\Requirement\IRequirementBusiness.cs" />
-    <Compile Include="DTO\CompanyDto.cs" />
-    <Compile Include="DTO\GeneralCatalogDetailDto.cs" />
+    <Compile Include="DTO\Account\CompanyDto.cs" />
+    <Compile Include="DTO\Account\ProjectDto.cs" />
+    <Compile Include="DTO\General\GeneralCatalogDetailDto.cs" />
     <Compile Include="DTO\Requirement\RequirementDto.cs" />
     <Compile Include="Exception\Account\AccountException.cs" />
     <Compile Include="Exception\Account\CompanyException.cs" />
@@ -51,8 +53,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Account\ICompanyData.cs" />
     <Compile Include="Repository\Account\IPersonData.cs" />
+    <Compile Include="Repository\Account\IProjectData.cs" />
     <Compile Include="Repository\General\IGeneralCatalogData.cs" />
     <Compile Include="Repository\Requirement\IRequirementData.cs" />
+    <Compile Include="Repository\Requirement\IRequirementVersionData.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataContext\SocialRequirements.Context.csproj">

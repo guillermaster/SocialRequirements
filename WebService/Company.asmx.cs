@@ -6,6 +6,7 @@ using Ninject.Web;
 using SocialRequirements.Domain.BusinessLogic.Account;
 using SocialRequirements.Domain.BusinessLogic.Requirement;
 using SocialRequirements.Domain.DTO;
+using SocialRequirements.Domain.DTO.General;
 using SocialRequirements.Utilities;
 using SocialRequirements.Utilities.Security;
 
