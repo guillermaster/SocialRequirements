@@ -25,10 +25,12 @@ namespace SocialRequirements.CompositionRoot
             Bind<IGeneralCatalogData>().To<GeneralCatalogData>().WithConstructorArgument(contextCnxStr, dbContext);
             Bind<IRequirementData>().To<RequirementData>().WithConstructorArgument(contextCnxStr, dbContext);
             Bind<IRequirementVersionData>().To<RequirementVersionData>().WithConstructorArgument(contextCnxStr, dbContext);
+            Bind<IProjectData>().To<ProjectData>().WithConstructorArgument(contextCnxStr, dbContext);
 
             Bind<IPersonBusiness>().To<PersonBusiness>();
             Bind<ICompanyBusiness>().To<CompanyBusiness>();
             Bind<IRequirementBusiness>().To<RequirementBusiness>();
+            Bind<IProjectBusiness>().To<ProjectBusiness>();
         }
 
         private static ContextModel GetContext()

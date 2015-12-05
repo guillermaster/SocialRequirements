@@ -19,9 +19,9 @@ namespace SocialRequirements.Domain.BusinessLogic.Requirement
         /// <param name="projectId">Project identifier</param>
         /// <param name="title">Requirement title</param>
         /// <param name="description">Requirement description</param>
-        /// <param name="personId">Creation user identifier</param>
+        /// <param name="username">Creation username</param>
         /// <returns>Requirement DTO with data of the newly created requirement</returns>
         RequirementDto Add(long companyId, long projectId, string title, string description,
-            long personId);
+            string username);
     }
 }
