@@ -2190,6 +2190,20 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Service References\ProjectService\Project.disco" />
+    <None Include="Service References\ProjectService\configuration91.svcinfo" />
+    <None Include="Service References\ProjectService\configuration.svcinfo" />
+    <None Include="Service References\ProjectService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\RequirementService\Requirement.disco" />
+    <None Include="Service References\RequirementService\configuration91.svcinfo" />
+    <None Include="Service References\RequirementService\configuration.svcinfo" />
+    <None Include="Service References\RequirementService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
@@ -2212,6 +2226,14 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Service References\CompanyService\SocialRequirements.CompanyService.AddCompanyResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\ProjectService\Project.wsdl" />
+    <Content Include="Service References\ProjectService\SocialRequirements.ProjectService.AddProjectResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\RequirementService\Requirement.wsdl" />
+    <Content Include="Service References\RequirementService\SocialRequirements.RequirementService.AddRequirementResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Web.Debug.config">
@@ -2336,6 +2358,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\ProjectService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\RequirementService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Site.Public.Master.cs">
       <DependentUpon>Site.Public.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2401,6 +2433,8 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\AccountService\" />
     <WCFMetadataStorage Include="Service References\CompanyService\" />
+    <WCFMetadataStorage Include="Service References\ProjectService\" />
+    <WCFMetadataStorage Include="Service References\RequirementService\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
