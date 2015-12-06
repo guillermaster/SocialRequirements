@@ -6,7 +6,6 @@ namespace SocialRequirements.Context.Entities
     [Table("ActivityFeed")]
     public partial class ActivityFeed
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long id { get; set; }
 
         public long company_id { get; set; }

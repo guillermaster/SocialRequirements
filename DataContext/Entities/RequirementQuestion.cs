@@ -21,7 +21,7 @@ namespace SocialRequirements.Context.Entities
         [StringLength(500)]
         public string question { get; set; }
 
-        public short status_id { get; set; }
+        public int status_id { get; set; }
 
         public long createdby_id { get; set; }
 
@@ -33,6 +33,6 @@ namespace SocialRequirements.Context.Entities
 
         public int? accepted_answer_id { get; set; }
 
-        public virtual StatusValue StatusValue { get; set; }
+        public virtual GeneralCatalogDetail GeneralCatalogDetail { get; set; }
     }
 }

@@ -29,7 +29,7 @@ namespace SocialRequirements.Context.Entities
 
         public int disagreed { get; set; }
 
-        public short status_id { get; set; }
+        public int status_id { get; set; }
 
         public long createdby_id { get; set; }
 
@@ -47,6 +47,6 @@ namespace SocialRequirements.Context.Entities
 
         public virtual Project Project { get; set; }
 
-        public virtual StatusValue StatusValue { get; set; }
+        public virtual GeneralCatalogDetail GeneralCatalogDetail { get; set; }
     }
 }

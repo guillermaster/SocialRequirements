@@ -11,6 +11,12 @@ namespace SocialRequirements.Context.Entities
         {
             ActivityFeed = new HashSet<ActivityFeed>();
             Companies = new HashSet<Company>();
+            Requirement = new HashSet<Requirement>();
+            RequirementModification = new HashSet<RequirementModification>();
+            RequirementModificationVersion = new HashSet<RequirementModificationVersion>();
+            RequirementQuestion = new HashSet<RequirementQuestion>();
+            RequirementQuestionAnswer = new HashSet<RequirementQuestionAnswer>();
+            RequirementVersion = new HashSet<RequirementVersion>();
         }
 
         public int id { get; set; }
@@ -26,5 +32,17 @@ namespace SocialRequirements.Context.Entities
         public virtual ICollection<Company> Companies { get; set; }
 
         public virtual GeneralCatalogHeader GeneralCatalogHeader { get; set; }
+
+        public virtual ICollection<Requirement> Requirement { get; set; }
+
+        public virtual ICollection<RequirementModification> RequirementModification { get; set; }
+
+        public virtual ICollection<RequirementModificationVersion> RequirementModificationVersion { get; set; }
+
+        public virtual ICollection<RequirementQuestion> RequirementQuestion { get; set; }
+
+        public virtual ICollection<RequirementQuestionAnswer> RequirementQuestionAnswer { get; set; }
+
+        public virtual ICollection<RequirementVersion> RequirementVersion { get; set; }
     }
 }

@@ -14,10 +14,15 @@ namespace SocialRequirements.Domain.DTO.Requirement
             ProjectId = projectId;
             Title = title;
             Description = description;
+            Agreed = 0;
+            Disagreed = 0;
+            StatusId = (int) GeneralCatalog.Detail.RequirementStatus.Draft;
             CreatedbyId = personId;
             ModifiedbyId = personId;
             Createdon = DateTime.Now;
             Modifiedon = DateTime.Now;
+            ApprovedbyId = null;
+            Approvedon = null;
         }
 
         public long Id { get; set; }

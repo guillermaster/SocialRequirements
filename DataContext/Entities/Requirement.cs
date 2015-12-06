@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -7,6 +8,11 @@ namespace SocialRequirements.Context.Entities
     [Table("Requirement")]
     public partial class Requirement
     {
+        public Requirement()
+        {
+            RequirementVersion = new HashSet<RequirementVersion>();
+        }
+
         public long id { get; set; }
 
         public long company_id { get; set; }
@@ -25,7 +31,7 @@ namespace SocialRequirements.Context.Entities
 
         public int disagreed { get; set; }
 
-        public short status_id { get; set; }
+        public int status_id { get; set; }
 
         public long createdby_id { get; set; }
 
@@ -43,6 +49,8 @@ namespace SocialRequirements.Context.Entities
 
         public virtual Project Project { get; set; }
 
-        public virtual StatusValue StatusValue { get; set; }
+        public virtual GeneralCatalogDetail GeneralCatalogDetail { get; set; }
+
+        public virtual ICollection<RequirementVersion> RequirementVersion { get; set; }
     }
 }

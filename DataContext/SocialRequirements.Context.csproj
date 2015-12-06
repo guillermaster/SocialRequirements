@@ -72,8 +72,6 @@
     <Compile Include="Entities\RequirementQuestionAnswer.cs" />
     <Compile Include="Entities\RequirementVersion.cs" />
     <Compile Include="Entities\Role.cs" />
-    <Compile Include="Entities\Status.cs" />
-    <Compile Include="Entities\StatusValue.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />

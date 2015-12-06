@@ -31,8 +31,8 @@ namespace SocialRequirements.Context.Entities
 
         public DateTime modifiedon { get; set; }
 
-        public short status_id { get; set; }
+        public int status_id { get; set; }
 
-        public virtual StatusValue StatusValue { get; set; }
+        public virtual GeneralCatalogDetail GeneralCatalogDetail { get; set; }
     }
 }

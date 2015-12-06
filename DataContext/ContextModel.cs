@@ -28,8 +28,6 @@ namespace SocialRequirements.Context
         public virtual DbSet<RequirementQuestionAnswer> RequirementQuestionAnswer { get; set; }
         public virtual DbSet<RequirementVersion> RequirementVersion { get; set; }
         public virtual DbSet<Role> Role { get; set; }
-        public virtual DbSet<Status> Status { get; set; }
-        public virtual DbSet<StatusValue> StatusValue { get; set; }
         public virtual DbSet<GeneralCatalogDetail> GeneralCatalogDetails { get; set; }
         public virtual DbSet<GeneralCatalogHeader> GeneralCatalogHeaders { get; set; }
 
@@ -91,10 +89,41 @@ namespace SocialRequirements.Context
                 .WithRequired(e => e.Company)
                 .HasForeignKey(e => e.company_id);
 
-            //modelBuilder.Entity<Company>()
-            //    .HasMany(e => e.Person)
-            //    .WithMany(e => e.Company)
-            //    .Map(m => m.ToTable("CompanyPerson").MapLeftKey("company_id").MapRightKey("person_id"));
+            modelBuilder.Entity<GeneralCatalogDetail>()
+                .HasMany(e => e.Requirement)
+                .WithRequired(e => e.GeneralCatalogDetail)
+                .HasForeignKey(e => e.status_id)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<GeneralCatalogDetail>()
+                .HasMany(e => e.RequirementModification)
+                .WithRequired(e => e.GeneralCatalogDetail)
+                .HasForeignKey(e => e.status_id)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<GeneralCatalogDetail>()
+                .HasMany(e => e.RequirementModificationVersion)
+                .WithRequired(e => e.GeneralCatalogDetail)
+                .HasForeignKey(e => e.status_id)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<GeneralCatalogDetail>()
+                .HasMany(e => e.RequirementQuestion)
+                .WithRequired(e => e.GeneralCatalogDetail)
+                .HasForeignKey(e => e.status_id)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<GeneralCatalogDetail>()
+                .HasMany(e => e.RequirementQuestionAnswer)
+                .WithRequired(e => e.GeneralCatalogDetail)
+                .HasForeignKey(e => e.status_id)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<GeneralCatalogDetail>()
+                .HasMany(e => e.RequirementVersion)
+                .WithRequired(e => e.GeneralCatalogDetail)
+                .HasForeignKey(e => e.status_id)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Person>()
                 .HasMany(e => e.CompanyPersonRole)
@@ -169,6 +198,12 @@ namespace SocialRequirements.Context
                 .Property(e => e.description)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<Requirement>()
+                .HasMany(e => e.RequirementVersion)
+                .WithRequired(e => e.Requirement)
+                .HasForeignKey(e => e.requirement_id)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<RequirementComment>()
                 .Property(e => e.comment)
                 .IsUnicode(false);
@@ -176,6 +211,11 @@ namespace SocialRequirements.Context
             modelBuilder.Entity<RequirementModification>()
                 .Property(e => e.description)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<RequirementModification>()
+                .HasMany(e => e.RequirementVersion)
+                .WithOptional(e => e.RequirementModification)
+                .HasForeignKey(e => e.requirement_modification_id);
 
             modelBuilder.Entity<RequirementModificationComment>()
                 .Property(e => e.comment)
@@ -202,49 +242,7 @@ namespace SocialRequirements.Context
                 .HasMany(e => e.CompanyProjectPersonRole)
                 .WithRequired(e => e.Role)
                 .HasForeignKey(e => e.role_id);
-
-            modelBuilder.Entity<Status>()
-                .HasMany(e => e.StatusValue)
-                .WithRequired(e => e.Status)
-                .HasForeignKey(e => e.status_id)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<StatusValue>()
-                .HasMany(e => e.Requirement)
-                .WithRequired(e => e.StatusValue)
-                .HasForeignKey(e => e.status_id)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<StatusValue>()
-                .HasMany(e => e.RequirementModification)
-                .WithRequired(e => e.StatusValue)
-                .HasForeignKey(e => e.status_id)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<StatusValue>()
-                .HasMany(e => e.RequirementModificationVersion)
-                .WithRequired(e => e.StatusValue)
-                .HasForeignKey(e => e.status_id)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<StatusValue>()
-                .HasMany(e => e.RequirementQuestion)
-                .WithRequired(e => e.StatusValue)
-                .HasForeignKey(e => e.status_id)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<StatusValue>()
-                .HasMany(e => e.RequirementQuestionAnswer)
-                .WithRequired(e => e.StatusValue)
-                .HasForeignKey(e => e.status_id)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<StatusValue>()
-                .HasMany(e => e.RequirementVersion)
-                .WithRequired(e => e.StatusValue)
-                .HasForeignKey(e => e.status_id)
-                .WillCascadeOnDelete(false);
-
+            
             modelBuilder.Entity<Company>()
                 .HasMany(e => e.CompanyPerson)
                 .WithRequired(e => e.Company)

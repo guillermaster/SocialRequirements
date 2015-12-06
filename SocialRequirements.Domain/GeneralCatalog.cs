@@ -5,7 +5,8 @@
         public enum Header
         {
             CompanyType = 1,
-            Requirement = 2
+            Entity = 2,
+            RequirementStatus = 3
         }
 
         public class Detail
@@ -19,6 +20,11 @@
             public enum Entity
             {
                 Requirement = 4
+            }
+
+            public enum RequirementStatus
+            {
+                Draft = 5
             }
         }
     }

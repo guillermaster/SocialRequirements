@@ -28,8 +28,8 @@ namespace SocialRequirements.Data.Requirement
                 {
                     // add requirement
                     var newRequirement = _context.Requirement.Add(GetEntityFromDto(requirement));
-                    requirement.Id = newRequirement.id;
                     _context.SaveChanges();
+                    requirement.Id = newRequirement.id;
 
                     // add requirement version
                     var reqVersionData = new RequirementVersionData(_context);
