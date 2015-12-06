@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SocialRequirements.Context;
 using SocialRequirements.Context.Entities;
 using SocialRequirements.Domain.DTO.Account;
@@ -22,6 +19,12 @@ namespace SocialRequirements.Data.Account
         {
             var projects = _context.CompanyProject.Where(cp => cp.company_id == companyId).ToList();
             return projects.Select(GetProjectDto).ToList();
+        }
+
+        public int GetNumberOfProjects(long companyId)
+        {
+            var numProject = _context.CompanyProject.Count(c => c.company_id == companyId);
+            return numProject;
         }
 
         public void Add(string name, string description, long companyId, long personId)

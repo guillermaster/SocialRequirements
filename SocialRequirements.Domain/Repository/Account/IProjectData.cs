@@ -20,5 +20,12 @@ namespace SocialRequirements.Domain.Repository.Account
         /// <param name="companyId">Creation Company identifier</param>
         /// <param name="personId">Creation user identifier</param>
         void Add(string name, string description, long companyId, long personId);
+
+        /// <summary>
+        /// Gets the number of projects related to a specified company
+        /// </summary>
+        /// <param name="companyId">Company identifier</param>
+        /// <returns>Number of projects</returns>
+        int GetNumberOfProjects(long companyId);
     }
 }

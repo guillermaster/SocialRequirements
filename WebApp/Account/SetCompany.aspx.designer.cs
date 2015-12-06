@@ -7,9 +7,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.Web.UI;
-using System.Web.UI.WebControls;
-
 namespace SocialRequirements.Account {
     
     
@@ -22,7 +19,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected ScriptManager MainScriptManager;
+        protected global::System.Web.UI.ScriptManager MainScriptManager;
         
         /// <summary>
         /// updProgress control.
@@ -31,7 +28,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected UpdateProgress updProgress;
+        protected global::System.Web.UI.UpdateProgress updProgress;
         
         /// <summary>
         /// SetCompanyUpdatePanel control.
@@ -40,7 +37,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected UpdatePanel SetCompanyUpdatePanel;
+        protected global::System.Web.UI.UpdatePanel SetCompanyUpdatePanel;
         
         /// <summary>
         /// SuccessPanel control.
@@ -49,7 +46,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected Panel SuccessPanel;
+        protected global::System.Web.UI.WebControls.Panel SuccessPanel;
         
         /// <summary>
         /// SuccessMessage control.
@@ -58,7 +55,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected Label SuccessMessage;
+        protected global::System.Web.UI.WebControls.Label SuccessMessage;
         
         /// <summary>
         /// ContinueLinkButton control.
@@ -67,7 +64,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected LinkButton ContinueLinkButton;
+        protected global::System.Web.UI.WebControls.LinkButton ContinueLinkButton;
         
         /// <summary>
         /// ErrorPanel control.
@@ -76,7 +73,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected Panel ErrorPanel;
+        protected global::System.Web.UI.WebControls.Panel ErrorPanel;
         
         /// <summary>
         /// ErrorMessage control.
@@ -85,7 +82,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected Literal ErrorMessage;
+        protected global::System.Web.UI.WebControls.Literal ErrorMessage;
         
         /// <summary>
         /// ChooseCompanyPanel control.
@@ -94,7 +91,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected Panel ChooseCompanyPanel;
+        protected global::System.Web.UI.WebControls.Panel ChooseCompanyPanel;
         
         /// <summary>
         /// CompaniesDropDownList control.
@@ -103,7 +100,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected DropDownList CompaniesDropDownList;
+        protected global::System.Web.UI.WebControls.DropDownList CompaniesDropDownList;
         
         /// <summary>
         /// CompanyNotFoundButton control.
@@ -112,7 +109,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected LinkButton CompanyNotFoundButton;
+        protected global::System.Web.UI.WebControls.LinkButton CompanyNotFoundButton;
         
         /// <summary>
         /// SetCompanyButton control.
@@ -121,7 +118,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected Button SetCompanyButton;
+        protected global::System.Web.UI.WebControls.Button SetCompanyButton;
         
         /// <summary>
         /// CreateCompanyPanel control.
@@ -130,7 +127,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected Panel CreateCompanyPanel;
+        protected global::System.Web.UI.WebControls.Panel CreateCompanyPanel;
         
         /// <summary>
         /// NameTitle control.
@@ -139,7 +136,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected Label NameTitle;
+        protected global::System.Web.UI.WebControls.Label NameTitle;
         
         /// <summary>
         /// Name control.
@@ -148,7 +145,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected TextBox Name;
+        protected global::System.Web.UI.WebControls.TextBox Name;
         
         /// <summary>
         /// TypeTitle control.
@@ -157,7 +154,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected Label TypeTitle;
+        protected global::System.Web.UI.WebControls.Label TypeTitle;
         
         /// <summary>
         /// CompanyType control.
@@ -166,7 +163,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected RadioButtonList CompanyType;
+        protected global::System.Web.UI.WebControls.RadioButtonList CompanyType;
         
         /// <summary>
         /// CompanyTypeValidator control.
@@ -175,7 +172,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected CustomValidator CompanyTypeValidator;
+        protected global::System.Web.UI.WebControls.CustomValidator CompanyTypeValidator;
         
         /// <summary>
         /// CreateCompanyButton control.
@@ -184,7 +181,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected Button CreateCompanyButton;
+        protected global::System.Web.UI.WebControls.Button CreateCompanyButton;
         
         /// <summary>
         /// CancelCreateCompanyButton control.
@@ -193,6 +190,6 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected Button CancelCreateCompanyButton;
+        protected global::System.Web.UI.WebControls.Button CancelCreateCompanyButton;
     }
 }

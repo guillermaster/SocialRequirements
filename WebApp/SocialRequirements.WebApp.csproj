@@ -120,6 +120,7 @@
     <Content Include="Account\ResetPassword.aspx" />
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\SetCompany.aspx" />
+    <Content Include="Account\SetProject.aspx" />
     <Content Include="assets\css\.gitignore" />
     <Content Include="assets\css\styles-blessed1.css" />
     <Content Include="assets\css\styles-blessed2.css" />
@@ -2320,6 +2321,13 @@
     </Compile>
     <Compile Include="Account\SetCompany.aspx.designer.cs">
       <DependentUpon>SetCompany.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\SetProject.aspx.cs">
+      <DependentUpon>SetProject.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\SetProject.aspx.designer.cs">
+      <DependentUpon>SetProject.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">

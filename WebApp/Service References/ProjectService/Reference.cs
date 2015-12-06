@@ -8,54 +8,62 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.ServiceModel.Channels;
+using System.Threading.Tasks;
+
 namespace SocialRequirements.ProjectService {
     
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ProjectService.ProjectSoap")]
+    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
+    [ServiceContract(ConfigurationName="ProjectService.ProjectSoap")]
     public interface ProjectSoap {
         
         // CODEGEN: Generating message contract since element name name from namespace http://tempuri.org/ is not marked nillable
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/AddProject", ReplyAction="*")]
-        SocialRequirements.ProjectService.AddProjectResponse AddProject(SocialRequirements.ProjectService.AddProjectRequest request);
+        [OperationContract(Action="http://tempuri.org/AddProject", ReplyAction="*")]
+        AddProjectResponse AddProject(AddProjectRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/AddProject", ReplyAction="*")]
-        System.Threading.Tasks.Task<SocialRequirements.ProjectService.AddProjectResponse> AddProjectAsync(SocialRequirements.ProjectService.AddProjectRequest request);
+        [OperationContract(Action="http://tempuri.org/AddProject", ReplyAction="*")]
+        Task<AddProjectResponse> AddProjectAsync(AddProjectRequest request);
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    [DebuggerStepThrough()]
+    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(IsWrapped=false)]
     public partial class AddProjectRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="AddProject", Namespace="http://tempuri.org/", Order=0)]
-        public SocialRequirements.ProjectService.AddProjectRequestBody Body;
+        [MessageBodyMember(Name="AddProject", Namespace="http://tempuri.org/", Order=0)]
+        public AddProjectRequestBody Body;
         
         public AddProjectRequest() {
         }
         
-        public AddProjectRequest(SocialRequirements.ProjectService.AddProjectRequestBody Body) {
+        public AddProjectRequest(AddProjectRequestBody Body) {
             this.Body = Body;
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    [DebuggerStepThrough()]
+    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [DataContract(Namespace="http://tempuri.org/")]
     public partial class AddProjectRequestBody {
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        [DataMember(EmitDefaultValue=false, Order=0)]
         public string name;
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        [DataMember(EmitDefaultValue=false, Order=1)]
         public string description;
         
-        [System.Runtime.Serialization.DataMemberAttribute(Order=2)]
+        [DataMember(Order=2)]
         public long companyId;
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
+        [DataMember(EmitDefaultValue=false, Order=3)]
         public string encUsername;
         
         public AddProjectRequestBody() {
@@ -69,40 +77,40 @@ namespace SocialRequirements.ProjectService {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    [DebuggerStepThrough()]
+    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(IsWrapped=false)]
     public partial class AddProjectResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="AddProjectResponse", Namespace="http://tempuri.org/", Order=0)]
-        public SocialRequirements.ProjectService.AddProjectResponseBody Body;
+        [MessageBodyMember(Name="AddProjectResponse", Namespace="http://tempuri.org/", Order=0)]
+        public AddProjectResponseBody Body;
         
         public AddProjectResponse() {
         }
         
-        public AddProjectResponse(SocialRequirements.ProjectService.AddProjectResponseBody Body) {
+        public AddProjectResponse(AddProjectResponseBody Body) {
             this.Body = Body;
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute()]
+    [DebuggerStepThrough()]
+    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [DataContract()]
     public partial class AddProjectResponseBody {
         
         public AddProjectResponseBody() {
         }
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface ProjectSoapChannel : SocialRequirements.ProjectService.ProjectSoap, System.ServiceModel.IClientChannel {
+    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
+    public interface ProjectSoapChannel : ProjectSoap, IClientChannel {
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ProjectSoapClient : System.ServiceModel.ClientBase<SocialRequirements.ProjectService.ProjectSoap>, SocialRequirements.ProjectService.ProjectSoap {
+    [DebuggerStepThrough()]
+    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
+    public partial class ProjectSoapClient : ClientBase<ProjectSoap>, ProjectSoap {
         
         public ProjectSoapClient() {
         }
@@ -115,42 +123,42 @@ namespace SocialRequirements.ProjectService {
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public ProjectSoapClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public ProjectSoapClient(string endpointConfigurationName, EndpointAddress remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public ProjectSoapClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public ProjectSoapClient(Binding binding, EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SocialRequirements.ProjectService.AddProjectResponse SocialRequirements.ProjectService.ProjectSoap.AddProject(SocialRequirements.ProjectService.AddProjectRequest request) {
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        AddProjectResponse ProjectSoap.AddProject(AddProjectRequest request) {
             return base.Channel.AddProject(request);
         }
         
         public void AddProject(string name, string description, long companyId, string encUsername) {
-            SocialRequirements.ProjectService.AddProjectRequest inValue = new SocialRequirements.ProjectService.AddProjectRequest();
-            inValue.Body = new SocialRequirements.ProjectService.AddProjectRequestBody();
+            AddProjectRequest inValue = new AddProjectRequest();
+            inValue.Body = new AddProjectRequestBody();
             inValue.Body.name = name;
             inValue.Body.description = description;
             inValue.Body.companyId = companyId;
             inValue.Body.encUsername = encUsername;
-            SocialRequirements.ProjectService.AddProjectResponse retVal = ((SocialRequirements.ProjectService.ProjectSoap)(this)).AddProject(inValue);
+            AddProjectResponse retVal = ((ProjectSoap)(this)).AddProject(inValue);
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SocialRequirements.ProjectService.AddProjectResponse> SocialRequirements.ProjectService.ProjectSoap.AddProjectAsync(SocialRequirements.ProjectService.AddProjectRequest request) {
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<AddProjectResponse> ProjectSoap.AddProjectAsync(AddProjectRequest request) {
             return base.Channel.AddProjectAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SocialRequirements.ProjectService.AddProjectResponse> AddProjectAsync(string name, string description, long companyId, string encUsername) {
-            SocialRequirements.ProjectService.AddProjectRequest inValue = new SocialRequirements.ProjectService.AddProjectRequest();
-            inValue.Body = new SocialRequirements.ProjectService.AddProjectRequestBody();
+        public Task<AddProjectResponse> AddProjectAsync(string name, string description, long companyId, string encUsername) {
+            AddProjectRequest inValue = new AddProjectRequest();
+            inValue.Body = new AddProjectRequestBody();
             inValue.Body.name = name;
             inValue.Body.description = description;
             inValue.Body.companyId = companyId;
             inValue.Body.encUsername = encUsername;
-            return ((SocialRequirements.ProjectService.ProjectSoap)(this)).AddProjectAsync(inValue);
+            return ((ProjectSoap)(this)).AddProjectAsync(inValue);
         }
     }
 }

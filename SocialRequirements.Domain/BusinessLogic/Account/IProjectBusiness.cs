@@ -20,5 +20,7 @@ namespace SocialRequirements.Domain.BusinessLogic.Account
         /// <param name="companyId">Creation Company identifier</param>
         /// <param name="username">Creation username</param>
         void Add(string name, string description, long companyId, string username);
+
+        bool HaveProjects(long companyId);
     }
 }

@@ -5,7 +5,6 @@ using Ninject;
 using Ninject.Web;
 using SocialRequirements.Domain.BusinessLogic.Account;
 using SocialRequirements.Domain.BusinessLogic.Requirement;
-using SocialRequirements.Domain.DTO;
 using SocialRequirements.Domain.DTO.General;
 using SocialRequirements.Utilities;
 using SocialRequirements.Utilities.Security;
@@ -26,6 +25,8 @@ namespace WebService
         public ICompanyBusiness CompanyBusiness { get; set; }
         [Inject]
         public IRequirementBusiness RequirementBusiness { get; set; }
+        [Inject]
+        public IProjectBusiness ProjectBusiness { get; set; }
 
         [WebMethod]
         public string GetCompanyTypes()
@@ -46,6 +47,12 @@ namespace WebService
         public bool HaveRequirements(long companyId)
         {
             return RequirementBusiness.HaveRequirements(companyId);
+        }
+
+        [WebMethod]
+        public bool HaveProjects(long companyId)
+        {
+            return ProjectBusiness.HaveProjects(companyId);
         }
     }
 }

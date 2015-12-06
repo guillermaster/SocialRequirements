@@ -70,7 +70,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <asp:Label runat="server" ID="TypeTitle" AssociatedControlID="Name" Text="Type" CssClass="col-sm-2 control-label" />
+                        <asp:Label runat="server" ID="TypeTitle" AssociatedControlID="CompanyType" Text="Type" CssClass="col-sm-2 control-label" />
                         <div class="col-md-10">
                             <asp:RadioButtonList runat="server" ID="CompanyType" />
                             <asp:CustomValidator ID="CompanyTypeValidator" ErrorMessage="Please select at least one company type."

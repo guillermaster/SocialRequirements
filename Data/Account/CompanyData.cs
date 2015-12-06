@@ -2,7 +2,6 @@
 using System.Linq;
 using SocialRequirements.Context;
 using SocialRequirements.Context.Entities;
-using SocialRequirements.Domain.DTO;
 using SocialRequirements.Domain.DTO.Account;
 using SocialRequirements.Domain.Repository.Account;
 

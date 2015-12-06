@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using SocialRequirements.AccountService;
 using SocialRequirements.CompanyService;
-using SocialRequirements.Domain.DTO;
 using SocialRequirements.Domain.DTO.Account;
 using SocialRequirements.Domain.DTO.General;
 using SocialRequirements.Utilities;
@@ -70,9 +69,9 @@ namespace SocialRequirements.Account
         private void SetCompanies()
         {
             var accountSrv = new AccountSoapClient();
-            var companiesPerUserRes = accountSrv.GetUserCompanies(Encryption.Encrypt(Username));
+            var companiesPerUserRes = accountSrv.GetUserCompanies(GetUsernameEncrypted());
 
-            var serializer = new ObjectSerializer<List<GeneralCatalogDetailDto>>();
+            var serializer = new ObjectSerializer<List<CompanyDto>>();
             var result = serializer.Deserialize(companiesPerUserRes);
 
             CompaniesDropDownList.DataSource = (List<CompanyDto>)result;
@@ -119,7 +118,7 @@ namespace SocialRequirements.Account
         private void AddNewCompany(string name, int type)
         {
             var companySrv = new CompanySoapClient();
-            companySrv.AddCompany(name, type, Encryption.Encrypt(Username));
+            companySrv.AddCompany(name, type, GetUsernameEncrypted());
         }
         #endregion
     }

@@ -8,57 +8,65 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.ServiceModel.Channels;
+using System.Threading.Tasks;
+
 namespace SocialRequirements.RequirementService {
     
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="RequirementService.RequirementSoap")]
+    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
+    [ServiceContract(ConfigurationName="RequirementService.RequirementSoap")]
     public interface RequirementSoap {
         
         // CODEGEN: Generating message contract since element name title from namespace http://tempuri.org/ is not marked nillable
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/AddRequirement", ReplyAction="*")]
-        SocialRequirements.RequirementService.AddRequirementResponse AddRequirement(SocialRequirements.RequirementService.AddRequirementRequest request);
+        [OperationContract(Action="http://tempuri.org/AddRequirement", ReplyAction="*")]
+        AddRequirementResponse AddRequirement(AddRequirementRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/AddRequirement", ReplyAction="*")]
-        System.Threading.Tasks.Task<SocialRequirements.RequirementService.AddRequirementResponse> AddRequirementAsync(SocialRequirements.RequirementService.AddRequirementRequest request);
+        [OperationContract(Action="http://tempuri.org/AddRequirement", ReplyAction="*")]
+        Task<AddRequirementResponse> AddRequirementAsync(AddRequirementRequest request);
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    [DebuggerStepThrough()]
+    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(IsWrapped=false)]
     public partial class AddRequirementRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="AddRequirement", Namespace="http://tempuri.org/", Order=0)]
-        public SocialRequirements.RequirementService.AddRequirementRequestBody Body;
+        [MessageBodyMember(Name="AddRequirement", Namespace="http://tempuri.org/", Order=0)]
+        public AddRequirementRequestBody Body;
         
         public AddRequirementRequest() {
         }
         
-        public AddRequirementRequest(SocialRequirements.RequirementService.AddRequirementRequestBody Body) {
+        public AddRequirementRequest(AddRequirementRequestBody Body) {
             this.Body = Body;
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    [DebuggerStepThrough()]
+    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [DataContract(Namespace="http://tempuri.org/")]
     public partial class AddRequirementRequestBody {
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        [DataMember(EmitDefaultValue=false, Order=0)]
         public string title;
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        [DataMember(EmitDefaultValue=false, Order=1)]
         public string description;
         
-        [System.Runtime.Serialization.DataMemberAttribute(Order=2)]
+        [DataMember(Order=2)]
         public long companyId;
         
-        [System.Runtime.Serialization.DataMemberAttribute(Order=3)]
+        [DataMember(Order=3)]
         public long projectId;
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=4)]
+        [DataMember(EmitDefaultValue=false, Order=4)]
         public string encUsername;
         
         public AddRequirementRequestBody() {
@@ -73,40 +81,40 @@ namespace SocialRequirements.RequirementService {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    [DebuggerStepThrough()]
+    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(IsWrapped=false)]
     public partial class AddRequirementResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="AddRequirementResponse", Namespace="http://tempuri.org/", Order=0)]
-        public SocialRequirements.RequirementService.AddRequirementResponseBody Body;
+        [MessageBodyMember(Name="AddRequirementResponse", Namespace="http://tempuri.org/", Order=0)]
+        public AddRequirementResponseBody Body;
         
         public AddRequirementResponse() {
         }
         
-        public AddRequirementResponse(SocialRequirements.RequirementService.AddRequirementResponseBody Body) {
+        public AddRequirementResponse(AddRequirementResponseBody Body) {
             this.Body = Body;
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute()]
+    [DebuggerStepThrough()]
+    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [DataContract()]
     public partial class AddRequirementResponseBody {
         
         public AddRequirementResponseBody() {
         }
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface RequirementSoapChannel : SocialRequirements.RequirementService.RequirementSoap, System.ServiceModel.IClientChannel {
+    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
+    public interface RequirementSoapChannel : RequirementSoap, IClientChannel {
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class RequirementSoapClient : System.ServiceModel.ClientBase<SocialRequirements.RequirementService.RequirementSoap>, SocialRequirements.RequirementService.RequirementSoap {
+    [DebuggerStepThrough()]
+    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
+    public partial class RequirementSoapClient : ClientBase<RequirementSoap>, RequirementSoap {
         
         public RequirementSoapClient() {
         }
@@ -119,44 +127,44 @@ namespace SocialRequirements.RequirementService {
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public RequirementSoapClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public RequirementSoapClient(string endpointConfigurationName, EndpointAddress remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public RequirementSoapClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public RequirementSoapClient(Binding binding, EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SocialRequirements.RequirementService.AddRequirementResponse SocialRequirements.RequirementService.RequirementSoap.AddRequirement(SocialRequirements.RequirementService.AddRequirementRequest request) {
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        AddRequirementResponse RequirementSoap.AddRequirement(AddRequirementRequest request) {
             return base.Channel.AddRequirement(request);
         }
         
         public void AddRequirement(string title, string description, long companyId, long projectId, string encUsername) {
-            SocialRequirements.RequirementService.AddRequirementRequest inValue = new SocialRequirements.RequirementService.AddRequirementRequest();
-            inValue.Body = new SocialRequirements.RequirementService.AddRequirementRequestBody();
+            AddRequirementRequest inValue = new AddRequirementRequest();
+            inValue.Body = new AddRequirementRequestBody();
             inValue.Body.title = title;
             inValue.Body.description = description;
             inValue.Body.companyId = companyId;
             inValue.Body.projectId = projectId;
             inValue.Body.encUsername = encUsername;
-            SocialRequirements.RequirementService.AddRequirementResponse retVal = ((SocialRequirements.RequirementService.RequirementSoap)(this)).AddRequirement(inValue);
+            AddRequirementResponse retVal = ((RequirementSoap)(this)).AddRequirement(inValue);
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SocialRequirements.RequirementService.AddRequirementResponse> SocialRequirements.RequirementService.RequirementSoap.AddRequirementAsync(SocialRequirements.RequirementService.AddRequirementRequest request) {
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<AddRequirementResponse> RequirementSoap.AddRequirementAsync(AddRequirementRequest request) {
             return base.Channel.AddRequirementAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SocialRequirements.RequirementService.AddRequirementResponse> AddRequirementAsync(string title, string description, long companyId, long projectId, string encUsername) {
-            SocialRequirements.RequirementService.AddRequirementRequest inValue = new SocialRequirements.RequirementService.AddRequirementRequest();
-            inValue.Body = new SocialRequirements.RequirementService.AddRequirementRequestBody();
+        public Task<AddRequirementResponse> AddRequirementAsync(string title, string description, long companyId, long projectId, string encUsername) {
+            AddRequirementRequest inValue = new AddRequirementRequest();
+            inValue.Body = new AddRequirementRequestBody();
             inValue.Body.title = title;
             inValue.Body.description = description;
             inValue.Body.companyId = companyId;
             inValue.Body.projectId = projectId;
             inValue.Body.encUsername = encUsername;
-            return ((SocialRequirements.RequirementService.RequirementSoap)(this)).AddRequirementAsync(inValue);
+            return ((RequirementSoap)(this)).AddRequirementAsync(inValue);
         }
     }
 }
