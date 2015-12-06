@@ -15,6 +15,9 @@ namespace SocialRequirements.Domain.DTO.Requirement
             Title = title;
             Description = description;
             CreatedbyId = personId;
+            ModifiedbyId = personId;
+            Createdon = DateTime.Now;
+            Modifiedon = DateTime.Now;
         }
 
         public long Id { get; set; }

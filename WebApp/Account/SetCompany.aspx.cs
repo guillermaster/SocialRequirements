@@ -5,7 +5,6 @@ using SocialRequirements.CompanyService;
 using SocialRequirements.Domain.DTO.Account;
 using SocialRequirements.Domain.DTO.General;
 using SocialRequirements.Utilities;
-using SocialRequirements.Utilities.Security;
 
 namespace SocialRequirements.Account
 {
@@ -18,7 +17,7 @@ namespace SocialRequirements.Account
 
             if (Page.IsPostBack) return;
 
-            SetCompanies();
+            SetCompanies(CompaniesDropDownList);
             SetCompanyType();
         }
 
@@ -65,21 +64,7 @@ namespace SocialRequirements.Account
         #endregion
 
         #region Form Setup
-
-        private void SetCompanies()
-        {
-            var accountSrv = new AccountSoapClient();
-            var companiesPerUserRes = accountSrv.GetUserCompanies(GetUsernameEncrypted());
-
-            var serializer = new ObjectSerializer<List<CompanyDto>>();
-            var result = serializer.Deserialize(companiesPerUserRes);
-
-            CompaniesDropDownList.DataSource = (List<CompanyDto>)result;
-            CompaniesDropDownList.DataTextField = CustomExpression.GetPropertyName<CompanyDto>(p => p.Name);
-            CompaniesDropDownList.DataValueField = CustomExpression.GetPropertyName<CompanyDto>(p => p.Id);
-            CompaniesDropDownList.DataBind();
-        }
-
+        
         private void SetCompanyType()
         {
             var companySrv = new CompanySoapClient();

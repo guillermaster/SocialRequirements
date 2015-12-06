@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\ActivityFeed.cs" />
     <Compile Include="Entities\Company.cs" />
     <Compile Include="Entities\CompanyPerson.cs" />
     <Compile Include="Entities\CompanyPersonRole.cs" />

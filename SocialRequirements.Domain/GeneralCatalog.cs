@@ -4,7 +4,8 @@
     {
         public enum Header
         {
-            CompanyType = 1
+            CompanyType = 1,
+            Requirement = 2
         }
 
         public class Detail
@@ -13,6 +14,11 @@
             {
                 SoftwareDeveloper = 1,
                 Customer = 3
+            }
+
+            public enum Entity
+            {
+                Requirement = 4
             }
         }
     }

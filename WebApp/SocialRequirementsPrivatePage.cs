@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.UI.WebControls;
 using SocialRequirements.AccountService;
 using SocialRequirements.CompanyService;
 using SocialRequirements.Domain.DTO.Account;
@@ -66,6 +67,26 @@ namespace SocialRequirements
         protected string GetUsernameEncrypted()
         {
             return Encryption.Encrypt(Username);
+        }
+
+        /// <summary>
+        /// Sets the datasource for a company list control
+        /// </summary>
+        /// <param name="companyList">Control to update</param>
+        protected void SetCompanies(ListControl companyList)
+        {
+            var accountSrv = new AccountSoapClient();
+            var companiesPerUserRes = accountSrv.GetUserCompanies(GetUsernameEncrypted());
+
+            var serializer = new ObjectSerializer<List<CompanyDto>>();
+            var result = serializer.Deserialize(companiesPerUserRes);
+
+            companyList.DataSource = (List<CompanyDto>)result;
+            companyList.DataTextField = CustomExpression.GetPropertyName<CompanyDto>(p => p.Name);
+            companyList.DataValueField = CustomExpression.GetPropertyName<CompanyDto>(p => p.Id);
+            companyList.DataBind();
+            companyList.Items.Insert(0, new ListItem("- Select Company -", string.Empty));
+            companyList.SelectedIndex = 0;
         }
     }
 }

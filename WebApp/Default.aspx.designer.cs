@@ -7,8 +7,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.Web.UI.WebControls;
-
 namespace SocialRequirements {
     
     
@@ -21,7 +19,7 @@ namespace SocialRequirements {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected Panel RequiredActionPanel;
+        protected global::System.Web.UI.WebControls.Panel RequiredActionPanel;
         
         /// <summary>
         /// RequiredActionMessage control.
@@ -30,7 +28,7 @@ namespace SocialRequirements {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected Literal RequiredActionMessage;
+        protected global::System.Web.UI.WebControls.Literal RequiredActionMessage;
         
         /// <summary>
         /// RequiredActionExecute control.
@@ -39,7 +37,34 @@ namespace SocialRequirements {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected LinkButton RequiredActionExecute;
+        protected global::System.Web.UI.WebControls.LinkButton RequiredActionExecute;
+        
+        /// <summary>
+        /// MainScriptManager control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager MainScriptManager;
+        
+        /// <summary>
+        /// updProgress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdateProgress updProgress;
+        
+        /// <summary>
+        /// PostContentUpdatePanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel PostContentUpdatePanel;
         
         /// <summary>
         /// PostContent control.
@@ -48,15 +73,51 @@ namespace SocialRequirements {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected Panel PostContent;
+        protected global::System.Web.UI.WebControls.Panel PostContent;
         
         /// <summary>
-        /// ContentPost control.
+        /// TxtContentPost control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected TextBox ContentPost;
+        protected global::System.Web.UI.WebControls.TextBox TxtContentPost;
+        
+        /// <summary>
+        /// DdlCompanyPost control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DdlCompanyPost;
+        
+        /// <summary>
+        /// DdlProjectPost control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DdlProjectPost;
+        
+        /// <summary>
+        /// TxtContentPostTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TxtContentPostTitle;
+        
+        /// <summary>
+        /// BtnPost control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton BtnPost;
     }
 }

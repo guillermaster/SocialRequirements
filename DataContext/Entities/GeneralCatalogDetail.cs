@@ -9,6 +9,7 @@ namespace SocialRequirements.Context.Entities
     {
         public GeneralCatalogDetail()
         {
+            ActivityFeed = new HashSet<ActivityFeed>();
             Companies = new HashSet<Company>();
         }
 
@@ -19,6 +20,8 @@ namespace SocialRequirements.Context.Entities
         [Required]
         [StringLength(50)]
         public string name { get; set; }
+
+        public virtual ICollection<ActivityFeed> ActivityFeed { get; set; }
 
         public virtual ICollection<Company> Companies { get; set; }
 

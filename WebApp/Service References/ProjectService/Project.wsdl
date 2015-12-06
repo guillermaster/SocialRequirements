@@ -15,6 +15,39 @@
       <s:element name="AddProjectResponse">
         <s:complexType />
       </s:element>
+      <s:element name="GetByCompanies">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="companiesIdList" type="tns:ArrayOfLong" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfLong">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="long" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetByCompaniesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetByCompaniesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetByCompany">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="companyId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetByCompanyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetByCompanyResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="AddProjectSoapIn">
@@ -23,10 +56,30 @@
   <wsdl:message name="AddProjectSoapOut">
     <wsdl:part name="parameters" element="tns:AddProjectResponse" />
   </wsdl:message>
+  <wsdl:message name="GetByCompaniesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetByCompanies" />
+  </wsdl:message>
+  <wsdl:message name="GetByCompaniesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetByCompaniesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetByCompanySoapIn">
+    <wsdl:part name="parameters" element="tns:GetByCompany" />
+  </wsdl:message>
+  <wsdl:message name="GetByCompanySoapOut">
+    <wsdl:part name="parameters" element="tns:GetByCompanyResponse" />
+  </wsdl:message>
   <wsdl:portType name="ProjectSoap">
     <wsdl:operation name="AddProject">
       <wsdl:input message="tns:AddProjectSoapIn" />
       <wsdl:output message="tns:AddProjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetByCompanies">
+      <wsdl:input message="tns:GetByCompaniesSoapIn" />
+      <wsdl:output message="tns:GetByCompaniesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetByCompany">
+      <wsdl:input message="tns:GetByCompanySoapIn" />
+      <wsdl:output message="tns:GetByCompanySoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ProjectSoap" type="tns:ProjectSoap">
@@ -40,11 +93,47 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetByCompanies">
+      <soap:operation soapAction="http://tempuri.org/GetByCompanies" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetByCompany">
+      <soap:operation soapAction="http://tempuri.org/GetByCompany" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="ProjectSoap12" type="tns:ProjectSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="AddProject">
       <soap12:operation soapAction="http://tempuri.org/AddProject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetByCompanies">
+      <soap12:operation soapAction="http://tempuri.org/GetByCompanies" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetByCompany">
+      <soap12:operation soapAction="http://tempuri.org/GetByCompany" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

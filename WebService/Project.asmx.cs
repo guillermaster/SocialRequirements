@@ -1,8 +1,11 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Web.Services;
 using Ninject;
 using Ninject.Web;
 using SocialRequirements.Domain.BusinessLogic.Account;
+using SocialRequirements.Domain.DTO.Account;
+using SocialRequirements.Utilities;
 using SocialRequirements.Utilities.Security;
 
 namespace WebService
@@ -25,6 +28,26 @@ namespace WebService
         {
             var username = Encryption.Decrypt(encUsername);
             ProjectBusiness.Add(name, description, companyId, username);
+        }
+
+        [WebMethod]
+        public string GetByCompanies(List<long> companiesIdList)
+        {
+            var projects = new List<ProjectDto>();
+            foreach (var companyId in companiesIdList)
+            {
+                projects.AddRange(ProjectBusiness.GetProjectsByCompany(companyId));
+            }
+            var serializer = new ObjectSerializer<List<ProjectDto>>(projects);
+            return serializer.ToXmlString();
+        }
+
+        [WebMethod]
+        public string GetByCompany(long companyId)
+        {
+            var projects = ProjectBusiness.GetProjectsByCompany(companyId);
+            var serializer = new ObjectSerializer<List<ProjectDto>>(projects);
+            return serializer.ToXmlString();
         }
     }
 }

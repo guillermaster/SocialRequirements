@@ -9,6 +9,7 @@ namespace SocialRequirements.Context.Entities
     {
         public Company()
         {
+            ActivityFeed = new HashSet<ActivityFeed>();
             CompanyPerson = new HashSet<CompanyPerson>();
             CompanyPersonRole = new HashSet<CompanyPersonRole>();
             CompanyProject = new HashSet<CompanyProject>();
@@ -30,6 +31,8 @@ namespace SocialRequirements.Context.Entities
         public string name { get; set; }
 
         public int type_id { get; set; }
+
+        public virtual ICollection<ActivityFeed> ActivityFeed { get; set; }
 
         public virtual GeneralCatalogDetail GeneralCatalogDetail { get; set; }
 

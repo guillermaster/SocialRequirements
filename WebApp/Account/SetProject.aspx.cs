@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using SocialRequirements.AccountService;
-using SocialRequirements.Domain.DTO.Account;
-using SocialRequirements.Domain.DTO.General;
 using SocialRequirements.ProjectService;
-using SocialRequirements.Utilities;
-using SocialRequirements.Utilities.Security;
 
 namespace SocialRequirements.Account
 {
@@ -18,7 +12,7 @@ namespace SocialRequirements.Account
 
             if (Page.IsPostBack) return;
             
-            SetCompanies();
+            SetCompanies(DdlCompany);
         }
 
         protected void ContinueLinkButton_Click(object sender, EventArgs e)
@@ -50,21 +44,7 @@ namespace SocialRequirements.Account
         #endregion
 
         #region Form Setup
-
-        private void SetCompanies()
-        {
-            var accountSrv = new AccountSoapClient();
-            var companiesPerUserRes = accountSrv.GetUserCompanies(GetUsernameEncrypted());
-
-            var serializer = new ObjectSerializer<List<CompanyDto>>();
-            var result = serializer.Deserialize(companiesPerUserRes);
-
-            DdlCompany.DataSource = (List<CompanyDto>)result;
-            DdlCompany.DataTextField = CustomExpression.GetPropertyName<CompanyDto>(p => p.Name);
-            DdlCompany.DataValueField = CustomExpression.GetPropertyName<CompanyDto>(p => p.Id);
-            DdlCompany.DataBind();
-        }
-
+        
         private void SetSuccessMessage(string message)
         {
             SuccessMessage.Text = message;

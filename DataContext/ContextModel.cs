@@ -10,6 +10,7 @@ namespace SocialRequirements.Context
         {
         }
 
+        public virtual DbSet<ActivityFeed> ActivityFeed { get; set; }
         public virtual DbSet<Company> Company { get; set; }
         public virtual DbSet<CompanyPerson> CompanyPerson { get; set; }
         public virtual DbSet<CompanyPersonRole> CompanyPersonRole { get; set; }
@@ -34,6 +35,12 @@ namespace SocialRequirements.Context
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Company>()
+                .HasMany(e => e.ActivityFeed)
+                .WithRequired(e => e.Company)
+                .HasForeignKey(e => e.company_id)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Company>()
                 .HasMany(e => e.CompanyPersonRole)
                 .WithRequired(e => e.Company)
@@ -103,6 +110,11 @@ namespace SocialRequirements.Context
                 .HasMany(e => e.CompanyProjectPersonRole)
                 .WithRequired(e => e.Person)
                 .HasForeignKey(e => e.person_id);
+
+            modelBuilder.Entity<Project>()
+                .HasMany(e => e.ActivityFeed)
+                .WithOptional(e => e.Project)
+                .HasForeignKey(e => e.project_id);
 
             modelBuilder.Entity<Project>()
                 .Property(e => e.description)
@@ -247,6 +259,11 @@ namespace SocialRequirements.Context
                 .HasMany(e => e.Companies)
                 .WithRequired(e => e.GeneralCatalogDetail)
                 .HasForeignKey(e => e.type_id);
+
+            modelBuilder.Entity<GeneralCatalogDetail>()
+                .HasMany(e => e.ActivityFeed)
+                .WithRequired(e => e.GeneralCatalogDetail)
+                .HasForeignKey(e => e.entity_id);
 
             modelBuilder.Entity<GeneralCatalogHeader>()
                 .HasMany(e => e.GeneralCatalogDetails)

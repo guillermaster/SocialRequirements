@@ -54,6 +54,7 @@
     <Compile Include="Repository\Account\ICompanyData.cs" />
     <Compile Include="Repository\Account\IPersonData.cs" />
     <Compile Include="Repository\Account\IProjectData.cs" />
+    <Compile Include="Repository\General\IActivityFeedData.cs" />
     <Compile Include="Repository\General\IGeneralCatalogData.cs" />
     <Compile Include="Repository\Requirement\IRequirementData.cs" />
     <Compile Include="Repository\Requirement\IRequirementVersionData.cs" />

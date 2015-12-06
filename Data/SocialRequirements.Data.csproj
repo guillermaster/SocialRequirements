@@ -45,6 +45,7 @@
     <Compile Include="Account\CompanyData.cs" />
     <Compile Include="Account\PersonData.cs" />
     <Compile Include="Account\ProjectData.cs" />
+    <Compile Include="General\ActivityFeedData.cs" />
     <Compile Include="General\GeneralCatalogData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requirement\RequirementData.cs" />

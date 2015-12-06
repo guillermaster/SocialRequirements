@@ -9,6 +9,7 @@ namespace SocialRequirements.Context.Entities
     {
         public Project()
         {
+            ActivityFeed = new HashSet<ActivityFeed>();
             CompanyProject = new HashSet<CompanyProject>();
             CompanyProjectPerson = new HashSet<CompanyProjectPerson>();
             CompanyProjectPersonRole = new HashSet<CompanyProjectPersonRole>();
@@ -28,6 +29,8 @@ namespace SocialRequirements.Context.Entities
 
         [Column(TypeName = "text")]
         public string description { get; set; }
+
+        public virtual ICollection<ActivityFeed> ActivityFeed { get; set; }
 
         public virtual ICollection<CompanyProject> CompanyProject { get; set; }
 
