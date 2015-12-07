@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 using SocialRequirements.Domain.DTO.Account;
 using SocialRequirements.ProjectService;
@@ -157,6 +158,22 @@ namespace SocialRequirements
             DdlProjectPost.DataValueField = CustomExpression.GetPropertyName<ProjectDto>(p => p.Id);
             DdlProjectPost.DataBind();
         }
+
+        private void SetPostSuccessMessage(string message)
+        {
+            PostSuccessMessage.Text = message;
+            PostSuccessPanel.Visible = true;
+            ScriptManager.RegisterClientScriptBlock(PostContentUpdatePanel, PostContentUpdatePanel.GetType(),
+                "posterrorfadeout", "fadeOutControl('#PostSuccessPanel')", true);
+        }
+
+        private void SetPostErrorMessage(string message)
+        {
+            PostErrorMessage.Text = message;
+            PostErrorPanel.Visible = true;
+            ScriptManager.RegisterClientScriptBlock(PostContentUpdatePanel, PostContentUpdatePanel.GetType(),
+                "posterrorfadeout", "fadeOutControl('#PostErrorPanel')", true);
+        }
         #endregion
 
         #region Data Load
@@ -196,13 +213,21 @@ namespace SocialRequirements
 
         private void AddRequirement()
         {
-            if (string.IsNullOrWhiteSpace(DdlCompanyPost.SelectedValue)) return;
-            if (string.IsNullOrWhiteSpace(DdlProjectPost.SelectedValue)) return;
+            try
+            {
+                if (string.IsNullOrWhiteSpace(DdlCompanyPost.SelectedValue)) return;
+                if (string.IsNullOrWhiteSpace(DdlProjectPost.SelectedValue)) return;
 
-            var requirementSrv = new RequirementSoapClient();
-            requirementSrv.AddRequirement(TxtContentPostTitle.Text, TxtContentPost.Text,
-                long.Parse(DdlCompanyPost.SelectedValue), long.Parse(DdlProjectPost.SelectedValue),
-                GetUsernameEncrypted());
+                var requirementSrv = new RequirementSoapClient();
+                requirementSrv.AddRequirement(TxtContentPostTitle.Text, TxtContentPost.Text,
+                    long.Parse(DdlCompanyPost.SelectedValue), long.Parse(DdlProjectPost.SelectedValue),
+                    GetUsernameEncrypted());
+                SetPostSuccessMessage("Requirement posted successfully");
+            }
+            catch
+            {
+                SetPostErrorMessage("An error occurred, please try again.");
+            }
         }
         #endregion
 

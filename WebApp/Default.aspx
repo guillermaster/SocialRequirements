@@ -27,6 +27,7 @@
                 currentAction = self;
             });
         });
+
     </script>
 
     <asp:Panel runat="server" ID="RequiredActionPanel" Visible="False">
@@ -50,6 +51,12 @@
     </asp:UpdateProgress>
     <asp:UpdatePanel runat="server" ID="PostContentUpdatePanel" UpdateMode="Conditional">
         <ContentTemplate>
+            <script>
+                function fadeOutControl(controlName) {
+                    $(controlName).fadeOut(3800);
+                }
+            </script>
+            <!-- POST CONTENT -->
             <asp:Panel runat="server" ID="PostContent" Visible="False">
                 <div>
                     <div class="row">
@@ -63,15 +70,17 @@
                                     <asp:TextBox runat="server" ID="TxtContentPost" TextMode="MultiLine" CssClass="form-control vresize"
                                         Columns="140" Rows="5" placeholder="What's in your mind?" />
                                     <ul class="list-inline post-actions">
-                                        <li><asp:DropDownList runat="server" ID="DdlCompanyPost" OnSelectedIndexChanged="DdlCompanyPost_SelectedIndexChanged" AutoPostBack="True" /></li>
-                                        <li><asp:DropDownList runat="server" ID="DdlProjectPost" Visible="False"/></li>
-                                        <li><asp:TextBox runat="server" ID="TxtContentPostTitle" placehoder="Title your requirement here"/></li>
+                                        <li>
+                                            <asp:DropDownList runat="server" ID="DdlCompanyPost" OnSelectedIndexChanged="DdlCompanyPost_SelectedIndexChanged" AutoPostBack="True" /></li>
+                                        <li>
+                                            <asp:DropDownList runat="server" ID="DdlProjectPost" Visible="False" /></li>
+                                        <li>
+                                            <asp:TextBox runat="server" ID="TxtContentPostTitle" placehoder="Title your requirement here" /></li>
                                         <li><a href="#"><span class="glyphicon glyphicon-camera"></span></a></li>
                                         <li><a href="#" class="glyphicon glyphicon-user"></a></li>
                                         <li><a href="#" class="glyphicon glyphicon-map-marker"></a></li>
                                         <li class="pull-right">
                                             <asp:LinkButton runat="server" Text="Post" ID="BtnPost" CssClass="btn btn-primary btn-m" OnClick="BtnPost_Click" />
-                                            
                                         </li>
                                     </ul>
                                 </form>
@@ -79,6 +88,17 @@
                         </div>
                     </div>
                 </div>
+            </asp:Panel>
+            <!-- END OF POST CONTENT -->
+            <asp:Panel ID="PostSuccessPanel" runat="server" Visible="False" CssClass="alert alert-success" ClientIDMode="Static">
+                <p>
+                    <asp:Label runat="server" ID="PostSuccessMessage" />
+                </p>
+            </asp:Panel>
+            <asp:Panel ID="PostErrorPanel" runat="server" Visible="False" CssClass="alert alert-danger" ClientIDMode="Static">
+                <p class="text-danger">
+                    <asp:Literal runat="server" ID="PostErrorMessage" />
+                </p>
             </asp:Panel>
         </ContentTemplate>
     </asp:UpdatePanel>
