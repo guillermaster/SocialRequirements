@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using SocialRequirements.Context;
 using SocialRequirements.Context.Entities;
+using SocialRequirements.Domain.DTO.General;
 using SocialRequirements.Domain.Repository.General;
 
 namespace SocialRequirements.Data.General
@@ -27,6 +29,11 @@ namespace SocialRequirements.Data.General
             };
             _context.ActivityFeed.Add(activityFeed);
             _context.SaveChanges();
+        }
+
+        public List<ActivityFeedDto> GetLatestActivity(int companyId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

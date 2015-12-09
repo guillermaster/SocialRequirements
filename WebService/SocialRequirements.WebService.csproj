@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Company.asmx" />
+    <Content Include="General.asmx" />
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\Localhost.pubxml" />
     <None Include="Web.Debug.config">
@@ -106,6 +107,10 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="Company.asmx.cs">
       <DependentUpon>Company.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="General.asmx.cs">
+      <DependentUpon>General.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Global.asax.cs">

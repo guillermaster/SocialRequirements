@@ -90,6 +90,8 @@
                 </div>
             </asp:Panel>
             <!-- END OF POST CONTENT -->
+            
+            
             <asp:Panel ID="PostSuccessPanel" runat="server" Visible="False" CssClass="alert alert-success" ClientIDMode="Static">
                 <p>
                     <asp:Label runat="server" ID="PostSuccessMessage" />
@@ -100,6 +102,54 @@
                     <asp:Literal runat="server" ID="PostErrorMessage" />
                 </p>
             </asp:Panel>
+            
+            <!-- ACTIVITY FEED -->
+            <asp:Repeater ID="rptEmployees" runat="server">
+                <HeaderTemplate>
+                    <div id="activityFeed">
+                </HeaderTemplate>
+                <ItemTemplate>
+                    <div class="activity">
+                        <div class="activityTitle">
+                            <table>
+                                <tr>
+                                    <td rowspan="2">Photo</td>
+                                    <td>
+                                        <a href="#"><%# Eval("FirstName") %> <%# Eval("LastName") %></a>
+                                        <strong><%# Eval("Action") %></strong>&nbsp;
+                                        <a href="#"><%# Eval("RecordTitle") %> </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <%# Eval("Time") %>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div>
+                            <%# Eval("Description") %>
+                        </div>
+                        <div>
+                            <asp:Button runat="server"/>
+                        </div>
+                    </div>
+                </ItemTemplate>
+                <AlternatingItemTemplate>
+                    <div class="detail">
+                        <div>Name: <strong><%# Eval("FirstName") %> <%# Eval("LastName") %></strong></div>
+                        <div>Address: <strong><%# Eval("Address") %></strong></div>
+                        <div>State: <strong><%# Eval("State")%></strong></div>
+                        <div>City: <strong><%# Eval("City")%></strong></div>
+                        <div>Country: <strong><%# Eval("Country")%></strong></div>
+                    </div>
+                </AlternatingItemTemplate>
+                <FooterTemplate>
+                    </div>
+                </FooterTemplate>
+            </asp:Repeater>
+            <!-- END OF ACTIVITY FEED -->
+            
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

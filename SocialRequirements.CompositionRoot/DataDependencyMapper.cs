@@ -1,11 +1,13 @@
 ﻿using Ninject.Modules;
 using SocialRequirements.Business.Account;
+using SocialRequirements.Business.General;
 using SocialRequirements.Business.Requirement;
 using SocialRequirements.Context;
 using SocialRequirements.Data.Account;
 using SocialRequirements.Data.General;
 using SocialRequirements.Data.Requirement;
 using SocialRequirements.Domain.BusinessLogic.Account;
+using SocialRequirements.Domain.BusinessLogic.General;
 using SocialRequirements.Domain.BusinessLogic.Requirement;
 using SocialRequirements.Domain.Repository.Account;
 using SocialRequirements.Domain.Repository.General;
@@ -32,6 +34,7 @@ namespace SocialRequirements.CompositionRoot
             Bind<ICompanyBusiness>().To<CompanyBusiness>();
             Bind<IRequirementBusiness>().To<RequirementBusiness>();
             Bind<IProjectBusiness>().To<ProjectBusiness>();
+            Bind<IActivityFeedBusiness>().To<ActivityFeedBusiness>();
         }
 
         private static ContextModel GetContext()
