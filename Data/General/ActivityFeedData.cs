@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using SocialRequirements.Context;
 using SocialRequirements.Context.Entities;
 using SocialRequirements.Domain.DTO.General;
@@ -31,9 +32,27 @@ namespace SocialRequirements.Data.General
             _context.SaveChanges();
         }
 
-        public List<ActivityFeedDto> GetLatestActivity(int companyId)
+        public List<ActivityFeedDto> GetLatestActivity(long companyId)
         {
-            throw new NotImplementedException();
+            var activities = _context.ActivityFeed.Where(af => af.company_id == companyId).ToList();
+
+            return activities.Select(GetDtoFromEntity).ToList();
+        }
+
+        private ActivityFeedDto GetDtoFromEntity(ActivityFeed activity)
+        {
+            var activityDto = new ActivityFeedDto
+            {
+                Id = activity.id,
+                CompanyId = activity.company_id,
+                ProjectId = activity.project_id,
+                EntityId = activity.entity_id,
+                RecordId = activity.record_id,
+                Createdon = activity.createdon,
+                CreatedbyId = activity.createdby_id
+            };
+
+            return activityDto;
         }
     }
 }

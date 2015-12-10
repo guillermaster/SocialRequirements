@@ -6,6 +6,8 @@ using System.Web.Services;
 using Ninject;
 using Ninject.Web;
 using SocialRequirements.Domain.BusinessLogic.General;
+using SocialRequirements.Domain.DTO.General;
+using SocialRequirements.Utilities;
 using SocialRequirements.Utilities.Security;
 
 namespace WebService
@@ -27,8 +29,9 @@ namespace WebService
         public string LatestActivityFeed(string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
-            ActivityFeedBusiness.GetLatestActivity(username);
-            return "Hello World";
+            var activityFeed = ActivityFeedBusiness.GetLatestActivity(username);
+            var serializer = new ObjectSerializer<List<ActivityFeedDto>>(activityFeed);
+            return serializer.ToXmlString();
         }
     }
 }

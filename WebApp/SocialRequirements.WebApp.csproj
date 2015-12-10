@@ -2191,10 +2191,21 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Service References\GeneralService\General.wsdl" />
+    <Content Include="Service References\GeneralService\SocialRequirements.GeneralService.LatestActivityFeedResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Service References\ProjectService\Project.disco" />
     <None Include="Service References\ProjectService\configuration91.svcinfo" />
     <None Include="Service References\ProjectService\configuration.svcinfo" />
     <None Include="Service References\ProjectService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\GeneralService\General.disco" />
+    <None Include="Service References\GeneralService\configuration91.svcinfo" />
+    <None Include="Service References\GeneralService\configuration.svcinfo" />
+    <None Include="Service References\GeneralService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -2372,6 +2383,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\GeneralService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\ProjectService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -2447,6 +2463,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\AccountService\" />
     <WCFMetadataStorage Include="Service References\CompanyService\" />
+    <WCFMetadataStorage Include="Service References\GeneralService\" />
     <WCFMetadataStorage Include="Service References\ProjectService\" />
     <WCFMetadataStorage Include="Service References\RequirementService\" />
   </ItemGroup>

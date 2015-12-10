@@ -14,6 +14,6 @@ namespace SocialRequirements.Domain.Repository.General
         /// </summary>
         /// <param name="companyId">Company identifier</param>
         /// <returns>List of performed activities</returns>
-        List<ActivityFeedDto> GetLatestActivity(int companyId);
+        List<ActivityFeedDto> GetLatestActivity(long companyId);
     }
 }
