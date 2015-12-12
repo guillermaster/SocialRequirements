@@ -1,26 +1,32 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using SocialRequirements.Domain.BusinessLogic.Account;
 using SocialRequirements.Domain.BusinessLogic.General;
 using SocialRequirements.Domain.DTO.General;
-using SocialRequirements.Domain.Repository.Account;
 using SocialRequirements.Domain.Repository.General;
 
 namespace SocialRequirements.Business.General
 {
     public class ActivityFeedBusiness : IActivityFeedBusiness
     {
-        private readonly IPersonData _personData;
         private readonly IActivityFeedData _activityFeedData;
+        private readonly ICompanyBusiness _companyBusiness;
 
-        public ActivityFeedBusiness(IPersonData personData, IActivityFeedData activityFeedData)
+        public ActivityFeedBusiness(IActivityFeedData activityFeedData, ICompanyBusiness companyBusiness)
         {
-            _personData = personData;
+            _companyBusiness = companyBusiness;
             _activityFeedData = activityFeedData;
         }
 
         public List<ActivityFeedDto> GetLatestActivity(string username)
         {
-            var personId = _personData.GetPersonId(username);
-            return _activityFeedData.GetLatestActivity(personId);
+            var activityFeed = new List<ActivityFeedDto>();
+            var userCompanies = _companyBusiness.GetCompaniesByUser(username);
+            foreach (var company in userCompanies)
+            {
+                activityFeed.AddRange(_activityFeedData.GetLatestActivity(company.Id));
+            }
+            return activityFeed.OrderByDescending(a => a.Createdon).ToList();
         }
     }
 }

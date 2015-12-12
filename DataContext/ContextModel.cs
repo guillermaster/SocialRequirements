@@ -140,6 +140,12 @@ namespace SocialRequirements.Context
                 .WithRequired(e => e.Person)
                 .HasForeignKey(e => e.person_id);
 
+            modelBuilder.Entity<Person>()
+               .HasMany(e => e.ActivityFeed)
+               .WithRequired(e => e.Person)
+               .HasForeignKey(e => e.createdby_id)
+               .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Project>()
                 .HasMany(e => e.ActivityFeed)
                 .WithOptional(e => e.Project)

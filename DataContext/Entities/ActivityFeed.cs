@@ -25,5 +25,7 @@ namespace SocialRequirements.Context.Entities
         public virtual Project Project { get; set; }
 
         public virtual GeneralCatalogDetail GeneralCatalogDetail { get; set; }
+
+        public virtual Person Person { get; set; }
     }
 }

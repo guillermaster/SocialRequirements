@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using SocialRequirements.Domain;
 using SocialRequirements.Domain.DTO.Account;
+using SocialRequirements.Domain.DTO.General;
+using SocialRequirements.GeneralService;
 using SocialRequirements.ProjectService;
 using SocialRequirements.RequirementService;
 using SocialRequirements.Utilities;
@@ -22,6 +25,7 @@ namespace SocialRequirements
 
         private const string MsgNoRequirements = "There is no requirements yet. You can add one below ;)";
         private const string MsgNoProjects = "You have no projects yet. Please add one.";
+        private const string CtrlIdActivityActionsPanel = "ActivityActionsPanel";
         #endregion
         #region Properties
 
@@ -53,12 +57,19 @@ namespace SocialRequirements
             }
             set { ViewState["Projects"] = value; }
         }
+
+        protected List<ActivityFeedDto> ActivityFeed
+        {
+            get { return ViewState["ActivityFeed"] != null ? (List<ActivityFeedDto>)ViewState["ActivityFeed"] : new List<ActivityFeedDto>(); }
+            set { ViewState["ActivityFeed"] = value; }
+        }
         #endregion
 
         #region Main Events
         protected override void Page_Load(object sender, EventArgs e)
         {
             base.Page_Load(sender, e);
+            LoadActivityFeed();
 
             if (IsPostBack) return;
 
@@ -176,6 +187,28 @@ namespace SocialRequirements
         }
         #endregion
 
+        #region Activity Feed Events
+
+        protected void ActivityFeedRepeater_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType != ListItemType.Item) return;
+
+            var activity = (ActivityFeedDto) e.Item.DataItem;
+            var actionsPanel = (Panel) e.Item.FindControl(CtrlIdActivityActionsPanel);
+
+            switch (activity.EntityId)
+            {
+                case (int)GeneralCatalog.Detail.Entity.Requirement:
+                    actionsPanel.Visible = true;
+                    break;
+                default:
+                    actionsPanel.Visible = false;
+                    break;
+            }
+        }
+
+        #endregion
+
         #region Data Load
 
         /// <summary>
@@ -207,6 +240,16 @@ namespace SocialRequirements
 
             Projects = projectsByComp;
         }
+
+        private void LoadActivityFeed()
+        {
+            var generalSrv = new GeneralSoapClient();
+            var activityFeedXmlStr = generalSrv.LatestActivityFeed(GetUsernameEncrypted());
+            var serializer = new ObjectSerializer<List<ActivityFeedDto>>();
+            ActivityFeed = (List<ActivityFeedDto>)serializer.Deserialize(activityFeedXmlStr);
+            ActivityFeedRepeater.DataSource = ActivityFeed;
+            ActivityFeedRepeater.DataBind();
+        }
         #endregion
 
         #region Data Update
@@ -224,7 +267,7 @@ namespace SocialRequirements
                     GetUsernameEncrypted());
                 SetPostSuccessMessage("Requirement posted successfully");
             }
-            catch
+            catch(Exception ex)
             {
                 SetPostErrorMessage("An error occurred, please try again.");
             }

@@ -39,7 +39,7 @@ namespace SocialRequirements.Data.General
             return activities.Select(GetDtoFromEntity).ToList();
         }
 
-        private ActivityFeedDto GetDtoFromEntity(ActivityFeed activity)
+        private static ActivityFeedDto GetDtoFromEntity(ActivityFeed activity)
         {
             var activityDto = new ActivityFeedDto
             {
@@ -49,7 +49,10 @@ namespace SocialRequirements.Data.General
                 EntityId = activity.entity_id,
                 RecordId = activity.record_id,
                 Createdon = activity.createdon,
-                CreatedbyId = activity.createdby_id
+                CreatedbyId = activity.createdby_id,
+                CreatedByLastname = activity.Person.last_name,
+                CreatedByName = activity.Person.first_name,
+                EntityName = activity.GeneralCatalogDetail.name
             };
 
             return activityDto;

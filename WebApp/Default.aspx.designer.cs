@@ -157,12 +157,12 @@ namespace SocialRequirements {
         protected global::System.Web.UI.WebControls.Literal PostErrorMessage;
         
         /// <summary>
-        /// rptEmployees control.
+        /// ActivityFeedRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptEmployees;
+        protected global::System.Web.UI.WebControls.Repeater ActivityFeedRepeater;
     }
 }

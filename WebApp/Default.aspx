@@ -104,7 +104,8 @@
             </asp:Panel>
             
             <!-- ACTIVITY FEED -->
-            <asp:Repeater ID="rptEmployees" runat="server">
+            <asp:Repeater ID="ActivityFeedRepeater" OnItemDataBound="ActivityFeedRepeater_ItemDataBound" 
+                ItemType="SocialRequirements.Domain.DTO.General.ActivityFeedDto" runat="server">
                 <HeaderTemplate>
                     <div id="activityFeed">
                 </HeaderTemplate>
@@ -113,37 +114,40 @@
                         <div class="activityTitle">
                             <table>
                                 <tr>
-                                    <td rowspan="2">Photo</td>
+                                    <td rowspan="2">
+                                        <asp:Image runat="server" CssClass="avatar" ID="UserAvatarImage" ImageUrl="~/assets/img/user_defaultAvatar.png"/>
+                                    </td>
                                     <td>
-                                        <a href="#"><%# Eval("FirstName") %> <%# Eval("LastName") %></a>
-                                        <strong><%# Eval("Action") %></strong>&nbsp;
-                                        <a href="#"><%# Eval("RecordTitle") %> </a>
+                                        <a href="#"><%# Eval("CreatedByName") %> <%# Eval("CreatedByLastname") %></a>
+                                        <strong>created a new </strong>&nbsp;
+                                        <a href="#"><%# Eval("EntityName") %> </a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <%# Eval("Time") %>
+                                        <%# Eval("Createdon") %>
                                     </td>
                                 </tr>
                             </table>
                         </div>
-                        <div>
-                            <%# Eval("Description") %>
+                        <div class="activity description">
+                            Description goes here
                         </div>
-                        <div>
-                            <asp:Button runat="server"/>
-                        </div>
+                        <asp:Panel runat="server" ID="ActivityActionsPanel" CssClass="actions_wrapper">
+                            <ul class="activity actions">
+                                <li>
+                                    <asp:ImageButton runat="server" ID="LikeButton" ImageUrl="~/assets/img/like.png" CssClass="button"/>
+                                </li>
+                                <li>
+                                    <asp:ImageButton runat="server" ID="DislikeButton" ImageUrl="~/assets/img/dislike.png" CssClass="button"/>
+                                </li>
+                                <li>
+                                    <asp:ImageButton runat="server" ID="CommentButton" ImageUrl="~/assets/img/comment.png" CssClass="button"/>
+                                </li>
+                            </ul>
+                        </asp:Panel>
                     </div>
                 </ItemTemplate>
-                <AlternatingItemTemplate>
-                    <div class="detail">
-                        <div>Name: <strong><%# Eval("FirstName") %> <%# Eval("LastName") %></strong></div>
-                        <div>Address: <strong><%# Eval("Address") %></strong></div>
-                        <div>State: <strong><%# Eval("State")%></strong></div>
-                        <div>City: <strong><%# Eval("City")%></strong></div>
-                        <div>Country: <strong><%# Eval("Country")%></strong></div>
-                    </div>
-                </AlternatingItemTemplate>
                 <FooterTemplate>
                     </div>
                 </FooterTemplate>

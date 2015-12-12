@@ -602,3 +602,49 @@
     background-color: #f6f7f8;
     border-top-color: #e9eaed;
 } 
+
+.activity {
+    border: thin solid #dddddd;
+    background-color: #ffffff;
+    width: 100%;
+    padding: 15px 15px 0 15px;
+    margin: 10px 0;
+}
+
+.activity .avatar {
+    border: none;
+    margin: 10px 10px 10px 0;
+}
+
+.activity .description {
+    border: none;
+    border-bottom: thin solid #f6f7f8;
+    margin: 5px 0 0 36px;
+    padding: 0 5px 5px 0;
+    width: 95%;
+}
+
+.activity .actions_wrapper {
+    display: table;   /* Allow the centering to work */
+	margin: 0 auto;
+    border: none;
+}
+
+.activity .actions {
+    border: none;
+    width: 100%;
+    margin: 0 auto;
+    list-style-type: none;
+}
+
+.activity .actions li {
+    display: inline;
+    margin: 0;
+}
+
+.button {
+    margin: 0 7px;
+    border: none;
+    width: 16px;
+    height: 16px;
+}
