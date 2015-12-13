@@ -43,6 +43,8 @@ namespace SocialRequirements.Context.Entities
 
         public DateTime? approvedon { get; set; }
 
+        public int version_number { get; set; }
+
         public virtual Company Company { get; set; }
 
         public virtual Project Project { get; set; }

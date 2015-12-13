@@ -26,5 +26,26 @@ namespace WebService
             var username = Encryption.Decrypt(encUsername);
             RequirementBusiness.Add(companyId, projectId, title, description, username);
         }
+
+        [WebMethod]
+        public void LikeRequirement(long requirementId, string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            RequirementBusiness.Like(requirementId, username);
+        }
+
+        [WebMethod]
+        public void DislikeRequirement(long requirementId, string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            RequirementBusiness.Dislike(requirementId, username);
+        }
+
+        [WebMethod]
+        public void CommentOnRequirement(long requirementId, string encUsername, string comment)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            RequirementBusiness.Comment(requirementId, username, comment);
+        }
     }
 }

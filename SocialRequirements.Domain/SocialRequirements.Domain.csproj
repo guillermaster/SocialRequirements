@@ -48,6 +48,7 @@
     <Compile Include="DTO\Account\ProjectDto.cs" />
     <Compile Include="DTO\General\ActivityFeedDto.cs" />
     <Compile Include="DTO\General\GeneralCatalogDetailDto.cs" />
+    <Compile Include="DTO\Requirement\RequirementCommentDto.cs" />
     <Compile Include="DTO\Requirement\RequirementDto.cs" />
     <Compile Include="Exception\Account\AccountException.cs" />
     <Compile Include="Exception\Account\CompanyException.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Repository\Account\IProjectData.cs" />
     <Compile Include="Repository\General\IActivityFeedData.cs" />
     <Compile Include="Repository\General\IGeneralCatalogData.cs" />
+    <Compile Include="Repository\Requirement\IRequirementCommentData.cs" />
     <Compile Include="Repository\Requirement\IRequirementData.cs" />
     <Compile Include="Repository\Requirement\IRequirementVersionData.cs" />
   </ItemGroup>

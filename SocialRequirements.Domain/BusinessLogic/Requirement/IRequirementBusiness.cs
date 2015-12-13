@@ -23,5 +23,27 @@ namespace SocialRequirements.Domain.BusinessLogic.Requirement
         /// <returns>Requirement DTO with data of the newly created requirement</returns>
         RequirementDto Add(long companyId, long projectId, string title, string description,
             string username);
+
+        /// <summary>
+        /// Adds a like to the specified requirement
+        /// </summary>
+        /// <param name="requirementId">Requirement ID</param>
+        /// <param name="username">Username who gave the like</param>
+        void Like(long requirementId, string username);
+
+        /// <summary>
+        /// Adds a like to the specified requirement
+        /// </summary>
+        /// <param name="requirementId">Requirement ID</param>
+        /// <param name="username">Username who gave the dislike</param>
+        void Dislike(long requirementId, string username);
+
+        /// <summary>
+        /// Adds a comment to the specified requirement
+        /// </summary>
+        /// <param name="requirementId">Requirement ID</param>
+        /// <param name="username">Username who commented</param>
+        /// <param name="commentary">The comment</param>
+        void Comment(long requirementId, string username, string comment);
     }
 }

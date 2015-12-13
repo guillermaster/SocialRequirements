@@ -48,6 +48,7 @@
     <Compile Include="General\ActivityFeedData.cs" />
     <Compile Include="General\GeneralCatalogData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Requirement\RequirementCommentData.cs" />
     <Compile Include="Requirement\RequirementData.cs" />
     <Compile Include="Requirement\RequirementVersionData.cs" />
   </ItemGroup>
@@ -59,6 +60,10 @@
     <ProjectReference Include="..\SocialRequirements.Domain\SocialRequirements.Domain.csproj">
       <Project>{6195F799-B266-474F-B5BA-D870B9A082A6}</Project>
       <Name>SocialRequirements.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SocialRequirements.Utilities\SocialRequirements.Utilities.csproj">
+      <Project>{0729F5F8-ABAF-4179-A564-C6280AAB1DD3}</Project>
+      <Name>SocialRequirements.Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

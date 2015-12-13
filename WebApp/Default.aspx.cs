@@ -26,6 +26,8 @@ namespace SocialRequirements
         private const string MsgNoRequirements = "There is no requirements yet. You can add one below ;)";
         private const string MsgNoProjects = "You have no projects yet. Please add one.";
         private const string CtrlIdActivityActionsPanel = "ActivityActionsPanel";
+        private const string CtrlIdActivityDescription = "DescriptionLabel";
+        private const string CtrlIdActivityReadEvenMore = "ReadEvenMoreButton";
         #endregion
         #region Properties
 
@@ -207,6 +209,34 @@ namespace SocialRequirements
             }
         }
 
+        protected void ActivityFeedRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            var activity = ActivityFeed[e.Item.ItemIndex];
+
+            switch (e.CommandName)
+            {
+                case "ReadMore":
+                    var descriptionText = (Label) e.Item.FindControl(CtrlIdActivityDescription);
+                    descriptionText.Text = activity.Description;
+                    var sourceButton = (LinkButton) e.CommandSource;
+                    sourceButton.Visible = false;
+                    var readEvenMoreButton = (LinkButton) e.Item.FindControl(CtrlIdActivityReadEvenMore);
+                    readEvenMoreButton.Visible = activity.HasEvenLongerDescription;
+                    break;
+                case "ReadEvenMore":
+                    break;
+                case "Like":
+                    Like(activity.EntityId, activity.RecordId);
+                    break;
+                case "Dislike":
+                    Dislike(activity.EntityId, activity.RecordId);
+                    break;
+                case "Comment":
+                    Comment(activity.EntityId, activity.RecordId);
+                    break;
+            }
+        }
+        
         #endregion
 
         #region Data Load
@@ -272,7 +302,35 @@ namespace SocialRequirements
                 SetPostErrorMessage("An error occurred, please try again.");
             }
         }
+
+        private void Like(int entity, long recordId)
+        {
+            switch (entity)
+            {
+                case (int)GeneralCatalog.Detail.Entity.Requirement:
+                    var requirementSrv = new RequirementSoapClient();
+                    requirementSrv.LikeRequirement(recordId, GetUsernameEncrypted());
+                    break;
+            }
+        }
+
+        private void Dislike(int entity, long recordId)
+        {
+            switch (entity)
+            {
+                case (int)GeneralCatalog.Detail.Entity.Requirement:
+                    var requirementSrv = new RequirementSoapClient();
+                    requirementSrv.DislikeRequirement(recordId, GetUsernameEncrypted());
+                    break;
+            }
+        }
+
+        private void Comment(int entity, long recordId)
+        {
+
+        }
         #endregion
 
+        
     }
 }

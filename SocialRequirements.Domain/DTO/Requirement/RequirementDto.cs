@@ -39,7 +39,7 @@ namespace SocialRequirements.Domain.DTO.Requirement
 
         public int Disagreed { get; set; }
 
-        public short StatusId { get; set; }
+        public int StatusId { get; set; }
 
         public long CreatedbyId { get; set; }
 
@@ -52,5 +52,10 @@ namespace SocialRequirements.Domain.DTO.Requirement
         public long? ApprovedbyId { get; set; }
 
         public DateTime? Approvedon { get; set; }
+
+        // Requirement version identifier
+        public long VersionId { get; set; }
+
+        public int VersionNumber { get; set; }
     }
 }

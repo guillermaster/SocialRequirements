@@ -3,18 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using SocialRequirements.Context;
 using SocialRequirements.Context.Entities;
+using SocialRequirements.Domain;
 using SocialRequirements.Domain.DTO.General;
 using SocialRequirements.Domain.Repository.General;
+using SocialRequirements.Domain.Repository.Requirement;
+using SocialRequirements.Utilities;
 
 namespace SocialRequirements.Data.General
 {
     public class ActivityFeedData : IActivityFeedData
     {
         private readonly ContextModel _context;
+        private readonly IRequirementData _requirementData;
+        private readonly IRequirementVersionData _requirementVersionData;
+        private readonly IRequirementCommentData _requirementCommentData;
+        private const int MaxDescriptionLength = 1700;
+        private const int MaxShortDescriptionLength = 600;
 
-        public ActivityFeedData(ContextModel context)
+        public ActivityFeedData(ContextModel context, IRequirementData requirementData,
+            IRequirementVersionData requirementVersionData, IRequirementCommentData requirementCommentData)
         {
             _context = context;
+            _requirementData = requirementData;
+            _requirementVersionData = requirementVersionData;
+            _requirementCommentData = requirementCommentData;
         }
 
         public void Add(long companyId, long? projectId, int entityId, long recordId, DateTime createdon, long personId)
@@ -39,7 +51,7 @@ namespace SocialRequirements.Data.General
             return activities.Select(GetDtoFromEntity).ToList();
         }
 
-        private static ActivityFeedDto GetDtoFromEntity(ActivityFeed activity)
+        private ActivityFeedDto GetDtoFromEntity(ActivityFeed activity)
         {
             var activityDto = new ActivityFeedDto
             {
@@ -55,7 +67,39 @@ namespace SocialRequirements.Data.General
                 EntityName = activity.GeneralCatalogDetail.name
             };
 
+            // set description according to the entity
+            switch (activityDto.EntityId)
+            {
+                case (int)GeneralCatalog.Detail.Entity.Requirement:
+                    activityDto = GetRequirementActivity(activityDto);
+                    break;
+                default:
+                    activityDto.Description = string.Empty;
+                    activityDto.ShortDescription = string.Empty;
+                    break;
+            }
+
             return activityDto;
+        }
+
+        private ActivityFeedDto GetRequirementActivity(ActivityFeedDto activity)
+        {
+            if (activity.ProjectId == null) return activity;
+
+            var requirement = _requirementVersionData.Get(activity.CompanyId, activity.ProjectId.Value, activity.RecordId);
+
+            if(requirement == null) return activity;
+
+            activity.Description = StringUtilities.GetShort(requirement.Description, MaxDescriptionLength);
+            activity.ShortDescription = StringUtilities.GetShort(requirement.Description, MaxShortDescriptionLength);
+            activity.HasEvenLongerDescription = activity.Description.Length <
+                                                           requirement.Description.Length;
+            activity.Likes = requirement.Agreed;
+            activity.Dislikes = requirement.Disagreed;
+            activity.VersionNumber = requirement.VersionNumber;
+            activity.Comments = _requirementCommentData.Get(requirement.Id, requirement.CompanyId,
+                        requirement.ProjectId, requirement.VersionId);
+            return activity;
         }
     }
 }

@@ -105,7 +105,7 @@
             
             <!-- ACTIVITY FEED -->
             <asp:Repeater ID="ActivityFeedRepeater" OnItemDataBound="ActivityFeedRepeater_ItemDataBound" 
-                ItemType="SocialRequirements.Domain.DTO.General.ActivityFeedDto" runat="server">
+                ItemType="SocialRequirements.Domain.DTO.General.ActivityFeedDto" runat="server" OnItemCommand="ActivityFeedRepeater_ItemCommand">
                 <HeaderTemplate>
                     <div id="activityFeed">
                 </HeaderTemplate>
@@ -131,18 +131,26 @@
                             </table>
                         </div>
                         <div class="activity description">
-                            Description goes here
+                            <asp:Label runat="server" ID="DescriptionLabel" Text='<%# Eval("ShortDescription") %>'/>
+                            <asp:LinkButton runat="server" ID="ReadMoreButton" Text="Read more" Visible='<%# Eval("ShortDescription").ToString().Length < Eval("Description").ToString().Length %>' CommandName="ReadMore"></asp:LinkButton>
+                            <asp:LinkButton runat="server" ID="ReadEvenMoreButton" Text="Read even more" Visible="False" CommandName="ReadEvenMore"></asp:LinkButton>
                         </div>
                         <asp:Panel runat="server" ID="ActivityActionsPanel" CssClass="actions_wrapper">
                             <ul class="activity actions">
                                 <li>
-                                    <asp:ImageButton runat="server" ID="LikeButton" ImageUrl="~/assets/img/like.png" CssClass="button"/>
+                                    <asp:LinkButton runat="server" ID="LikeButton" CssClass="button" CommandName="Like">
+                                        <img src="assets/img/like.png" alt="Like"/>
+                                    </asp:LinkButton>
                                 </li>
                                 <li>
-                                    <asp:ImageButton runat="server" ID="DislikeButton" ImageUrl="~/assets/img/dislike.png" CssClass="button"/>
+                                    <asp:LinkButton runat="server" ID="DislikeButton" CssClass="button" CommandName="Dislike">
+                                        <img src="assets/img/dislike.png" alt="Dislike" class="button"/>
+                                    </asp:LinkButton>
                                 </li>
                                 <li>
-                                    <asp:ImageButton runat="server" ID="CommentButton" ImageUrl="~/assets/img/comment.png" CssClass="button"/>
+                                    <asp:LinkButton runat="server" ID="CommentButton" CssClass="button" CommandName="Comment">
+                                        <img src="assets/img/comment.png" alt="Comment"/>
+                                    </asp:LinkButton>
                                 </li>
                             </ul>
                         </asp:Panel>
@@ -153,7 +161,7 @@
                 </FooterTemplate>
             </asp:Repeater>
             <!-- END OF ACTIVITY FEED -->
-            
         </ContentTemplate>
+        
     </asp:UpdatePanel>
 </asp:Content>

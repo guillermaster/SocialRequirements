@@ -640,11 +640,18 @@
 .activity .actions li {
     display: inline;
     margin: 0;
+    padding: 0;
+}
+
+.activity .actions a {
+    margin: 0;
+    padding: 0;
 }
 
 .button {
-    margin: 0 7px;
+    margin: 0 7px 0 7px;
     border: none;
     width: 16px;
     height: 16px;
+    padding: 0;
 }

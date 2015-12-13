@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using SocialRequirements.Domain.DTO.Requirement;
 
 namespace SocialRequirements.Domain.DTO.General
 {
@@ -24,5 +26,19 @@ namespace SocialRequirements.Domain.DTO.General
         public string CreatedByName { get; set; }
 
         public string CreatedByLastname { get; set; }
+
+        public string Description { get; set; }
+
+        public string ShortDescription { get; set; }
+
+        public bool HasEvenLongerDescription { get; set; }
+
+        public int VersionNumber { get; set; }
+
+        public int Likes { get; set; }
+
+        public int Dislikes { get; set; }
+
+        public List<RequirementCommentDto> Comments { get; set; }
     }
 }

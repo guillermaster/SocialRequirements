@@ -238,7 +238,7 @@ namespace SocialRequirements.Context
             modelBuilder.Entity<RequirementVersion>()
                 .Property(e => e.description)
                 .IsUnicode(false);
-
+            
             modelBuilder.Entity<Role>()
                 .HasMany(e => e.CompanyPersonRole)
                 .WithRequired(e => e.Role)

@@ -41,5 +41,23 @@ namespace SocialRequirements.Business.Requirement
 
             return requirement;
         }
+
+        public void Like(long requirementId, string username)
+        {
+            var personId = _personData.GetPersonId(username);
+            _requirementData.Like(requirementId, personId);
+        }
+
+        public void Dislike(long requirementId, string username)
+        {
+            var personId = _personData.GetPersonId(username);
+            _requirementData.Dislike(requirementId, personId);
+        }
+
+        public void Comment(long requirementId, string username, string comment)
+        {
+            var personId = _personData.GetPersonId(username);
+            _requirementData.Comment(requirementId, personId, comment);
+        }
     }
 }
