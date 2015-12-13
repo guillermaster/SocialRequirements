@@ -139,16 +139,19 @@
                             <ul class="activity actions">
                                 <li>
                                     <asp:LinkButton runat="server" ID="LikeButton" CssClass="button" CommandName="Like">
+                                        <asp:Label runat="server" ID="LikeQty" Text='<%# Eval("Likes") %>'/>
                                         <img src="assets/img/like.png" alt="Like"/>
                                     </asp:LinkButton>
                                 </li>
                                 <li>
                                     <asp:LinkButton runat="server" ID="DislikeButton" CssClass="button" CommandName="Dislike">
+                                        <asp:Label runat="server" ID="DislikeQty" Text='<%# Eval("Dislikes") %>'/>
                                         <img src="assets/img/dislike.png" alt="Dislike" class="button"/>
                                     </asp:LinkButton>
                                 </li>
                                 <li>
                                     <asp:LinkButton runat="server" ID="CommentButton" CssClass="button" CommandName="Comment">
+                                        <asp:Label runat="server" ID="CommentsQty" Text='<%# Eval("Comments") %>'/>
                                         <img src="assets/img/comment.png" alt="Comment"/>
                                     </asp:LinkButton>
                                 </li>

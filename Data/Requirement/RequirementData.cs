@@ -10,10 +10,12 @@ namespace SocialRequirements.Data.Requirement
     public class RequirementData : IRequirementData
     {
         private readonly ContextModel _context;
+        private readonly IRequirementVersionData _requirementVersionData;
 
-        public RequirementData(ContextModel context)
+        public RequirementData(ContextModel context, IRequirementVersionData requirementVersionData)
         {
             _context = context;
+            _requirementVersionData = requirementVersionData;
         }
 
         public int GetNumberOfRequirements(long companyId)
@@ -35,7 +37,10 @@ namespace SocialRequirements.Data.Requirement
 
                     // add requirement version
                     var reqVersionData = new RequirementVersionData(_context);
-                    reqVersionData.Add(requirement);
+                    requirement = reqVersionData.Add(requirement);
+
+                    // set version keys to currently added requirement
+                    UpdateVersionNumber(requirement);
 
                     scope.Commit();
 
@@ -49,31 +54,78 @@ namespace SocialRequirements.Data.Requirement
             }
         }
 
+        /// <summary>
+        /// Updates the version number and version ID on the requirement
+        /// </summary>
+        /// <param name="requirementDto">Requirement</param>
+        private void UpdateVersionNumber(RequirementDto requirementDto)
+        {
+            var requirement = GetEntity(requirementDto.CompanyId, requirementDto.ProjectId, requirementDto.Id);
+
+            if (requirement == null) return;
+
+            requirement.version_number = requirementDto.VersionNumber;
+            requirement.requirement_version_id = requirementDto.VersionId;
+
+            _context.SaveChanges();
+        }
+
         public RequirementDto Get(long companyId, long projectId, long requirementId)
         {
-            var requirement =
-                _context.Requirement.FirstOrDefault(r => r.company_id == companyId && r.project_id == projectId && r.id == requirementId);
-            return requirement != null ? GetEntityFromDto(requirement) : null;
+            var requirement = GetEntity(companyId, projectId, requirementId);
+            return requirement != null ? GetDtoFromEntity(requirement) : null;
         }
 
-        public void Like(long requirementId, long personId)
+        public void Like(long companyId, long projectId, long requirementId, long personId)
         {
-            var requirement = _context.Requirement.FirstOrDefault(r => r.id == requirementId);
-            if (requirement == null) return;
+            using (var scope = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    // update like on requirement
+                    var requirement = GetEntity(companyId, projectId, requirementId);
+                    if (requirement == null) return;
+                    requirement.agreed++;
+                    _context.SaveChanges();
 
-            requirement.agreed++;
+                    // update like on current requirement version
+                    _requirementVersionData.Like(requirement.company_id, requirement.project_id, requirement.id,
+                        requirement.requirement_version_id, personId);
 
-            _context.SaveChanges();
+                    scope.Commit();
+                }
+                catch
+                {
+                    scope.Rollback();
+                    throw;
+                }
+            }
         }
 
-        public void Dislike(long requirementId, long personId)
+        public void Dislike(long companyId, long projectId, long requirementId, long personId)
         {
-            var requirement = _context.Requirement.FirstOrDefault(r => r.id == requirementId);
-            if (requirement == null) return;
+            using (var scope = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    // update like on requirement
+                    var requirement = GetEntity(companyId, projectId, requirementId);
+                    if (requirement == null) return;
+                    requirement.disagreed++;
+                    _context.SaveChanges();
 
-            requirement.disagreed++;
+                    // update like on current requirement version
+                    _requirementVersionData.Dislike(requirement.company_id, requirement.project_id, requirement.id,
+                        requirement.requirement_version_id, personId);
 
-            _context.SaveChanges();
+                    scope.Commit();
+                }
+                catch
+                {
+                    scope.Rollback();
+                    throw;
+                }
+            }
         }
 
         public void Comment(long requirementId, long personId, string commentary)
@@ -99,6 +151,13 @@ namespace SocialRequirements.Data.Requirement
             _context.SaveChanges();
         }
 
+        private Context.Entities.Requirement GetEntity(long companyId, long projectId, long requirementId)
+        {
+            return
+                _context.Requirement.FirstOrDefault(
+                    r => r.company_id == companyId && r.project_id == projectId && r.id == requirementId);
+        }
+
         private static Context.Entities.Requirement GetEntityFromDto(RequirementDto requirementDto)
         {
             var requirement = new Context.Entities.Requirement
@@ -115,12 +174,14 @@ namespace SocialRequirements.Data.Requirement
                 modifiedby_id = requirementDto.ModifiedbyId,
                 modifiedon = requirementDto.Modifiedon,
                 approvedby_id = requirementDto.ApprovedbyId,
-                approvedon = requirementDto.Approvedon
+                approvedon = requirementDto.Approvedon,
+                requirement_version_id = requirementDto.VersionId,
+                version_number = requirementDto.VersionNumber
             };
             return requirement;
         }
 
-        private static RequirementDto GetEntityFromDto(Context.Entities.Requirement requirement)
+        private static RequirementDto GetDtoFromEntity(Context.Entities.Requirement requirement)
         {
             var requirementDto = new RequirementDto
             {

@@ -97,8 +97,9 @@ namespace SocialRequirements.Data.General
             activity.Likes = requirement.Agreed;
             activity.Dislikes = requirement.Disagreed;
             activity.VersionNumber = requirement.VersionNumber;
-            activity.Comments = _requirementCommentData.Get(requirement.Id, requirement.CompanyId,
+            activity.Comment = _requirementCommentData.Get(requirement.Id, requirement.CompanyId,
                         requirement.ProjectId, requirement.VersionId);
+            activity.Comments = activity.Comment.Count;
             return activity;
         }
     }

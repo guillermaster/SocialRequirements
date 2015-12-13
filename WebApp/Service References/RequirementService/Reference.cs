@@ -145,15 +145,23 @@ namespace SocialRequirements.RequirementService {
     public partial class LikeRequirementRequestBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public long companyId;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=1)]
+        public long projectId;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=2)]
         public long requirementId;
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
         public string encUsername;
         
         public LikeRequirementRequestBody() {
         }
         
-        public LikeRequirementRequestBody(long requirementId, string encUsername) {
+        public LikeRequirementRequestBody(long companyId, long projectId, long requirementId, string encUsername) {
+            this.companyId = companyId;
+            this.projectId = projectId;
             this.requirementId = requirementId;
             this.encUsername = encUsername;
         }
@@ -210,15 +218,23 @@ namespace SocialRequirements.RequirementService {
     public partial class DislikeRequirementRequestBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public long companyId;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=1)]
+        public long projectId;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=2)]
         public long requirementId;
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
         public string encUsername;
         
         public DislikeRequirementRequestBody() {
         }
         
-        public DislikeRequirementRequestBody(long requirementId, string encUsername) {
+        public DislikeRequirementRequestBody(long companyId, long projectId, long requirementId, string encUsername) {
+            this.companyId = companyId;
+            this.projectId = projectId;
             this.requirementId = requirementId;
             this.encUsername = encUsername;
         }
@@ -384,9 +400,11 @@ namespace SocialRequirements.RequirementService {
             return base.Channel.LikeRequirement(request);
         }
         
-        public void LikeRequirement(long requirementId, string encUsername) {
+        public void LikeRequirement(long companyId, long projectId, long requirementId, string encUsername) {
             SocialRequirements.RequirementService.LikeRequirementRequest inValue = new SocialRequirements.RequirementService.LikeRequirementRequest();
             inValue.Body = new SocialRequirements.RequirementService.LikeRequirementRequestBody();
+            inValue.Body.companyId = companyId;
+            inValue.Body.projectId = projectId;
             inValue.Body.requirementId = requirementId;
             inValue.Body.encUsername = encUsername;
             SocialRequirements.RequirementService.LikeRequirementResponse retVal = ((SocialRequirements.RequirementService.RequirementSoap)(this)).LikeRequirement(inValue);
@@ -397,9 +415,11 @@ namespace SocialRequirements.RequirementService {
             return base.Channel.LikeRequirementAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SocialRequirements.RequirementService.LikeRequirementResponse> LikeRequirementAsync(long requirementId, string encUsername) {
+        public System.Threading.Tasks.Task<SocialRequirements.RequirementService.LikeRequirementResponse> LikeRequirementAsync(long companyId, long projectId, long requirementId, string encUsername) {
             SocialRequirements.RequirementService.LikeRequirementRequest inValue = new SocialRequirements.RequirementService.LikeRequirementRequest();
             inValue.Body = new SocialRequirements.RequirementService.LikeRequirementRequestBody();
+            inValue.Body.companyId = companyId;
+            inValue.Body.projectId = projectId;
             inValue.Body.requirementId = requirementId;
             inValue.Body.encUsername = encUsername;
             return ((SocialRequirements.RequirementService.RequirementSoap)(this)).LikeRequirementAsync(inValue);
@@ -410,9 +430,11 @@ namespace SocialRequirements.RequirementService {
             return base.Channel.DislikeRequirement(request);
         }
         
-        public void DislikeRequirement(long requirementId, string encUsername) {
+        public void DislikeRequirement(long companyId, long projectId, long requirementId, string encUsername) {
             SocialRequirements.RequirementService.DislikeRequirementRequest inValue = new SocialRequirements.RequirementService.DislikeRequirementRequest();
             inValue.Body = new SocialRequirements.RequirementService.DislikeRequirementRequestBody();
+            inValue.Body.companyId = companyId;
+            inValue.Body.projectId = projectId;
             inValue.Body.requirementId = requirementId;
             inValue.Body.encUsername = encUsername;
             SocialRequirements.RequirementService.DislikeRequirementResponse retVal = ((SocialRequirements.RequirementService.RequirementSoap)(this)).DislikeRequirement(inValue);
@@ -423,9 +445,11 @@ namespace SocialRequirements.RequirementService {
             return base.Channel.DislikeRequirementAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SocialRequirements.RequirementService.DislikeRequirementResponse> DislikeRequirementAsync(long requirementId, string encUsername) {
+        public System.Threading.Tasks.Task<SocialRequirements.RequirementService.DislikeRequirementResponse> DislikeRequirementAsync(long companyId, long projectId, long requirementId, string encUsername) {
             SocialRequirements.RequirementService.DislikeRequirementRequest inValue = new SocialRequirements.RequirementService.DislikeRequirementRequest();
             inValue.Body = new SocialRequirements.RequirementService.DislikeRequirementRequestBody();
+            inValue.Body.companyId = companyId;
+            inValue.Body.projectId = projectId;
             inValue.Body.requirementId = requirementId;
             inValue.Body.encUsername = encUsername;
             return ((SocialRequirements.RequirementService.RequirementSoap)(this)).DislikeRequirementAsync(inValue);

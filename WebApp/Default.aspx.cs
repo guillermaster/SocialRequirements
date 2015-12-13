@@ -71,8 +71,7 @@ namespace SocialRequirements
         protected override void Page_Load(object sender, EventArgs e)
         {
             base.Page_Load(sender, e);
-            LoadActivityFeed();
-
+            
             if (IsPostBack) return;
 
             RequiredActionPanel.Visible = false;
@@ -82,6 +81,7 @@ namespace SocialRequirements
             SetCompanies(DdlCompanyPost);
             LoadProjectsByCompany((List<CompanyDto>)DdlCompanyPost.DataSource);
             PostContent.Visible = true;
+            LoadActivityFeed();
         }
 
         protected void BtnPost_Click(object sender, EventArgs e)
@@ -226,10 +226,12 @@ namespace SocialRequirements
                 case "ReadEvenMore":
                     break;
                 case "Like":
-                    Like(activity.EntityId, activity.RecordId);
+                    Like(activity.CompanyId, activity.ProjectId, activity.RecordId, activity.EntityId);
+                    LoadActivityFeed();
                     break;
                 case "Dislike":
-                    Dislike(activity.EntityId, activity.RecordId);
+                    Dislike(activity.CompanyId, activity.ProjectId, activity.RecordId, activity.EntityId);
+                    LoadActivityFeed();
                     break;
                 case "Comment":
                     Comment(activity.EntityId, activity.RecordId);
@@ -303,24 +305,26 @@ namespace SocialRequirements
             }
         }
 
-        private void Like(int entity, long recordId)
+        private void Like(long companyId, long? projectId, long recordId, int entity)
         {
             switch (entity)
             {
                 case (int)GeneralCatalog.Detail.Entity.Requirement:
+                    if(!projectId.HasValue) return;
                     var requirementSrv = new RequirementSoapClient();
-                    requirementSrv.LikeRequirement(recordId, GetUsernameEncrypted());
+                    requirementSrv.LikeRequirement(companyId, projectId.Value, recordId, GetUsernameEncrypted());
                     break;
             }
         }
 
-        private void Dislike(int entity, long recordId)
+        private void Dislike(long companyId, long? projectId, long recordId, int entity)
         {
             switch (entity)
             {
                 case (int)GeneralCatalog.Detail.Entity.Requirement:
+                    if (!projectId.HasValue) return;
                     var requirementSrv = new RequirementSoapClient();
-                    requirementSrv.DislikeRequirement(recordId, GetUsernameEncrypted());
+                    requirementSrv.DislikeRequirement(companyId, projectId.Value, recordId, GetUsernameEncrypted());
                     break;
             }
         }

@@ -19,6 +19,8 @@
       <s:element name="LikeRequirement">
         <s:complexType>
           <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="companyId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="projectId" type="s:long" />
             <s:element minOccurs="1" maxOccurs="1" name="requirementId" type="s:long" />
             <s:element minOccurs="0" maxOccurs="1" name="encUsername" type="s:string" />
           </s:sequence>
@@ -30,6 +32,8 @@
       <s:element name="DislikeRequirement">
         <s:complexType>
           <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="companyId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="projectId" type="s:long" />
             <s:element minOccurs="1" maxOccurs="1" name="requirementId" type="s:long" />
             <s:element minOccurs="0" maxOccurs="1" name="encUsername" type="s:string" />
           </s:sequence>

@@ -28,17 +28,17 @@ namespace WebService
         }
 
         [WebMethod]
-        public void LikeRequirement(long requirementId, string encUsername)
+        public void LikeRequirement(long companyId, long projectId, long requirementId, string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
-            RequirementBusiness.Like(requirementId, username);
+            RequirementBusiness.Like(companyId, projectId, requirementId, username);
         }
 
         [WebMethod]
-        public void DislikeRequirement(long requirementId, string encUsername)
+        public void DislikeRequirement(long companyId, long projectId, long requirementId, string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
-            RequirementBusiness.Dislike(requirementId, username);
+            RequirementBusiness.Dislike(companyId, projectId, requirementId, username);
         }
 
         [WebMethod]

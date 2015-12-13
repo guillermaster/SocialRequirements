@@ -2,6 +2,7 @@
 
 namespace SocialRequirements.Domain.DTO.Requirement
 {
+    [Serializable]
     public class RequirementCommentDto
     {
         public long Id { get; set; }

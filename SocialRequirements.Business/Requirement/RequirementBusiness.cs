@@ -42,16 +42,16 @@ namespace SocialRequirements.Business.Requirement
             return requirement;
         }
 
-        public void Like(long requirementId, string username)
+        public void Like(long companyId, long projectId, long requirementId, string username)
         {
             var personId = _personData.GetPersonId(username);
-            _requirementData.Like(requirementId, personId);
+            _requirementData.Like(companyId, projectId, requirementId, personId);
         }
 
-        public void Dislike(long requirementId, string username)
+        public void Dislike(long companyId, long projectId, long requirementId, string username)
         {
             var personId = _personData.GetPersonId(username);
-            _requirementData.Dislike(requirementId, personId);
+            _requirementData.Dislike(companyId, projectId, requirementId, personId);
         }
 
         public void Comment(long requirementId, string username, string comment)

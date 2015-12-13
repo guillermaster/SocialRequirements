@@ -39,6 +39,8 @@ namespace SocialRequirements.Domain.DTO.General
 
         public int Dislikes { get; set; }
 
-        public List<RequirementCommentDto> Comments { get; set; }
+        public int Comments { get; set; }
+
+        public List<RequirementCommentDto> Comment { get; set; }
     }
 }

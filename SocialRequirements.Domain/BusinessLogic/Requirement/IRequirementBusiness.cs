@@ -27,16 +27,20 @@ namespace SocialRequirements.Domain.BusinessLogic.Requirement
         /// <summary>
         /// Adds a like to the specified requirement
         /// </summary>
+        /// <param name="companyId">Company identifier</param>
+        /// <param name="projectId">Project identifier</param>
         /// <param name="requirementId">Requirement ID</param>
         /// <param name="username">Username who gave the like</param>
-        void Like(long requirementId, string username);
+        void Like(long companyId, long projectId, long requirementId, string username);
 
         /// <summary>
         /// Adds a like to the specified requirement
         /// </summary>
+        /// <param name="companyId">Company identifier</param>
+        /// <param name="projectId">Project identifier</param>
         /// <param name="requirementId">Requirement ID</param>
         /// <param name="username">Username who gave the dislike</param>
-        void Dislike(long requirementId, string username);
+        void Dislike(long companyId, long projectId, long requirementId, string username);
 
         /// <summary>
         /// Adds a comment to the specified requirement

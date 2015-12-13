@@ -15,11 +15,21 @@ namespace SocialRequirements.Data.Requirement
             _context = context;
         }
 
-        public void Add(RequirementDto requirement)
+        public RequirementDto Add(RequirementDto requirement)
         {
             var requirementVersion = GetEntityFromRequirementDto(requirement);
+
+            requirementVersion.version_number = GetNextVersionNumber(requirementVersion.company_id,
+                requirementVersion.project_id, requirementVersion.requirement_id);
+
             _context.RequirementVersion.Add(requirementVersion);
             _context.SaveChanges();
+
+            // set key values to requirement dto
+            requirement.VersionNumber = requirementVersion.version_number;
+            requirement.VersionId = requirementVersion.id;
+
+            return requirement;
         }
 
         public RequirementDto Get(long companyId, long projectId, long requirementId, long? requirementVersionId = null)
@@ -29,13 +39,37 @@ namespace SocialRequirements.Data.Requirement
                 return GetLastest(companyId, projectId, requirementId);
 
             // otherwise get specific version
-            var requirementVersion = 
-                _context.RequirementVersion.FirstOrDefault(
-                    rv =>
-                        rv.company_id == companyId && rv.project_id == projectId && rv.requirement_id == requirementId &&
-                        rv.id == requirementVersionId.Value);
+            var requirementVersion = Get(companyId, projectId, requirementId, requirementVersionId.Value);
 
             return requirementVersion != null ? GetDtoFromEntity(requirementVersion) : null;
+        }
+
+        public void Like(long companyId, long projectId, long requirementId, long requirementVersionId, long personId)
+        {
+            var requirementVersion = Get(companyId, projectId, requirementId, requirementVersionId);
+            if (requirementVersion == null) return;
+
+            requirementVersion.agreed++;
+            _context.SaveChanges();
+        }
+
+        public void Dislike(long companyId, long projectId, long requirementId, long requirementVersionId, long personId)
+        {
+            var requirementVersion = Get(companyId, projectId, requirementId, requirementVersionId);
+            if (requirementVersion == null) return;
+
+            requirementVersion.disagreed++;
+            _context.SaveChanges();
+        }
+
+        private RequirementVersion Get(long companyId, long projectId, long requirementId, long requirementVersionId)
+        {
+            var requirementVersion =
+               _context.RequirementVersion.FirstOrDefault(
+                   rv =>
+                       rv.company_id == companyId && rv.project_id == projectId && rv.requirement_id == requirementId &&
+                       rv.id == requirementVersionId);
+            return requirementVersion;
         }
 
         private RequirementDto GetLastest(long companyId, long projectId, long requirementId)
@@ -47,6 +81,16 @@ namespace SocialRequirements.Data.Requirement
                     .FirstOrDefault();
 
             return requirementVersion != null ? GetDtoFromEntity(requirementVersion) : null;
+        }
+
+        private int GetNextVersionNumber(long companyId, long projectId, long requirementId)
+        {
+            var requirementVersion =
+                _context.RequirementVersion.Where(
+                    rv => rv.company_id == companyId && rv.project_id == projectId && rv.requirement_id == requirementId)
+                    .OrderByDescending(vn => vn.version_number)
+                    .FirstOrDefault();
+            return requirementVersion != null ? requirementVersion.version_number + 1 : 1;
         }
 
         private static RequirementVersion GetEntityFromRequirementDto(RequirementDto requirement)
