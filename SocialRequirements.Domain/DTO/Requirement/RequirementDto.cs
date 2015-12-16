@@ -58,5 +58,8 @@ namespace SocialRequirements.Domain.DTO.Requirement
         public long VersionId { get; set; }
 
         public int VersionNumber { get; set; }
+
+        // additional helper properties
+        public string ShortDescription { get; set; }
     }
 }

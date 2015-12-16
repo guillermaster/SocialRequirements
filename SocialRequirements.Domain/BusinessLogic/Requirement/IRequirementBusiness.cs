@@ -1,4 +1,5 @@
-﻿using SocialRequirements.Domain.DTO.Requirement;
+﻿using System.Collections.Generic;
+using SocialRequirements.Domain.DTO.Requirement;
 
 namespace SocialRequirements.Domain.BusinessLogic.Requirement
 {
@@ -47,7 +48,14 @@ namespace SocialRequirements.Domain.BusinessLogic.Requirement
         /// </summary>
         /// <param name="requirementId">Requirement ID</param>
         /// <param name="username">Username who commented</param>
-        /// <param name="commentary">The comment</param>
+        /// <param name="comment">The comment</param>
         void Comment(long requirementId, string username, string comment);
+
+        /// <summary>
+        /// Query requirements by user from all of his projects and companies
+        /// </summary>
+        /// <param name="username">Username related to the requirements</param>
+        /// <returns>List of requirements</returns>
+        List<RequirementDto> GetList(string username);
     }
 }

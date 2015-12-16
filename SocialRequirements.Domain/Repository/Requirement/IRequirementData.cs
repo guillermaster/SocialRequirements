@@ -1,4 +1,5 @@
-﻿using SocialRequirements.Domain.DTO.Requirement;
+﻿using System.Collections.Generic;
+using SocialRequirements.Domain.DTO.Requirement;
 
 namespace SocialRequirements.Domain.Repository.Requirement
 {
@@ -52,5 +53,12 @@ namespace SocialRequirements.Domain.Repository.Requirement
         /// <param name="personId">ID of the who commented</param>
         /// <param name="commentary">The comment</param>
         void Comment(long requirementId, long personId, string commentary);
+
+        /// <summary>
+        /// Query requirements by projects
+        /// </summary>
+        /// <param name="projectIds">List of project identifiers </param>
+        /// <returns>List of requirements</returns>
+        List<RequirementDto> GetList(List<long> projectIds);
     }
 }

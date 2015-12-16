@@ -15,10 +15,27 @@ namespace SocialRequirements.Data.Account
         {
             _context = context;
         }
+
         public List<ProjectDto> GetProjectsByCompany(long companyId)
         {
             var projects = _context.CompanyProject.Where(cp => cp.company_id == companyId).ToList();
             return projects.Select(GetProjectDto).ToList();
+        }
+
+        public List<ProjectDto> GetProjectsByUser(long personId)
+        {
+            var projectsQry = from cu in _context.CompanyPerson
+                join cp in _context.CompanyProject on cu.company_id equals cp.company_id
+                join p in _context.Project on cp.project_id equals p.id
+                where cu.person_id == personId
+                select new ProjectDto
+                {
+                    Id = p.id,
+                    Name = p.name,
+                    Description = p.description
+                };
+
+            return projectsQry.ToList();
         }
 
         public int GetNumberOfProjects(long companyId)

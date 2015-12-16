@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using SocialRequirements.Context;
 using SocialRequirements.Context.Entities;
 using SocialRequirements.Domain.DTO.Requirement;
 using SocialRequirements.Domain.Repository.Requirement;
+using SocialRequirements.Utilities;
 
 namespace SocialRequirements.Data.Requirement
 {
@@ -11,6 +13,7 @@ namespace SocialRequirements.Data.Requirement
     {
         private readonly ContextModel _context;
         private readonly IRequirementVersionData _requirementVersionData;
+        private const int MaxShortDescriptionLength = 1700;
 
         public RequirementData(ContextModel context, IRequirementVersionData requirementVersionData)
         {
@@ -151,6 +154,12 @@ namespace SocialRequirements.Data.Requirement
             _context.SaveChanges();
         }
 
+        public List<RequirementDto> GetList(List<long> projectIds)
+        {
+            var requirements = _context.Requirement.Where(req => projectIds.Contains(req.project_id)).ToList();
+            return requirements.Select(GetDtoFromEntity).ToList();
+        }
+
         private Context.Entities.Requirement GetEntity(long companyId, long projectId, long requirementId)
         {
             return
@@ -197,7 +206,8 @@ namespace SocialRequirements.Data.Requirement
                 ModifiedbyId = requirement.modifiedby_id,
                 Modifiedon = requirement.modifiedon,
                 ApprovedbyId = requirement.approvedby_id,
-                Approvedon = requirement.approvedon
+                Approvedon = requirement.approvedon,
+                ShortDescription = StringUtilities.GetShort(requirement.description, MaxShortDescriptionLength)
             };
             return requirementDto;
         }

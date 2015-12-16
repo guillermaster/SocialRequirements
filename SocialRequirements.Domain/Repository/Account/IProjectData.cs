@@ -27,5 +27,12 @@ namespace SocialRequirements.Domain.Repository.Account
         /// <param name="companyId">Company identifier</param>
         /// <returns>Number of projects</returns>
         int GetNumberOfProjects(long companyId);
+
+        /// <summary>
+        /// Gets a list of projects related to the companies where the a user belongs to
+        /// </summary>
+        /// <param name="personId">User Id</param>
+        /// <returns>List of projects</returns>
+        List<ProjectDto> GetProjectsByUser(long personId);
     }
 }

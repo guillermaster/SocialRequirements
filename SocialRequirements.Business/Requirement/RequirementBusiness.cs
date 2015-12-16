@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using SocialRequirements.Domain;
 using SocialRequirements.Domain.BusinessLogic.Requirement;
 using SocialRequirements.Domain.DTO.Requirement;
@@ -13,12 +15,15 @@ namespace SocialRequirements.Business.Requirement
         private readonly IPersonData _personData;
         private readonly IRequirementData _requirementData;
         private readonly IActivityFeedData _activityFeedData;
+        private readonly IProjectData _projectData;
 
-        public RequirementBusiness(IPersonData personData, IRequirementData requirementData, IActivityFeedData activityFeedData)
+        public RequirementBusiness(IPersonData personData, IRequirementData requirementData,
+            IActivityFeedData activityFeedData, IProjectData projectData)
         {
             _personData = personData;
             _requirementData = requirementData;
             _activityFeedData = activityFeedData;
+            _projectData = projectData;
         }
 
         public bool HaveRequirements(long companyId)
@@ -58,6 +63,13 @@ namespace SocialRequirements.Business.Requirement
         {
             var personId = _personData.GetPersonId(username);
             _requirementData.Comment(requirementId, personId, comment);
+        }
+
+        public List<RequirementDto> GetList(string username)
+        {
+            var personId = _personData.GetPersonId(username);
+            var projects = _projectData.GetProjectsByUser(personId);
+            return _requirementData.GetList(projects.Select(p => p.Id).ToList());
         }
     }
 }
