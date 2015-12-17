@@ -23,7 +23,7 @@
 
     <asp:UpdatePanel runat="server" ID="PostContentUpdatePanel" UpdateMode="Conditional">
         <ContentTemplate>
-            <asp:Repeater ID="RequirementsListRepeater" 
+            <asp:Repeater ID="RequirementsListRepeater"
                 ItemType="SocialRequirements.Domain.DTO.Requirement.RequirementDto" runat="server" OnItemCommand="RequirementsListRepeater_ItemCommand">
                 <HeaderTemplate>
                     <div id="activityFeed">
@@ -33,8 +33,21 @@
                         <div class="requirement_list title">
                             <%# Eval("Title") %>
                         </div>
-                        <div class="requirement_list description">
+                        <span>
+                            <a href="#"><%# Eval("Project") %></a>
+                        </span>
+                        <span>
+                            <%# Eval("Createdon") %>
+                        </span>
+                        <span>
+                            <%# Eval("Status") %>
+                        </span>
+                        <div class="requirement_list description" onclick="javascript:location.href='Requirement.aspx'">
                             <%# Eval("ShortDescription") %>
+                        </div>
+                        <div>
+                            <!-- likes and dislikes -->
+
                         </div>
                     </div>
                 </ItemTemplate>

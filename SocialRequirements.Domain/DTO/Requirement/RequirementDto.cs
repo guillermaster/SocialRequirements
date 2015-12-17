@@ -61,5 +61,7 @@ namespace SocialRequirements.Domain.DTO.Requirement
 
         // additional helper properties
         public string ShortDescription { get; set; }
+        public string Project { get; set; }
+        public string Status { get; set; }
     }
 }

@@ -13,7 +13,7 @@ namespace SocialRequirements.Data.Requirement
     {
         private readonly ContextModel _context;
         private readonly IRequirementVersionData _requirementVersionData;
-        private const int MaxShortDescriptionLength = 1700;
+        private const int MaxShortDescriptionLength = 700;
 
         public RequirementData(ContextModel context, IRequirementVersionData requirementVersionData)
         {
@@ -207,7 +207,9 @@ namespace SocialRequirements.Data.Requirement
                 Modifiedon = requirement.modifiedon,
                 ApprovedbyId = requirement.approvedby_id,
                 Approvedon = requirement.approvedon,
-                ShortDescription = StringUtilities.GetShort(requirement.description, MaxShortDescriptionLength)
+                ShortDescription = StringUtilities.GetShort(requirement.description, MaxShortDescriptionLength),
+                Project = requirement.Project.name,
+                Status = requirement.GeneralCatalogDetail.name
             };
             return requirementDto;
         }

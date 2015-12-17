@@ -668,6 +668,7 @@
     padding: 7px 5px;
     border: thin solid #dddddd;
     background-color: #ffffff;
+    float: left;
 }
 
 .requirement_list .title {
@@ -678,4 +679,6 @@
 .requirement_list .description {
     width: 100%;
     text-align: justify;
+    color: #333333;
+    cursor: pointer;
 }
