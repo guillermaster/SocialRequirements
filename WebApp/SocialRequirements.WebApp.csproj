@@ -444,6 +444,7 @@
     <Content Include="assets\img\patterns\tweed.png" />
     <Content Include="assets\img\patterns\vertical_cloth.png" />
     <Content Include="assets\img\patterns\wild_oliva.png" />
+    <Content Include="assets\img\ribbon.png" />
     <Content Include="assets\img\sidebar-dots.png" />
     <Content Include="assets\img\sidebar-toggle-default.png" />
     <Content Include="assets\img\sidebar-toggle.png" />

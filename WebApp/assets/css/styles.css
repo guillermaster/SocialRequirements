@@ -674,6 +674,10 @@
 .requirement_list .title {
     width: 100%;
     text-align: center;
+    font-weight: bold;
+    background-color: #4C616B;
+    color: #ffffff;
+    cursor: pointer;
 }
 
 .requirement_list .description {
@@ -681,4 +685,62 @@
     text-align: justify;
     color: #333333;
     cursor: pointer;
+    border: none;
+    height: 250px;
+    margin-top: 10px;
+}
+
+.requirement_list .project {
+    background-image: url("../img/ribbon.png");
+    border: none;
+    position: relative;
+    left: -10px;
+    padding: 1px 6px;
+}
+
+.requirement_list .project a {
+    color: #dddddd;
+}
+
+.requirement_list .date {
+    position: relative;
+    left: 60px;
+    border: none;
+    width: 150px;
+    margin: 0;
+    padding: 0;
+}
+
+.requirement_list .status {
+    position: relative;
+    left: -256px;
+    top: 22px;
+    border: none;
+    width: 60px;
+    margin: 0;
+    padding: 0;
+}
+
+.requirement_list .actions_wrapper {
+    display: table;   /* Allow the centering to work */
+	margin: 0 auto;
+    border: none;
+}
+
+.requirement_list .actions {
+    border: none;
+    width: 100%;
+    margin: 0 auto;
+    list-style-type: none;
+}
+
+.requirement_list .actions li {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+.requirement_list .actions a {
+    margin: 0;
+    padding: 0;
 }

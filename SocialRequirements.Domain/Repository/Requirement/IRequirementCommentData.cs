@@ -9,5 +9,15 @@ namespace SocialRequirements.Domain.Repository.Requirement
 
         List<RequirementCommentDto> Get(long requirementId, long companyId, long projectId,
             long requirementVersionId);
+
+        /// <summary>
+        /// Gets the number of comments made for a specific requirement version
+        /// </summary>
+        /// <param name="requirementId">Requirement ID</param>
+        /// <param name="companyId">Company ID</param>
+        /// <param name="projectId">Project ID</param>
+        /// <param name="requirementVersionId">Requirement version ID</param>
+        /// <returns>Number of comments</returns>
+        int GetQuantity(long requirementId, long companyId, long projectId, long requirementVersionId);
     }
 }

@@ -13,12 +13,14 @@ namespace SocialRequirements.Data.Requirement
     {
         private readonly ContextModel _context;
         private readonly IRequirementVersionData _requirementVersionData;
-        private const int MaxShortDescriptionLength = 700;
+        private readonly IRequirementCommentData _requirementCommentData;
+        private const int MaxShortDescriptionLength = 590;
 
-        public RequirementData(ContextModel context, IRequirementVersionData requirementVersionData)
+        public RequirementData(ContextModel context, IRequirementVersionData requirementVersionData, IRequirementCommentData requirementCommentData)
         {
             _context = context;
             _requirementVersionData = requirementVersionData;
+            _requirementCommentData = requirementCommentData;
         }
 
         public int GetNumberOfRequirements(long companyId)
@@ -190,10 +192,11 @@ namespace SocialRequirements.Data.Requirement
             return requirement;
         }
 
-        private static RequirementDto GetDtoFromEntity(Context.Entities.Requirement requirement)
+        private RequirementDto GetDtoFromEntity(Context.Entities.Requirement requirement)
         {
             var requirementDto = new RequirementDto
             {
+                Id = requirement.id,
                 CompanyId = requirement.company_id,
                 ProjectId = requirement.project_id,
                 Title = requirement.title,
@@ -209,8 +212,11 @@ namespace SocialRequirements.Data.Requirement
                 Approvedon = requirement.approvedon,
                 ShortDescription = StringUtilities.GetShort(requirement.description, MaxShortDescriptionLength),
                 Project = requirement.Project.name,
-                Status = requirement.GeneralCatalogDetail.name
+                Status = requirement.GeneralCatalogDetail.name,
+                CommentsQuantity = _requirementCommentData.GetQuantity(requirement.id, requirement.company_id, 
+                                        requirement.project_id, requirement.requirement_version_id)
             };
+            
             return requirementDto;
         }
     }

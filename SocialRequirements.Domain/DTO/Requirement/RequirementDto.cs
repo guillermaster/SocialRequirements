@@ -40,6 +40,8 @@ namespace SocialRequirements.Domain.DTO.Requirement
 
         public int Disagreed { get; set; }
 
+        public int CommentsQuantity { get; set; }
+
         public int StatusId { get; set; }
 
         public long CreatedbyId { get; set; }

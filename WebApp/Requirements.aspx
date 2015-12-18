@@ -30,24 +30,45 @@
                 </HeaderTemplate>
                 <ItemTemplate>
                     <div class="requirement_list">
-                        <div class="requirement_list title">
+                        <div class="requirement_list title" onclick="javascript:location.href='Requirement.aspx?id=<%# Eval("Id") %>'">
                             <%# Eval("Title") %>
                         </div>
-                        <span>
+                        <span class="requirement_list project">
                             <a href="#"><%# Eval("Project") %></a>
                         </span>
-                        <span>
-                            <%# Eval("Createdon") %>
+                        <span class="requirement_list date">
+                            <%# Eval("Modifiedon") %>
                         </span>
-                        <span>
+                        <span class="requirement_list status">
                             <%# Eval("Status") %>
                         </span>
-                        <div class="requirement_list description" onclick="javascript:location.href='Requirement.aspx'">
+                        <div class="requirement_list description" onclick="javascript:location.href='Requirement.aspx?id=<%# Eval("Id") %>'">
                             <%# Eval("ShortDescription") %>
                         </div>
                         <div>
                             <!-- likes and dislikes -->
-
+                            <asp:Panel runat="server" ID="RequirementActionsPanel" CssClass="actions_wrapper">
+                            <ul class="activity actions">
+                                <li>
+                                    <asp:LinkButton runat="server" ID="LikeButton" CssClass="activity_actions_button" CommandName="Like">
+                                        <asp:Label runat="server" ID="LikeQty" Text='<%# Eval("Agreed") %>'/>
+                                        <img src="assets/img/like.png" alt="Like"/>
+                                    </asp:LinkButton>
+                                </li>
+                                <li>
+                                    <asp:LinkButton runat="server" ID="DislikeButton" CssClass="activity_actions_button" CommandName="Dislike">
+                                        <asp:Label runat="server" ID="DislikeQty" Text='<%# Eval("Disagreed") %>'/>
+                                        <img src="assets/img/dislike.png" alt="Dislike"/>
+                                    </asp:LinkButton>
+                                </li>
+                                <li>
+                                    <asp:LinkButton runat="server" ID="CommentButton" CssClass="activity_actions_button" CommandName="Comment">
+                                        <asp:Label runat="server" ID="CommentsQty" Text='<%# Eval("CommentsQuantity") %>'/>
+                                        <img src="assets/img/comment.png" alt="Comment"/>
+                                    </asp:LinkButton>
+                                </li>
+                            </ul>
+                        </asp:Panel>
                         </div>
                     </div>
                 </ItemTemplate>

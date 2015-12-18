@@ -33,6 +33,15 @@ namespace SocialRequirements.Data.Requirement
             return requirementComments.Select(GetDtoFromEntity).ToList();
         }
 
+        public int GetQuantity(long requirementId, long companyId, long projectId, long requirementVersionId)
+        {
+            return
+                _context.RequirementComment.Count(
+                    c =>
+                        c.company_id == companyId && c.project_id == projectId && c.requirement_id == requirementId &&
+                        c.requirement_version_id == requirementVersionId);
+        }
+
         private static RequirementComment GetEntityFromDto(RequirementCommentDto requirementCommentDto)
         {
             var requirementComment = new RequirementComment
