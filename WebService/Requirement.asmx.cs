@@ -67,5 +67,19 @@ namespace WebService
             var serializer = new ObjectSerializer<RequirementDto>(requirement);
             return serializer.ToXmlString();
         }
+
+        [WebMethod]
+        public void ApproveRequirement(long companyId, long projectId, long requirementId, string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            RequirementBusiness.Approve(companyId, projectId, requirementId, username);
+        }
+
+        [WebMethod]
+        public void RejectRequirement(long companyId, long projectId, long requirementId, string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            RequirementBusiness.Reject(companyId, projectId, requirementId, username);
+        }
     }
 }

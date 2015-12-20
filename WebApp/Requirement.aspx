@@ -4,7 +4,38 @@
     Requirement
 </asp:Content>
 <asp:Content ID="ToolbarContent" ContentPlaceHolderID="ToolbarContent" runat="server">
-    <a href="#" class="btn btn-default"><i class="fa fa-fw fa-wrench"></i></a>
+    <ul class="demo-btns">
+        <li>
+            <asp:LinkButton runat="server" CssClass="btn btn-default" ID="ApproveButton" OnClick="ApproveButton_Click">
+                <i class="fa fa-fw fa-check"></i>
+            </asp:LinkButton>
+        </li>
+        <li>
+            <asp:LinkButton runat="server" CssClass="btn btn-default" ID="RejectButton" OnClick="RejectButton_OnClickButton_Click">
+                <i class="fa fa-fw fa-times"></i>
+            </asp:LinkButton>
+        </li>
+        <li>
+            <asp:LinkButton runat="server" CssClass="btn btn-default" ID="EditButton" OnClick="EditButton_OnClick">
+                <i class="fa fa-fw fa-pencil"></i>
+            </asp:LinkButton>
+        </li>
+        <li>
+            <asp:LinkButton runat="server" CssClass="btn btn-default" ID="CommentsButton" OnClick="CommentsButton_OnClick">
+                <i class="fa fa-fw fa-comments-o"></i>
+            </asp:LinkButton>
+        </li>
+        <li>
+            <asp:LinkButton runat="server" CssClass="btn btn-default" ID="HistoryButton" OnClick="HistoryButton_OnClick">
+                <i class="fa fa-fw fa-comments-o"></i>
+            </asp:LinkButton>
+        </li>
+        <li>
+            <asp:LinkButton runat="server" CssClass="btn btn-default" ID="UploadButton" OnClick="UploadButton_OnClick">
+                <i class="fa fa-fw fa-upload"></i>
+            </asp:LinkButton>
+        </li>
+    </ul>
 </asp:Content>
 <asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
     <asp:ScriptManager runat="server" ID="MainScriptManager" />
@@ -25,24 +56,30 @@
                 </div>
                 <div>
                     <div>
-                        Status:
-                        <asp:Label runat="server" ID="RequirementStatus"/>
+                        <div>
+                            Status:
+                            <asp:Label runat="server" ID="RequirementStatus" />
+                        </div>
+                        <div>
+                            Version:
+                            <asp:Label runat="server" ID="RequirementVersion"/>
+                        </div>
                     </div>
                     <div>
                         <div>
                             Created by:
-                            <asp:Label runat="server" ID="CreatedByName"/>
+                            <asp:Label runat="server" ID="CreatedByName" />
                             &nbsp;On:
-                            <asp:Label runat="server" ID="CreatedOn"/>
+                            <asp:Label runat="server" ID="CreatedOn" />
                         </div>
                         <div>
                             Last modified by:
-                            <asp:Label runat="server" ID="ModifiedByName"/>
+                            <asp:Label runat="server" ID="ModifiedByName" />
                             &nbsp;On:
-                            <asp:Label runat="server" ID="ModifiedOn"/>
+                            <asp:Label runat="server" ID="ModifiedOn" />
                         </div>
                     </div>
-                    
+
                 </div>
                 <div>
                     <asp:Label runat="server" ID="RequirementDescription" />

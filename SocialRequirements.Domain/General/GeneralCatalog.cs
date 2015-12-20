@@ -1,4 +1,4 @@
-﻿namespace SocialRequirements.Domain
+﻿namespace SocialRequirements.Domain.General
 {
     public class GeneralCatalog
     {
@@ -24,7 +24,9 @@
 
             public enum RequirementStatus
             {
-                Draft = 5
+                Draft = 5,
+                Approved = 6,
+                Rejected = 7
             }
         }
     }

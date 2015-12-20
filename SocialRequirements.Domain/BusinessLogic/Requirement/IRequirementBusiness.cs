@@ -66,5 +66,23 @@ namespace SocialRequirements.Domain.BusinessLogic.Requirement
         /// <param name="requirementId">Requirement ID</param>
         /// <returns>Requirement</returns>
         RequirementDto Get(long companyId, long projectId, long requirementId);
+
+        /// <summary>
+        /// Sets a requirement as approved
+        /// </summary>
+        /// <param name="companyId">Company ID</param>
+        /// <param name="projectId">Project ID</param>
+        /// <param name="requirementId">Requirement ID</param>
+        /// <param name="username">User who approves the requirement</param>
+        void Approve(long companyId, long projectId, long requirementId, string username);
+
+        /// <summary>
+        /// Sets a requirement as rejected
+        /// </summary>
+        /// <param name="companyId">Company ID</param>
+        /// <param name="projectId">Project ID</param>
+        /// <param name="requirementId">Requirement ID</param>
+        /// <param name="username">User who rejects the requirement</param>
+        void Reject(long companyId, long projectId, long requirementId, string username);
     }
 }

@@ -5,6 +5,7 @@ using SocialRequirements.Context;
 using SocialRequirements.Context.Entities;
 using SocialRequirements.Domain;
 using SocialRequirements.Domain.DTO.General;
+using SocialRequirements.Domain.General;
 using SocialRequirements.Domain.Repository.General;
 using SocialRequirements.Domain.Repository.Requirement;
 using SocialRequirements.Utilities;

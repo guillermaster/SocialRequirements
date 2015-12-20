@@ -1,4 +1,5 @@
 ﻿using System;
+using SocialRequirements.Domain.General;
 
 namespace SocialRequirements.Domain.DTO.Requirement
 {

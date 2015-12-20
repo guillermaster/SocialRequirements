@@ -60,5 +60,16 @@ namespace SocialRequirements.Domain.Repository.Requirement
         /// <param name="projectIds">List of project identifiers </param>
         /// <returns>List of requirements</returns>
         List<RequirementDto> GetList(List<long> projectIds);
+
+        /// <summary>
+        /// Updates the status of a requirement. Tf the status is approved, the approval user is set.
+        /// If the status is rejected, the rejection user is set. 
+        /// </summary>
+        /// <param name="companyId">Company ID</param>
+        /// <param name="projectId">Project ID</param>
+        /// <param name="requirementId">Requirement ID</param>
+        /// <param name="statusId">Status ID to be set</param>
+        /// <param name="personId">Person ID, to be set as modification user and may be the approval/rejection user.</param>
+        void UpdateStatus(long companyId, long projectId, long requirementId, int statusId, long personId);
     }
 }

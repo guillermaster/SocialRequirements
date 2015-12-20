@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using SocialRequirements.Domain;
 using SocialRequirements.Domain.BusinessLogic.Requirement;
 using SocialRequirements.Domain.DTO.Requirement;
+using SocialRequirements.Domain.General;
 using SocialRequirements.Domain.Repository.Account;
 using SocialRequirements.Domain.Repository.General;
 using SocialRequirements.Domain.Repository.Requirement;
@@ -75,6 +75,20 @@ namespace SocialRequirements.Business.Requirement
         public RequirementDto Get(long companyId, long projectId, long requirementId)
         {
             return _requirementData.Get(companyId, projectId, requirementId);
+        }
+
+        public void Approve(long companyId, long projectId, long requirementId, string username)
+        {
+            var personId = _personData.GetPersonId(username);
+            _requirementData.UpdateStatus(companyId, projectId, requirementId,
+                (int) GeneralCatalog.Detail.RequirementStatus.Approved, personId);
+        }
+
+        public void Reject(long companyId, long projectId, long requirementId, string username)
+        {
+            var personId = _personData.GetPersonId(username);
+            _requirementData.UpdateStatus(companyId, projectId, requirementId,
+                (int)GeneralCatalog.Detail.RequirementStatus.Rejected, personId);
         }
     }
 }

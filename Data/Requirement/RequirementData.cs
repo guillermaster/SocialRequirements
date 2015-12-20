@@ -12,8 +12,8 @@ namespace SocialRequirements.Data.Requirement
     public class RequirementData : IRequirementData
     {
         private readonly ContextModel _context;
-        private readonly IRequirementVersionData _requirementVersionData;
-        private readonly IRequirementCommentData _requirementCommentData;
+        private IRequirementVersionData _requirementVersionData;
+        private IRequirementCommentData _requirementCommentData;
         private const int MaxShortDescriptionLength = 590;
 
         public RequirementData(ContextModel context, IRequirementVersionData requirementVersionData, IRequirementCommentData requirementCommentData)
@@ -160,6 +160,32 @@ namespace SocialRequirements.Data.Requirement
         {
             var requirements = _context.Requirement.Where(req => projectIds.Contains(req.project_id)).ToList();
             return requirements.Select(GetDtoFromEntity).ToList();
+        }
+
+        public void UpdateStatus(long companyId, long projectId, long requirementId, int statusId, long personId)
+        {
+            using (var scope = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    // get requirement and update it
+                    var requirement = GetEntity(companyId, projectId, requirementId);
+                    requirement.status_id = statusId;
+                    _context.SaveChanges();
+
+                    // update requirement version
+                    _requirementVersionData = new RequirementVersionData(_context);
+                    _requirementVersionData.UpdateStatus(companyId, projectId, requirementId,
+                        requirement.requirement_version_id, requirement.status_id, personId);
+
+                    scope.Commit();
+                }
+                catch
+                {
+                    scope.Rollback();
+                    throw;
+                }
+            }
         }
 
         private Context.Entities.Requirement GetEntity(long companyId, long projectId, long requirementId)

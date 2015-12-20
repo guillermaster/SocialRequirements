@@ -6,6 +6,7 @@ using SocialRequirements.AccountService;
 using SocialRequirements.CompanyService;
 using SocialRequirements.Domain;
 using SocialRequirements.Domain.DTO.Account;
+using SocialRequirements.Domain.General;
 using SocialRequirements.RequirementService;
 using SocialRequirements.Utilities;
 using SocialRequirements.Utilities.Security;

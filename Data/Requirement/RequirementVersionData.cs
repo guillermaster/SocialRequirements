@@ -1,7 +1,9 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using SocialRequirements.Context;
 using SocialRequirements.Context.Entities;
 using SocialRequirements.Domain.DTO.Requirement;
+using SocialRequirements.Domain.General;
 using SocialRequirements.Domain.Repository.Requirement;
 
 namespace SocialRequirements.Data.Requirement
@@ -59,6 +61,20 @@ namespace SocialRequirements.Data.Requirement
             if (requirementVersion == null) return;
 
             requirementVersion.disagreed++;
+            _context.SaveChanges();
+        }
+
+        public void UpdateStatus(long companyId, long projectId, long requirementId, long versionId, int statusId, long personId)
+        {
+            var requirementVersion = Get(companyId, projectId, requirementId, versionId);
+            requirementVersion.status_id = statusId;
+            requirementVersion.modifiedby_id = personId;
+            if (statusId == (int) GeneralCatalog.Detail.RequirementStatus.Approved ||
+                statusId == (int) GeneralCatalog.Detail.RequirementStatus.Rejected)
+            {
+                requirementVersion.approvedby_id = personId;
+                requirementVersion.approvedon = DateTime.Now;
+            }
             _context.SaveChanges();
         }
 
