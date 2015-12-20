@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -45,6 +46,10 @@ namespace SocialRequirements
             RequirementTitle.Text = requirement.Title;
             RequirementDescription.Text = requirement.Description;
             RequirementStatus.Text = requirement.Status;
+            CreatedByName.Text = requirement.CreatedByName;
+            ModifiedByName.Text = requirement.ModifiedByName;
+            CreatedOn.Text = requirement.Createdon.ToString(CultureInfo.InvariantCulture);
+            ModifiedOn.Text = requirement.Modifiedon.ToString(CultureInfo.InvariantCulture);
         }
     }
 }

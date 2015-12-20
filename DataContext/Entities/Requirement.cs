@@ -56,5 +56,9 @@ namespace SocialRequirements.Context.Entities
         public virtual GeneralCatalogDetail GeneralCatalogDetail { get; set; }
 
         public virtual ICollection<RequirementVersion> RequirementVersion { get; set; }
+
+        public virtual Person Person { get; set; }
+
+        public virtual Person Person1 { get; set; }
     }
 }

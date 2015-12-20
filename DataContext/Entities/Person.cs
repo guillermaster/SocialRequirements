@@ -16,6 +16,8 @@ namespace SocialRequirements.Context.Entities
             CompanyProjectPerson = new HashSet<CompanyProjectPerson>();
             CompanyProjectPersonRole = new HashSet<CompanyProjectPersonRole>();
             Company = new HashSet<Company>();
+            Requirement = new HashSet<Requirement>();
+            Requirement1 = new HashSet<Requirement>();
         }
 
         public long id { get; set; }
@@ -63,5 +65,9 @@ namespace SocialRequirements.Context.Entities
         public virtual ICollection<Company> Company { get; set; }
 
         public virtual ICollection<ActivityFeed> ActivityFeed { get; set; }
+
+        public virtual ICollection<Requirement> Requirement { get; set; }
+
+        public virtual ICollection<Requirement> Requirement1 { get; set; }
     }
 }

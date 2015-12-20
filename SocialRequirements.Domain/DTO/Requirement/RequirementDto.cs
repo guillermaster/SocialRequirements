@@ -61,9 +61,11 @@ namespace SocialRequirements.Domain.DTO.Requirement
 
         public int VersionNumber { get; set; }
 
-        // additional helper properties
+        // NON-ENTITY PROPERTIES
         public string ShortDescription { get; set; }
         public string Project { get; set; }
         public string Status { get; set; }
+        public string CreatedByName { get; set; }
+        public string ModifiedByName { get; set; }
     }
 }

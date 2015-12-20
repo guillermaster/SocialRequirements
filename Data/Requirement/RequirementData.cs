@@ -213,6 +213,8 @@ namespace SocialRequirements.Data.Requirement
                 ShortDescription = StringUtilities.GetShort(requirement.description, MaxShortDescriptionLength),
                 Project = requirement.Project.name,
                 Status = requirement.GeneralCatalogDetail.name,
+                CreatedByName = requirement.Person.first_name + " " + requirement.Person.last_name,
+                ModifiedByName = requirement.Person1.first_name + " " + requirement.Person1.last_name,
                 CommentsQuantity = _requirementCommentData.GetQuantity(requirement.id, requirement.company_id, 
                                         requirement.project_id, requirement.requirement_version_id)
             };
