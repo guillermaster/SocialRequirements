@@ -4,7 +4,9 @@ using System.Linq;
 using System.Web.UI.WebControls;
 using SocialRequirements.AccountService;
 using SocialRequirements.CompanyService;
+using SocialRequirements.Domain;
 using SocialRequirements.Domain.DTO.Account;
+using SocialRequirements.RequirementService;
 using SocialRequirements.Utilities;
 using SocialRequirements.Utilities.Security;
 
@@ -87,6 +89,30 @@ namespace SocialRequirements
             companyList.DataBind();
             companyList.Items.Insert(0, new ListItem("- Select Company -", string.Empty));
             companyList.SelectedIndex = 0;
+        }
+
+        protected void Like(long companyId, long? projectId, long recordId, int entity)
+        {
+            switch (entity)
+            {
+                case (int)GeneralCatalog.Detail.Entity.Requirement:
+                    if (!projectId.HasValue) return;
+                    var requirementSrv = new RequirementSoapClient();
+                    requirementSrv.LikeRequirement(companyId, projectId.Value, recordId, GetUsernameEncrypted());
+                    break;
+            }
+        }
+
+        protected void Dislike(long companyId, long? projectId, long recordId, int entity)
+        {
+            switch (entity)
+            {
+                case (int)GeneralCatalog.Detail.Entity.Requirement:
+                    if (!projectId.HasValue) return;
+                    var requirementSrv = new RequirementSoapClient();
+                    requirementSrv.DislikeRequirement(companyId, projectId.Value, recordId, GetUsernameEncrypted());
+                    break;
+            }
         }
     }
 }

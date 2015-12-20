@@ -59,5 +59,13 @@ namespace WebService
             var serializer = new ObjectSerializer<List<RequirementDto>>(requirements);
             return serializer.ToXmlString();
         }
+
+        [WebMethod]
+        public string GetRequirement(long companyId, long projectId, long requirementId)
+        {
+            var requirement = RequirementBusiness.Get(companyId, projectId, requirementId);
+            var serializer = new ObjectSerializer<RequirementDto>(requirement);
+            return serializer.ToXmlString();
+        }
     }
 }

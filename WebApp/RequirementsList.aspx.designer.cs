@@ -10,7 +10,7 @@
 namespace SocialRequirements {
     
     
-    public partial class Requirements {
+    public partial class RequirementsList {
         
         /// <summary>
         /// MainScriptManager control.

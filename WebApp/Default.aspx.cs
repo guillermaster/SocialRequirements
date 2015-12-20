@@ -6,6 +6,7 @@ using System.Web.UI.WebControls;
 using SocialRequirements.Domain;
 using SocialRequirements.Domain.DTO.Account;
 using SocialRequirements.Domain.DTO.General;
+using SocialRequirements.Domain.General;
 using SocialRequirements.GeneralService;
 using SocialRequirements.ProjectService;
 using SocialRequirements.RequirementService;
@@ -215,7 +216,7 @@ namespace SocialRequirements
 
             switch (e.CommandName)
             {
-                case "ReadMore":
+                case CommonConstants.SocialActionsCommands.ReadMore:
                     var descriptionText = (Label) e.Item.FindControl(CtrlIdActivityDescription);
                     descriptionText.Text = activity.Description;
                     var sourceButton = (LinkButton) e.CommandSource;
@@ -223,17 +224,17 @@ namespace SocialRequirements
                     var readEvenMoreButton = (LinkButton) e.Item.FindControl(CtrlIdActivityReadEvenMore);
                     readEvenMoreButton.Visible = activity.HasEvenLongerDescription;
                     break;
-                case "ReadEvenMore":
+                case CommonConstants.SocialActionsCommands.ReadEvenMore:
                     break;
-                case "Like":
+                case CommonConstants.SocialActionsCommands.Like:
                     Like(activity.CompanyId, activity.ProjectId, activity.RecordId, activity.EntityId);
                     LoadActivityFeed();
                     break;
-                case "Dislike":
+                case CommonConstants.SocialActionsCommands.Dislike:
                     Dislike(activity.CompanyId, activity.ProjectId, activity.RecordId, activity.EntityId);
                     LoadActivityFeed();
                     break;
-                case "Comment":
+                case CommonConstants.SocialActionsCommands.Comment:
                     Comment(activity.EntityId, activity.RecordId);
                     break;
             }
@@ -302,30 +303,6 @@ namespace SocialRequirements
             catch(Exception ex)
             {
                 SetPostErrorMessage("An error occurred, please try again.");
-            }
-        }
-
-        private void Like(long companyId, long? projectId, long recordId, int entity)
-        {
-            switch (entity)
-            {
-                case (int)GeneralCatalog.Detail.Entity.Requirement:
-                    if(!projectId.HasValue) return;
-                    var requirementSrv = new RequirementSoapClient();
-                    requirementSrv.LikeRequirement(companyId, projectId.Value, recordId, GetUsernameEncrypted());
-                    break;
-            }
-        }
-
-        private void Dislike(long companyId, long? projectId, long recordId, int entity)
-        {
-            switch (entity)
-            {
-                case (int)GeneralCatalog.Detail.Entity.Requirement:
-                    if (!projectId.HasValue) return;
-                    var requirementSrv = new RequirementSoapClient();
-                    requirementSrv.DislikeRequirement(companyId, projectId.Value, recordId, GetUsernameEncrypted());
-                    break;
             }
         }
 

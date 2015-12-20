@@ -68,6 +68,22 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetRequirement">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="companyId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="projectId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requirementId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRequirementResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRequirementResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="AddRequirementSoapIn">
@@ -100,6 +116,12 @@
   <wsdl:message name="GetRequirementsListSoapOut">
     <wsdl:part name="parameters" element="tns:GetRequirementsListResponse" />
   </wsdl:message>
+  <wsdl:message name="GetRequirementSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRequirement" />
+  </wsdl:message>
+  <wsdl:message name="GetRequirementSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRequirementResponse" />
+  </wsdl:message>
   <wsdl:portType name="RequirementSoap">
     <wsdl:operation name="AddRequirement">
       <wsdl:input message="tns:AddRequirementSoapIn" />
@@ -120,6 +142,10 @@
     <wsdl:operation name="GetRequirementsList">
       <wsdl:input message="tns:GetRequirementsListSoapIn" />
       <wsdl:output message="tns:GetRequirementsListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRequirement">
+      <wsdl:input message="tns:GetRequirementSoapIn" />
+      <wsdl:output message="tns:GetRequirementSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="RequirementSoap" type="tns:RequirementSoap">
@@ -169,6 +195,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetRequirement">
+      <soap:operation soapAction="http://tempuri.org/GetRequirement" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="RequirementSoap12" type="tns:RequirementSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -210,6 +245,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetRequirementsList">
       <soap12:operation soapAction="http://tempuri.org/GetRequirementsList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRequirement">
+      <soap12:operation soapAction="http://tempuri.org/GetRequirement" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

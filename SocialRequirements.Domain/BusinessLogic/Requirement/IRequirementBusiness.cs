@@ -57,5 +57,14 @@ namespace SocialRequirements.Domain.BusinessLogic.Requirement
         /// <param name="username">Username related to the requirements</param>
         /// <returns>List of requirements</returns>
         List<RequirementDto> GetList(string username);
+
+        /// <summary>
+        /// Returns requirement data matching criteria specified by input params
+        /// </summary>
+        /// <param name="companyId">Company ID</param>
+        /// <param name="projectId">Project ID</param>
+        /// <param name="requirementId">Requirement ID</param>
+        /// <returns>Requirement</returns>
+        RequirementDto Get(long companyId, long projectId, long requirementId);
     }
 }

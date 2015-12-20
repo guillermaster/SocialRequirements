@@ -71,5 +71,10 @@ namespace SocialRequirements.Business.Requirement
             var projects = _projectData.GetProjectsByUser(personId);
             return _requirementData.GetList(projects.Select(p => p.Id).ToList());
         }
+
+        public RequirementDto Get(long companyId, long projectId, long requirementId)
+        {
+            return _requirementData.Get(companyId, projectId, requirementId);
+        }
     }
 }

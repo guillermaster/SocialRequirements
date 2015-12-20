@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Requirements.aspx.cs" Inherits="SocialRequirements.Requirements" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RequirementsList.aspx.cs" Inherits="SocialRequirements.RequirementsList" %>
 
 <asp:Content ID="TitleContent" ContentPlaceHolderID="TitleContent" runat="server">
     Requirements
@@ -30,7 +30,8 @@
                 </HeaderTemplate>
                 <ItemTemplate>
                     <div class="requirement_list">
-                        <div class="requirement_list title" onclick="javascript:location.href='Requirement.aspx?id=<%# Eval("Id") %>'">
+                        <div class="requirement_list title" 
+                            onclick="javascript:location.href='Requirement.aspx?<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.Id %>=<%# Eval("Id") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.CompanyId %>=<%# Eval("CompanyId") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.ProjectId %>=<%# Eval("ProjectId") %>'">
                             <%# Eval("Title") %>
                         </div>
                         <span class="requirement_list project">
@@ -42,7 +43,8 @@
                         <span class="requirement_list status">
                             <%# Eval("Status") %>
                         </span>
-                        <div class="requirement_list description" onclick="javascript:location.href='Requirement.aspx?id=<%# Eval("Id") %>'">
+                        <div class="requirement_list description" 
+                            onclick="javascript:location.href='Requirement.aspx?<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.Id %>=<%# Eval("Id") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.CompanyId %>=<%# Eval("CompanyId") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.ProjectId %>=<%# Eval("ProjectId") %>'">
                             <%# Eval("ShortDescription") %>
                         </div>
                         <div>
@@ -50,19 +52,19 @@
                             <asp:Panel runat="server" ID="RequirementActionsPanel" CssClass="actions_wrapper">
                             <ul class="activity actions">
                                 <li>
-                                    <asp:LinkButton runat="server" ID="LikeButton" CssClass="activity_actions_button" CommandName="Like">
+                                    <asp:LinkButton runat="server" ID="LikeButton" CssClass="activity_actions_button" CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.Like %>">
                                         <asp:Label runat="server" ID="LikeQty" Text='<%# Eval("Agreed") %>'/>
                                         <img src="assets/img/like.png" alt="Like"/>
                                     </asp:LinkButton>
                                 </li>
                                 <li>
-                                    <asp:LinkButton runat="server" ID="DislikeButton" CssClass="activity_actions_button" CommandName="Dislike">
+                                    <asp:LinkButton runat="server" ID="DislikeButton" CssClass="activity_actions_button" CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.Dislike %>">
                                         <asp:Label runat="server" ID="DislikeQty" Text='<%# Eval("Disagreed") %>'/>
                                         <img src="assets/img/dislike.png" alt="Dislike"/>
                                     </asp:LinkButton>
                                 </li>
                                 <li>
-                                    <asp:LinkButton runat="server" ID="CommentButton" CssClass="activity_actions_button" CommandName="Comment">
+                                    <asp:LinkButton runat="server" ID="CommentButton" CssClass="activity_actions_button" CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.Comment %>">
                                         <asp:Label runat="server" ID="CommentsQty" Text='<%# Eval("CommentsQuantity") %>'/>
                                         <img src="assets/img/comment.png" alt="Comment"/>
                                     </asp:LinkButton>

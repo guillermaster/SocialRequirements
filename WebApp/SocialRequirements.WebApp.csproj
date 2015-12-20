@@ -2150,7 +2150,8 @@
     <Content Include="assets\plugins\switchery\README.md" />
     <Content Include="assets\plugins\wijets\.DS_Store" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Requirements.aspx" />
+    <Content Include="Requirement.aspx" />
+    <Content Include="RequirementsList.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -2272,6 +2273,9 @@
     <Content Include="Service References\RequirementService\SocialRequirements.RequirementService.GetRequirementsListResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Service References\RequirementService\SocialRequirements.RequirementService.GetRequirementResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2391,12 +2395,19 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Requirements.aspx.cs">
-      <DependentUpon>Requirements.aspx</DependentUpon>
+    <Compile Include="Requirement.aspx.cs">
+      <DependentUpon>Requirement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Requirements.aspx.designer.cs">
-      <DependentUpon>Requirements.aspx</DependentUpon>
+    <Compile Include="Requirement.aspx.designer.cs">
+      <DependentUpon>Requirement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RequirementsList.aspx.cs">
+      <DependentUpon>RequirementsList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RequirementsList.aspx.designer.cs">
+      <DependentUpon>RequirementsList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Service References\AccountService\Reference.cs">
       <AutoGen>True</AutoGen>

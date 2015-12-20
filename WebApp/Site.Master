@@ -352,7 +352,7 @@
 		</li> -->
                                     <li><a href="javascript:;"><i class="fa fa-columns"></i><span>Requirements</span><span class="badge badge-primary">8</span></a>
                                         <ul class="acc-menu">
-                                            <li><a href="Requirements.aspx">All requirements</a></li>
+                                            <li><a href="RequirementsList.aspx">All requirements</a></li>
 
                                             <li><a href="layout-fixed-sidebars.html">Stretch Sidebars</a></li>
 
