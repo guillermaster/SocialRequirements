@@ -52,5 +52,17 @@ namespace SocialRequirements.Domain.Repository.Requirement
         /// <param name="statusId">Status ID to be set</param>
         /// <param name="personId">Person ID, to be set as modification user and may be the approval/rejection user.</param>
         void UpdateStatus(long companyId, long projectId, long requirementId, long versionId, int statusId, long personId);
+
+        /// <summary>
+        /// Updates the title and description for the specified requirement
+        /// </summary>
+        /// <param name="title">Requirement title</param>
+        /// <param name="description">Description title</param>
+        /// <param name="companyId">Company ID</param>
+        /// <param name="projectId">Project ID</param>
+        /// <param name="requirementId">Requirement ID</param>
+        /// <param name="versionId">Version ID</param>
+        /// <param name="personId">User that triggered the update</param>
+        void Update(string title, string description, long companyId, long projectId, long requirementId, long versionId, long personId);
     }
 }

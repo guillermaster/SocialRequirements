@@ -110,5 +110,12 @@ namespace SocialRequirements.Business.Requirement
             _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.Requirement,
                 (int)GeneralCatalog.Detail.EntityActions.Reject, requirementId, DateTime.Now, personId);
         }
+
+        public void Update(string title, string description, long companyId, long projectId, long requirementId, string username)
+        {
+            var personId = _personData.GetPersonId(username);
+
+            _requirementData.Update(title, description, companyId, projectId, requirementId, personId);
+        }
     }
 }

@@ -110,5 +110,13 @@ namespace WebService
             var serializer = new ObjectSerializer<RequirementModificationDto>(requirementModif);
             return serializer.ToXmlString();
         }
+
+        [WebMethod]
+        public void UpdateRequirement(string title, string description, long companyId, long projectId,
+            long requirementId, string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            RequirementBusiness.Update(title, description, companyId, projectId, requirementId, username);
+        }
     }
 }

@@ -191,6 +191,35 @@ namespace SocialRequirements.Data.Requirement
             }
         }
 
+        public void Update(string title, string description, long companyId, long projectId, long requirementId, long personId)
+        {
+            using (var scope = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    // get requirement and update it
+                    var requirement = GetEntity(companyId, projectId, requirementId);
+                    requirement.title = title;
+                    requirement.description = description;
+                    requirement.modifiedby_id = personId;
+                    requirement.modifiedon = DateTime.Now;
+                    _context.SaveChanges();
+
+                    // update requirement version
+                    _requirementVersionData = new RequirementVersionData(_context);
+                    _requirementVersionData.Update(title, description, companyId, projectId, requirementId,
+                        requirement.requirement_version_id, personId);
+
+                    scope.Commit();
+                }
+                catch
+                {
+                    scope.Rollback();
+                    throw;
+                }
+            }
+        }
+
         private Context.Entities.Requirement GetEntity(long companyId, long projectId, long requirementId)
         {
             return

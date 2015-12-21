@@ -78,6 +78,16 @@ namespace SocialRequirements.Data.Requirement
             _context.SaveChanges();
         }
 
+        public void Update(string title, string description, long companyId, long projectId, long requirementId, long versionId, long personId)
+        {
+            var requirementVersion = Get(companyId, projectId, requirementId, versionId);
+            requirementVersion.title = title;
+            requirementVersion.description = description;
+            requirementVersion.modifiedby_id = personId;
+            requirementVersion.modifiedon = DateTime.Now;
+            _context.SaveChanges();
+        }
+
         private RequirementVersion Get(long companyId, long projectId, long requirementId, long requirementVersionId)
         {
             var requirementVersion =

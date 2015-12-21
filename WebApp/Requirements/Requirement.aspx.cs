@@ -44,6 +44,27 @@ namespace SocialRequirements.Requirements
             LoadRequirement();
         }
 
+
+        protected void SaveButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var requirementSrv = new RequirementSoapClient();
+                requirementSrv.UpdateRequirement(RequirementTitleInput.Text, RequirementDescriptionInput.Text, CompanyId,
+                    ProjectId, RequirementId, GetUsernameEncrypted());
+
+                ToggleModification(false);
+
+                SetFadeOutMessage(GetMainUpdatePanel(this), PostSuccessPanel, PostSuccessMessage,
+                   "The requirement has been successfully updated.");
+            }
+            catch
+            {
+                SetFadeOutMessage(GetMainUpdatePanel(this), PostErrorPanel, PostErrorMessage,
+                    "An error occurred while updating the requirement.");
+            }
+        }
+
         protected void ApproveButton_Click(object sender, EventArgs e)
         {
             try
@@ -87,16 +108,26 @@ namespace SocialRequirements.Requirements
 
         protected void EditButton_OnClick(object sender, EventArgs e)
         {
-            var currReqModifId = GetCurrentModificationId();
+            if (HasBeenApproved())
+            {
+                // redireto to modification request
+                var currReqModifId = GetCurrentModificationId();
 
-            var redirectUrl = "RequirementModify.aspx?" + CommonConstants.QueryStringParams.CompanyId + "=" + CompanyId +
-                              "&" + CommonConstants.QueryStringParams.ProjectId + "=" + ProjectId + "&" +
-                              CommonConstants.QueryStringParams.RequirementId + "=" + RequirementId;
+                var redirectUrl = "RequirementModify.aspx?" + CommonConstants.QueryStringParams.CompanyId + "=" +
+                                  CompanyId +
+                                  "&" + CommonConstants.QueryStringParams.ProjectId + "=" + ProjectId + "&" +
+                                  CommonConstants.QueryStringParams.RequirementId + "=" + RequirementId;
 
-            if (currReqModifId > 0)
-                redirectUrl += "&" + CommonConstants.QueryStringParams.Id + "=" + currReqModifId;
+                if (currReqModifId > 0)
+                    redirectUrl += "&" + CommonConstants.QueryStringParams.Id + "=" + currReqModifId;
 
-            Response.Redirect(redirectUrl);
+                Response.Redirect(redirectUrl);
+            }
+            else
+            {
+                // enable update form controls
+                ToggleModification(true);
+            }
         }
 
         protected void CommentsButton_OnClick(object sender, EventArgs e)
@@ -147,6 +178,16 @@ namespace SocialRequirements.Requirements
             SetFormData(requirement);
         }
 
+        /// <summary>
+        /// Determines if a requirement has been approved or rejected
+        /// </summary>
+        /// <returns></returns>
+        private bool HasBeenApproved()
+        {
+            return int.Parse(RequirementStatusId.Value) == (int) GeneralCatalog.Detail.RequirementStatus.Approved ||
+                   int.Parse(RequirementStatusId.Value) == (int) GeneralCatalog.Detail.RequirementStatus.Rejected;
+        }
+
         private void SetFormData(RequirementDto requirement)
         {
             // set requirement data in UI controls
@@ -160,9 +201,20 @@ namespace SocialRequirements.Requirements
             ModifiedOn.Text = requirement.Modifiedon.ToString(CultureInfo.InvariantCulture);
 
             // set action buttons visibility
+            SaveButton.Visible = false;
             ApproveButton.Visible = requirement.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.Draft;
             RejectButton.Visible = requirement.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.Draft;
         }
+
+        private void ToggleModification(bool visible)
+        {
+            RequirementTitle.Visible = !visible;
+            RequirementTitleInput.Visible = visible;
+            RequirementDescription.Visible = !visible;
+            RequirementDescriptionInput.Visible = visible;
+            SaveButton.Visible = visible;
+        }
         #endregion
+
     }
 }

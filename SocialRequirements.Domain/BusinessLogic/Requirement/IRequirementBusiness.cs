@@ -84,5 +84,16 @@ namespace SocialRequirements.Domain.BusinessLogic.Requirement
         /// <param name="requirementId">Requirement ID</param>
         /// <param name="username">User who rejects the requirement</param>
         void Reject(long companyId, long projectId, long requirementId, string username);
+
+        /// <summary>
+        /// Updates the title and description for the specified requirement
+        /// </summary>
+        /// <param name="title">Requirement title</param>
+        /// <param name="description">Description title</param>
+        /// <param name="companyId">Company ID</param>
+        /// <param name="projectId">Project ID</param>
+        /// <param name="requirementId">Requirement ID</param>
+        /// <param name="username">User that triggered the update</param>
+        void Update(string title, string description, long companyId, long projectId, long requirementId, string username);
     }
 }

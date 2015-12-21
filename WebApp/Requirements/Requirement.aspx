@@ -6,6 +6,11 @@
 <asp:Content ID="ToolbarContent" ContentPlaceHolderID="ToolbarContent" runat="server">
     <ul class="demo-btns">
         <li>
+            <asp:LinkButton runat="server" CssClass="btn btn-default" ID="SaveButton" OnClick="SaveButton_Click" ToolTip="Save">
+                <i class="fa fa-fw fa-save"></i>
+            </asp:LinkButton>
+        </li>
+        <li>
             <asp:LinkButton runat="server" CssClass="btn btn-default" ID="ApproveButton" OnClick="ApproveButton_Click" ToolTip="Approve">
                 <i class="fa fa-fw fa-check"></i>
             </asp:LinkButton>
@@ -52,12 +57,14 @@
     <div>
         <div>
             <asp:Label runat="server" ID="RequirementTitle" />
+            <asp:TextBox runat="server" ID="RequirementTitleInput" Visible="False"/>
         </div>
         <div>
             <div>
                 <div>
                     Status:
                             <asp:Label runat="server" ID="RequirementStatus" />
+                    <asp:HiddenField runat="server" ID="RequirementStatusId"/>
                 </div>
                 <div>
                     Version:
@@ -82,6 +89,7 @@
         </div>
         <div>
             <asp:Label runat="server" ID="RequirementDescription" />
+            <asp:TextBox runat="server" ID="RequirementDescriptionInput" Visible="False" TextMode="MultiLine" Width="100%" Rows="20"/>
         </div>
         <div>
             <!-- likes and dislikes -->
