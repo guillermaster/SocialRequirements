@@ -55,6 +55,8 @@ namespace SocialRequirements.Requirements
 
                 ToggleModification(false);
 
+                LoadRequirement();
+
                 SetFadeOutMessage(GetMainUpdatePanel(this), PostSuccessPanel, PostSuccessMessage,
                    "The requirement has been successfully updated.");
             }
@@ -192,8 +194,11 @@ namespace SocialRequirements.Requirements
         {
             // set requirement data in UI controls
             RequirementTitle.Text = requirement.Title;
+            RequirementTitleInput.Text = requirement.Title;
             RequirementDescription.Text = requirement.Description;
+            RequirementDescriptionInput.Text = requirement.Description;
             RequirementStatus.Text = requirement.Status;
+            RequirementStatusId.Value = requirement.StatusId.ToString();
             RequirementVersion.Text = requirement.VersionNumber.ToString();
             CreatedByName.Text = requirement.CreatedByName;
             ModifiedByName.Text = requirement.ModifiedByName;
@@ -213,6 +218,9 @@ namespace SocialRequirements.Requirements
             RequirementDescription.Visible = !visible;
             RequirementDescriptionInput.Visible = visible;
             SaveButton.Visible = visible;
+            ApproveButton.Visible = !visible;
+            RejectButton.Visible = !visible;
+            EditButton.Visible = !visible;
         }
         #endregion
 
