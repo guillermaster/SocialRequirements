@@ -40,15 +40,6 @@ namespace SocialRequirements {
         protected global::System.Web.UI.WebControls.LinkButton RequiredActionExecute;
         
         /// <summary>
-        /// MainScriptManager control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager MainScriptManager;
-        
-        /// <summary>
         /// updProgress control.
         /// </summary>
         /// <remarks>

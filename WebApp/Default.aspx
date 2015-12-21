@@ -41,7 +41,6 @@
         </div>
     </asp:Panel>
 
-    <asp:ScriptManager runat="server" ID="MainScriptManager" />
     <asp:UpdateProgress ID="updProgress" DisplayAfter="10" AssociatedUpdatePanelID="PostContentUpdatePanel" runat="server">
         <ProgressTemplate>
             <div class="divWaiting">
@@ -51,11 +50,6 @@
     </asp:UpdateProgress>
     <asp:UpdatePanel runat="server" ID="PostContentUpdatePanel" UpdateMode="Conditional">
         <ContentTemplate>
-            <script>
-                function fadeOutControl(controlName) {
-                    $(controlName).fadeOut(3800);
-                }
-            </script>
             <!-- POST CONTENT -->
             <asp:Panel runat="server" ID="PostContent" Visible="False">
                 <div>

@@ -72,6 +72,11 @@ namespace SocialRequirements
         {
             //Context.GetOwinContext().Authentication.SignOut();
         }
+
+        public UpdatePanel GetUpdatePanel()
+        {
+            return MainUpdatePanel;
+        }
     }
 
 }

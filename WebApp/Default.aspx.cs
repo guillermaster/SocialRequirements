@@ -84,11 +84,6 @@ namespace SocialRequirements
             PostContent.Visible = true;
             LoadActivityFeed();
         }
-
-        protected void BtnPost_Click(object sender, EventArgs e)
-        {
-            AddRequirement();
-        }
         #endregion
 
         #region Validations
@@ -158,6 +153,11 @@ namespace SocialRequirements
 
             SetProjectsForNewPost(long.Parse(ddlCompany.SelectedValue));
             DdlProjectPost.Visible = true;
+        }
+        
+        protected void BtnPost_Click(object sender, EventArgs e)
+        {
+            AddRequirement();
         }
         #endregion
 
@@ -298,7 +298,9 @@ namespace SocialRequirements
                 requirementSrv.AddRequirement(TxtContentPostTitle.Text, TxtContentPost.Text,
                     long.Parse(DdlCompanyPost.SelectedValue), long.Parse(DdlProjectPost.SelectedValue),
                     GetUsernameEncrypted());
-                SetPostSuccessMessage("Requirement posted successfully");
+                //SetPostSuccessMessage("Requirement posted successfully");
+                SetFadeOutMessage(PostContentUpdatePanel, PostSuccessPanel, PostSuccessMessage,
+                    "Requirement posted successfully");
             }
             catch(Exception ex)
             {

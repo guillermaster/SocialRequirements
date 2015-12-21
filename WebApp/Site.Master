@@ -40,6 +40,112 @@
     <link type="text/css" href='<%= Page.ResolveClientUrl("~/assets/plugins/switchery/switchery.css") %>' rel="stylesheet">
     <!-- Switchery -->
 
+    <!-- Load site level scripts -->
+
+    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script> -->
+
+    <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/js/jquery-1.10.2.min.js") %>'></script>
+    <!-- Load jQuery -->
+    <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/js/jqueryui-1.9.2.min.js") %>'></script>
+    <!-- Load jQueryUI -->
+
+    <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/js/bootstrap.min.js") %>'></script>
+    <!-- Load Bootstrap -->
+
+
+    <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/plugins/easypiechart/jquery.easypiechart.js") %>'></script>
+    <!-- EasyPieChart-->
+    <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/plugins/sparklines/jquery.sparklines.min.js") %>'></script>
+    <!-- Sparkline -->
+    <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/plugins/jstree/dist/jstree.min.js") %>'></script>
+    <!-- jsTree -->
+
+    <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/plugins/codeprettifier/prettify.js") %>'></script>
+    <!-- Code Prettifier  -->
+    <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/plugins/bootstrap-switch/bootstrap-switch.js") %>'></script>
+    <!-- Swith/Toggle Button -->
+
+    <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/plugins/bootstrap-tabdrop/js/bootstrap-tabdrop.js") %>'></script>
+    <!-- Bootstrap Tabdrop -->
+
+    <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/plugins/iCheck/icheck.min.js") %>'></script>
+    <!-- iCheck -->
+
+    <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/js/enquire.min.js") %>'></script>
+    <!-- Enquire for Responsiveness -->
+
+    <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/plugins/bootbox/bootbox.js") %>'></script>
+    <!-- Bootbox -->
+
+    <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/plugins/nanoScroller/js/jquery.nanoscroller.min.js") %>'></script>
+    <!-- nano scroller -->
+
+    <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/plugins/jquery-mousewheel/jquery.mousewheel.min.js") %>'></script>
+    <!-- Mousewheel support needed for jScrollPane -->
+
+    <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/js/application.js") %>'></script>
+    <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/demo/demo.js") %>'></script>
+    <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/demo/demo-switcher.js") %>'></script>
+
+    <!-- End loading site level scripts -->
+
+    <!-- Load page level scripts-->
+
+    <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/plugins/bootstrap-switch/bootstrap-switch.js") %>'></script>
+    <!-- BS Switch -->
+    <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/plugins/switchery/switchery.js") %>'></script>
+    <!-- Switchery -->
+
+    <script>
+        $(function () {
+            $('input.bootstrap-switch').bootstrapSwitch();
+
+            Switchery(document.querySelector('.js-switch-success'), { color: Utility.getBrandColor('success') });
+            Switchery(document.querySelector('.js-switch-warning'), { color: Utility.getBrandColor('warning') });
+            Switchery(document.querySelector('.js-switch-info'), { color: Utility.getBrandColor('info') });
+            Switchery(document.querySelector('.js-switch-danger'), { color: Utility.getBrandColor('danger') });
+            Switchery(document.querySelector('.js-switch-inverse'), { color: Utility.getBrandColor('inverse') });
+            Switchery(document.querySelector('.js-switch-primary'), { color: Utility.getBrandColor('primary') });
+
+
+            $('input[name="toggle-activity"]').on('switchChange.bootstrapSwitch', function (event, state) {
+                $('#widget-activity').toggle();
+                Utility.initScroller();
+            });
+
+            $('input[name="toggle-stats"]').on('switchChange.bootstrapSwitch', function (event, state) {
+                $('#widget-stats').toggle();
+                Utility.initScroller();
+            });
+
+            $('input[name="toggle-contact"]').on('switchChange.bootstrapSwitch', function (event, state) {
+                $('#widget-contactdetails').toggle();
+                Utility.initScroller();
+            });
+
+            $('input[name="toggle-contacts"]').on('switchChange.bootstrapSwitch', function (event, state) {
+                $('#widget-contacts').toggle();
+                Utility.initScroller();
+            });
+
+            $('input[name="toggle-settings"]').on('switchChange.bootstrapSwitch', function (event, state) {
+                $('#widget-settings').toggle();
+                Utility.initScroller();
+            });
+
+            $('input[name="toggle-sparkline"]').on('switchChange.bootstrapSwitch', function (event, state) {
+                $('#widget-sparkline').toggle();
+                Utility.initScroller();
+            });
+        });
+
+        function fadeOutControl(controlName) {
+            $(controlName).fadeOut(3800);
+        }
+    </script>
+    <!-- End loading page level scripts-->
+
 </head>
 
 <body class="infobar-overlay">
@@ -352,7 +458,7 @@
 		</li> -->
                                     <li><a href="javascript:;"><i class="fa fa-columns"></i><span>Requirements</span><span class="badge badge-primary">8</span></a>
                                         <ul class="acc-menu">
-                                            <li><a href="RequirementsList.aspx">All requirements</a></li>
+                                            <li><a href="Requirements/RequirementsList.aspx">All requirements</a></li>
 
                                             <li><a href="layout-fixed-sidebars.html">Stretch Sidebars</a></li>
 
@@ -579,43 +685,58 @@
             </div>
             <div class="static-content-wrapper">
                 <div class="static-content">
+
                     <form runat="server" id="MainForm">
-                        <div class="page-content">
-                            <div class="page-heading">
-                                <h1>
-                                    <asp:ContentPlaceHolder ID="TitleContent" runat="server">
-                                    </asp:ContentPlaceHolder>
-                                </h1>
-                                <div class="options">
-                                    <div class="btn-toolbar">
-                                        <asp:ContentPlaceHolder ID="ToolbarContent" runat="server">
-                                        </asp:ContentPlaceHolder>
-                                    </div>
+
+                        <asp:ScriptManager runat="server" ID="MainScriptManager" />
+                        <asp:UpdateProgress ID="updProgress" DisplayAfter="10" AssociatedUpdatePanelID="MainUpdatePanel" runat="server">
+                            <ProgressTemplate>
+                                <div class="divWaiting">
+                                    <asp:Image ID="ImageLoading" runat="server" ImageUrl="~/assets/img/loader.gif" />
                                 </div>
-                            </div>
-                            <div class="container-fluid">
+                            </ProgressTemplate>
+                        </asp:UpdateProgress>
 
-                                <div class="row">
-                                    <div class="col-md-12">
-
-                                        <asp:Panel runat="server" ID="MessageSuccessPanel" Visible="False">
-                                            <div class="alert alert-info">
-                                                <p>With Avenger, you can have any content you want in your rightbar! Check out the samples by toggling them on and off</p>
-                                            </div>
-                                        </asp:Panel>
-
-                                        <div>
-                                            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                        <asp:UpdatePanel runat="server" ID="MainUpdatePanel" UpdateMode="Conditional">
+                            <ContentTemplate>
+                                <div class="page-content">
+                                    <div class="page-heading">
+                                        <h1>
+                                            <asp:ContentPlaceHolder ID="TitleContent" runat="server">
                                             </asp:ContentPlaceHolder>
+                                        </h1>
+                                        <div class="options">
+                                            <div class="btn-toolbar">
+                                                <asp:ContentPlaceHolder ID="ToolbarContent" runat="server">
+                                                </asp:ContentPlaceHolder>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container-fluid">
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+
+                                                <asp:Panel runat="server" ID="MessageSuccessPanel" Visible="False">
+                                                    <div class="alert alert-info">
+                                                        <p>With Avenger, you can have any content you want in your rightbar! Check out the samples by toggling them on and off</p>
+                                                    </div>
+                                                </asp:Panel>
+
+                                                <div>
+                                                    <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                                                    </asp:ContentPlaceHolder>
+                                                </div>
+
+                                            </div>
                                         </div>
 
                                     </div>
+                                    <!-- .container-fluid -->
                                 </div>
-
-                            </div>
-                            <!-- .container-fluid -->
-                        </div>
-                        <!-- #page-content -->
+                                <!-- #page-content -->
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
                     </form>
                 </div>
                 <footer role="contentinfo">
@@ -929,110 +1050,5 @@
         </div>
     </div>
     <!-- END OF right sidebar -->
-
-
-    <!-- Load site level scripts -->
-
-    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script> -->
-
-    <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/js/jquery-1.10.2.min.js") %>'></script>
-    <!-- Load jQuery -->
-    <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/js/jqueryui-1.9.2.min.js") %>'></script>
-    <!-- Load jQueryUI -->
-
-    <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/js/bootstrap.min.js") %>'></script>
-    <!-- Load Bootstrap -->
-
-
-    <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/plugins/easypiechart/jquery.easypiechart.js") %>'></script>
-    <!-- EasyPieChart-->
-    <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/plugins/sparklines/jquery.sparklines.min.js") %>'></script>
-    <!-- Sparkline -->
-    <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/plugins/jstree/dist/jstree.min.js") %>'></script>
-    <!-- jsTree -->
-
-    <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/plugins/codeprettifier/prettify.js") %>'></script>
-    <!-- Code Prettifier  -->
-    <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/plugins/bootstrap-switch/bootstrap-switch.js") %>'></script>
-    <!-- Swith/Toggle Button -->
-
-    <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/plugins/bootstrap-tabdrop/js/bootstrap-tabdrop.js") %>'></script>
-    <!-- Bootstrap Tabdrop -->
-
-    <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/plugins/iCheck/icheck.min.js") %>'></script>
-    <!-- iCheck -->
-
-    <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/js/enquire.min.js") %>'></script>
-    <!-- Enquire for Responsiveness -->
-
-    <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/plugins/bootbox/bootbox.js") %>'></script>
-    <!-- Bootbox -->
-
-    <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/plugins/nanoScroller/js/jquery.nanoscroller.min.js") %>'></script>
-    <!-- nano scroller -->
-
-    <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/plugins/jquery-mousewheel/jquery.mousewheel.min.js") %>'></script>
-    <!-- Mousewheel support needed for jScrollPane -->
-
-    <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/js/application.js") %>'></script>
-    <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/demo/demo.js") %>'></script>
-    <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/demo/demo-switcher.js") %>'></script>
-
-    <!-- End loading site level scripts -->
-
-    <!-- Load page level scripts-->
-
-    <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/plugins/bootstrap-switch/bootstrap-switch.js") %>'></script>
-    <!-- BS Switch -->
-    <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/plugins/switchery/switchery.js") %>'></script>
-    <!-- Switchery -->
-
-    <script>
-        $(function () {
-            $('input.bootstrap-switch').bootstrapSwitch();
-
-            Switchery(document.querySelector('.js-switch-success'), { color: Utility.getBrandColor('success') });
-            Switchery(document.querySelector('.js-switch-warning'), { color: Utility.getBrandColor('warning') });
-            Switchery(document.querySelector('.js-switch-info'), { color: Utility.getBrandColor('info') });
-            Switchery(document.querySelector('.js-switch-danger'), { color: Utility.getBrandColor('danger') });
-            Switchery(document.querySelector('.js-switch-inverse'), { color: Utility.getBrandColor('inverse') });
-            Switchery(document.querySelector('.js-switch-primary'), { color: Utility.getBrandColor('primary') });
-
-
-            $('input[name="toggle-activity"]').on('switchChange.bootstrapSwitch', function (event, state) {
-                $('#widget-activity').toggle();
-                Utility.initScroller();
-            });
-
-            $('input[name="toggle-stats"]').on('switchChange.bootstrapSwitch', function (event, state) {
-                $('#widget-stats').toggle();
-                Utility.initScroller();
-            });
-
-            $('input[name="toggle-contact"]').on('switchChange.bootstrapSwitch', function (event, state) {
-                $('#widget-contactdetails').toggle();
-                Utility.initScroller();
-            });
-
-            $('input[name="toggle-contacts"]').on('switchChange.bootstrapSwitch', function (event, state) {
-                $('#widget-contacts').toggle();
-                Utility.initScroller();
-            });
-
-            $('input[name="toggle-settings"]').on('switchChange.bootstrapSwitch', function (event, state) {
-                $('#widget-settings').toggle();
-                Utility.initScroller();
-            });
-
-            $('input[name="toggle-sparkline"]').on('switchChange.bootstrapSwitch', function (event, state) {
-                $('#widget-sparkline').toggle();
-                Utility.initScroller();
-            });
-        });
-    </script>
-
-    <!-- End loading page level scripts-->
-
 </body>
 </html>

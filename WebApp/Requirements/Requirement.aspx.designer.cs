@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SocialRequirements {
+namespace SocialRequirements.Requirements {
     
     
     public partial class Requirement {
@@ -67,31 +67,40 @@ namespace SocialRequirements {
         protected global::System.Web.UI.WebControls.LinkButton UploadButton;
         
         /// <summary>
-        /// MainScriptManager control.
+        /// PostSuccessPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager MainScriptManager;
+        protected global::System.Web.UI.WebControls.Panel PostSuccessPanel;
         
         /// <summary>
-        /// updProgress control.
+        /// PostSuccessMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdateProgress updProgress;
+        protected global::System.Web.UI.WebControls.Label PostSuccessMessage;
         
         /// <summary>
-        /// PostContentUpdatePanel control.
+        /// PostErrorPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel PostContentUpdatePanel;
+        protected global::System.Web.UI.WebControls.Panel PostErrorPanel;
+        
+        /// <summary>
+        /// PostErrorMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label PostErrorMessage;
         
         /// <summary>
         /// RequirementTitle control.

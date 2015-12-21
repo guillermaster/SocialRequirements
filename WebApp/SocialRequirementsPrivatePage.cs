@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 using SocialRequirements.AccountService;
 using SocialRequirements.CompanyService;
@@ -114,6 +116,21 @@ namespace SocialRequirements
                     requirementSrv.DislikeRequirement(companyId, projectId.Value, recordId, GetUsernameEncrypted());
                     break;
             }
+        }
+
+        protected void SetFadeOutMessage(UpdatePanel updatePanel, Panel parentPanel, Label messageLabel, string message)
+        {
+            messageLabel.Text = message;
+            parentPanel.Visible = true;
+            ScriptManager.RegisterClientScriptBlock(updatePanel, updatePanel.GetType(),
+                "posterrorfadeout", "fadeOutControl('#" + parentPanel.ID + "')", true);
+        }
+
+        protected UpdatePanel GetMainUpdatePanel(Page page)
+        {
+            var masterPage = (SiteMaster) page.Master;
+            if(masterPage == null) throw new InvalidDataException("Invalid update panel or not found.");
+            return masterPage.GetUpdatePanel();
         }
     }
 }

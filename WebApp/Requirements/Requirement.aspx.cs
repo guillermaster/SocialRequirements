@@ -5,7 +5,7 @@ using SocialRequirements.Domain.General;
 using SocialRequirements.RequirementService;
 using SocialRequirements.Utilities;
 
-namespace SocialRequirements
+namespace SocialRequirements.Requirements
 {
     public partial class Requirement : SocialRequirementsPrivatePage
     {
@@ -34,30 +34,55 @@ namespace SocialRequirements
         {
             base.Page_Load(sender, e);
 
-            //if (IsPostBack) return;
+            if (IsPostBack) return;
 
             // get query string params
             RequirementId = long.Parse(Request.QueryString[CommonConstants.QueryStringParams.Id]);
             CompanyId = long.Parse(Request.QueryString[CommonConstants.QueryStringParams.CompanyId]);
             ProjectId = long.Parse(Request.QueryString[CommonConstants.QueryStringParams.ProjectId]);
 
-            // get requirement data
-            var requirement = GetRequirement();
-
-            // set requirement data in form
-            SetFormData(requirement);
+            LoadRequirement();
         }
 
         protected void ApproveButton_Click(object sender, EventArgs e)
         {
-            var requirementSrv = new RequirementSoapClient();
-            requirementSrv.ApproveRequirement(CompanyId, ProjectId, RequirementId, GetUsernameEncrypted());
+            try
+            {
+                var requirementSrv = new RequirementSoapClient();
+                requirementSrv.ApproveRequirement(CompanyId, ProjectId, RequirementId, GetUsernameEncrypted());
+                SetFadeOutMessage(GetMainUpdatePanel(this), PostSuccessPanel, PostSuccessMessage,
+                    "The requirement has been successfully approved.");
+
+                LoadRequirement();
+            }
+            catch
+            {
+                SetFadeOutMessage(GetMainUpdatePanel(this), PostErrorPanel, PostErrorMessage,
+                    "An error occurred while approving the requirement..");
+            }
         }
 
-        protected void RejectButton_OnClickButton_Click(object sender, EventArgs e)
+        protected void RejectButton_OnClick(object sender, EventArgs e)
         {
-            var requirementSrv = new RequirementSoapClient();
-            requirementSrv.RejectRequirement(CompanyId, ProjectId, RequirementId, GetUsernameEncrypted());
+            try
+            {
+                var requirementSrv = new RequirementSoapClient();
+                requirementSrv.RejectRequirement(CompanyId, ProjectId, RequirementId, GetUsernameEncrypted());
+                SetFadeOutMessage(GetMainUpdatePanel(this), PostSuccessPanel, PostSuccessMessage,
+                    "The requirement has been rejected.");
+
+                LoadRequirement();
+            }
+            catch
+            {
+                SetFadeOutMessage(GetMainUpdatePanel(this), PostErrorPanel, PostErrorMessage,
+                    "An error occurred while rejecting the requirement..");
+            }
+        }
+
+        protected void UndoButton_OnClick(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         protected void EditButton_OnClick(object sender, EventArgs e)
@@ -93,6 +118,16 @@ namespace SocialRequirements
         #endregion
 
         #region Form Setup
+
+        private void LoadRequirement()
+        {
+            // get requirement data
+            var requirement = GetRequirement();
+
+            // set requirement data in form
+            SetFormData(requirement);
+        }
+
         private void SetFormData(RequirementDto requirement)
         {
             // set requirement data in UI controls
@@ -106,7 +141,7 @@ namespace SocialRequirements
             ModifiedOn.Text = requirement.Modifiedon.ToString(CultureInfo.InvariantCulture);
 
             // set action buttons visibility
-            ApproveButton.Visible = requirement.StatusId == (int) GeneralCatalog.Detail.RequirementStatus.Draft;
+            ApproveButton.Visible = requirement.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.Draft;
             RejectButton.Visible = requirement.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.Draft;
         }
         #endregion

@@ -2150,8 +2150,9 @@
     <Content Include="assets\plugins\switchery\README.md" />
     <Content Include="assets\plugins\wijets\.DS_Store" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Requirement.aspx" />
-    <Content Include="RequirementsList.aspx" />
+    <Content Include="Requirements\RequirementModify.aspx" />
+    <Content Include="Requirements\Requirement.aspx" />
+    <Content Include="Requirements\RequirementsList.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -2401,18 +2402,25 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Requirement.aspx.cs">
+    <Compile Include="Requirements\RequirementModify.aspx.cs">
+      <DependentUpon>RequirementModify.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Requirements\RequirementModify.aspx.designer.cs">
+      <DependentUpon>RequirementModify.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Requirements\Requirement.aspx.cs">
       <DependentUpon>Requirement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Requirement.aspx.designer.cs">
+    <Compile Include="Requirements\Requirement.aspx.designer.cs">
       <DependentUpon>Requirement.aspx</DependentUpon>
     </Compile>
-    <Compile Include="RequirementsList.aspx.cs">
+    <Compile Include="Requirements\RequirementsList.aspx.cs">
       <DependentUpon>RequirementsList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="RequirementsList.aspx.designer.cs">
+    <Compile Include="Requirements\RequirementsList.aspx.designer.cs">
       <DependentUpon>RequirementsList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Service References\AccountService\Reference.cs">

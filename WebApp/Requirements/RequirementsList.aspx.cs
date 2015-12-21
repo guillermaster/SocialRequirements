@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using SocialRequirements.Domain;
 using SocialRequirements.Domain.DTO.Requirement;
 using SocialRequirements.Domain.General;
 using SocialRequirements.RequirementService;
 using SocialRequirements.Utilities;
 
-namespace SocialRequirements
+namespace SocialRequirements.Requirements
 {
     public partial class RequirementsList : SocialRequirementsPrivatePage
     {

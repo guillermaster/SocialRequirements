@@ -158,7 +158,10 @@ namespace SocialRequirements.Data.Requirement
 
         public List<RequirementDto> GetList(List<long> projectIds)
         {
-            var requirements = _context.Requirement.Where(req => projectIds.Contains(req.project_id)).ToList();
+            var requirements =
+                _context.Requirement.Where(req => projectIds.Contains(req.project_id))
+                    .OrderByDescending(reqDate => reqDate.modifiedon)
+                    .ToList();
             return requirements.Select(GetDtoFromEntity).ToList();
         }
 
