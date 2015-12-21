@@ -87,7 +87,16 @@ namespace SocialRequirements.Requirements
 
         protected void EditButton_OnClick(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            var currReqModifId = GetCurrentModificationId();
+
+            var redirectUrl = "RequirementModify.aspx?" + CommonConstants.QueryStringParams.CompanyId + "=" + CompanyId +
+                              "&" + CommonConstants.QueryStringParams.ProjectId + "=" + ProjectId + "&" +
+                              CommonConstants.QueryStringParams.RequirementId + "=" + RequirementId;
+
+            if (currReqModifId > 0)
+                redirectUrl += "&" + CommonConstants.QueryStringParams.Id + "=" + currReqModifId;
+
+            Response.Redirect(redirectUrl);
         }
 
         protected void CommentsButton_OnClick(object sender, EventArgs e)
@@ -114,6 +123,16 @@ namespace SocialRequirements.Requirements
 
             var serializer = new ObjectSerializer<RequirementDto>();
             return (RequirementDto)serializer.Deserialize(requirement);
+        }
+
+        private long GetCurrentModificationId()
+        {
+            var requirementSrv = new RequirementSoapClient();
+            var requirementModif = requirementSrv.GetCurrentRequirementModification(CompanyId, ProjectId, RequirementId);
+
+            var serializer = new ObjectSerializer<RequirementModificationDto>();
+            var requirementModifDto = (RequirementModificationDto)serializer.Deserialize(requirementModif);
+            return requirementModifDto.Id;
         }
         #endregion
 

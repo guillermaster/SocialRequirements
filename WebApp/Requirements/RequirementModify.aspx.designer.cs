@@ -8,10 +8,18 @@
 //------------------------------------------------------------------------------
 
 namespace SocialRequirements.Requirements {
-
-
-    public partial class RequirementModify
-    {
+    
+    
+    public partial class RequirementModify {
+        
+        /// <summary>
+        /// SaveButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton SaveButton;
         
         /// <summary>
         /// ApproveButton control.
@@ -104,13 +112,22 @@ namespace SocialRequirements.Requirements {
         protected global::System.Web.UI.WebControls.Label PostErrorMessage;
         
         /// <summary>
-        /// RequirementTitle control.
+        /// RequirementTitleLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label RequirementTitle;
+        protected global::System.Web.UI.WebControls.Label RequirementTitleLabel;
+        
+        /// <summary>
+        /// RequirementTitleInput control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox RequirementTitleInput;
         
         /// <summary>
         /// RequirementStatus control.
@@ -167,75 +184,21 @@ namespace SocialRequirements.Requirements {
         protected global::System.Web.UI.WebControls.Label ModifiedOn;
         
         /// <summary>
-        /// RequirementDescription control.
+        /// RequirementDescriptionLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label RequirementDescription;
+        protected global::System.Web.UI.WebControls.Label RequirementDescriptionLabel;
         
         /// <summary>
-        /// RequirementActionsPanel control.
+        /// RequirementDescriptionInput control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel RequirementActionsPanel;
-        
-        /// <summary>
-        /// LikeButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LikeButton;
-        
-        /// <summary>
-        /// LikeQty control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LikeQty;
-        
-        /// <summary>
-        /// DislikeButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton DislikeButton;
-        
-        /// <summary>
-        /// DislikeQty control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label DislikeQty;
-        
-        /// <summary>
-        /// CommentButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton CommentButton;
-        
-        /// <summary>
-        /// CommentsQty control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label CommentsQty;
+        protected global::System.Web.UI.WebControls.TextBox RequirementDescriptionInput;
     }
 }

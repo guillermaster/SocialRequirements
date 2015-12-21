@@ -10,6 +10,7 @@ namespace SocialRequirements.Context.Entities
         public GeneralCatalogDetail()
         {
             ActivityFeed = new HashSet<ActivityFeed>();
+            ActivityFeed1 = new HashSet<ActivityFeed>();
             Companies = new HashSet<Company>();
             Requirement = new HashSet<Requirement>();
             RequirementModification = new HashSet<RequirementModification>();
@@ -28,6 +29,8 @@ namespace SocialRequirements.Context.Entities
         public string name { get; set; }
 
         public virtual ICollection<ActivityFeed> ActivityFeed { get; set; }
+
+        public virtual ICollection<ActivityFeed> ActivityFeed1 { get; set; }
 
         public virtual ICollection<Company> Companies { get; set; }
 

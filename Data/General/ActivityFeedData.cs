@@ -30,7 +30,7 @@ namespace SocialRequirements.Data.General
             _requirementCommentData = requirementCommentData;
         }
 
-        public void Add(long companyId, long? projectId, int entityId, long recordId, DateTime createdon, long personId)
+        public void Add(long companyId, long? projectId, int entityId, int actionId, long recordId, DateTime createdon, long personId)
         {
             var activityFeed = new ActivityFeed
             {
@@ -39,7 +39,8 @@ namespace SocialRequirements.Data.General
                 entity_id = entityId,
                 record_id = recordId,
                 createdon = createdon,
-                createdby_id = personId
+                createdby_id = personId,
+                action_id = actionId
             };
             _context.ActivityFeed.Add(activityFeed);
             _context.SaveChanges();
@@ -65,7 +66,9 @@ namespace SocialRequirements.Data.General
                 CreatedbyId = activity.createdby_id,
                 CreatedByLastname = activity.Person.last_name,
                 CreatedByName = activity.Person.first_name,
-                EntityName = activity.GeneralCatalogDetail.name
+                EntityName = activity.GeneralCatalogDetail.name,
+                EntityActionId = activity.action_id,
+                EntityAction = activity.GeneralCatalogDetail1.name
             };
 
             // set description according to the entity

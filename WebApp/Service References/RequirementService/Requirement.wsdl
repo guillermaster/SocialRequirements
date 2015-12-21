@@ -110,6 +110,58 @@
       <s:element name="RejectRequirementResponse">
         <s:complexType />
       </s:element>
+      <s:element name="AddRequirementModification">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="title" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="description" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="companyId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="projectId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requirementId" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="encUsername" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddRequirementModificationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddRequirementModificationResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRequirementModification">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="companyId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="projectId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requirementId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requirementModificationId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRequirementModificationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRequirementModificationResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurrentRequirementModification">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="companyId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="projectId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requirementId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurrentRequirementModificationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCurrentRequirementModificationResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="AddRequirementSoapIn">
@@ -160,6 +212,24 @@
   <wsdl:message name="RejectRequirementSoapOut">
     <wsdl:part name="parameters" element="tns:RejectRequirementResponse" />
   </wsdl:message>
+  <wsdl:message name="AddRequirementModificationSoapIn">
+    <wsdl:part name="parameters" element="tns:AddRequirementModification" />
+  </wsdl:message>
+  <wsdl:message name="AddRequirementModificationSoapOut">
+    <wsdl:part name="parameters" element="tns:AddRequirementModificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRequirementModificationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRequirementModification" />
+  </wsdl:message>
+  <wsdl:message name="GetRequirementModificationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRequirementModificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentRequirementModificationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCurrentRequirementModification" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentRequirementModificationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCurrentRequirementModificationResponse" />
+  </wsdl:message>
   <wsdl:portType name="RequirementSoap">
     <wsdl:operation name="AddRequirement">
       <wsdl:input message="tns:AddRequirementSoapIn" />
@@ -192,6 +262,18 @@
     <wsdl:operation name="RejectRequirement">
       <wsdl:input message="tns:RejectRequirementSoapIn" />
       <wsdl:output message="tns:RejectRequirementSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRequirementModification">
+      <wsdl:input message="tns:AddRequirementModificationSoapIn" />
+      <wsdl:output message="tns:AddRequirementModificationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRequirementModification">
+      <wsdl:input message="tns:GetRequirementModificationSoapIn" />
+      <wsdl:output message="tns:GetRequirementModificationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentRequirementModification">
+      <wsdl:input message="tns:GetCurrentRequirementModificationSoapIn" />
+      <wsdl:output message="tns:GetCurrentRequirementModificationSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="RequirementSoap" type="tns:RequirementSoap">
@@ -268,6 +350,33 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="AddRequirementModification">
+      <soap:operation soapAction="http://tempuri.org/AddRequirementModification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRequirementModification">
+      <soap:operation soapAction="http://tempuri.org/GetRequirementModification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentRequirementModification">
+      <soap:operation soapAction="http://tempuri.org/GetCurrentRequirementModification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="RequirementSoap12" type="tns:RequirementSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -336,6 +445,33 @@
     </wsdl:operation>
     <wsdl:operation name="RejectRequirement">
       <soap12:operation soapAction="http://tempuri.org/RejectRequirement" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRequirementModification">
+      <soap12:operation soapAction="http://tempuri.org/AddRequirementModification" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRequirementModification">
+      <soap12:operation soapAction="http://tempuri.org/GetRequirementModification" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentRequirementModification">
+      <soap12:operation soapAction="http://tempuri.org/GetCurrentRequirementModification" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

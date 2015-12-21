@@ -47,6 +47,10 @@ namespace SocialRequirements.Context.Entities
 
         public DateTime? approvedon { get; set; }
 
+        public int version_number { get; set; }
+
+        public long requirement_modification_version_id { get; set; }
+
         public virtual Company Company { get; set; }
 
         public virtual Project Project { get; set; }
@@ -54,5 +58,9 @@ namespace SocialRequirements.Context.Entities
         public virtual GeneralCatalogDetail GeneralCatalogDetail { get; set; }
 
         public virtual ICollection<RequirementVersion> RequirementVersion { get; set; }
+
+        public virtual Person Person { get; set; }
+
+        public virtual Person Person1 { get; set; }
     }
 }

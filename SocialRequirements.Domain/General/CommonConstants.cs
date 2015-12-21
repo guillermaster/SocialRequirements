@@ -16,6 +16,7 @@
             public const string Id = "id";
             public const string CompanyId = "cid";
             public const string ProjectId = "pid";
+            public const string RequirementId = "rid";
         }
     }
 }

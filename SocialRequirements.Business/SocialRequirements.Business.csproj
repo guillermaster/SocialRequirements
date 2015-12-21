@@ -45,6 +45,7 @@
     <Compile Include="General\ActivityFeedBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requirement\RequirementBusiness.cs" />
+    <Compile Include="Requirement\RequirementModificationBusiness.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SocialRequirements.Domain\SocialRequirements.Domain.csproj">

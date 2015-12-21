@@ -22,6 +22,8 @@ namespace WebService
     {
         [Inject]
         public IRequirementBusiness RequirementBusiness { get; set; }
+        [Inject]
+        public IRequirementModificationBusiness RequirementModificationBusiness { get; set; }
 
         [WebMethod]
         public void AddRequirement(string title, string description, long companyId, long projectId, string encUsername)
@@ -80,6 +82,33 @@ namespace WebService
         {
             var username = Encryption.Decrypt(encUsername);
             RequirementBusiness.Reject(companyId, projectId, requirementId, username);
+        }
+
+        [WebMethod]
+        public long AddRequirementModification(string title, string description, long companyId, long projectId,
+            long requirementId, string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            var requirementModif = RequirementModificationBusiness.Add(companyId, projectId, requirementId, title, description, username);
+            return requirementModif.Id;
+        }
+
+        [WebMethod]
+        public string GetRequirementModification(long companyId, long projectId, long requirementId, long requirementModificationId)
+        {
+            var requirementModif = RequirementModificationBusiness.Get(companyId, projectId, requirementId, requirementModificationId);
+            var serializer = new ObjectSerializer<RequirementModificationDto>(requirementModif);
+            return serializer.ToXmlString();
+        }
+
+        [WebMethod]
+        public string GetCurrentRequirementModification(long companyId, long projectId, long requirementId)
+        {
+            var requirementModif = RequirementModificationBusiness.Get(companyId, projectId, requirementId) ??
+                                   new RequirementModificationDto();
+
+            var serializer = new ObjectSerializer<RequirementModificationDto>(requirementModif);
+            return serializer.ToXmlString();
         }
     }
 }

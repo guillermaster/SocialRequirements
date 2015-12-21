@@ -15,6 +15,8 @@ namespace SocialRequirements.Domain.DTO.General
 
         public int EntityId { get; set; }
 
+        public int EntityActionId { get; set; }
+
         public string EntityName { get; set; }
 
         public long RecordId { get; set; }
@@ -42,5 +44,7 @@ namespace SocialRequirements.Domain.DTO.General
         public int Comments { get; set; }
 
         public List<RequirementCommentDto> Comment { get; set; }
+
+        public string EntityAction { get; set; }
     }
 }

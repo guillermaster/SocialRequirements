@@ -44,12 +44,14 @@
     <Compile Include="BusinessLogic\Account\IProjectBusiness.cs" />
     <Compile Include="BusinessLogic\General\IActivityFeedBusiness.cs" />
     <Compile Include="BusinessLogic\Requirement\IRequirementBusiness.cs" />
+    <Compile Include="BusinessLogic\Requirement\IRequirementModificationBusiness.cs" />
     <Compile Include="DTO\Account\CompanyDto.cs" />
     <Compile Include="DTO\Account\ProjectDto.cs" />
     <Compile Include="DTO\General\ActivityFeedDto.cs" />
     <Compile Include="DTO\General\GeneralCatalogDetailDto.cs" />
     <Compile Include="DTO\Requirement\RequirementCommentDto.cs" />
     <Compile Include="DTO\Requirement\RequirementDto.cs" />
+    <Compile Include="DTO\Requirement\RequirementModificationDto.cs" />
     <Compile Include="Exception\Account\AccountException.cs" />
     <Compile Include="Exception\Account\CompanyException.cs" />
     <Compile Include="General\CommonConstants.cs" />
@@ -62,6 +64,8 @@
     <Compile Include="Repository\General\IGeneralCatalogData.cs" />
     <Compile Include="Repository\Requirement\IRequirementCommentData.cs" />
     <Compile Include="Repository\Requirement\IRequirementData.cs" />
+    <Compile Include="Repository\Requirement\IRequirementModificationData.cs" />
+    <Compile Include="Repository\Requirement\IRequirementModificationVersionData.cs" />
     <Compile Include="Repository\Requirement\IRequirementVersionData.cs" />
   </ItemGroup>
   <ItemGroup>

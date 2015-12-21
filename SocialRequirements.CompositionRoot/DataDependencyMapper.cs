@@ -26,7 +26,9 @@ namespace SocialRequirements.CompositionRoot
             Bind<ICompanyData>().To<CompanyData>().WithConstructorArgument(contextCnxStr, dbContext);
             Bind<IGeneralCatalogData>().To<GeneralCatalogData>().WithConstructorArgument(contextCnxStr, dbContext);
             Bind<IRequirementData>().To<RequirementData>().WithConstructorArgument(contextCnxStr, dbContext);
+            Bind<IRequirementModificationData>().To<RequirementModificationData>().WithConstructorArgument(contextCnxStr, dbContext);
             Bind<IRequirementVersionData>().To<RequirementVersionData>().WithConstructorArgument(contextCnxStr, dbContext);
+            Bind<IRequirementModificationVersionData>().To<RequirementModificationVersionData>().WithConstructorArgument(contextCnxStr, dbContext);
             Bind<IProjectData>().To<ProjectData>().WithConstructorArgument(contextCnxStr, dbContext);
             Bind<IActivityFeedData>().To<ActivityFeedData>().WithConstructorArgument(contextCnxStr, dbContext);
             Bind<IRequirementCommentData>().To<RequirementCommentData>().WithConstructorArgument(contextCnxStr, dbContext);
@@ -34,6 +36,7 @@ namespace SocialRequirements.CompositionRoot
             Bind<IPersonBusiness>().To<PersonBusiness>();
             Bind<ICompanyBusiness>().To<CompanyBusiness>();
             Bind<IRequirementBusiness>().To<RequirementBusiness>();
+            Bind<IRequirementModificationBusiness>().To<RequirementModificationBusiness>();
             Bind<IProjectBusiness>().To<ProjectBusiness>();
             Bind<IActivityFeedBusiness>().To<ActivityFeedBusiness>();
         }

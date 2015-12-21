@@ -90,6 +90,22 @@ namespace SocialRequirements.Context
                 .HasForeignKey(e => e.company_id);
 
             modelBuilder.Entity<GeneralCatalogDetail>()
+                .HasMany(e => e.Companies)
+                .WithRequired(e => e.GeneralCatalogDetail)
+                .HasForeignKey(e => e.type_id);
+
+            modelBuilder.Entity<GeneralCatalogDetail>()
+                .HasMany(e => e.ActivityFeed)
+                .WithRequired(e => e.GeneralCatalogDetail)
+                .HasForeignKey(e => e.entity_id);
+
+            modelBuilder.Entity<GeneralCatalogDetail>()
+                .HasMany(e => e.ActivityFeed1)
+                .WithRequired(e => e.GeneralCatalogDetail1)
+                .HasForeignKey(e => e.action_id)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<GeneralCatalogDetail>()
                 .HasMany(e => e.Requirement)
                 .WithRequired(e => e.GeneralCatalogDetail)
                 .HasForeignKey(e => e.status_id)
@@ -154,6 +170,18 @@ namespace SocialRequirements.Context
 
             modelBuilder.Entity<Person>()
                 .HasMany(e => e.Requirement1)
+                .WithRequired(e => e.Person1)
+                .HasForeignKey(e => e.modifiedby_id)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Person>()
+                .HasMany(e => e.RequirementModification)
+                .WithRequired(e => e.Person)
+                .HasForeignKey(e => e.createdby_id)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Person>()
+                .HasMany(e => e.RequirementModification1)
                 .WithRequired(e => e.Person1)
                 .HasForeignKey(e => e.modifiedby_id)
                 .WillCascadeOnDelete(false);
@@ -270,17 +298,7 @@ namespace SocialRequirements.Context
                 .HasMany(e => e.CompanyPerson)
                 .WithRequired(e => e.Person)
                 .HasForeignKey(e => e.person_id);
-
-            modelBuilder.Entity<GeneralCatalogDetail>()
-                .HasMany(e => e.Companies)
-                .WithRequired(e => e.GeneralCatalogDetail)
-                .HasForeignKey(e => e.type_id);
-
-            modelBuilder.Entity<GeneralCatalogDetail>()
-                .HasMany(e => e.ActivityFeed)
-                .WithRequired(e => e.GeneralCatalogDetail)
-                .HasForeignKey(e => e.entity_id);
-
+            
             modelBuilder.Entity<GeneralCatalogHeader>()
                 .HasMany(e => e.GeneralCatalogDetails)
                 .WithRequired(e => e.GeneralCatalogHeader)

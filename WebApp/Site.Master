@@ -458,7 +458,7 @@
 		</li> -->
                                     <li><a href="javascript:;"><i class="fa fa-columns"></i><span>Requirements</span><span class="badge badge-primary">8</span></a>
                                         <ul class="acc-menu">
-                                            <li><a href="Requirements/RequirementsList.aspx">All requirements</a></li>
+                                            <li><asp:HyperLink runat="server" NavigateUrl="Requirements/RequirementsList.aspx">All requirements</asp:HyperLink></li>
 
                                             <li><a href="layout-fixed-sidebars.html">Stretch Sidebars</a></li>
 

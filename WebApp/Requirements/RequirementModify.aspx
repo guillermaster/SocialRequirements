@@ -6,6 +6,11 @@
 <asp:Content ID="ToolbarContent" ContentPlaceHolderID="ToolbarContent" runat="server">
     <ul class="demo-btns">
         <li>
+            <asp:LinkButton runat="server" CssClass="btn btn-default" ID="SaveButton" OnClick="SaveButton_Click" ToolTip="Save">
+                <i class="fa fa-fw fa-save"></i>
+            </asp:LinkButton>
+        </li>
+        <li>
             <asp:LinkButton runat="server" CssClass="btn btn-default" ID="ApproveButton" OnClick="ApproveButton_Click" ToolTip="Approve">
                 <i class="fa fa-fw fa-check"></i>
             </asp:LinkButton>
@@ -51,16 +56,17 @@
     </asp:Panel>
     <div>
         <div>
-            <asp:Label runat="server" ID="RequirementTitle" />
+            <asp:Label runat="server" ID="RequirementTitleLabel" Visible="False" />
+            <asp:TextBox runat="server" ID="RequirementTitleInput" Visible="True"/>
         </div>
         <div>
             <div>
                 <div>
-                    Status:
+                    Modification Status:
                             <asp:Label runat="server" ID="RequirementStatus" />
                 </div>
                 <div>
-                    Version:
+                    Modification Version:
                             <asp:Label runat="server" ID="RequirementVersion" />
                 </div>
             </div>
@@ -81,32 +87,8 @@
 
         </div>
         <div>
-            <asp:Label runat="server" ID="RequirementDescription" />
-        </div>
-        <div>
-            <!-- likes and dislikes -->
-            <asp:Panel runat="server" ID="RequirementActionsPanel" CssClass="actions_wrapper">
-                <ul class="activity actions">
-                    <li>
-                        <asp:LinkButton runat="server" ID="LikeButton" CssClass="activity_actions_button" CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.Like %>">
-                            <asp:Label runat="server" ID="LikeQty" />
-                            <img src="assets/img/like.png" alt="Like" />
-                        </asp:LinkButton>
-                    </li>
-                    <li>
-                        <asp:LinkButton runat="server" ID="DislikeButton" CssClass="activity_actions_button" CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.Dislike %>">
-                            <asp:Label runat="server" ID="DislikeQty" />
-                            <img src="assets/img/dislike.png" alt="Dislike" />
-                        </asp:LinkButton>
-                    </li>
-                    <li>
-                        <asp:LinkButton runat="server" ID="CommentButton" CssClass="activity_actions_button" CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.Comment %>">
-                            <asp:Label runat="server" ID="CommentsQty" />
-                            <img src="assets/img/comment.png" alt="Comment" />
-                        </asp:LinkButton>
-                    </li>
-                </ul>
-            </asp:Panel>
+            <asp:Label runat="server" ID="RequirementDescriptionLabel" Visible="False" />
+            <asp:TextBox runat="server" ID="RequirementDescriptionInput" Visible="True" TextMode="MultiLine" Width="100%" Rows="20"/>
         </div>
     </div>
 </asp:Content>

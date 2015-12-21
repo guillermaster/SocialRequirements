@@ -41,8 +41,8 @@ namespace SocialRequirements.Business.Requirement
             requirement.Id = _requirementData.Add(requirement);
 
             // add activity feed log
-            _activityFeedData.Add(companyId, projectId, (int) GeneralCatalog.Detail.Entity.Requirement, requirement.Id,
-                DateTime.Now, personId);
+            _activityFeedData.Add(companyId, projectId, (int) GeneralCatalog.Detail.Entity.Requirement,
+                (int) GeneralCatalog.Detail.EntityActions.Create, requirement.Id, DateTime.Now, personId);
 
             return requirement;
         }
@@ -50,13 +50,23 @@ namespace SocialRequirements.Business.Requirement
         public void Like(long companyId, long projectId, long requirementId, string username)
         {
             var personId = _personData.GetPersonId(username);
+
             _requirementData.Like(companyId, projectId, requirementId, personId);
+
+            // add activity feed log
+            _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.Requirement,
+                (int)GeneralCatalog.Detail.EntityActions.Like, requirementId, DateTime.Now, personId);
         }
 
         public void Dislike(long companyId, long projectId, long requirementId, string username)
         {
             var personId = _personData.GetPersonId(username);
+
             _requirementData.Dislike(companyId, projectId, requirementId, personId);
+
+            // add activity feed log
+            _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.Requirement,
+                (int)GeneralCatalog.Detail.EntityActions.Dislike, requirementId, DateTime.Now, personId);
         }
 
         public void Comment(long requirementId, string username, string comment)
@@ -80,15 +90,25 @@ namespace SocialRequirements.Business.Requirement
         public void Approve(long companyId, long projectId, long requirementId, string username)
         {
             var personId = _personData.GetPersonId(username);
+
             _requirementData.UpdateStatus(companyId, projectId, requirementId,
                 (int) GeneralCatalog.Detail.RequirementStatus.Approved, personId);
+
+            // add activity feed log
+            _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.Requirement,
+                (int)GeneralCatalog.Detail.EntityActions.Approve, requirementId, DateTime.Now, personId);
         }
 
         public void Reject(long companyId, long projectId, long requirementId, string username)
         {
             var personId = _personData.GetPersonId(username);
+
             _requirementData.UpdateStatus(companyId, projectId, requirementId,
                 (int)GeneralCatalog.Detail.RequirementStatus.Rejected, personId);
+
+            // add activity feed log
+            _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.Requirement,
+                (int)GeneralCatalog.Detail.EntityActions.Reject, requirementId, DateTime.Now, personId);
         }
     }
 }
