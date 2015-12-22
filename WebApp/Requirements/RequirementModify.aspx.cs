@@ -73,6 +73,10 @@ namespace SocialRequirements.Requirements
                     "An error occurred while creating the requirement modification request");
             }
         }
+        protected void SubmitButton_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
 
         protected void ApproveButton_Click(object sender, EventArgs e)
         {
@@ -109,15 +113,16 @@ namespace SocialRequirements.Requirements
                     "An error occurred while rejecting the requirement..");
             }
         }
-
-        protected void UndoButton_OnClick(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
+        
         protected void EditButton_OnClick(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            ToggleModification(true);
+        }
+
+        protected void UndoEditButton_OnClick(object sender, EventArgs e)
+        {
+            ToggleModification(false);
+            LoadRequirement();
         }
 
         protected void CommentsButton_OnClick(object sender, EventArgs e)
@@ -191,12 +196,29 @@ namespace SocialRequirements.Requirements
 
             // set action buttons visibility
             SaveButton.Visible = !ModificationRequestExists();
-            ApproveButton.Visible = ModificationRequestExists() && requirement.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.Draft;
-            RejectButton.Visible = ModificationRequestExists() && requirement.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.Draft;
-            EditButton.Visible = ModificationRequestExists();
+            SubmitButton.Visible = ModificationRequestExists() && requirement.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.Draft;
+            ApproveButton.Visible = ModificationRequestExists() && requirement.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.PendingApproval;
+            RejectButton.Visible = ModificationRequestExists() && requirement.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.PendingApproval;
+            EditButton.Visible = ModificationRequestExists() &&
+                                 (requirement.StatusId == (int) GeneralCatalog.Detail.RequirementStatus.Draft ||
+                                  requirement.StatusId == (int) GeneralCatalog.Detail.RequirementStatus.PendingApproval);
+            UndoEditButton.Visible = false;
             CommentsButton.Visible = ModificationRequestExists();
             HistoryButton.Visible = ModificationRequestExists();
             UploadButton.Visible = ModificationRequestExists();
+        }
+
+        private void ToggleModification(bool visible)
+        {
+            RequirementTitleLabel.Visible = !visible;
+            RequirementTitleInput.Visible = visible;
+            RequirementDescriptionLabel.Visible = !visible;
+            RequirementDescriptionInput.Visible = visible;
+            SaveButton.Visible = visible;
+            UndoEditButton.Visible = visible;
+            ApproveButton.Visible = !visible;
+            RejectButton.Visible = !visible;
+            EditButton.Visible = !visible;
         }
         #endregion
     }

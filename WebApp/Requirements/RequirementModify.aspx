@@ -6,6 +6,11 @@
 <asp:Content ID="ToolbarContent" ContentPlaceHolderID="ToolbarContent" runat="server">
     <ul class="demo-btns">
         <li>
+            <asp:LinkButton runat="server" CssClass="btn btn-default" ID="SubmitButton" OnClick="SubmitButton_Click" ToolTip="Submit for approval">
+                <i class="fa fa-fw fa-save"></i>
+            </asp:LinkButton>
+        </li>
+        <li>
             <asp:LinkButton runat="server" CssClass="btn btn-default" ID="SaveButton" OnClick="SaveButton_Click" ToolTip="Save">
                 <i class="fa fa-fw fa-save"></i>
             </asp:LinkButton>
@@ -23,6 +28,11 @@
         <li>
             <asp:LinkButton runat="server" CssClass="btn btn-default" ID="EditButton" OnClick="EditButton_OnClick" ToolTip="Modify requirement">
                 <i class="fa fa-fw fa-pencil"></i>
+            </asp:LinkButton>
+        </li>
+        <li>
+            <asp:LinkButton runat="server" CssClass="btn btn-default" ID="UndoEditButton" OnClick="UndoEditButton_OnClick" ToolTip="Undo modify">
+                <i class="fa fa-fw fa-undo"></i>
             </asp:LinkButton>
         </li>
         <li>

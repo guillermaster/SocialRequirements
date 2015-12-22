@@ -28,7 +28,8 @@
             {
                 Draft = 5,
                 Approved = 6,
-                Rejected = 7
+                Rejected = 7,
+                PendingApproval = 17
             }
 
             public enum EntityActions

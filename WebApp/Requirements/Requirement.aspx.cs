@@ -44,6 +44,10 @@ namespace SocialRequirements.Requirements
             LoadRequirement();
         }
 
+        protected void SubmitButton_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
 
         protected void SaveButton_Click(object sender, EventArgs e)
         {
@@ -102,12 +106,7 @@ namespace SocialRequirements.Requirements
                     "An error occurred while rejecting the requirement..");
             }
         }
-
-        protected void UndoButton_OnClick(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
+        
         protected void EditButton_OnClick(object sender, EventArgs e)
         {
             if (HasBeenApproved())
@@ -130,6 +129,12 @@ namespace SocialRequirements.Requirements
                 // enable update form controls
                 ToggleModification(true);
             }
+        }
+
+        protected void UndoEditButton_OnClick(object sender, EventArgs e)
+        {
+            ToggleModification(false);
+            LoadRequirement();
         }
 
         protected void CommentsButton_OnClick(object sender, EventArgs e)
@@ -207,8 +212,10 @@ namespace SocialRequirements.Requirements
 
             // set action buttons visibility
             SaveButton.Visible = false;
-            ApproveButton.Visible = requirement.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.Draft;
-            RejectButton.Visible = requirement.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.Draft;
+            UndoEditButton.Visible = false;
+            SubmitButton.Visible = requirement.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.Draft;
+            ApproveButton.Visible = requirement.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.PendingApproval;
+            RejectButton.Visible = requirement.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.PendingApproval;
         }
 
         private void ToggleModification(bool visible)
@@ -218,11 +225,11 @@ namespace SocialRequirements.Requirements
             RequirementDescription.Visible = !visible;
             RequirementDescriptionInput.Visible = visible;
             SaveButton.Visible = visible;
+            UndoEditButton.Visible = visible;
             ApproveButton.Visible = !visible;
             RejectButton.Visible = !visible;
             EditButton.Visible = !visible;
         }
         #endregion
-
     }
 }
