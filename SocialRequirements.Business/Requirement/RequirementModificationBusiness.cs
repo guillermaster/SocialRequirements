@@ -59,5 +59,14 @@ namespace SocialRequirements.Business.Requirement
             _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.RequirementModification,
                 (int)GeneralCatalog.Detail.EntityActions.SubmitForApproval, requirementId, DateTime.Now, personId);
         }
+
+        public void Update(string title, string description, long companyId, long projectId, long requirementId,
+            long requirementModificationId, string username)
+        {
+            var personId = _personData.GetPersonId(username);
+
+            _requirementModifData.Update(title, description, companyId, projectId, requirementId,
+                requirementModificationId, personId);
+        }
     }
 }

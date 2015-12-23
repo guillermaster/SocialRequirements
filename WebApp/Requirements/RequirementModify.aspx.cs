@@ -22,6 +22,8 @@ namespace SocialRequirements.Requirements
         {
             ValidateUserLoggedIn();
 
+            if (IsPostBack) return;
+
             // get query string params
             if (Request.QueryString[CommonConstants.QueryStringParams.Id] != null)
             {
@@ -32,6 +34,7 @@ namespace SocialRequirements.Requirements
             ProjectId = long.Parse(Request.QueryString[CommonConstants.QueryStringParams.ProjectId]);
 
             LoadRequirement();
+            ToggleModification(true);
         }
 
         protected override void SaveButton_Click(object sender, EventArgs e)
@@ -39,13 +42,24 @@ namespace SocialRequirements.Requirements
             try
             {
                 var requirementSrv = new RequirementSoapClient();
-                RequirementModificationId = requirementSrv.AddRequirementModification(RequirementTitleInput.Text, RequirementDescriptionInput.Text,
-                    CompanyId, ProjectId, RequirementId, GetUsernameEncrypted());
 
-                SetFadeOutMessage(GetMainUpdatePanel(this), PostSuccessPanel, PostSuccessMessage,
-                    "The requirement modification request has been successfully created.");
+                if (!ModificationRequestExists())
+                {
+                    RequirementModificationId = requirementSrv.AddRequirementModification(RequirementTitleInput.Text,
+                        RequirementDescriptionInput.Text,
+                        CompanyId, ProjectId, RequirementId, GetUsernameEncrypted());
 
+                    SetFadeOutMessage(GetMainUpdatePanel(this), PostSuccessPanel, PostSuccessMessage,
+                        "The requirement modification request has been successfully created.");
+                }
+                else
+                {
+                    requirementSrv.UpdateRequirementModification(RequirementTitleInput.Text,
+                        RequirementDescriptionInput.Text, CompanyId, ProjectId, RequirementId, RequirementModificationId,
+                        GetUsernameEncrypted());
+                }
                 LoadRequirement();
+                ToggleModification(false);
             }
             catch
             {
