@@ -35,5 +35,15 @@ namespace SocialRequirements.Domain.BusinessLogic.Requirement
         /// <param name="requirementId">Requirement ID</param>
         /// <returns>Current active requirement modification request, null when no active modifiaction request is found</returns>
         RequirementModificationDto Get(long companyId, long projectId, long requirementId);
+
+        /// <summary>
+        /// Submits a requirement for its aproval
+        /// </summary>
+        /// <param name="companyId">Company ID</param>
+        /// <param name="projectId">Project ID</param>
+        /// <param name="requirementId">Requirement ID</param>
+        /// <param name="requirementModificationId">Requirement modification ID</param>
+        /// <param name="username">User that submitted the requirement</param>
+        void SubmitForApproval(long companyId, long projectId, long requirementId, long requirementModificationId, string username);
     }
 }

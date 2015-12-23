@@ -44,12 +44,28 @@ namespace SocialRequirements.Requirements
             LoadRequirement();
         }
 
-        protected void SubmitButton_Click(object sender, EventArgs e)
+        protected virtual void SubmitButton_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var requirementSrv = new RequirementSoapClient();
+                requirementSrv.SubmitRequirementForApproval(CompanyId, ProjectId, RequirementId, GetUsernameEncrypted());
+
+                ToggleModification(false);
+
+                LoadRequirement();
+
+                SetFadeOutMessage(GetMainUpdatePanel(this), PostSuccessPanel, PostSuccessMessage,
+                   "The requirement has been successfully submitted for approval.");
+            }
+            catch
+            {
+                SetFadeOutMessage(GetMainUpdatePanel(this), PostErrorPanel, PostErrorMessage,
+                    "An error occurred while submitting the requirement.");
+            }
         }
 
-        protected void SaveButton_Click(object sender, EventArgs e)
+        protected virtual void SaveButton_Click(object sender, EventArgs e)
         {
             try
             {
@@ -71,7 +87,7 @@ namespace SocialRequirements.Requirements
             }
         }
 
-        protected void ApproveButton_Click(object sender, EventArgs e)
+        protected virtual void ApproveButton_Click(object sender, EventArgs e)
         {
             try
             {
@@ -89,7 +105,7 @@ namespace SocialRequirements.Requirements
             }
         }
 
-        protected void RejectButton_OnClick(object sender, EventArgs e)
+        protected virtual void RejectButton_OnClick(object sender, EventArgs e)
         {
             try
             {
@@ -107,7 +123,7 @@ namespace SocialRequirements.Requirements
             }
         }
         
-        protected void EditButton_OnClick(object sender, EventArgs e)
+        protected virtual void EditButton_OnClick(object sender, EventArgs e)
         {
             if (HasBeenApproved())
             {
@@ -131,30 +147,40 @@ namespace SocialRequirements.Requirements
             }
         }
 
-        protected void UndoEditButton_OnClick(object sender, EventArgs e)
+        protected virtual void UndoEditButton_OnClick(object sender, EventArgs e)
         {
             ToggleModification(false);
             LoadRequirement();
         }
 
-        protected void CommentsButton_OnClick(object sender, EventArgs e)
+        protected void LikeButton_OnClick(object sender, EventArgs e)
         {
             throw new NotImplementedException();
         }
 
-        protected void HistoryButton_OnClick(object sender, EventArgs e)
+        protected void DislikeButton_OnClick(object sender, EventArgs e)
         {
             throw new NotImplementedException();
         }
 
-        protected void UploadButton_OnClick(object sender, EventArgs e)
+        protected virtual void CommentsButton_OnClick(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected virtual void HistoryButton_OnClick(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected virtual void UploadButton_OnClick(object sender, EventArgs e)
         {
             throw new NotImplementedException();
         }
         #endregion
 
         #region Data Load
-        private RequirementDto GetRequirement()
+        protected virtual RequirementDto GetRequirement()
         {
             var requirementSrv = new RequirementSoapClient();
             var requirement = requirementSrv.GetRequirement(CompanyId, ProjectId, RequirementId);
@@ -176,7 +202,7 @@ namespace SocialRequirements.Requirements
 
         #region Form Setup
 
-        private void LoadRequirement()
+        protected virtual void LoadRequirement()
         {
             // get requirement data
             var requirement = GetRequirement();
@@ -189,13 +215,13 @@ namespace SocialRequirements.Requirements
         /// Determines if a requirement has been approved or rejected
         /// </summary>
         /// <returns></returns>
-        private bool HasBeenApproved()
+        protected bool HasBeenApproved()
         {
             return int.Parse(RequirementStatusId.Value) == (int) GeneralCatalog.Detail.RequirementStatus.Approved ||
                    int.Parse(RequirementStatusId.Value) == (int) GeneralCatalog.Detail.RequirementStatus.Rejected;
         }
 
-        private void SetFormData(RequirementDto requirement)
+        protected virtual void SetFormData(RequirementDto requirement)
         {
             // set requirement data in UI controls
             RequirementTitle.Text = requirement.Title;
@@ -213,12 +239,13 @@ namespace SocialRequirements.Requirements
             // set action buttons visibility
             SaveButton.Visible = false;
             UndoEditButton.Visible = false;
+            EditButton.Visible = true;
             SubmitButton.Visible = requirement.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.Draft;
             ApproveButton.Visible = requirement.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.PendingApproval;
             RejectButton.Visible = requirement.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.PendingApproval;
         }
 
-        private void ToggleModification(bool visible)
+        protected void ToggleModification(bool visible)
         {
             RequirementTitle.Visible = !visible;
             RequirementTitleInput.Visible = visible;

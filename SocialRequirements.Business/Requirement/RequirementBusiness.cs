@@ -117,5 +117,17 @@ namespace SocialRequirements.Business.Requirement
 
             _requirementData.Update(title, description, companyId, projectId, requirementId, personId);
         }
+
+        public void SubmitForApproval(long companyId, long projectId, long requirementId, string username)
+        {
+            var personId = _personData.GetPersonId(username);
+
+            _requirementData.UpdateStatus(companyId, projectId, requirementId,
+                (int)GeneralCatalog.Detail.RequirementStatus.PendingApproval, personId);
+
+            // add activity feed log
+            _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.Requirement,
+                (int)GeneralCatalog.Detail.EntityActions.SubmitForApproval, requirementId, DateTime.Now, personId);
+        }
     }
 }

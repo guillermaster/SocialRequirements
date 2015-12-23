@@ -98,6 +98,13 @@ namespace SocialRequirements.RequirementService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdateRequirement", ReplyAction="*")]
         System.Threading.Tasks.Task<SocialRequirements.RequirementService.UpdateRequirementResponse> UpdateRequirementAsync(SocialRequirements.RequirementService.UpdateRequirementRequest request);
+        
+        // CODEGEN: Generating message contract since element name encUsername from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SubmitRequirementForApproval", ReplyAction="*")]
+        SocialRequirements.RequirementService.SubmitRequirementForApprovalResponse SubmitRequirementForApproval(SocialRequirements.RequirementService.SubmitRequirementForApprovalRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SubmitRequirementForApproval", ReplyAction="*")]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementService.SubmitRequirementForApprovalResponse> SubmitRequirementForApprovalAsync(SocialRequirements.RequirementService.SubmitRequirementForApprovalRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1007,6 +1014,79 @@ namespace SocialRequirements.RequirementService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class SubmitRequirementForApprovalRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="SubmitRequirementForApproval", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementService.SubmitRequirementForApprovalRequestBody Body;
+        
+        public SubmitRequirementForApprovalRequest() {
+        }
+        
+        public SubmitRequirementForApprovalRequest(SocialRequirements.RequirementService.SubmitRequirementForApprovalRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class SubmitRequirementForApprovalRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public long companyId;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=1)]
+        public long projectId;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=2)]
+        public long requirementId;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
+        public string encUsername;
+        
+        public SubmitRequirementForApprovalRequestBody() {
+        }
+        
+        public SubmitRequirementForApprovalRequestBody(long companyId, long projectId, long requirementId, string encUsername) {
+            this.companyId = companyId;
+            this.projectId = projectId;
+            this.requirementId = requirementId;
+            this.encUsername = encUsername;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class SubmitRequirementForApprovalResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="SubmitRequirementForApprovalResponse", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementService.SubmitRequirementForApprovalResponseBody Body;
+        
+        public SubmitRequirementForApprovalResponse() {
+        }
+        
+        public SubmitRequirementForApprovalResponse(SocialRequirements.RequirementService.SubmitRequirementForApprovalResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute()]
+    public partial class SubmitRequirementForApprovalResponseBody {
+        
+        public SubmitRequirementForApprovalResponseBody() {
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface RequirementSoapChannel : SocialRequirements.RequirementService.RequirementSoap, System.ServiceModel.IClientChannel {
     }
@@ -1395,6 +1475,36 @@ namespace SocialRequirements.RequirementService {
             inValue.Body.requirementId = requirementId;
             inValue.Body.encUsername = encUsername;
             return ((SocialRequirements.RequirementService.RequirementSoap)(this)).UpdateRequirementAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SocialRequirements.RequirementService.SubmitRequirementForApprovalResponse SocialRequirements.RequirementService.RequirementSoap.SubmitRequirementForApproval(SocialRequirements.RequirementService.SubmitRequirementForApprovalRequest request) {
+            return base.Channel.SubmitRequirementForApproval(request);
+        }
+        
+        public void SubmitRequirementForApproval(long companyId, long projectId, long requirementId, string encUsername) {
+            SocialRequirements.RequirementService.SubmitRequirementForApprovalRequest inValue = new SocialRequirements.RequirementService.SubmitRequirementForApprovalRequest();
+            inValue.Body = new SocialRequirements.RequirementService.SubmitRequirementForApprovalRequestBody();
+            inValue.Body.companyId = companyId;
+            inValue.Body.projectId = projectId;
+            inValue.Body.requirementId = requirementId;
+            inValue.Body.encUsername = encUsername;
+            SocialRequirements.RequirementService.SubmitRequirementForApprovalResponse retVal = ((SocialRequirements.RequirementService.RequirementSoap)(this)).SubmitRequirementForApproval(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementService.SubmitRequirementForApprovalResponse> SocialRequirements.RequirementService.RequirementSoap.SubmitRequirementForApprovalAsync(SocialRequirements.RequirementService.SubmitRequirementForApprovalRequest request) {
+            return base.Channel.SubmitRequirementForApprovalAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SocialRequirements.RequirementService.SubmitRequirementForApprovalResponse> SubmitRequirementForApprovalAsync(long companyId, long projectId, long requirementId, string encUsername) {
+            SocialRequirements.RequirementService.SubmitRequirementForApprovalRequest inValue = new SocialRequirements.RequirementService.SubmitRequirementForApprovalRequest();
+            inValue.Body = new SocialRequirements.RequirementService.SubmitRequirementForApprovalRequestBody();
+            inValue.Body.companyId = companyId;
+            inValue.Body.projectId = projectId;
+            inValue.Body.requirementId = requirementId;
+            inValue.Body.encUsername = encUsername;
+            return ((SocialRequirements.RequirementService.RequirementSoap)(this)).SubmitRequirementForApprovalAsync(inValue);
         }
     }
 }

@@ -177,6 +177,19 @@
       <s:element name="UpdateRequirementResponse">
         <s:complexType />
       </s:element>
+      <s:element name="SubmitRequirementForApproval">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="companyId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="projectId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requirementId" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="encUsername" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SubmitRequirementForApprovalResponse">
+        <s:complexType />
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="AddRequirementSoapIn">
@@ -251,6 +264,12 @@
   <wsdl:message name="UpdateRequirementSoapOut">
     <wsdl:part name="parameters" element="tns:UpdateRequirementResponse" />
   </wsdl:message>
+  <wsdl:message name="SubmitRequirementForApprovalSoapIn">
+    <wsdl:part name="parameters" element="tns:SubmitRequirementForApproval" />
+  </wsdl:message>
+  <wsdl:message name="SubmitRequirementForApprovalSoapOut">
+    <wsdl:part name="parameters" element="tns:SubmitRequirementForApprovalResponse" />
+  </wsdl:message>
   <wsdl:portType name="RequirementSoap">
     <wsdl:operation name="AddRequirement">
       <wsdl:input message="tns:AddRequirementSoapIn" />
@@ -299,6 +318,10 @@
     <wsdl:operation name="UpdateRequirement">
       <wsdl:input message="tns:UpdateRequirementSoapIn" />
       <wsdl:output message="tns:UpdateRequirementSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitRequirementForApproval">
+      <wsdl:input message="tns:SubmitRequirementForApprovalSoapIn" />
+      <wsdl:output message="tns:SubmitRequirementForApprovalSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="RequirementSoap" type="tns:RequirementSoap">
@@ -411,6 +434,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="SubmitRequirementForApproval">
+      <soap:operation soapAction="http://tempuri.org/SubmitRequirementForApproval" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="RequirementSoap12" type="tns:RequirementSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -515,6 +547,15 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateRequirement">
       <soap12:operation soapAction="http://tempuri.org/UpdateRequirement" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitRequirementForApproval">
+      <soap12:operation soapAction="http://tempuri.org/SubmitRequirementForApproval" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

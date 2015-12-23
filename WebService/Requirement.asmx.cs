@@ -118,5 +118,19 @@ namespace WebService
             var username = Encryption.Decrypt(encUsername);
             RequirementBusiness.Update(title, description, companyId, projectId, requirementId, username);
         }
+
+        [WebMethod]
+        public void SubmitRequirementForApproval(long companyId, long projectId, long requirementId, string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            RequirementBusiness.SubmitForApproval(companyId, projectId, requirementId, username);
+        }
+
+        [WebMethod]
+        public void SubmitRequirementModificationForApproval(long companyId, long projectId, long requirementId, long requirementModificaitonId, string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            RequirementModificationBusiness.SubmitForApproval(companyId, projectId, requirementId, requirementModificaitonId, username);
+        }
     }
 }

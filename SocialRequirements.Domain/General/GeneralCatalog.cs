@@ -40,7 +40,8 @@
                 Reject = 12,
                 Remove = 13,
                 Like = 14,
-                Dislike = 15
+                Dislike = 15,
+                SubmitForApproval = 18
             }
         }
     }

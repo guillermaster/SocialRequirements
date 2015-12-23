@@ -3,6 +3,7 @@ using System.Linq;
 using SocialRequirements.Context;
 using SocialRequirements.Context.Entities;
 using SocialRequirements.Domain.DTO.Requirement;
+using SocialRequirements.Domain.General;
 using SocialRequirements.Domain.Repository.Requirement;
 
 namespace SocialRequirements.Data.Requirement
@@ -33,9 +34,16 @@ namespace SocialRequirements.Data.Requirement
             return requirementModif;
         }
 
-        public RequirementDto Get(long companyId, long projectId, long requirementId, long? requirementVersionId = null)
+        public RequirementModificationDto Get(long companyId, long projectId, long requirementId, long requirementModificationId, long? requirementModifVersionId = null)
         {
-            throw new NotImplementedException();
+            // if version isn't specified, get the latest one
+            if (requirementModifVersionId == null)
+                return GetLastest(companyId, projectId, requirementId, requirementModificationId);
+
+            // otherwise get specific version
+            var requirementVersion = Get(companyId, projectId, requirementId, requirementModificationId, requirementModifVersionId.Value);
+
+            return requirementVersion != null ? GetDtoFromEntity(requirementVersion) : null;
         }
 
         public void Like(long companyId, long projectId, long requirementId, long requirementVersionId, long personId)
@@ -48,9 +56,29 @@ namespace SocialRequirements.Data.Requirement
             throw new NotImplementedException();
         }
 
-        public void UpdateStatus(long companyId, long projectId, long requirementId, long versionId, int statusId, long personId)
+        public void UpdateStatus(long companyId, long projectId, long requirementId, long requirementModificationId, long versionId, int statusId, long personId)
         {
-            throw new NotImplementedException();
+            var requirementVersion = Get(companyId, projectId, requirementId, requirementModificationId, versionId);
+            requirementVersion.status_id = statusId;
+            requirementVersion.modifiedby_id = personId;
+            if (statusId == (int)GeneralCatalog.Detail.RequirementStatus.Approved ||
+                statusId == (int)GeneralCatalog.Detail.RequirementStatus.Rejected)
+            {
+                requirementVersion.approvedby_id = personId;
+                requirementVersion.approvedon = DateTime.Now;
+            }
+            _context.SaveChanges();
+        }
+
+        public void Update(string title, string description, long companyId, long projectId, long requirementId,
+            long requirementModificationId, long versionId, long personId)
+        {
+            var requirementVersion = Get(companyId, projectId, requirementId, requirementModificationId, versionId);
+            requirementVersion.title = title;
+            requirementVersion.description = description;
+            requirementVersion.modifiedby_id = personId;
+            requirementVersion.modifiedon = DateTime.Now;
+            _context.SaveChanges();
         }
 
         private int GetNextVersionNumber(long companyId, long projectId, long requirementId, long requirementModificationId)
@@ -62,6 +90,28 @@ namespace SocialRequirements.Data.Requirement
                     .OrderByDescending(vn => vn.version_number)
                     .FirstOrDefault();
             return requirementModifVersion != null ? requirementModifVersion.version_number + 1 : 1;
+        }
+
+        private RequirementModificationVersion Get(long companyId, long projectId, long requirementId, long requirementModificationId, long requirementModifVersionId)
+        {
+            var requirementVersion =
+               _context.RequirementModificationVersion.FirstOrDefault(
+                   rv =>
+                       rv.company_id == companyId && rv.project_id == projectId && rv.requirement_id == requirementId &&
+                       rv.requirement_modification_id == requirementModificationId && rv.id == requirementModifVersionId);
+            return requirementVersion;
+        }
+
+        private RequirementModificationDto GetLastest(long companyId, long projectId, long requirementId, long requirementModificationId)
+        {
+            var requirementVersion =
+                _context.RequirementModificationVersion.Where(
+                    rv => rv.company_id == companyId && rv.project_id == projectId && rv.requirement_id == requirementId && 
+                          rv.requirement_modification_id == requirementModificationId)
+                    .OrderByDescending(v => v.id)
+                    .FirstOrDefault();
+
+            return requirementVersion != null ? GetDtoFromEntity(requirementVersion) : null;
         }
 
         private static RequirementModificationVersion GetEntityFromDto(RequirementModificationDto requirement)
@@ -85,6 +135,31 @@ namespace SocialRequirements.Data.Requirement
                 approvedon = requirement.Approvedon
             };
             return requirementVersion;
+        }
+
+        private static RequirementModificationDto GetDtoFromEntity(RequirementModificationVersion requirementVersion)
+        {
+            var requirementDto = new RequirementModificationDto
+            {
+                Id = requirementVersion.requirement_modification_id,
+                CompanyId = requirementVersion.company_id,
+                ProjectId = requirementVersion.project_id,
+                RequirementId = requirementVersion.requirement_id,
+                Title = requirementVersion.title,
+                Description = requirementVersion.description,
+                Agreed = requirementVersion.agreed,
+                Disagreed = requirementVersion.disagreed,
+                StatusId = requirementVersion.status_id,
+                CreatedbyId = requirementVersion.createdby_id,
+                Createdon = requirementVersion.createdon,
+                ModifiedbyId = requirementVersion.modifiedby_id,
+                Modifiedon = requirementVersion.modifiedon,
+                ApprovedbyId = requirementVersion.approvedby_id,
+                Approvedon = requirementVersion.approvedon,
+                VersionId = requirementVersion.id,
+                VersionNumber = requirementVersion.version_number
+            };
+            return requirementDto;
         }
     }
 }

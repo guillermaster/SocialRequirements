@@ -6,7 +6,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using SocialRequirements.AccountService;
 using SocialRequirements.CompanyService;
-using SocialRequirements.Domain;
 using SocialRequirements.Domain.DTO.Account;
 using SocialRequirements.Domain.General;
 using SocialRequirements.RequirementService;
@@ -18,6 +17,11 @@ namespace SocialRequirements
     public class SocialRequirementsPrivatePage : SocialRequirementsBasePage
     {
         protected virtual void Page_Load(object sender, EventArgs e)
+        {
+            ValidateUserLoggedIn();
+        }
+
+        protected void ValidateUserLoggedIn()
         {
             if (!UserLoggedIn()) { RedirectToLogin(); }
         }

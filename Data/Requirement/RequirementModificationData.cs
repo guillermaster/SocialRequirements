@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using SocialRequirements.Context;
 using SocialRequirements.Context.Entities;
 using SocialRequirements.Domain.DTO.Requirement;
@@ -10,6 +11,7 @@ namespace SocialRequirements.Data.Requirement
     public class RequirementModificationData : IRequirementModificationData
     {
         private readonly ContextModel _context;
+        private IRequirementModificationVersionData _requirementModifVersionData;
 
         public RequirementModificationData(ContextModel context)
         {
@@ -79,6 +81,61 @@ namespace SocialRequirements.Data.Requirement
             requirement.requirement_modification_version_id = requirementModifDto.VersionId;
 
             _context.SaveChanges();
+        }
+
+        public void UpdateStatus(long companyId, long projectId, long requirementId, long requirementModificationId, int statusId, long personId)
+        {
+            using (var scope = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    // get requirement and update it
+                    var requirementModif = GetEntity(companyId, projectId, requirementId, requirementModificationId);
+                    requirementModif.status_id = statusId;
+                    _context.SaveChanges();
+
+                    // update requirement version
+                    _requirementModifVersionData = new RequirementModificationVersionData(_context);
+                    _requirementModifVersionData.UpdateStatus(companyId, projectId, requirementId, requirementModificationId,
+                        requirementModif.requirement_modification_version_id, requirementModif.status_id, personId);
+
+                    scope.Commit();
+                }
+                catch
+                {
+                    scope.Rollback();
+                    throw;
+                }
+            }
+        }
+
+        public void Update(string title, string description, long companyId, long projectId, long requirementId, long requirementModificationId, long personId)
+        {
+            using (var scope = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    // get requirement and update it
+                    var requirement = GetEntity(companyId, projectId, requirementId, requirementModificationId);
+                    requirement.title = title;
+                    requirement.description = description;
+                    requirement.modifiedby_id = personId;
+                    requirement.modifiedon = DateTime.Now;
+                    _context.SaveChanges();
+
+                    // update requirement version
+                    _requirementModifVersionData = new RequirementModificationVersionData(_context);
+                    _requirementModifVersionData.Update(title, description, companyId, projectId, requirementId, requirementModificationId,
+                        requirement.requirement_modification_version_id, personId);
+
+                    scope.Commit();
+                }
+                catch
+                {
+                    scope.Rollback();
+                    throw;
+                }
+            }
         }
 
         private RequirementModification GetEntity(long companyId, long projectId, long requirementId, long requirementModificationId)

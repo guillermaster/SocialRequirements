@@ -1,4 +1,5 @@
-﻿using SocialRequirements.Domain.DTO.Requirement;
+﻿using SocialRequirements.Context.Entities;
+using SocialRequirements.Domain.DTO.Requirement;
 
 namespace SocialRequirements.Domain.Repository.Requirement
 {
@@ -18,8 +19,9 @@ namespace SocialRequirements.Domain.Repository.Requirement
         /// <param name="companyId">Company identifier</param>
         /// <param name="projectId">Project identifier</param>
         /// <param name="requirementId">Requirement identifier</param>
-        /// <param name="requirementVersionId">Version identifier</param>
-        RequirementDto Get(long companyId, long projectId, long requirementId, long? requirementVersionId = null);
+        /// <param name="requirementModificationId">Requirement modification ID</param>
+        /// <param name="requirementModifVersionId">Version identifier</param>
+        RequirementModificationDto Get(long companyId, long projectId, long requirementId, long requirementModificationId, long? requirementModifVersionId = null);
 
         /// <summary>
         /// Adds like to a specific requirement modification request version
@@ -48,9 +50,24 @@ namespace SocialRequirements.Domain.Repository.Requirement
         /// <param name="companyId">Company ID</param>
         /// <param name="projectId">Project ID</param>
         /// <param name="requirementId">Requirement ID</param>
-        /// <param name="versionId">Requirement version ID</param>
+        /// <param name="requirementModificationId">Requirement modification ID</param>
+        /// <param name="versionId">Requirement modification version ID</param>
         /// <param name="statusId">Status ID to be set</param>
         /// <param name="personId">Person ID, to be set as modification user and may be the approval/rejection user.</param>
-        void UpdateStatus(long companyId, long projectId, long requirementId, long versionId, int statusId, long personId);
+        void UpdateStatus(long companyId, long projectId, long requirementId, long requirementModificationId, long versionId, int statusId, long personId);
+
+        /// <summary>
+        /// Updates the title and description for the specified requirement
+        /// </summary>
+        /// <param name="title">Requirement title</param>
+        /// <param name="description">Description title</param>
+        /// <param name="companyId">Company ID</param>
+        /// <param name="projectId">Project ID</param>
+        /// <param name="requirementId">Requirement ID</param>
+        /// <param name="requirementModificationId">Requirement modification ID</param>
+        /// <param name="versionId">Version ID</param>
+        /// <param name="personId">User that triggered the update</param>
+        void Update(string title, string description, long companyId, long projectId, long requirementId,
+            long requirementModificationId,  long versionId, long personId);
     }
 }
