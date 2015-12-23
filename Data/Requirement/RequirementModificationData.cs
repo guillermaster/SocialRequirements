@@ -92,6 +92,8 @@ namespace SocialRequirements.Data.Requirement
                     // get requirement and update it
                     var requirementModif = GetEntity(companyId, projectId, requirementId, requirementModificationId);
                     requirementModif.status_id = statusId;
+                    requirementModif.modifiedby_id = personId;
+                    requirementModif.modifiedon = DateTime.Now;
                     _context.SaveChanges();
 
                     // update requirement version

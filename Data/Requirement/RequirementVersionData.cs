@@ -69,6 +69,7 @@ namespace SocialRequirements.Data.Requirement
             var requirementVersion = Get(companyId, projectId, requirementId, versionId);
             requirementVersion.status_id = statusId;
             requirementVersion.modifiedby_id = personId;
+            requirementVersion.modifiedon = DateTime.Now;
             if (statusId == (int) GeneralCatalog.Detail.RequirementStatus.Approved ||
                 statusId == (int) GeneralCatalog.Detail.RequirementStatus.Rejected)
             {

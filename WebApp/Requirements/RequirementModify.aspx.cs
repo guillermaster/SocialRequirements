@@ -55,7 +55,24 @@ namespace SocialRequirements.Requirements
         }
         protected override void SubmitButton_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var requirementSrv = new RequirementSoapClient();
+                requirementSrv.SubmitRequirementModificationForApproval(CompanyId, ProjectId, RequirementId,
+                    RequirementModificationId, GetUsernameEncrypted());
+
+                ToggleModification(false);
+
+                LoadRequirement();
+
+                SetFadeOutMessage(GetMainUpdatePanel(this), PostSuccessPanel, PostSuccessMessage,
+                   "The requirement modification has been successfully submitted for approval.");
+            }
+            catch
+            {
+                SetFadeOutMessage(GetMainUpdatePanel(this), PostErrorPanel, PostErrorMessage,
+                    "An error occurred while submitting the requirement modification.");
+            }
         }
 
         protected override void ApproveButton_Click(object sender, EventArgs e)
