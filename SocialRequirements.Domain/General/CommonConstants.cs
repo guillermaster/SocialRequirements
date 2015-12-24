@@ -11,12 +11,18 @@
             public const string ReadEvenMore = "ReadEvenMore";
         }
 
+        public class FormsUrl
+        {
+            public const string Requirement = "~/Requirements/Requirement.aspx";
+        }
+
         public class QueryStringParams
         {
             public const string Id = "id";
             public const string CompanyId = "cid";
             public const string ProjectId = "pid";
             public const string RequirementId = "rid";
+            public const string Message = "msg";
         }
     }
 }

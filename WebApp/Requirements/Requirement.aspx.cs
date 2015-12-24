@@ -40,8 +40,13 @@ namespace SocialRequirements.Requirements
             RequirementId = long.Parse(Request.QueryString[CommonConstants.QueryStringParams.Id]);
             CompanyId = long.Parse(Request.QueryString[CommonConstants.QueryStringParams.CompanyId]);
             ProjectId = long.Parse(Request.QueryString[CommonConstants.QueryStringParams.ProjectId]);
-
+            
             LoadRequirement();
+
+            // if a message was passes in the query string, display it
+            var message = Request.QueryString[CommonConstants.QueryStringParams.Message];
+            if (!string.IsNullOrWhiteSpace(message))
+                SetFadeOutMessage(GetMainUpdatePanel(this), PostSuccessPanel, PostSuccessMessage, message);
         }
 
         protected virtual void SubmitButton_Click(object sender, EventArgs e)

@@ -227,7 +227,7 @@ namespace SocialRequirements.Data.Requirement
             }
         }
 
-        private Context.Entities.Requirement GetEntity(long companyId, long projectId, long requirementId)
+        public Context.Entities.Requirement GetEntity(long companyId, long projectId, long requirementId)
         {
             return
                 _context.Requirement.FirstOrDefault(

@@ -73,10 +73,7 @@ namespace SocialRequirements.Business.Requirement
         {
             var personId = _personData.GetPersonId(username);
 
-            _requirementModifData.UpdateStatus(companyId, projectId, requirementId, requirementModificationId,
-                (int)GeneralCatalog.Detail.RequirementStatus.Approved, personId);
-
-
+            _requirementModifData.Approve(companyId, projectId, requirementId, requirementModificationId, personId);
 
             // add activity feed log
             _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.RequirementModification,

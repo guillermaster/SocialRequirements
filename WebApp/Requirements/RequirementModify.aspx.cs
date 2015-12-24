@@ -94,11 +94,13 @@ namespace SocialRequirements.Requirements
             try
             {
                 var requirementSrv = new RequirementSoapClient();
-                requirementSrv.ApproveRequirement(CompanyId, ProjectId, RequirementId, GetUsernameEncrypted());
-                SetFadeOutMessage(GetMainUpdatePanel(this), PostSuccessPanel, PostSuccessMessage,
-                    "The requirement has been successfully approved.");
+                requirementSrv.ApproveRequirementModification(CompanyId, ProjectId, RequirementId, RequirementModificationId, GetUsernameEncrypted());
 
-                LoadRequirement();
+                Response.Redirect(CommonConstants.FormsUrl.Requirement + "?" + 
+                                  CommonConstants.QueryStringParams.Id + "=" + RequirementId + "&" + 
+                                  CommonConstants.QueryStringParams.CompanyId + "=" + CompanyId + "&" + 
+                                  CommonConstants.QueryStringParams.ProjectId + "=" + ProjectId + "&" +
+                                  CommonConstants.QueryStringParams.Message + "=" + "The requirement has been successfully updated.");
             }
             catch
             {
@@ -112,7 +114,7 @@ namespace SocialRequirements.Requirements
             try
             {
                 var requirementSrv = new RequirementSoapClient();
-                requirementSrv.RejectRequirement(CompanyId, ProjectId, RequirementId, GetUsernameEncrypted());
+                requirementSrv.RejectRequirementModification(CompanyId, ProjectId, RequirementId, RequirementModificationId, GetUsernameEncrypted());
                 SetFadeOutMessage(GetMainUpdatePanel(this), PostSuccessPanel, PostSuccessMessage,
                     "The requirement has been rejected.");
 

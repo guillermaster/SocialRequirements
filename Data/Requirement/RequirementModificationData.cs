@@ -90,18 +90,37 @@ namespace SocialRequirements.Data.Requirement
                 try
                 {
                     // update requirement modification status to approved
-                    UpdateStatus(companyId, projectId, requirementId, requirementModificationId,
-                        (int) GeneralCatalog.Detail.RequirementStatus.Approved, personId);
+                    // get requirement and update it
+                    var requirementModif = GetEntity(companyId, projectId, requirementId, requirementModificationId);
+                    requirementModif.status_id = (int)GeneralCatalog.Detail.RequirementStatus.Approved;
+                    requirementModif.modifiedby_id = personId;
+                    requirementModif.modifiedon = DateTime.Now;
+                    _context.SaveChanges();
 
+                    // update requirement version
+                    _requirementModifVersionData = new RequirementModificationVersionData(_context);
+                    _requirementModifVersionData.UpdateStatus(companyId, projectId, requirementId, requirementModificationId,
+                        requirementModif.requirement_modification_version_id, requirementModif.status_id, personId);
+
+                    // get all requirement modification data
                     var requirementModifDto = Get(companyId, projectId, requirementId, requirementModificationId);
 
                     // add new requirement version
                     var reqVersionData = new RequirementVersionData(_context);
-                    var requirementDto = reqVersionData.Add(requirementModifDto);
+                    var requirementDto = reqVersionData.Add(new RequirementDto(requirementModifDto));
 
                     // set current requirement version
                     var reqData = new RequirementData(_context);
                     reqData.UpdateVersionNumber(requirementDto);
+
+                    // update requirement
+                    // get requirement and update it
+                    var requirement = reqData.GetEntity(companyId, projectId, requirementId);
+                    requirement.title = requirementDto.Title;
+                    requirement.description = requirementDto.Description;
+                    requirement.modifiedby_id = personId;
+                    requirement.modifiedon = DateTime.Now;
+                    _context.SaveChanges();
 
                     scope.Commit();
                 }
@@ -201,7 +220,7 @@ namespace SocialRequirements.Data.Requirement
             return requirementModif;
         }
 
-        private RequirementModificationDto GetDtoFromEntity(RequirementModification requirement)
+        private static RequirementModificationDto GetDtoFromEntity(RequirementModification requirement)
         {
             var requirementDto = new RequirementModificationDto
             {
@@ -232,5 +251,10 @@ namespace SocialRequirements.Data.Requirement
 
             return requirementDto;
         }
+
+        //private RequirementDto GetRequirementDto(RequirementModificationDto requirementModification)
+        //{
+        //    var requirement
+        //}
     }
 }

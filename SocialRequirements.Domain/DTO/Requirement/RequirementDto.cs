@@ -27,6 +27,27 @@ namespace SocialRequirements.Domain.DTO.Requirement
             Approvedon = null;
         }
 
+        public RequirementDto(RequirementModificationDto requirementModification)
+        {
+            Id = requirementModification.RequirementId;
+            CompanyId = requirementModification.CompanyId;
+            ProjectId = requirementModification.ProjectId;
+            Title = requirementModification.Title;
+            Description = requirementModification.Description;
+            Agreed = requirementModification.Agreed;
+            Disagreed = requirementModification.Disagreed;
+            CommentsQuantity = requirementModification.CommentsQuantity;
+            StatusId = requirementModification.StatusId;
+            CreatedbyId = requirementModification.CreatedbyId;
+            Createdon = requirementModification.Createdon;
+            ModifiedbyId = requirementModification.ModifiedbyId;
+            Modifiedon = requirementModification.Modifiedon;
+            ApprovedbyId = requirementModification.ApprovedbyId;
+            Approvedon = requirementModification.Approvedon;
+            VersionId = requirementModification.VersionId;
+            VersionNumber = requirementModification.VersionNumber;
+        }
+
         public long Id { get; set; }
 
         public long CompanyId { get; set; }

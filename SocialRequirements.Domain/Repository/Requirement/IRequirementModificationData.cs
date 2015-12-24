@@ -53,5 +53,15 @@ namespace SocialRequirements.Domain.Repository.Requirement
         /// <param name="requirementModificationId">Requirement modification ID</param>
         /// <param name="personId">User that triggered the update</param>
         void Update(string title, string description, long companyId, long projectId, long requirementId, long requirementModificationId, long personId);
+
+        /// <summary>
+        /// Approves a requirement modification
+        /// </summary>
+        /// <param name="companyId">Company ID</param>
+        /// <param name="projectId">Project ID</param>
+        /// <param name="requirementId">Requirement ID</param>
+        /// <param name="requirementModificationId">Requirement modification ID</param>
+        /// <param name="personId">User ID that approved the requirement modification request</param>
+        void Approve(long companyId, long projectId, long requirementId, long requirementModificationId, long personId);
     }
 }
