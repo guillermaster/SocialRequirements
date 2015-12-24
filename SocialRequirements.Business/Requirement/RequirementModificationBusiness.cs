@@ -68,5 +68,31 @@ namespace SocialRequirements.Business.Requirement
             _requirementModifData.Update(title, description, companyId, projectId, requirementId,
                 requirementModificationId, personId);
         }
+
+        public void Approve(long companyId, long projectId, long requirementId, long requirementModificationId, string username)
+        {
+            var personId = _personData.GetPersonId(username);
+
+            _requirementModifData.UpdateStatus(companyId, projectId, requirementId, requirementModificationId,
+                (int)GeneralCatalog.Detail.RequirementStatus.Approved, personId);
+
+
+
+            // add activity feed log
+            _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.RequirementModification,
+                (int)GeneralCatalog.Detail.EntityActions.Approve, requirementModificationId, DateTime.Now, personId);
+        }
+
+        public void Reject(long companyId, long projectId, long requirementId, long requirementModificationId, string username)
+        {
+            var personId = _personData.GetPersonId(username);
+
+            _requirementModifData.UpdateStatus(companyId, projectId, requirementId, requirementModificationId,
+                (int)GeneralCatalog.Detail.RequirementStatus.Rejected, personId);
+
+            // add activity feed log
+            _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.RequirementModification,
+                (int)GeneralCatalog.Detail.EntityActions.Reject, requirementModificationId, DateTime.Now, personId);
+        }
     }
 }

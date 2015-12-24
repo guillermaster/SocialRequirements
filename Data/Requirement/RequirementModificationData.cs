@@ -83,6 +83,36 @@ namespace SocialRequirements.Data.Requirement
             _context.SaveChanges();
         }
 
+        public void Approve(long companyId, long projectId, long requirementId, long requirementModificationId, long personId)
+        {
+            using (var scope = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    // update requirement modification status to approved
+                    UpdateStatus(companyId, projectId, requirementId, requirementModificationId,
+                        (int) GeneralCatalog.Detail.RequirementStatus.Approved, personId);
+
+                    var requirementModifDto = Get(companyId, projectId, requirementId, requirementModificationId);
+
+                    // add new requirement version
+                    var reqVersionData = new RequirementVersionData(_context);
+                    var requirementDto = reqVersionData.Add(requirementModifDto);
+
+                    // set current requirement version
+                    var reqData = new RequirementData(_context);
+                    reqData.UpdateVersionNumber(requirementDto);
+
+                    scope.Commit();
+                }
+                catch
+                {
+                    scope.Rollback();
+                    throw;
+                }
+            }
+        }
+
         public void UpdateStatus(long companyId, long projectId, long requirementId, long requirementModificationId, int statusId, long personId)
         {
             using (var scope = _context.Database.BeginTransaction())

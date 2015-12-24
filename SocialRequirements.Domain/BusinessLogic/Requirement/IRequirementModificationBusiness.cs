@@ -58,5 +58,29 @@ namespace SocialRequirements.Domain.BusinessLogic.Requirement
         /// <param name="username">User who updates the requirement modification request</param>
         void Update(string title, string description, long companyId, long projectId, long requirementId,
             long requirementModificationId, string username);
+
+        /// <summary>
+        /// Approves a requirement modification requests and
+        /// creates a new version of the requirement 
+        /// (which will be automatically approved is the requirement was already approved,
+        /// otherwise will require requirement aproval)
+        /// </summary>
+        /// <param name="companyId">Company ID</param>
+        /// <param name="projectId">Project ID</param>
+        /// <param name="requirementId">Requirement ID</param>
+        /// <param name="requirementModificationId">Requirement Modification ID</param>
+        /// <param name="username">User who approves the requirement</param>
+        void Approve(long companyId, long projectId, long requirementId, long requirementModificationId, string username);
+
+        /// <summary>
+        /// Rejects a requirement modification request and
+        /// does not create a new version of the requirement
+        /// </summary>
+        /// <param name="companyId">Company ID</param>
+        /// <param name="projectId">Project ID</param>
+        /// <param name="requirementId">Requirement ID</param>
+        /// <param name="requirementModificationId">Requirement modification ID</param>
+        /// <param name="username">User who rejects the requirement</param>
+        void Reject(long companyId, long projectId, long requirementId, long requirementModificationId, string username);
     }
 }

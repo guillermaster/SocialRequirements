@@ -82,5 +82,11 @@ namespace SocialRequirements.Domain.Repository.Requirement
         /// <param name="requirementId">Requirement ID</param>
         /// <param name="personId">User that triggered the update</param>
         void Update(string title, string description, long companyId, long projectId, long requirementId, long personId);
+
+        /// <summary>
+        /// Updates the version number and version ID on the requirement
+        /// </summary>
+        /// <param name="requirementDto">Requirement</param>
+        void UpdateVersionNumber(RequirementDto requirementDto);
     }
 }

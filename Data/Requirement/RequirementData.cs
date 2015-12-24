@@ -16,6 +16,11 @@ namespace SocialRequirements.Data.Requirement
         private IRequirementCommentData _requirementCommentData;
         private const int MaxShortDescriptionLength = 590;
 
+        public RequirementData(ContextModel context)
+        {
+            _context = context;
+        }
+
         public RequirementData(ContextModel context, IRequirementVersionData requirementVersionData, IRequirementCommentData requirementCommentData)
         {
             _context = context;
@@ -63,7 +68,7 @@ namespace SocialRequirements.Data.Requirement
         /// Updates the version number and version ID on the requirement
         /// </summary>
         /// <param name="requirementDto">Requirement</param>
-        private void UpdateVersionNumber(RequirementDto requirementDto)
+        public void UpdateVersionNumber(RequirementDto requirementDto)
         {
             var requirement = GetEntity(requirementDto.CompanyId, requirementDto.ProjectId, requirementDto.Id);
 

@@ -119,6 +119,20 @@ namespace SocialRequirements.RequirementService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SubmitRequirementModificationForApproval", ReplyAction="*")]
         System.Threading.Tasks.Task<SocialRequirements.RequirementService.SubmitRequirementModificationForApprovalResponse> SubmitRequirementModificationForApprovalAsync(SocialRequirements.RequirementService.SubmitRequirementModificationForApprovalRequest request);
+        
+        // CODEGEN: Generating message contract since element name encUsername from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ApproveRequirementModification", ReplyAction="*")]
+        SocialRequirements.RequirementService.ApproveRequirementModificationResponse ApproveRequirementModification(SocialRequirements.RequirementService.ApproveRequirementModificationRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ApproveRequirementModification", ReplyAction="*")]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementService.ApproveRequirementModificationResponse> ApproveRequirementModificationAsync(SocialRequirements.RequirementService.ApproveRequirementModificationRequest request);
+        
+        // CODEGEN: Generating message contract since element name encUsername from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/RejectRequirementModification", ReplyAction="*")]
+        SocialRequirements.RequirementService.RejectRequirementModificationResponse RejectRequirementModification(SocialRequirements.RequirementService.RejectRequirementModificationRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/RejectRequirementModification", ReplyAction="*")]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementService.RejectRequirementModificationResponse> RejectRequirementModificationAsync(SocialRequirements.RequirementService.RejectRequirementModificationRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1219,7 +1233,7 @@ namespace SocialRequirements.RequirementService {
         public long requirementId;
         
         [System.Runtime.Serialization.DataMemberAttribute(Order=3)]
-        public long requirementModificaitonId;
+        public long requirementModificationId;
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=4)]
         public string encUsername;
@@ -1227,11 +1241,11 @@ namespace SocialRequirements.RequirementService {
         public SubmitRequirementModificationForApprovalRequestBody() {
         }
         
-        public SubmitRequirementModificationForApprovalRequestBody(long companyId, long projectId, long requirementId, long requirementModificaitonId, string encUsername) {
+        public SubmitRequirementModificationForApprovalRequestBody(long companyId, long projectId, long requirementId, long requirementModificationId, string encUsername) {
             this.companyId = companyId;
             this.projectId = projectId;
             this.requirementId = requirementId;
-            this.requirementModificaitonId = requirementModificaitonId;
+            this.requirementModificationId = requirementModificationId;
             this.encUsername = encUsername;
         }
     }
@@ -1260,6 +1274,160 @@ namespace SocialRequirements.RequirementService {
     public partial class SubmitRequirementModificationForApprovalResponseBody {
         
         public SubmitRequirementModificationForApprovalResponseBody() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class ApproveRequirementModificationRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="ApproveRequirementModification", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementService.ApproveRequirementModificationRequestBody Body;
+        
+        public ApproveRequirementModificationRequest() {
+        }
+        
+        public ApproveRequirementModificationRequest(SocialRequirements.RequirementService.ApproveRequirementModificationRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class ApproveRequirementModificationRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public long companyId;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=1)]
+        public long projectId;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=2)]
+        public long requirementId;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=3)]
+        public long requirementModificationId;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=4)]
+        public string encUsername;
+        
+        public ApproveRequirementModificationRequestBody() {
+        }
+        
+        public ApproveRequirementModificationRequestBody(long companyId, long projectId, long requirementId, long requirementModificationId, string encUsername) {
+            this.companyId = companyId;
+            this.projectId = projectId;
+            this.requirementId = requirementId;
+            this.requirementModificationId = requirementModificationId;
+            this.encUsername = encUsername;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class ApproveRequirementModificationResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="ApproveRequirementModificationResponse", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementService.ApproveRequirementModificationResponseBody Body;
+        
+        public ApproveRequirementModificationResponse() {
+        }
+        
+        public ApproveRequirementModificationResponse(SocialRequirements.RequirementService.ApproveRequirementModificationResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute()]
+    public partial class ApproveRequirementModificationResponseBody {
+        
+        public ApproveRequirementModificationResponseBody() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class RejectRequirementModificationRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="RejectRequirementModification", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementService.RejectRequirementModificationRequestBody Body;
+        
+        public RejectRequirementModificationRequest() {
+        }
+        
+        public RejectRequirementModificationRequest(SocialRequirements.RequirementService.RejectRequirementModificationRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class RejectRequirementModificationRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public long companyId;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=1)]
+        public long projectId;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=2)]
+        public long requirementId;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=3)]
+        public long requirementModificationId;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=4)]
+        public string encUsername;
+        
+        public RejectRequirementModificationRequestBody() {
+        }
+        
+        public RejectRequirementModificationRequestBody(long companyId, long projectId, long requirementId, long requirementModificationId, string encUsername) {
+            this.companyId = companyId;
+            this.projectId = projectId;
+            this.requirementId = requirementId;
+            this.requirementModificationId = requirementModificationId;
+            this.encUsername = encUsername;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class RejectRequirementModificationResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="RejectRequirementModificationResponse", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementService.RejectRequirementModificationResponseBody Body;
+        
+        public RejectRequirementModificationResponse() {
+        }
+        
+        public RejectRequirementModificationResponse(SocialRequirements.RequirementService.RejectRequirementModificationResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute()]
+    public partial class RejectRequirementModificationResponseBody {
+        
+        public RejectRequirementModificationResponseBody() {
         }
     }
     
@@ -1724,13 +1892,13 @@ namespace SocialRequirements.RequirementService {
             return base.Channel.SubmitRequirementModificationForApproval(request);
         }
         
-        public void SubmitRequirementModificationForApproval(long companyId, long projectId, long requirementId, long requirementModificaitonId, string encUsername) {
+        public void SubmitRequirementModificationForApproval(long companyId, long projectId, long requirementId, long requirementModificationId, string encUsername) {
             SocialRequirements.RequirementService.SubmitRequirementModificationForApprovalRequest inValue = new SocialRequirements.RequirementService.SubmitRequirementModificationForApprovalRequest();
             inValue.Body = new SocialRequirements.RequirementService.SubmitRequirementModificationForApprovalRequestBody();
             inValue.Body.companyId = companyId;
             inValue.Body.projectId = projectId;
             inValue.Body.requirementId = requirementId;
-            inValue.Body.requirementModificaitonId = requirementModificaitonId;
+            inValue.Body.requirementModificationId = requirementModificationId;
             inValue.Body.encUsername = encUsername;
             SocialRequirements.RequirementService.SubmitRequirementModificationForApprovalResponse retVal = ((SocialRequirements.RequirementService.RequirementSoap)(this)).SubmitRequirementModificationForApproval(inValue);
         }
@@ -1740,15 +1908,79 @@ namespace SocialRequirements.RequirementService {
             return base.Channel.SubmitRequirementModificationForApprovalAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SocialRequirements.RequirementService.SubmitRequirementModificationForApprovalResponse> SubmitRequirementModificationForApprovalAsync(long companyId, long projectId, long requirementId, long requirementModificaitonId, string encUsername) {
+        public System.Threading.Tasks.Task<SocialRequirements.RequirementService.SubmitRequirementModificationForApprovalResponse> SubmitRequirementModificationForApprovalAsync(long companyId, long projectId, long requirementId, long requirementModificationId, string encUsername) {
             SocialRequirements.RequirementService.SubmitRequirementModificationForApprovalRequest inValue = new SocialRequirements.RequirementService.SubmitRequirementModificationForApprovalRequest();
             inValue.Body = new SocialRequirements.RequirementService.SubmitRequirementModificationForApprovalRequestBody();
             inValue.Body.companyId = companyId;
             inValue.Body.projectId = projectId;
             inValue.Body.requirementId = requirementId;
-            inValue.Body.requirementModificaitonId = requirementModificaitonId;
+            inValue.Body.requirementModificationId = requirementModificationId;
             inValue.Body.encUsername = encUsername;
             return ((SocialRequirements.RequirementService.RequirementSoap)(this)).SubmitRequirementModificationForApprovalAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SocialRequirements.RequirementService.ApproveRequirementModificationResponse SocialRequirements.RequirementService.RequirementSoap.ApproveRequirementModification(SocialRequirements.RequirementService.ApproveRequirementModificationRequest request) {
+            return base.Channel.ApproveRequirementModification(request);
+        }
+        
+        public void ApproveRequirementModification(long companyId, long projectId, long requirementId, long requirementModificationId, string encUsername) {
+            SocialRequirements.RequirementService.ApproveRequirementModificationRequest inValue = new SocialRequirements.RequirementService.ApproveRequirementModificationRequest();
+            inValue.Body = new SocialRequirements.RequirementService.ApproveRequirementModificationRequestBody();
+            inValue.Body.companyId = companyId;
+            inValue.Body.projectId = projectId;
+            inValue.Body.requirementId = requirementId;
+            inValue.Body.requirementModificationId = requirementModificationId;
+            inValue.Body.encUsername = encUsername;
+            SocialRequirements.RequirementService.ApproveRequirementModificationResponse retVal = ((SocialRequirements.RequirementService.RequirementSoap)(this)).ApproveRequirementModification(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementService.ApproveRequirementModificationResponse> SocialRequirements.RequirementService.RequirementSoap.ApproveRequirementModificationAsync(SocialRequirements.RequirementService.ApproveRequirementModificationRequest request) {
+            return base.Channel.ApproveRequirementModificationAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SocialRequirements.RequirementService.ApproveRequirementModificationResponse> ApproveRequirementModificationAsync(long companyId, long projectId, long requirementId, long requirementModificationId, string encUsername) {
+            SocialRequirements.RequirementService.ApproveRequirementModificationRequest inValue = new SocialRequirements.RequirementService.ApproveRequirementModificationRequest();
+            inValue.Body = new SocialRequirements.RequirementService.ApproveRequirementModificationRequestBody();
+            inValue.Body.companyId = companyId;
+            inValue.Body.projectId = projectId;
+            inValue.Body.requirementId = requirementId;
+            inValue.Body.requirementModificationId = requirementModificationId;
+            inValue.Body.encUsername = encUsername;
+            return ((SocialRequirements.RequirementService.RequirementSoap)(this)).ApproveRequirementModificationAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SocialRequirements.RequirementService.RejectRequirementModificationResponse SocialRequirements.RequirementService.RequirementSoap.RejectRequirementModification(SocialRequirements.RequirementService.RejectRequirementModificationRequest request) {
+            return base.Channel.RejectRequirementModification(request);
+        }
+        
+        public void RejectRequirementModification(long companyId, long projectId, long requirementId, long requirementModificationId, string encUsername) {
+            SocialRequirements.RequirementService.RejectRequirementModificationRequest inValue = new SocialRequirements.RequirementService.RejectRequirementModificationRequest();
+            inValue.Body = new SocialRequirements.RequirementService.RejectRequirementModificationRequestBody();
+            inValue.Body.companyId = companyId;
+            inValue.Body.projectId = projectId;
+            inValue.Body.requirementId = requirementId;
+            inValue.Body.requirementModificationId = requirementModificationId;
+            inValue.Body.encUsername = encUsername;
+            SocialRequirements.RequirementService.RejectRequirementModificationResponse retVal = ((SocialRequirements.RequirementService.RequirementSoap)(this)).RejectRequirementModification(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementService.RejectRequirementModificationResponse> SocialRequirements.RequirementService.RequirementSoap.RejectRequirementModificationAsync(SocialRequirements.RequirementService.RejectRequirementModificationRequest request) {
+            return base.Channel.RejectRequirementModificationAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SocialRequirements.RequirementService.RejectRequirementModificationResponse> RejectRequirementModificationAsync(long companyId, long projectId, long requirementId, long requirementModificationId, string encUsername) {
+            SocialRequirements.RequirementService.RejectRequirementModificationRequest inValue = new SocialRequirements.RequirementService.RejectRequirementModificationRequest();
+            inValue.Body = new SocialRequirements.RequirementService.RejectRequirementModificationRequestBody();
+            inValue.Body.companyId = companyId;
+            inValue.Body.projectId = projectId;
+            inValue.Body.requirementId = requirementId;
+            inValue.Body.requirementModificationId = requirementModificationId;
+            inValue.Body.encUsername = encUsername;
+            return ((SocialRequirements.RequirementService.RequirementSoap)(this)).RejectRequirementModificationAsync(inValue);
         }
     }
 }

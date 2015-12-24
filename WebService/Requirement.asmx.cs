@@ -136,10 +136,24 @@ namespace WebService
         }
 
         [WebMethod]
-        public void SubmitRequirementModificationForApproval(long companyId, long projectId, long requirementId, long requirementModificaitonId, string encUsername)
+        public void SubmitRequirementModificationForApproval(long companyId, long projectId, long requirementId, long requirementModificationId, string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
-            RequirementModificationBusiness.SubmitForApproval(companyId, projectId, requirementId, requirementModificaitonId, username);
+            RequirementModificationBusiness.SubmitForApproval(companyId, projectId, requirementId, requirementModificationId, username);
+        }
+
+        [WebMethod]
+        public void ApproveRequirementModification(long companyId, long projectId, long requirementId, long requirementModificationId, string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            RequirementModificationBusiness.Approve(companyId, projectId, requirementId, requirementModificationId, username);
+        }
+
+        [WebMethod]
+        public void RejectRequirementModification(long companyId, long projectId, long requirementId, long requirementModificationId, string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            RequirementModificationBusiness.Reject(companyId, projectId, requirementId, requirementModificationId, username);
         }
     }
 }
