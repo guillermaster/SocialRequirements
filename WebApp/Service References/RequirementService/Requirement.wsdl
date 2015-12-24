@@ -248,6 +248,34 @@
       <s:element name="RejectRequirementModificationResponse">
         <s:complexType />
       </s:element>
+      <s:element name="LikeRequirementModification">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="companyId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="projectId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requirementId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requirementModificationId" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="encUsername" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LikeRequirementModificationResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DislikeRequirementModification">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="companyId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="projectId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requirementId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requirementModificationId" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="encUsername" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DislikeRequirementModificationResponse">
+        <s:complexType />
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="AddRequirementSoapIn">
@@ -352,6 +380,18 @@
   <wsdl:message name="RejectRequirementModificationSoapOut">
     <wsdl:part name="parameters" element="tns:RejectRequirementModificationResponse" />
   </wsdl:message>
+  <wsdl:message name="LikeRequirementModificationSoapIn">
+    <wsdl:part name="parameters" element="tns:LikeRequirementModification" />
+  </wsdl:message>
+  <wsdl:message name="LikeRequirementModificationSoapOut">
+    <wsdl:part name="parameters" element="tns:LikeRequirementModificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="DislikeRequirementModificationSoapIn">
+    <wsdl:part name="parameters" element="tns:DislikeRequirementModification" />
+  </wsdl:message>
+  <wsdl:message name="DislikeRequirementModificationSoapOut">
+    <wsdl:part name="parameters" element="tns:DislikeRequirementModificationResponse" />
+  </wsdl:message>
   <wsdl:portType name="RequirementSoap">
     <wsdl:operation name="AddRequirement">
       <wsdl:input message="tns:AddRequirementSoapIn" />
@@ -420,6 +460,14 @@
     <wsdl:operation name="RejectRequirementModification">
       <wsdl:input message="tns:RejectRequirementModificationSoapIn" />
       <wsdl:output message="tns:RejectRequirementModificationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LikeRequirementModification">
+      <wsdl:input message="tns:LikeRequirementModificationSoapIn" />
+      <wsdl:output message="tns:LikeRequirementModificationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DislikeRequirementModification">
+      <wsdl:input message="tns:DislikeRequirementModificationSoapIn" />
+      <wsdl:output message="tns:DislikeRequirementModificationSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="RequirementSoap" type="tns:RequirementSoap">
@@ -577,6 +625,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="LikeRequirementModification">
+      <soap:operation soapAction="http://tempuri.org/LikeRequirementModification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DislikeRequirementModification">
+      <soap:operation soapAction="http://tempuri.org/DislikeRequirementModification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="RequirementSoap12" type="tns:RequirementSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -726,6 +792,24 @@
     </wsdl:operation>
     <wsdl:operation name="RejectRequirementModification">
       <soap12:operation soapAction="http://tempuri.org/RejectRequirementModification" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LikeRequirementModification">
+      <soap12:operation soapAction="http://tempuri.org/LikeRequirementModification" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DislikeRequirementModification">
+      <soap12:operation soapAction="http://tempuri.org/DislikeRequirementModification" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

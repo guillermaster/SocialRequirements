@@ -29,9 +29,10 @@ namespace SocialRequirements.Domain.Repository.Requirement
         /// <param name="companyId">Company ID</param>
         /// <param name="projectId">Project ID</param>
         /// <param name="requirementId">Requirement ID</param>
-        /// <param name="requirementVersionId">Version ID</param>
+        /// <param name="requirementModificationId">Requirement modification ID</param>
+        /// <param name="requirementModifVersionId">Version ID</param>
         /// <param name="personId">Person ID</param>
-        void Like(long companyId, long projectId, long requirementId, long requirementVersionId, long personId);
+        void Like(long companyId, long projectId, long requirementId, long requirementModificationId, long requirementModifVersionId, long personId);
 
         /// <summary>
         /// Adds dislike to a specific requirement modification request version
@@ -39,9 +40,10 @@ namespace SocialRequirements.Domain.Repository.Requirement
         /// <param name="companyId">Company ID</param>
         /// <param name="projectId">Project ID</param>
         /// <param name="requirementId">Requirement ID</param>
-        /// <param name="requirementVersionId">Version ID</param>
+        /// <param name="requirementModificationId">Requirement modification ID</param>
+        /// <param name="requirementModifVersionId">Version ID</param>
         /// <param name="personId">Person ID</param>
-        void Dislike(long companyId, long projectId, long requirementId, long requirementVersionId, long personId);
+        void Dislike(long companyId, long projectId, long requirementId, long requirementModificationId, long requirementModifVersionId, long personId);
 
         /// <summary>
         /// Updates the status of a requirement modification request version. Tf the status is approved, the approval user is set.

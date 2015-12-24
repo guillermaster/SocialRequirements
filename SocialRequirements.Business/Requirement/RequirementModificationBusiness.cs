@@ -91,5 +91,27 @@ namespace SocialRequirements.Business.Requirement
             _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.RequirementModification,
                 (int)GeneralCatalog.Detail.EntityActions.Reject, requirementModificationId, DateTime.Now, personId);
         }
+
+        public void Like(long companyId, long projectId, long requirementId, long requirementModificationId, string username)
+        {
+            var personId = _personData.GetPersonId(username);
+
+            _requirementModifData.Like(companyId, projectId, requirementId, requirementModificationId, personId);
+
+            // add activity feed log
+            _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.RequirementModification,
+                (int)GeneralCatalog.Detail.EntityActions.Like, requirementModificationId, DateTime.Now, personId);
+        }
+
+        public void Dislike(long companyId, long projectId, long requirementId, long requirementModificationId, string username)
+        {
+            var personId = _personData.GetPersonId(username);
+
+            _requirementModifData.Dislike(companyId, projectId, requirementId, requirementModificationId, personId);
+
+            // add activity feed log
+            _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.RequirementModification,
+                (int)GeneralCatalog.Detail.EntityActions.Dislike, requirementModificationId, DateTime.Now, personId);
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.SqlTypes;
 using System.Globalization;
 using SocialRequirements.Domain.DTO.Requirement;
 using SocialRequirements.Domain.General;
@@ -26,6 +27,12 @@ namespace SocialRequirements.Requirements
         {
             get { return ViewState["ProjectId"] != null ? int.Parse(ViewState["ProjectId"].ToString()) : 0; }
             set { ViewState["ProjectId"] = value; }
+        }
+
+        protected bool EditionMode
+        {
+            get { return ViewState["EditionMode"] != null && bool.Parse(ViewState["EditionMode"].ToString()); }
+            set { ViewState["EditionMode"] = value; }
         }
         #endregion
 
@@ -56,7 +63,8 @@ namespace SocialRequirements.Requirements
                 var requirementSrv = new RequirementSoapClient();
                 requirementSrv.SubmitRequirementForApproval(CompanyId, ProjectId, RequirementId, GetUsernameEncrypted());
 
-                ToggleModification(false);
+                EditionMode = false;
+                ToggleModification();
 
                 LoadRequirement();
 
@@ -78,7 +86,8 @@ namespace SocialRequirements.Requirements
                 requirementSrv.UpdateRequirement(RequirementTitleInput.Text, RequirementDescriptionInput.Text, CompanyId,
                     ProjectId, RequirementId, GetUsernameEncrypted());
 
-                ToggleModification(false);
+                EditionMode = false;
+                ToggleModification();
 
                 LoadRequirement();
 
@@ -148,22 +157,24 @@ namespace SocialRequirements.Requirements
             else
             {
                 // enable update form controls
-                ToggleModification(true);
+                EditionMode = true;
+                ToggleModification();
             }
         }
 
         protected virtual void UndoEditButton_OnClick(object sender, EventArgs e)
         {
-            ToggleModification(false);
+            EditionMode = false;
+            ToggleModification();
             LoadRequirement();
         }
 
-        protected void LikeButton_OnClick(object sender, EventArgs e)
+        protected virtual void LikeButton_OnClick(object sender, EventArgs e)
         {
             throw new NotImplementedException();
         }
 
-        protected void DislikeButton_OnClick(object sender, EventArgs e)
+        protected virtual void DislikeButton_OnClick(object sender, EventArgs e)
         {
             throw new NotImplementedException();
         }
@@ -245,6 +256,8 @@ namespace SocialRequirements.Requirements
             ModifiedByName.Text = requirement.ModifiedByName;
             CreatedOn.Text = requirement.Createdon.ToString(CultureInfo.InvariantCulture);
             ModifiedOn.Text = requirement.Modifiedon.ToString(CultureInfo.InvariantCulture);
+            LikeCounter.Text = requirement.Agreed.ToString();
+            DislikeCounter.Text = requirement.Disagreed.ToString();
 
             // set action buttons visibility
             SaveButton.Visible = false;
@@ -255,17 +268,17 @@ namespace SocialRequirements.Requirements
             RejectButton.Visible = requirement.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.PendingApproval;
         }
 
-        protected void ToggleModification(bool visible)
+        protected void ToggleModification()
         {
-            RequirementTitle.Visible = !visible;
-            RequirementTitleInput.Visible = visible;
-            RequirementDescription.Visible = !visible;
-            RequirementDescriptionInput.Visible = visible;
-            SaveButton.Visible = visible;
-            UndoEditButton.Visible = visible;
-            ApproveButton.Visible = !visible && IsPendingApproval();
-            RejectButton.Visible = !visible && IsPendingApproval();
-            EditButton.Visible = !visible;
+            RequirementTitle.Visible = !EditionMode;
+            RequirementTitleInput.Visible = EditionMode;
+            RequirementDescription.Visible = !EditionMode;
+            RequirementDescriptionInput.Visible = EditionMode;
+            SaveButton.Visible = EditionMode;
+            UndoEditButton.Visible = EditionMode;
+            ApproveButton.Visible = !EditionMode && IsPendingApproval();
+            RejectButton.Visible = !EditionMode && IsPendingApproval();
+            EditButton.Visible = !EditionMode;
         }
         #endregion
     }

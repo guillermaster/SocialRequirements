@@ -155,5 +155,19 @@ namespace WebService
             var username = Encryption.Decrypt(encUsername);
             RequirementModificationBusiness.Reject(companyId, projectId, requirementId, requirementModificationId, username);
         }
+
+        [WebMethod]
+        public void LikeRequirementModification(long companyId, long projectId, long requirementId, long requirementModificationId, string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            RequirementModificationBusiness.Like(companyId, projectId, requirementId, requirementModificationId, username);
+        }
+
+        [WebMethod]
+        public void DislikeRequirementModification(long companyId, long projectId, long requirementId, long requirementModificationId, string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            RequirementModificationBusiness.Dislike(companyId, projectId, requirementId, requirementModificationId, username);
+        }
     }
 }

@@ -82,5 +82,25 @@ namespace SocialRequirements.Domain.BusinessLogic.Requirement
         /// <param name="requirementModificationId">Requirement modification ID</param>
         /// <param name="username">User who rejects the requirement</param>
         void Reject(long companyId, long projectId, long requirementId, long requirementModificationId, string username);
+
+        /// <summary>
+        /// Adds a like to the specified requirement modification request
+        /// </summary>
+        /// <param name="companyId">Company identifier</param>
+        /// <param name="projectId">Project identifier</param>
+        /// <param name="requirementId">Requirement ID</param>
+        /// <param name="requirementModificationId">Requirement Modification ID</param>
+        /// <param name="username">Username who gave the like</param>
+        void Like(long companyId, long projectId, long requirementId, long requirementModificationId, string username);
+
+        /// <summary>
+        /// Adds a like to the specified requirement modification request
+        /// </summary>
+        /// <param name="companyId">Company identifier</param>
+        /// <param name="projectId">Project identifier</param>
+        /// <param name="requirementId">Requirement ID</param>
+        /// <param name="requirementModificationId">Requirement modification ID</param>
+        /// <param name="username">Username who gave the dislike</param>
+        void Dislike(long companyId, long projectId, long requirementId, long requirementModificationId, string username);
     }
 }

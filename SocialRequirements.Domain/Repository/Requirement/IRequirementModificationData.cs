@@ -63,5 +63,25 @@ namespace SocialRequirements.Domain.Repository.Requirement
         /// <param name="requirementModificationId">Requirement modification ID</param>
         /// <param name="personId">User ID that approved the requirement modification request</param>
         void Approve(long companyId, long projectId, long requirementId, long requirementModificationId, long personId);
+
+        /// <summary>
+        /// Adds a like to the specified requirement
+        /// </summary>
+        /// <param name="companyId">Company ID</param>
+        /// <param name="projectId">Project ID</param>
+        /// <param name="requirementId">Requirement ID</param>
+        /// <param name="requirementModificationId">Requirement Modification ID</param>
+        /// <param name="personId">ID of the user who gave the like</param>
+        void Like(long companyId, long projectId, long requirementId, long requirementModificationId, long personId);
+
+        /// <summary>
+        /// Adds a like to the specified requirement modification request
+        /// </summary>
+        /// <param name="companyId">Company ID</param>
+        /// <param name="projectId">Project ID</param>
+        /// <param name="requirementId">Requirement ID</param>
+        /// <param name="requirementModificationId">Requirement Modification ID</param>
+        /// <param name="personId">ID of the user who gave the dislike</param>
+        void Dislike(long companyId, long projectId, long requirementId, long requirementModificationId, long personId);
     }
 }

@@ -34,7 +34,8 @@ namespace SocialRequirements.Requirements
             ProjectId = long.Parse(Request.QueryString[CommonConstants.QueryStringParams.ProjectId]);
 
             LoadRequirement();
-            ToggleModification(true);
+            EditionMode = true;
+            ToggleModification();
         }
 
         protected override void SaveButton_Click(object sender, EventArgs e)
@@ -59,7 +60,8 @@ namespace SocialRequirements.Requirements
                         GetUsernameEncrypted());
                 }
                 LoadRequirement();
-                ToggleModification(false);
+                EditionMode = false;
+                ToggleModification();
             }
             catch
             {
@@ -67,6 +69,7 @@ namespace SocialRequirements.Requirements
                     "An error occurred while creating the requirement modification request");
             }
         }
+
         protected override void SubmitButton_Click(object sender, EventArgs e)
         {
             try
@@ -75,7 +78,8 @@ namespace SocialRequirements.Requirements
                 requirementSrv.SubmitRequirementModificationForApproval(CompanyId, ProjectId, RequirementId,
                     RequirementModificationId, GetUsernameEncrypted());
 
-                ToggleModification(false);
+                EditionMode = false;
+                ToggleModification();
 
                 LoadRequirement();
 
@@ -129,13 +133,51 @@ namespace SocialRequirements.Requirements
         
         protected override void EditButton_OnClick(object sender, EventArgs e)
         {
-            ToggleModification(true);
+            EditionMode = true;
+            ToggleModification();
         }
 
         protected override void UndoEditButton_OnClick(object sender, EventArgs e)
         {
-            ToggleModification(false);
+            EditionMode = false;
+            ToggleModification();
             LoadRequirement();
+        }
+
+        protected override void LikeButton_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                var requirementSrv = new RequirementSoapClient();
+                requirementSrv.LikeRequirementModification(CompanyId, ProjectId, RequirementId, RequirementModificationId, GetUsernameEncrypted());
+                
+                LoadRequirement();
+
+                ToggleModification();
+            }
+            catch
+            {
+                SetFadeOutMessage(GetMainUpdatePanel(this), PostErrorPanel, PostErrorMessage,
+                    "An error occurred.");
+            }
+        }
+
+        protected override void DislikeButton_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                var requirementSrv = new RequirementSoapClient();
+                requirementSrv.DislikeRequirementModification(CompanyId, ProjectId, RequirementId, RequirementModificationId, GetUsernameEncrypted());
+
+                LoadRequirement();
+
+                ToggleModification();
+            }
+            catch
+            {
+                SetFadeOutMessage(GetMainUpdatePanel(this), PostErrorPanel, PostErrorMessage,
+                    "An error occurred.");
+            }
         }
 
         protected override void CommentsButton_OnClick(object sender, EventArgs e)

@@ -446,7 +446,7 @@
                             <nav role="navigation" class="widget-body">
                                 <ul class="acc-menu">
                                     <li class="nav-separator">Explore</li>
-                                    <li><a href="Default.aspx"><i class="fa fa-home"></i><span>Home</span></a></li>
+                                    <li><asp:HyperLink runat="server" NavigateUrl="~/Default.aspx"><i class="fa fa-home"></i><span>Home</span></asp:HyperLink></li>
                                     <!-- <li><a href="javascript:;"><i class="fa fa-user"></i><span>More Dashboard Pages</span></a>
 			<ul class="acc-menu">
 				<li><a href="sales-force.html">Sales Force</a></li>
@@ -458,7 +458,7 @@
 		</li> -->
                                     <li><a href="javascript:;"><i class="fa fa-columns"></i><span>Requirements</span><span class="badge badge-primary">8</span></a>
                                         <ul class="acc-menu">
-                                            <li><asp:HyperLink runat="server" NavigateUrl="Requirements/RequirementsList.aspx">All requirements</asp:HyperLink></li>
+                                            <li><asp:HyperLink runat="server" NavigateUrl="~/Requirements/RequirementsList.aspx">All requirements</asp:HyperLink></li>
 
                                             <li><a href="layout-fixed-sidebars.html">Stretch Sidebars</a></li>
 

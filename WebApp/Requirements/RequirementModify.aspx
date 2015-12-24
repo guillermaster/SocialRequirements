@@ -7,7 +7,7 @@
     <ul class="demo-btns">
         <li>
             <asp:LinkButton runat="server" CssClass="btn btn-default" ID="SubmitButton" OnClick="SubmitButton_Click" ToolTip="Submit for approval">
-                <i class="fa fa-fw fa-legal">1</i>
+                <i class="fa fa-fw fa-legal"></i>
             </asp:LinkButton>
         </li>
         <li>

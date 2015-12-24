@@ -132,6 +132,62 @@ namespace SocialRequirements.Data.Requirement
             }
         }
 
+        public void Like(long companyId, long projectId, long requirementId, long requirementModificationId, long personId)
+        {
+            using (var scope = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    // update like on requirement
+                    var requirementModif = GetEntity(companyId, projectId, requirementId, requirementModificationId);
+                    if (requirementModif == null) return;
+                    requirementModif.agreed++;
+                    _context.SaveChanges();
+
+                    // update like on current requirement version
+                    _requirementModifVersionData = new RequirementModificationVersionData(_context);
+                    _requirementModifVersionData.Like(requirementModif.company_id, requirementModif.project_id,
+                        requirementModif.requirement_id,
+                        requirementModif.id, requirementModif.requirement_modification_version_id, personId);
+
+                    scope.Commit();
+                }
+                catch
+                {
+                    scope.Rollback();
+                    throw;
+                }
+            }
+        }
+
+        public void Dislike(long companyId, long projectId, long requirementId, long requirementModificationId, long personId)
+        {
+            using (var scope = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    // update like on requirement
+                    var requirementModif = GetEntity(companyId, projectId, requirementId, requirementModificationId);
+                    if (requirementModif == null) return;
+                    requirementModif.disagreed++;
+                    _context.SaveChanges();
+
+                    // update like on current requirement version
+                    _requirementModifVersionData = new RequirementModificationVersionData(_context);
+                    _requirementModifVersionData.Dislike(requirementModif.company_id, requirementModif.project_id,
+                        requirementModif.requirement_id,
+                        requirementModif.id, requirementModif.requirement_modification_version_id, personId);
+
+                    scope.Commit();
+                }
+                catch
+                {
+                    scope.Rollback();
+                    throw;
+                }
+            }
+        }
+
         public void UpdateStatus(long companyId, long projectId, long requirementId, long requirementModificationId, int statusId, long personId)
         {
             using (var scope = _context.Database.BeginTransaction())

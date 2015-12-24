@@ -46,14 +46,26 @@ namespace SocialRequirements.Data.Requirement
             return requirementVersion != null ? GetDtoFromEntity(requirementVersion) : null;
         }
 
-        public void Like(long companyId, long projectId, long requirementId, long requirementVersionId, long personId)
+        public void Like(long companyId, long projectId, long requirementId, long requirementModificationId, long requirementModifVersionId, long personId)
         {
-            throw new NotImplementedException();
+            var requirementModifVersion = Get(companyId, projectId, requirementId, requirementModificationId,
+                requirementModifVersionId);
+
+            if (requirementModifVersion == null) return;
+
+            requirementModifVersion.agreed++;
+            _context.SaveChanges();
         }
 
-        public void Dislike(long companyId, long projectId, long requirementId, long requirementVersionId, long personId)
+        public void Dislike(long companyId, long projectId, long requirementId, long requirementModificationId, long requirementModifVersionId, long personId)
         {
-            throw new NotImplementedException();
+            var requirementModifVersion = Get(companyId, projectId, requirementId, requirementModificationId,
+                requirementModifVersionId);
+
+            if (requirementModifVersion == null) return;
+
+            requirementModifVersion.disagreed++;
+            _context.SaveChanges();
         }
 
         public void UpdateStatus(long companyId, long projectId, long requirementId, long requirementModificationId, long versionId, int statusId, long personId)
