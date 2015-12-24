@@ -198,33 +198,6 @@ namespace SocialRequirements.Requirements
             EditButton.Visible = ModificationRequestExists();
         }
 
-        //private void SetFormData(RequirementDto requirement)
-        //{
-        //    // set requirement data in UI controls
-        //    RequirementTitle.Text = requirement.Title;
-        //    RequirementTitleInput.Text = requirement.Title;
-        //    RequirementDescriptionLabel.Text = requirement.Description;
-        //    RequirementDescriptionInput.Text = requirement.Description;
-        //    RequirementStatus.Text = requirement.Status;
-        //    RequirementVersion.Text = requirement.VersionNumber.ToString();
-        //    CreatedByName.Text = requirement.CreatedByName;
-        //    ModifiedByName.Text = requirement.ModifiedByName;
-        //    CreatedOn.Text = requirement.Createdon.ToString(CultureInfo.InvariantCulture);
-        //    ModifiedOn.Text = requirement.Modifiedon.ToString(CultureInfo.InvariantCulture);
-
-        //    // set action buttons visibility
-        //    SaveButton.Visible = !ModificationRequestExists();
-        //    SubmitButton.Visible = ModificationRequestExists() && requirement.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.Draft;
-        //    ApproveButton.Visible = ModificationRequestExists() && requirement.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.PendingApproval;
-        //    RejectButton.Visible = ModificationRequestExists() && requirement.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.PendingApproval;
-        //    EditButton.Visible = ModificationRequestExists() &&
-        //                         (requirement.StatusId == (int) GeneralCatalog.Detail.RequirementStatus.Draft ||
-        //                          requirement.StatusId == (int) GeneralCatalog.Detail.RequirementStatus.PendingApproval);
-        //    UndoEditButton.Visible = false;
-        //    CommentsButton.Visible = ModificationRequestExists();
-        //    HistoryButton.Visible = ModificationRequestExists();
-        //    UploadButton.Visible = ModificationRequestExists();
-        //}
         #endregion
     }
 }

@@ -221,6 +221,11 @@ namespace SocialRequirements.Requirements
                    int.Parse(RequirementStatusId.Value) == (int) GeneralCatalog.Detail.RequirementStatus.Rejected;
         }
 
+        protected bool IsPendingApproval()
+        {
+            return int.Parse(RequirementStatusId.Value) == (int) GeneralCatalog.Detail.RequirementStatus.PendingApproval;
+        }
+
         protected virtual void SetFormData(RequirementDto requirement)
         {
             // set requirement data in UI controls
@@ -253,8 +258,8 @@ namespace SocialRequirements.Requirements
             RequirementDescriptionInput.Visible = visible;
             SaveButton.Visible = visible;
             UndoEditButton.Visible = visible;
-            ApproveButton.Visible = !visible;
-            RejectButton.Visible = !visible;
+            ApproveButton.Visible = !visible && IsPendingApproval();
+            RejectButton.Visible = !visible && IsPendingApproval();
             EditButton.Visible = !visible;
         }
         #endregion
