@@ -68,7 +68,8 @@ namespace SocialRequirements.Data.Requirement
                 RequirementVersionId = requirementComment.requirement_version_id,
                 Comment = requirementComment.comment,
                 CreatedbyId = requirementComment.createdby_id,
-                Createdon = requirementComment.createdon
+                Createdon = requirementComment.createdon,
+                CreatedByName = requirementComment.Person.first_name + " " + requirementComment.Person.last_name
             };
             return requirementCommentDto;
         }

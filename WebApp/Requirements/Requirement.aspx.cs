@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlTypes;
 using System.Globalization;
 using SocialRequirements.Domain.DTO.Requirement;
@@ -10,6 +11,11 @@ namespace SocialRequirements.Requirements
 {
     public partial class Requirement : SocialRequirementsPrivatePage
     {
+        #region Constants
+        private const string ViewCommentsLabel = "View comments";
+        private const string HideCommentsLabel = "Hide comments";
+        #endregion
+
         #region Properties
         protected long CompanyId
         {
@@ -171,17 +177,43 @@ namespace SocialRequirements.Requirements
 
         protected virtual void LikeButton_OnClick(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var requirementSrv = new RequirementSoapClient();
+                requirementSrv.LikeRequirement(CompanyId, ProjectId, RequirementId, GetUsernameEncrypted());
+
+                LoadRequirement();
+
+                ToggleModification();
+            }
+            catch
+            {
+                SetFadeOutMessage(GetMainUpdatePanel(this), PostErrorPanel, PostErrorMessage,
+                    "An error occurred.");
+            }
         }
 
         protected virtual void DislikeButton_OnClick(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var requirementSrv = new RequirementSoapClient();
+                requirementSrv.DislikeRequirement(CompanyId, ProjectId, RequirementId, GetUsernameEncrypted());
+
+                LoadRequirement();
+
+                ToggleModification();
+            }
+            catch
+            {
+                SetFadeOutMessage(GetMainUpdatePanel(this), PostErrorPanel, PostErrorMessage,
+                    "An error occurred.");
+            }
         }
 
         protected virtual void CommentsButton_OnClick(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            ToggleComments();
         }
 
         protected virtual void HistoryButton_OnClick(object sender, EventArgs e)
@@ -192,6 +224,14 @@ namespace SocialRequirements.Requirements
         protected virtual void UploadButton_OnClick(object sender, EventArgs e)
         {
             throw new NotImplementedException();
+        }
+        #endregion
+
+        #region Comments Events
+
+        protected void ViewHideCommentsButton_Click(object sender, EventArgs e)
+        {
+            ToggleComments();
         }
         #endregion
 
@@ -213,6 +253,25 @@ namespace SocialRequirements.Requirements
             var serializer = new ObjectSerializer<RequirementModificationDto>();
             var requirementModifDto = (RequirementModificationDto)serializer.Deserialize(requirementModif);
             return requirementModifDto.Id;
+        }
+
+        protected List<RequirementCommentDto> GetComments()
+        {
+            var requirementSrv = new RequirementSoapClient();
+            var comments = requirementSrv.GetRequirementComments(CompanyId, ProjectId, RequirementId);
+
+            var serializer = new ObjectSerializer<List<RequirementCommentDto>>();
+            return (List<RequirementCommentDto>) serializer.Deserialize(comments);
+        }
+
+        protected void AddNewCommentButton_Click(object sender, EventArgs e)
+        {
+            var requirementSrv = new RequirementSoapClient();
+            requirementSrv.CommentRequirement(CompanyId, ProjectId, RequirementId, NewCommentInput.Text,
+                GetUsernameEncrypted());
+            SetRequirementComments();
+            // clear comment input box
+            NewCommentInput.Text = string.Empty;
         }
         #endregion
 
@@ -279,6 +338,20 @@ namespace SocialRequirements.Requirements
             ApproveButton.Visible = !EditionMode && IsPendingApproval();
             RejectButton.Visible = !EditionMode && IsPendingApproval();
             EditButton.Visible = !EditionMode;
+        }
+
+        protected void ToggleComments()
+        {
+            CommentsPanel.Visible = !CommentsPanel.Visible;
+            ViewHideCommentsButton.Text = CommentsPanel.Visible ? HideCommentsLabel : ViewCommentsLabel;
+            if (!CommentsPanel.Visible) return;
+            SetRequirementComments();
+        }
+
+        protected void SetRequirementComments()
+        {
+            CommentsList.DataSource = GetComments();
+            CommentsList.DataBind();
         }
         #endregion
     }

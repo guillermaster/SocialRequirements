@@ -39,6 +39,7 @@ namespace SocialRequirements.CompositionRoot
             Bind<IRequirementModificationBusiness>().To<RequirementModificationBusiness>();
             Bind<IProjectBusiness>().To<ProjectBusiness>();
             Bind<IActivityFeedBusiness>().To<ActivityFeedBusiness>();
+            Bind<IRequirementCommentBusiness>().To<RequirementCommentBusiness>();
         }
 
         private static ContextModel GetContext()

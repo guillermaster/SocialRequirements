@@ -24,12 +24,22 @@ namespace WebService
         public IRequirementBusiness RequirementBusiness { get; set; }
         [Inject]
         public IRequirementModificationBusiness RequirementModificationBusiness { get; set; }
+        [Inject]
+        public IRequirementCommentBusiness RequirementCommentBusiness { get; set; }
 
         [WebMethod]
         public void AddRequirement(string title, string description, long companyId, long projectId, string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
             RequirementBusiness.Add(companyId, projectId, title, description, username);
+        }
+
+        [WebMethod]
+        public void CommentRequirement(long companyId, long projectId, long requirementId, 
+            string comment, string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            RequirementCommentBusiness.Add(companyId, projectId, requirementId, comment, username);
         }
 
         [WebMethod]
@@ -45,14 +55,7 @@ namespace WebService
             var username = Encryption.Decrypt(encUsername);
             RequirementBusiness.Dislike(companyId, projectId, requirementId, username);
         }
-
-        [WebMethod]
-        public void CommentOnRequirement(long requirementId, string encUsername, string comment)
-        {
-            var username = Encryption.Decrypt(encUsername);
-            RequirementBusiness.Comment(requirementId, username, comment);
-        }
-
+        
         [WebMethod]
         public string GetRequirementsList(string encUsername)
         {
@@ -67,6 +70,14 @@ namespace WebService
         {
             var requirement = RequirementBusiness.Get(companyId, projectId, requirementId);
             var serializer = new ObjectSerializer<RequirementDto>(requirement);
+            return serializer.ToXmlString();
+        }
+
+        [WebMethod]
+        public string GetRequirementComments(long companyId, long projectId, long requirementId)
+        {
+            var comments = RequirementCommentBusiness.Get(requirementId, companyId, projectId);
+            var serializer = new ObjectSerializer<List<RequirementCommentDto>>(comments);
             return serializer.ToXmlString();
         }
 

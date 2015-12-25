@@ -45,15 +45,7 @@ namespace SocialRequirements.Domain.Repository.Requirement
         /// <param name="requirementId">Requirement ID</param>
         /// <param name="personId">ID of the user who gave the dislike</param>
         void Dislike(long companyId, long projectId, long requirementId, long personId);
-
-        /// <summary>
-        /// Adds a comment to the specified requirement
-        /// </summary>
-        /// <param name="requirementId">Requirement ID</param>
-        /// <param name="personId">ID of the who commented</param>
-        /// <param name="commentary">The comment</param>
-        void Comment(long requirementId, long personId, string commentary);
-
+        
         /// <summary>
         /// Query requirements by projects
         /// </summary>

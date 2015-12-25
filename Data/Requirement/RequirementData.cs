@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using SocialRequirements.Context;
-using SocialRequirements.Context.Entities;
 using SocialRequirements.Domain.DTO.Requirement;
 using SocialRequirements.Domain.Repository.Requirement;
 using SocialRequirements.Utilities;
@@ -137,30 +136,7 @@ namespace SocialRequirements.Data.Requirement
                 }
             }
         }
-
-        public void Comment(long requirementId, long personId, string commentary)
-        {
-            var requirementVersion =
-                _context.RequirementVersion.Where(r => r.id == requirementId)
-                    .OrderByDescending(v => v.id)
-                    .FirstOrDefault();
-            if (requirementVersion == null) return;
-
-            var requirementComment = new RequirementComment
-            {
-                company_id = requirementVersion.company_id,
-                project_id = requirementVersion.project_id,
-                requirement_id = requirementVersion.requirement_id,
-                requirement_version_id = requirementVersion.id,
-                comment = commentary,
-                createdby_id = personId,
-                createdon = DateTime.Now
-            };
-
-            _context.RequirementComment.Add(requirementComment);
-            _context.SaveChanges();
-        }
-
+        
         public List<RequirementDto> GetList(List<long> projectIds)
         {
             var requirements =

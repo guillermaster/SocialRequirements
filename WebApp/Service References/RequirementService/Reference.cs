@@ -22,6 +22,13 @@ namespace SocialRequirements.RequirementService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/AddRequirement", ReplyAction="*")]
         System.Threading.Tasks.Task<SocialRequirements.RequirementService.AddRequirementResponse> AddRequirementAsync(SocialRequirements.RequirementService.AddRequirementRequest request);
         
+        // CODEGEN: Generating message contract since element name comment from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CommentRequirement", ReplyAction="*")]
+        SocialRequirements.RequirementService.CommentRequirementResponse CommentRequirement(SocialRequirements.RequirementService.CommentRequirementRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CommentRequirement", ReplyAction="*")]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementService.CommentRequirementResponse> CommentRequirementAsync(SocialRequirements.RequirementService.CommentRequirementRequest request);
+        
         // CODEGEN: Generating message contract since element name encUsername from namespace http://tempuri.org/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/LikeRequirement", ReplyAction="*")]
         SocialRequirements.RequirementService.LikeRequirementResponse LikeRequirement(SocialRequirements.RequirementService.LikeRequirementRequest request);
@@ -37,13 +44,6 @@ namespace SocialRequirements.RequirementService {
         System.Threading.Tasks.Task<SocialRequirements.RequirementService.DislikeRequirementResponse> DislikeRequirementAsync(SocialRequirements.RequirementService.DislikeRequirementRequest request);
         
         // CODEGEN: Generating message contract since element name encUsername from namespace http://tempuri.org/ is not marked nillable
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CommentOnRequirement", ReplyAction="*")]
-        SocialRequirements.RequirementService.CommentOnRequirementResponse CommentOnRequirement(SocialRequirements.RequirementService.CommentOnRequirementRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CommentOnRequirement", ReplyAction="*")]
-        System.Threading.Tasks.Task<SocialRequirements.RequirementService.CommentOnRequirementResponse> CommentOnRequirementAsync(SocialRequirements.RequirementService.CommentOnRequirementRequest request);
-        
-        // CODEGEN: Generating message contract since element name encUsername from namespace http://tempuri.org/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetRequirementsList", ReplyAction="*")]
         SocialRequirements.RequirementService.GetRequirementsListResponse GetRequirementsList(SocialRequirements.RequirementService.GetRequirementsListRequest request);
         
@@ -56,6 +56,13 @@ namespace SocialRequirements.RequirementService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetRequirement", ReplyAction="*")]
         System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetRequirementResponse> GetRequirementAsync(SocialRequirements.RequirementService.GetRequirementRequest request);
+        
+        // CODEGEN: Generating message contract since element name GetRequirementCommentsResult from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetRequirementComments", ReplyAction="*")]
+        SocialRequirements.RequirementService.GetRequirementCommentsResponse GetRequirementComments(SocialRequirements.RequirementService.GetRequirementCommentsRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetRequirementComments", ReplyAction="*")]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetRequirementCommentsResponse> GetRequirementCommentsAsync(SocialRequirements.RequirementService.GetRequirementCommentsRequest request);
         
         // CODEGEN: Generating message contract since element name encUsername from namespace http://tempuri.org/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ApproveRequirement", ReplyAction="*")]
@@ -230,6 +237,83 @@ namespace SocialRequirements.RequirementService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class CommentRequirementRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="CommentRequirement", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementService.CommentRequirementRequestBody Body;
+        
+        public CommentRequirementRequest() {
+        }
+        
+        public CommentRequirementRequest(SocialRequirements.RequirementService.CommentRequirementRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class CommentRequirementRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public long companyId;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=1)]
+        public long projectId;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=2)]
+        public long requirementId;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
+        public string comment;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=4)]
+        public string encUsername;
+        
+        public CommentRequirementRequestBody() {
+        }
+        
+        public CommentRequirementRequestBody(long companyId, long projectId, long requirementId, string comment, string encUsername) {
+            this.companyId = companyId;
+            this.projectId = projectId;
+            this.requirementId = requirementId;
+            this.comment = comment;
+            this.encUsername = encUsername;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class CommentRequirementResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="CommentRequirementResponse", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementService.CommentRequirementResponseBody Body;
+        
+        public CommentRequirementResponse() {
+        }
+        
+        public CommentRequirementResponse(SocialRequirements.RequirementService.CommentRequirementResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute()]
+    public partial class CommentRequirementResponseBody {
+        
+        public CommentRequirementResponseBody() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class LikeRequirementRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="LikeRequirement", Namespace="http://tempuri.org/", Order=0)]
@@ -376,75 +460,6 @@ namespace SocialRequirements.RequirementService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class CommentOnRequirementRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="CommentOnRequirement", Namespace="http://tempuri.org/", Order=0)]
-        public SocialRequirements.RequirementService.CommentOnRequirementRequestBody Body;
-        
-        public CommentOnRequirementRequest() {
-        }
-        
-        public CommentOnRequirementRequest(SocialRequirements.RequirementService.CommentOnRequirementRequestBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class CommentOnRequirementRequestBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
-        public long requirementId;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
-        public string encUsername;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
-        public string comment;
-        
-        public CommentOnRequirementRequestBody() {
-        }
-        
-        public CommentOnRequirementRequestBody(long requirementId, string encUsername, string comment) {
-            this.requirementId = requirementId;
-            this.encUsername = encUsername;
-            this.comment = comment;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class CommentOnRequirementResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="CommentOnRequirementResponse", Namespace="http://tempuri.org/", Order=0)]
-        public SocialRequirements.RequirementService.CommentOnRequirementResponseBody Body;
-        
-        public CommentOnRequirementResponse() {
-        }
-        
-        public CommentOnRequirementResponse(SocialRequirements.RequirementService.CommentOnRequirementResponseBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute()]
-    public partial class CommentOnRequirementResponseBody {
-        
-        public CommentOnRequirementResponseBody() {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class GetRequirementsListRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="GetRequirementsList", Namespace="http://tempuri.org/", Order=0)]
@@ -582,6 +597,82 @@ namespace SocialRequirements.RequirementService {
         
         public GetRequirementResponseBody(string GetRequirementResult) {
             this.GetRequirementResult = GetRequirementResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetRequirementCommentsRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetRequirementComments", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementService.GetRequirementCommentsRequestBody Body;
+        
+        public GetRequirementCommentsRequest() {
+        }
+        
+        public GetRequirementCommentsRequest(SocialRequirements.RequirementService.GetRequirementCommentsRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetRequirementCommentsRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public long companyId;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=1)]
+        public long projectId;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=2)]
+        public long requirementId;
+        
+        public GetRequirementCommentsRequestBody() {
+        }
+        
+        public GetRequirementCommentsRequestBody(long companyId, long projectId, long requirementId) {
+            this.companyId = companyId;
+            this.projectId = projectId;
+            this.requirementId = requirementId;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetRequirementCommentsResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetRequirementCommentsResponse", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementService.GetRequirementCommentsResponseBody Body;
+        
+        public GetRequirementCommentsResponse() {
+        }
+        
+        public GetRequirementCommentsResponse(SocialRequirements.RequirementService.GetRequirementCommentsResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetRequirementCommentsResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string GetRequirementCommentsResult;
+        
+        public GetRequirementCommentsResponseBody() {
+        }
+        
+        public GetRequirementCommentsResponseBody(string GetRequirementCommentsResult) {
+            this.GetRequirementCommentsResult = GetRequirementCommentsResult;
         }
     }
     
@@ -1659,6 +1750,38 @@ namespace SocialRequirements.RequirementService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SocialRequirements.RequirementService.CommentRequirementResponse SocialRequirements.RequirementService.RequirementSoap.CommentRequirement(SocialRequirements.RequirementService.CommentRequirementRequest request) {
+            return base.Channel.CommentRequirement(request);
+        }
+        
+        public void CommentRequirement(long companyId, long projectId, long requirementId, string comment, string encUsername) {
+            SocialRequirements.RequirementService.CommentRequirementRequest inValue = new SocialRequirements.RequirementService.CommentRequirementRequest();
+            inValue.Body = new SocialRequirements.RequirementService.CommentRequirementRequestBody();
+            inValue.Body.companyId = companyId;
+            inValue.Body.projectId = projectId;
+            inValue.Body.requirementId = requirementId;
+            inValue.Body.comment = comment;
+            inValue.Body.encUsername = encUsername;
+            SocialRequirements.RequirementService.CommentRequirementResponse retVal = ((SocialRequirements.RequirementService.RequirementSoap)(this)).CommentRequirement(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementService.CommentRequirementResponse> SocialRequirements.RequirementService.RequirementSoap.CommentRequirementAsync(SocialRequirements.RequirementService.CommentRequirementRequest request) {
+            return base.Channel.CommentRequirementAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SocialRequirements.RequirementService.CommentRequirementResponse> CommentRequirementAsync(long companyId, long projectId, long requirementId, string comment, string encUsername) {
+            SocialRequirements.RequirementService.CommentRequirementRequest inValue = new SocialRequirements.RequirementService.CommentRequirementRequest();
+            inValue.Body = new SocialRequirements.RequirementService.CommentRequirementRequestBody();
+            inValue.Body.companyId = companyId;
+            inValue.Body.projectId = projectId;
+            inValue.Body.requirementId = requirementId;
+            inValue.Body.comment = comment;
+            inValue.Body.encUsername = encUsername;
+            return ((SocialRequirements.RequirementService.RequirementSoap)(this)).CommentRequirementAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         SocialRequirements.RequirementService.LikeRequirementResponse SocialRequirements.RequirementService.RequirementSoap.LikeRequirement(SocialRequirements.RequirementService.LikeRequirementRequest request) {
             return base.Channel.LikeRequirement(request);
         }
@@ -1719,34 +1842,6 @@ namespace SocialRequirements.RequirementService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SocialRequirements.RequirementService.CommentOnRequirementResponse SocialRequirements.RequirementService.RequirementSoap.CommentOnRequirement(SocialRequirements.RequirementService.CommentOnRequirementRequest request) {
-            return base.Channel.CommentOnRequirement(request);
-        }
-        
-        public void CommentOnRequirement(long requirementId, string encUsername, string comment) {
-            SocialRequirements.RequirementService.CommentOnRequirementRequest inValue = new SocialRequirements.RequirementService.CommentOnRequirementRequest();
-            inValue.Body = new SocialRequirements.RequirementService.CommentOnRequirementRequestBody();
-            inValue.Body.requirementId = requirementId;
-            inValue.Body.encUsername = encUsername;
-            inValue.Body.comment = comment;
-            SocialRequirements.RequirementService.CommentOnRequirementResponse retVal = ((SocialRequirements.RequirementService.RequirementSoap)(this)).CommentOnRequirement(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SocialRequirements.RequirementService.CommentOnRequirementResponse> SocialRequirements.RequirementService.RequirementSoap.CommentOnRequirementAsync(SocialRequirements.RequirementService.CommentOnRequirementRequest request) {
-            return base.Channel.CommentOnRequirementAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<SocialRequirements.RequirementService.CommentOnRequirementResponse> CommentOnRequirementAsync(long requirementId, string encUsername, string comment) {
-            SocialRequirements.RequirementService.CommentOnRequirementRequest inValue = new SocialRequirements.RequirementService.CommentOnRequirementRequest();
-            inValue.Body = new SocialRequirements.RequirementService.CommentOnRequirementRequestBody();
-            inValue.Body.requirementId = requirementId;
-            inValue.Body.encUsername = encUsername;
-            inValue.Body.comment = comment;
-            return ((SocialRequirements.RequirementService.RequirementSoap)(this)).CommentOnRequirementAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         SocialRequirements.RequirementService.GetRequirementsListResponse SocialRequirements.RequirementService.RequirementSoap.GetRequirementsList(SocialRequirements.RequirementService.GetRequirementsListRequest request) {
             return base.Channel.GetRequirementsList(request);
         }
@@ -1798,6 +1893,35 @@ namespace SocialRequirements.RequirementService {
             inValue.Body.projectId = projectId;
             inValue.Body.requirementId = requirementId;
             return ((SocialRequirements.RequirementService.RequirementSoap)(this)).GetRequirementAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SocialRequirements.RequirementService.GetRequirementCommentsResponse SocialRequirements.RequirementService.RequirementSoap.GetRequirementComments(SocialRequirements.RequirementService.GetRequirementCommentsRequest request) {
+            return base.Channel.GetRequirementComments(request);
+        }
+        
+        public string GetRequirementComments(long companyId, long projectId, long requirementId) {
+            SocialRequirements.RequirementService.GetRequirementCommentsRequest inValue = new SocialRequirements.RequirementService.GetRequirementCommentsRequest();
+            inValue.Body = new SocialRequirements.RequirementService.GetRequirementCommentsRequestBody();
+            inValue.Body.companyId = companyId;
+            inValue.Body.projectId = projectId;
+            inValue.Body.requirementId = requirementId;
+            SocialRequirements.RequirementService.GetRequirementCommentsResponse retVal = ((SocialRequirements.RequirementService.RequirementSoap)(this)).GetRequirementComments(inValue);
+            return retVal.Body.GetRequirementCommentsResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetRequirementCommentsResponse> SocialRequirements.RequirementService.RequirementSoap.GetRequirementCommentsAsync(SocialRequirements.RequirementService.GetRequirementCommentsRequest request) {
+            return base.Channel.GetRequirementCommentsAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetRequirementCommentsResponse> GetRequirementCommentsAsync(long companyId, long projectId, long requirementId) {
+            SocialRequirements.RequirementService.GetRequirementCommentsRequest inValue = new SocialRequirements.RequirementService.GetRequirementCommentsRequest();
+            inValue.Body = new SocialRequirements.RequirementService.GetRequirementCommentsRequestBody();
+            inValue.Body.companyId = companyId;
+            inValue.Body.projectId = projectId;
+            inValue.Body.requirementId = requirementId;
+            return ((SocialRequirements.RequirementService.RequirementSoap)(this)).GetRequirementCommentsAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]

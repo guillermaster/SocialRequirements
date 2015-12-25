@@ -186,6 +186,12 @@ namespace SocialRequirements.Context
                 .HasForeignKey(e => e.modifiedby_id)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<Person>()
+                .HasMany(e => e.RequirementComment)
+                .WithRequired(e => e.Person)
+                .HasForeignKey(e => e.createdby_id)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Project>()
                 .HasMany(e => e.ActivityFeed)
                 .WithOptional(e => e.Project)
@@ -250,6 +256,12 @@ namespace SocialRequirements.Context
                 .HasForeignKey(e => e.requirement_id)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<Requirement>()
+                .HasMany(e => e.RequirementComment)
+                .WithRequired(e => e.Requirement)
+                .HasForeignKey(e => e.requirement_id)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<RequirementComment>()
                 .Property(e => e.comment)
                 .IsUnicode(false);
@@ -278,6 +290,12 @@ namespace SocialRequirements.Context
             modelBuilder.Entity<RequirementVersion>()
                 .Property(e => e.description)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<RequirementVersion>()
+                .HasMany(e => e.RequirementComment)
+                .WithRequired(e => e.RequirementVersion)
+                .HasForeignKey(e => e.requirement_version_id)
+                .WillCascadeOnDelete(false);
             
             modelBuilder.Entity<Role>()
                 .HasMany(e => e.CompanyPersonRole)

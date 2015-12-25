@@ -42,15 +42,7 @@ namespace SocialRequirements.Domain.BusinessLogic.Requirement
         /// <param name="requirementId">Requirement ID</param>
         /// <param name="username">Username who gave the dislike</param>
         void Dislike(long companyId, long projectId, long requirementId, string username);
-
-        /// <summary>
-        /// Adds a comment to the specified requirement
-        /// </summary>
-        /// <param name="requirementId">Requirement ID</param>
-        /// <param name="username">Username who commented</param>
-        /// <param name="comment">The comment</param>
-        void Comment(long requirementId, string username, string comment);
-
+        
         /// <summary>
         /// Query requirements by user from all of his projects and companies
         /// </summary>

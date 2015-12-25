@@ -16,6 +16,20 @@
       <s:element name="AddRequirementResponse">
         <s:complexType />
       </s:element>
+      <s:element name="CommentRequirement">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="companyId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="projectId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requirementId" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="comment" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="encUsername" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CommentRequirementResponse">
+        <s:complexType />
+      </s:element>
       <s:element name="LikeRequirement">
         <s:complexType>
           <s:sequence>
@@ -40,18 +54,6 @@
         </s:complexType>
       </s:element>
       <s:element name="DislikeRequirementResponse">
-        <s:complexType />
-      </s:element>
-      <s:element name="CommentOnRequirement">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="requirementId" type="s:long" />
-            <s:element minOccurs="0" maxOccurs="1" name="encUsername" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="comment" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="CommentOnRequirementResponse">
         <s:complexType />
       </s:element>
       <s:element name="GetRequirementsList">
@@ -81,6 +83,22 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="GetRequirementResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRequirementComments">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="companyId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="projectId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requirementId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRequirementCommentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRequirementCommentsResult" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -284,6 +302,12 @@
   <wsdl:message name="AddRequirementSoapOut">
     <wsdl:part name="parameters" element="tns:AddRequirementResponse" />
   </wsdl:message>
+  <wsdl:message name="CommentRequirementSoapIn">
+    <wsdl:part name="parameters" element="tns:CommentRequirement" />
+  </wsdl:message>
+  <wsdl:message name="CommentRequirementSoapOut">
+    <wsdl:part name="parameters" element="tns:CommentRequirementResponse" />
+  </wsdl:message>
   <wsdl:message name="LikeRequirementSoapIn">
     <wsdl:part name="parameters" element="tns:LikeRequirement" />
   </wsdl:message>
@@ -296,12 +320,6 @@
   <wsdl:message name="DislikeRequirementSoapOut">
     <wsdl:part name="parameters" element="tns:DislikeRequirementResponse" />
   </wsdl:message>
-  <wsdl:message name="CommentOnRequirementSoapIn">
-    <wsdl:part name="parameters" element="tns:CommentOnRequirement" />
-  </wsdl:message>
-  <wsdl:message name="CommentOnRequirementSoapOut">
-    <wsdl:part name="parameters" element="tns:CommentOnRequirementResponse" />
-  </wsdl:message>
   <wsdl:message name="GetRequirementsListSoapIn">
     <wsdl:part name="parameters" element="tns:GetRequirementsList" />
   </wsdl:message>
@@ -313,6 +331,12 @@
   </wsdl:message>
   <wsdl:message name="GetRequirementSoapOut">
     <wsdl:part name="parameters" element="tns:GetRequirementResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRequirementCommentsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRequirementComments" />
+  </wsdl:message>
+  <wsdl:message name="GetRequirementCommentsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRequirementCommentsResponse" />
   </wsdl:message>
   <wsdl:message name="ApproveRequirementSoapIn">
     <wsdl:part name="parameters" element="tns:ApproveRequirement" />
@@ -397,6 +421,10 @@
       <wsdl:input message="tns:AddRequirementSoapIn" />
       <wsdl:output message="tns:AddRequirementSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="CommentRequirement">
+      <wsdl:input message="tns:CommentRequirementSoapIn" />
+      <wsdl:output message="tns:CommentRequirementSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="LikeRequirement">
       <wsdl:input message="tns:LikeRequirementSoapIn" />
       <wsdl:output message="tns:LikeRequirementSoapOut" />
@@ -405,10 +433,6 @@
       <wsdl:input message="tns:DislikeRequirementSoapIn" />
       <wsdl:output message="tns:DislikeRequirementSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="CommentOnRequirement">
-      <wsdl:input message="tns:CommentOnRequirementSoapIn" />
-      <wsdl:output message="tns:CommentOnRequirementSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="GetRequirementsList">
       <wsdl:input message="tns:GetRequirementsListSoapIn" />
       <wsdl:output message="tns:GetRequirementsListSoapOut" />
@@ -416,6 +440,10 @@
     <wsdl:operation name="GetRequirement">
       <wsdl:input message="tns:GetRequirementSoapIn" />
       <wsdl:output message="tns:GetRequirementSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRequirementComments">
+      <wsdl:input message="tns:GetRequirementCommentsSoapIn" />
+      <wsdl:output message="tns:GetRequirementCommentsSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="ApproveRequirement">
       <wsdl:input message="tns:ApproveRequirementSoapIn" />
@@ -481,6 +509,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="CommentRequirement">
+      <soap:operation soapAction="http://tempuri.org/CommentRequirement" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="LikeRequirement">
       <soap:operation soapAction="http://tempuri.org/LikeRequirement" style="document" />
       <wsdl:input>
@@ -499,15 +536,6 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="CommentOnRequirement">
-      <soap:operation soapAction="http://tempuri.org/CommentOnRequirement" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetRequirementsList">
       <soap:operation soapAction="http://tempuri.org/GetRequirementsList" style="document" />
       <wsdl:input>
@@ -519,6 +547,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetRequirement">
       <soap:operation soapAction="http://tempuri.org/GetRequirement" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRequirementComments">
+      <soap:operation soapAction="http://tempuri.org/GetRequirementComments" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -655,6 +692,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="CommentRequirement">
+      <soap12:operation soapAction="http://tempuri.org/CommentRequirement" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="LikeRequirement">
       <soap12:operation soapAction="http://tempuri.org/LikeRequirement" style="document" />
       <wsdl:input>
@@ -673,15 +719,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="CommentOnRequirement">
-      <soap12:operation soapAction="http://tempuri.org/CommentOnRequirement" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetRequirementsList">
       <soap12:operation soapAction="http://tempuri.org/GetRequirementsList" style="document" />
       <wsdl:input>
@@ -693,6 +730,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetRequirement">
       <soap12:operation soapAction="http://tempuri.org/GetRequirement" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRequirementComments">
+      <soap12:operation soapAction="http://tempuri.org/GetRequirementComments" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

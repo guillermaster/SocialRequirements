@@ -68,13 +68,7 @@ namespace SocialRequirements.Business.Requirement
             _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.Requirement,
                 (int)GeneralCatalog.Detail.EntityActions.Dislike, requirementId, DateTime.Now, personId);
         }
-
-        public void Comment(long requirementId, string username, string comment)
-        {
-            var personId = _personData.GetPersonId(username);
-            _requirementData.Comment(requirementId, personId, comment);
-        }
-
+        
         public List<RequirementDto> GetList(string username)
         {
             var personId = _personData.GetPersonId(username);
