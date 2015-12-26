@@ -7,7 +7,8 @@
             CompanyType = 1,
             Entity = 2,
             RequirementStatus = 3,
-            EntityActions = 4
+            EntityActions = 4,
+            RequirementQuestionStatus = 5
         }
 
         public class Detail
@@ -23,7 +24,9 @@
                 Requirement = 4,
                 RequirementModification = 16,
                 RequirementComment = 19,
-                RequirementModificationComment = 20
+                RequirementModificationComment = 20,
+                RequirementQuestion = 21,
+                RequirementQuestionAnswer = 22
             }
 
             public enum RequirementStatus
@@ -32,6 +35,12 @@
                 Approved = 6,
                 Rejected = 7,
                 PendingApproval = 17
+            }
+
+            public enum RequirementQuestionStatus
+            {
+                Posted = 23,
+                Answered = 24
             }
 
             public enum EntityActions

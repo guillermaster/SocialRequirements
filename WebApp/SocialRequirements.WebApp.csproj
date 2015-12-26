@@ -2223,10 +2223,21 @@
     <Content Include="Service References\ProjectService\SocialRequirements.ProjectService.GetByCompanyResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <None Include="Service References\RequirementQuestionService\RequirementQuestion.wsdl" />
+    <Content Include="Service References\RequirementQuestionService\SocialRequirements.RequirementQuestionService.AddQuestionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Service References\RequirementService\Requirement.disco" />
     <None Include="Service References\RequirementService\configuration91.svcinfo" />
     <None Include="Service References\RequirementService\configuration.svcinfo" />
     <None Include="Service References\RequirementService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\RequirementQuestionService\RequirementQuestion.disco" />
+    <None Include="Service References\RequirementQuestionService\configuration91.svcinfo" />
+    <None Include="Service References\RequirementQuestionService\configuration.svcinfo" />
+    <None Include="Service References\RequirementQuestionService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -2485,6 +2496,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\RequirementQuestionService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\RequirementService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -2557,6 +2573,7 @@
     <WCFMetadataStorage Include="Service References\CompanyService\" />
     <WCFMetadataStorage Include="Service References\GeneralService\" />
     <WCFMetadataStorage Include="Service References\ProjectService\" />
+    <WCFMetadataStorage Include="Service References\RequirementQuestionService\" />
     <WCFMetadataStorage Include="Service References\RequirementService\" />
   </ItemGroup>
   <PropertyGroup>

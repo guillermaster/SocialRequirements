@@ -96,6 +96,7 @@
     <Content Include="Global.asax" />
     <Content Include="Project.asmx" />
     <Content Include="Requirement.asmx" />
+    <Content Include="RequirementQuestion.asmx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -123,6 +124,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requirement.asmx.cs">
       <DependentUpon>Requirement.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RequirementQuestion.asmx.cs">
+      <DependentUpon>RequirementQuestion.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
