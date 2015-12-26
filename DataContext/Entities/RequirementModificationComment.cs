@@ -30,5 +30,13 @@ namespace SocialRequirements.Context.Entities
         public virtual Company Company { get; set; }
 
         public virtual Project Project { get; set; }
+
+        public virtual Person Person { get; set; }
+
+        public virtual Requirement Requirement { get; set; }
+
+        public virtual RequirementModification RequirementModification { get; set; }
+
+        public virtual RequirementModificationVersion RequirementModificationVersion { get; set; }
     }
 }

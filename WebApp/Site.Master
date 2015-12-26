@@ -459,24 +459,13 @@
                                     <li><a href="javascript:;"><i class="fa fa-columns"></i><span>Requirements</span><span class="badge badge-primary">8</span></a>
                                         <ul class="acc-menu">
                                             <li><asp:HyperLink runat="server" NavigateUrl="~/Requirements/RequirementsList.aspx">All requirements</asp:HyperLink></li>
+                                            <li><asp:HyperLink runat="server" NavigateUrl="~/Requirements/RequirementsList.aspx">Approved requirements</asp:HyperLink></li>
+                                            <li><asp:HyperLink runat="server" NavigateUrl="~/Requirements/RequirementsList.aspx">Rejected requirements</asp:HyperLink></li>
+                                            <li><asp:HyperLink runat="server" NavigateUrl="~/Requirements/RequirementsList.aspx">Pending approval</asp:HyperLink></li>
+                                            <li><asp:HyperLink runat="server" NavigateUrl="~/Requirements/RequirementsList.aspx">Draft requirements</asp:HyperLink></li>
 
-                                            <li><a href="layout-fixed-sidebars.html">Stretch Sidebars</a></li>
-
-                                            <li><a href="layout-sidebar-scroll.html">Sidebar Scroll</a></li>
-                                            <li><a href="layout-static-leftbar.html">Static Sidebar</a></li>
-
-                                            <li><a href="layout-infobar-offcanvas.html">Offcanvas Infobar</a></li>
-                                            <li><a href="layout-infobar-overlay.html">Overlay Infobar</a></li>
-
-                                            <li><a href="layout-page-tabs.html">Page Tabs</a></li>
-
-                                            <li><a href="layout-fullheight-content.html">Fixed Height Content</a></li>
-                                            <li><a href="layout-fullheight-panel.html">Fixed Height Panel</a></li>
-
-                                            <li><a href="layout-leftbar-widgets.html">Leftbar Widgets <span class="label label-grape">Cool</span></a></li>
-                                            <li><a href="layout-rightbar-widgets.html">Rightbar Widgets <span class="label label-grape">Cool</span></a></li>
-                                            <li><a href="layout-topnav-options.html">Topnav Options</a></li>
-
+                                            <li><asp:HyperLink runat="server" NavigateUrl="~/Requirements/RequirementsList.aspx">Modification requests</asp:HyperLink></li>
+                                            
                                             <li><a href="javascript:;">Horizontal Nav <span class="badge badge-dark">2</span></a>
                                                 <ul class="acc-menu">
                                                     <li><a href="layout-horizontal-small.html">Small Menu</a></li>
@@ -484,8 +473,6 @@
                                                 </ul>
                                             </li>
 
-                                            <li><a href="layout-chatbar-overlay.html">Chatbar</a></li>
-                                            <li><a href="layout-boxed.html">Boxed</a></li>
                                             <li><a href="layout-compact.html">Compact Leftbar</a></li>
 
                                         </ul>

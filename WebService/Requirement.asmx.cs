@@ -26,6 +26,8 @@ namespace WebService
         public IRequirementModificationBusiness RequirementModificationBusiness { get; set; }
         [Inject]
         public IRequirementCommentBusiness RequirementCommentBusiness { get; set; }
+        [Inject]
+        public IRequirementModificationCommentBusiness RequirementModificationCommentBusiness { get; set; }
 
         [WebMethod]
         public void AddRequirement(string title, string description, long companyId, long projectId, string encUsername)
@@ -179,6 +181,23 @@ namespace WebService
         {
             var username = Encryption.Decrypt(encUsername);
             RequirementModificationBusiness.Dislike(companyId, projectId, requirementId, requirementModificationId, username);
+        }
+
+        [WebMethod]
+        public void CommentRequirementModification(long companyId, long projectId, long requirementId, long requirementModificationId,
+            string comment, string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            RequirementModificationCommentBusiness.Add(companyId, projectId, requirementId, requirementModificationId, comment, username);
+        }
+
+        [WebMethod]
+        public string GetRequirementModificationComments(long companyId, long projectId, long requirementId,
+            long requirementModificationId)
+        {
+            var comments = RequirementModificationCommentBusiness.Get(companyId, projectId, requirementId, requirementModificationId);
+            var serializer = new ObjectSerializer<List<RequirementModificationCommentDto>>(comments);
+            return serializer.ToXmlString();
         }
     }
 }

@@ -192,6 +192,12 @@ namespace SocialRequirements.Context
                 .HasForeignKey(e => e.createdby_id)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<Person>()
+                .HasMany(e => e.RequirementModificationComment)
+                .WithRequired(e => e.Person)
+                .HasForeignKey(e => e.createdby_id)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Project>()
                 .HasMany(e => e.ActivityFeed)
                 .WithOptional(e => e.Project)
@@ -262,6 +268,12 @@ namespace SocialRequirements.Context
                 .HasForeignKey(e => e.requirement_id)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<Requirement>()
+                .HasMany(e => e.RequirementModificationComment)
+                .WithRequired(e => e.Requirement)
+                .HasForeignKey(e => e.requirement_id)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<RequirementComment>()
                 .Property(e => e.comment)
                 .IsUnicode(false);
@@ -274,6 +286,18 @@ namespace SocialRequirements.Context
                 .HasMany(e => e.RequirementVersion)
                 .WithOptional(e => e.RequirementModification)
                 .HasForeignKey(e => e.requirement_modification_id);
+
+            modelBuilder.Entity<RequirementModification>()
+                .HasMany(e => e.RequirementModificationComment)
+                .WithRequired(e => e.RequirementModification)
+                .HasForeignKey(e => e.requirement_modification_id)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<RequirementModificationVersion>()
+                .HasMany(e => e.RequirementModificationComment)
+                .WithRequired(e => e.RequirementModificationVersion)
+                .HasForeignKey(e => e.requirement_modification_version_id)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<RequirementModificationComment>()
                 .Property(e => e.comment)

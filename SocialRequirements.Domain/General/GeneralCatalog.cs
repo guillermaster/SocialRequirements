@@ -21,7 +21,9 @@
             public enum Entity
             {
                 Requirement = 4,
-                RequirementModification = 16
+                RequirementModification = 16,
+                RequirementComment = 19,
+                RequirementModificationComment = 20
             }
 
             public enum RequirementStatus

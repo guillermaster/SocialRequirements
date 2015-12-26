@@ -32,6 +32,7 @@ namespace SocialRequirements.CompositionRoot
             Bind<IProjectData>().To<ProjectData>().WithConstructorArgument(contextCnxStr, dbContext);
             Bind<IActivityFeedData>().To<ActivityFeedData>().WithConstructorArgument(contextCnxStr, dbContext);
             Bind<IRequirementCommentData>().To<RequirementCommentData>().WithConstructorArgument(contextCnxStr, dbContext);
+            Bind<IRequirementModificationCommentData>().To<RequirementModificationCommentData>().WithConstructorArgument(contextCnxStr, dbContext);
 
             Bind<IPersonBusiness>().To<PersonBusiness>();
             Bind<ICompanyBusiness>().To<CompanyBusiness>();
@@ -40,6 +41,7 @@ namespace SocialRequirements.CompositionRoot
             Bind<IProjectBusiness>().To<ProjectBusiness>();
             Bind<IActivityFeedBusiness>().To<ActivityFeedBusiness>();
             Bind<IRequirementCommentBusiness>().To<RequirementCommentBusiness>();
+            Bind<IRequirementModificationCommentBusiness>().To<RequirementModificationCommentBusiness>();
         }
 
         private static ContextModel GetContext()

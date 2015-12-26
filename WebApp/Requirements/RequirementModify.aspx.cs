@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using SocialRequirements.Domain.DTO.Requirement;
 using SocialRequirements.Domain.General;
@@ -179,12 +180,7 @@ namespace SocialRequirements.Requirements
                     "An error occurred.");
             }
         }
-
-        protected override void CommentsButton_OnClick(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
+        
         protected override void HistoryButton_OnClick(object sender, EventArgs e)
         {
             throw new NotImplementedException();
@@ -193,6 +189,19 @@ namespace SocialRequirements.Requirements
         protected override void UploadButton_OnClick(object sender, EventArgs e)
         {
             throw new NotImplementedException();
+        }
+        #endregion
+
+        #region Comments events
+
+        protected override void AddNewCommentButton_Click(object sender, EventArgs e)
+        {
+            var requirementSrv = new RequirementSoapClient();
+            requirementSrv.CommentRequirementModification(CompanyId, ProjectId, RequirementId, RequirementModificationId,
+                NewCommentInput.Text, GetUsernameEncrypted());
+            SetRequirementComments();
+            // clear comment input box
+            NewCommentInput.Text = string.Empty;
         }
         #endregion
 
@@ -218,6 +227,16 @@ namespace SocialRequirements.Requirements
                 return (RequirementModificationDto)serializer.Deserialize(requirementModif);
             }
         }
+
+        private List<RequirementModificationCommentDto> GetComments()
+        {
+            var requirementSrv = new RequirementSoapClient();
+            var comments = requirementSrv.GetRequirementModificationComments(CompanyId, ProjectId, RequirementId,
+                RequirementModificationId);
+
+            var serializer = new ObjectSerializer<List<RequirementModificationCommentDto>>();
+            return (List<RequirementModificationCommentDto>)serializer.Deserialize(comments);
+        }
         #endregion
 
         #region Form Setup
@@ -242,6 +261,13 @@ namespace SocialRequirements.Requirements
             EditButton.Visible = ModificationRequestExists();
         }
 
+        protected override void SetRequirementComments()
+        {
+            var comments = GetComments();
+            CommentsList.DataSource = comments;
+            CommentsList.DataBind();
+            CommentCounter.Text = comments.Count.ToString();
+        }
         #endregion
     }
 }

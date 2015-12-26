@@ -233,6 +233,16 @@ namespace SocialRequirements.Requirements
         {
             ToggleComments();
         }
+
+        protected virtual void AddNewCommentButton_Click(object sender, EventArgs e)
+        {
+            var requirementSrv = new RequirementSoapClient();
+            requirementSrv.CommentRequirement(CompanyId, ProjectId, RequirementId, NewCommentInput.Text,
+                GetUsernameEncrypted());
+            SetRequirementComments();
+            // clear comment input box
+            NewCommentInput.Text = string.Empty;
+        }
         #endregion
 
         #region Data Load
@@ -255,23 +265,13 @@ namespace SocialRequirements.Requirements
             return requirementModifDto.Id;
         }
 
-        protected List<RequirementCommentDto> GetComments()
+        private List<RequirementCommentDto> GetComments()
         {
             var requirementSrv = new RequirementSoapClient();
             var comments = requirementSrv.GetRequirementComments(CompanyId, ProjectId, RequirementId);
 
             var serializer = new ObjectSerializer<List<RequirementCommentDto>>();
             return (List<RequirementCommentDto>) serializer.Deserialize(comments);
-        }
-
-        protected void AddNewCommentButton_Click(object sender, EventArgs e)
-        {
-            var requirementSrv = new RequirementSoapClient();
-            requirementSrv.CommentRequirement(CompanyId, ProjectId, RequirementId, NewCommentInput.Text,
-                GetUsernameEncrypted());
-            SetRequirementComments();
-            // clear comment input box
-            NewCommentInput.Text = string.Empty;
         }
         #endregion
 
@@ -317,6 +317,7 @@ namespace SocialRequirements.Requirements
             ModifiedOn.Text = requirement.Modifiedon.ToString(CultureInfo.InvariantCulture);
             LikeCounter.Text = requirement.Agreed.ToString();
             DislikeCounter.Text = requirement.Disagreed.ToString();
+            CommentCounter.Text = requirement.CommentsQuantity.ToString();
 
             // set action buttons visibility
             SaveButton.Visible = false;
@@ -348,10 +349,12 @@ namespace SocialRequirements.Requirements
             SetRequirementComments();
         }
 
-        protected void SetRequirementComments()
+        protected virtual void SetRequirementComments()
         {
-            CommentsList.DataSource = GetComments();
+            var comments = GetComments();
+            CommentsList.DataSource = comments;
             CommentsList.DataBind();
+            CommentCounter.Text = comments.Count.ToString();
         }
         #endregion
     }

@@ -5,7 +5,7 @@ namespace SocialRequirements.Domain.Repository.Requirement
 {
     public interface IRequirementCommentData
     {
-        void Add(RequirementCommentDto requirementComment);
+        long Add(RequirementCommentDto requirementComment);
 
         /// <summary>
         /// Gets all comments for the specified requirement

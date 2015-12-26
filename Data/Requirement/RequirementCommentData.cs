@@ -17,10 +17,11 @@ namespace SocialRequirements.Data.Requirement
             _context = context;
         }
 
-        public void Add(RequirementCommentDto requirementComment)
+        public long Add(RequirementCommentDto requirementComment)
         {
-            _context.RequirementComment.Add(GetEntityFromDto(requirementComment));
+            var comment = _context.RequirementComment.Add(GetEntityFromDto(requirementComment));
             _context.SaveChanges();
+            return comment.id;
         }
 
         public List<RequirementCommentDto> Get(long requirementId, long companyId, long projectId, long requirementVersionId)

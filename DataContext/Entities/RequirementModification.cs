@@ -11,6 +11,7 @@ namespace SocialRequirements.Context.Entities
         public RequirementModification()
         {
             RequirementVersion = new HashSet<RequirementVersion>();
+            RequirementModificationComment = new HashSet<RequirementModificationComment>();
         }
 
         public long id { get; set; }
@@ -62,5 +63,7 @@ namespace SocialRequirements.Context.Entities
         public virtual Person Person { get; set; }
 
         public virtual Person Person1 { get; set; }
+
+        public virtual ICollection<RequirementModificationComment> RequirementModificationComment { get; set; }
     }
 }

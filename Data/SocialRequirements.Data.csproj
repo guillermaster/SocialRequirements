@@ -50,6 +50,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requirement\RequirementCommentData.cs" />
     <Compile Include="Requirement\RequirementData.cs" />
+    <Compile Include="Requirement\RequirementModificationCommentData.cs" />
     <Compile Include="Requirement\RequirementModificationData.cs" />
     <Compile Include="Requirement\RequirementModificationVersionData.cs" />
     <Compile Include="Requirement\RequirementVersionData.cs" />

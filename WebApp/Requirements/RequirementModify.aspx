@@ -111,5 +111,25 @@
             <asp:Label runat="server" ID="RequirementDescription" />
             <asp:TextBox runat="server" ID="RequirementDescriptionInput" Visible="False" TextMode="MultiLine" Width="100%" Rows="20"/>
         </div>
+        <div>
+            <asp:LinkButton runat="server" ID="ViewHideCommentsButton" Text="View comments" OnClick="ViewHideCommentsButton_Click"></asp:LinkButton></div><asp:Panel runat="server" ID="CommentsPanel" Visible="False">
+            <asp:Repeater runat="server" ID="CommentsList">
+                <HeaderTemplate>
+                    <div>
+                </HeaderTemplate>
+                <ItemTemplate>
+                    <div>
+                        <span><%# Eval("CreatedByName") %>:</span> 
+                        <span><%# Eval("Comment") %></span>
+                        <span><%# Eval("Createdon") %></span>
+                    </div>
+                </ItemTemplate>
+                <FooterTemplate>
+                    </div>
+                </FooterTemplate>
+            </asp:Repeater>
+            <asp:TextBox runat="server" TextMode="MultiLine" ID="NewCommentInput" Rows="6" Columns="100" placeholder="Type your comment here" /><br />
+            <asp:Button runat="server" ID="AddNewCommentButton" Text="Add comment" OnClick="AddNewCommentButton_Click" /></asp:Panel>
+    </div>
     </div>
 </asp:Content>

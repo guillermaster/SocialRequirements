@@ -12,10 +12,17 @@ namespace SocialRequirements.Data.Requirement
     {
         private readonly ContextModel _context;
         private IRequirementModificationVersionData _requirementModifVersionData;
+        private IRequirementModificationCommentData _requirementModifCommentData;
 
         public RequirementModificationData(ContextModel context)
         {
             _context = context;
+        }
+
+        public RequirementModificationData(ContextModel context, IRequirementModificationCommentData requirementModifCommentData)
+        {
+            _context = context;
+            _requirementModifCommentData = requirementModifCommentData;
         }
 
         public long Add(RequirementModificationDto requirement)
@@ -276,7 +283,7 @@ namespace SocialRequirements.Data.Requirement
             return requirementModif;
         }
 
-        private static RequirementModificationDto GetDtoFromEntity(RequirementModification requirement)
+        private RequirementModificationDto GetDtoFromEntity(RequirementModification requirement)
         {
             var requirementDto = new RequirementModificationDto
             {
@@ -300,17 +307,12 @@ namespace SocialRequirements.Data.Requirement
                 CreatedByName = requirement.Person.first_name + " " + requirement.Person.last_name,
                 ModifiedByName = requirement.Person1.first_name + " " + requirement.Person1.last_name,
                 VersionId = requirement.requirement_modification_version_id,
-                VersionNumber = requirement.version_number
-                //CommentsQuantity = _requirementCommentData.GetQuantity(requirement.id, requirement.company_id,
-                //                        requirement.project_id, requirement.requirement_version_id)
+                VersionNumber = requirement.version_number,
+                CommentsQuantity = _requirementModifCommentData.GetQuantity(requirement.company_id,
+                                        requirement.project_id, requirement.requirement_id, requirement.id, requirement.requirement_modification_version_id)
             };
 
             return requirementDto;
         }
-
-        //private RequirementDto GetRequirementDto(RequirementModificationDto requirementModification)
-        //{
-        //    var requirement
-        //}
     }
 }

@@ -2319,6 +2319,12 @@
     <Content Include="Service References\RequirementService\SocialRequirements.RequirementService.GetRequirementCommentsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Service References\RequirementService\SocialRequirements.RequirementService.CommentRequirementModificationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RequirementService\SocialRequirements.RequirementService.GetRequirementModificationCommentsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
