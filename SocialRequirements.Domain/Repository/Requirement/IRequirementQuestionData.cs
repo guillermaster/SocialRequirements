@@ -18,7 +18,9 @@ namespace SocialRequirements.Domain.Repository.Requirement
         /// <param name="requirementId">Requirement ID</param>
         /// <param name="requirementVersionId">Requirement version ID</param>
         /// <param name="requirementQuestionId">Requirement Question ID</param>
-        RequirementQuestionDto Get(long companyId, long projectId, long requirementId, long requirementVersionId, long requirementQuestionId);
+        /// <param name="getAnswers">Sets if answers should be loaded or not</param>
+        RequirementQuestionDto Get(long companyId, long projectId, long requirementId, long requirementVersionId,
+            long requirementQuestionId, bool getAnswers);
 
         /// <summary>
         /// Gets all questions for a specified requirement

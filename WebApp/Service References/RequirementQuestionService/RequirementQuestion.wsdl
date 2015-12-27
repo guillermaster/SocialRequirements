@@ -24,6 +24,7 @@
             <s:element minOccurs="1" maxOccurs="1" name="requirementId" type="s:long" />
             <s:element minOccurs="1" maxOccurs="1" name="requirementVersionId" type="s:long" />
             <s:element minOccurs="1" maxOccurs="1" name="requirementQuestionId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="getAnswers" type="s:boolean" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -48,6 +49,40 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="AddAnswer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="companyId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="projectId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requirementId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requirementVersionId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requirementQuestionId" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="answer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="encUsername" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddAnswerResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAnswers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="companyId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="projectId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requirementId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requirementVersionId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requirementQuestionId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAnswersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAnswersResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="AddQuestionSoapIn">
@@ -68,6 +103,18 @@
   <wsdl:message name="GetAllQuestionsSoapOut">
     <wsdl:part name="parameters" element="tns:GetAllQuestionsResponse" />
   </wsdl:message>
+  <wsdl:message name="AddAnswerSoapIn">
+    <wsdl:part name="parameters" element="tns:AddAnswer" />
+  </wsdl:message>
+  <wsdl:message name="AddAnswerSoapOut">
+    <wsdl:part name="parameters" element="tns:AddAnswerResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAnswersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAnswers" />
+  </wsdl:message>
+  <wsdl:message name="GetAnswersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAnswersResponse" />
+  </wsdl:message>
   <wsdl:portType name="RequirementQuestionSoap">
     <wsdl:operation name="AddQuestion">
       <wsdl:input message="tns:AddQuestionSoapIn" />
@@ -80,6 +127,14 @@
     <wsdl:operation name="GetAllQuestions">
       <wsdl:input message="tns:GetAllQuestionsSoapIn" />
       <wsdl:output message="tns:GetAllQuestionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddAnswer">
+      <wsdl:input message="tns:AddAnswerSoapIn" />
+      <wsdl:output message="tns:AddAnswerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAnswers">
+      <wsdl:input message="tns:GetAnswersSoapIn" />
+      <wsdl:output message="tns:GetAnswersSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="RequirementQuestionSoap" type="tns:RequirementQuestionSoap">
@@ -111,6 +166,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="AddAnswer">
+      <soap:operation soapAction="http://tempuri.org/AddAnswer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAnswers">
+      <soap:operation soapAction="http://tempuri.org/GetAnswers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="RequirementQuestionSoap12" type="tns:RequirementQuestionSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -134,6 +207,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetAllQuestions">
       <soap12:operation soapAction="http://tempuri.org/GetAllQuestions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddAnswer">
+      <soap12:operation soapAction="http://tempuri.org/AddAnswer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAnswers">
+      <soap12:operation soapAction="http://tempuri.org/GetAnswers" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -47,10 +47,10 @@ namespace SocialRequirements.Business.Requirement
         }
 
         public RequirementQuestionDto Get(long companyId, long projectId, long requirementId, long requirementVersionId,
-            long requirementQuestionId)
+            long requirementQuestionId, bool getAnswers)
         {
             return _questionData.Get(companyId, projectId, requirementId, requirementVersionId,
-                requirementQuestionId);
+                requirementQuestionId, getAnswers);
         }
 
         public List<RequirementQuestionDto> Get(long companyId, long projectId, long requirementId, long requirementVersionId)

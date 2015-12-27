@@ -2150,6 +2150,7 @@
     <Content Include="assets\plugins\switchery\README.md" />
     <Content Include="assets\plugins\wijets\.DS_Store" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Requirements\RequirementQuestion.aspx" />
     <Content Include="Requirements\RequirementModify.aspx" />
     <Content Include="Requirements\Requirement.aspx" />
     <Content Include="Requirements\RequirementsList.aspx" />
@@ -2232,6 +2233,12 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Service References\RequirementQuestionService\SocialRequirements.RequirementQuestionService.GetQuestionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RequirementQuestionService\SocialRequirements.RequirementQuestionService.AddAnswerResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RequirementQuestionService\SocialRequirements.RequirementQuestionService.GetAnswersResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Service References\RequirementService\Requirement.disco" />
@@ -2462,6 +2469,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Requirements\RequirementQuestion.aspx.cs">
+      <DependentUpon>RequirementQuestion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Requirements\RequirementQuestion.aspx.designer.cs">
+      <DependentUpon>RequirementQuestion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Requirements\RequirementModify.aspx.cs">
       <DependentUpon>RequirementModify.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

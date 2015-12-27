@@ -216,6 +216,18 @@ namespace SocialRequirements.Context
                 .HasForeignKey(e => e.modifiedby_id)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<Person>()
+                .HasMany(e => e.RequirementQuestionAnswer)
+                .WithRequired(e => e.Person)
+                .HasForeignKey(e => e.createdby_id)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Person>()
+                .HasMany(e => e.RequirementQuestionAnswer1)
+                .WithRequired(e => e.Person1)
+                .HasForeignKey(e => e.modifiedby_id)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Project>()
                 .HasMany(e => e.ActivityFeed)
                 .WithOptional(e => e.Project)

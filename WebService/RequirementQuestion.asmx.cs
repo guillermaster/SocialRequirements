@@ -24,6 +24,8 @@ namespace WebService
     {
         [Inject]
         public IRequirementQuestionBusiness RequirementQuestionBusiness { get; set; }
+        [Inject]
+        public IRequirementQuestionAnswerBusiness RequirementQuestionAnswerBusiness { get; set; }
 
         [WebMethod]
         public void AddQuestion(long companyId, long projectId, long requirementId, string question, string encUsername)
@@ -34,10 +36,10 @@ namespace WebService
 
         [WebMethod]
         public string GetQuestion(long companyId, long projectId, long requirementId, long requirementVersionId,
-            long requirementQuestionId)
+            long requirementQuestionId, bool getAnswers)
         {
             var question = RequirementQuestionBusiness.Get(companyId, projectId, requirementId, requirementVersionId,
-                requirementQuestionId);
+                requirementQuestionId, getAnswers);
             var serializer = new ObjectSerializer<RequirementQuestionDto>(question);
             return serializer.ToXmlString();
         }
@@ -48,6 +50,26 @@ namespace WebService
             var username = Encryption.Decrypt(encUsername);
             var questions = RequirementQuestionBusiness.GetAll(username);
             var serializer = new ObjectSerializer<List<RequirementQuestionDto>>(questions);
+            return serializer.ToXmlString();
+        }
+
+        [WebMethod]
+        public void AddAnswer(long companyId, long projectId, long requirementId, long requirementVersionId,
+            long requirementQuestionId, string answer, string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            RequirementQuestionAnswerBusiness.Add(companyId, projectId, requirementId, requirementVersionId,
+                requirementQuestionId, answer, username);
+        }
+
+        [WebMethod]
+        public string GetAnswers(long companyId, long projectId, long requirementId, long requirementVersionId,
+            long requirementQuestionId)
+        {
+            var answers = RequirementQuestionAnswerBusiness.Get(companyId, projectId, requirementId, requirementVersionId,
+                requirementQuestionId);
+
+            var serializer = new ObjectSerializer<List<RequirementQuestionAnswerDto>>(answers);
             return serializer.ToXmlString();
         }
     }

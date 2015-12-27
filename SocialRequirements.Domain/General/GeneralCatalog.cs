@@ -8,7 +8,8 @@
             Entity = 2,
             RequirementStatus = 3,
             EntityActions = 4,
-            RequirementQuestionStatus = 5
+            RequirementQuestionStatus = 5,
+            RequirementQuestionAnswerStatus = 6
         }
 
         public class Detail
@@ -41,6 +42,12 @@
             {
                 Posted = 23,
                 Answered = 24
+            }
+
+            public enum RequirementQuestionAnswerStatus
+            {
+                Posted = 25,
+                Approved = 27
             }
 
             public enum EntityActions

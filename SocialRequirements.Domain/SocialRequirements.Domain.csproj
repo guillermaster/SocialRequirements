@@ -47,6 +47,7 @@
     <Compile Include="BusinessLogic\Requirement\IRequirementCommentBusiness.cs" />
     <Compile Include="BusinessLogic\Requirement\IRequirementModificationBusiness.cs" />
     <Compile Include="BusinessLogic\Requirement\IRequirementModificationCommentBusiness.cs" />
+    <Compile Include="BusinessLogic\Requirement\IRequirementQuestionAnswerBusiness.cs" />
     <Compile Include="BusinessLogic\Requirement\IRequirementQuestionBusiness.cs" />
     <Compile Include="DTO\Account\CompanyDto.cs" />
     <Compile Include="DTO\Account\ProjectDto.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="DTO\Requirement\RequirementDto.cs" />
     <Compile Include="DTO\Requirement\RequirementModificationCommentDto.cs" />
     <Compile Include="DTO\Requirement\RequirementModificationDto.cs" />
+    <Compile Include="DTO\Requirement\RequirementQuestionAnswerDto.cs" />
     <Compile Include="DTO\Requirement\RequirementQuestionDto.cs" />
     <Compile Include="Exception\Account\AccountException.cs" />
     <Compile Include="Exception\Account\CompanyException.cs" />

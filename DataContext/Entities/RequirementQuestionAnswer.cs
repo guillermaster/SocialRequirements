@@ -34,5 +34,9 @@ namespace SocialRequirements.Context.Entities
         public int status_id { get; set; }
 
         public virtual GeneralCatalogDetail GeneralCatalogDetail { get; set; }
+
+        public virtual Person Person { get; set; }
+
+        public virtual Person Person1 { get; set; }
     }
 }

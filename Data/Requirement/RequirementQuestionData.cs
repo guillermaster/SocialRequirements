@@ -26,7 +26,8 @@ namespace SocialRequirements.Data.Requirement
             return question.id;
         }
 
-        public RequirementQuestionDto Get(long companyId, long projectId, long requirementId, long requirementVersionId, long requirementQuestionId)
+        public RequirementQuestionDto Get(long companyId, long projectId, long requirementId, long requirementVersionId,
+            long requirementQuestionId, bool getAnswers)
         {
             var question =
                 _context.RequirementQuestion.FirstOrDefault(
@@ -34,7 +35,7 @@ namespace SocialRequirements.Data.Requirement
                         q.company_id == companyId && q.project_id == projectId && q.requirement_id == requirementId &&
                         q.requirement_version_id == requirementVersionId && q.id == requirementQuestionId);
 
-            return question != null ? GetDtoFromEntity(question) : null;
+            return question != null ? GetDtoFromEntity(question, getAnswers) : null;
         }
 
         public List<RequirementQuestionDto> Get(long companyId, long projectId, long requirementId, long requirementVersionId)
@@ -45,7 +46,7 @@ namespace SocialRequirements.Data.Requirement
                         q.company_id == companyId && q.project_id == projectId && q.requirement_id == requirementId &&
                         q.requirement_version_id == requirementVersionId).ToList();
 
-            return questions.Select(GetDtoFromEntity).ToList();
+            return questions.Select(q => GetDtoFromEntity(q, false)).ToList();
         }
 
         public List<RequirementQuestionDto> GetAll(List<long> projectIds)
@@ -55,7 +56,7 @@ namespace SocialRequirements.Data.Requirement
                     .OrderByDescending(qDate => qDate.modifiedon)
                     .ToList();
 
-            return questions.Select(GetDtoFromEntity).ToList();
+            return questions.Select(q => GetDtoFromEntity(q, false)).ToList();
         }
 
         private static RequirementQuestion GetEntityFromDto(RequirementQuestionDto questionDto)
@@ -76,7 +77,7 @@ namespace SocialRequirements.Data.Requirement
             return question;
         }
 
-        private RequirementQuestionDto GetDtoFromEntity(RequirementQuestion question)
+        private RequirementQuestionDto GetDtoFromEntity(RequirementQuestion question, bool getAnswers)
         {
             var questionDto = new RequirementQuestionDto
             {
@@ -97,7 +98,10 @@ namespace SocialRequirements.Data.Requirement
                 CreatedByName = Utilities.StringUtilities.GetPersonFullName(question.Person),
                 ModifiedByName = Utilities.StringUtilities.GetPersonFullName(question.Person1),
                 AnswersQuantity = _requirementQuestionAnswerData.GetNumberOfAnswers(question.company_id, question.project_id, 
-                                    question.requirement_id, question.requirement_version_id, question.id)
+                                    question.requirement_id, question.requirement_version_id, question.id),
+                Answers = getAnswers ? _requirementQuestionAnswerData.Get(question.company_id, question.project_id,
+                                    question.requirement_id, question.requirement_version_id, question.id) : 
+                                    new List<RequirementQuestionAnswerDto>()
             };
             return questionDto;
         }
