@@ -11,10 +11,12 @@ namespace SocialRequirements.Data.Requirement
     public class RequirementQuestionData : IRequirementQuestionData
     {
         private readonly ContextModel _context;
+        private IRequirementQuestionAnswerData _requirementQuestionAnswerData;
 
-        public RequirementQuestionData(ContextModel context)
+        public RequirementQuestionData(ContextModel context, IRequirementQuestionAnswerData requirementQuestionAnswerData)
         {
             _context = context;
+            _requirementQuestionAnswerData = requirementQuestionAnswerData;
         }
 
         public long Add(RequirementQuestionDto questionDto)
@@ -46,11 +48,12 @@ namespace SocialRequirements.Data.Requirement
             return questions.Select(GetDtoFromEntity).ToList();
         }
 
-        public List<RequirementQuestionDto> GetAll(long companyId)
+        public List<RequirementQuestionDto> GetAll(List<long> projectIds)
         {
             var questions =
-                _context.RequirementQuestion.Where(
-                    q => q.company_id == companyId).ToList();
+                _context.RequirementQuestion.Where(q => projectIds.Contains(q.project_id))
+                    .OrderByDescending(qDate => qDate.modifiedon)
+                    .ToList();
 
             return questions.Select(GetDtoFromEntity).ToList();
         }
@@ -68,8 +71,7 @@ namespace SocialRequirements.Data.Requirement
                 createdby_id = questionDto.CreatedbyId,
                 createdon = DateTime.Now,
                 modifiedby_id = questionDto.ModifiedbyId,
-                modifiedon = DateTime.Now,
-                accepted_answer_id = questionDto.AcceptedAnswerId
+                modifiedon = DateTime.Now
             };
             return question;
         }
@@ -89,7 +91,13 @@ namespace SocialRequirements.Data.Requirement
                 Createdon = question.createdon,
                 ModifiedbyId = question.modifiedby_id,
                 Modifiedon = question.modifiedon,
-                AcceptedAnswerId = question.accepted_answer_id
+                RequirementTitle = question.Requirement.title,
+                ProjectName = question.Project.name,
+                Status = question.GeneralCatalogDetail.name,
+                CreatedByName = Utilities.StringUtilities.GetPersonFullName(question.Person),
+                ModifiedByName = Utilities.StringUtilities.GetPersonFullName(question.Person1),
+                AnswersQuantity = _requirementQuestionAnswerData.GetNumberOfAnswers(question.company_id, question.project_id, 
+                                    question.requirement_id, question.requirement_version_id, question.id)
             };
             return questionDto;
         }

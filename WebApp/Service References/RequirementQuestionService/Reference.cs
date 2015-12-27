@@ -21,6 +21,20 @@ namespace SocialRequirements.RequirementQuestionService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/AddQuestion", ReplyAction="*")]
         System.Threading.Tasks.Task<SocialRequirements.RequirementQuestionService.AddQuestionResponse> AddQuestionAsync(SocialRequirements.RequirementQuestionService.AddQuestionRequest request);
+        
+        // CODEGEN: Generating message contract since element name GetQuestionResult from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetQuestion", ReplyAction="*")]
+        SocialRequirements.RequirementQuestionService.GetQuestionResponse GetQuestion(SocialRequirements.RequirementQuestionService.GetQuestionRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetQuestion", ReplyAction="*")]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementQuestionService.GetQuestionResponse> GetQuestionAsync(SocialRequirements.RequirementQuestionService.GetQuestionRequest request);
+        
+        // CODEGEN: Generating message contract since element name encUsername from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetAllQuestions", ReplyAction="*")]
+        SocialRequirements.RequirementQuestionService.GetAllQuestionsResponse GetAllQuestions(SocialRequirements.RequirementQuestionService.GetAllQuestionsRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetAllQuestions", ReplyAction="*")]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementQuestionService.GetAllQuestionsResponse> GetAllQuestionsAsync(SocialRequirements.RequirementQuestionService.GetAllQuestionsRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -100,6 +114,158 @@ namespace SocialRequirements.RequirementQuestionService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetQuestionRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetQuestion", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementQuestionService.GetQuestionRequestBody Body;
+        
+        public GetQuestionRequest() {
+        }
+        
+        public GetQuestionRequest(SocialRequirements.RequirementQuestionService.GetQuestionRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetQuestionRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public long companyId;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=1)]
+        public long projectId;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=2)]
+        public long requirementId;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=3)]
+        public long requirementVersionId;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=4)]
+        public long requirementQuestionId;
+        
+        public GetQuestionRequestBody() {
+        }
+        
+        public GetQuestionRequestBody(long companyId, long projectId, long requirementId, long requirementVersionId, long requirementQuestionId) {
+            this.companyId = companyId;
+            this.projectId = projectId;
+            this.requirementId = requirementId;
+            this.requirementVersionId = requirementVersionId;
+            this.requirementQuestionId = requirementQuestionId;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetQuestionResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetQuestionResponse", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementQuestionService.GetQuestionResponseBody Body;
+        
+        public GetQuestionResponse() {
+        }
+        
+        public GetQuestionResponse(SocialRequirements.RequirementQuestionService.GetQuestionResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetQuestionResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string GetQuestionResult;
+        
+        public GetQuestionResponseBody() {
+        }
+        
+        public GetQuestionResponseBody(string GetQuestionResult) {
+            this.GetQuestionResult = GetQuestionResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetAllQuestionsRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetAllQuestions", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementQuestionService.GetAllQuestionsRequestBody Body;
+        
+        public GetAllQuestionsRequest() {
+        }
+        
+        public GetAllQuestionsRequest(SocialRequirements.RequirementQuestionService.GetAllQuestionsRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetAllQuestionsRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string encUsername;
+        
+        public GetAllQuestionsRequestBody() {
+        }
+        
+        public GetAllQuestionsRequestBody(string encUsername) {
+            this.encUsername = encUsername;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetAllQuestionsResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetAllQuestionsResponse", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementQuestionService.GetAllQuestionsResponseBody Body;
+        
+        public GetAllQuestionsResponse() {
+        }
+        
+        public GetAllQuestionsResponse(SocialRequirements.RequirementQuestionService.GetAllQuestionsResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetAllQuestionsResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string GetAllQuestionsResult;
+        
+        public GetAllQuestionsResponseBody() {
+        }
+        
+        public GetAllQuestionsResponseBody(string GetAllQuestionsResult) {
+            this.GetAllQuestionsResult = GetAllQuestionsResult;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface RequirementQuestionSoapChannel : SocialRequirements.RequirementQuestionService.RequirementQuestionSoap, System.ServiceModel.IClientChannel {
     }
@@ -157,6 +323,64 @@ namespace SocialRequirements.RequirementQuestionService {
             inValue.Body.question = question;
             inValue.Body.encUsername = encUsername;
             return ((SocialRequirements.RequirementQuestionService.RequirementQuestionSoap)(this)).AddQuestionAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SocialRequirements.RequirementQuestionService.GetQuestionResponse SocialRequirements.RequirementQuestionService.RequirementQuestionSoap.GetQuestion(SocialRequirements.RequirementQuestionService.GetQuestionRequest request) {
+            return base.Channel.GetQuestion(request);
+        }
+        
+        public string GetQuestion(long companyId, long projectId, long requirementId, long requirementVersionId, long requirementQuestionId) {
+            SocialRequirements.RequirementQuestionService.GetQuestionRequest inValue = new SocialRequirements.RequirementQuestionService.GetQuestionRequest();
+            inValue.Body = new SocialRequirements.RequirementQuestionService.GetQuestionRequestBody();
+            inValue.Body.companyId = companyId;
+            inValue.Body.projectId = projectId;
+            inValue.Body.requirementId = requirementId;
+            inValue.Body.requirementVersionId = requirementVersionId;
+            inValue.Body.requirementQuestionId = requirementQuestionId;
+            SocialRequirements.RequirementQuestionService.GetQuestionResponse retVal = ((SocialRequirements.RequirementQuestionService.RequirementQuestionSoap)(this)).GetQuestion(inValue);
+            return retVal.Body.GetQuestionResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementQuestionService.GetQuestionResponse> SocialRequirements.RequirementQuestionService.RequirementQuestionSoap.GetQuestionAsync(SocialRequirements.RequirementQuestionService.GetQuestionRequest request) {
+            return base.Channel.GetQuestionAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SocialRequirements.RequirementQuestionService.GetQuestionResponse> GetQuestionAsync(long companyId, long projectId, long requirementId, long requirementVersionId, long requirementQuestionId) {
+            SocialRequirements.RequirementQuestionService.GetQuestionRequest inValue = new SocialRequirements.RequirementQuestionService.GetQuestionRequest();
+            inValue.Body = new SocialRequirements.RequirementQuestionService.GetQuestionRequestBody();
+            inValue.Body.companyId = companyId;
+            inValue.Body.projectId = projectId;
+            inValue.Body.requirementId = requirementId;
+            inValue.Body.requirementVersionId = requirementVersionId;
+            inValue.Body.requirementQuestionId = requirementQuestionId;
+            return ((SocialRequirements.RequirementQuestionService.RequirementQuestionSoap)(this)).GetQuestionAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SocialRequirements.RequirementQuestionService.GetAllQuestionsResponse SocialRequirements.RequirementQuestionService.RequirementQuestionSoap.GetAllQuestions(SocialRequirements.RequirementQuestionService.GetAllQuestionsRequest request) {
+            return base.Channel.GetAllQuestions(request);
+        }
+        
+        public string GetAllQuestions(string encUsername) {
+            SocialRequirements.RequirementQuestionService.GetAllQuestionsRequest inValue = new SocialRequirements.RequirementQuestionService.GetAllQuestionsRequest();
+            inValue.Body = new SocialRequirements.RequirementQuestionService.GetAllQuestionsRequestBody();
+            inValue.Body.encUsername = encUsername;
+            SocialRequirements.RequirementQuestionService.GetAllQuestionsResponse retVal = ((SocialRequirements.RequirementQuestionService.RequirementQuestionSoap)(this)).GetAllQuestions(inValue);
+            return retVal.Body.GetAllQuestionsResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementQuestionService.GetAllQuestionsResponse> SocialRequirements.RequirementQuestionService.RequirementQuestionSoap.GetAllQuestionsAsync(SocialRequirements.RequirementQuestionService.GetAllQuestionsRequest request) {
+            return base.Channel.GetAllQuestionsAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SocialRequirements.RequirementQuestionService.GetAllQuestionsResponse> GetAllQuestionsAsync(string encUsername) {
+            SocialRequirements.RequirementQuestionService.GetAllQuestionsRequest inValue = new SocialRequirements.RequirementQuestionService.GetAllQuestionsRequest();
+            inValue.Body = new SocialRequirements.RequirementQuestionService.GetAllQuestionsRequestBody();
+            inValue.Body.encUsername = encUsername;
+            return ((SocialRequirements.RequirementQuestionService.RequirementQuestionSoap)(this)).GetAllQuestionsAsync(inValue);
         }
     }
 }

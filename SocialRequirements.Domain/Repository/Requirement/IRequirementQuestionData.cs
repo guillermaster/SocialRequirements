@@ -31,10 +31,10 @@ namespace SocialRequirements.Domain.Repository.Requirement
         List<RequirementQuestionDto> Get(long companyId, long projectId, long requirementId, long requirementVersionId);
 
         /// <summary>
-        /// Gets all questions for all requirements in a company
+        /// Gets all questions for all requirements in the specified projects
         /// </summary>
-        /// <param name="companyId">Company ID</param>
+        /// <param name="projectIds">Projects ID</param>
         /// <returns>List of questions</returns>
-        List<RequirementQuestionDto> GetAll(long companyId);
+        List<RequirementQuestionDto> GetAll(List<long> projectIds);
     }
 }

@@ -30,9 +30,19 @@ namespace SocialRequirements.Context.Entities
         public long modifiedby_id { get; set; }
 
         public DateTime modifiedon { get; set; }
-
-        public int? accepted_answer_id { get; set; }
-
+        
         public virtual GeneralCatalogDetail GeneralCatalogDetail { get; set; }
+
+        public virtual Company Company { get; set; }
+
+        public virtual Person Person { get; set; }
+
+        public virtual Person Person1 { get; set; }
+
+        public virtual Project Project { get; set; }
+
+        public virtual Requirement Requirement { get; set; }
+
+        public virtual RequirementVersion RequirementVersion { get; set; }
     }
 }

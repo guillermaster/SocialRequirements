@@ -2153,6 +2153,7 @@
     <Content Include="Requirements\RequirementModify.aspx" />
     <Content Include="Requirements\Requirement.aspx" />
     <Content Include="Requirements\RequirementsList.aspx" />
+    <Content Include="Requirements\RequirementsQuestionsList.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -2225,6 +2226,12 @@
     </Content>
     <None Include="Service References\RequirementQuestionService\RequirementQuestion.wsdl" />
     <Content Include="Service References\RequirementQuestionService\SocialRequirements.RequirementQuestionService.AddQuestionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RequirementQuestionService\SocialRequirements.RequirementQuestionService.GetAllQuestionsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RequirementQuestionService\SocialRequirements.RequirementQuestionService.GetQuestionResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Service References\RequirementService\Requirement.disco" />
@@ -2475,6 +2482,13 @@
     </Compile>
     <Compile Include="Requirements\RequirementsList.aspx.designer.cs">
       <DependentUpon>RequirementsList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Requirements\RequirementsQuestionsList.aspx.cs">
+      <DependentUpon>RequirementsQuestionsList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Requirements\RequirementsQuestionsList.aspx.designer.cs">
+      <DependentUpon>RequirementsQuestionsList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Service References\AccountService\Reference.cs">
       <AutoGen>True</AutoGen>

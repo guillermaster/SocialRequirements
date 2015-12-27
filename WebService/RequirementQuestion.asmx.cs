@@ -6,6 +6,8 @@ using System.Web.Services;
 using Ninject;
 using Ninject.Web;
 using SocialRequirements.Domain.BusinessLogic.Requirement;
+using SocialRequirements.Domain.DTO.Requirement;
+using SocialRequirements.Utilities;
 using SocialRequirements.Utilities.Security;
 
 namespace WebService
@@ -28,6 +30,25 @@ namespace WebService
         {
             var username = Encryption.Decrypt(encUsername);
             RequirementQuestionBusiness.Add(companyId, projectId, requirementId, question, username);
+        }
+
+        [WebMethod]
+        public string GetQuestion(long companyId, long projectId, long requirementId, long requirementVersionId,
+            long requirementQuestionId)
+        {
+            var question = RequirementQuestionBusiness.Get(companyId, projectId, requirementId, requirementVersionId,
+                requirementQuestionId);
+            var serializer = new ObjectSerializer<RequirementQuestionDto>(question);
+            return serializer.ToXmlString();
+        }
+
+        [WebMethod]
+        public string GetAllQuestions(string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            var questions = RequirementQuestionBusiness.GetAll(username);
+            var serializer = new ObjectSerializer<List<RequirementQuestionDto>>(questions);
+            return serializer.ToXmlString();
         }
     }
 }

@@ -31,10 +31,9 @@ namespace SocialRequirements.Domain.BusinessLogic.Requirement
         List<RequirementQuestionDto> Get(long companyId, long projectId, long requirementId, long requirementVersionId);
 
         /// <summary>
-        /// Gets all questions for all requirements in a company
+        /// Gets all questions for all requirements related to a specified user
         /// </summary>
-        /// <param name="companyId">Company ID</param>
         /// <returns>List of questions</returns>
-        List<RequirementQuestionDto> GetAll(long companyId);
+        List<RequirementQuestionDto> GetAll(string username);
     }
 }

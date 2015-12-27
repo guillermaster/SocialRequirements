@@ -16,6 +16,38 @@
       <s:element name="AddQuestionResponse">
         <s:complexType />
       </s:element>
+      <s:element name="GetQuestion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="companyId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="projectId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requirementId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requirementVersionId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requirementQuestionId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetQuestionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetQuestionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllQuestions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="encUsername" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllQuestionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllQuestionsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="AddQuestionSoapIn">
@@ -24,10 +56,30 @@
   <wsdl:message name="AddQuestionSoapOut">
     <wsdl:part name="parameters" element="tns:AddQuestionResponse" />
   </wsdl:message>
+  <wsdl:message name="GetQuestionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetQuestion" />
+  </wsdl:message>
+  <wsdl:message name="GetQuestionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetQuestionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllQuestionsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllQuestions" />
+  </wsdl:message>
+  <wsdl:message name="GetAllQuestionsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllQuestionsResponse" />
+  </wsdl:message>
   <wsdl:portType name="RequirementQuestionSoap">
     <wsdl:operation name="AddQuestion">
       <wsdl:input message="tns:AddQuestionSoapIn" />
       <wsdl:output message="tns:AddQuestionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestion">
+      <wsdl:input message="tns:GetQuestionSoapIn" />
+      <wsdl:output message="tns:GetQuestionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllQuestions">
+      <wsdl:input message="tns:GetAllQuestionsSoapIn" />
+      <wsdl:output message="tns:GetAllQuestionsSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="RequirementQuestionSoap" type="tns:RequirementQuestionSoap">
@@ -41,11 +93,47 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetQuestion">
+      <soap:operation soapAction="http://tempuri.org/GetQuestion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllQuestions">
+      <soap:operation soapAction="http://tempuri.org/GetAllQuestions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="RequirementQuestionSoap12" type="tns:RequirementQuestionSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="AddQuestion">
       <soap12:operation soapAction="http://tempuri.org/AddQuestion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestion">
+      <soap12:operation soapAction="http://tempuri.org/GetQuestion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllQuestions">
+      <soap12:operation soapAction="http://tempuri.org/GetAllQuestions" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

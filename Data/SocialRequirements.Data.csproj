@@ -53,6 +53,7 @@
     <Compile Include="Requirement\RequirementModificationCommentData.cs" />
     <Compile Include="Requirement\RequirementModificationData.cs" />
     <Compile Include="Requirement\RequirementModificationVersionData.cs" />
+    <Compile Include="Requirement\RequirementQuestionAnswerData.cs" />
     <Compile Include="Requirement\RequirementQuestionData.cs" />
     <Compile Include="Requirement\RequirementVersionData.cs" />
   </ItemGroup>

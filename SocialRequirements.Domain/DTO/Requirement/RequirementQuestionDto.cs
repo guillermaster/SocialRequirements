@@ -2,6 +2,7 @@
 
 namespace SocialRequirements.Domain.DTO.Requirement
 {
+    [Serializable]
     public class RequirementQuestionDto
     {
         public RequirementQuestionDto()
@@ -19,7 +20,6 @@ namespace SocialRequirements.Domain.DTO.Requirement
             Question = question;
             CreatedbyId = personId;
             ModifiedbyId = personId;
-            AcceptedAnswerId = null;
             StatusId = statusId;
         }
 
@@ -44,7 +44,19 @@ namespace SocialRequirements.Domain.DTO.Requirement
         public long ModifiedbyId { get; set; }
 
         public DateTime Modifiedon { get; set; }
+        
+        // non-db properties
 
-        public int? AcceptedAnswerId { get; set; }
+        public string RequirementTitle { get; set; }
+
+        public string ProjectName { get; set; }
+
+        public string Status { get; set; }
+
+        public string CreatedByName { get; set; }
+
+        public string ModifiedByName { get; set; }
+
+        public int AnswersQuantity { get; set; }
     }
 }

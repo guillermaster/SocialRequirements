@@ -79,7 +79,7 @@ namespace SocialRequirements.Data.Requirement
                 Comment = requirementComment.comment,
                 CreatedbyId = requirementComment.createdby_id,
                 Createdon = requirementComment.createdon,
-                CreatedByName = requirementComment.Person.first_name + " " + requirementComment.Person.last_name
+                CreatedByName = Utilities.StringUtilities.GetPersonFullName(requirementComment.Person)
             };
             return requirementModifCommentDto;
         }

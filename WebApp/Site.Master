@@ -477,9 +477,9 @@
 
                                         </ul>
                                     </li>
-                                    <li><a href="javascript:;"><i class="fa fa-flask"></i><span>Base Styles</span></a>
+                                    <li><a href="javascript:;"><i class="fa fa-flask"></i><span>Questions</span></a>
                                         <ul class="acc-menu">
-                                            <li><a href="ui-typography.html">Typography</a></li>
+                                            <li><asp:HyperLink runat="server" NavigateUrl="~/Requirements/RequirementsQuestionsList.aspx">All questions</asp:HyperLink></li>
                                             <li><a href="ui-buttons.html">Buttons</a></li>
                                             <li><a href="ui-tables.html">Tables</a></li>
                                             <li><a href="ui-forms.html">Forms</a></li>

@@ -49,6 +49,10 @@
     <Compile Include="StringUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataContext\SocialRequirements.Context.csproj">
+      <Project>{0d3df9c2-7cc0-4891-8b55-786bfd9b412c}</Project>
+      <Name>SocialRequirements.Context</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SocialRequirements.Domain\SocialRequirements.Domain.csproj">
       <Project>{6195F799-B266-474F-B5BA-D870B9A082A6}</Project>
       <Name>SocialRequirements.Domain</Name>

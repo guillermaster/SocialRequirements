@@ -34,6 +34,7 @@ namespace SocialRequirements.CompositionRoot
             Bind<IRequirementCommentData>().To<RequirementCommentData>().WithConstructorArgument(contextCnxStr, dbContext);
             Bind<IRequirementModificationCommentData>().To<RequirementModificationCommentData>().WithConstructorArgument(contextCnxStr, dbContext);
             Bind<IRequirementQuestionData>().To<RequirementQuestionData>().WithConstructorArgument(contextCnxStr, dbContext);
+            Bind<IRequirementQuestionAnswerData>().To<RequirementQuestionAnswerData>().WithConstructorArgument(contextCnxStr, dbContext);
 
             Bind<IPersonBusiness>().To<PersonBusiness>();
             Bind<ICompanyBusiness>().To<CompanyBusiness>();

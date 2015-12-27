@@ -72,6 +72,7 @@
     <Compile Include="Repository\Requirement\IRequirementModificationCommentData.cs" />
     <Compile Include="Repository\Requirement\IRequirementModificationData.cs" />
     <Compile Include="Repository\Requirement\IRequirementModificationVersionData.cs" />
+    <Compile Include="Repository\Requirement\IRequirementQuestionAnswerData.cs" />
     <Compile Include="Repository\Requirement\IRequirementQuestionData.cs" />
     <Compile Include="Repository\Requirement\IRequirementVersionData.cs" />
   </ItemGroup>
