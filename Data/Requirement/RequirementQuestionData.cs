@@ -97,10 +97,10 @@ namespace SocialRequirements.Data.Requirement
                 Status = question.GeneralCatalogDetail.name,
                 CreatedByName = Utilities.StringUtilities.GetPersonFullName(question.Person),
                 ModifiedByName = Utilities.StringUtilities.GetPersonFullName(question.Person1),
-                AnswersQuantity = _requirementQuestionAnswerData.GetNumberOfAnswers(question.company_id, question.project_id, 
+                AnswersQuantity = _requirementQuestionAnswerData.GetNumberOfAnswers(question.company_id, question.project_id,
                                     question.requirement_id, question.requirement_version_id, question.id),
                 Answers = getAnswers ? _requirementQuestionAnswerData.Get(question.company_id, question.project_id,
-                                    question.requirement_id, question.requirement_version_id, question.id) : 
+                                    question.requirement_id, question.requirement_version_id, question.id) :
                                     new List<RequirementQuestionAnswerDto>()
             };
             return questionDto;

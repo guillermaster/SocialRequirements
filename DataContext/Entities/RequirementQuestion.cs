@@ -18,7 +18,7 @@ namespace SocialRequirements.Context.Entities
         public long requirement_version_id { get; set; }
 
         [Required]
-        [StringLength(500)]
+        [Column(TypeName = "text")]
         public string question { get; set; }
 
         public int status_id { get; set; }

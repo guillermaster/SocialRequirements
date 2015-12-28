@@ -9416,6 +9416,7 @@ body.sidebar-collapsed .sidebar nav.widget-body > ul.acc-menu li.hasChild:hover 
 .static-content-wrapper {
   background: #eeeeee;
 }
+
 .sidebar-scroll .static-sidebar {
   position: fixed !important;
   top: 50px;

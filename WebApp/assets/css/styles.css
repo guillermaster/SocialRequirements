@@ -744,3 +744,121 @@
     margin: 0;
     padding: 0;
 }
+
+.card {
+    border: #EEEEEE thin solid;
+    width: 100%;
+    margin: 10px 1px;
+    background-color: #FFFFFF;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.card .tag {
+    border: none;
+    -webkit-border-top-right-radius: 20px;
+    -webkit-border-bottom-right-radius: 20px;
+    -moz-border-radius-topright: 20px;
+    -moz-border-radius-bottomright: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background: #90A4AE;
+    padding: 3px 7px 3px 5px;
+    width: auto;
+    display: inline-block;
+    color: #FFFFFF;
+    position: relative;
+    top: -16px;
+    left: -12px;
+}
+
+.card .tag2 {
+    border: none;
+    -webkit-border-top-right-radius: 20px;
+    -webkit-border-bottom-right-radius: 20px;
+    -moz-border-radius-topright: 20px;
+    -moz-border-radius-bottomright: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background: #00BCD4;
+    padding: 3px 7px 3px 5px;
+    width: auto;
+    display: inline-block;
+    color: #FFFFFF;
+    position: relative;
+    top: 10px;
+    left: -117px;
+}
+
+.card .title {
+    border: none;
+    padding: 0;
+    font-weight: bold;
+    width: 95%;
+    margin: 0;
+    position: relative;
+    top: -10px;
+    left: 33px;
+}
+
+.card .header {
+    border: none;
+    padding: 0;
+    margin: 0;
+    width: 95%;
+    margin: 0 5px 10px 30px;
+}
+
+.card .header .attribute_title {
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+}
+
+.card .header .attribute_value {
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-weight: normal;
+}
+
+.card .footer {
+    border: none;
+    border-top: #EEEEEE thin solid;
+    padding: 0;
+    margin: 0 0 40px 30px;
+    width: 95%;
+}
+
+.card .footer .left {
+    border: none;
+    float: left;
+    width: 48%;
+    margin: 0;
+}
+
+.card .footer .right {
+    border: none;
+    float: right;
+    width: 48%;
+    text-align: right;
+    margin: 0;
+}
+
+.card .icon {
+    position: relative;
+    top: 10px;
+    left: 5px;
+    padding: 0;
+    margin: 0;
+    width: 0;
+    border: none;
+}
+
+.card .body {
+    position: relative;
+    top: 10px;
+    left: 30px;
+    font-weight: normal;
+}

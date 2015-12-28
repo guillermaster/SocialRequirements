@@ -6,40 +6,33 @@
     <a href="#" class="btn btn-default"><i class="fa fa-fw fa-wrench"></i></a>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
+    
     <asp:Repeater ID="RequirementsQuestionsListRepeater"
         ItemType="SocialRequirements.Domain.DTO.Requirement.RequirementQuestionDto" runat="server" OnItemCommand="RequirementsQuestionsListRepeater_ItemCommand">
         <HeaderTemplate>
-            <div id="activityFeed">
+            <div>
         </HeaderTemplate>
         <ItemTemplate>
-            <div class="requirement_list">
-                <div class="requirement_list title"
-                    onclick="javascript:location.href='RequirementQuestion.aspx?<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.Id %>=<%# Eval("Id") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.CompanyId %>=<%# Eval("CompanyId") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.ProjectId %>=<%# Eval("ProjectId") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.RequirementId %>=<%# Eval("RequirementId") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.RequirementVersionId %>=<%# Eval("RequirementVersionId") %>'">
-                    <%# Eval("RequirementTitle") %>
+            <div class="card"
+                onclick="javascript:location.href='RequirementQuestion.aspx?<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.Id %>=<%# Eval("Id") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.CompanyId %>=<%# Eval("CompanyId") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.ProjectId %>=<%# Eval("ProjectId") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.RequirementId %>=<%# Eval("RequirementId") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.RequirementVersionId %>=<%# Eval("RequirementVersionId") %>'">
+                <div class="card tag"><%# Eval("ProjectName") %></div>
+                <div class="card tag2"><%# Eval("RequirementTitle") %></div>
+                <div class="card icon">
+                    <i class="fa fa-question-circle"></i>
                 </div>
-                <span class="requirement_list project">
-                    <a href="#"><%# Eval("ProjectName") %></a>
-                </span>
-                <span class="requirement_list date">
-                    <%# Eval("Modifiedon") %>
-                </span>
-                <span class="requirement_list status">
-                    <%# Eval("Status") %>
-                </span>
-                <div class="requirement_list description"
-                    onclick="javascript:location.href='RequirementQuestion.aspx?<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.Id %>=<%# Eval("Id") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.CompanyId %>=<%# Eval("CompanyId") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.ProjectId %>=<%# Eval("ProjectId") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.RequirementId %>=<%# Eval("RequirementId") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.RequirementVersionId %>=<%# Eval("RequirementVersionId") %>'">
+                <div class="card title">
                     <%# Eval("Question") %>
                 </div>
-                <div>
-                    <asp:Panel runat="server" ID="RequirementActionsPanel" CssClass="actions_wrapper">
-                        <ul class="activity actions">
-                            <li>
-                                <a onclick="javascript:location.href='RequirementQuestion.aspx?<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.Id %>=<%# Eval("Id") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.CompanyId %>=<%# Eval("CompanyId") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.ProjectId %>=<%# Eval("ProjectId") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.RequirementId %>=<%# Eval("RequirementId") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.RequirementVersionId %>=<%# Eval("RequirementVersionId") %>'">
-                                    <asp:Label runat="server" ID="AnswersQty" Text='<%# Eval("AnswersQuantity") %>' />
-                                </a>
-                            </li>
-                        </ul>
-                    </asp:Panel>
+                <div class="card footer">
+                    <div class="car footer left">
+                        <span><%# Eval("AnswersQuantity") %> answers</span>
+                    </div>
+                    <div class="car footer right">
+                        <span>Asked by: </span>
+                        <span><%# Eval("CreatedByName") %></span><br/>
+                        <span>Asked on: </span>
+                        <span><%# Eval("Createdon") %></span><br/>
+                    </div>
                 </div>
             </div>
         </ItemTemplate>

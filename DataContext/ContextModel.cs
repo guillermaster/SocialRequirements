@@ -282,6 +282,12 @@ namespace SocialRequirements.Context
                 .WithRequired(e => e.Project)
                 .HasForeignKey(e => e.project_id);
 
+            modelBuilder.Entity<Project>()
+                .HasMany(e => e.RequirementQuestion)
+                .WithRequired(e => e.Project)
+                .HasForeignKey(e => e.project_id)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Requirement>()
                 .Property(e => e.description)
                 .IsUnicode(false);
