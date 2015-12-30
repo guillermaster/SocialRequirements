@@ -193,6 +193,33 @@ namespace SocialRequirements.Requirements {
         protected global::System.Web.UI.WebControls.TextBox RequirementTitleInput;
         
         /// <summary>
+        /// ProjectName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ProjectName;
+        
+        /// <summary>
+        /// RequirementDescription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label RequirementDescription;
+        
+        /// <summary>
+        /// RequirementDescriptionInput control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox RequirementDescriptionInput;
+        
+        /// <summary>
         /// RequirementStatus control.
         /// </summary>
         /// <remarks>
@@ -254,24 +281,6 @@ namespace SocialRequirements.Requirements {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label ModifiedOn;
-        
-        /// <summary>
-        /// RequirementDescription control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label RequirementDescription;
-        
-        /// <summary>
-        /// RequirementDescriptionInput control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox RequirementDescriptionInput;
         
         /// <summary>
         /// ViewHideCommentsButton control.

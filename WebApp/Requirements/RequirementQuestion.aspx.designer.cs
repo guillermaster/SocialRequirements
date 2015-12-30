@@ -67,6 +67,24 @@ namespace SocialRequirements.Requirements {
         protected global::System.Web.UI.WebControls.Label PostErrorMessage;
         
         /// <summary>
+        /// RequirementTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label RequirementTitle;
+        
+        /// <summary>
+        /// ProjectName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ProjectName;
+        
+        /// <summary>
         /// QuestionText control.
         /// </summary>
         /// <remarks>

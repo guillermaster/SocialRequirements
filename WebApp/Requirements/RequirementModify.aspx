@@ -37,17 +37,20 @@
         </li>
         <li>
             <asp:LinkButton runat="server" CssClass="btn btn-default" ID="LikeButton" OnClick="LikeButton_OnClick" ToolTip="Like">
-                <i class="fa fa-fw fa-thumbs-o-up"><asp:Label runat="server" ID="LikeCounter"/></i>
+                <i class="fa fa-fw fa-thumbs-o-up">
+                    <asp:Label runat="server" ID="LikeCounter" /></i>
             </asp:LinkButton>
         </li>
         <li>
             <asp:LinkButton runat="server" CssClass="btn btn-default" ID="DislikeButton" OnClick="DislikeButton_OnClick" ToolTip="Like">
-                <i class="fa fa-fw fa-thumbs-o-down"><asp:Label runat="server" ID="DislikeCounter"/></i>
+                <i class="fa fa-fw fa-thumbs-o-down">
+                    <asp:Label runat="server" ID="DislikeCounter" /></i>
             </asp:LinkButton>
         </li>
         <li>
             <asp:LinkButton runat="server" CssClass="btn btn-default" ID="CommentsButton" OnClick="CommentsButton_OnClick" ToolTip="Comments">
-                <i class="fa fa-fw fa-comments-o"><asp:Label runat="server" ID="CommentCounter"/></i>
+                <i class="fa fa-fw fa-comments-o">
+                    <asp:Label runat="server" ID="CommentCounter" /></i>
             </asp:LinkButton>
         </li>
         <li>
@@ -74,62 +77,62 @@
             <asp:Label runat="server" ID="PostErrorMessage" />
         </p>
     </asp:Panel>
-    <div>
-        <div>
+    <div class="bigcard">
+        <div class="bigcard_title">
             <asp:Label runat="server" ID="RequirementTitle" />
-            <asp:TextBox runat="server" ID="RequirementTitleInput" Visible="False"/>
+            <asp:TextBox runat="server" ID="RequirementTitleInput" Visible="False" />
         </div>
-        <div>
-            <div>
-                <div>
-                    Status:
-                            <asp:Label runat="server" ID="RequirementStatus" />
-                    <asp:HiddenField runat="server" ID="RequirementStatusId"/>
-                </div>
-                <div>
-                    Version:
-                            <asp:Label runat="server" ID="RequirementVersion" />
-                </div>
-            </div>
-            <div>
-                <div>
-                    Created by:
-                            <asp:Label runat="server" ID="CreatedByName" />
-                    &nbsp;On:
-                            <asp:Label runat="server" ID="CreatedOn" />
-                </div>
-                <div>
-                    Last modified by:
-                            <asp:Label runat="server" ID="ModifiedByName" />
-                    &nbsp;On:
-                            <asp:Label runat="server" ID="ModifiedOn" />
-                </div>
-            </div>
-
+        <div class="bigcard_subtitle">
+            <asp:Label runat="server" ID="ProjectName" />
         </div>
-        <div>
+        <div class="bigcard_body">
             <asp:Label runat="server" ID="RequirementDescription" />
-            <asp:TextBox runat="server" ID="RequirementDescriptionInput" Visible="False" TextMode="MultiLine" Width="100%" Rows="20"/>
+            <asp:TextBox runat="server" ID="RequirementDescriptionInput" Visible="False" TextMode="MultiLine" Width="100%" Rows="20" />
+        </div>
+
+        <div class="bigcard_footer">
+            <div class="bigcard_footer left">
+                Status:
+                    <asp:Label runat="server" ID="RequirementStatus" />
+                <asp:HiddenField runat="server" ID="RequirementStatusId" />
+                <br />
+                Version:
+                    <asp:Label runat="server" ID="RequirementVersion" />
+            </div>
+            <div class="bigcard_footer right">
+                Created by:
+                    <asp:Label runat="server" ID="CreatedByName" />
+                &nbsp;On:
+                    <asp:Label runat="server" ID="CreatedOn" /><br />
+                Last modified by:
+                    <asp:Label runat="server" ID="ModifiedByName" />
+                &nbsp;On:
+                    <asp:Label runat="server" ID="ModifiedOn" />
+            </div>
         </div>
         <div>
-            <asp:LinkButton runat="server" ID="ViewHideCommentsButton" Text="View comments" OnClick="ViewHideCommentsButton_Click"></asp:LinkButton></div><asp:Panel runat="server" ID="CommentsPanel" Visible="False">
-            <asp:Repeater runat="server" ID="CommentsList">
-                <HeaderTemplate>
-                    <div>
-                </HeaderTemplate>
-                <ItemTemplate>
-                    <div>
-                        <span><%# Eval("CreatedByName") %>:</span> 
-                        <span><%# Eval("Comment") %></span>
-                        <span><%# Eval("Createdon") %></span>
-                    </div>
-                </ItemTemplate>
-                <FooterTemplate>
-                    </div>
-                </FooterTemplate>
-            </asp:Repeater>
-            <asp:TextBox runat="server" TextMode="MultiLine" ID="NewCommentInput" Rows="6" Columns="100" placeholder="Type your comment here" /><br />
-            <asp:Button runat="server" ID="AddNewCommentButton" Text="Add comment" OnClick="AddNewCommentButton_Click" /></asp:Panel>
+            <asp:LinkButton runat="server" ID="ViewHideCommentsButton" Text="View comments" OnClick="ViewHideCommentsButton_Click"></asp:LinkButton>
+        </div>
     </div>
-    </div>
+    <asp:Panel runat="server" ID="CommentsPanel" Visible="False">
+
+        <asp:Repeater runat="server" ID="CommentsList">
+            <HeaderTemplate>
+                <div>
+            </HeaderTemplate>
+            <ItemTemplate>
+                <div>
+                    <span><%# Eval("CreatedByName") %>:</span>
+                    <span><%# Eval("Comment") %></span>
+                    <span><%# Eval("Createdon") %></span>
+                </div>
+            </ItemTemplate>
+            <FooterTemplate>
+                </div>
+            </FooterTemplate>
+        </asp:Repeater>
+        <asp:TextBox runat="server" TextMode="MultiLine" ID="NewCommentInput" Rows="6" Columns="100" placeholder="Type your comment here" /><br />
+        <asp:Button runat="server" ID="AddNewCommentButton" Text="Add comment" OnClick="AddNewCommentButton_Click" />
+    </asp:Panel>
+
 </asp:Content>

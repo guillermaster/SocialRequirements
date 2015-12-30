@@ -134,6 +134,8 @@ namespace SocialRequirements.Requirements
         protected virtual void SetFormData(RequirementQuestionDto question)
         {
             // set requirement data in UI controls
+            RequirementTitle.Text = question.RequirementTitle;
+            ProjectName.Text = question.ProjectName;
             QuestionText.Text = question.Question;
             QuestionStatus.Text = question.Status;
             QuestionStatusId.Value = question.StatusId.ToString();

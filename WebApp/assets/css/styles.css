@@ -751,10 +751,16 @@
     margin: 10px 1px;
     background-color: #FFFFFF;
     padding: 5px 10px;
-    cursor: pointer;
+    cursor: default;
+    -ms-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    -ms-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    overflow: hidden;
 }
 
-.card .tag {
+.card_tag {
     border: none;
     -webkit-border-top-right-radius: 20px;
     -webkit-border-bottom-right-radius: 20px;
@@ -768,11 +774,11 @@
     display: inline-block;
     color: #FFFFFF;
     position: relative;
-    top: -16px;
-    left: -12px;
+    top: -6px;
+    left: -10px;
 }
 
-.card .tag2 {
+.card_tag2 {
     border: none;
     -webkit-border-top-right-radius: 20px;
     -webkit-border-bottom-right-radius: 20px;
@@ -786,22 +792,22 @@
     display: inline-block;
     color: #FFFFFF;
     position: relative;
-    top: 10px;
-    left: -117px;
+    top: 20px;
+    left: -242px;
 }
 
-.card .title {
+.card_title {
     border: none;
     padding: 0;
     font-weight: bold;
     width: 95%;
     margin: 0;
     position: relative;
-    top: -10px;
+    top: 0;
     left: 33px;
 }
 
-.card .header {
+.card_header {
     border: none;
     padding: 0;
     margin: 0;
@@ -809,21 +815,21 @@
     margin: 0 5px 10px 30px;
 }
 
-.card .header .attribute_title {
+.card_header .attribute_title {
     border: none;
     padding: 0;
     margin: 0;
     font-weight: bold;
 }
 
-.card .header .attribute_value {
+.card_header .attribute_value {
     border: none;
     padding: 0;
     margin: 0;
     font-weight: normal;
 }
 
-.card .footer {
+.card_footer {
     border: none;
     border-top: #EEEEEE thin solid;
     padding: 0;
@@ -831,14 +837,14 @@
     width: 95%;
 }
 
-.card .footer .left {
+.card_footer .left {
     border: none;
     float: left;
     width: 48%;
     margin: 0;
 }
 
-.card .footer .right {
+.card_footer .right {
     border: none;
     float: right;
     width: 48%;
@@ -846,9 +852,9 @@
     margin: 0;
 }
 
-.card .icon {
+.card_icon {
     position: relative;
-    top: 10px;
+    top: 25px;
     left: 5px;
     padding: 0;
     margin: 0;
@@ -856,9 +862,73 @@
     border: none;
 }
 
-.card .body {
+.card_body {
+    border: none;
+    padding: 0;
+    width: 95%;
+    margin: 0;
     position: relative;
-    top: 10px;
-    left: 30px;
-    font-weight: normal;
+    top: 6px;
+    left: 7px;
+    height: 40px;
+}
+
+.bigcard {
+    border: 0;
+    width: 100%;
+    margin: 10px 1px;
+    background-color: #FFFFFF;
+    padding: 0;
+    -ms-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    -ms-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    overflow: hidden;
+}
+
+
+.bigcard_title {
+    background: #00BAD2;
+    border: none;
+    font-weight: bold;
+    margin: 0;
+    padding: 5px 10px;
+}
+
+.bigcard_subtitle {
+    background: #F5F5F5;
+    border: none;
+    margin: 0;
+    padding: 5px 10px;
+}
+
+.bigcard_body {
+    background: #FFFFFF;
+    border: none;
+    margin: 0;
+    padding: 5px 10px;
+}
+
+.bigcard_footer {
+    border: none;
+    border-top: #EEEEEE thin solid;
+    margin: 0;
+    padding: 5px 10px;
+    width: 100%;
+}
+
+.bigcard_footer .left {
+    border: none;
+    float: left;
+    width: 48%;
+    margin: 0;
+}
+
+.bigcard_footer .right {
+    border: none;
+    float: right;
+    width: 48%;
+    text-align: right;
+    margin: 0;
 }

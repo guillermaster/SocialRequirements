@@ -15,19 +15,19 @@
         <ItemTemplate>
             <div class="card"
                 onclick="javascript:location.href='RequirementQuestion.aspx?<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.Id %>=<%# Eval("Id") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.CompanyId %>=<%# Eval("CompanyId") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.ProjectId %>=<%# Eval("ProjectId") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.RequirementId %>=<%# Eval("RequirementId") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.RequirementVersionId %>=<%# Eval("RequirementVersionId") %>'">
-                <div class="card tag"><%# Eval("ProjectName") %></div>
-                <div class="card tag2"><%# Eval("RequirementTitle") %></div>
-                <div class="card icon">
+                <div class="card_tag"><%# Eval("RequirementTitle") %></div>
+                <div class="card_tag2"><%# Eval("ProjectName") %></div>
+                <div class="card_icon">
                     <i class="fa fa-question-circle"></i>
                 </div>
-                <div class="card title">
+                <div class="card_title">
                     <%# Eval("Question") %>
                 </div>
-                <div class="card footer">
-                    <div class="car footer left">
+                <div class="card_footer">
+                    <div class="car_footer left">
                         <span><%# Eval("AnswersQuantity") %> answers</span>
                     </div>
-                    <div class="car footer right">
+                    <div class="car_footer right">
                         <span>Asked by: </span>
                         <span><%# Eval("CreatedByName") %></span><br/>
                         <span>Asked on: </span>

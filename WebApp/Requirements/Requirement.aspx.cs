@@ -306,6 +306,7 @@ namespace SocialRequirements.Requirements
             // set requirement data in UI controls
             RequirementTitle.Text = requirement.Title;
             RequirementTitleInput.Text = requirement.Title;
+            ProjectName.Text = requirement.Project;
             RequirementDescription.Text = requirement.Description;
             RequirementDescriptionInput.Text = requirement.Description;
             RequirementStatus.Text = requirement.Status;
