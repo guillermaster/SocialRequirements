@@ -67,6 +67,10 @@ namespace SocialRequirements.Business.Requirement
 
             _requirementModifData.Update(title, description, companyId, projectId, requirementId,
                 requirementModificationId, personId);
+
+            // add activity feed log
+            _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.RequirementModification,
+                (int)GeneralCatalog.Detail.EntityActions.Modify, requirementId, DateTime.Now, personId);
         }
 
         public void Approve(long companyId, long projectId, long requirementId, long requirementModificationId, string username)

@@ -44,7 +44,7 @@ namespace SocialRequirements.Data.Account
             return numProject;
         }
 
-        public void Add(string name, string description, long companyId, long personId)
+        public long Add(string name, string description, long companyId, long personId)
         {
             using (var scope = _context.Database.BeginTransaction())
             {
@@ -55,6 +55,8 @@ namespace SocialRequirements.Data.Account
                     // relate company to user
                     AddCompanyRelationship(companyId, projectId);
                     scope.Commit();
+
+                    return projectId;
                 }
                 catch
                 {

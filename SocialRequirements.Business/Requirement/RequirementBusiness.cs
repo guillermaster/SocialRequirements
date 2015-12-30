@@ -110,6 +110,10 @@ namespace SocialRequirements.Business.Requirement
             var personId = _personData.GetPersonId(username);
 
             _requirementData.Update(title, description, companyId, projectId, requirementId, personId);
+
+            // add activity feed log
+            _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.Requirement,
+                (int)GeneralCatalog.Detail.EntityActions.Modify, requirementId, DateTime.Now, personId);
         }
 
         public void SubmitForApproval(long companyId, long projectId, long requirementId, string username)
