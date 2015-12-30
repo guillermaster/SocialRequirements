@@ -8,88 +8,87 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.CodeDom.Compiler;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.ServiceModel.Channels;
-using System.Threading.Tasks;
-
 namespace SocialRequirements.AccountService {
     
     
-    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
-    [ServiceContract(ConfigurationName="AccountService.AccountSoap")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="AccountService.AccountSoap")]
     public interface AccountSoap {
         
         // CODEGEN: Generating message contract since element name name from namespace http://tempuri.org/ is not marked nillable
-        [OperationContract(Action="http://tempuri.org/CreateNewUser", ReplyAction="*")]
-        CreateNewUserResponse CreateNewUser(CreateNewUserRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CreateNewUser", ReplyAction="*")]
+        SocialRequirements.AccountService.CreateNewUserResponse CreateNewUser(SocialRequirements.AccountService.CreateNewUserRequest request);
         
-        [OperationContract(Action="http://tempuri.org/CreateNewUser", ReplyAction="*")]
-        Task<CreateNewUserResponse> CreateNewUserAsync(CreateNewUserRequest request);
-        
-        // CODEGEN: Generating message contract since element name encUsername from namespace http://tempuri.org/ is not marked nillable
-        [OperationContract(Action="http://tempuri.org/ValidatePassword", ReplyAction="*")]
-        ValidatePasswordResponse ValidatePassword(ValidatePasswordRequest request);
-        
-        [OperationContract(Action="http://tempuri.org/ValidatePassword", ReplyAction="*")]
-        Task<ValidatePasswordResponse> ValidatePasswordAsync(ValidatePasswordRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CreateNewUser", ReplyAction="*")]
+        System.Threading.Tasks.Task<SocialRequirements.AccountService.CreateNewUserResponse> CreateNewUserAsync(SocialRequirements.AccountService.CreateNewUserRequest request);
         
         // CODEGEN: Generating message contract since element name encUsername from namespace http://tempuri.org/ is not marked nillable
-        [OperationContract(Action="http://tempuri.org/GetUserCompanies", ReplyAction="*")]
-        GetUserCompaniesResponse GetUserCompanies(GetUserCompaniesRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ValidatePassword", ReplyAction="*")]
+        SocialRequirements.AccountService.ValidatePasswordResponse ValidatePassword(SocialRequirements.AccountService.ValidatePasswordRequest request);
         
-        [OperationContract(Action="http://tempuri.org/GetUserCompanies", ReplyAction="*")]
-        Task<GetUserCompaniesResponse> GetUserCompaniesAsync(GetUserCompaniesRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ValidatePassword", ReplyAction="*")]
+        System.Threading.Tasks.Task<SocialRequirements.AccountService.ValidatePasswordResponse> ValidatePasswordAsync(SocialRequirements.AccountService.ValidatePasswordRequest request);
+        
+        // CODEGEN: Generating message contract since element name encUsername from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetUserCompanies", ReplyAction="*")]
+        SocialRequirements.AccountService.GetUserCompaniesResponse GetUserCompanies(SocialRequirements.AccountService.GetUserCompaniesRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetUserCompanies", ReplyAction="*")]
+        System.Threading.Tasks.Task<SocialRequirements.AccountService.GetUserCompaniesResponse> GetUserCompaniesAsync(SocialRequirements.AccountService.GetUserCompaniesRequest request);
+        
+        // CODEGEN: Generating message contract since element name encUsername from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SetCompany", ReplyAction="*")]
+        SocialRequirements.AccountService.SetCompanyResponse SetCompany(SocialRequirements.AccountService.SetCompanyRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SetCompany", ReplyAction="*")]
+        System.Threading.Tasks.Task<SocialRequirements.AccountService.SetCompanyResponse> SetCompanyAsync(SocialRequirements.AccountService.SetCompanyRequest request);
     }
     
-    [DebuggerStepThrough()]
-    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
-    [EditorBrowsable(EditorBrowsableState.Advanced)]
-    [MessageContract(IsWrapped=false)]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class CreateNewUserRequest {
         
-        [MessageBodyMember(Name="CreateNewUser", Namespace="http://tempuri.org/", Order=0)]
-        public CreateNewUserRequestBody Body;
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="CreateNewUser", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.AccountService.CreateNewUserRequestBody Body;
         
         public CreateNewUserRequest() {
         }
         
-        public CreateNewUserRequest(CreateNewUserRequestBody Body) {
+        public CreateNewUserRequest(SocialRequirements.AccountService.CreateNewUserRequestBody Body) {
             this.Body = Body;
         }
     }
     
-    [DebuggerStepThrough()]
-    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
-    [EditorBrowsable(EditorBrowsableState.Advanced)]
-    [DataContract(Namespace="http://tempuri.org/")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
     public partial class CreateNewUserRequestBody {
         
-        [DataMember(EmitDefaultValue=false, Order=0)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
         public string name;
         
-        [DataMember(EmitDefaultValue=false, Order=1)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
         public string lastname;
         
-        [DataMember(EmitDefaultValue=false, Order=2)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
         public string encPrimaryemail;
         
-        [DataMember(EmitDefaultValue=false, Order=3)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
         public string encSecondaryemail;
         
-        [DataMember(EmitDefaultValue=false, Order=4)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=4)]
         public string encPassword;
         
-        [DataMember(EmitDefaultValue=false, Order=5)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=5)]
         public string birthdate;
         
-        [DataMember(EmitDefaultValue=false, Order=6)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=6)]
         public string phone;
         
-        [DataMember(EmitDefaultValue=false, Order=7)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=7)]
         public string mobilephone;
         
         public CreateNewUserRequestBody() {
@@ -107,30 +106,30 @@ namespace SocialRequirements.AccountService {
         }
     }
     
-    [DebuggerStepThrough()]
-    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
-    [EditorBrowsable(EditorBrowsableState.Advanced)]
-    [MessageContract(IsWrapped=false)]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class CreateNewUserResponse {
         
-        [MessageBodyMember(Name="CreateNewUserResponse", Namespace="http://tempuri.org/", Order=0)]
-        public CreateNewUserResponseBody Body;
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="CreateNewUserResponse", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.AccountService.CreateNewUserResponseBody Body;
         
         public CreateNewUserResponse() {
         }
         
-        public CreateNewUserResponse(CreateNewUserResponseBody Body) {
+        public CreateNewUserResponse(SocialRequirements.AccountService.CreateNewUserResponseBody Body) {
             this.Body = Body;
         }
     }
     
-    [DebuggerStepThrough()]
-    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
-    [EditorBrowsable(EditorBrowsableState.Advanced)]
-    [DataContract(Namespace="http://tempuri.org/")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
     public partial class CreateNewUserResponseBody {
         
-        [DataMember(Order=0)]
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
         public int CreateNewUserResult;
         
         public CreateNewUserResponseBody() {
@@ -141,33 +140,33 @@ namespace SocialRequirements.AccountService {
         }
     }
     
-    [DebuggerStepThrough()]
-    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
-    [EditorBrowsable(EditorBrowsableState.Advanced)]
-    [MessageContract(IsWrapped=false)]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class ValidatePasswordRequest {
         
-        [MessageBodyMember(Name="ValidatePassword", Namespace="http://tempuri.org/", Order=0)]
-        public ValidatePasswordRequestBody Body;
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="ValidatePassword", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.AccountService.ValidatePasswordRequestBody Body;
         
         public ValidatePasswordRequest() {
         }
         
-        public ValidatePasswordRequest(ValidatePasswordRequestBody Body) {
+        public ValidatePasswordRequest(SocialRequirements.AccountService.ValidatePasswordRequestBody Body) {
             this.Body = Body;
         }
     }
     
-    [DebuggerStepThrough()]
-    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
-    [EditorBrowsable(EditorBrowsableState.Advanced)]
-    [DataContract(Namespace="http://tempuri.org/")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
     public partial class ValidatePasswordRequestBody {
         
-        [DataMember(EmitDefaultValue=false, Order=0)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
         public string encUsername;
         
-        [DataMember(EmitDefaultValue=false, Order=1)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
         public string encPassword;
         
         public ValidatePasswordRequestBody() {
@@ -179,30 +178,30 @@ namespace SocialRequirements.AccountService {
         }
     }
     
-    [DebuggerStepThrough()]
-    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
-    [EditorBrowsable(EditorBrowsableState.Advanced)]
-    [MessageContract(IsWrapped=false)]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class ValidatePasswordResponse {
         
-        [MessageBodyMember(Name="ValidatePasswordResponse", Namespace="http://tempuri.org/", Order=0)]
-        public ValidatePasswordResponseBody Body;
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="ValidatePasswordResponse", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.AccountService.ValidatePasswordResponseBody Body;
         
         public ValidatePasswordResponse() {
         }
         
-        public ValidatePasswordResponse(ValidatePasswordResponseBody Body) {
+        public ValidatePasswordResponse(SocialRequirements.AccountService.ValidatePasswordResponseBody Body) {
             this.Body = Body;
         }
     }
     
-    [DebuggerStepThrough()]
-    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
-    [EditorBrowsable(EditorBrowsableState.Advanced)]
-    [DataContract(Namespace="http://tempuri.org/")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
     public partial class ValidatePasswordResponseBody {
         
-        [DataMember(Order=0)]
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
         public bool ValidatePasswordResult;
         
         public ValidatePasswordResponseBody() {
@@ -213,30 +212,30 @@ namespace SocialRequirements.AccountService {
         }
     }
     
-    [DebuggerStepThrough()]
-    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
-    [EditorBrowsable(EditorBrowsableState.Advanced)]
-    [MessageContract(IsWrapped=false)]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class GetUserCompaniesRequest {
         
-        [MessageBodyMember(Name="GetUserCompanies", Namespace="http://tempuri.org/", Order=0)]
-        public GetUserCompaniesRequestBody Body;
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetUserCompanies", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.AccountService.GetUserCompaniesRequestBody Body;
         
         public GetUserCompaniesRequest() {
         }
         
-        public GetUserCompaniesRequest(GetUserCompaniesRequestBody Body) {
+        public GetUserCompaniesRequest(SocialRequirements.AccountService.GetUserCompaniesRequestBody Body) {
             this.Body = Body;
         }
     }
     
-    [DebuggerStepThrough()]
-    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
-    [EditorBrowsable(EditorBrowsableState.Advanced)]
-    [DataContract(Namespace="http://tempuri.org/")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
     public partial class GetUserCompaniesRequestBody {
         
-        [DataMember(EmitDefaultValue=false, Order=0)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
         public string encUsername;
         
         public GetUserCompaniesRequestBody() {
@@ -247,30 +246,30 @@ namespace SocialRequirements.AccountService {
         }
     }
     
-    [DebuggerStepThrough()]
-    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
-    [EditorBrowsable(EditorBrowsableState.Advanced)]
-    [MessageContract(IsWrapped=false)]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class GetUserCompaniesResponse {
         
-        [MessageBodyMember(Name="GetUserCompaniesResponse", Namespace="http://tempuri.org/", Order=0)]
-        public GetUserCompaniesResponseBody Body;
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetUserCompaniesResponse", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.AccountService.GetUserCompaniesResponseBody Body;
         
         public GetUserCompaniesResponse() {
         }
         
-        public GetUserCompaniesResponse(GetUserCompaniesResponseBody Body) {
+        public GetUserCompaniesResponse(SocialRequirements.AccountService.GetUserCompaniesResponseBody Body) {
             this.Body = Body;
         }
     }
     
-    [DebuggerStepThrough()]
-    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
-    [EditorBrowsable(EditorBrowsableState.Advanced)]
-    [DataContract(Namespace="http://tempuri.org/")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
     public partial class GetUserCompaniesResponseBody {
         
-        [DataMember(EmitDefaultValue=false, Order=0)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
         public string GetUserCompaniesResult;
         
         public GetUserCompaniesResponseBody() {
@@ -281,13 +280,78 @@ namespace SocialRequirements.AccountService {
         }
     }
     
-    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
-    public interface AccountSoapChannel : AccountSoap, IClientChannel {
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class SetCompanyRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="SetCompany", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.AccountService.SetCompanyRequestBody Body;
+        
+        public SetCompanyRequest() {
+        }
+        
+        public SetCompanyRequest(SocialRequirements.AccountService.SetCompanyRequestBody Body) {
+            this.Body = Body;
+        }
     }
     
-    [DebuggerStepThrough()]
-    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
-    public partial class AccountSoapClient : ClientBase<AccountSoap>, AccountSoap {
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class SetCompanyRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public long companyId;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string encUsername;
+        
+        public SetCompanyRequestBody() {
+        }
+        
+        public SetCompanyRequestBody(long companyId, string encUsername) {
+            this.companyId = companyId;
+            this.encUsername = encUsername;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class SetCompanyResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="SetCompanyResponse", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.AccountService.SetCompanyResponseBody Body;
+        
+        public SetCompanyResponse() {
+        }
+        
+        public SetCompanyResponse(SocialRequirements.AccountService.SetCompanyResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute()]
+    public partial class SetCompanyResponseBody {
+        
+        public SetCompanyResponseBody() {
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface AccountSoapChannel : SocialRequirements.AccountService.AccountSoap, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class AccountSoapClient : System.ServiceModel.ClientBase<SocialRequirements.AccountService.AccountSoap>, SocialRequirements.AccountService.AccountSoap {
         
         public AccountSoapClient() {
         }
@@ -300,22 +364,22 @@ namespace SocialRequirements.AccountService {
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public AccountSoapClient(string endpointConfigurationName, EndpointAddress remoteAddress) : 
+        public AccountSoapClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public AccountSoapClient(Binding binding, EndpointAddress remoteAddress) : 
+        public AccountSoapClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
         
-        [EditorBrowsable(EditorBrowsableState.Advanced)]
-        CreateNewUserResponse AccountSoap.CreateNewUser(CreateNewUserRequest request) {
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SocialRequirements.AccountService.CreateNewUserResponse SocialRequirements.AccountService.AccountSoap.CreateNewUser(SocialRequirements.AccountService.CreateNewUserRequest request) {
             return base.Channel.CreateNewUser(request);
         }
         
         public int CreateNewUser(string name, string lastname, string encPrimaryemail, string encSecondaryemail, string encPassword, string birthdate, string phone, string mobilephone) {
-            CreateNewUserRequest inValue = new CreateNewUserRequest();
-            inValue.Body = new CreateNewUserRequestBody();
+            SocialRequirements.AccountService.CreateNewUserRequest inValue = new SocialRequirements.AccountService.CreateNewUserRequest();
+            inValue.Body = new SocialRequirements.AccountService.CreateNewUserRequestBody();
             inValue.Body.name = name;
             inValue.Body.lastname = lastname;
             inValue.Body.encPrimaryemail = encPrimaryemail;
@@ -324,18 +388,18 @@ namespace SocialRequirements.AccountService {
             inValue.Body.birthdate = birthdate;
             inValue.Body.phone = phone;
             inValue.Body.mobilephone = mobilephone;
-            CreateNewUserResponse retVal = ((AccountSoap)(this)).CreateNewUser(inValue);
+            SocialRequirements.AccountService.CreateNewUserResponse retVal = ((SocialRequirements.AccountService.AccountSoap)(this)).CreateNewUser(inValue);
             return retVal.Body.CreateNewUserResult;
         }
         
-        [EditorBrowsable(EditorBrowsableState.Advanced)]
-        Task<CreateNewUserResponse> AccountSoap.CreateNewUserAsync(CreateNewUserRequest request) {
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SocialRequirements.AccountService.CreateNewUserResponse> SocialRequirements.AccountService.AccountSoap.CreateNewUserAsync(SocialRequirements.AccountService.CreateNewUserRequest request) {
             return base.Channel.CreateNewUserAsync(request);
         }
         
-        public Task<CreateNewUserResponse> CreateNewUserAsync(string name, string lastname, string encPrimaryemail, string encSecondaryemail, string encPassword, string birthdate, string phone, string mobilephone) {
-            CreateNewUserRequest inValue = new CreateNewUserRequest();
-            inValue.Body = new CreateNewUserRequestBody();
+        public System.Threading.Tasks.Task<SocialRequirements.AccountService.CreateNewUserResponse> CreateNewUserAsync(string name, string lastname, string encPrimaryemail, string encSecondaryemail, string encPassword, string birthdate, string phone, string mobilephone) {
+            SocialRequirements.AccountService.CreateNewUserRequest inValue = new SocialRequirements.AccountService.CreateNewUserRequest();
+            inValue.Body = new SocialRequirements.AccountService.CreateNewUserRequestBody();
             inValue.Body.name = name;
             inValue.Body.lastname = lastname;
             inValue.Body.encPrimaryemail = encPrimaryemail;
@@ -344,59 +408,85 @@ namespace SocialRequirements.AccountService {
             inValue.Body.birthdate = birthdate;
             inValue.Body.phone = phone;
             inValue.Body.mobilephone = mobilephone;
-            return ((AccountSoap)(this)).CreateNewUserAsync(inValue);
+            return ((SocialRequirements.AccountService.AccountSoap)(this)).CreateNewUserAsync(inValue);
         }
         
-        [EditorBrowsable(EditorBrowsableState.Advanced)]
-        ValidatePasswordResponse AccountSoap.ValidatePassword(ValidatePasswordRequest request) {
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SocialRequirements.AccountService.ValidatePasswordResponse SocialRequirements.AccountService.AccountSoap.ValidatePassword(SocialRequirements.AccountService.ValidatePasswordRequest request) {
             return base.Channel.ValidatePassword(request);
         }
         
         public bool ValidatePassword(string encUsername, string encPassword) {
-            ValidatePasswordRequest inValue = new ValidatePasswordRequest();
-            inValue.Body = new ValidatePasswordRequestBody();
+            SocialRequirements.AccountService.ValidatePasswordRequest inValue = new SocialRequirements.AccountService.ValidatePasswordRequest();
+            inValue.Body = new SocialRequirements.AccountService.ValidatePasswordRequestBody();
             inValue.Body.encUsername = encUsername;
             inValue.Body.encPassword = encPassword;
-            ValidatePasswordResponse retVal = ((AccountSoap)(this)).ValidatePassword(inValue);
+            SocialRequirements.AccountService.ValidatePasswordResponse retVal = ((SocialRequirements.AccountService.AccountSoap)(this)).ValidatePassword(inValue);
             return retVal.Body.ValidatePasswordResult;
         }
         
-        [EditorBrowsable(EditorBrowsableState.Advanced)]
-        Task<ValidatePasswordResponse> AccountSoap.ValidatePasswordAsync(ValidatePasswordRequest request) {
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SocialRequirements.AccountService.ValidatePasswordResponse> SocialRequirements.AccountService.AccountSoap.ValidatePasswordAsync(SocialRequirements.AccountService.ValidatePasswordRequest request) {
             return base.Channel.ValidatePasswordAsync(request);
         }
         
-        public Task<ValidatePasswordResponse> ValidatePasswordAsync(string encUsername, string encPassword) {
-            ValidatePasswordRequest inValue = new ValidatePasswordRequest();
-            inValue.Body = new ValidatePasswordRequestBody();
+        public System.Threading.Tasks.Task<SocialRequirements.AccountService.ValidatePasswordResponse> ValidatePasswordAsync(string encUsername, string encPassword) {
+            SocialRequirements.AccountService.ValidatePasswordRequest inValue = new SocialRequirements.AccountService.ValidatePasswordRequest();
+            inValue.Body = new SocialRequirements.AccountService.ValidatePasswordRequestBody();
             inValue.Body.encUsername = encUsername;
             inValue.Body.encPassword = encPassword;
-            return ((AccountSoap)(this)).ValidatePasswordAsync(inValue);
+            return ((SocialRequirements.AccountService.AccountSoap)(this)).ValidatePasswordAsync(inValue);
         }
         
-        [EditorBrowsable(EditorBrowsableState.Advanced)]
-        GetUserCompaniesResponse AccountSoap.GetUserCompanies(GetUserCompaniesRequest request) {
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SocialRequirements.AccountService.GetUserCompaniesResponse SocialRequirements.AccountService.AccountSoap.GetUserCompanies(SocialRequirements.AccountService.GetUserCompaniesRequest request) {
             return base.Channel.GetUserCompanies(request);
         }
         
         public string GetUserCompanies(string encUsername) {
-            GetUserCompaniesRequest inValue = new GetUserCompaniesRequest();
-            inValue.Body = new GetUserCompaniesRequestBody();
+            SocialRequirements.AccountService.GetUserCompaniesRequest inValue = new SocialRequirements.AccountService.GetUserCompaniesRequest();
+            inValue.Body = new SocialRequirements.AccountService.GetUserCompaniesRequestBody();
             inValue.Body.encUsername = encUsername;
-            GetUserCompaniesResponse retVal = ((AccountSoap)(this)).GetUserCompanies(inValue);
+            SocialRequirements.AccountService.GetUserCompaniesResponse retVal = ((SocialRequirements.AccountService.AccountSoap)(this)).GetUserCompanies(inValue);
             return retVal.Body.GetUserCompaniesResult;
         }
         
-        [EditorBrowsable(EditorBrowsableState.Advanced)]
-        Task<GetUserCompaniesResponse> AccountSoap.GetUserCompaniesAsync(GetUserCompaniesRequest request) {
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SocialRequirements.AccountService.GetUserCompaniesResponse> SocialRequirements.AccountService.AccountSoap.GetUserCompaniesAsync(SocialRequirements.AccountService.GetUserCompaniesRequest request) {
             return base.Channel.GetUserCompaniesAsync(request);
         }
         
-        public Task<GetUserCompaniesResponse> GetUserCompaniesAsync(string encUsername) {
-            GetUserCompaniesRequest inValue = new GetUserCompaniesRequest();
-            inValue.Body = new GetUserCompaniesRequestBody();
+        public System.Threading.Tasks.Task<SocialRequirements.AccountService.GetUserCompaniesResponse> GetUserCompaniesAsync(string encUsername) {
+            SocialRequirements.AccountService.GetUserCompaniesRequest inValue = new SocialRequirements.AccountService.GetUserCompaniesRequest();
+            inValue.Body = new SocialRequirements.AccountService.GetUserCompaniesRequestBody();
             inValue.Body.encUsername = encUsername;
-            return ((AccountSoap)(this)).GetUserCompaniesAsync(inValue);
+            return ((SocialRequirements.AccountService.AccountSoap)(this)).GetUserCompaniesAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SocialRequirements.AccountService.SetCompanyResponse SocialRequirements.AccountService.AccountSoap.SetCompany(SocialRequirements.AccountService.SetCompanyRequest request) {
+            return base.Channel.SetCompany(request);
+        }
+        
+        public void SetCompany(long companyId, string encUsername) {
+            SocialRequirements.AccountService.SetCompanyRequest inValue = new SocialRequirements.AccountService.SetCompanyRequest();
+            inValue.Body = new SocialRequirements.AccountService.SetCompanyRequestBody();
+            inValue.Body.companyId = companyId;
+            inValue.Body.encUsername = encUsername;
+            SocialRequirements.AccountService.SetCompanyResponse retVal = ((SocialRequirements.AccountService.AccountSoap)(this)).SetCompany(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SocialRequirements.AccountService.SetCompanyResponse> SocialRequirements.AccountService.AccountSoap.SetCompanyAsync(SocialRequirements.AccountService.SetCompanyRequest request) {
+            return base.Channel.SetCompanyAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SocialRequirements.AccountService.SetCompanyResponse> SetCompanyAsync(long companyId, string encUsername) {
+            SocialRequirements.AccountService.SetCompanyRequest inValue = new SocialRequirements.AccountService.SetCompanyRequest();
+            inValue.Body = new SocialRequirements.AccountService.SetCompanyRequestBody();
+            inValue.Body.companyId = companyId;
+            inValue.Body.encUsername = encUsername;
+            return ((SocialRequirements.AccountService.AccountSoap)(this)).SetCompanyAsync(inValue);
         }
     }
 }

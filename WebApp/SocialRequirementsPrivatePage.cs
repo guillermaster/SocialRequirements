@@ -23,20 +23,14 @@ namespace SocialRequirements
 
         protected void ValidateUserLoggedIn()
         {
-            if (!UserLoggedIn()) { RedirectToLogin(); }
+            if (!UserLoggedIn())
+            {
+                var siteMaster = (SiteMaster)Master;
+                if (siteMaster != null) siteMaster.RedirectToLogin();
+            }
         }
 
-        protected void Logout()
-        {
-            Session.Clear();
-            RedirectToLogin();
-        }
-
-        private void RedirectToLogin()
-        {
-            //FormsAuthentication.RedirectToLoginPage();
-            Response.Redirect("~/Account/Login.aspx");
-        }
+        
 
         /// <summary>
         /// Check if there is at least one requirement for the specified companies
@@ -84,11 +78,11 @@ namespace SocialRequirements
         /// <param name="companyList">Control to update</param>
         protected void SetCompanies(ListControl companyList)
         {
-            var accountSrv = new AccountSoapClient();
-            var companiesPerUserRes = accountSrv.GetUserCompanies(GetUsernameEncrypted());
+            var companySrv = new CompanySoapClient();
+            var companies = companySrv.GetAllCompanies();
 
             var serializer = new ObjectSerializer<List<CompanyDto>>();
-            var result = serializer.Deserialize(companiesPerUserRes);
+            var result = serializer.Deserialize(companies);
 
             companyList.DataSource = (List<CompanyDto>)result;
             companyList.DataTextField = CustomExpression.GetPropertyName<CompanyDto>(p => p.Name);
@@ -122,6 +116,18 @@ namespace SocialRequirements
             }
         }
 
+        protected void SetFadeOutMessage(string message, bool success)
+        {
+            var messageLabel = GetMessageControl(this, success);
+            messageLabel.Text = message;
+
+            var parentPanel = GetMessageParentPanel(this, success);
+            parentPanel.Visible = true;
+
+            ScriptManager.RegisterClientScriptBlock(GetMainUpdatePanel(this), parentPanel.GetType(),
+                "posterrorfadeout", "fadeOutControl('#" + parentPanel.ID + "')", true);
+        }
+
         protected void SetFadeOutMessage(UpdatePanel updatePanel, Panel parentPanel, Label messageLabel, string message)
         {
             messageLabel.Text = message;
@@ -135,6 +141,20 @@ namespace SocialRequirements
             var masterPage = (SiteMaster) page.Master;
             if(masterPage == null) throw new InvalidDataException("Invalid update panel or not found.");
             return masterPage.GetUpdatePanel();
+        }
+
+        protected Panel GetMessageParentPanel(Page page, bool success)
+        {
+            var masterPage = (SiteMaster)page.Master;
+            if (masterPage == null) throw new InvalidDataException("Invalid master page or not found.");
+            return success ? masterPage.GetSucccessMessageParentPanel() : masterPage.GetErrorMessageParentPanel();
+        }
+
+        protected Label GetMessageControl(Page page, bool success)
+        {
+            var masterPage = (SiteMaster)page.Master;
+            if (masterPage == null) throw new InvalidDataException("Invalid master page or not found.");
+            return success ? masterPage.GetSuccessMessage() : masterPage.GetErrorMessage();
         }
     }
 }

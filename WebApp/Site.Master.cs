@@ -77,6 +77,42 @@ namespace SocialRequirements
         {
             return MainUpdatePanel;
         }
+
+        public Panel GetSucccessMessageParentPanel()
+        {
+            return PostSuccessPanelMaster;
+        }
+
+        public Label GetSuccessMessage()
+        {
+            return PostSuccessMessageMaster;
+        }
+
+        public Panel GetErrorMessageParentPanel()
+        {
+            return PostErrorPanelMaster;
+        }
+
+        public Label GetErrorMessage()
+        {
+            return PostErrorMessageMaster;
+        }
+
+        protected void SignOutButton_OnClick(object sender, EventArgs e)
+        {
+            Logout();
+        }
+
+        protected void Logout()
+        {
+            Session.Clear();
+            RedirectToLogin();
+        }
+
+        public void RedirectToLogin()
+        {
+            Response.Redirect("~/Account/Login.aspx");
+        }
     }
 
 }

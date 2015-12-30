@@ -11,5 +11,9 @@ namespace SocialRequirements.Domain.BusinessLogic.Account
         List<GeneralCatalogDetailDto> GetCompanyTypes();
 
         void Add(string companyName, int companyType, string username);
+
+        void Set(long companyId, string username);
+
+        List<CompanyDto> GetAll();
     }
 }

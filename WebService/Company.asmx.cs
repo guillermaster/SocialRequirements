@@ -5,6 +5,7 @@ using Ninject;
 using Ninject.Web;
 using SocialRequirements.Domain.BusinessLogic.Account;
 using SocialRequirements.Domain.BusinessLogic.Requirement;
+using SocialRequirements.Domain.DTO.Account;
 using SocialRequirements.Domain.DTO.General;
 using SocialRequirements.Utilities;
 using SocialRequirements.Utilities.Security;
@@ -53,6 +54,14 @@ namespace WebService
         public bool HaveProjects(long companyId)
         {
             return ProjectBusiness.HaveProjects(companyId);
+        }
+
+        [WebMethod]
+        public string GetAllCompanies()
+        {
+            var companies = CompanyBusiness.GetAll();
+            var serializer = new ObjectSerializer<List<CompanyDto>>(companies);
+            return serializer.ToXmlString();
         }
     }
 }

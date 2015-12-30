@@ -47,5 +47,16 @@ namespace SocialRequirements.Business.Account
             var personId = _personData.GetPersonId(username);
             _companyData.Add(companyName, companyType, personId);
         }
+
+        public void Set(long companyId, string username)
+        {
+            var personId = _personData.GetPersonId(username);
+            _companyData.AddPersonRelationship(companyId, personId);
+        }
+
+        public List<CompanyDto> GetAll()
+        {
+            return _companyData.GetAll();
+        }
     }
 }

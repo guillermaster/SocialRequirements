@@ -52,6 +52,16 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetAllCompanies">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllCompaniesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllCompaniesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="GetCompanyTypesSoapIn">
@@ -78,6 +88,12 @@
   <wsdl:message name="HaveProjectsSoapOut">
     <wsdl:part name="parameters" element="tns:HaveProjectsResponse" />
   </wsdl:message>
+  <wsdl:message name="GetAllCompaniesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllCompanies" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCompaniesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllCompaniesResponse" />
+  </wsdl:message>
   <wsdl:portType name="CompanySoap">
     <wsdl:operation name="GetCompanyTypes">
       <wsdl:input message="tns:GetCompanyTypesSoapIn" />
@@ -94,6 +110,10 @@
     <wsdl:operation name="HaveProjects">
       <wsdl:input message="tns:HaveProjectsSoapIn" />
       <wsdl:output message="tns:HaveProjectsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCompanies">
+      <wsdl:input message="tns:GetAllCompaniesSoapIn" />
+      <wsdl:output message="tns:GetAllCompaniesSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="CompanySoap" type="tns:CompanySoap">
@@ -134,6 +154,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetAllCompanies">
+      <soap:operation soapAction="http://tempuri.org/GetAllCompanies" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="CompanySoap12" type="tns:CompanySoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -166,6 +195,15 @@
     </wsdl:operation>
     <wsdl:operation name="HaveProjects">
       <soap12:operation soapAction="http://tempuri.org/HaveProjects" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCompanies">
+      <soap12:operation soapAction="http://tempuri.org/GetAllCompanies" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

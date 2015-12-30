@@ -22,6 +22,15 @@ namespace SocialRequirements {
         protected global::System.Web.UI.HtmlControls.HtmlForm MainForm;
         
         /// <summary>
+        /// SignOutButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton SignOutButton;
+        
+        /// <summary>
         /// MainScriptManager control.
         /// </summary>
         /// <remarks>
@@ -74,6 +83,42 @@ namespace SocialRequirements {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel MessageSuccessPanel;
+        
+        /// <summary>
+        /// PostSuccessPanelMaster control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PostSuccessPanelMaster;
+        
+        /// <summary>
+        /// PostSuccessMessageMaster control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label PostSuccessMessageMaster;
+        
+        /// <summary>
+        /// PostErrorPanelMaster control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PostErrorPanelMaster;
+        
+        /// <summary>
+        /// PostErrorMessageMaster control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label PostErrorMessageMaster;
         
         /// <summary>
         /// MainContent control.

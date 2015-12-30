@@ -2194,6 +2194,9 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="Service References\AccountService\SocialRequirements.AccountService.SetCompanyResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Service References\CompanyService\Company.disco" />
     <None Include="Service References\CompanyService\configuration91.svcinfo" />
     <None Include="Service References\CompanyService\configuration.svcinfo" />
@@ -2201,6 +2204,9 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="Service References\CompanyService\SocialRequirements.CompanyService.GetAllCompaniesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Service References\GeneralService\General.wsdl" />
     <Content Include="Service References\GeneralService\SocialRequirements.GeneralService.LatestActivityFeedResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>

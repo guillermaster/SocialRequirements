@@ -19,6 +19,12 @@ namespace SocialRequirements.Data.Account
         public List<CompanyDto> GetCompaniesByUser(long personId)
         {
             var companies = _context.CompanyPerson.Where(cp => cp.person_id == personId).ToList();
+            return companies.Select(GetCompanyDto).OrderBy(comp => comp.Name).ToList();
+        }
+
+        public List<CompanyDto> GetAll()
+        {
+            var companies = _context.Company.OrderBy(comp => comp.name).ToList();
             return companies.Select(GetCompanyDto).ToList();
         }
 
@@ -54,7 +60,7 @@ namespace SocialRequirements.Data.Account
             return company.id;
         }
 
-        private void AddPersonRelationship(long companyId, long personId)
+        public void AddPersonRelationship(long companyId, long personId)
         {
             var companyPerson = new CompanyPerson
             {
@@ -75,6 +81,18 @@ namespace SocialRequirements.Data.Account
                 Type = companyPersonRel.Company.GeneralCatalogDetail.name
             };
             return company;
+        }
+
+        private static CompanyDto GetCompanyDto(Company company)
+        {
+            var companyDto = new CompanyDto
+            {
+                Id = company.id,
+                Name = company.name,
+                TypeId = company.type_id,
+                Type = company.GeneralCatalogDetail.name
+            };
+            return companyDto;
         }
     }
 }

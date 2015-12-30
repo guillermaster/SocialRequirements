@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using SocialRequirements.AccountService;
 using SocialRequirements.CompanyService;
-using SocialRequirements.Domain.DTO.Account;
 using SocialRequirements.Domain.DTO.General;
 using SocialRequirements.Utilities;
 
@@ -30,7 +29,22 @@ namespace SocialRequirements.Account
         #region Set existent company events
         protected void SetCompanyButton_Click(object sender, EventArgs e)
         {
+            try
+            {
+                var accountSrv = new AccountSoapClient();
+                accountSrv.SetCompany(long.Parse(CompaniesDropDownList.SelectedValue), GetUsernameEncrypted());
 
+                SetFadeOutMessage("The company has been successfully set.", true);
+            }
+            catch
+            {
+                SetFadeOutMessage("An error has occurred and the company could not be set.", false);
+            }
+        }
+
+        protected void CompaniesDropDownList_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetCompanyButton.Visible = !string.IsNullOrWhiteSpace(CompaniesDropDownList.SelectedValue);
         }
 
         protected void CompanyNotFoundButton_Click(object sender, EventArgs e)
@@ -59,7 +73,8 @@ namespace SocialRequirements.Account
 
         protected void CancelCreateCompanyButton_Click(object sender, EventArgs e)
         {
-
+            ChooseCompanyPanel.Visible = true;
+            CreateCompanyPanel.Visible = false;
         }
         #endregion
 

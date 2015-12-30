@@ -13,33 +13,6 @@ namespace SocialRequirements.Account {
     public partial class SetCompany {
         
         /// <summary>
-        /// MainScriptManager control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager MainScriptManager;
-        
-        /// <summary>
-        /// updProgress control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdateProgress updProgress;
-        
-        /// <summary>
-        /// SetCompanyUpdatePanel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel SetCompanyUpdatePanel;
-        
-        /// <summary>
         /// SuccessPanel control.
         /// </summary>
         /// <remarks>
@@ -103,15 +76,6 @@ namespace SocialRequirements.Account {
         protected global::System.Web.UI.WebControls.DropDownList CompaniesDropDownList;
         
         /// <summary>
-        /// CompanyNotFoundButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton CompanyNotFoundButton;
-        
-        /// <summary>
         /// SetCompanyButton control.
         /// </summary>
         /// <remarks>
@@ -119,6 +83,15 @@ namespace SocialRequirements.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button SetCompanyButton;
+        
+        /// <summary>
+        /// CompanyNotFoundButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton CompanyNotFoundButton;
         
         /// <summary>
         /// CreateCompanyPanel control.

@@ -61,6 +61,7 @@ namespace SocialRequirements.Data.Account
                 catch
                 {
                     scope.Rollback();
+                    return -1;
                 }
             }
         }
