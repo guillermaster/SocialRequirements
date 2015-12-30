@@ -27,7 +27,7 @@
     </asp:Panel>
     <div class="bigcard">
         <div class="bigcard_title">
-            <asp:Label runat="server" ID="RequirementTitle" />
+            <h4><asp:Label runat="server" ID="RequirementTitle" /></h4>
         </div>
         <div class="bigcard_subtitle">
             <asp:Label runat="server" ID="ProjectName" />

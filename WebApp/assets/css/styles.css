@@ -835,6 +835,7 @@
     padding: 0;
     margin: 0 0 40px 30px;
     width: 95%;
+    font-size: 90%;
 }
 
 .card_footer .left {
@@ -873,6 +874,168 @@
     height: 40px;
 }
 
+.smallcard {
+    border: #EEEEEE thin solid;
+    width: 32%;
+    margin: 10px 4px;
+    background-color: #FFFFFF;
+    padding: 0;
+    cursor: default;
+    -ms-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    -ms-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    float: left;
+    overflow: hidden;
+    position: relative;
+}
+
+.smallcard_tag {
+    border: none;
+    -webkit-border-top-right-radius: 20px;
+    -webkit-border-bottom-right-radius: 20px;
+    -moz-border-radius-topright: 20px;
+    -moz-border-radius-bottomright: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background: #90A4AE;
+    padding: 3px 7px 3px 5px;
+    width: auto;
+    display: inline-block;
+    color: #FFFFFF;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.smallcard_tag2 {
+    border: none;
+    -webkit-border-top-right-radius: 20px;
+    -webkit-border-bottom-right-radius: 20px;
+    -moz-border-radius-topright: 20px;
+    -moz-border-radius-bottomright: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background: #00BCD4;
+    padding: 3px 7px 3px 5px;
+    width: auto;
+    display: inline-block;
+    color: #FFFFFF;
+    position: relative;
+    top: 20px;
+    left: -242px;
+}
+
+.smallcard_title {
+    background: #00BAD2;
+    border: none;
+    font-weight: bold;
+    margin: 0;
+    padding: 5px 10px;
+}
+
+.smallcard_title h5 {
+    padding: 0;
+    margin: 1px 0;
+}
+
+.smallcard_subtitle {
+    background: #F5F5F5;
+    border: none;
+    margin: 0;
+    padding: 5px 10px;
+}
+
+.smallcard_header {
+    border: none;
+    padding: 0;
+    margin: 0;
+    width: 95%;
+    margin: 0 5px 10px 30px;
+}
+
+.smallcard_header .attribute_title {
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+}
+
+.smallcard_header .attribute_value {
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-weight: normal;
+}
+
+.smallcard_footer {
+    border: none;
+    border-top: #EEEEEE thin solid;
+    padding: 1px 5px;
+    margin: 5px 0;
+    width: 100%;
+    font-size: 90%;
+}
+
+.smallcard_footer .left {
+    border: none;
+    float: left;
+    width: 44%;
+    margin: 0;
+}
+
+.smallcard_footer .right {
+    border: none;
+    float: right;
+    width: 55%;
+    text-align: right;
+    margin: 0;
+}
+
+.smallcard_icon {
+    position: relative;
+    top: 25px;
+    left: 5px;
+    padding: 0;
+    margin: 0;
+    width: 0;
+    border: none;
+}
+
+.smallcard_body {
+    border: none;
+    padding: 0;
+    width: 95%;
+    margin: 0;
+    position: relative;
+    top: 6px;
+    left: 7px;
+    height: 100%;
+}
+
+.smallcard_socialactions_wrapper {
+    display: table;   /* Allow the centering to work */
+	margin: 0 auto;
+    padding: 0 0 3px 50px;
+    border: none;
+    border-top: #EEEEEE thin solid;
+    width: 100%;
+}
+
+.smallcard_socialactions {
+    border: none;
+    width: 100%;
+    margin: 0 auto;
+    list-style-type: none;
+}
+
+.smallcard_socialactions li {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
 .bigcard {
     border: 0;
     width: 100%;
@@ -896,6 +1059,25 @@
     padding: 5px 10px;
 }
 
+.bigcard_title input {
+    background: #8fd4db;
+    border: thin solid #03A9F4;
+    padding: 2px 5px;
+    width: 100%;
+    -webkit-box-shadow: inset 0 1px 0px rgba(0, 0, 0, 0.01) !important;
+    box-shadow: inset 0 1px 0px rgba(0, 0, 0, 0.01) !important;
+}
+
+.bigcard_title input:focus {
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 0px 1px 0px #c5ecfe !important;
+}
+
+.bigcard_title h4 {
+    padding: 0;
+    margin: 0;
+}
+
 .bigcard_subtitle {
     background: #F5F5F5;
     border: none;
@@ -916,6 +1098,7 @@
     margin: 0;
     padding: 5px 10px;
     width: 100%;
+    font-size: 90%;
 }
 
 .bigcard_footer .left {

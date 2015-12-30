@@ -74,7 +74,7 @@
     </asp:Panel>
     <div class="bigcard">
         <div class="bigcard_title">
-            <asp:Label runat="server" ID="RequirementTitle" />
+            <h4><asp:Label runat="server" ID="RequirementTitle" /></h4>
             <asp:TextBox runat="server" ID="RequirementTitleInput" Visible="False" />
         </div>
         <div class="bigcard_subtitle">
@@ -111,7 +111,7 @@
         <asp:Repeater runat="server" ID="CommentsList">
             <HeaderTemplate>
                 <div>
-                    <h3>Comments</h3>
+                    <h5>Comments</h5>
             </HeaderTemplate>
             <ItemTemplate>
                 <div class="card">

@@ -15,47 +15,53 @@
     <asp:Repeater ID="RequirementsListRepeater"
         ItemType="SocialRequirements.Domain.DTO.Requirement.RequirementDto" runat="server" OnItemCommand="RequirementsListRepeater_ItemCommand">
         <HeaderTemplate>
-            <div id="activityFeed">
+            <div>
         </HeaderTemplate>
         <ItemTemplate>
-            <div class="requirement_list">
-                <div class="requirement_list title"
+            <div class="smallcard">
+                <div class="smallcard_title" style="cursor: pointer"
                     onclick="javascript:location.href='Requirement.aspx?<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.Id %>=<%# Eval("Id") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.CompanyId %>=<%# Eval("CompanyId") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.ProjectId %>=<%# Eval("ProjectId") %>'">
-                    <%# Eval("Title") %>
+                    <h5><%# Eval("Title") %></h5>
                 </div>
-                <span class="requirement_list project">
-                    <a href="#"><%# Eval("Project") %></a>
-                </span>
-                <span class="requirement_list date">
-                    <%# Eval("Modifiedon") %>
-                </span>
-                <span class="requirement_list status">
-                    <%# Eval("Status") %>
-                </span>
-                <div class="requirement_list description"
+                <div class="smallcard_subtitle" style="cursor: pointer">
+                    <%# Eval("Project") %>
+                </div>
+                <div class="smallcard_body" style="cursor: pointer"
                     onclick="javascript:location.href='Requirement.aspx?<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.Id %>=<%# Eval("Id") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.CompanyId %>=<%# Eval("CompanyId") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.ProjectId %>=<%# Eval("ProjectId") %>'">
                     <%# Eval("ShortDescription") %>
                 </div>
+                <div class="smallcard_footer">
+                    <div class="smallcard_footer left">
+                        Status: <%# Eval("Status") %><br />
+                        Version:
+                    </div>
+                    <div class="smallcard_footer right">
+                        Last modified
+                        <br />
+                        by: <%# Eval("ModifiedByName") %><br />
+                        on: <%# Eval("Modifiedon") %>
+                    </div>
+                </div>
                 <div>
                     <!-- likes and dislikes -->
-                    <asp:Panel runat="server" ID="RequirementActionsPanel" CssClass="actions_wrapper">
-                        <ul class="activity actions">
+                    <asp:Panel runat="server" ID="RequirementActionsPanel" CssClass="smallcard_socialactions_wrapper">
+                        <ul class="smallcard_socialactions">
                             <li>
                                 <asp:LinkButton runat="server" ID="LikeButton" CssClass="activity_actions_button" CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.Like %>">
                                     <asp:Label runat="server" ID="LikeQty" Text='<%# Eval("Agreed") %>' />
-                                    <img src="assets/img/like.png" alt="Like" />
+                                    <asp:Image runat="server" ID="LikeImage" ImageUrl="~/assets/img/like.png" ToolTip="Like" />
                                 </asp:LinkButton>
                             </li>
                             <li>
                                 <asp:LinkButton runat="server" ID="DislikeButton" CssClass="activity_actions_button" CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.Dislike %>">
                                     <asp:Label runat="server" ID="DislikeQty" Text='<%# Eval("Disagreed") %>' />
-                                    <img src="assets/img/dislike.png" alt="Dislike" />
+                                    <asp:Image runat="server" ID="DislikeImage" ImageUrl="~/assets/img/dislike.png" ToolTip="Dislike" />
                                 </asp:LinkButton>
                             </li>
                             <li>
                                 <asp:LinkButton runat="server" ID="CommentButton" CssClass="activity_actions_button" CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.Comment %>">
                                     <asp:Label runat="server" ID="CommentsQty" Text='<%# Eval("CommentsQuantity") %>' />
-                                    <img src="assets/img/comment.png" alt="Comment" />
+                                    <asp:Image runat="server" ID="CommentImage" ImageUrl="~/assets/img/comment.png" ToolTip="Comment" />
                                 </asp:LinkButton>
                             </li>
                         </ul>

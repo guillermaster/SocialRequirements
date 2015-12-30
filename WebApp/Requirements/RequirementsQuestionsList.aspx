@@ -13,14 +13,14 @@
             <div>
         </HeaderTemplate>
         <ItemTemplate>
-            <div class="card"
-                onclick="javascript:location.href='RequirementQuestion.aspx?<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.Id %>=<%# Eval("Id") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.CompanyId %>=<%# Eval("CompanyId") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.ProjectId %>=<%# Eval("ProjectId") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.RequirementId %>=<%# Eval("RequirementId") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.RequirementVersionId %>=<%# Eval("RequirementVersionId") %>'">
+            <div class="card">
                 <div class="card_tag"><%# Eval("RequirementTitle") %></div>
                 <div class="card_tag2"><%# Eval("ProjectName") %></div>
                 <div class="card_icon">
                     <i class="fa fa-question-circle"></i>
                 </div>
-                <div class="card_title">
+                <div class="card_title"style="cursor: pointer"
+                    onclick="javascript:location.href='RequirementQuestion.aspx?<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.Id %>=<%# Eval("Id") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.CompanyId %>=<%# Eval("CompanyId") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.ProjectId %>=<%# Eval("ProjectId") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.RequirementId %>=<%# Eval("RequirementId") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.RequirementVersionId %>=<%# Eval("RequirementVersionId") %>'">
                     <%# Eval("Question") %>
                 </div>
                 <div class="card_footer">
