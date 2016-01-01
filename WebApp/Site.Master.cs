@@ -93,9 +93,26 @@ namespace SocialRequirements
             return PostErrorPanelMaster;
         }
 
+        public Repeater Notifications
+        {
+            get { return NotificationsRepeater; }
+            set { NotificationsRepeater = value; }
+        }
+
+        public Label NotificationsQuantityLabel
+        {
+            get { return NotificationsQuantity; }
+            set { NotificationsQuantity = value; }
+        }
+
         public Label GetErrorMessage()
         {
             return PostErrorMessageMaster;
+        }
+
+        public void SetUserFullName(string fullname)
+        {
+            UserFullName.Text = fullname;
         }
 
         protected void SignOutButton_OnClick(object sender, EventArgs e)

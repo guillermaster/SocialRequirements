@@ -7,7 +7,9 @@ using System.Web.UI.WebControls;
 using SocialRequirements.AccountService;
 using SocialRequirements.CompanyService;
 using SocialRequirements.Domain.DTO.Account;
+using SocialRequirements.Domain.DTO.General;
 using SocialRequirements.Domain.General;
+using SocialRequirements.GeneralService;
 using SocialRequirements.RequirementService;
 using SocialRequirements.Utilities;
 using SocialRequirements.Utilities.Security;
@@ -19,18 +21,68 @@ namespace SocialRequirements
         protected virtual void Page_Load(object sender, EventArgs e)
         {
             ValidateUserLoggedIn();
+            SetUserData();
+            SetUserFullName();
+            LoadNotifications();
         }
 
         protected void ValidateUserLoggedIn()
         {
-            if (!UserLoggedIn())
-            {
-                var siteMaster = (SiteMaster)Master;
-                if (siteMaster != null) siteMaster.RedirectToLogin();
-            }
+            if (UserLoggedIn()) return;
+            var siteMaster = (SiteMaster)Master;
+            if (siteMaster != null) siteMaster.RedirectToLogin();
         }
 
-        
+        /// <summary>
+        /// Stores in session the user data
+        /// </summary>
+        protected void SetUserData()
+        {
+            if (!string.IsNullOrWhiteSpace(UserData)) return;
+
+            var userSrv = new AccountSoapClient();
+            UserData = userSrv.GetUserData(GetUsernameEncrypted());
+        }
+
+        /// <summary>
+        /// Stores in session the user data
+        /// </summary>
+        protected PersonDto GetUserData()
+        {
+            if (string.IsNullOrWhiteSpace(UserData)) return null;
+
+            var serializer = new ObjectSerializer<PersonDto>();
+            return (PersonDto)serializer.Deserialize(UserData);
+        }
+
+        /// <summary>
+        /// Sets the full name label in the left column of the web site (master page)
+        /// </summary>
+        protected void SetUserFullName()
+        {
+            var siteMaster = (SiteMaster)Master;
+            if (siteMaster == null) return;
+
+            var persondata = GetUserData();
+            if (persondata == null) return;
+            siteMaster.SetUserFullName(persondata.FirstName + " " + persondata.LastName);
+        }
+
+        private void LoadNotifications()
+        {
+            var siteMaster = (SiteMaster)Master;
+            if (siteMaster == null) return;
+
+            var generalSrv = new GeneralSoapClient();
+            var activitySummaryStr = generalSrv.GetActivitiesSummary(GetUsernameEncrypted());
+
+            var serializer = new ObjectSerializer<List<ActivityFeedSummaryDto>>();
+            var activitySummary = (List<ActivityFeedSummaryDto>)serializer.Deserialize(activitySummaryStr);
+
+            siteMaster.Notifications.DataSource = activitySummary;
+            siteMaster.Notifications.DataBind();
+            siteMaster.NotificationsQuantityLabel.Text = activitySummary.Count.ToString();
+        }
 
         /// <summary>
         /// Check if there is at least one requirement for the specified companies

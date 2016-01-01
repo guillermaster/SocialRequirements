@@ -113,7 +113,7 @@
                                     </td>
                                     <td>
                                         <a href="#"><%# Eval("CreatedByName") %> <%# Eval("CreatedByLastname") %></a>
-                                        <strong>created a new </strong>&nbsp;
+                                        <strong><%# Eval("EntityAction") %></strong>&nbsp;
                                         <a href="#"><%# Eval("EntityName") %> </a>
                                     </td>
                                 </tr>

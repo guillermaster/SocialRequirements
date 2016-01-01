@@ -1,5 +1,6 @@
 ﻿using System;
 using SocialRequirements.Domain.BusinessLogic.Account;
+using SocialRequirements.Domain.DTO.Account;
 using SocialRequirements.Domain.Exception.Account;
 using SocialRequirements.Domain.Repository.Account;
 using SocialRequirements.Utilities;
@@ -72,5 +73,10 @@ namespace SocialRequirements.Business.Account
             }
         }
 
+        public PersonDto Get(string username)
+        {
+            var personId = _personData.GetPersonId(username);
+            return _personData.Get(personId);
+        }
     }
 }

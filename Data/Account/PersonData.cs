@@ -2,6 +2,7 @@
 using System.Linq;
 using SocialRequirements.Context;
 using SocialRequirements.Context.Entities;
+using SocialRequirements.Domain.DTO.Account;
 using SocialRequirements.Domain.Exception.Account;
 using SocialRequirements.Domain.Repository.Account;
 
@@ -48,6 +49,14 @@ namespace SocialRequirements.Data.Account
             return user.id;
         }
 
+        public PersonDto Get(long personId)
+        {
+            var user = _context.Person.FirstOrDefault(person => person.id == personId);
+            if (user == null) throw new AccountException.UserNotFound();
+
+            return new PersonDto(user);
+        }
+
         private static Person CreatePersonEntityInstance(string firstName, string lastName, DateTime birthdate, string primaryEmail, string secondaryEmail,
             string phone, string mobilePhone, string username, string password)
         {
@@ -65,5 +74,6 @@ namespace SocialRequirements.Data.Account
             };
             return person;
         }
+        
     }
 }

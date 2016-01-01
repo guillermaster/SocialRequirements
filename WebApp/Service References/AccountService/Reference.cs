@@ -42,6 +42,13 @@ namespace SocialRequirements.AccountService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SetCompany", ReplyAction="*")]
         System.Threading.Tasks.Task<SocialRequirements.AccountService.SetCompanyResponse> SetCompanyAsync(SocialRequirements.AccountService.SetCompanyRequest request);
+        
+        // CODEGEN: Generating message contract since element name encUsername from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetUserData", ReplyAction="*")]
+        SocialRequirements.AccountService.GetUserDataResponse GetUserData(SocialRequirements.AccountService.GetUserDataRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetUserData", ReplyAction="*")]
+        System.Threading.Tasks.Task<SocialRequirements.AccountService.GetUserDataResponse> GetUserDataAsync(SocialRequirements.AccountService.GetUserDataRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -345,6 +352,74 @@ namespace SocialRequirements.AccountService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetUserDataRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetUserData", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.AccountService.GetUserDataRequestBody Body;
+        
+        public GetUserDataRequest() {
+        }
+        
+        public GetUserDataRequest(SocialRequirements.AccountService.GetUserDataRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetUserDataRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string encUsername;
+        
+        public GetUserDataRequestBody() {
+        }
+        
+        public GetUserDataRequestBody(string encUsername) {
+            this.encUsername = encUsername;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetUserDataResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetUserDataResponse", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.AccountService.GetUserDataResponseBody Body;
+        
+        public GetUserDataResponse() {
+        }
+        
+        public GetUserDataResponse(SocialRequirements.AccountService.GetUserDataResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetUserDataResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string GetUserDataResult;
+        
+        public GetUserDataResponseBody() {
+        }
+        
+        public GetUserDataResponseBody(string GetUserDataResult) {
+            this.GetUserDataResult = GetUserDataResult;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface AccountSoapChannel : SocialRequirements.AccountService.AccountSoap, System.ServiceModel.IClientChannel {
     }
@@ -487,6 +562,31 @@ namespace SocialRequirements.AccountService {
             inValue.Body.companyId = companyId;
             inValue.Body.encUsername = encUsername;
             return ((SocialRequirements.AccountService.AccountSoap)(this)).SetCompanyAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SocialRequirements.AccountService.GetUserDataResponse SocialRequirements.AccountService.AccountSoap.GetUserData(SocialRequirements.AccountService.GetUserDataRequest request) {
+            return base.Channel.GetUserData(request);
+        }
+        
+        public string GetUserData(string encUsername) {
+            SocialRequirements.AccountService.GetUserDataRequest inValue = new SocialRequirements.AccountService.GetUserDataRequest();
+            inValue.Body = new SocialRequirements.AccountService.GetUserDataRequestBody();
+            inValue.Body.encUsername = encUsername;
+            SocialRequirements.AccountService.GetUserDataResponse retVal = ((SocialRequirements.AccountService.AccountSoap)(this)).GetUserData(inValue);
+            return retVal.Body.GetUserDataResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SocialRequirements.AccountService.GetUserDataResponse> SocialRequirements.AccountService.AccountSoap.GetUserDataAsync(SocialRequirements.AccountService.GetUserDataRequest request) {
+            return base.Channel.GetUserDataAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SocialRequirements.AccountService.GetUserDataResponse> GetUserDataAsync(string encUsername) {
+            SocialRequirements.AccountService.GetUserDataRequest inValue = new SocialRequirements.AccountService.GetUserDataRequest();
+            inValue.Body = new SocialRequirements.AccountService.GetUserDataRequestBody();
+            inValue.Body.encUsername = encUsername;
+            return ((SocialRequirements.AccountService.AccountSoap)(this)).GetUserDataAsync(inValue);
         }
     }
 }

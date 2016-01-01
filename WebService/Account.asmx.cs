@@ -82,5 +82,14 @@ namespace WebService
             var username = Encryption.Decrypt(encUsername);
             CompanyBusiness.Set(companyId, username);
         }
+
+        [WebMethod]
+        public string GetUserData(string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            var userdata = PersonBusiness.Get(username);
+            var serializer = new ObjectSerializer<PersonDto>(userdata);
+            return serializer.ToXmlString();
+        }
     }
 }

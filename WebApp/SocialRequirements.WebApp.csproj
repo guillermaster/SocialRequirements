@@ -2197,6 +2197,9 @@
     <Content Include="Service References\AccountService\SocialRequirements.AccountService.SetCompanyResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Service References\AccountService\SocialRequirements.AccountService.GetUserDataResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Service References\CompanyService\Company.disco" />
     <None Include="Service References\CompanyService\configuration91.svcinfo" />
     <None Include="Service References\CompanyService\configuration.svcinfo" />
@@ -2209,6 +2212,9 @@
     </Content>
     <None Include="Service References\GeneralService\General.wsdl" />
     <Content Include="Service References\GeneralService\SocialRequirements.GeneralService.LatestActivityFeedResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\GeneralService\SocialRequirements.GeneralService.GetActivitiesSummaryResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Service References\ProjectService\Project.disco" />

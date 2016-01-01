@@ -14,7 +14,7 @@ namespace SocialRequirements
             Username = username;
             RedirectToPrivateArea();
         }
-
+        
         private void RedirectToPrivateArea()
         {
             Response.Redirect("~/Default.aspx");

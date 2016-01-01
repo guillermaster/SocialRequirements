@@ -1,4 +1,6 @@
-﻿namespace SocialRequirements.Domain.BusinessLogic.Account
+﻿using SocialRequirements.Domain.DTO.Account;
+
+namespace SocialRequirements.Domain.BusinessLogic.Account
 {
     public interface IPersonBusiness
     {
@@ -8,5 +10,7 @@
         bool UserExists(string email);
 
         bool ValidatePassword(string username, string password);
+
+        PersonDto Get(string username);
     }
 }

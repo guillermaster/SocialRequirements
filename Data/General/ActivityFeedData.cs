@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using SocialRequirements.Context;
 using SocialRequirements.Context.Entities;
+using SocialRequirements.Domain.DTO.Account;
 using SocialRequirements.Domain.DTO.General;
 using SocialRequirements.Domain.General;
 using SocialRequirements.Domain.Repository.General;
@@ -50,6 +51,117 @@ namespace SocialRequirements.Data.General
             var activities = _context.ActivityFeed.Where(af => af.company_id == companyId).ToList();
 
             return activities.Select(GetDtoFromEntity).ToList();
+        }
+
+        public List<ActivityFeedSummaryDto> GetRecentActivitiesSummary(List<ProjectDto> projects)
+        {
+            // init list of activities to be returned
+            var latestActivitiesSummary = new List<ActivityFeedSummaryDto>();
+
+            // set timestamp for oldest record
+            var untilDatetime = DateTime.Now.AddDays(-5);
+
+            foreach (var project in projects)
+            {
+                // requirements related activities
+
+                var activity = GetActivitySummary(project.Id, GeneralCatalog.Detail.Entity.Requirement,
+                    GeneralCatalog.Detail.EntityActions.Create, untilDatetime);
+                if(activity != null) latestActivitiesSummary.Add(activity);
+
+                activity = GetActivitySummary(project.Id, GeneralCatalog.Detail.Entity.Requirement,
+                    GeneralCatalog.Detail.EntityActions.Modify, untilDatetime);
+                if(activity != null) latestActivitiesSummary.Add(activity);
+
+                activity = GetActivitySummary(project.Id, GeneralCatalog.Detail.Entity.Requirement,
+                    GeneralCatalog.Detail.EntityActions.Approve, untilDatetime);
+                if (activity != null) latestActivitiesSummary.Add(activity);
+
+                activity = GetActivitySummary(project.Id, GeneralCatalog.Detail.Entity.Requirement,
+                    GeneralCatalog.Detail.EntityActions.Reject, untilDatetime);
+                if (activity != null) latestActivitiesSummary.Add(activity);
+
+                activity = GetActivitySummary(project.Id, GeneralCatalog.Detail.Entity.Requirement,
+                    GeneralCatalog.Detail.EntityActions.SubmitForApproval, untilDatetime);
+                if (activity != null) latestActivitiesSummary.Add(activity);
+
+                // requirement modifications related activities
+
+                activity = GetActivitySummary(project.Id, GeneralCatalog.Detail.Entity.RequirementModification,
+                    GeneralCatalog.Detail.EntityActions.Approve, untilDatetime);
+                if (activity != null) latestActivitiesSummary.Add(activity);
+
+                activity = GetActivitySummary(project.Id, GeneralCatalog.Detail.Entity.RequirementModification,
+                    GeneralCatalog.Detail.EntityActions.Reject, untilDatetime);
+                if (activity != null) latestActivitiesSummary.Add(activity);
+
+                activity = GetActivitySummary(project.Id, GeneralCatalog.Detail.Entity.RequirementModification,
+                    GeneralCatalog.Detail.EntityActions.SubmitForApproval, untilDatetime);
+                if (activity != null) latestActivitiesSummary.Add(activity);
+
+                // requirement questions related activities
+
+                activity = GetActivitySummary(project.Id, GeneralCatalog.Detail.Entity.RequirementQuestion,
+                    GeneralCatalog.Detail.EntityActions.Create, untilDatetime);
+                if (activity != null) latestActivitiesSummary.Add(activity);
+
+                // requirement question answers related activities
+
+                activity = GetActivitySummary(project.Id, GeneralCatalog.Detail.Entity.RequirementQuestionAnswer,
+                    GeneralCatalog.Detail.EntityActions.Create, untilDatetime);
+                if (activity != null) latestActivitiesSummary.Add(activity);
+            }
+
+            return latestActivitiesSummary;
+        }
+
+        private ActivityFeedSummaryDto GetActivitySummary(long projectId, GeneralCatalog.Detail.Entity recordType,
+            GeneralCatalog.Detail.EntityActions actionType, DateTime until)
+        {
+            var newReqQty = GetQuantityOfActivities(projectId, recordType, actionType, until);
+            if (newReqQty == 0) return null;
+
+            var earliest = GetEarliestActivityTime(projectId, recordType, actionType, until);
+
+            var description = newReqQty + " " +
+                StringUtilities.GetEntityName(recordType, newReqQty > 1) + " " +
+                StringUtilities.GetActionOccurredDescription(actionType, newReqQty > 1);
+
+            var activitySumm = new ActivityFeedSummaryDto
+            {
+                Quantity = newReqQty,
+                Description = description,
+                ProjectId = projectId,
+                Entity = recordType,
+                Action = actionType,
+                Until = until,
+                MostRecent = earliest
+            };
+
+            return activitySumm;
+        }
+        
+        private int GetQuantityOfActivities(long projectId, GeneralCatalog.Detail.Entity recordType,
+            GeneralCatalog.Detail.EntityActions actionType, DateTime untilTime)
+        {
+            return
+                _context.ActivityFeed.Count(
+                    af =>
+                        af.project_id == projectId &&
+                        af.entity_id == (int) recordType && af.action_id == (int) actionType &&
+                        af.createdon >= untilTime);
+        }
+
+        private DateTime GetEarliestActivityTime(long projectId, GeneralCatalog.Detail.Entity recordType,
+            GeneralCatalog.Detail.EntityActions actionType, DateTime untilTime)
+        {
+            var activity =
+                _context.ActivityFeed.Where(
+                    af =>
+                        af.project_id == projectId &&
+                        af.entity_id == (int) recordType && af.action_id == (int) actionType &&
+                        af.createdon >= untilTime).OrderByDescending(d => d.createdon).FirstOrDefault();
+            return activity != null ? activity.createdon : DateTime.Now;
         }
 
         private ActivityFeedDto GetDtoFromEntity(ActivityFeed activity)
@@ -103,6 +215,8 @@ namespace SocialRequirements.Data.General
             activity.Comment = _requirementCommentData.Get(requirement.Id, requirement.CompanyId,
                         requirement.ProjectId, requirement.VersionId);
             activity.Comments = activity.Comment.Count;
+            activity.EntityAction = activity.EntityAction;
+
             return activity;
         }
     }

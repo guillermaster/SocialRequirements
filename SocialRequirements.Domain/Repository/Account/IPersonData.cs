@@ -1,4 +1,5 @@
 ﻿using System;
+using SocialRequirements.Domain.DTO.Account;
 
 namespace SocialRequirements.Domain.Repository.Account
 {
@@ -12,5 +13,7 @@ namespace SocialRequirements.Domain.Repository.Account
         string GetPassword(string username);
 
         long GetPersonId(string username);
+
+        PersonDto Get(long personId);
     }
 }

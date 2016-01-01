@@ -22,6 +22,24 @@ namespace SocialRequirements {
         protected global::System.Web.UI.HtmlControls.HtmlForm MainForm;
         
         /// <summary>
+        /// NotificationsQuantity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label NotificationsQuantity;
+        
+        /// <summary>
+        /// NotificationsRepeater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater NotificationsRepeater;
+        
+        /// <summary>
         /// SignOutButton control.
         /// </summary>
         /// <remarks>
@@ -29,6 +47,15 @@ namespace SocialRequirements {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton SignOutButton;
+        
+        /// <summary>
+        /// UserFullName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label UserFullName;
         
         /// <summary>
         /// MainScriptManager control.

@@ -31,5 +31,14 @@ namespace WebService
             var serializer = new ObjectSerializer<List<ActivityFeedDto>>(activityFeed);
             return serializer.ToXmlString();
         }
+
+        [WebMethod]
+        public string GetActivitiesSummary(string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            var activityFeed = ActivityFeedBusiness.GetRecentActivitiesSummary(username);
+            var serializer = new ObjectSerializer<List<ActivityFeedSummaryDto>>(activityFeed);
+            return serializer.ToXmlString();
+        }
     }
 }

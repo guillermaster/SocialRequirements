@@ -50,8 +50,10 @@
     <Compile Include="BusinessLogic\Requirement\IRequirementQuestionAnswerBusiness.cs" />
     <Compile Include="BusinessLogic\Requirement\IRequirementQuestionBusiness.cs" />
     <Compile Include="DTO\Account\CompanyDto.cs" />
+    <Compile Include="DTO\Account\PersonDto.cs" />
     <Compile Include="DTO\Account\ProjectDto.cs" />
     <Compile Include="DTO\General\ActivityFeedDto.cs" />
+    <Compile Include="DTO\General\ActivityFeedSummaryDto.cs" />
     <Compile Include="DTO\General\GeneralCatalogDetailDto.cs" />
     <Compile Include="DTO\Requirement\RequirementCommentDto.cs" />
     <Compile Include="DTO\Requirement\RequirementDto.cs" />

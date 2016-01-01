@@ -1,9 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Web.UI;
-using SocialRequirements.AccountService;
-using SocialRequirements.Domain.DTO.Account;
-using SocialRequirements.Utilities;
-using SocialRequirements.Utilities.Security;
+﻿using System.Web.UI;
 
 namespace SocialRequirements
 {
@@ -12,7 +7,16 @@ namespace SocialRequirements
         protected string Username
         {
             get { return Session["Username"] != null ? Session["Username"].ToString() : null; }
-            set { Session["username"] = value; }
+            set { Session["Username"] = value; }
+        }
+
+        /// <summary>
+        /// Stores current user data in XML format
+        /// </summary>
+        protected string UserData
+        {
+            get { return Session["UserData"] != null ? Session["UserData"].ToString() : null; }
+            set { Session["UserData"] = value; }
         }
         
         protected bool UserLoggedIn()
