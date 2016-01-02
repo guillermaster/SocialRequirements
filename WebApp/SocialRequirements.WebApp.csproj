@@ -1845,6 +1845,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="RecentActivities.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -2217,6 +2218,12 @@
     <Content Include="Service References\GeneralService\SocialRequirements.GeneralService.GetActivitiesSummaryResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Service References\GeneralService\SocialRequirements.GeneralService.GetLatestActivitiesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\GeneralService\SocialRequirements.GeneralService.GetAllActivitiesNotificationsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Service References\ProjectService\Project.disco" />
     <None Include="Service References\ProjectService\configuration91.svcinfo" />
     <None Include="Service References\ProjectService\configuration.svcinfo" />
@@ -2469,6 +2476,13 @@
     </Compile>
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RecentActivities.aspx.cs">
+      <DependentUpon>RecentActivities.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RecentActivities.aspx.designer.cs">
+      <DependentUpon>RecentActivities.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

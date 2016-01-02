@@ -3,11 +3,14 @@ using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using SocialRequirements.Domain.DTO.General;
+using SocialRequirements.Domain.General;
 
 namespace SocialRequirements
 {
     public partial class SiteMaster : MasterPage
     {
+        private const string CtrlIdNotificationLink = "NotificationLink";
         private const string AntiXsrfTokenKey = "__AntiXsrfToken";
         private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
         private string _antiXsrfTokenValue;
@@ -129,6 +132,19 @@ namespace SocialRequirements
         public void RedirectToLogin()
         {
             Response.Redirect("~/Account/Login.aspx");
+        }
+
+        protected void NotificationsRepeater_OnItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType != ListItemType.Item) return;
+
+            var activitySumm = (ActivityFeedSummaryDto)e.Item.DataItem;
+            var notifLink = (HyperLink)e.Item.FindControl(CtrlIdNotificationLink);
+
+            notifLink.NavigateUrl = CommonConstants.FormsUrl.RecentActivities + "?" +
+                                    CommonConstants.QueryStringParams.ProjectId + "=" + activitySumm.ProjectId + "&" +
+                                    CommonConstants.QueryStringParams.EntityId + "=" + activitySumm.EntityId + "&" +
+                                    CommonConstants.QueryStringParams.ActionId + "=" + activitySumm.ActionId;
         }
     }
 

@@ -30,6 +30,36 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetLatestActivities">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="entityId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="actionId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLatestActivitiesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLatestActivitiesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllActivitiesNotifications">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="encUsername" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllActivitiesNotificationsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllActivitiesNotificationsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="LatestActivityFeedSoapIn">
@@ -44,6 +74,18 @@
   <wsdl:message name="GetActivitiesSummarySoapOut">
     <wsdl:part name="parameters" element="tns:GetActivitiesSummaryResponse" />
   </wsdl:message>
+  <wsdl:message name="GetLatestActivitiesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLatestActivities" />
+  </wsdl:message>
+  <wsdl:message name="GetLatestActivitiesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLatestActivitiesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllActivitiesNotificationsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllActivitiesNotifications" />
+  </wsdl:message>
+  <wsdl:message name="GetAllActivitiesNotificationsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllActivitiesNotificationsResponse" />
+  </wsdl:message>
   <wsdl:portType name="GeneralSoap">
     <wsdl:operation name="LatestActivityFeed">
       <wsdl:input message="tns:LatestActivityFeedSoapIn" />
@@ -52,6 +94,14 @@
     <wsdl:operation name="GetActivitiesSummary">
       <wsdl:input message="tns:GetActivitiesSummarySoapIn" />
       <wsdl:output message="tns:GetActivitiesSummarySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLatestActivities">
+      <wsdl:input message="tns:GetLatestActivitiesSoapIn" />
+      <wsdl:output message="tns:GetLatestActivitiesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllActivitiesNotifications">
+      <wsdl:input message="tns:GetAllActivitiesNotificationsSoapIn" />
+      <wsdl:output message="tns:GetAllActivitiesNotificationsSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="GeneralSoap" type="tns:GeneralSoap">
@@ -74,6 +124,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetLatestActivities">
+      <soap:operation soapAction="http://tempuri.org/GetLatestActivities" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllActivitiesNotifications">
+      <soap:operation soapAction="http://tempuri.org/GetAllActivitiesNotifications" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="GeneralSoap12" type="tns:GeneralSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -88,6 +156,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetActivitiesSummary">
       <soap12:operation soapAction="http://tempuri.org/GetActivitiesSummary" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLatestActivities">
+      <soap12:operation soapAction="http://tempuri.org/GetLatestActivities" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllActivitiesNotifications">
+      <soap12:operation soapAction="http://tempuri.org/GetAllActivitiesNotifications" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

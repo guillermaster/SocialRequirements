@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Web.Services;
 using Ninject;
@@ -38,6 +39,23 @@ namespace WebService
             var username = Encryption.Decrypt(encUsername);
             var activityFeed = ActivityFeedBusiness.GetRecentActivitiesSummary(username);
             var serializer = new ObjectSerializer<List<ActivityFeedSummaryDto>>(activityFeed);
+            return serializer.ToXmlString();
+        }
+
+        [WebMethod]
+        public string GetLatestActivities(long projectId, int entityId, int actionId)
+        {
+            var activities = ActivityFeedBusiness.GetRecentActivities(projectId, entityId, actionId);
+            var serializer = new ObjectSerializer<List<ActivityFeedDto>>(activities);
+            return serializer.ToXmlString();
+        }
+
+        [WebMethod]
+        public string GetAllActivitiesNotifications(string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            var activities = ActivityFeedBusiness.GetRecentActivities(username);
+            var serializer = new ObjectSerializer<List<ActivityFeedDto>>(activities);
             return serializer.ToXmlString();
         }
     }

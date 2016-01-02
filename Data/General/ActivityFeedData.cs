@@ -53,13 +53,13 @@ namespace SocialRequirements.Data.General
             return activities.Select(GetDtoFromEntity).ToList();
         }
 
-        public List<ActivityFeedSummaryDto> GetRecentActivitiesSummary(List<ProjectDto> projects)
+        public List<ActivityFeedSummaryDto> GetRecentActivitiesSummary(List<ProjectDto> projects, int daysTimestamp)
         {
             // init list of activities to be returned
             var latestActivitiesSummary = new List<ActivityFeedSummaryDto>();
 
             // set timestamp for oldest record
-            var untilDatetime = DateTime.Now.AddDays(-5);
+            var untilDatetime = DateTime.Now.AddDays(daysTimestamp * -1);
 
             foreach (var project in projects)
             {
@@ -115,6 +115,120 @@ namespace SocialRequirements.Data.General
             return latestActivitiesSummary;
         }
 
+        public List<ActivityFeedDto> GetRecentActivities(long projectId, int entityId, int actionId, int daysTimestamp)
+        {
+            // set timestamp for oldest record
+            var untilDatetime = DateTime.Now.AddDays(daysTimestamp * -1);
+
+            var activities =
+                _context.ActivityFeed.Where(
+                    af =>
+                        af.project_id == projectId && af.entity_id == entityId && af.action_id == actionId &&
+                        af.createdon >= untilDatetime).ToList();
+
+            return activities.Select(GetDtoFromEntity).ToList();
+        }
+
+        public List<ActivityFeedDto> GetRecentActivities(List<ProjectDto> projects, int daysTimestamp)
+        {
+            var projectsIds = projects.Select(project => project.Id).Select(dummy => (long?) dummy).ToList();
+
+            // set timestamp for oldest record
+            var untilDatetime = DateTime.Now.AddDays(daysTimestamp * -1);
+
+            var activities = new List<ActivityFeed>();
+
+            // requirements
+
+            activities.AddRange(
+                _context.ActivityFeed.Where(
+                    af =>
+                        projectsIds.Contains(af.project_id) &&
+                        af.entity_id == (int) GeneralCatalog.Detail.Entity.Requirement &&
+                        af.action_id == (int) GeneralCatalog.Detail.EntityActions.Create &&
+                        af.createdon >= untilDatetime).ToList());
+
+            activities.AddRange(
+                _context.ActivityFeed.Where(
+                    af =>
+                        projectsIds.Contains(af.project_id) &&
+                        af.entity_id == (int)GeneralCatalog.Detail.Entity.Requirement &&
+                        af.action_id == (int)GeneralCatalog.Detail.EntityActions.Modify &&
+                        af.createdon >= untilDatetime).ToList());
+
+            activities.AddRange(
+                _context.ActivityFeed.Where(
+                    af =>
+                        projectsIds.Contains(af.project_id) &&
+                        af.entity_id == (int)GeneralCatalog.Detail.Entity.Requirement &&
+                        af.action_id == (int)GeneralCatalog.Detail.EntityActions.Approve &&
+                        af.createdon >= untilDatetime).ToList());
+
+            activities.AddRange(
+                _context.ActivityFeed.Where(
+                    af =>
+                        projectsIds.Contains(af.project_id) &&
+                        af.entity_id == (int)GeneralCatalog.Detail.Entity.Requirement &&
+                        af.action_id == (int)GeneralCatalog.Detail.EntityActions.Reject &&
+                        af.createdon >= untilDatetime).ToList());
+
+            activities.AddRange(
+                _context.ActivityFeed.Where(
+                    af =>
+                        projectsIds.Contains(af.project_id) &&
+                        af.entity_id == (int)GeneralCatalog.Detail.Entity.Requirement &&
+                        af.action_id == (int)GeneralCatalog.Detail.EntityActions.SubmitForApproval &&
+                        af.createdon >= untilDatetime).ToList());
+
+            // requirements modifications
+            
+            activities.AddRange(
+                _context.ActivityFeed.Where(
+                    af =>
+                        projectsIds.Contains(af.project_id) &&
+                        af.entity_id == (int)GeneralCatalog.Detail.Entity.RequirementModification &&
+                        af.action_id == (int)GeneralCatalog.Detail.EntityActions.Approve &&
+                        af.createdon >= untilDatetime).ToList());
+
+            activities.AddRange(
+                _context.ActivityFeed.Where(
+                    af =>
+                        projectsIds.Contains(af.project_id) &&
+                        af.entity_id == (int)GeneralCatalog.Detail.Entity.RequirementModification &&
+                        af.action_id == (int)GeneralCatalog.Detail.EntityActions.Reject &&
+                        af.createdon >= untilDatetime).ToList());
+
+            activities.AddRange(
+                _context.ActivityFeed.Where(
+                    af =>
+                        projectsIds.Contains(af.project_id) &&
+                        af.entity_id == (int)GeneralCatalog.Detail.Entity.RequirementModification &&
+                        af.action_id == (int)GeneralCatalog.Detail.EntityActions.SubmitForApproval &&
+                        af.createdon >= untilDatetime).ToList());
+
+            // requirements questions
+
+            activities.AddRange(
+                _context.ActivityFeed.Where(
+                    af =>
+                        projectsIds.Contains(af.project_id) &&
+                        af.entity_id == (int)GeneralCatalog.Detail.Entity.RequirementQuestion &&
+                        af.action_id == (int)GeneralCatalog.Detail.EntityActions.Create &&
+                        af.createdon >= untilDatetime).ToList());
+
+            // requirements questions answers
+
+            activities.AddRange(
+                _context.ActivityFeed.Where(
+                    af =>
+                        projectsIds.Contains(af.project_id) &&
+                        af.entity_id == (int)GeneralCatalog.Detail.Entity.RequirementQuestionAnswer &&
+                        af.action_id == (int)GeneralCatalog.Detail.EntityActions.Create &&
+                        af.createdon >= untilDatetime).ToList());
+            
+            return activities.Select(GetDtoFromEntity).ToList();
+        }
+
         private ActivityFeedSummaryDto GetActivitySummary(long projectId, GeneralCatalog.Detail.Entity recordType,
             GeneralCatalog.Detail.EntityActions actionType, DateTime until)
         {
@@ -132,8 +246,8 @@ namespace SocialRequirements.Data.General
                 Quantity = newReqQty,
                 Description = description,
                 ProjectId = projectId,
-                Entity = recordType,
-                Action = actionType,
+                EntityId = (int)recordType,
+                ActionId = (int)actionType,
                 Until = until,
                 MostRecent = earliest
             };

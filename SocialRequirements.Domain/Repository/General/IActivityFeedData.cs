@@ -22,7 +22,26 @@ namespace SocialRequirements.Domain.Repository.General
         /// filter by criteria specified by input params
         /// </summary>
         /// <param name="projects">Projects</param>
+        /// <param name="daysTimestamp">Number of days back</param>
         /// <returns>List of Activity Feed Items</returns>
-        List<ActivityFeedSummaryDto> GetRecentActivitiesSummary(List<ProjectDto> projects);
+        List<ActivityFeedSummaryDto> GetRecentActivitiesSummary(List<ProjectDto> projects, int daysTimestamp);
+        
+        /// <summary>
+        /// Get recent activites filtered up by criteria specified by input params
+        /// </summary>
+        /// <param name="projectId">Project ID</param>
+        /// <param name="entityId">Entity ID</param>
+        /// <param name="actionId">Action ID</param>
+        /// <param name="daysTimestamp">Number of days back</param>
+        /// <returns>List of activities</returns>
+        List<ActivityFeedDto> GetRecentActivities(long projectId, int entityId, int actionId, int daysTimestamp);
+
+        /// <summary>
+        /// Get recent activites filtered up by criteria specified by input params
+        /// </summary>
+        /// <param name="projects">Projects which recent activities are to be shown</param>
+        /// <param name="daysTimestamp">Number of days back</param>
+        /// <returns>List of activities</returns>
+        List<ActivityFeedDto> GetRecentActivities(List<ProjectDto> projects, int daysTimestamp);
     }
 }

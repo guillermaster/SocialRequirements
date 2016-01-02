@@ -1,5 +1,4 @@
 ﻿using System;
-using SocialRequirements.Domain.General;
 
 namespace SocialRequirements.Domain.DTO.General
 {
@@ -7,9 +6,9 @@ namespace SocialRequirements.Domain.DTO.General
     {
         public long ProjectId { get; set; }
 
-        public GeneralCatalog.Detail.Entity Entity { get; set; }
+        public int EntityId { get; set; }
 
-        public GeneralCatalog.Detail.EntityActions Action { get; set; }
+        public int ActionId { get; set; }
 
         public int Quantity { get; set; }
 
@@ -18,5 +17,7 @@ namespace SocialRequirements.Domain.DTO.General
         public DateTime Until { get; set; }
 
         public DateTime MostRecent { get; set; }
+
+        public string Url { get; set; }
     }
 }

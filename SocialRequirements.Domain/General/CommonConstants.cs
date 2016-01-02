@@ -14,6 +14,7 @@
         public class FormsUrl
         {
             public const string Requirement = "~/Requirements/Requirement.aspx";
+            public const string RecentActivities = "~/RecentActivities.aspx";
         }
 
         public class QueryStringParams
@@ -23,6 +24,8 @@
             public const string ProjectId = "pid";
             public const string RequirementId = "rid";
             public const string RequirementVersionId = "rvid";
+            public const string EntityId = "eid";
+            public const string ActionId = "aid";
             public const string Message = "msg";
         }
     }

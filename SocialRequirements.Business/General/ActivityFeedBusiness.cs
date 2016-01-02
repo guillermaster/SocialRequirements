@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using SocialRequirements.Domain.BusinessLogic.Account;
 using SocialRequirements.Domain.BusinessLogic.General;
-using SocialRequirements.Domain.DTO.Account;
 using SocialRequirements.Domain.DTO.General;
 using SocialRequirements.Domain.Repository.Account;
 using SocialRequirements.Domain.Repository.General;
@@ -15,6 +15,7 @@ namespace SocialRequirements.Business.General
         private readonly ICompanyBusiness _companyBusiness;
         private readonly IProjectData _projectData;
         private readonly IPersonData _personData;
+        private const int DaysTimeSpan = 4;
 
         public ActivityFeedBusiness(IActivityFeedData activityFeedData, ICompanyBusiness companyBusiness,
             IProjectData projectData, IPersonData personData)
@@ -41,7 +42,29 @@ namespace SocialRequirements.Business.General
             var personId = _personData.GetPersonId(username);
             var projects = _projectData.GetProjectsByUser(personId);
 
-            return _activityFeedData.GetRecentActivitiesSummary(projects).OrderByDescending(act => act.MostRecent).ToList();
+            return
+                _activityFeedData.GetRecentActivitiesSummary(projects, DaysTimeSpan)
+                    .OrderByDescending(act => act.MostRecent)
+                    .ToList();
+        }
+
+        public List<ActivityFeedDto> GetRecentActivities(long projectId, int entityId, int actionId)
+        {
+            return
+                _activityFeedData.GetRecentActivities(projectId, entityId, actionId, DaysTimeSpan)
+                    .OrderByDescending(act => act.Createdon)
+                    .ToList();
+        }
+
+        public List<ActivityFeedDto> GetRecentActivities(string username)
+        {
+            var personId = _personData.GetPersonId(username);
+            var projects = _projectData.GetProjectsByUser(personId);
+
+            return
+                _activityFeedData.GetRecentActivities(projects, DaysTimeSpan)
+                    .OrderByDescending(act => act.Createdon)
+                    .ToList();
         }
     }
 }

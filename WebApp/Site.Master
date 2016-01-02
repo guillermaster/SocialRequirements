@@ -230,7 +230,7 @@
                 <a data-toggle="tooltips" data-placement="right" title="Toggle Sidebar"><span class="icon-bg"><i class="fa fa-fw fa-bars"></i></span></a>
             </span>
 
-            <a class="navbar-brand" href="index.html">Social Requirements</a>
+            <asp:HyperLink runat="server" NavigateUrl="~/Default.aspx" CssClass="navbar-brand">Social Requirements</asp:HyperLink>
 
             <span id="trigger-infobar" class="toolbar-trigger toolbar-icon-bg">
                 <a data-toggle="tooltips" data-placement="left" title="Toggle Infobar"><span class="icon-bg"><i class="fa fa-fw fa-bars"></i></span></a>
@@ -276,24 +276,24 @@
                             <span><a href="#"></a></span>
                         </div>
 
-                        <asp:Repeater ID="NotificationsRepeater" ItemType="SocialRequirements.Domain.DTO.General.ActivityFeedSummaryDto" runat="server">
+                        <asp:Repeater ID="NotificationsRepeater" ItemType="SocialRequirements.Domain.DTO.General.ActivityFeedSummaryDto" OnItemDataBound="NotificationsRepeater_OnItemDataBound" runat="server">
                             <HeaderTemplate>
                                 <div class="scrollthis scroll-pane">
                                     <ul class="scroll-content">
                             </HeaderTemplate>
                             <ItemTemplate>
                                 <li class="">
-                                    <a href="#" class="notification-info">
+                                    <asp:HyperLink runat="server" CssClass="notification-info" ID="NotificationLink">
                                         <div class="notification-icon"><i class="fa fa-user fa-fw"></i></div>
                                         <div class="notification-content"><%# Eval("Description") %></div>
                                         <div class="notification-time"></div>
-                                    </a>
+                                    </asp:HyperLink>
                                 </li>
                             </ItemTemplate>
                         </asp:Repeater>
 
                         <div class="dd-footer">
-                            <a href="#">View all notifications</a>
+                            <asp:HyperLink runat="server" NavigateUrl="~/RecentActivities.aspx">View all notifications</asp:HyperLink>
                         </div>
                     </div>
                 </li>
