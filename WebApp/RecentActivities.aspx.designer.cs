@@ -40,24 +40,6 @@ namespace SocialRequirements {
         protected global::System.Web.UI.WebControls.LinkButton RequiredActionExecute;
         
         /// <summary>
-        /// updProgress control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdateProgress updProgress;
-        
-        /// <summary>
-        /// PostContentUpdatePanel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel PostContentUpdatePanel;
-        
-        /// <summary>
         /// ActivityFeedRepeater control.
         /// </summary>
         /// <remarks>

@@ -41,80 +41,68 @@
         </div>
     </asp:Panel>
 
-    <asp:UpdateProgress ID="updProgress" DisplayAfter="10" AssociatedUpdatePanelID="PostContentUpdatePanel" runat="server">
-        <ProgressTemplate>
-            <div class="divWaiting">
-                <asp:Image ID="ImageLoading" runat="server" ImageUrl="~/assets/img/loader.gif" />
+    <!-- ACTIVITY FEED -->
+    <asp:Repeater ID="ActivityFeedRepeater" OnItemDataBound="ActivityFeedRepeater_ItemDataBound"
+        ItemType="SocialRequirements.Domain.DTO.General.ActivityFeedDto" runat="server" OnItemCommand="ActivityFeedRepeater_ItemCommand">
+        <HeaderTemplate>
+            <div id="activityFeed">
+        </HeaderTemplate>
+        <ItemTemplate>
+            <div class="activity">
+                <div class="activityTitle">
+                    <table>
+                        <tr>
+                            <td rowspan="2">
+                                <asp:Image runat="server" CssClass="avatar" ID="UserAvatarImage" ImageUrl="~/assets/img/user_defaultAvatar.png" />
+                            </td>
+                            <td>
+                                <a href="#"><%# Eval("CreatedByName") %> <%# Eval("CreatedByLastname") %></a>
+                                <strong><%# Eval("EntityActionPastTense") %></strong>&nbsp;
+                                        <a href="#"><%# Eval("EntitySingular") %> </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <%# Eval("Createdon") %>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="activity description">
+                    <asp:Label runat="server" ID="DescriptionLabel" Text='<%# Eval("ShortDescription") %>' />
+                    <asp:LinkButton runat="server" ID="ReadMoreButton" Text="Read more" Visible='<%# Eval("ShortDescription").ToString().Length < Eval("Description").ToString().Length %>' CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.ReadMore %>"></asp:LinkButton>
+                    <asp:LinkButton runat="server" ID="ReadEvenMoreButton" Text="Read even more" Visible="False" CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.ReadEvenMore %>"></asp:LinkButton>
+                </div>
+                <asp:Panel runat="server" ID="ActivityActionsPanel" CssClass="actions_wrapper">
+                    <ul class="activity actions">
+                        <li>
+                            <asp:LinkButton runat="server" ID="LikeButton" CssClass="activity_actions_button" CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.Like %>">
+                                <asp:Label runat="server" ID="LikeQty" Text='<%# Eval("Likes") %>' />
+                                <img src="assets/img/like.png" alt="Like" />
+                            </asp:LinkButton>
+                        </li>
+                        <li>
+                            <asp:LinkButton runat="server" ID="DislikeButton" CssClass="activity_actions_button" CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.Dislike %>">
+                                <asp:Label runat="server" ID="DislikeQty" Text='<%# Eval("Dislikes") %>' />
+                                <img src="assets/img/dislike.png" alt="Dislike" />
+                            </asp:LinkButton>
+                        </li>
+                        <li>
+                            <asp:LinkButton runat="server" ID="CommentButton" CssClass="activity_actions_button" CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.Comment %>">
+                                <asp:Label runat="server" ID="CommentsQty" Text='<%# Eval("Comments") %>' />
+                                <img src="assets/img/comment.png" alt="Comment" />
+                            </asp:LinkButton>
+                        </li>
+                    </ul>
+                </asp:Panel>
+                <asp:Panel runat="server" ID="AddCommentPanel">
+                    <asp:TextBox runat="server" ID="CommentText" TextMode="MultiLine" CssClass="activity comment_input" Rows="5" />
+                </asp:Panel>
             </div>
-        </ProgressTemplate>
-    </asp:UpdateProgress>
-    <asp:UpdatePanel runat="server" ID="PostContentUpdatePanel" UpdateMode="Conditional">
-        <ContentTemplate>
-            <!-- ACTIVITY FEED -->
-            <asp:Repeater ID="ActivityFeedRepeater" OnItemDataBound="ActivityFeedRepeater_ItemDataBound" 
-                ItemType="SocialRequirements.Domain.DTO.General.ActivityFeedDto" runat="server" OnItemCommand="ActivityFeedRepeater_ItemCommand">
-                <HeaderTemplate>
-                    <div id="activityFeed">
-                </HeaderTemplate>
-                <ItemTemplate>
-                    <div class="activity">
-                        <div class="activityTitle">
-                            <table>
-                                <tr>
-                                    <td rowspan="2">
-                                        <asp:Image runat="server" CssClass="avatar" ID="UserAvatarImage" ImageUrl="~/assets/img/user_defaultAvatar.png"/>
-                                    </td>
-                                    <td>
-                                        <a href="#"><%# Eval("CreatedByName") %> <%# Eval("CreatedByLastname") %></a>
-                                        <strong><%# Eval("EntityAction") %></strong>&nbsp;
-                                        <a href="#"><%# Eval("EntityName") %> </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <%# Eval("Createdon") %>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="activity description">
-                            <asp:Label runat="server" ID="DescriptionLabel" Text='<%# Eval("ShortDescription") %>'/>
-                            <asp:LinkButton runat="server" ID="ReadMoreButton" Text="Read more" Visible='<%# Eval("ShortDescription").ToString().Length < Eval("Description").ToString().Length %>' CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.ReadMore %>"></asp:LinkButton>
-                            <asp:LinkButton runat="server" ID="ReadEvenMoreButton" Text="Read even more" Visible="False" CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.ReadEvenMore %>"></asp:LinkButton>
-                        </div>
-                        <asp:Panel runat="server" ID="ActivityActionsPanel" CssClass="actions_wrapper">
-                            <ul class="activity actions">
-                                <li>
-                                    <asp:LinkButton runat="server" ID="LikeButton" CssClass="activity_actions_button" CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.Like %>">
-                                        <asp:Label runat="server" ID="LikeQty" Text='<%# Eval("Likes") %>'/>
-                                        <img src="assets/img/like.png" alt="Like"/>
-                                    </asp:LinkButton>
-                                </li>
-                                <li>
-                                    <asp:LinkButton runat="server" ID="DislikeButton" CssClass="activity_actions_button" CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.Dislike %>">
-                                        <asp:Label runat="server" ID="DislikeQty" Text='<%# Eval("Dislikes") %>'/>
-                                        <img src="assets/img/dislike.png" alt="Dislike"/>
-                                    </asp:LinkButton>
-                                </li>
-                                <li>
-                                    <asp:LinkButton runat="server" ID="CommentButton" CssClass="activity_actions_button" CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.Comment %>">
-                                        <asp:Label runat="server" ID="CommentsQty" Text='<%# Eval("Comments") %>'/>
-                                        <img src="assets/img/comment.png" alt="Comment"/>
-                                    </asp:LinkButton>
-                                </li>
-                            </ul>
-                        </asp:Panel>
-                        <asp:Panel runat="server" ID="AddCommentPanel">
-                            <asp:TextBox runat="server" ID="CommentText" TextMode="MultiLine" CssClass="activity comment_input" Rows="5" />
-                        </asp:Panel>
-                    </div>
-                </ItemTemplate>
-                <FooterTemplate>
-                    </div>
-                </FooterTemplate>
-            </asp:Repeater>
-            <!-- END OF ACTIVITY FEED -->
-        </ContentTemplate>
-        
-    </asp:UpdatePanel>
+        </ItemTemplate>
+        <FooterTemplate>
+            </div>
+        </FooterTemplate>
+    </asp:Repeater>
+    <!-- END OF ACTIVITY FEED -->
 </asp:Content>

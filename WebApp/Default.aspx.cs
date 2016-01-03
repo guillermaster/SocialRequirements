@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SocialRequirements.Domain;
 using SocialRequirements.Domain.DTO.Account;
 using SocialRequirements.Domain.DTO.General;
+using SocialRequirements.Domain.DTO.Requirement;
 using SocialRequirements.Domain.General;
 using SocialRequirements.GeneralService;
 using SocialRequirements.ProjectService;
@@ -29,6 +31,8 @@ namespace SocialRequirements
         private const string CtrlIdActivityActionsPanel = "ActivityActionsPanel";
         private const string CtrlIdActivityDescription = "DescriptionLabel";
         private const string CtrlIdActivityReadEvenMore = "ReadEvenMoreButton";
+        private const string CtrlIdCommentsList = "CommentsRepeater";
+        private const string CtrlIdCommentsPanel = "CommentsPanel";
         #endregion
         #region Properties
 
@@ -172,22 +176,7 @@ namespace SocialRequirements
             DdlProjectPost.DataValueField = CustomExpression.GetPropertyName<ProjectDto>(p => p.Id);
             DdlProjectPost.DataBind();
         }
-
-        private void SetPostSuccessMessage(string message)
-        {
-            PostSuccessMessage.Text = message;
-            PostSuccessPanel.Visible = true;
-            ScriptManager.RegisterClientScriptBlock(PostContentUpdatePanel, PostContentUpdatePanel.GetType(),
-                "posterrorfadeout", "fadeOutControl('#PostSuccessPanel')", true);
-        }
-
-        private void SetPostErrorMessage(string message)
-        {
-            PostErrorMessage.Text = message;
-            PostErrorPanel.Visible = true;
-            ScriptManager.RegisterClientScriptBlock(PostContentUpdatePanel, PostContentUpdatePanel.GetType(),
-                "posterrorfadeout", "fadeOutControl('#PostErrorPanel')", true);
-        }
+        
         #endregion
 
         #region Activity Feed Events
@@ -225,6 +214,7 @@ namespace SocialRequirements
                     readEvenMoreButton.Visible = activity.HasEvenLongerDescription;
                     break;
                 case CommonConstants.SocialActionsCommands.ReadEvenMore:
+                    ReadEvenMore(activity.CompanyId, activity.ProjectId, activity.RecordId, activity.EntityId);
                     break;
                 case CommonConstants.SocialActionsCommands.Like:
                     Like(activity.CompanyId, activity.ProjectId, activity.RecordId, activity.EntityId);
@@ -235,9 +225,17 @@ namespace SocialRequirements
                     LoadActivityFeed();
                     break;
                 case CommonConstants.SocialActionsCommands.Comment:
-                    Comment(activity.EntityId, activity.RecordId);
+                    var commentsCtrl = (Repeater)e.Item.FindControl(CtrlIdCommentsList);
+                    var commentsPanl = (Panel) e.Item.FindControl(CtrlIdCommentsPanel);
+                    LoadRequirementComments(activity.CompanyId, activity.ProjectId, activity.RecordId, activity.EntityId,
+                        commentsCtrl, commentsPanl);
                     break;
             }
+        }
+
+        protected void AddNewCommentButton_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
         
         #endregion
@@ -298,22 +296,35 @@ namespace SocialRequirements
                 requirementSrv.AddRequirement(TxtContentPostTitle.Text, TxtContentPost.Text,
                     long.Parse(DdlCompanyPost.SelectedValue), long.Parse(DdlProjectPost.SelectedValue),
                     GetUsernameEncrypted());
-                //SetPostSuccessMessage("Requirement posted successfully");
-                SetFadeOutMessage(PostContentUpdatePanel, PostSuccessPanel, PostSuccessMessage,
-                    "Requirement posted successfully");
+                
+                SetFadeOutMessage("The requirement has been successfully posted.", true);
             }
             catch(Exception ex)
             {
-                SetPostErrorMessage("An error occurred, please try again.");
+                SetFadeOutMessage("An error has occurred, please try again.", false);
             }
         }
 
-        private void Comment(int entity, long recordId)
+        private void LoadRequirementComments(long companyId, long? projectId, long recordId, int entity,
+            Repeater commentsCtrl, Panel commentsPnl)
         {
+            if (!projectId.HasValue) throw new InvalidDataException("Project ID cannot be null");
 
+            switch (entity)
+            {
+                case (int)GeneralCatalog.Detail.Entity.Requirement:
+                    var requirementSrv = new RequirementSoapClient();
+                    var comments = requirementSrv.GetRequirementComments(companyId, projectId.Value, recordId);
+                    var serializer = new ObjectSerializer<List<RequirementCommentDto>>();
+                    commentsCtrl.DataSource = (List<RequirementCommentDto>)serializer.Deserialize(comments);
+                    commentsCtrl.DataBind();
+                    commentsPnl.Visible = true;
+                    break;
+                case (int)GeneralCatalog.Detail.Entity.RequirementModification:
+                    break;
+            }
         }
         #endregion
-
         
     }
 }

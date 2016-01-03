@@ -28,6 +28,9 @@ namespace SocialRequirements.Context.Entities
         [StringLength(50)]
         public string name { get; set; }
 
+        [StringLength(100)]
+        public string description { get; set; }
+
         public virtual ICollection<ActivityFeed> ActivityFeed { get; set; }
 
         public virtual ICollection<ActivityFeed> ActivityFeed1 { get; set; }

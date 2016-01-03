@@ -144,6 +144,19 @@ namespace SocialRequirements
             companyList.SelectedIndex = 0;
         }
 
+        protected void ReadEvenMore(long companyId, long? projectId, long recordId, int entity)
+        {
+            switch (entity)
+            {
+                case (int)GeneralCatalog.Detail.Entity.Requirement:
+                    Response.Redirect(CommonConstants.FormsUrl.Requirement + "?" +
+                                      CommonConstants.QueryStringParams.CompanyId + "=" + companyId + "&" +
+                                      CommonConstants.QueryStringParams.ProjectId + "=" + projectId + "&" +
+                                      CommonConstants.QueryStringParams.Id + "=" + recordId);
+                    break;
+            }
+        }
+
         protected void Like(long companyId, long? projectId, long recordId, int entity)
         {
             switch (entity)

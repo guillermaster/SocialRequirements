@@ -656,10 +656,26 @@
     padding: 0;
 }
 
-.activity .comment_input {
-    margin: 5px 0 0 36px;
-    padding: 0 5px 5px 0;
-    width: 95%;
+.activity_comments {
+    margin: 3px 11px 0 32px;
+    padding: 0;
+    background: #F9F9F9;
+}
+
+.activity_comments_list {
+    overflow-x: visible; 
+    overflow-y: auto; 
+    height: 200px
+}
+
+.activity_comments_comment {
+    margin: 0;
+    padding: 3px 10px;
+    background: #F9F9F9;
+}
+
+.activity_comments_comment:hover {
+    background: #F3F3F3;
 }
 
 .requirement_list {

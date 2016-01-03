@@ -46,5 +46,9 @@ namespace SocialRequirements.Domain.DTO.General
         public List<RequirementCommentDto> Comment { get; set; }
 
         public string EntityAction { get; set; }
+
+        public string EntityActionPastTense { get; set; }
+
+        public string EntitySingular { get; set; }
     }
 }

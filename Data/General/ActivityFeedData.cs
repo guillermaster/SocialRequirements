@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using SocialRequirements.Context;
 using SocialRequirements.Context.Entities;
@@ -42,8 +43,13 @@ namespace SocialRequirements.Data.General
                 createdby_id = personId,
                 action_id = actionId
             };
-            _context.ActivityFeed.Add(activityFeed);
-            _context.SaveChanges();
+
+            try
+            {
+                _context.ActivityFeed.Add(activityFeed);
+                _context.SaveChanges();
+            }
+            catch (DbUpdateException) { }
         }
 
         public List<ActivityFeedDto> GetLatestActivity(long companyId)
@@ -292,8 +298,10 @@ namespace SocialRequirements.Data.General
                 CreatedByLastname = activity.Person.last_name,
                 CreatedByName = activity.Person.first_name,
                 EntityName = activity.GeneralCatalogDetail.name,
+                EntitySingular = activity.GeneralCatalogDetail.description,
                 EntityActionId = activity.action_id,
-                EntityAction = activity.GeneralCatalogDetail1.name
+                EntityAction = activity.GeneralCatalogDetail1.name,
+                EntityActionPastTense = activity.GeneralCatalogDetail1.description
             };
 
             // set description according to the entity
