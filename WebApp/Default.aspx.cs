@@ -189,7 +189,7 @@ namespace SocialRequirements
 
         protected void ActivityFeedRepeater_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            if (e.Item.ItemType != ListItemType.Item) return;
+            if (!(e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)) return;
 
             var activity = (ActivityFeedDto) e.Item.DataItem;
             var actionsPanel = (Panel) e.Item.FindControl(CtrlIdActivityActionsPanel);
@@ -197,7 +197,9 @@ namespace SocialRequirements
             switch (activity.EntityId)
             {
                 case (int)GeneralCatalog.Detail.Entity.Requirement:
-                    actionsPanel.Visible = true;
+                case (int)GeneralCatalog.Detail.Entity.RequirementModification:
+                    actionsPanel.Visible = activity.EntityActionId == (int) GeneralCatalog.Detail.EntityActions.Create ||
+                                           activity.EntityActionId == (int) GeneralCatalog.Detail.EntityActions.SubmitForApproval;
                     break;
                 default:
                     actionsPanel.Visible = false;
@@ -336,6 +338,11 @@ namespace SocialRequirements
                     GetUsernameEncrypted());
                 
                 SetFadeOutMessage("The requirement has been successfully posted.", true);
+
+                TxtContentPost.Text = string.Empty;
+                TxtContentPostTitle.Text = string.Empty;
+
+                LoadActivityFeed();
             }
             catch(Exception ex)
             {
@@ -368,7 +375,7 @@ namespace SocialRequirements
             }
         }
 
-        private void LoadRequirementComments(ActivityFeedDto activity,
+        private static void LoadRequirementComments(ActivityFeedDto activity,
             Repeater commentsCtrl, Control commentsPnl)
         {
             if (!activity.ProjectId.HasValue) throw new InvalidDataException("Project ID cannot be null");
@@ -381,6 +388,9 @@ namespace SocialRequirements
                     commentsPnl.Visible = true;
                     break;
                 case (int)GeneralCatalog.Detail.Entity.RequirementModification:
+                    commentsCtrl.DataSource = activity.Comment;
+                    commentsCtrl.DataBind();
+                    commentsPnl.Visible = true;
                     break;
             }
         }

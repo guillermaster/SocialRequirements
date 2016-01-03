@@ -607,7 +607,7 @@
     border: thin solid #dddddd;
     background-color: #ffffff;
     width: 100%;
-    padding: 15px 15px 0 15px;
+    padding: 10px;
     margin: 10px 0;
 }
 
@@ -618,7 +618,6 @@
 
 .activity .description {
     border: none;
-    border-bottom: thin solid #f6f7f8;
     margin: 5px 0 0 36px;
     padding: 0 5px 5px 0;
     width: 95%;
@@ -628,6 +627,7 @@
     display: table;   /* Allow the centering to work */
 	margin: 0 auto;
     border: none;
+    padding: 0;
 }
 
 .activity .actions {
@@ -635,6 +635,7 @@
     width: 100%;
     margin: 0 auto;
     list-style-type: none;
+    padding: 0;
 }
 
 .activity .actions li {
@@ -646,6 +647,15 @@
 .activity .actions a {
     margin: 0;
     padding: 0;
+}
+
+.activity .actions a span {
+    position: relative;
+    top: 3px;
+}
+
+.activity .actions a img {
+    margin-right: 12px;
 }
 
 .activity_actions_button {

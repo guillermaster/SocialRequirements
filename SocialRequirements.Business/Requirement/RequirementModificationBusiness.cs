@@ -33,7 +33,7 @@ namespace SocialRequirements.Business.Requirement
 
             // add activity feed log
             _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.RequirementModification,
-                (int)GeneralCatalog.Detail.EntityActions.Create, requirementModif.Id, DateTime.Now, personId);
+                (int)GeneralCatalog.Detail.EntityActions.Create, requirementModif.Id, DateTime.Now, personId, requirementModif.RequirementId);
 
             return requirementModif;
         }
@@ -57,7 +57,7 @@ namespace SocialRequirements.Business.Requirement
 
             // add activity feed log
             _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.RequirementModification,
-                (int)GeneralCatalog.Detail.EntityActions.SubmitForApproval, requirementId, DateTime.Now, personId);
+                (int)GeneralCatalog.Detail.EntityActions.SubmitForApproval, requirementId, DateTime.Now, personId, requirementId);
         }
 
         public void Update(string title, string description, long companyId, long projectId, long requirementId,
@@ -70,7 +70,7 @@ namespace SocialRequirements.Business.Requirement
 
             // add activity feed log
             _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.RequirementModification,
-                (int)GeneralCatalog.Detail.EntityActions.Modify, requirementId, DateTime.Now, personId);
+                (int)GeneralCatalog.Detail.EntityActions.Modify, requirementId, DateTime.Now, personId, requirementId);
         }
 
         public void Approve(long companyId, long projectId, long requirementId, long requirementModificationId, string username)
@@ -80,8 +80,9 @@ namespace SocialRequirements.Business.Requirement
             _requirementModifData.Approve(companyId, projectId, requirementId, requirementModificationId, personId);
 
             // add activity feed log
-            _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.RequirementModification,
-                (int)GeneralCatalog.Detail.EntityActions.Approve, requirementModificationId, DateTime.Now, personId);
+            _activityFeedData.Add(companyId, projectId, (int) GeneralCatalog.Detail.Entity.RequirementModification,
+                (int) GeneralCatalog.Detail.EntityActions.Approve, requirementModificationId, DateTime.Now, personId,
+                requirementId);
         }
 
         public void Reject(long companyId, long projectId, long requirementId, long requirementModificationId, string username)
@@ -92,8 +93,9 @@ namespace SocialRequirements.Business.Requirement
                 (int)GeneralCatalog.Detail.RequirementStatus.Rejected, personId);
 
             // add activity feed log
-            _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.RequirementModification,
-                (int)GeneralCatalog.Detail.EntityActions.Reject, requirementModificationId, DateTime.Now, personId);
+            _activityFeedData.Add(companyId, projectId, (int) GeneralCatalog.Detail.Entity.RequirementModification,
+                (int) GeneralCatalog.Detail.EntityActions.Reject, requirementModificationId, DateTime.Now, personId,
+                requirementId);
         }
 
         public void Like(long companyId, long projectId, long requirementId, long requirementModificationId, string username)
@@ -103,8 +105,9 @@ namespace SocialRequirements.Business.Requirement
             _requirementModifData.Like(companyId, projectId, requirementId, requirementModificationId, personId);
 
             // add activity feed log
-            _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.RequirementModification,
-                (int)GeneralCatalog.Detail.EntityActions.Like, requirementModificationId, DateTime.Now, personId);
+            _activityFeedData.Add(companyId, projectId, (int) GeneralCatalog.Detail.Entity.RequirementModification,
+                (int) GeneralCatalog.Detail.EntityActions.Like, requirementModificationId, DateTime.Now, personId,
+                requirementId);
         }
 
         public void Dislike(long companyId, long projectId, long requirementId, long requirementModificationId, string username)
@@ -114,8 +117,9 @@ namespace SocialRequirements.Business.Requirement
             _requirementModifData.Dislike(companyId, projectId, requirementId, requirementModificationId, personId);
 
             // add activity feed log
-            _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.RequirementModification,
-                (int)GeneralCatalog.Detail.EntityActions.Dislike, requirementModificationId, DateTime.Now, personId);
+            _activityFeedData.Add(companyId, projectId, (int) GeneralCatalog.Detail.Entity.RequirementModification,
+                (int) GeneralCatalog.Detail.EntityActions.Dislike, requirementModificationId, DateTime.Now, personId,
+                requirementId);
         }
     }
 }

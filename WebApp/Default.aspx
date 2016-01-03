@@ -110,7 +110,7 @@
                 </div>
                 <asp:UpdatePanel runat="server" ID="InnerUpdatePanel">
                     <ContentTemplate>
-                        <asp:Panel runat="server" ID="ActivityActionsPanel" CssClass="actions_wrapper">
+                        <asp:Panel runat="server" ID="ActivityActionsPanel" Visible="False" CssClass="actions_wrapper">
                             <ul class="activity actions">
                                 <li>
                                     <asp:LinkButton runat="server" ID="LikeButton" CssClass="activity_actions_button" CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.Like %>">

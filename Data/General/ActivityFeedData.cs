@@ -6,6 +6,7 @@ using SocialRequirements.Context;
 using SocialRequirements.Context.Entities;
 using SocialRequirements.Domain.DTO.Account;
 using SocialRequirements.Domain.DTO.General;
+using SocialRequirements.Domain.DTO.Requirement;
 using SocialRequirements.Domain.General;
 using SocialRequirements.Domain.Repository.General;
 using SocialRequirements.Domain.Repository.Requirement;
@@ -18,20 +19,27 @@ namespace SocialRequirements.Data.General
         private readonly ContextModel _context;
         private readonly IRequirementData _requirementData;
         private readonly IRequirementVersionData _requirementVersionData;
+        private readonly IRequirementModificationVersionData _requirementModificationVersionData;
         private readonly IRequirementCommentData _requirementCommentData;
+        private readonly IRequirementModificationCommentData _requirementModificationCommentData;
         private const int MaxDescriptionLength = 1700;
         private const int MaxShortDescriptionLength = 600;
 
         public ActivityFeedData(ContextModel context, IRequirementData requirementData,
-            IRequirementVersionData requirementVersionData, IRequirementCommentData requirementCommentData)
+            IRequirementVersionData requirementVersionData, IRequirementCommentData requirementCommentData,
+            IRequirementModificationVersionData requirementModificationVersionData,
+            IRequirementModificationCommentData requirementModificationCommentData)
         {
             _context = context;
             _requirementData = requirementData;
             _requirementVersionData = requirementVersionData;
             _requirementCommentData = requirementCommentData;
+            _requirementModificationVersionData = requirementModificationVersionData;
+            _requirementModificationCommentData = requirementModificationCommentData;
         }
 
-        public void Add(long companyId, long? projectId, int entityId, int actionId, long recordId, DateTime createdon, long personId)
+        public void Add(long companyId, long? projectId, int entityId, int actionId, long recordId, DateTime createdon,
+            long personId, long? parentId = null)
         {
             var activityFeed = new ActivityFeed
             {
@@ -41,7 +49,8 @@ namespace SocialRequirements.Data.General
                 record_id = recordId,
                 createdon = createdon,
                 createdby_id = personId,
-                action_id = actionId
+                action_id = actionId,
+                parent_id = parentId
             };
 
             try
@@ -73,11 +82,11 @@ namespace SocialRequirements.Data.General
 
                 var activity = GetActivitySummary(project.Id, GeneralCatalog.Detail.Entity.Requirement,
                     GeneralCatalog.Detail.EntityActions.Create, untilDatetime);
-                if(activity != null) latestActivitiesSummary.Add(activity);
+                if (activity != null) latestActivitiesSummary.Add(activity);
 
                 activity = GetActivitySummary(project.Id, GeneralCatalog.Detail.Entity.Requirement,
                     GeneralCatalog.Detail.EntityActions.Modify, untilDatetime);
-                if(activity != null) latestActivitiesSummary.Add(activity);
+                if (activity != null) latestActivitiesSummary.Add(activity);
 
                 activity = GetActivitySummary(project.Id, GeneralCatalog.Detail.Entity.Requirement,
                     GeneralCatalog.Detail.EntityActions.Approve, untilDatetime);
@@ -137,7 +146,7 @@ namespace SocialRequirements.Data.General
 
         public List<ActivityFeedDto> GetRecentActivities(List<ProjectDto> projects, int daysTimestamp)
         {
-            var projectsIds = projects.Select(project => project.Id).Select(dummy => (long?) dummy).ToList();
+            var projectsIds = projects.Select(project => project.Id).Select(dummy => (long?)dummy).ToList();
 
             // set timestamp for oldest record
             var untilDatetime = DateTime.Now.AddDays(daysTimestamp * -1);
@@ -150,8 +159,8 @@ namespace SocialRequirements.Data.General
                 _context.ActivityFeed.Where(
                     af =>
                         projectsIds.Contains(af.project_id) &&
-                        af.entity_id == (int) GeneralCatalog.Detail.Entity.Requirement &&
-                        af.action_id == (int) GeneralCatalog.Detail.EntityActions.Create &&
+                        af.entity_id == (int)GeneralCatalog.Detail.Entity.Requirement &&
+                        af.action_id == (int)GeneralCatalog.Detail.EntityActions.Create &&
                         af.createdon >= untilDatetime).ToList());
 
             activities.AddRange(
@@ -187,7 +196,7 @@ namespace SocialRequirements.Data.General
                         af.createdon >= untilDatetime).ToList());
 
             // requirements modifications
-            
+
             activities.AddRange(
                 _context.ActivityFeed.Where(
                     af =>
@@ -231,7 +240,7 @@ namespace SocialRequirements.Data.General
                         af.entity_id == (int)GeneralCatalog.Detail.Entity.RequirementQuestionAnswer &&
                         af.action_id == (int)GeneralCatalog.Detail.EntityActions.Create &&
                         af.createdon >= untilDatetime).ToList());
-            
+
             return activities.Select(GetDtoFromEntity).ToList();
         }
 
@@ -260,7 +269,7 @@ namespace SocialRequirements.Data.General
 
             return activitySumm;
         }
-        
+
         private int GetQuantityOfActivities(long projectId, GeneralCatalog.Detail.Entity recordType,
             GeneralCatalog.Detail.EntityActions actionType, DateTime untilTime)
         {
@@ -268,7 +277,7 @@ namespace SocialRequirements.Data.General
                 _context.ActivityFeed.Count(
                     af =>
                         af.project_id == projectId &&
-                        af.entity_id == (int) recordType && af.action_id == (int) actionType &&
+                        af.entity_id == (int)recordType && af.action_id == (int)actionType &&
                         af.createdon >= untilTime);
         }
 
@@ -279,7 +288,7 @@ namespace SocialRequirements.Data.General
                 _context.ActivityFeed.Where(
                     af =>
                         af.project_id == projectId &&
-                        af.entity_id == (int) recordType && af.action_id == (int) actionType &&
+                        af.entity_id == (int)recordType && af.action_id == (int)actionType &&
                         af.createdon >= untilTime).OrderByDescending(d => d.createdon).FirstOrDefault();
             return activity != null ? activity.createdon : DateTime.Now;
         }
@@ -311,6 +320,9 @@ namespace SocialRequirements.Data.General
                 case (int)GeneralCatalog.Detail.Entity.Requirement:
                     activityDto = GetRequirementActivity(activityDto);
                     break;
+                case (int)GeneralCatalog.Detail.Entity.RequirementModification:
+                    activityDto = GetRequirementModificationActivity(activityDto);
+                    break;
                 default:
                     activityDto.Description = string.Empty;
                     activityDto.ShortDescription = string.Empty;
@@ -326,21 +338,105 @@ namespace SocialRequirements.Data.General
 
             var requirement = _requirementVersionData.Get(activity.CompanyId, activity.ProjectId.Value, activity.RecordId);
 
-            if(requirement == null) return activity;
+            if (requirement == null) return activity;
 
-            activity.Description = StringUtilities.GetShort(requirement.Description, MaxDescriptionLength);
-            activity.ShortDescription = StringUtilities.GetShort(requirement.Description, MaxShortDescriptionLength);
-            activity.HasEvenLongerDescription = activity.Description.Length <
-                                                           requirement.Description.Length;
-            activity.Likes = requirement.Agreed;
-            activity.Dislikes = requirement.Disagreed;
-            activity.VersionNumber = requirement.VersionNumber;
-            activity.Comment = _requirementCommentData.Get(requirement.Id, requirement.CompanyId,
-                        requirement.ProjectId, requirement.VersionId);
-            activity.Comments = activity.Comment.Count;
-            activity.EntityAction = activity.EntityAction;
+            switch (activity.EntityActionId)
+            {
+                case (int)GeneralCatalog.Detail.EntityActions.Create:
+                case (int)GeneralCatalog.Detail.EntityActions.SubmitForApproval:
+
+                    activity.Description = StringUtilities.GetShort(requirement.Description, MaxDescriptionLength);
+                    activity.ShortDescription = StringUtilities.GetShort(requirement.Description, MaxShortDescriptionLength);
+                    activity.HasEvenLongerDescription = activity.Description.Length < requirement.Description.Length;
+                    activity.Likes = requirement.Agreed;
+                    activity.Dislikes = requirement.Disagreed;
+                    activity.VersionNumber = requirement.VersionNumber;
+                    activity.Comment = _requirementCommentData.Get(requirement.Id, requirement.CompanyId,
+                                requirement.ProjectId, requirement.VersionId);
+                    activity.Comments = activity.Comment.Count;
+                    //activity.EntityAction = activity.EntityAction;
+                    break;
+                case (int)GeneralCatalog.Detail.EntityActions.Like:
+                case (int)GeneralCatalog.Detail.EntityActions.Dislike:
+                case (int)GeneralCatalog.Detail.EntityActions.Modify:
+                case (int)GeneralCatalog.Detail.EntityActions.Approve:
+                case (int)GeneralCatalog.Detail.EntityActions.Reject:
+                case (int)GeneralCatalog.Detail.EntityActions.Remove:
+                    activity.Description = StringUtilities.GetShort(requirement.Title, MaxDescriptionLength);
+                    activity.ShortDescription = StringUtilities.GetShort(requirement.Title, MaxShortDescriptionLength);
+                    activity.VersionNumber = requirement.VersionNumber;
+                    break;
+                default:
+                    activity.Description = string.Empty;
+                    activity.ShortDescription = string.Empty;
+                    break;
+            }
+            
+            return activity;
+        }
+
+        private ActivityFeedDto GetRequirementModificationActivity(ActivityFeedDto activity)
+        {
+            if (activity.ProjectId == null || activity.ParentId == null) return activity;
+
+            var requirement = _requirementModificationVersionData.Get(activity.CompanyId, activity.ProjectId.Value,
+                activity.ParentId.Value, activity.RecordId);
+
+            if (requirement == null) return activity;
+
+            switch (activity.EntityActionId)
+            {
+                case (int)GeneralCatalog.Detail.EntityActions.Create:
+                case (int)GeneralCatalog.Detail.EntityActions.SubmitForApproval:
+                    activity.Description = StringUtilities.GetShort(requirement.Description, MaxDescriptionLength);
+                    activity.ShortDescription = StringUtilities.GetShort(requirement.Description, MaxShortDescriptionLength);
+                    activity.HasEvenLongerDescription = activity.Description.Length <
+                                                                   requirement.Description.Length;
+                    activity.Likes = requirement.Agreed;
+                    activity.Dislikes = requirement.Disagreed;
+                    activity.VersionNumber = requirement.VersionNumber;
+                    activity.Comment =
+                        _requirementModificationCommentData.Get(requirement.CompanyId, requirement.ProjectId,
+                            requirement.RequirementId, requirement.Id, requirement.VersionId)
+                            .Select(GetRequirementComment)
+                            .ToList();
+                    activity.Comments = activity.Comment.Count;
+                    //activity.EntityAction = activity.EntityAction;
+                    break;
+                case (int)GeneralCatalog.Detail.EntityActions.Like:
+                case (int)GeneralCatalog.Detail.EntityActions.Dislike:
+                case (int)GeneralCatalog.Detail.EntityActions.Modify:
+                case (int)GeneralCatalog.Detail.EntityActions.Approve:
+                case (int)GeneralCatalog.Detail.EntityActions.Reject:
+                case (int)GeneralCatalog.Detail.EntityActions.Remove:
+                    activity.Description = StringUtilities.GetShort(requirement.Title, MaxDescriptionLength);
+                    activity.ShortDescription = StringUtilities.GetShort(requirement.Title, MaxShortDescriptionLength);
+                    activity.VersionNumber = requirement.VersionNumber;
+                    break;
+                default:
+                    activity.Description = string.Empty;
+                    activity.ShortDescription = string.Empty;
+                    break;
+            }
 
             return activity;
+        }
+
+        private static RequirementCommentDto GetRequirementComment(RequirementModificationCommentDto modifComment)
+        {
+            var comment = new RequirementCommentDto
+            {
+                Id = modifComment.RequirementId,
+                Comment = modifComment.Comment,
+                CompanyId = modifComment.CompanyId,
+                CreatedbyId = modifComment.CreatedbyId,
+                CreatedByName = modifComment.CreatedByName,
+                Createdon = modifComment.Createdon,
+                ProjectId = modifComment.ProjectId,
+                RequirementId = modifComment.RequirementId,
+                RequirementVersionId = modifComment.RequirementVersionId
+            };
+            return comment;
         }
     }
 }
