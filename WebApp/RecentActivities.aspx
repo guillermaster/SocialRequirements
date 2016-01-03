@@ -73,31 +73,61 @@
                     <asp:LinkButton runat="server" ID="ReadMoreButton" Text="Read more" Visible='<%# Eval("ShortDescription").ToString().Length < Eval("Description").ToString().Length %>' CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.ReadMore %>"></asp:LinkButton>
                     <asp:LinkButton runat="server" ID="ReadEvenMoreButton" Text="Read even more" Visible="False" CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.ReadEvenMore %>"></asp:LinkButton>
                 </div>
-                <asp:Panel runat="server" ID="ActivityActionsPanel" CssClass="actions_wrapper">
-                    <ul class="activity actions">
-                        <li>
-                            <asp:LinkButton runat="server" ID="LikeButton" CssClass="activity_actions_button" CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.Like %>">
-                                <asp:Label runat="server" ID="LikeQty" Text='<%# Eval("Likes") %>' />
-                                <img src="assets/img/like.png" alt="Like" />
-                            </asp:LinkButton>
-                        </li>
-                        <li>
-                            <asp:LinkButton runat="server" ID="DislikeButton" CssClass="activity_actions_button" CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.Dislike %>">
-                                <asp:Label runat="server" ID="DislikeQty" Text='<%# Eval("Dislikes") %>' />
-                                <img src="assets/img/dislike.png" alt="Dislike" />
-                            </asp:LinkButton>
-                        </li>
-                        <li>
-                            <asp:LinkButton runat="server" ID="CommentButton" CssClass="activity_actions_button" CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.Comment %>">
-                                <asp:Label runat="server" ID="CommentsQty" Text='<%# Eval("Comments") %>' />
-                                <img src="assets/img/comment.png" alt="Comment" />
-                            </asp:LinkButton>
-                        </li>
-                    </ul>
-                </asp:Panel>
-                <asp:Panel runat="server" ID="AddCommentPanel">
-                    <asp:TextBox runat="server" ID="CommentText" TextMode="MultiLine" CssClass="activity comment_input" Rows="5" />
-                </asp:Panel>
+                <asp:UpdatePanel runat="server" ID="InnerUpdatePanel">
+                    <ContentTemplate>
+                        <asp:Panel runat="server" ID="ActivityActionsPanel" CssClass="actions_wrapper">
+                            <ul class="activity actions">
+                                <li>
+                                    <asp:LinkButton runat="server" ID="LikeButton" CssClass="activity_actions_button" CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.Like %>">
+                                        <asp:Label runat="server" ID="LikeQty" Text='<%# Eval("Likes") %>' />
+                                        <img src="assets/img/like.png" alt="Like" />
+                                    </asp:LinkButton>
+                                </li>
+                                <li>
+                                    <asp:LinkButton runat="server" ID="DislikeButton" CssClass="activity_actions_button" CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.Dislike %>">
+                                        <asp:Label runat="server" ID="DislikeQty" Text='<%# Eval("Dislikes") %>' />
+                                        <img src="assets/img/dislike.png" alt="Dislike" />
+                                    </asp:LinkButton>
+                                </li>
+                                <li>
+                                    <asp:LinkButton runat="server" ID="CommentButton" CssClass="activity_actions_button" CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.Comment %>">
+                                        <asp:Label runat="server" ID="CommentsQty" Text='<%# Eval("Comments") %>' />
+                                        <img src="assets/img/comment.png" alt="Comment" />
+                                    </asp:LinkButton>
+                                </li>
+                            </ul>
+                        </asp:Panel>
+                        <asp:Panel runat="server" ID="CommentsPanel" Visible="False" CssClass="activity_comments">
+                            <asp:Repeater runat="server" ID="CommentsRepeater">
+                                <HeaderTemplate>
+                                    <div class="activity_comments_list">
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <div class="activity_comments_comment">
+                                        <strong><%# Eval("CreatedByName") %></strong>:<br />
+                                        <%# Eval("Comment") %><br />
+                                        <span><%# Eval("Createdon") %></span>
+                                    </div>
+                                </ItemTemplate>
+                                <FooterTemplate>
+                                    </div>
+                                </FooterTemplate>
+                            </asp:Repeater>
+                            <asp:HiddenField runat="server" ID="CompanyIdComment" Value='<%# Eval("CompanyId") %>' />
+                            <asp:HiddenField runat="server" ID="ProjectIdComment" Value='<%# Eval("ProjectId") %>' />
+                            <asp:HiddenField runat="server" ID="ParentIdComment" Value='<%# Eval("ParentId") %>' />
+                            <asp:HiddenField runat="server" ID="RecordIdComment" Value='<%# Eval("RecordId") %>' />
+                            <asp:HiddenField runat="server" ID="EntityIdComment" Value='<%# Eval("EntityId") %>' />
+                            <asp:TextBox runat="server" TextMode="MultiLine" ID="NewCommentInput" Rows="6" Columns="100" Style="width: 100%" placeholder="Type your comment here" /><br />
+                            <asp:Button runat="server" ID="AddNewCommentButton" Text="Add comment" OnClick="AddNewCommentButton_Click" />
+                        </asp:Panel>
+                    </ContentTemplate>
+                    <Triggers>
+                        <asp:AsyncPostBackTrigger ControlID="CommentButton" EventName="Click" />
+                        <asp:AsyncPostBackTrigger ControlID="DislikeButton" EventName="Click" />
+                        <asp:AsyncPostBackTrigger ControlID="LikeButton" EventName="Click" />
+                    </Triggers>
+                </asp:UpdatePanel>
             </div>
         </ItemTemplate>
         <FooterTemplate>

@@ -22,6 +22,8 @@ namespace SocialRequirements.Context.Entities
 
         public int action_id { get; set; }
 
+        public long? parent_id { get; set; }
+
         public virtual Company Company { get; set; }
 
         public virtual Project Project { get; set; }

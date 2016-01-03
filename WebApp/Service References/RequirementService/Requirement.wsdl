@@ -28,7 +28,11 @@
         </s:complexType>
       </s:element>
       <s:element name="CommentRequirementResponse">
-        <s:complexType />
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CommentRequirementResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
       </s:element>
       <s:element name="LikeRequirement">
         <s:complexType>
@@ -307,7 +311,11 @@
         </s:complexType>
       </s:element>
       <s:element name="CommentRequirementModificationResponse">
-        <s:complexType />
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CommentRequirementModificationResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
       </s:element>
       <s:element name="GetRequirementModificationComments">
         <s:complexType>

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SocialRequirements.Domain;
 using SocialRequirements.Domain.DTO.Account;
 using SocialRequirements.Domain.DTO.General;
+using SocialRequirements.Domain.DTO.Requirement;
 using SocialRequirements.Domain.General;
 using SocialRequirements.GeneralService;
 using SocialRequirements.ProjectService;
@@ -29,6 +31,14 @@ namespace SocialRequirements
         private const string CtrlIdActivityActionsPanel = "ActivityActionsPanel";
         private const string CtrlIdActivityDescription = "DescriptionLabel";
         private const string CtrlIdActivityReadEvenMore = "ReadEvenMoreButton";
+        private const string CtrlIdCommentsList = "CommentsRepeater";
+        private const string CtrlIdCommentsPanel = "CommentsPanel";
+        private const string CtrlIdRecordIdComment = "RecordIdComment";
+        private const string CtrlIdEntityIdComment = "EntityIdComment";
+        private const string CtrlIdNewComment = "NewCommentInput";
+        private const string CtrlIdCompanyIdComment = "CompanyIdComment";
+        private const string CtrlIdProjectIdComment = "ProjectIdComment";
+        private const string CtrlIdParentIdComment = "ParentIdComment";
         #endregion
         #region Properties
 
@@ -188,11 +198,49 @@ namespace SocialRequirements
                     LoadActivityFeed();
                     break;
                 case CommonConstants.SocialActionsCommands.Comment:
-                    Comment(activity.EntityId, activity.RecordId);
+                    var commentsCtrl = (Repeater)e.Item.FindControl(CtrlIdCommentsList);
+                    var commentsPanl = (Panel) e.Item.FindControl(CtrlIdCommentsPanel);
+                    LoadRequirementComments(activity, commentsCtrl, commentsPanl);
                     break;
             }
         }
-        
+
+        protected void AddNewCommentButton_Click(object sender, EventArgs e)
+        {
+            var parent = ((Control)sender).Parent;
+
+            var companyIdCtrl = (HiddenField)parent.FindControl(CtrlIdCompanyIdComment);
+            if (companyIdCtrl == null) throw new InvalidDataException("No company ID hidden control found.");
+
+            var projectIdCtrl = (HiddenField)parent.FindControl(CtrlIdProjectIdComment);
+            if (projectIdCtrl == null) throw new InvalidDataException("No project ID hidden control found.");
+
+            var parentIdCtrl = (HiddenField)parent.FindControl(CtrlIdParentIdComment);
+            if (parentIdCtrl == null) throw new InvalidDataException("No parent ID hidden control found.");
+
+            var recordIdCtrl = (HiddenField)parent.FindControl(CtrlIdRecordIdComment);
+            if (recordIdCtrl == null) throw new InvalidDataException("No record ID hidden control found.");
+
+            var entityIdCtrl = (HiddenField)parent.FindControl(CtrlIdEntityIdComment);
+            if (entityIdCtrl == null) throw new InvalidDataException("No entity ID hidden control found.");
+
+            var commentCtrl = (TextBox)parent.FindControl(CtrlIdNewComment);
+            if (commentCtrl == null) throw new InvalidDataException("No comment input textbox founded.");
+
+            var commentsListCtrl = (Repeater)parent.FindControl(CtrlIdCommentsList);
+            if (commentsListCtrl == null) throw new InvalidDataException("No requirement list control found");
+
+            long? parentId;
+            if (string.IsNullOrWhiteSpace(parentIdCtrl.Value))
+                parentId = null;
+            else
+                parentId = long.Parse(parentIdCtrl.Value);
+
+            AddComment(long.Parse(companyIdCtrl.Value), long.Parse(projectIdCtrl.Value), parentId,
+                long.Parse(recordIdCtrl.Value), int.Parse(entityIdCtrl.Value), commentCtrl.Text, commentsListCtrl);
+
+            commentCtrl.Text = string.Empty;
+        }
         #endregion
 
         #region Data Load
@@ -255,12 +303,47 @@ namespace SocialRequirements
 
         #region Data Update
 
-        private void Comment(int entity, long recordId)
+        private void AddComment(long companyId, long projectId, long? parentId, long recordId, int entityId,
+            string comment, Repeater commentsCtrl)
         {
+            switch (entityId)
+            {
+                case (int)GeneralCatalog.Detail.Entity.Requirement:
+                    var requirementSrv = new RequirementSoapClient();
+                    var reqComments = requirementSrv.CommentRequirement(companyId, projectId, recordId, comment,
+                        GetUsernameEncrypted());
+                    var reqSerializer = new ObjectSerializer<List<RequirementCommentDto>>();
+                    commentsCtrl.DataSource = (List<RequirementCommentDto>)reqSerializer.Deserialize(reqComments);
+                    commentsCtrl.DataBind();
+                    break;
+                case (int)GeneralCatalog.Detail.Entity.RequirementModification:
+                    if (parentId == null) throw new InvalidDataException("Requirement ID is required");
+                    var requirementModifSrv = new RequirementSoapClient();
+                    var reqModifComments = requirementModifSrv.CommentRequirementModification(companyId, projectId,
+                        parentId.Value, recordId, comment, GetUsernameEncrypted());
+                    var reqModifSerializer = new ObjectSerializer<List<RequirementModificationCommentDto>>();
+                    commentsCtrl.DataSource = (List<RequirementModificationCommentDto>)reqModifSerializer.Deserialize(reqModifComments);
+                    commentsCtrl.DataBind();
+                    break;
+            }
+        }
 
+        private void LoadRequirementComments(ActivityFeedDto activity,
+            Repeater commentsCtrl, Control commentsPnl)
+        {
+            if (!activity.ProjectId.HasValue) throw new InvalidDataException("Project ID cannot be null");
+
+            switch (activity.EntityId)
+            {
+                case (int)GeneralCatalog.Detail.Entity.Requirement:
+                    commentsCtrl.DataSource = activity.Comment;
+                    commentsCtrl.DataBind();
+                    commentsPnl.Visible = true;
+                    break;
+                case (int)GeneralCatalog.Detail.Entity.RequirementModification:
+                    break;
+            }
         }
         #endregion
-
-        
     }
 }

@@ -665,7 +665,7 @@
 .activity_comments_list {
     overflow-x: visible; 
     overflow-y: auto; 
-    height: 200px
+    max-height: 200px
 }
 
 .activity_comments_comment {

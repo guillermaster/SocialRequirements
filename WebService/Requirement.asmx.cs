@@ -37,11 +37,13 @@ namespace WebService
         }
 
         [WebMethod]
-        public void CommentRequirement(long companyId, long projectId, long requirementId, 
+        public string CommentRequirement(long companyId, long projectId, long requirementId, 
             string comment, string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
             RequirementCommentBusiness.Add(companyId, projectId, requirementId, comment, username);
+
+            return GetRequirementComments(companyId, projectId, requirementId);
         }
 
         [WebMethod]
@@ -184,11 +186,13 @@ namespace WebService
         }
 
         [WebMethod]
-        public void CommentRequirementModification(long companyId, long projectId, long requirementId, long requirementModificationId,
+        public string CommentRequirementModification(long companyId, long projectId, long requirementId, long requirementModificationId,
             string comment, string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
             RequirementModificationCommentBusiness.Add(companyId, projectId, requirementId, requirementModificationId, comment, username);
+
+            return GetRequirementModificationComments(companyId, projectId, requirementId, requirementModificationId);
         }
 
         [WebMethod]

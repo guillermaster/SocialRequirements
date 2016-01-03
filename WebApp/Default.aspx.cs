@@ -33,6 +33,12 @@ namespace SocialRequirements
         private const string CtrlIdActivityReadEvenMore = "ReadEvenMoreButton";
         private const string CtrlIdCommentsList = "CommentsRepeater";
         private const string CtrlIdCommentsPanel = "CommentsPanel";
+        private const string CtrlIdRecordIdComment = "RecordIdComment";
+        private const string CtrlIdEntityIdComment = "EntityIdComment";
+        private const string CtrlIdNewComment = "NewCommentInput";
+        private const string CtrlIdCompanyIdComment = "CompanyIdComment";
+        private const string CtrlIdProjectIdComment = "ProjectIdComment";
+        private const string CtrlIdParentIdComment = "ParentIdComment";
         #endregion
         #region Properties
 
@@ -224,18 +230,49 @@ namespace SocialRequirements
                     Dislike(activity.CompanyId, activity.ProjectId, activity.RecordId, activity.EntityId);
                     LoadActivityFeed();
                     break;
-                case CommonConstants.SocialActionsCommands.Comment:
+                case CommonConstants.SocialActionsCommands.Comment: 
                     var commentsCtrl = (Repeater)e.Item.FindControl(CtrlIdCommentsList);
                     var commentsPanl = (Panel) e.Item.FindControl(CtrlIdCommentsPanel);
-                    LoadRequirementComments(activity.CompanyId, activity.ProjectId, activity.RecordId, activity.EntityId,
-                        commentsCtrl, commentsPanl);
+                    LoadRequirementComments(activity, commentsCtrl, commentsPanl);
                     break;
             }
         }
 
         protected void AddNewCommentButton_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            var parent = ((Control) sender).Parent;
+
+            var companyIdCtrl = (HiddenField)parent.FindControl(CtrlIdCompanyIdComment);
+            if (companyIdCtrl == null) throw new InvalidDataException("No company ID hidden control found.");
+
+            var projectIdCtrl = (HiddenField)parent.FindControl(CtrlIdProjectIdComment);
+            if (projectIdCtrl == null) throw new InvalidDataException("No project ID hidden control found.");
+
+            var parentIdCtrl = (HiddenField)parent.FindControl(CtrlIdParentIdComment);
+            if (parentIdCtrl == null) throw new InvalidDataException("No parent ID hidden control found.");
+
+            var recordIdCtrl = (HiddenField)parent.FindControl(CtrlIdRecordIdComment);
+            if(recordIdCtrl == null) throw new InvalidDataException("No record ID hidden control found.");
+
+            var entityIdCtrl = (HiddenField)parent.FindControl(CtrlIdEntityIdComment);
+            if (entityIdCtrl == null) throw new InvalidDataException("No entity ID hidden control found.");
+
+            var commentCtrl = (TextBox)parent.FindControl(CtrlIdNewComment);
+            if(commentCtrl == null) throw new InvalidDataException("No comment input textbox founded.");
+
+            var commentsListCtrl = (Repeater)parent.FindControl(CtrlIdCommentsList);
+            if(commentsListCtrl == null) throw new InvalidDataException("No requirement list control found");
+
+            long? parentId;
+            if (string.IsNullOrWhiteSpace(parentIdCtrl.Value))
+                parentId = null;
+            else
+                parentId = long.Parse(parentIdCtrl.Value);
+
+            AddComment(long.Parse(companyIdCtrl.Value), long.Parse(projectIdCtrl.Value), parentId,
+                long.Parse(recordIdCtrl.Value), int.Parse(entityIdCtrl.Value), commentCtrl.Text, commentsListCtrl);
+
+            commentCtrl.Text = string.Empty;
         }
         
         #endregion
@@ -281,6 +318,7 @@ namespace SocialRequirements
             ActivityFeedRepeater.DataSource = ActivityFeed;
             ActivityFeedRepeater.DataBind();
         }
+
         #endregion
 
         #region Data Update
@@ -305,18 +343,40 @@ namespace SocialRequirements
             }
         }
 
-        private void LoadRequirementComments(long companyId, long? projectId, long recordId, int entity,
-            Repeater commentsCtrl, Panel commentsPnl)
+        private void AddComment(long companyId, long projectId, long? parentId, long recordId, int entityId,
+            string comment, Repeater commentsCtrl)
         {
-            if (!projectId.HasValue) throw new InvalidDataException("Project ID cannot be null");
-
-            switch (entity)
+            switch (entityId)
             {
                 case (int)GeneralCatalog.Detail.Entity.Requirement:
                     var requirementSrv = new RequirementSoapClient();
-                    var comments = requirementSrv.GetRequirementComments(companyId, projectId.Value, recordId);
-                    var serializer = new ObjectSerializer<List<RequirementCommentDto>>();
-                    commentsCtrl.DataSource = (List<RequirementCommentDto>)serializer.Deserialize(comments);
+                    var reqComments = requirementSrv.CommentRequirement(companyId, projectId, recordId, comment,
+                        GetUsernameEncrypted());
+                    var reqSerializer = new ObjectSerializer<List<RequirementCommentDto>>();
+                    commentsCtrl.DataSource = (List<RequirementCommentDto>)reqSerializer.Deserialize(reqComments);
+                    commentsCtrl.DataBind();
+                    break;
+                case (int)GeneralCatalog.Detail.Entity.RequirementModification:
+                    if(parentId == null) throw new InvalidDataException("Requirement ID is required");
+                    var requirementModifSrv = new RequirementSoapClient();
+                    var reqModifComments = requirementModifSrv.CommentRequirementModification(companyId, projectId,
+                        parentId.Value, recordId, comment, GetUsernameEncrypted());
+                    var reqModifSerializer = new ObjectSerializer<List<RequirementModificationCommentDto>>();
+                    commentsCtrl.DataSource = (List<RequirementModificationCommentDto>)reqModifSerializer.Deserialize(reqModifComments);
+                    commentsCtrl.DataBind();
+                    break;
+            }
+        }
+
+        private void LoadRequirementComments(ActivityFeedDto activity,
+            Repeater commentsCtrl, Control commentsPnl)
+        {
+            if (!activity.ProjectId.HasValue) throw new InvalidDataException("Project ID cannot be null");
+
+            switch (activity.EntityId)
+            {
+                case (int)GeneralCatalog.Detail.Entity.Requirement:
+                    commentsCtrl.DataSource = activity.Comment;
                     commentsCtrl.DataBind();
                     commentsPnl.Visible = true;
                     break;

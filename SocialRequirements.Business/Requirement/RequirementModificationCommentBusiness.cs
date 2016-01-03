@@ -32,6 +32,7 @@ namespace SocialRequirements.Business.Requirement
 
             // get the latest version of the requirement modification request
             var requirementModifLatestVersion = _requirementModifVersionData.Get(companyId, projectId, requirementId, requirementModificationId);
+
             var requirementModifComment = new RequirementModificationCommentDto(requirementModifLatestVersion.CompanyId,
                 requirementModifLatestVersion.ProjectId, requirementModifLatestVersion.RequirementId,
                 requirementModifLatestVersion.Id, requirementModifLatestVersion.VersionId, personId, comment);

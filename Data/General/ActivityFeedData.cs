@@ -293,6 +293,7 @@ namespace SocialRequirements.Data.General
                 ProjectId = activity.project_id,
                 EntityId = activity.entity_id,
                 RecordId = activity.record_id,
+                ParentId = activity.parent_id,
                 Createdon = activity.createdon,
                 CreatedbyId = activity.createdby_id,
                 CreatedByLastname = activity.Person.last_name,
