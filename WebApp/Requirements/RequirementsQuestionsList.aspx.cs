@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Web.UI.WebControls;
 using SocialRequirements.Domain.DTO.Requirement;
+using SocialRequirements.Domain.General;
 using SocialRequirements.RequirementQuestionService;
 using SocialRequirements.Utilities;
 
@@ -45,8 +46,23 @@ namespace SocialRequirements.Requirements
         private void LoadRequirementsQuestions()
         {
             var questionsSrv = new RequirementQuestionSoapClient();
-            var questionsXmlStr = questionsSrv.GetAllQuestions(GetUsernameEncrypted());
 
+            var filter = Request.QueryString[CommonConstants.QueryStringParams.Filter];
+            string questionsXmlStr;
+
+            switch (filter)
+            {
+                case CommonConstants.Filters.Answered:
+                    questionsXmlStr = questionsSrv.GetAnsweredQuestions(GetUsernameEncrypted());
+                    break;
+                case CommonConstants.Filters.Unanswered:
+                    questionsXmlStr = questionsSrv.GetUnansweredQuestions(GetUsernameEncrypted());
+                    break;
+                default:
+                    questionsXmlStr = questionsSrv.GetAllQuestions(GetUsernameEncrypted());
+                    break;
+            }
+            
             var serializer = new ObjectSerializer<List<RequirementQuestionDto>>();
             RequirementsQuestions = (List<RequirementQuestionDto>)serializer.Deserialize(questionsXmlStr);
         }

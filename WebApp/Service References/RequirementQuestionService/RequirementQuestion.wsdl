@@ -49,6 +49,34 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetAnsweredQuestions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="encUsername" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAnsweredQuestionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAnsweredQuestionsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUnansweredQuestions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="encUsername" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUnansweredQuestionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUnansweredQuestionsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="AddAnswer">
         <s:complexType>
           <s:sequence>
@@ -103,6 +131,18 @@
   <wsdl:message name="GetAllQuestionsSoapOut">
     <wsdl:part name="parameters" element="tns:GetAllQuestionsResponse" />
   </wsdl:message>
+  <wsdl:message name="GetAnsweredQuestionsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAnsweredQuestions" />
+  </wsdl:message>
+  <wsdl:message name="GetAnsweredQuestionsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAnsweredQuestionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUnansweredQuestionsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUnansweredQuestions" />
+  </wsdl:message>
+  <wsdl:message name="GetUnansweredQuestionsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUnansweredQuestionsResponse" />
+  </wsdl:message>
   <wsdl:message name="AddAnswerSoapIn">
     <wsdl:part name="parameters" element="tns:AddAnswer" />
   </wsdl:message>
@@ -127,6 +167,14 @@
     <wsdl:operation name="GetAllQuestions">
       <wsdl:input message="tns:GetAllQuestionsSoapIn" />
       <wsdl:output message="tns:GetAllQuestionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAnsweredQuestions">
+      <wsdl:input message="tns:GetAnsweredQuestionsSoapIn" />
+      <wsdl:output message="tns:GetAnsweredQuestionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUnansweredQuestions">
+      <wsdl:input message="tns:GetUnansweredQuestionsSoapIn" />
+      <wsdl:output message="tns:GetUnansweredQuestionsSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="AddAnswer">
       <wsdl:input message="tns:AddAnswerSoapIn" />
@@ -159,6 +207,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetAllQuestions">
       <soap:operation soapAction="http://tempuri.org/GetAllQuestions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAnsweredQuestions">
+      <soap:operation soapAction="http://tempuri.org/GetAnsweredQuestions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnansweredQuestions">
+      <soap:operation soapAction="http://tempuri.org/GetUnansweredQuestions" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -207,6 +273,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetAllQuestions">
       <soap12:operation soapAction="http://tempuri.org/GetAllQuestions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAnsweredQuestions">
+      <soap12:operation soapAction="http://tempuri.org/GetAnsweredQuestions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnansweredQuestions">
+      <soap12:operation soapAction="http://tempuri.org/GetUnansweredQuestions" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

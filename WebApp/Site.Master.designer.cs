@@ -148,6 +148,33 @@ namespace SocialRequirements {
         protected global::System.Web.UI.WebControls.HyperLink RequirementsModifDraftLink;
         
         /// <summary>
+        /// RequirementsQuestionsAll control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink RequirementsQuestionsAll;
+        
+        /// <summary>
+        /// RequirementsQuestionsAnswered control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink RequirementsQuestionsAnswered;
+        
+        /// <summary>
+        /// RequirementsQuestionsUnanswered control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink RequirementsQuestionsUnanswered;
+        
+        /// <summary>
         /// MainScriptManager control.
         /// </summary>
         /// <remarks>

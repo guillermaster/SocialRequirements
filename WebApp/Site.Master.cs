@@ -187,6 +187,18 @@ namespace SocialRequirements
             RequirementsModifDraftLink.NavigateUrl = CommonConstants.FormsUrl.RequirementsModificationList + "?" +
                                                    CommonConstants.QueryStringParams.Filter + "=" +
                                                    CommonConstants.Filters.Draft;
+
+            // requirements questions links
+
+            RequirementsQuestionsAll.NavigateUrl = CommonConstants.FormsUrl.RequirementsQuestionsList;
+
+            RequirementsQuestionsAnswered.NavigateUrl = CommonConstants.FormsUrl.RequirementsQuestionsList + "?" +
+                                                        CommonConstants.QueryStringParams.Filter + "=" +
+                                                        CommonConstants.Filters.Answered;
+
+            RequirementsQuestionsUnanswered.NavigateUrl = CommonConstants.FormsUrl.RequirementsQuestionsList + "?" +
+                                                        CommonConstants.QueryStringParams.Filter + "=" +
+                                                        CommonConstants.Filters.Unanswered;
         }
     }
 

@@ -54,6 +54,24 @@ namespace WebService
         }
 
         [WebMethod]
+        public string GetAnsweredQuestions(string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            var questions = RequirementQuestionBusiness.GetAllAnswered(username);
+            var serializer = new ObjectSerializer<List<RequirementQuestionDto>>(questions);
+            return serializer.ToXmlString();
+        }
+
+        [WebMethod]
+        public string GetUnansweredQuestions(string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            var questions = RequirementQuestionBusiness.GetAllUnanswered(username);
+            var serializer = new ObjectSerializer<List<RequirementQuestionDto>>(questions);
+            return serializer.ToXmlString();
+        }
+
+        [WebMethod]
         public void AddAnswer(long companyId, long projectId, long requirementId, long requirementVersionId,
             long requirementQuestionId, string answer, string encUsername)
         {

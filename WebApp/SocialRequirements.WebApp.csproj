@@ -2261,6 +2261,12 @@
     <Content Include="Service References\RequirementQuestionService\SocialRequirements.RequirementQuestionService.GetAnswersResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Service References\RequirementQuestionService\SocialRequirements.RequirementQuestionService.GetAnsweredQuestionsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RequirementQuestionService\SocialRequirements.RequirementQuestionService.GetUnansweredQuestionsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Service References\RequirementService\Requirement.disco" />
     <None Include="Service References\RequirementService\configuration91.svcinfo" />
     <None Include="Service References\RequirementService\configuration.svcinfo" />

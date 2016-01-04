@@ -37,5 +37,17 @@ namespace SocialRequirements.Domain.BusinessLogic.Requirement
         /// </summary>
         /// <returns>List of questions</returns>
         List<RequirementQuestionDto> GetAll(string username);
+
+        /// <summary>
+        /// Gets all questions that have been answered for all requirements related to a specified user
+        /// </summary>
+        /// <returns>List of questions</returns>
+        List<RequirementQuestionDto> GetAllAnswered(string username);
+
+        /// <summary>
+        /// Gets all questions that have not been answered for all requirements related to a specified user
+        /// </summary>
+        /// <returns>List of questions</returns>
+        List<RequirementQuestionDto> GetAllUnanswered(string username);
     }
 }

@@ -65,5 +65,25 @@ namespace SocialRequirements.Business.Requirement
             
             return _questionData.GetAll(projects.Select(p => p.Id).ToList());
         }
+
+        public List<RequirementQuestionDto> GetAllAnswered(string username)
+        {
+            var questions = GetAll(username);
+
+            return
+                questions.Where(
+                    question => question.StatusId == (int) GeneralCatalog.Detail.RequirementQuestionStatus.Answered)
+                    .ToList();
+        }
+
+        public List<RequirementQuestionDto> GetAllUnanswered(string username)
+        {
+            var questions = GetAll(username);
+
+            return
+                questions.Where(
+                    question => question.StatusId == (int)GeneralCatalog.Detail.RequirementQuestionStatus.Posted)
+                    .ToList();
+        }
     }
 }

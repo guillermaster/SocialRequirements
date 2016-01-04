@@ -16,6 +16,7 @@
             public const string Requirement = "~/Requirements/Requirement.aspx";
             public const string RequirementsList = "~/Requirements/RequirementsList.aspx";
             public const string RequirementsModificationList = "~/Requirements/RequirementsModificationList.aspx";
+            public const string RequirementsQuestionsList = "~/Requirements/RequirementsQuestionsList.aspx";
             public const string RecentActivities = "~/RecentActivities.aspx";
         }
 
@@ -38,6 +39,8 @@
             public const string Rejected = "rejected";
             public const string PendingApproval = "pendingapproval";
             public const string Draft = "draft";
+            public const string Answered = "answered";
+            public const string Unanswered = "unanswered";
         }
     }
 }

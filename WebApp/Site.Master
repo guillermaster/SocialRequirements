@@ -388,14 +388,11 @@
                                         <li><a href="javascript:;"><i class="fa fa-tasks"></i><span>Questions</span></a>
                                             <ul class="acc-menu">
                                                 <li>
-                                                    <asp:HyperLink runat="server" NavigateUrl="~/Requirements/RequirementsQuestionsList.aspx">All questions</asp:HyperLink></li>
-                                                <li><a href="ui-buttons.html">Buttons</a></li>
-                                                <li><a href="ui-tables.html">Tables</a></li>
-                                                <li><a href="ui-forms.html">Forms</a></li>
-                                                <li><a href="ui-images.html">Images</a></li>
-                                                <li><a href="ui-panels.html">Panels</a></li>
-                                                <li><a href="ui-icons.html">Font Icons</a></li>
-                                                <li><a href="ui-helpers.html">Helpers</a></li>
+                                                    <asp:HyperLink runat="server" ID="RequirementsQuestionsAll">All questions</asp:HyperLink></li>
+                                                <li>
+                                                    <asp:HyperLink runat="server" ID="RequirementsQuestionsAnswered">Answered questions</asp:HyperLink></li>
+                                                <li>
+                                                    <asp:HyperLink runat="server" ID="RequirementsQuestionsUnanswered">Unanswered questions</asp:HyperLink></li>
                                             </ul>
                                         </li>
                                         <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
