@@ -326,6 +326,7 @@ namespace SocialRequirements.Data.General
                 default:
                     activityDto.Description = string.Empty;
                     activityDto.ShortDescription = string.Empty;
+                    activityDto.Comment = new List<RequirementCommentDto>();
                     break;
             }
 
@@ -344,17 +345,11 @@ namespace SocialRequirements.Data.General
             {
                 case (int)GeneralCatalog.Detail.EntityActions.Create:
                 case (int)GeneralCatalog.Detail.EntityActions.SubmitForApproval:
-
                     activity.Description = StringUtilities.GetShort(requirement.Description, MaxDescriptionLength);
                     activity.ShortDescription = StringUtilities.GetShort(requirement.Description, MaxShortDescriptionLength);
                     activity.HasEvenLongerDescription = activity.Description.Length < requirement.Description.Length;
-                    activity.Likes = requirement.Agreed;
-                    activity.Dislikes = requirement.Disagreed;
-                    activity.VersionNumber = requirement.VersionNumber;
                     activity.Comment = _requirementCommentData.Get(requirement.Id, requirement.CompanyId,
                                 requirement.ProjectId, requirement.VersionId);
-                    activity.Comments = activity.Comment.Count;
-                    //activity.EntityAction = activity.EntityAction;
                     break;
                 case (int)GeneralCatalog.Detail.EntityActions.Like:
                 case (int)GeneralCatalog.Detail.EntityActions.Dislike:
@@ -364,13 +359,21 @@ namespace SocialRequirements.Data.General
                 case (int)GeneralCatalog.Detail.EntityActions.Remove:
                     activity.Description = StringUtilities.GetShort(requirement.Title, MaxDescriptionLength);
                     activity.ShortDescription = StringUtilities.GetShort(requirement.Title, MaxShortDescriptionLength);
-                    activity.VersionNumber = requirement.VersionNumber;
+                    activity.HasEvenLongerDescription = false;
+                    activity.Comment = new List<RequirementCommentDto>();
                     break;
                 default:
                     activity.Description = string.Empty;
                     activity.ShortDescription = string.Empty;
+                    activity.HasEvenLongerDescription = false;
+                    activity.Comment = new List<RequirementCommentDto>();
                     break;
             }
+
+            activity.Likes = requirement.Agreed;
+            activity.Dislikes = requirement.Disagreed;
+            activity.VersionNumber = requirement.VersionNumber;
+            activity.Comments = activity.Comment.Count;
             
             return activity;
         }
@@ -386,38 +389,39 @@ namespace SocialRequirements.Data.General
 
             switch (activity.EntityActionId)
             {
-                case (int)GeneralCatalog.Detail.EntityActions.Create:
-                case (int)GeneralCatalog.Detail.EntityActions.SubmitForApproval:
+                case (int) GeneralCatalog.Detail.EntityActions.Create:
+                case (int) GeneralCatalog.Detail.EntityActions.SubmitForApproval:
                     activity.Description = StringUtilities.GetShort(requirement.Description, MaxDescriptionLength);
                     activity.ShortDescription = StringUtilities.GetShort(requirement.Description, MaxShortDescriptionLength);
-                    activity.HasEvenLongerDescription = activity.Description.Length <
-                                                                   requirement.Description.Length;
-                    activity.Likes = requirement.Agreed;
-                    activity.Dislikes = requirement.Disagreed;
-                    activity.VersionNumber = requirement.VersionNumber;
-                    activity.Comment =
-                        _requirementModificationCommentData.Get(requirement.CompanyId, requirement.ProjectId,
-                            requirement.RequirementId, requirement.Id, requirement.VersionId)
-                            .Select(GetRequirementComment)
-                            .ToList();
-                    activity.Comments = activity.Comment.Count;
-                    //activity.EntityAction = activity.EntityAction;
+                    activity.HasEvenLongerDescription = activity.Description.Length < requirement.Description.Length;
+                    activity.Comment = _requirementModificationCommentData.Get(requirement.CompanyId, requirement.ProjectId,
+                        requirement.RequirementId, requirement.Id, requirement.VersionId)
+                        .Select(GetRequirementComment)
+                        .ToList();
                     break;
-                case (int)GeneralCatalog.Detail.EntityActions.Like:
-                case (int)GeneralCatalog.Detail.EntityActions.Dislike:
-                case (int)GeneralCatalog.Detail.EntityActions.Modify:
-                case (int)GeneralCatalog.Detail.EntityActions.Approve:
-                case (int)GeneralCatalog.Detail.EntityActions.Reject:
-                case (int)GeneralCatalog.Detail.EntityActions.Remove:
+                case (int) GeneralCatalog.Detail.EntityActions.Like:
+                case (int) GeneralCatalog.Detail.EntityActions.Dislike:
+                case (int) GeneralCatalog.Detail.EntityActions.Modify:
+                case (int) GeneralCatalog.Detail.EntityActions.Approve:
+                case (int) GeneralCatalog.Detail.EntityActions.Reject:
+                case (int) GeneralCatalog.Detail.EntityActions.Remove:
                     activity.Description = StringUtilities.GetShort(requirement.Title, MaxDescriptionLength);
                     activity.ShortDescription = StringUtilities.GetShort(requirement.Title, MaxShortDescriptionLength);
-                    activity.VersionNumber = requirement.VersionNumber;
+                    activity.HasEvenLongerDescription = false;
+                    activity.Comment = new List<RequirementCommentDto>();
                     break;
                 default:
                     activity.Description = string.Empty;
                     activity.ShortDescription = string.Empty;
+                    activity.HasEvenLongerDescription = false;
+                    activity.Comment = new List<RequirementCommentDto>();
                     break;
             }
+
+            activity.Likes = requirement.Agreed;
+            activity.Dislikes = requirement.Disagreed;
+            activity.VersionNumber = requirement.VersionNumber;
+            activity.Comments = activity.Comment.Count;
 
             return activity;
         }

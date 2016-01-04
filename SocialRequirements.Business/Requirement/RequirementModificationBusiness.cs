@@ -57,7 +57,7 @@ namespace SocialRequirements.Business.Requirement
 
             // add activity feed log
             _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.RequirementModification,
-                (int)GeneralCatalog.Detail.EntityActions.SubmitForApproval, requirementId, DateTime.Now, personId, requirementId);
+                (int)GeneralCatalog.Detail.EntityActions.SubmitForApproval, requirementModificationId, DateTime.Now, personId, requirementId);
         }
 
         public void Update(string title, string description, long companyId, long projectId, long requirementId,
@@ -70,7 +70,7 @@ namespace SocialRequirements.Business.Requirement
 
             // add activity feed log
             _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.RequirementModification,
-                (int)GeneralCatalog.Detail.EntityActions.Modify, requirementId, DateTime.Now, personId, requirementId);
+                (int)GeneralCatalog.Detail.EntityActions.Modify, requirementModificationId, DateTime.Now, personId, requirementId);
         }
 
         public void Approve(long companyId, long projectId, long requirementId, long requirementModificationId, string username)

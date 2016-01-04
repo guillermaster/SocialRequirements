@@ -157,7 +157,7 @@ namespace SocialRequirements
             }
         }
 
-        protected void Like(long companyId, long? projectId, long recordId, int entity)
+        protected void Like(long companyId, long? projectId, long recordId, int entity, long? parentId = null)
         {
             switch (entity)
             {
@@ -166,10 +166,16 @@ namespace SocialRequirements
                     var requirementSrv = new RequirementSoapClient();
                     requirementSrv.LikeRequirement(companyId, projectId.Value, recordId, GetUsernameEncrypted());
                     break;
+                case (int)GeneralCatalog.Detail.Entity.RequirementModification:
+                    if (!projectId.HasValue || !parentId.HasValue) return;
+                    var requirementModifSrv = new RequirementSoapClient();
+                    requirementModifSrv.LikeRequirementModification(companyId, projectId.Value, parentId.Value, recordId,
+                        GetUsernameEncrypted());
+                    break;
             }
         }
 
-        protected void Dislike(long companyId, long? projectId, long recordId, int entity)
+        protected void Dislike(long companyId, long? projectId, long recordId, int entity, long? parentId = null)
         {
             switch (entity)
             {
@@ -177,6 +183,12 @@ namespace SocialRequirements
                     if (!projectId.HasValue) return;
                     var requirementSrv = new RequirementSoapClient();
                     requirementSrv.DislikeRequirement(companyId, projectId.Value, recordId, GetUsernameEncrypted());
+                    break;
+                case (int)GeneralCatalog.Detail.Entity.RequirementModification:
+                    if (!projectId.HasValue || !parentId.HasValue) return;
+                    var requirementModifSrv = new RequirementSoapClient();
+                    requirementModifSrv.DislikeRequirementModification(companyId, projectId.Value, parentId.Value, recordId,
+                        GetUsernameEncrypted());
                     break;
             }
         }

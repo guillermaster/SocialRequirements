@@ -192,11 +192,11 @@ namespace SocialRequirements
                 case CommonConstants.SocialActionsCommands.ReadEvenMore:
                     break;
                 case CommonConstants.SocialActionsCommands.Like:
-                    Like(activity.CompanyId, activity.ProjectId, activity.RecordId, activity.EntityId);
+                    Like(activity.CompanyId, activity.ProjectId, activity.RecordId, activity.EntityId, activity.ParentId);
                     LoadActivityFeed();
                     break;
                 case CommonConstants.SocialActionsCommands.Dislike:
-                    Dislike(activity.CompanyId, activity.ProjectId, activity.RecordId, activity.EntityId);
+                    Dislike(activity.CompanyId, activity.ProjectId, activity.RecordId, activity.EntityId, activity.ParentId);
                     LoadActivityFeed();
                     break;
                 case CommonConstants.SocialActionsCommands.Comment:
