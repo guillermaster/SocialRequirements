@@ -16,6 +16,12 @@ namespace SocialRequirements.Requirements
             get { return ViewState["RequirementModificationId"] != null ? int.Parse(ViewState["RequirementModificationId"].ToString()) : 0; }
             set { ViewState["RequirementModificationId"] = value; }
         }
+
+        protected bool IsDraft
+        {
+            get { return ViewState["IsDraft"] == null || bool.Parse(ViewState["IsDraft"].ToString()); }
+            set { ViewState["IsDraft"] = value; }
+        }
         #endregion
 
         #region Main Events
@@ -35,7 +41,6 @@ namespace SocialRequirements.Requirements
             ProjectId = long.Parse(Request.QueryString[CommonConstants.QueryStringParams.ProjectId]);
 
             LoadRequirement();
-            EditionMode = true;
             ToggleModification();
         }
 
@@ -151,9 +156,9 @@ namespace SocialRequirements.Requirements
             {
                 var requirementSrv = new RequirementSoapClient();
                 requirementSrv.LikeRequirementModification(CompanyId, ProjectId, RequirementId, RequirementModificationId, GetUsernameEncrypted());
-                
+                var prevEditionMode = EditionMode;
                 LoadRequirement();
-
+                EditionMode = prevEditionMode;
                 ToggleModification();
             }
             catch
@@ -169,9 +174,9 @@ namespace SocialRequirements.Requirements
             {
                 var requirementSrv = new RequirementSoapClient();
                 requirementSrv.DislikeRequirementModification(CompanyId, ProjectId, RequirementId, RequirementModificationId, GetUsernameEncrypted());
-
+                var prevEditionMode = EditionMode;
                 LoadRequirement();
-
+                EditionMode = prevEditionMode;
                 ToggleModification();
             }
             catch
@@ -248,6 +253,15 @@ namespace SocialRequirements.Requirements
 
             // set requirement data in form
             SetFormData(requirement);
+
+            IsDraft = requirement.StatusId == (int) GeneralCatalog.Detail.RequirementStatus.Draft;
+            EditionMode = IsDraft;
+        }
+
+        protected override void ToggleModification()
+        {
+            base.ToggleModification();
+            EditButton.Visible = IsDraft;
         }
 
         private bool ModificationRequestExists()
@@ -258,7 +272,8 @@ namespace SocialRequirements.Requirements
         protected override void SetFormData(RequirementDto requirement)
         {
             base.SetFormData(requirement);
-            EditButton.Visible = ModificationRequestExists();
+            EditButton.Visible = ModificationRequestExists() &&
+                                 requirement.StatusId == (int) GeneralCatalog.Detail.RequirementStatus.Draft;
         }
 
         protected override void SetRequirementComments()

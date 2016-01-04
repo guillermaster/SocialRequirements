@@ -6,6 +6,7 @@ using SocialRequirements.Context.Entities;
 using SocialRequirements.Domain.DTO.Requirement;
 using SocialRequirements.Domain.General;
 using SocialRequirements.Domain.Repository.Requirement;
+using SocialRequirements.Utilities;
 
 namespace SocialRequirements.Data.Requirement
 {
@@ -13,7 +14,8 @@ namespace SocialRequirements.Data.Requirement
     {
         private readonly ContextModel _context;
         private IRequirementModificationVersionData _requirementModifVersionData;
-        private IRequirementModificationCommentData _requirementModifCommentData;
+        private readonly IRequirementModificationCommentData _requirementModifCommentData;
+        private const int MaxShortDescriptionLength = 590;
 
         public RequirementModificationData(ContextModel context)
         {
@@ -314,8 +316,9 @@ namespace SocialRequirements.Data.Requirement
                 Approvedon = requirement.approvedon,
                 Project = requirement.Project.name,
                 Status = requirement.GeneralCatalogDetail.name,
-                CreatedByName = Utilities.StringUtilities.GetPersonFullName(requirement.Person),
-                ModifiedByName = Utilities.StringUtilities.GetPersonFullName(requirement.Person1),
+                ShortDescription = StringUtilities.GetShort(requirement.description, MaxShortDescriptionLength),
+                CreatedByName = StringUtilities.GetPersonFullName(requirement.Person),
+                ModifiedByName = StringUtilities.GetPersonFullName(requirement.Person1),
                 VersionId = requirement.requirement_modification_version_id,
                 VersionNumber = requirement.version_number,
                 CommentsQuantity = _requirementModifCommentData.GetQuantity(requirement.company_id,

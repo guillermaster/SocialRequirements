@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RequirementsModificationList.aspx.cs" Inherits="SocialRequirements.Requirements.RequirementsModificationList" %>
 
 <asp:Content ID="TitleContent" ContentPlaceHolderID="TitleContent" runat="server">
-    Requirements
+    Requirements Modifications
 </asp:Content>
 
 
@@ -13,21 +13,21 @@
 <asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <asp:Repeater ID="RequirementsListRepeater"
-        ItemType="SocialRequirements.Domain.DTO.Requirement.RequirementDto" runat="server" OnItemCommand="RequirementsListRepeater_ItemCommand">
+        ItemType="SocialRequirements.Domain.DTO.Requirement.RequirementModificationDto" runat="server" OnItemCommand="RequirementsListRepeater_ItemCommand">
         <HeaderTemplate>
             <div>
         </HeaderTemplate>
         <ItemTemplate>
             <div class="smallcard">
                 <div class="smallcard_title" style="cursor: pointer"
-                    onclick="javascript:location.href='Requirement.aspx?<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.Id %>=<%# Eval("Id") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.CompanyId %>=<%# Eval("CompanyId") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.ProjectId %>=<%# Eval("ProjectId") %>'">
+                    onclick="javascript:location.href='RequirementModify.aspx?<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.CompanyId %>=<%# Eval("CompanyId") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.ProjectId %>=<%# Eval("ProjectId") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.RequirementId %>=<%# Eval("RequirementId") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.Id %>=<%# Eval("ID") %>'">
                     <h5><%# Eval("Title") %></h5>
                 </div>
                 <div class="smallcard_subtitle" style="cursor: pointer">
                     <%# Eval("Project") %>
                 </div>
                 <div class="smallcard_body" style="cursor: pointer"
-                    onclick="javascript:location.href='Requirement.aspx?<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.Id %>=<%# Eval("Id") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.CompanyId %>=<%# Eval("CompanyId") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.ProjectId %>=<%# Eval("ProjectId") %>'">
+                    onclick="javascript:location.href='RequirementModify.aspx?<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.CompanyId %>=<%# Eval("CompanyId") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.ProjectId %>=<%# Eval("ProjectId") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.RequirementId %>=<%# Eval("RequirementId") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.Id %>=<%# Eval("ID") %>'">
                     <%# Eval("ShortDescription") %>
                 </div>
                 <div class="smallcard_footer">

@@ -1,7 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="SocialRequirements.SiteMaster" %>
 
-<%@ Import Namespace="SocialRequirements.Domain.General" %>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

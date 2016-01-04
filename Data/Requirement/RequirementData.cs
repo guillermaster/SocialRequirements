@@ -12,7 +12,7 @@ namespace SocialRequirements.Data.Requirement
     {
         private readonly ContextModel _context;
         private IRequirementVersionData _requirementVersionData;
-        private IRequirementCommentData _requirementCommentData;
+        private readonly IRequirementCommentData _requirementCommentData;
         private const int MaxShortDescriptionLength = 590;
 
         public RequirementData(ContextModel context)

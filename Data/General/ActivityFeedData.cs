@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core;
 using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
 using System.Linq;
 using SocialRequirements.Context;
 using SocialRequirements.Context.Entities;
@@ -59,6 +61,8 @@ namespace SocialRequirements.Data.General
                 _context.SaveChanges();
             }
             catch (DbUpdateException) { }
+            catch (SqlException) { }
+            catch (UpdateException) { }
         }
 
         public List<ActivityFeedDto> GetLatestActivity(long companyId)

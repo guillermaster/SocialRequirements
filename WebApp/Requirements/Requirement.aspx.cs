@@ -329,7 +329,7 @@ namespace SocialRequirements.Requirements
             RejectButton.Visible = requirement.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.PendingApproval;
         }
 
-        protected void ToggleModification()
+        protected virtual void ToggleModification()
         {
             RequirementTitle.Visible = !EditionMode;
             RequirementTitleInput.Visible = EditionMode;
