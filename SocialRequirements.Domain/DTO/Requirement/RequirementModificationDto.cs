@@ -3,6 +3,7 @@ using SocialRequirements.Domain.General;
 
 namespace SocialRequirements.Domain.DTO.Requirement
 {
+    [Serializable]
     public class RequirementModificationDto : RequirementDto
     {
         public RequirementModificationDto()

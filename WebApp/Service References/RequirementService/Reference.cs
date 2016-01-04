@@ -50,6 +50,34 @@ namespace SocialRequirements.RequirementService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetRequirementsList", ReplyAction="*")]
         System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetRequirementsListResponse> GetRequirementsListAsync(SocialRequirements.RequirementService.GetRequirementsListRequest request);
         
+        // CODEGEN: Generating message contract since element name encUsername from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetApprovedRequirementsList", ReplyAction="*")]
+        SocialRequirements.RequirementService.GetApprovedRequirementsListResponse GetApprovedRequirementsList(SocialRequirements.RequirementService.GetApprovedRequirementsListRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetApprovedRequirementsList", ReplyAction="*")]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetApprovedRequirementsListResponse> GetApprovedRequirementsListAsync(SocialRequirements.RequirementService.GetApprovedRequirementsListRequest request);
+        
+        // CODEGEN: Generating message contract since element name encUsername from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetRejectedRequirementsList", ReplyAction="*")]
+        SocialRequirements.RequirementService.GetRejectedRequirementsListResponse GetRejectedRequirementsList(SocialRequirements.RequirementService.GetRejectedRequirementsListRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetRejectedRequirementsList", ReplyAction="*")]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetRejectedRequirementsListResponse> GetRejectedRequirementsListAsync(SocialRequirements.RequirementService.GetRejectedRequirementsListRequest request);
+        
+        // CODEGEN: Generating message contract since element name encUsername from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetPendingApprovalRequirementsList", ReplyAction="*")]
+        SocialRequirements.RequirementService.GetPendingApprovalRequirementsListResponse GetPendingApprovalRequirementsList(SocialRequirements.RequirementService.GetPendingApprovalRequirementsListRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetPendingApprovalRequirementsList", ReplyAction="*")]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetPendingApprovalRequirementsListResponse> GetPendingApprovalRequirementsListAsync(SocialRequirements.RequirementService.GetPendingApprovalRequirementsListRequest request);
+        
+        // CODEGEN: Generating message contract since element name encUsername from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetDraftRequirementsList", ReplyAction="*")]
+        SocialRequirements.RequirementService.GetDraftRequirementsListResponse GetDraftRequirementsList(SocialRequirements.RequirementService.GetDraftRequirementsListRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetDraftRequirementsList", ReplyAction="*")]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetDraftRequirementsListResponse> GetDraftRequirementsListAsync(SocialRequirements.RequirementService.GetDraftRequirementsListRequest request);
+        
         // CODEGEN: Generating message contract since element name GetRequirementResult from namespace http://tempuri.org/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetRequirement", ReplyAction="*")]
         SocialRequirements.RequirementService.GetRequirementResponse GetRequirement(SocialRequirements.RequirementService.GetRequirementRequest request);
@@ -168,6 +196,41 @@ namespace SocialRequirements.RequirementService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetRequirementModificationComments", ReplyAction="*")]
         System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetRequirementModificationCommentsResponse> GetRequirementModificationCommentsAsync(SocialRequirements.RequirementService.GetRequirementModificationCommentsRequest request);
+        
+        // CODEGEN: Generating message contract since element name encUsername from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetRequirementsModificationList", ReplyAction="*")]
+        SocialRequirements.RequirementService.GetRequirementsModificationListResponse GetRequirementsModificationList(SocialRequirements.RequirementService.GetRequirementsModificationListRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetRequirementsModificationList", ReplyAction="*")]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetRequirementsModificationListResponse> GetRequirementsModificationListAsync(SocialRequirements.RequirementService.GetRequirementsModificationListRequest request);
+        
+        // CODEGEN: Generating message contract since element name encUsername from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetApprovedRequirementsModificationList", ReplyAction="*")]
+        SocialRequirements.RequirementService.GetApprovedRequirementsModificationListResponse GetApprovedRequirementsModificationList(SocialRequirements.RequirementService.GetApprovedRequirementsModificationListRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetApprovedRequirementsModificationList", ReplyAction="*")]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetApprovedRequirementsModificationListResponse> GetApprovedRequirementsModificationListAsync(SocialRequirements.RequirementService.GetApprovedRequirementsModificationListRequest request);
+        
+        // CODEGEN: Generating message contract since element name encUsername from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetRejectedRequirementsModificationList", ReplyAction="*")]
+        SocialRequirements.RequirementService.GetRejectedRequirementsModificationListResponse GetRejectedRequirementsModificationList(SocialRequirements.RequirementService.GetRejectedRequirementsModificationListRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetRejectedRequirementsModificationList", ReplyAction="*")]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetRejectedRequirementsModificationListResponse> GetRejectedRequirementsModificationListAsync(SocialRequirements.RequirementService.GetRejectedRequirementsModificationListRequest request);
+        
+        // CODEGEN: Generating message contract since element name encUsername from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetPendingApprovalRequirementsModificationList", ReplyAction="*")]
+        SocialRequirements.RequirementService.GetPendingApprovalRequirementsModificationListResponse GetPendingApprovalRequirementsModificationList(SocialRequirements.RequirementService.GetPendingApprovalRequirementsModificationListRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetPendingApprovalRequirementsModificationList", ReplyAction="*")]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetPendingApprovalRequirementsModificationListResponse> GetPendingApprovalRequirementsModificationListAsync(SocialRequirements.RequirementService.GetPendingApprovalRequirementsModificationListRequest request);
+        
+        // CODEGEN: Generating message contract since element name encUsername from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetDraftRequirementsModificationList", ReplyAction="*")]
+        SocialRequirements.RequirementService.GetDraftRequirementsModificationListResponse GetDraftRequirementsModificationList(SocialRequirements.RequirementService.GetDraftRequirementsModificationListRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetDraftRequirementsModificationList", ReplyAction="*")]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetDraftRequirementsModificationListResponse> GetDraftRequirementsModificationListAsync(SocialRequirements.RequirementService.GetDraftRequirementsModificationListRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -542,6 +605,278 @@ namespace SocialRequirements.RequirementService {
         
         public GetRequirementsListResponseBody(string GetRequirementsListResult) {
             this.GetRequirementsListResult = GetRequirementsListResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetApprovedRequirementsListRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetApprovedRequirementsList", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementService.GetApprovedRequirementsListRequestBody Body;
+        
+        public GetApprovedRequirementsListRequest() {
+        }
+        
+        public GetApprovedRequirementsListRequest(SocialRequirements.RequirementService.GetApprovedRequirementsListRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetApprovedRequirementsListRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string encUsername;
+        
+        public GetApprovedRequirementsListRequestBody() {
+        }
+        
+        public GetApprovedRequirementsListRequestBody(string encUsername) {
+            this.encUsername = encUsername;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetApprovedRequirementsListResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetApprovedRequirementsListResponse", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementService.GetApprovedRequirementsListResponseBody Body;
+        
+        public GetApprovedRequirementsListResponse() {
+        }
+        
+        public GetApprovedRequirementsListResponse(SocialRequirements.RequirementService.GetApprovedRequirementsListResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetApprovedRequirementsListResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string GetApprovedRequirementsListResult;
+        
+        public GetApprovedRequirementsListResponseBody() {
+        }
+        
+        public GetApprovedRequirementsListResponseBody(string GetApprovedRequirementsListResult) {
+            this.GetApprovedRequirementsListResult = GetApprovedRequirementsListResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetRejectedRequirementsListRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetRejectedRequirementsList", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementService.GetRejectedRequirementsListRequestBody Body;
+        
+        public GetRejectedRequirementsListRequest() {
+        }
+        
+        public GetRejectedRequirementsListRequest(SocialRequirements.RequirementService.GetRejectedRequirementsListRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetRejectedRequirementsListRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string encUsername;
+        
+        public GetRejectedRequirementsListRequestBody() {
+        }
+        
+        public GetRejectedRequirementsListRequestBody(string encUsername) {
+            this.encUsername = encUsername;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetRejectedRequirementsListResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetRejectedRequirementsListResponse", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementService.GetRejectedRequirementsListResponseBody Body;
+        
+        public GetRejectedRequirementsListResponse() {
+        }
+        
+        public GetRejectedRequirementsListResponse(SocialRequirements.RequirementService.GetRejectedRequirementsListResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetRejectedRequirementsListResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string GetRejectedRequirementsListResult;
+        
+        public GetRejectedRequirementsListResponseBody() {
+        }
+        
+        public GetRejectedRequirementsListResponseBody(string GetRejectedRequirementsListResult) {
+            this.GetRejectedRequirementsListResult = GetRejectedRequirementsListResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetPendingApprovalRequirementsListRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetPendingApprovalRequirementsList", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementService.GetPendingApprovalRequirementsListRequestBody Body;
+        
+        public GetPendingApprovalRequirementsListRequest() {
+        }
+        
+        public GetPendingApprovalRequirementsListRequest(SocialRequirements.RequirementService.GetPendingApprovalRequirementsListRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetPendingApprovalRequirementsListRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string encUsername;
+        
+        public GetPendingApprovalRequirementsListRequestBody() {
+        }
+        
+        public GetPendingApprovalRequirementsListRequestBody(string encUsername) {
+            this.encUsername = encUsername;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetPendingApprovalRequirementsListResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetPendingApprovalRequirementsListResponse", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementService.GetPendingApprovalRequirementsListResponseBody Body;
+        
+        public GetPendingApprovalRequirementsListResponse() {
+        }
+        
+        public GetPendingApprovalRequirementsListResponse(SocialRequirements.RequirementService.GetPendingApprovalRequirementsListResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetPendingApprovalRequirementsListResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string GetPendingApprovalRequirementsListResult;
+        
+        public GetPendingApprovalRequirementsListResponseBody() {
+        }
+        
+        public GetPendingApprovalRequirementsListResponseBody(string GetPendingApprovalRequirementsListResult) {
+            this.GetPendingApprovalRequirementsListResult = GetPendingApprovalRequirementsListResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetDraftRequirementsListRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetDraftRequirementsList", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementService.GetDraftRequirementsListRequestBody Body;
+        
+        public GetDraftRequirementsListRequest() {
+        }
+        
+        public GetDraftRequirementsListRequest(SocialRequirements.RequirementService.GetDraftRequirementsListRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetDraftRequirementsListRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string encUsername;
+        
+        public GetDraftRequirementsListRequestBody() {
+        }
+        
+        public GetDraftRequirementsListRequestBody(string encUsername) {
+            this.encUsername = encUsername;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetDraftRequirementsListResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetDraftRequirementsListResponse", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementService.GetDraftRequirementsListResponseBody Body;
+        
+        public GetDraftRequirementsListResponse() {
+        }
+        
+        public GetDraftRequirementsListResponse(SocialRequirements.RequirementService.GetDraftRequirementsListResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetDraftRequirementsListResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string GetDraftRequirementsListResult;
+        
+        public GetDraftRequirementsListResponseBody() {
+        }
+        
+        public GetDraftRequirementsListResponseBody(string GetDraftRequirementsListResult) {
+            this.GetDraftRequirementsListResult = GetDraftRequirementsListResult;
         }
     }
     
@@ -1879,6 +2214,346 @@ namespace SocialRequirements.RequirementService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetRequirementsModificationListRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetRequirementsModificationList", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementService.GetRequirementsModificationListRequestBody Body;
+        
+        public GetRequirementsModificationListRequest() {
+        }
+        
+        public GetRequirementsModificationListRequest(SocialRequirements.RequirementService.GetRequirementsModificationListRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetRequirementsModificationListRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string encUsername;
+        
+        public GetRequirementsModificationListRequestBody() {
+        }
+        
+        public GetRequirementsModificationListRequestBody(string encUsername) {
+            this.encUsername = encUsername;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetRequirementsModificationListResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetRequirementsModificationListResponse", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementService.GetRequirementsModificationListResponseBody Body;
+        
+        public GetRequirementsModificationListResponse() {
+        }
+        
+        public GetRequirementsModificationListResponse(SocialRequirements.RequirementService.GetRequirementsModificationListResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetRequirementsModificationListResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string GetRequirementsModificationListResult;
+        
+        public GetRequirementsModificationListResponseBody() {
+        }
+        
+        public GetRequirementsModificationListResponseBody(string GetRequirementsModificationListResult) {
+            this.GetRequirementsModificationListResult = GetRequirementsModificationListResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetApprovedRequirementsModificationListRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetApprovedRequirementsModificationList", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementService.GetApprovedRequirementsModificationListRequestBody Body;
+        
+        public GetApprovedRequirementsModificationListRequest() {
+        }
+        
+        public GetApprovedRequirementsModificationListRequest(SocialRequirements.RequirementService.GetApprovedRequirementsModificationListRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetApprovedRequirementsModificationListRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string encUsername;
+        
+        public GetApprovedRequirementsModificationListRequestBody() {
+        }
+        
+        public GetApprovedRequirementsModificationListRequestBody(string encUsername) {
+            this.encUsername = encUsername;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetApprovedRequirementsModificationListResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetApprovedRequirementsModificationListResponse", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementService.GetApprovedRequirementsModificationListResponseBody Body;
+        
+        public GetApprovedRequirementsModificationListResponse() {
+        }
+        
+        public GetApprovedRequirementsModificationListResponse(SocialRequirements.RequirementService.GetApprovedRequirementsModificationListResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetApprovedRequirementsModificationListResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string GetApprovedRequirementsModificationListResult;
+        
+        public GetApprovedRequirementsModificationListResponseBody() {
+        }
+        
+        public GetApprovedRequirementsModificationListResponseBody(string GetApprovedRequirementsModificationListResult) {
+            this.GetApprovedRequirementsModificationListResult = GetApprovedRequirementsModificationListResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetRejectedRequirementsModificationListRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetRejectedRequirementsModificationList", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementService.GetRejectedRequirementsModificationListRequestBody Body;
+        
+        public GetRejectedRequirementsModificationListRequest() {
+        }
+        
+        public GetRejectedRequirementsModificationListRequest(SocialRequirements.RequirementService.GetRejectedRequirementsModificationListRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetRejectedRequirementsModificationListRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string encUsername;
+        
+        public GetRejectedRequirementsModificationListRequestBody() {
+        }
+        
+        public GetRejectedRequirementsModificationListRequestBody(string encUsername) {
+            this.encUsername = encUsername;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetRejectedRequirementsModificationListResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetRejectedRequirementsModificationListResponse", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementService.GetRejectedRequirementsModificationListResponseBody Body;
+        
+        public GetRejectedRequirementsModificationListResponse() {
+        }
+        
+        public GetRejectedRequirementsModificationListResponse(SocialRequirements.RequirementService.GetRejectedRequirementsModificationListResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetRejectedRequirementsModificationListResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string GetRejectedRequirementsModificationListResult;
+        
+        public GetRejectedRequirementsModificationListResponseBody() {
+        }
+        
+        public GetRejectedRequirementsModificationListResponseBody(string GetRejectedRequirementsModificationListResult) {
+            this.GetRejectedRequirementsModificationListResult = GetRejectedRequirementsModificationListResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetPendingApprovalRequirementsModificationListRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetPendingApprovalRequirementsModificationList", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementService.GetPendingApprovalRequirementsModificationListRequestBody Body;
+        
+        public GetPendingApprovalRequirementsModificationListRequest() {
+        }
+        
+        public GetPendingApprovalRequirementsModificationListRequest(SocialRequirements.RequirementService.GetPendingApprovalRequirementsModificationListRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetPendingApprovalRequirementsModificationListRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string encUsername;
+        
+        public GetPendingApprovalRequirementsModificationListRequestBody() {
+        }
+        
+        public GetPendingApprovalRequirementsModificationListRequestBody(string encUsername) {
+            this.encUsername = encUsername;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetPendingApprovalRequirementsModificationListResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetPendingApprovalRequirementsModificationListResponse", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementService.GetPendingApprovalRequirementsModificationListResponseBody Body;
+        
+        public GetPendingApprovalRequirementsModificationListResponse() {
+        }
+        
+        public GetPendingApprovalRequirementsModificationListResponse(SocialRequirements.RequirementService.GetPendingApprovalRequirementsModificationListResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetPendingApprovalRequirementsModificationListResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string GetPendingApprovalRequirementsModificationListResult;
+        
+        public GetPendingApprovalRequirementsModificationListResponseBody() {
+        }
+        
+        public GetPendingApprovalRequirementsModificationListResponseBody(string GetPendingApprovalRequirementsModificationListResult) {
+            this.GetPendingApprovalRequirementsModificationListResult = GetPendingApprovalRequirementsModificationListResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetDraftRequirementsModificationListRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetDraftRequirementsModificationList", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementService.GetDraftRequirementsModificationListRequestBody Body;
+        
+        public GetDraftRequirementsModificationListRequest() {
+        }
+        
+        public GetDraftRequirementsModificationListRequest(SocialRequirements.RequirementService.GetDraftRequirementsModificationListRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetDraftRequirementsModificationListRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string encUsername;
+        
+        public GetDraftRequirementsModificationListRequestBody() {
+        }
+        
+        public GetDraftRequirementsModificationListRequestBody(string encUsername) {
+            this.encUsername = encUsername;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetDraftRequirementsModificationListResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetDraftRequirementsModificationListResponse", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementService.GetDraftRequirementsModificationListResponseBody Body;
+        
+        public GetDraftRequirementsModificationListResponse() {
+        }
+        
+        public GetDraftRequirementsModificationListResponse(SocialRequirements.RequirementService.GetDraftRequirementsModificationListResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetDraftRequirementsModificationListResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string GetDraftRequirementsModificationListResult;
+        
+        public GetDraftRequirementsModificationListResponseBody() {
+        }
+        
+        public GetDraftRequirementsModificationListResponseBody(string GetDraftRequirementsModificationListResult) {
+            this.GetDraftRequirementsModificationListResult = GetDraftRequirementsModificationListResult;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface RequirementSoapChannel : SocialRequirements.RequirementService.RequirementSoap, System.ServiceModel.IClientChannel {
     }
@@ -2054,6 +2729,106 @@ namespace SocialRequirements.RequirementService {
             inValue.Body = new SocialRequirements.RequirementService.GetRequirementsListRequestBody();
             inValue.Body.encUsername = encUsername;
             return ((SocialRequirements.RequirementService.RequirementSoap)(this)).GetRequirementsListAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SocialRequirements.RequirementService.GetApprovedRequirementsListResponse SocialRequirements.RequirementService.RequirementSoap.GetApprovedRequirementsList(SocialRequirements.RequirementService.GetApprovedRequirementsListRequest request) {
+            return base.Channel.GetApprovedRequirementsList(request);
+        }
+        
+        public string GetApprovedRequirementsList(string encUsername) {
+            SocialRequirements.RequirementService.GetApprovedRequirementsListRequest inValue = new SocialRequirements.RequirementService.GetApprovedRequirementsListRequest();
+            inValue.Body = new SocialRequirements.RequirementService.GetApprovedRequirementsListRequestBody();
+            inValue.Body.encUsername = encUsername;
+            SocialRequirements.RequirementService.GetApprovedRequirementsListResponse retVal = ((SocialRequirements.RequirementService.RequirementSoap)(this)).GetApprovedRequirementsList(inValue);
+            return retVal.Body.GetApprovedRequirementsListResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetApprovedRequirementsListResponse> SocialRequirements.RequirementService.RequirementSoap.GetApprovedRequirementsListAsync(SocialRequirements.RequirementService.GetApprovedRequirementsListRequest request) {
+            return base.Channel.GetApprovedRequirementsListAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetApprovedRequirementsListResponse> GetApprovedRequirementsListAsync(string encUsername) {
+            SocialRequirements.RequirementService.GetApprovedRequirementsListRequest inValue = new SocialRequirements.RequirementService.GetApprovedRequirementsListRequest();
+            inValue.Body = new SocialRequirements.RequirementService.GetApprovedRequirementsListRequestBody();
+            inValue.Body.encUsername = encUsername;
+            return ((SocialRequirements.RequirementService.RequirementSoap)(this)).GetApprovedRequirementsListAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SocialRequirements.RequirementService.GetRejectedRequirementsListResponse SocialRequirements.RequirementService.RequirementSoap.GetRejectedRequirementsList(SocialRequirements.RequirementService.GetRejectedRequirementsListRequest request) {
+            return base.Channel.GetRejectedRequirementsList(request);
+        }
+        
+        public string GetRejectedRequirementsList(string encUsername) {
+            SocialRequirements.RequirementService.GetRejectedRequirementsListRequest inValue = new SocialRequirements.RequirementService.GetRejectedRequirementsListRequest();
+            inValue.Body = new SocialRequirements.RequirementService.GetRejectedRequirementsListRequestBody();
+            inValue.Body.encUsername = encUsername;
+            SocialRequirements.RequirementService.GetRejectedRequirementsListResponse retVal = ((SocialRequirements.RequirementService.RequirementSoap)(this)).GetRejectedRequirementsList(inValue);
+            return retVal.Body.GetRejectedRequirementsListResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetRejectedRequirementsListResponse> SocialRequirements.RequirementService.RequirementSoap.GetRejectedRequirementsListAsync(SocialRequirements.RequirementService.GetRejectedRequirementsListRequest request) {
+            return base.Channel.GetRejectedRequirementsListAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetRejectedRequirementsListResponse> GetRejectedRequirementsListAsync(string encUsername) {
+            SocialRequirements.RequirementService.GetRejectedRequirementsListRequest inValue = new SocialRequirements.RequirementService.GetRejectedRequirementsListRequest();
+            inValue.Body = new SocialRequirements.RequirementService.GetRejectedRequirementsListRequestBody();
+            inValue.Body.encUsername = encUsername;
+            return ((SocialRequirements.RequirementService.RequirementSoap)(this)).GetRejectedRequirementsListAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SocialRequirements.RequirementService.GetPendingApprovalRequirementsListResponse SocialRequirements.RequirementService.RequirementSoap.GetPendingApprovalRequirementsList(SocialRequirements.RequirementService.GetPendingApprovalRequirementsListRequest request) {
+            return base.Channel.GetPendingApprovalRequirementsList(request);
+        }
+        
+        public string GetPendingApprovalRequirementsList(string encUsername) {
+            SocialRequirements.RequirementService.GetPendingApprovalRequirementsListRequest inValue = new SocialRequirements.RequirementService.GetPendingApprovalRequirementsListRequest();
+            inValue.Body = new SocialRequirements.RequirementService.GetPendingApprovalRequirementsListRequestBody();
+            inValue.Body.encUsername = encUsername;
+            SocialRequirements.RequirementService.GetPendingApprovalRequirementsListResponse retVal = ((SocialRequirements.RequirementService.RequirementSoap)(this)).GetPendingApprovalRequirementsList(inValue);
+            return retVal.Body.GetPendingApprovalRequirementsListResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetPendingApprovalRequirementsListResponse> SocialRequirements.RequirementService.RequirementSoap.GetPendingApprovalRequirementsListAsync(SocialRequirements.RequirementService.GetPendingApprovalRequirementsListRequest request) {
+            return base.Channel.GetPendingApprovalRequirementsListAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetPendingApprovalRequirementsListResponse> GetPendingApprovalRequirementsListAsync(string encUsername) {
+            SocialRequirements.RequirementService.GetPendingApprovalRequirementsListRequest inValue = new SocialRequirements.RequirementService.GetPendingApprovalRequirementsListRequest();
+            inValue.Body = new SocialRequirements.RequirementService.GetPendingApprovalRequirementsListRequestBody();
+            inValue.Body.encUsername = encUsername;
+            return ((SocialRequirements.RequirementService.RequirementSoap)(this)).GetPendingApprovalRequirementsListAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SocialRequirements.RequirementService.GetDraftRequirementsListResponse SocialRequirements.RequirementService.RequirementSoap.GetDraftRequirementsList(SocialRequirements.RequirementService.GetDraftRequirementsListRequest request) {
+            return base.Channel.GetDraftRequirementsList(request);
+        }
+        
+        public string GetDraftRequirementsList(string encUsername) {
+            SocialRequirements.RequirementService.GetDraftRequirementsListRequest inValue = new SocialRequirements.RequirementService.GetDraftRequirementsListRequest();
+            inValue.Body = new SocialRequirements.RequirementService.GetDraftRequirementsListRequestBody();
+            inValue.Body.encUsername = encUsername;
+            SocialRequirements.RequirementService.GetDraftRequirementsListResponse retVal = ((SocialRequirements.RequirementService.RequirementSoap)(this)).GetDraftRequirementsList(inValue);
+            return retVal.Body.GetDraftRequirementsListResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetDraftRequirementsListResponse> SocialRequirements.RequirementService.RequirementSoap.GetDraftRequirementsListAsync(SocialRequirements.RequirementService.GetDraftRequirementsListRequest request) {
+            return base.Channel.GetDraftRequirementsListAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetDraftRequirementsListResponse> GetDraftRequirementsListAsync(string encUsername) {
+            SocialRequirements.RequirementService.GetDraftRequirementsListRequest inValue = new SocialRequirements.RequirementService.GetDraftRequirementsListRequest();
+            inValue.Body = new SocialRequirements.RequirementService.GetDraftRequirementsListRequestBody();
+            inValue.Body.encUsername = encUsername;
+            return ((SocialRequirements.RequirementService.RequirementSoap)(this)).GetDraftRequirementsListAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -2593,6 +3368,131 @@ namespace SocialRequirements.RequirementService {
             inValue.Body.requirementId = requirementId;
             inValue.Body.requirementModificationId = requirementModificationId;
             return ((SocialRequirements.RequirementService.RequirementSoap)(this)).GetRequirementModificationCommentsAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SocialRequirements.RequirementService.GetRequirementsModificationListResponse SocialRequirements.RequirementService.RequirementSoap.GetRequirementsModificationList(SocialRequirements.RequirementService.GetRequirementsModificationListRequest request) {
+            return base.Channel.GetRequirementsModificationList(request);
+        }
+        
+        public string GetRequirementsModificationList(string encUsername) {
+            SocialRequirements.RequirementService.GetRequirementsModificationListRequest inValue = new SocialRequirements.RequirementService.GetRequirementsModificationListRequest();
+            inValue.Body = new SocialRequirements.RequirementService.GetRequirementsModificationListRequestBody();
+            inValue.Body.encUsername = encUsername;
+            SocialRequirements.RequirementService.GetRequirementsModificationListResponse retVal = ((SocialRequirements.RequirementService.RequirementSoap)(this)).GetRequirementsModificationList(inValue);
+            return retVal.Body.GetRequirementsModificationListResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetRequirementsModificationListResponse> SocialRequirements.RequirementService.RequirementSoap.GetRequirementsModificationListAsync(SocialRequirements.RequirementService.GetRequirementsModificationListRequest request) {
+            return base.Channel.GetRequirementsModificationListAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetRequirementsModificationListResponse> GetRequirementsModificationListAsync(string encUsername) {
+            SocialRequirements.RequirementService.GetRequirementsModificationListRequest inValue = new SocialRequirements.RequirementService.GetRequirementsModificationListRequest();
+            inValue.Body = new SocialRequirements.RequirementService.GetRequirementsModificationListRequestBody();
+            inValue.Body.encUsername = encUsername;
+            return ((SocialRequirements.RequirementService.RequirementSoap)(this)).GetRequirementsModificationListAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SocialRequirements.RequirementService.GetApprovedRequirementsModificationListResponse SocialRequirements.RequirementService.RequirementSoap.GetApprovedRequirementsModificationList(SocialRequirements.RequirementService.GetApprovedRequirementsModificationListRequest request) {
+            return base.Channel.GetApprovedRequirementsModificationList(request);
+        }
+        
+        public string GetApprovedRequirementsModificationList(string encUsername) {
+            SocialRequirements.RequirementService.GetApprovedRequirementsModificationListRequest inValue = new SocialRequirements.RequirementService.GetApprovedRequirementsModificationListRequest();
+            inValue.Body = new SocialRequirements.RequirementService.GetApprovedRequirementsModificationListRequestBody();
+            inValue.Body.encUsername = encUsername;
+            SocialRequirements.RequirementService.GetApprovedRequirementsModificationListResponse retVal = ((SocialRequirements.RequirementService.RequirementSoap)(this)).GetApprovedRequirementsModificationList(inValue);
+            return retVal.Body.GetApprovedRequirementsModificationListResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetApprovedRequirementsModificationListResponse> SocialRequirements.RequirementService.RequirementSoap.GetApprovedRequirementsModificationListAsync(SocialRequirements.RequirementService.GetApprovedRequirementsModificationListRequest request) {
+            return base.Channel.GetApprovedRequirementsModificationListAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetApprovedRequirementsModificationListResponse> GetApprovedRequirementsModificationListAsync(string encUsername) {
+            SocialRequirements.RequirementService.GetApprovedRequirementsModificationListRequest inValue = new SocialRequirements.RequirementService.GetApprovedRequirementsModificationListRequest();
+            inValue.Body = new SocialRequirements.RequirementService.GetApprovedRequirementsModificationListRequestBody();
+            inValue.Body.encUsername = encUsername;
+            return ((SocialRequirements.RequirementService.RequirementSoap)(this)).GetApprovedRequirementsModificationListAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SocialRequirements.RequirementService.GetRejectedRequirementsModificationListResponse SocialRequirements.RequirementService.RequirementSoap.GetRejectedRequirementsModificationList(SocialRequirements.RequirementService.GetRejectedRequirementsModificationListRequest request) {
+            return base.Channel.GetRejectedRequirementsModificationList(request);
+        }
+        
+        public string GetRejectedRequirementsModificationList(string encUsername) {
+            SocialRequirements.RequirementService.GetRejectedRequirementsModificationListRequest inValue = new SocialRequirements.RequirementService.GetRejectedRequirementsModificationListRequest();
+            inValue.Body = new SocialRequirements.RequirementService.GetRejectedRequirementsModificationListRequestBody();
+            inValue.Body.encUsername = encUsername;
+            SocialRequirements.RequirementService.GetRejectedRequirementsModificationListResponse retVal = ((SocialRequirements.RequirementService.RequirementSoap)(this)).GetRejectedRequirementsModificationList(inValue);
+            return retVal.Body.GetRejectedRequirementsModificationListResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetRejectedRequirementsModificationListResponse> SocialRequirements.RequirementService.RequirementSoap.GetRejectedRequirementsModificationListAsync(SocialRequirements.RequirementService.GetRejectedRequirementsModificationListRequest request) {
+            return base.Channel.GetRejectedRequirementsModificationListAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetRejectedRequirementsModificationListResponse> GetRejectedRequirementsModificationListAsync(string encUsername) {
+            SocialRequirements.RequirementService.GetRejectedRequirementsModificationListRequest inValue = new SocialRequirements.RequirementService.GetRejectedRequirementsModificationListRequest();
+            inValue.Body = new SocialRequirements.RequirementService.GetRejectedRequirementsModificationListRequestBody();
+            inValue.Body.encUsername = encUsername;
+            return ((SocialRequirements.RequirementService.RequirementSoap)(this)).GetRejectedRequirementsModificationListAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SocialRequirements.RequirementService.GetPendingApprovalRequirementsModificationListResponse SocialRequirements.RequirementService.RequirementSoap.GetPendingApprovalRequirementsModificationList(SocialRequirements.RequirementService.GetPendingApprovalRequirementsModificationListRequest request) {
+            return base.Channel.GetPendingApprovalRequirementsModificationList(request);
+        }
+        
+        public string GetPendingApprovalRequirementsModificationList(string encUsername) {
+            SocialRequirements.RequirementService.GetPendingApprovalRequirementsModificationListRequest inValue = new SocialRequirements.RequirementService.GetPendingApprovalRequirementsModificationListRequest();
+            inValue.Body = new SocialRequirements.RequirementService.GetPendingApprovalRequirementsModificationListRequestBody();
+            inValue.Body.encUsername = encUsername;
+            SocialRequirements.RequirementService.GetPendingApprovalRequirementsModificationListResponse retVal = ((SocialRequirements.RequirementService.RequirementSoap)(this)).GetPendingApprovalRequirementsModificationList(inValue);
+            return retVal.Body.GetPendingApprovalRequirementsModificationListResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetPendingApprovalRequirementsModificationListResponse> SocialRequirements.RequirementService.RequirementSoap.GetPendingApprovalRequirementsModificationListAsync(SocialRequirements.RequirementService.GetPendingApprovalRequirementsModificationListRequest request) {
+            return base.Channel.GetPendingApprovalRequirementsModificationListAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetPendingApprovalRequirementsModificationListResponse> GetPendingApprovalRequirementsModificationListAsync(string encUsername) {
+            SocialRequirements.RequirementService.GetPendingApprovalRequirementsModificationListRequest inValue = new SocialRequirements.RequirementService.GetPendingApprovalRequirementsModificationListRequest();
+            inValue.Body = new SocialRequirements.RequirementService.GetPendingApprovalRequirementsModificationListRequestBody();
+            inValue.Body.encUsername = encUsername;
+            return ((SocialRequirements.RequirementService.RequirementSoap)(this)).GetPendingApprovalRequirementsModificationListAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SocialRequirements.RequirementService.GetDraftRequirementsModificationListResponse SocialRequirements.RequirementService.RequirementSoap.GetDraftRequirementsModificationList(SocialRequirements.RequirementService.GetDraftRequirementsModificationListRequest request) {
+            return base.Channel.GetDraftRequirementsModificationList(request);
+        }
+        
+        public string GetDraftRequirementsModificationList(string encUsername) {
+            SocialRequirements.RequirementService.GetDraftRequirementsModificationListRequest inValue = new SocialRequirements.RequirementService.GetDraftRequirementsModificationListRequest();
+            inValue.Body = new SocialRequirements.RequirementService.GetDraftRequirementsModificationListRequestBody();
+            inValue.Body.encUsername = encUsername;
+            SocialRequirements.RequirementService.GetDraftRequirementsModificationListResponse retVal = ((SocialRequirements.RequirementService.RequirementSoap)(this)).GetDraftRequirementsModificationList(inValue);
+            return retVal.Body.GetDraftRequirementsModificationListResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetDraftRequirementsModificationListResponse> SocialRequirements.RequirementService.RequirementSoap.GetDraftRequirementsModificationListAsync(SocialRequirements.RequirementService.GetDraftRequirementsModificationListRequest request) {
+            return base.Channel.GetDraftRequirementsModificationListAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetDraftRequirementsModificationListResponse> GetDraftRequirementsModificationListAsync(string encUsername) {
+            SocialRequirements.RequirementService.GetDraftRequirementsModificationListRequest inValue = new SocialRequirements.RequirementService.GetDraftRequirementsModificationListRequest();
+            inValue.Body = new SocialRequirements.RequirementService.GetDraftRequirementsModificationListRequestBody();
+            inValue.Body.encUsername = encUsername;
+            return ((SocialRequirements.RequirementService.RequirementSoap)(this)).GetDraftRequirementsModificationListAsync(inValue);
         }
     }
 }

@@ -68,7 +68,7 @@ namespace SocialRequirements
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            SetupRequirementsMenuLinks();
         }
 
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
@@ -145,6 +145,48 @@ namespace SocialRequirements
                                     CommonConstants.QueryStringParams.ProjectId + "=" + activitySumm.ProjectId + "&" +
                                     CommonConstants.QueryStringParams.EntityId + "=" + activitySumm.EntityId + "&" +
                                     CommonConstants.QueryStringParams.ActionId + "=" + activitySumm.ActionId;
+        }
+
+        private void SetupRequirementsMenuLinks()
+        {
+            // requirements links
+            RequirementsAllLink.NavigateUrl = CommonConstants.FormsUrl.RequirementsList;
+
+            RequirementsApprovedLink.NavigateUrl = CommonConstants.FormsUrl.RequirementsList + "?" +
+                                                   CommonConstants.QueryStringParams.Filter + "=" +
+                                                   CommonConstants.Filters.Approved;
+
+            RequirementsRejectedLink.NavigateUrl = CommonConstants.FormsUrl.RequirementsList + "?" +
+                                                   CommonConstants.QueryStringParams.Filter + "=" +
+                                                   CommonConstants.Filters.Rejected;
+
+            RequirementsPendingLink.NavigateUrl = CommonConstants.FormsUrl.RequirementsList + "?" +
+                                                   CommonConstants.QueryStringParams.Filter + "=" +
+                                                   CommonConstants.Filters.PendingApproval;
+
+            RequirementsDraftLink.NavigateUrl = CommonConstants.FormsUrl.RequirementsList + "?" +
+                                                   CommonConstants.QueryStringParams.Filter + "=" +
+                                                   CommonConstants.Filters.Draft;
+
+            // requirements modification links
+
+            RequirementsModifAllLink.NavigateUrl = CommonConstants.FormsUrl.RequirementsModificationList;
+
+            RequirementsModifApprovedLink.NavigateUrl = CommonConstants.FormsUrl.RequirementsModificationList + "?" +
+                                                   CommonConstants.QueryStringParams.Filter + "=" +
+                                                   CommonConstants.Filters.Approved;
+
+            RequirementsModifRejectedLink.NavigateUrl = CommonConstants.FormsUrl.RequirementsModificationList + "?" +
+                                                   CommonConstants.QueryStringParams.Filter + "=" +
+                                                   CommonConstants.Filters.Rejected;
+
+            RequirementsModifPendingLink.NavigateUrl = CommonConstants.FormsUrl.RequirementsModificationList + "?" +
+                                                   CommonConstants.QueryStringParams.Filter + "=" +
+                                                   CommonConstants.Filters.PendingApproval;
+
+            RequirementsModifDraftLink.NavigateUrl = CommonConstants.FormsUrl.RequirementsModificationList + "?" +
+                                                   CommonConstants.QueryStringParams.Filter + "=" +
+                                                   CommonConstants.Filters.Draft;
         }
     }
 

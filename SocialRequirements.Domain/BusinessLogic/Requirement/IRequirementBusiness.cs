@@ -51,6 +51,34 @@ namespace SocialRequirements.Domain.BusinessLogic.Requirement
         List<RequirementDto> GetList(string username);
 
         /// <summary>
+        /// Query approved requirements by user from all of his projects and companies
+        /// </summary>
+        /// <param name="username">Username related to the requirements</param>
+        /// <returns>List of requirements</returns>
+        List<RequirementDto> GetListApproved(string username);
+
+        /// <summary>
+        /// Query rejected requirements by user from all of his projects and companies
+        /// </summary>
+        /// <param name="username">Username related to the requirements</param>
+        /// <returns>List of requirements</returns>
+        List<RequirementDto> GetListRejected(string username);
+
+        /// <summary>
+        /// Query requirements with pending approval by user from all of his projects and companies
+        /// </summary>
+        /// <param name="username">Username related to the requirements</param>
+        /// <returns>List of requirements</returns>
+        List<RequirementDto> GetListPending(string username);
+
+        /// <summary>
+        /// Query draft requirements by user from all of his projects and companies
+        /// </summary>
+        /// <param name="username">Username related to the requirements</param>
+        /// <returns>List of requirements</returns>
+        List<RequirementDto> GetListDraft(string username);
+
+        /// <summary>
         /// Returns requirement data matching criteria specified by input params
         /// </summary>
         /// <param name="companyId">Company ID</param>

@@ -1,4 +1,5 @@
-﻿using SocialRequirements.Domain.DTO.Requirement;
+﻿using System.Collections.Generic;
+using SocialRequirements.Domain.DTO.Requirement;
 
 namespace SocialRequirements.Domain.Repository.Requirement
 {
@@ -29,6 +30,13 @@ namespace SocialRequirements.Domain.Repository.Requirement
         /// <param name="requirementId">Requirement ID</param>
         /// <returns>Current active requirement modification request, null when no active modifiaction request is found</returns>
         RequirementModificationDto Get(long companyId, long projectId, long requirementId);
+
+        /// <summary>
+        /// Query requirements modifications by projects
+        /// </summary>
+        /// <param name="projectIds">List of project identifiers </param>
+        /// <returns>List of requirements modification</returns>
+        List<RequirementModificationDto> GetList(List<long> projectIds);
 
         /// <summary>
         /// Updates the status of a requirement modification request. Tf the status is approved, the approval user is set.

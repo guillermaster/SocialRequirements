@@ -76,6 +76,46 @@ namespace SocialRequirements.Business.Requirement
             return _requirementData.GetList(projects.Select(p => p.Id).ToList());
         }
 
+        public List<RequirementDto> GetListApproved(string username)
+        {
+            var allRequirements = GetList(username);
+
+            return
+                allRequirements.Where(
+                    requirement => requirement.StatusId == (int) GeneralCatalog.Detail.RequirementStatus.Approved)
+                    .ToList();
+        }
+
+        public List<RequirementDto> GetListRejected(string username)
+        {
+            var allRequirements = GetList(username);
+
+            return
+                allRequirements.Where(
+                    requirement => requirement.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.Rejected)
+                    .ToList();
+        }
+
+        public List<RequirementDto> GetListPending(string username)
+        {
+            var allRequirements = GetList(username);
+
+            return
+                allRequirements.Where(
+                    requirement => requirement.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.PendingApproval)
+                    .ToList();
+        }
+
+        public List<RequirementDto> GetListDraft(string username)
+        {
+            var allRequirements = GetList(username);
+
+            return
+                allRequirements.Where(
+                    requirement => requirement.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.Draft)
+                    .ToList();
+        }
+
         public RequirementDto Get(long companyId, long projectId, long requirementId)
         {
             return _requirementData.Get(companyId, projectId, requirementId);

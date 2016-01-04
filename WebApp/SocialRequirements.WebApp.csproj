@@ -2154,6 +2154,7 @@
     <Content Include="Requirements\RequirementQuestion.aspx" />
     <Content Include="Requirements\RequirementModify.aspx" />
     <Content Include="Requirements\Requirement.aspx" />
+    <Content Include="Requirements\RequirementsModificationList.aspx" />
     <Content Include="Requirements\RequirementsList.aspx" />
     <Content Include="Requirements\RequirementsQuestionsList.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -2369,6 +2370,33 @@
     <Content Include="Service References\RequirementService\SocialRequirements.RequirementService.GetRequirementModificationCommentsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Service References\RequirementService\SocialRequirements.RequirementService.GetApprovedRequirementsListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RequirementService\SocialRequirements.RequirementService.GetDraftRequirementsListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RequirementService\SocialRequirements.RequirementService.GetPendingApprovalRequirementsListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RequirementService\SocialRequirements.RequirementService.GetRejectedRequirementsListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RequirementService\SocialRequirements.RequirementService.GetApprovedRequirementsModificationListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RequirementService\SocialRequirements.RequirementService.GetDraftRequirementsModificationListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RequirementService\SocialRequirements.RequirementService.GetPendingApprovalRequirementsModificationListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RequirementService\SocialRequirements.RequirementService.GetRejectedRequirementsModificationListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RequirementService\SocialRequirements.RequirementService.GetRequirementsModificationListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2515,6 +2543,13 @@
     </Compile>
     <Compile Include="Requirements\Requirement.aspx.designer.cs">
       <DependentUpon>Requirement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Requirements\RequirementsModificationList.aspx.cs">
+      <DependentUpon>RequirementsModificationList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Requirements\RequirementsModificationList.aspx.designer.cs">
+      <DependentUpon>RequirementsModificationList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Requirements\RequirementsList.aspx.cs">
       <DependentUpon>RequirementsList.aspx</DependentUpon>

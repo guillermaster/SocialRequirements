@@ -8,16 +8,16 @@ using SocialRequirements.Utilities;
 
 namespace SocialRequirements.Requirements
 {
-    public partial class RequirementsList : SocialRequirementsPrivatePage
+    public partial class RequirementsModificationList : SocialRequirementsPrivatePage
     {
         #region Properties
-        protected List<RequirementDto> Requirements
+        protected List<RequirementModificationDto> Requirements
         {
             get
             {
                 return ViewState["Requirements"] != null
-                    ? (List<RequirementDto>) ViewState["Requirements"]
-                    : new List<RequirementDto>();
+                    ? (List<RequirementModificationDto>) ViewState["Requirements"]
+                    : new List<RequirementModificationDto>();
             }
             set { ViewState["Requirements"] = value; }
         }
@@ -38,16 +38,18 @@ namespace SocialRequirements.Requirements
 
         protected void RequirementsListRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
-            var requirement = Requirements[e.Item.ItemIndex];
+            var requirementModif = Requirements[e.Item.ItemIndex];
             
             switch (e.CommandName)
             {
                 case CommonConstants.SocialActionsCommands.Like:
-                    Like(requirement.CompanyId, requirement.ProjectId, requirement.Id, (int)GeneralCatalog.Detail.Entity.Requirement);
+                    Like(requirementModif.CompanyId, requirementModif.ProjectId, requirementModif.Id,
+                        (int)GeneralCatalog.Detail.Entity.RequirementModification, requirementModif.RequirementId);
                     SetRequirementsList();
                     break;
                 case CommonConstants.SocialActionsCommands.Dislike:
-                    Dislike(requirement.CompanyId, requirement.ProjectId, requirement.Id, (int)GeneralCatalog.Detail.Entity.Requirement);
+                    Dislike(requirementModif.CompanyId, requirementModif.ProjectId, requirementModif.Id,
+                        (int) GeneralCatalog.Detail.Entity.RequirementModification, requirementModif.RequirementId);
                     SetRequirementsList();
                     break;
                 case CommonConstants.SocialActionsCommands.Comment:
@@ -87,24 +89,24 @@ namespace SocialRequirements.Requirements
             switch (filter)
             {
                 case CommonConstants.Filters.Approved:
-                    requirementsXmlStr = requirementSrv.GetApprovedRequirementsList(GetUsernameEncrypted());
+                    requirementsXmlStr = requirementSrv.GetApprovedRequirementsModificationList(GetUsernameEncrypted());
                     break;
                 case CommonConstants.Filters.Rejected:
-                    requirementsXmlStr = requirementSrv.GetRejectedRequirementsList(GetUsernameEncrypted());
+                    requirementsXmlStr = requirementSrv.GetRejectedRequirementsModificationList(GetUsernameEncrypted());
                     break;
                 case CommonConstants.Filters.PendingApproval:
-                    requirementsXmlStr = requirementSrv.GetPendingApprovalRequirementsList(GetUsernameEncrypted());
+                    requirementsXmlStr = requirementSrv.GetPendingApprovalRequirementsModificationList(GetUsernameEncrypted());
                     break;
                 case CommonConstants.Filters.Draft:
-                    requirementsXmlStr = requirementSrv.GetDraftRequirementsList(GetUsernameEncrypted());
+                    requirementsXmlStr = requirementSrv.GetDraftRequirementsModificationList(GetUsernameEncrypted());
                     break;
                 default:
-                    requirementsXmlStr = requirementSrv.GetRequirementsList(GetUsernameEncrypted());
+                    requirementsXmlStr = requirementSrv.GetRequirementsModificationList(GetUsernameEncrypted());
                     break;
             }
 
-            var serializer = new ObjectSerializer<List<RequirementDto>>();
-            Requirements = (List<RequirementDto>)serializer.Deserialize(requirementsXmlStr);
+            var serializer = new ObjectSerializer<List<RequirementModificationDto>>();
+            Requirements = (List<RequirementModificationDto>)serializer.Deserialize(requirementsXmlStr);
         }
         #endregion
     }

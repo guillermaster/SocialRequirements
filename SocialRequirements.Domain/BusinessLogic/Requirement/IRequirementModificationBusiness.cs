@@ -1,4 +1,5 @@
-﻿using SocialRequirements.Domain.DTO.Requirement;
+﻿using System.Collections.Generic;
+using SocialRequirements.Domain.DTO.Requirement;
 
 namespace SocialRequirements.Domain.BusinessLogic.Requirement
 {
@@ -102,5 +103,40 @@ namespace SocialRequirements.Domain.BusinessLogic.Requirement
         /// <param name="requirementModificationId">Requirement modification ID</param>
         /// <param name="username">Username who gave the dislike</param>
         void Dislike(long companyId, long projectId, long requirementId, long requirementModificationId, string username);
+
+        /// <summary>
+        /// Query requirements modification by user from all of his projects and companies
+        /// </summary>
+        /// <param name="username">Username related to the requirements</param>
+        /// <returns>List of requirements</returns>
+        List<RequirementModificationDto> GetList(string username);
+
+        /// <summary>
+        /// Query approved requirements modification by user from all of his projects and companies
+        /// </summary>
+        /// <param name="username">Username related to the requirements</param>
+        /// <returns>List of requirements</returns>
+        List<RequirementModificationDto> GetListApproved(string username);
+
+        /// <summary>
+        /// Query rejected requirements modification by user from all of his projects and companies
+        /// </summary>
+        /// <param name="username">Username related to the requirements</param>
+        /// <returns>List of requirements</returns>
+        List<RequirementModificationDto> GetListRejected(string username);
+
+        /// <summary>
+        /// Query requirements modification with pending approval by user from all of his projects and companies
+        /// </summary>
+        /// <param name="username">Username related to the requirements</param>
+        /// <returns>List of requirements</returns>
+        List<RequirementModificationDto> GetListPending(string username);
+
+        /// <summary>
+        /// Query draft requirements modification by user from all of his projects and companies
+        /// </summary>
+        /// <param name="username">Username related to the requirements</param>
+        /// <returns>List of requirements</returns>
+        List<RequirementModificationDto> GetListDraft(string username);
     }
 }

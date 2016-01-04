@@ -1,5 +1,7 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="SocialRequirements.SiteMaster" %>
 
+<%@ Import Namespace="SocialRequirements.Domain.General" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -268,7 +270,8 @@
                 <li class="dropdown toolbar-icon-bg">
                     <a href="#" class="hasnotifications dropdown-toggle" data-toggle='dropdown'>
                         <span class="icon-bg"><i class="fa fa-fw fa-bell"></i></span>
-                        <span class="badge badge-info"><asp:Label runat="server" ID="NotificationsQuantity" /></span>
+                        <span class="badge badge-info">
+                            <asp:Label runat="server" ID="NotificationsQuantity" /></span>
                     </a>
                     <div class="dropdown-menu dropdown-alternate notifications arrow">
                         <div class="dd-header">
@@ -297,86 +300,7 @@
                         </div>
                     </div>
                 </li>
-
-                <li class="dropdown toolbar-icon-bg hidden-xs">
-                    <a href="#" class="hasnotifications dropdown-toggle" data-toggle='dropdown'><span class="icon-bg"><i class="fa fa-fw fa-envelope"></i></span></a>
-                    <div class="dropdown-menu dropdown-alternate messages arrow">
-                        <div class="dd-header">
-                            <span>Messages</span>
-                            <span><a href="#">Settings</a></span>
-                        </div>
-
-                        <div class="scrollthis scroll-pane">
-                            <ul class="scroll-content">
-                                <li class="">
-                                    <a href="#">
-                                        <img class="msg-avatar" src="assets/demo/avatar/avatar_09.png" alt="avatar" />
-                                        <div class="msg-content">
-                                            <span class="name">Steven Shipe</span>
-                                            <span class="msg">Nonummy nibh epismod lorem ipsum</span>
-                                        </div>
-                                        <span class="msg-time">30s</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img class="msg-avatar" src="assets/demo/avatar/avatar_01.png" alt="avatar" />
-                                        <div class="msg-content">
-                                            <span class="name">Roxann Hollingworth <i class="fa fa-paperclip attachment"></i></span>
-                                            <span class="msg">Lorem ipsum dolor sit amet consectetur adipisicing elit</span>
-                                        </div>
-                                        <span class="msg-time">5m</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img class="msg-avatar" src="assets/demo/avatar/avatar_05.png" alt="avatar" />
-                                        <div class="msg-content">
-                                            <span class="name">Diamond Harlands</span>
-                                            <span class="msg">:)</span>
-                                        </div>
-                                        <span class="msg-time">3h</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img class="msg-avatar" src="assets/demo/avatar/avatar_02.png" alt="avatar" />
-                                        <div class="msg-content">
-                                            <span class="name">Michael Serio <i class="fa fa-paperclip attachment"></i></span>
-                                            <span class="msg">Sed distinctio dolores fuga molestiae modi?</span>
-                                        </div>
-                                        <span class="msg-time">12h</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img class="msg-avatar" src="assets/demo/avatar/avatar_03.png" alt="avatar" />
-                                        <div class="msg-content">
-                                            <span class="name">Matt Jones</span>
-                                            <span class="msg">Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et mole</span>
-                                        </div>
-                                        <span class="msg-time">2d</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img class="msg-avatar" src="assets/demo/avatar/avatar_07.png" alt="avatar" />
-                                        <div class="msg-content">
-                                            <span class="name">John Doe</span>
-                                            <span class="msg">Neque porro quisquam est qui dolorem</span>
-                                        </div>
-                                        <span class="msg-time">7d</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="dd-footer"><a href="#">View all messages</a></div>
-                    </div>
-                </li>
-
-
-
+                
                 <li class="dropdown toolbar-icon-bg">
                     <a href="#" class="dropdown-toggle" data-toggle='dropdown'><span class="icon-bg"><i class="fa fa-fw fa-user"></i></span></a>
                     <ul class="dropdown-menu userinfo arrow">
@@ -385,7 +309,8 @@
                         <li><a href="#"><span class="pull-left">Settings</span> <i class="pull-right fa fa-cog"></i></a></li>
                         <li class="divider"></li>
                         <li><a href="#"><span class="pull-left">Earnings</span> <i class="pull-right fa fa-line-chart"></i></a></li>
-                        <li><asp:HyperLink runat="server" NavigateUrl="~/Account/SetCompany.aspx"><span class="pull-left">Company</span> <i class="pull-right fa fa-list-alt"></i></asp:HyperLink></li>
+                        <li>
+                            <asp:HyperLink runat="server" NavigateUrl="~/Account/SetCompany.aspx"><span class="pull-left">Company</span> <i class="pull-right fa fa-list-alt"></i></asp:HyperLink></li>
                         <li><a href="#"><span class="pull-left">Withdrawals</span> <i class="pull-right fa fa-dollar"></i></a></li>
                         <li class="divider"></li>
                         <li>
@@ -411,7 +336,8 @@
                                         </div>
                                         <div class="tabular-cell welcome-options">
                                             <span class="welcome-text">Welcome,</span>
-                                            <a href="#" class="name"><asp:Label runat="server" ID="UserFullName"/></a>
+                                            <a href="#" class="name">
+                                                <asp:Label runat="server" ID="UserFullName" /></a>
                                         </div>
                                     </div>
                                 </div>
@@ -434,31 +360,34 @@
                                         <li><a href="javascript:;"><i class="fa fa-columns"></i><span>Requirements</span><span class="badge badge-primary">8</span></a>
                                             <ul class="acc-menu">
                                                 <li>
-                                                    <asp:HyperLink runat="server" NavigateUrl="~/Requirements/RequirementsList.aspx">All requirements</asp:HyperLink></li>
+                                                    <asp:HyperLink runat="server" ID="RequirementsAllLink">All requirements</asp:HyperLink></li>
                                                 <li>
-                                                    <asp:HyperLink runat="server" NavigateUrl="~/Requirements/RequirementsList.aspx">Approved requirements</asp:HyperLink></li>
+                                                    <asp:HyperLink runat="server" ID="RequirementsApprovedLink">Approved requirements</asp:HyperLink></li>
                                                 <li>
-                                                    <asp:HyperLink runat="server" NavigateUrl="~/Requirements/RequirementsList.aspx">Rejected requirements</asp:HyperLink></li>
+                                                    <asp:HyperLink runat="server" ID="RequirementsRejectedLink">Rejected requirements</asp:HyperLink></li>
                                                 <li>
-                                                    <asp:HyperLink runat="server" NavigateUrl="~/Requirements/RequirementsList.aspx">Pending approval</asp:HyperLink></li>
+                                                    <asp:HyperLink runat="server" ID="RequirementsPendingLink">Pending approval</asp:HyperLink></li>
                                                 <li>
-                                                    <asp:HyperLink runat="server" NavigateUrl="~/Requirements/RequirementsList.aspx">Draft requirements</asp:HyperLink></li>
+                                                    <asp:HyperLink runat="server" ID="RequirementsDraftLink">Draft requirements</asp:HyperLink></li>
 
                                                 <li>
-                                                    <asp:HyperLink runat="server" NavigateUrl="~/Requirements/RequirementsList.aspx">Modification requests</asp:HyperLink></li>
-
-                                                <li><a href="javascript:;">Horizontal Nav <span class="badge badge-dark">2</span></a>
+                                                    <a href="javascript:;">Modification requests<!--<span class="badge badge-dark">2</span>--></a>
                                                     <ul class="acc-menu">
-                                                        <li><a href="layout-horizontal-small.html">Small Menu</a></li>
-                                                        <li><a href="layout-horizontal-large.html">Large Menu</a></li>
+                                                        <li>
+                                                            <asp:HyperLink runat="server" ID="RequirementsModifAllLink">All</asp:HyperLink></li>
+                                                        <li>
+                                                            <asp:HyperLink runat="server" ID="RequirementsModifApprovedLink">Approved</asp:HyperLink></li>
+                                                        <li>
+                                                            <asp:HyperLink runat="server" ID="RequirementsModifRejectedLink">Rejected</asp:HyperLink></li>
+                                                        <li>
+                                                            <asp:HyperLink runat="server" ID="RequirementsModifPendingLink">Pending approval</asp:HyperLink></li>
+                                                        <li>
+                                                            <asp:HyperLink runat="server" ID="RequirementsModifDraftLink">Draft</asp:HyperLink></li>
                                                     </ul>
                                                 </li>
-
-                                                <li><a href="layout-compact.html">Compact Leftbar</a></li>
-
                                             </ul>
                                         </li>
-                                        <li><a href="javascript:;"><i class="fa fa-flask"></i><span>Questions</span></a>
+                                        <li><a href="javascript:;"><i class="fa fa-tasks"></i><span>Questions</span></a>
                                             <ul class="acc-menu">
                                                 <li>
                                                     <asp:HyperLink runat="server" NavigateUrl="~/Requirements/RequirementsQuestionsList.aspx">All questions</asp:HyperLink></li>
@@ -471,181 +400,7 @@
                                                 <li><a href="ui-helpers.html">Helpers</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="javascript:;"><i class="fa fa-cogs"></i><span>Bootstrap</span><span class="label label-info">UI</span></a>
-                                            <ul class="acc-menu">
-                                                <li><a href="ui-modals.html">Modal Box</a></li>
-                                                <li><a href="ui-progress.html">Progress Bars</a></li>
-                                                <li><a href="ui-paginations.html">Pagers &amp; Paginations</a></li>
-                                                <li><a href="ui-breadcrumbs.html">Breadcrumbs</a></li>
-                                                <li><a href="ui-labelsbadges.html">Labels &amp; Badges</a></li>
-                                                <li><a href="ui-alerts.html">Alerts &amp; Notificiations</a></li>
-                                                <li><a href="ui-tabs.html">Tabs &amp; Accordions</a></li>
-
-                                                <li><a href="ui-carousel.html">Carousel</a></li>
-                                                <li><a href="ui-wells.html">Wells</a></li>
-                                            </ul>
-                                        </li>
-
-                                        <li class="nav-separator">Plugins</li>
-                                        <li><a href="javascript:;"><i class="fa fa-random"></i><span>Components</span></a>
-                                            <ul class="acc-menu">
-                                                <li><a href="ui-tiles.html">Tiles</a></li>
-                                                <li><a href="custom-skylo.html">Page Progress Bar</a></li>
-                                                <li><a href="custom-bootbox.html">Bootbox</a></li>
-                                                <li><a href="custom-datepaginator.html">Date Paginator</a></li>
-                                                <li><a href="custom-pines.html">Pines Notification</a></li>
-                                                <li><a href="custom-notific8.html">Notific8 Notification</a></li>
-                                                <li><a href="custom-pulsate.html">Pulsating Elements</a></li>
-                                                <li><a href="custom-knob.html">jQuery Knob</a></li>
-                                                <li><a href="custom-jqueryui.html">jQueryUI Widgets</a></li>
-                                                <li><a href="custom-ionrange.html">Ion Range Slider</a></li>
-                                                <li><a href="custom-tour.html">Tour</a></li>
-                                                <li><a href="ui-nestable.html">Nestable Lists</a></li>
-                                                <li><a href="custom-jstree.html">Tree View</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="javascript:;"><i class="fa fa-pencil"></i><span>Forms</span></a>
-                                            <ul class="acc-menu">
-                                                <li><a href="form-components.html">Form Components</a></li>
-                                                <li><a href="form-pickers.html">Pickers</a></li>
-                                                <li><a href="form-wizard.html">Form Wizard</a></li>
-                                                <li><a href="form-validation.html">Form Validation</a></li>
-                                                <li><a href="form-masks.html">Form Masks</a></li>
-                                                <li><a href="form-dropzone.html">Dropzone Uploader</a></li>
-                                                <li><a href="form-ckeditor.html">CKEditor</a></li>
-                                                <li><a href="form-summernote.html">Summernote</a></li>
-                                                <li><a href="form-markdown.html">Markdown Editor</a></li>
-                                                <li><a href="form-xeditable.html">Inline Editor</a></li>
-                                                <li><a href="form-imagecrop.html">Image Cropping</a></li>
-                                                <li><a href="form-gridforms.html">Grid Forms</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="javascript:;"><i class="fa fa-table"></i><span>Tables</span></a>
-                                            <ul class="acc-menu">
-                                                <li><a href="tables-responsive.html">Responsive Tables</a></li>
-                                                <li><a href="tables-editable.html">Editable Tables</a></li>
-                                                <li><a href="tables-data.html">Data Tables</a></li>
-                                                <li><a href="tables-advanceddatatable.html">Advanced Data Tables</a></li>
-                                                <li><a href="tables-fixedheader.html">Fixed Header Tables</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="ui-advancedpanels.html"><i class="fa fa-cog fa-spin"></i><span>Panels</span><span class="label label-alizarin">HOT!</span></a></li>
-                                        <li><a href="javascript:;"><i class="fa fa-bar-chart-o"></i><span>Analytics</span></a>
-                                            <ul class="acc-menu">
-                                                <li><a href="charts-flot.html">Flot</a></li>
-                                                <li><a href="charts-sparklines.html">Sparklines</a></li>
-                                                <li><a href="charts-morris.html">Morris.js</a></li>
-                                                <li><a href="charts-chart.html">Chart.js</a></li>
-                                                <li><a href="charts-easypiechart.html">Easy Pie Chart</a></li>
-                                                <li><a href="charts-nvd3.html">nvd3 <span class="label label-info">New</span></a></li>
-                                                <li><a href="charts-gantt.html">Gantt Chart</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="javascript:;"><i class="fa fa-map-marker"></i><span>Maps</span></a>
-                                            <ul class="acc-menu">
-                                                <li><a href="maps-google.html">Google Maps</a></li>
-                                                <li><a href="maps-vector.html">Vector Maps</a></li>
-                                                <li><a href="maps-mapael.html">Mapael</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="javascript:;"><i class="fa fa-files-o"></i><span>Pages</span></a>
-                                            <ul class="acc-menu">
-                                                <li><a href="extras-messages.html">Messages</a></li>
-                                                <li><a href="extras-profile.html">Profile</a></li>
-                                                <li><a href="extras-calendar.html">Calendar</a></li>
-                                                <li><a href="extras-timeline.html">Timeline</a></li>
-                                                <li><a href="extras-search.html">Search Page</a></li>
-                                                <li><a href="extras-chatroom.html">Chat Room</a></li>
-                                                <li><a href="extras-invoice.html">Invoice</a></li>
-                                                <li><a href="javascript:;">Responsive Email Template</a>
-                                                    <ul class="acc-menu">
-                                                        <li><a href="responsive-email/basic.html">Basic</a></li>
-                                                        <li><a href="responsive-email/hero.html">Hero</a></li>
-                                                        <li><a href="responsive-email/sidebar.html">Sidebar</a></li>
-                                                        <li><a href="responsive-email/sidebar-hero.html">Sidebar Hero</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="extras-gallery.html">Gallery</a></li>
-                                                <li><a href="coming-soon.html">Coming Soon</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="javascript:;"><i class="fa fa-briefcase"></i><span>Extras</span></a>
-                                            <ul class="acc-menu">
-                                                <li><a href="extras-pricingtable.html">Pricing Tables</a></li>
-                                                <li><a href="extras-faq.html">FAQ</a></li>
-                                                <li><a href="extras-registration.html">Registration</a></li>
-                                                <li><a href="extras-forgotpassword.html">Password Reset</a></li>
-                                                <li><a href="extras-login.html">Login</a></li>
-                                                <li><a href="extras-404.html">404 Page</a></li>
-                                                <li><a href="extras-500.html">500 Page</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="javascript:;"><i class="fa fa-sitemap"></i><span>Multiple Levels</span><span class="badge badge-dark">99</span></a>
-                                            <ul class="acc-menu">
-                                                <li><a href="javascript:;">Menu Item 1</a></li>
-                                                <li><a href="javascript:;">Menu Item 2</a>
-                                                    <ul class="acc-menu">
-                                                        <li><a href="javascript:;">Menu Item 2.1</a></li>
-                                                        <li><a href="javascript:;">Menu Item 2.2</a>
-                                                            <ul class="acc-menu">
-                                                                <li><a href="javascript:;">Menu Item 2.2.1</a></li>
-                                                                <li><a href="javascript:;">Menu Item 2.2.2</a>
-                                                                    <ul class="acc-menu">
-                                                                        <li><a href="javascript:;">And deeper yet!</a></li>
-                                                                    </ul>
-                                                                </li>
-                                                            </ul>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li class="disabled-link"><a href="index.html">Disabled Menu Item</a></li>
-                                            </ul>
-                                        </li>
-
-                                        <li class="nav-separator">Functional Apps</li>
-                                        <li><a href="app-inbox.html"><i class="fa fa-inbox"></i><span>Inbox</span><span class="badge badge-success">3</span></a></li>
-                                        <li><a href="app-tasks.html"><i class="fa fa-tasks"></i><span>Tasks</span><span class="badge badge-info">7</span></a></li>
-                                        <li><a href="app-notes.html"><i class="fa fa-pencil-square-o"></i><span>Notes</span></a></li>
-                                        <li><a href="app-todo.html"><i class="fa fa-check"></i><span>Todo</span><span class="badge badge-dark">10</span></a></li>
-
-                                        <li class="nav-separator">Templates</li>
-                                        <li><a href="javascript:;"><i class="fa fa-coffee"></i><span>Blog</span></a>
-                                            <ul class="acc-menu">
-                                                <!-- <li><a href="app-blog-dashboard.html">Dashboard</a></li> -->
-                                                <li><a href="app-blog-page-list.html">Page List</a></li>
-                                                <li><a href="app-blog-edit.html">Page Edit</a></li>
-                                                <li><a href="app-blog-comment.html">Comment Moderation</a></li>
-                                                <li><a href="javascript:;">Blog Front</a>
-                                                    <ul class="acc-menu">
-                                                        <li><a href="app-blogfront-list.html">Blog Page</a></li>
-                                                        <li><a href="app-blogfront-page.html">Blog Post</a></li>
-                                                        <li><a href="app-blogfront-column.html">Blog Column</a></li>
-                                                        <li><a href="app-blogfront-portfolio.html">Porfolio</a></li>
-                                                    </ul>
-                                                </li>
-
-
-                                            </ul>
-                                        </li>
-                                        <li><a href="javascript:;"><i class="fa fa-shopping-cart"></i><span>eCommerce</span></a>
-                                            <ul class="acc-menu">
-                                                <!-- <li><a href="app-ecommerce-dashboard.html">Dashboard</a></li> -->
-                                                <!-- <li><a href="app-ecommerce-order-list.html">Order List</a></li>
-				<li><a href="app-ecommerce-order-details.html">Order Details</a></li> -->
-                                                <li><a href="app-ecommerce-product-list.html">Product List</a></li>
-                                                <li><a href="app-ecommerce-product-edit.html">Product Edit</a></li>
-                                                <li><a href="javascript:;">Store Front</a>
-                                                    <ul class="acc-menu">
-                                                        <li><a href="app-store-product-list.html">Product List</a></li>
-                                                        <!-- <li><a href="app-store-product-column.html">Product Column</a></li> -->
-                                                        <li><a href="app-store-product-details.html">Product Details</a></li>
-                                                        <li><a href="app-store-shoppingcart.html">Shopping Cart</a></li>
-                                                        <li><a href="app-store-checkout.html">Checkout</a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-
+                                        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                                     </ul>
                                 </nav>
                             </div>

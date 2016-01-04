@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using SocialRequirements.Domain.BusinessLogic.Requirement;
 using SocialRequirements.Domain.DTO.Requirement;
 using SocialRequirements.Domain.General;
@@ -13,13 +15,15 @@ namespace SocialRequirements.Business.Requirement
         private readonly IPersonData _personData;
         private readonly IRequirementModificationData _requirementModifData;
         private readonly IActivityFeedData _activityFeedData;
+        private readonly IProjectData _projectData;
 
         public RequirementModificationBusiness(IPersonData personData, IRequirementModificationData requirementModifData,
-            IActivityFeedData activityFeedData)
+            IActivityFeedData activityFeedData, IProjectData projectData)
         {
             _personData = personData;
             _requirementModifData = requirementModifData;
             _activityFeedData = activityFeedData;
+            _projectData = projectData;
         }
         
         public RequirementModificationDto Add(long companyId, long projectId, long requirementId, string title, string description,
@@ -120,6 +124,53 @@ namespace SocialRequirements.Business.Requirement
             _activityFeedData.Add(companyId, projectId, (int) GeneralCatalog.Detail.Entity.RequirementModification,
                 (int) GeneralCatalog.Detail.EntityActions.Dislike, requirementModificationId, DateTime.Now, personId,
                 requirementId);
+        }
+
+        public List<RequirementModificationDto> GetList(string username)
+        {
+            var personId = _personData.GetPersonId(username);
+            var projects = _projectData.GetProjectsByUser(personId);
+            return _requirementModifData.GetList(projects.Select(p => p.Id).ToList());
+        }
+
+        public List<RequirementModificationDto> GetListApproved(string username)
+        {
+            var allRequirementsModif = GetList(username);
+
+            return
+                allRequirementsModif.Where(
+                    requirementModif => requirementModif.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.Approved)
+                    .ToList();
+        }
+
+        public List<RequirementModificationDto> GetListRejected(string username)
+        {
+            var allRequirementsModif = GetList(username);
+
+            return
+                allRequirementsModif.Where(
+                    requirementModif => requirementModif.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.Rejected)
+                    .ToList();
+        }
+
+        public List<RequirementModificationDto> GetListPending(string username)
+        {
+            var allRequirementsModif = GetList(username);
+
+            return
+                allRequirementsModif.Where(
+                    requirementModif => requirementModif.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.PendingApproval)
+                    .ToList();
+        }
+
+        public List<RequirementModificationDto> GetListDraft(string username)
+        {
+            var allRequirementsModif = GetList(username);
+
+            return
+                allRequirementsModif.Where(
+                    requirementModif => requirementModif.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.Draft)
+                    .ToList();
         }
     }
 }

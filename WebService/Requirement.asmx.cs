@@ -70,6 +70,42 @@ namespace WebService
         }
 
         [WebMethod]
+        public string GetApprovedRequirementsList(string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            var requirements = RequirementBusiness.GetListApproved(username);
+            var serializer = new ObjectSerializer<List<RequirementDto>>(requirements);
+            return serializer.ToXmlString();
+        }
+
+        [WebMethod]
+        public string GetRejectedRequirementsList(string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            var requirements = RequirementBusiness.GetListRejected(username);
+            var serializer = new ObjectSerializer<List<RequirementDto>>(requirements);
+            return serializer.ToXmlString();
+        }
+
+        [WebMethod]
+        public string GetPendingApprovalRequirementsList(string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            var requirements = RequirementBusiness.GetListPending(username);
+            var serializer = new ObjectSerializer<List<RequirementDto>>(requirements);
+            return serializer.ToXmlString();
+        }
+
+        [WebMethod]
+        public string GetDraftRequirementsList(string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            var requirements = RequirementBusiness.GetListDraft(username);
+            var serializer = new ObjectSerializer<List<RequirementDto>>(requirements);
+            return serializer.ToXmlString();
+        }
+
+        [WebMethod]
         public string GetRequirement(long companyId, long projectId, long requirementId)
         {
             var requirement = RequirementBusiness.Get(companyId, projectId, requirementId);
@@ -201,6 +237,51 @@ namespace WebService
         {
             var comments = RequirementModificationCommentBusiness.Get(companyId, projectId, requirementId, requirementModificationId);
             var serializer = new ObjectSerializer<List<RequirementModificationCommentDto>>(comments);
+            return serializer.ToXmlString();
+        }
+
+        [WebMethod]
+        public string GetRequirementsModificationList(string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            var requirements = RequirementModificationBusiness.GetList(username);
+            var serializer = new ObjectSerializer<List<RequirementModificationDto>>(requirements);
+            return serializer.ToXmlString();
+        }
+
+        [WebMethod]
+        public string GetApprovedRequirementsModificationList(string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            var requirements = RequirementModificationBusiness.GetListApproved(username);
+            var serializer = new ObjectSerializer<List<RequirementModificationDto>>(requirements);
+            return serializer.ToXmlString();
+        }
+
+        [WebMethod]
+        public string GetRejectedRequirementsModificationList(string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            var requirements = RequirementModificationBusiness.GetListRejected(username);
+            var serializer = new ObjectSerializer<List<RequirementModificationDto>>(requirements);
+            return serializer.ToXmlString();
+        }
+
+        [WebMethod]
+        public string GetPendingApprovalRequirementsModificationList(string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            var requirements = RequirementModificationBusiness.GetListPending(username);
+            var serializer = new ObjectSerializer<List<RequirementModificationDto>>(requirements);
+            return serializer.ToXmlString();
+        }
+
+        [WebMethod]
+        public string GetDraftRequirementsModificationList(string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            var requirements = RequirementModificationBusiness.GetListDraft(username);
+            var serializer = new ObjectSerializer<List<RequirementModificationDto>>(requirements);
             return serializer.ToXmlString();
         }
     }

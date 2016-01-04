@@ -74,6 +74,62 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetApprovedRequirementsList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="encUsername" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetApprovedRequirementsListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetApprovedRequirementsListResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRejectedRequirementsList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="encUsername" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRejectedRequirementsListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRejectedRequirementsListResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPendingApprovalRequirementsList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="encUsername" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPendingApprovalRequirementsListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPendingApprovalRequirementsListResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDraftRequirementsList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="encUsername" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDraftRequirementsListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDraftRequirementsListResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="GetRequirement">
         <s:complexType>
           <s:sequence>
@@ -334,6 +390,76 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetRequirementsModificationList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="encUsername" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRequirementsModificationListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRequirementsModificationListResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetApprovedRequirementsModificationList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="encUsername" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetApprovedRequirementsModificationListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetApprovedRequirementsModificationListResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRejectedRequirementsModificationList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="encUsername" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRejectedRequirementsModificationListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRejectedRequirementsModificationListResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPendingApprovalRequirementsModificationList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="encUsername" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPendingApprovalRequirementsModificationListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPendingApprovalRequirementsModificationListResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDraftRequirementsModificationList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="encUsername" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDraftRequirementsModificationListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDraftRequirementsModificationListResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="AddRequirementSoapIn">
@@ -365,6 +491,30 @@
   </wsdl:message>
   <wsdl:message name="GetRequirementsListSoapOut">
     <wsdl:part name="parameters" element="tns:GetRequirementsListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetApprovedRequirementsListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetApprovedRequirementsList" />
+  </wsdl:message>
+  <wsdl:message name="GetApprovedRequirementsListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetApprovedRequirementsListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRejectedRequirementsListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRejectedRequirementsList" />
+  </wsdl:message>
+  <wsdl:message name="GetRejectedRequirementsListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRejectedRequirementsListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPendingApprovalRequirementsListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPendingApprovalRequirementsList" />
+  </wsdl:message>
+  <wsdl:message name="GetPendingApprovalRequirementsListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPendingApprovalRequirementsListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDraftRequirementsListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDraftRequirementsList" />
+  </wsdl:message>
+  <wsdl:message name="GetDraftRequirementsListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDraftRequirementsListResponse" />
   </wsdl:message>
   <wsdl:message name="GetRequirementSoapIn">
     <wsdl:part name="parameters" element="tns:GetRequirement" />
@@ -468,6 +618,36 @@
   <wsdl:message name="GetRequirementModificationCommentsSoapOut">
     <wsdl:part name="parameters" element="tns:GetRequirementModificationCommentsResponse" />
   </wsdl:message>
+  <wsdl:message name="GetRequirementsModificationListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRequirementsModificationList" />
+  </wsdl:message>
+  <wsdl:message name="GetRequirementsModificationListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRequirementsModificationListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetApprovedRequirementsModificationListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetApprovedRequirementsModificationList" />
+  </wsdl:message>
+  <wsdl:message name="GetApprovedRequirementsModificationListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetApprovedRequirementsModificationListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRejectedRequirementsModificationListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRejectedRequirementsModificationList" />
+  </wsdl:message>
+  <wsdl:message name="GetRejectedRequirementsModificationListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRejectedRequirementsModificationListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPendingApprovalRequirementsModificationListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPendingApprovalRequirementsModificationList" />
+  </wsdl:message>
+  <wsdl:message name="GetPendingApprovalRequirementsModificationListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPendingApprovalRequirementsModificationListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDraftRequirementsModificationListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDraftRequirementsModificationList" />
+  </wsdl:message>
+  <wsdl:message name="GetDraftRequirementsModificationListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDraftRequirementsModificationListResponse" />
+  </wsdl:message>
   <wsdl:portType name="RequirementSoap">
     <wsdl:operation name="AddRequirement">
       <wsdl:input message="tns:AddRequirementSoapIn" />
@@ -488,6 +668,22 @@
     <wsdl:operation name="GetRequirementsList">
       <wsdl:input message="tns:GetRequirementsListSoapIn" />
       <wsdl:output message="tns:GetRequirementsListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetApprovedRequirementsList">
+      <wsdl:input message="tns:GetApprovedRequirementsListSoapIn" />
+      <wsdl:output message="tns:GetApprovedRequirementsListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRejectedRequirementsList">
+      <wsdl:input message="tns:GetRejectedRequirementsListSoapIn" />
+      <wsdl:output message="tns:GetRejectedRequirementsListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPendingApprovalRequirementsList">
+      <wsdl:input message="tns:GetPendingApprovalRequirementsListSoapIn" />
+      <wsdl:output message="tns:GetPendingApprovalRequirementsListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDraftRequirementsList">
+      <wsdl:input message="tns:GetDraftRequirementsListSoapIn" />
+      <wsdl:output message="tns:GetDraftRequirementsListSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="GetRequirement">
       <wsdl:input message="tns:GetRequirementSoapIn" />
@@ -557,6 +753,26 @@
       <wsdl:input message="tns:GetRequirementModificationCommentsSoapIn" />
       <wsdl:output message="tns:GetRequirementModificationCommentsSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetRequirementsModificationList">
+      <wsdl:input message="tns:GetRequirementsModificationListSoapIn" />
+      <wsdl:output message="tns:GetRequirementsModificationListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetApprovedRequirementsModificationList">
+      <wsdl:input message="tns:GetApprovedRequirementsModificationListSoapIn" />
+      <wsdl:output message="tns:GetApprovedRequirementsModificationListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRejectedRequirementsModificationList">
+      <wsdl:input message="tns:GetRejectedRequirementsModificationListSoapIn" />
+      <wsdl:output message="tns:GetRejectedRequirementsModificationListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPendingApprovalRequirementsModificationList">
+      <wsdl:input message="tns:GetPendingApprovalRequirementsModificationListSoapIn" />
+      <wsdl:output message="tns:GetPendingApprovalRequirementsModificationListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDraftRequirementsModificationList">
+      <wsdl:input message="tns:GetDraftRequirementsModificationListSoapIn" />
+      <wsdl:output message="tns:GetDraftRequirementsModificationListSoapOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="RequirementSoap" type="tns:RequirementSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -598,6 +814,42 @@
     </wsdl:operation>
     <wsdl:operation name="GetRequirementsList">
       <soap:operation soapAction="http://tempuri.org/GetRequirementsList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetApprovedRequirementsList">
+      <soap:operation soapAction="http://tempuri.org/GetApprovedRequirementsList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRejectedRequirementsList">
+      <soap:operation soapAction="http://tempuri.org/GetRejectedRequirementsList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPendingApprovalRequirementsList">
+      <soap:operation soapAction="http://tempuri.org/GetPendingApprovalRequirementsList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDraftRequirementsList">
+      <soap:operation soapAction="http://tempuri.org/GetDraftRequirementsList" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -758,6 +1010,51 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetRequirementsModificationList">
+      <soap:operation soapAction="http://tempuri.org/GetRequirementsModificationList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetApprovedRequirementsModificationList">
+      <soap:operation soapAction="http://tempuri.org/GetApprovedRequirementsModificationList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRejectedRequirementsModificationList">
+      <soap:operation soapAction="http://tempuri.org/GetRejectedRequirementsModificationList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPendingApprovalRequirementsModificationList">
+      <soap:operation soapAction="http://tempuri.org/GetPendingApprovalRequirementsModificationList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDraftRequirementsModificationList">
+      <soap:operation soapAction="http://tempuri.org/GetDraftRequirementsModificationList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="RequirementSoap12" type="tns:RequirementSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -799,6 +1096,42 @@
     </wsdl:operation>
     <wsdl:operation name="GetRequirementsList">
       <soap12:operation soapAction="http://tempuri.org/GetRequirementsList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetApprovedRequirementsList">
+      <soap12:operation soapAction="http://tempuri.org/GetApprovedRequirementsList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRejectedRequirementsList">
+      <soap12:operation soapAction="http://tempuri.org/GetRejectedRequirementsList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPendingApprovalRequirementsList">
+      <soap12:operation soapAction="http://tempuri.org/GetPendingApprovalRequirementsList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDraftRequirementsList">
+      <soap12:operation soapAction="http://tempuri.org/GetDraftRequirementsList" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -952,6 +1285,51 @@
     </wsdl:operation>
     <wsdl:operation name="GetRequirementModificationComments">
       <soap12:operation soapAction="http://tempuri.org/GetRequirementModificationComments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRequirementsModificationList">
+      <soap12:operation soapAction="http://tempuri.org/GetRequirementsModificationList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetApprovedRequirementsModificationList">
+      <soap12:operation soapAction="http://tempuri.org/GetApprovedRequirementsModificationList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRejectedRequirementsModificationList">
+      <soap12:operation soapAction="http://tempuri.org/GetRejectedRequirementsModificationList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPendingApprovalRequirementsModificationList">
+      <soap12:operation soapAction="http://tempuri.org/GetPendingApprovalRequirementsModificationList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDraftRequirementsModificationList">
+      <soap12:operation soapAction="http://tempuri.org/GetDraftRequirementsModificationList" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

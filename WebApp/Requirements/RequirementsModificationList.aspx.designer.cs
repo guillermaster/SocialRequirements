@@ -8,10 +8,9 @@
 //------------------------------------------------------------------------------
 
 namespace SocialRequirements.Requirements {
-
-
-    public partial class RequirementsList
-    {
+    
+    
+    public partial class RequirementsModificationList {
         
         /// <summary>
         /// RequirementsListRepeater control.

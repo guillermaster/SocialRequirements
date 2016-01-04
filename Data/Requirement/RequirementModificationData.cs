@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using SocialRequirements.Context;
 using SocialRequirements.Context.Entities;
@@ -71,6 +72,15 @@ namespace SocialRequirements.Data.Requirement
                         r.status_id == (int) GeneralCatalog.Detail.RequirementStatus.Draft);
 
             return requirementModif != null ? GetDtoFromEntity(requirementModif) : null;
+        }
+
+        public List<RequirementModificationDto> GetList(List<long> projectIds)
+        {
+            var requirements =
+                _context.RequirementModification.Where(req => projectIds.Contains(req.project_id))
+                    .OrderByDescending(reqDate => reqDate.modifiedon)
+                    .ToList();
+            return requirements.Select(GetDtoFromEntity).ToList();
         }
 
         /// <summary>
