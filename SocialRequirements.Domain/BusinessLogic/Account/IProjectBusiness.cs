@@ -22,5 +22,20 @@ namespace SocialRequirements.Domain.BusinessLogic.Account
         void Add(string name, string description, long companyId, string username);
 
         bool HaveProjects(long companyId);
+
+        /// <summary>
+        /// Get list of projects that aren't related to the current user
+        /// </summary>
+        /// <param name="username">User</param>
+        /// <returns>List of projects</returns>
+        List<ProjectDto> GetUnrelatedProjects(string username);
+
+        /// <summary>
+        /// Creates a relationship between a company and a project
+        /// </summary>
+        /// <param name="companyId">Company identifier</param>
+        /// <param name="projectId">Project identifier</param>
+        /// <param name="username">User ID</param>
+        void AddCompanyRelationship(long companyId, long projectId, string username);
     }
 }

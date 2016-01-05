@@ -28,7 +28,8 @@
                 RequirementModificationComment = 20,
                 RequirementQuestion = 21,
                 RequirementQuestionAnswer = 22,
-                Project = 28
+                Project = 28,
+                CompanyProject = 29
             }
 
             public enum RequirementStatus

@@ -38,6 +38,27 @@ namespace SocialRequirements.Data.Account
             return projectsQry.ToList();
         }
 
+        public List<ProjectDto> GetUnrelatedProjects(List<CompanyDto> companies)
+        {
+            var companiesIds = companies.Select(company => company.Id).ToList();
+
+            var compProjects = _context.CompanyProject.Where(compProj => !companiesIds.Contains(compProj.company_id)).ToList();
+            var unrelatedProject = new List<ProjectDto>();
+
+            foreach (var project in compProjects)
+            {
+                foreach (var companyId in companiesIds)
+                {
+                    if (_context.CompanyProject.Count(compProj => compProj.company_id == companyId) == 0)
+                    {
+                        unrelatedProject.Add(GetProjectDto(project));
+                    }
+                }
+            }
+
+            return unrelatedProject;
+        }
+
         public int GetNumberOfProjects(long companyId)
         {
             var numProject = _context.CompanyProject.Count(c => c.company_id == companyId);
@@ -89,7 +110,7 @@ namespace SocialRequirements.Data.Account
         /// </summary>
         /// <param name="companyId">Company identifier</param>
         /// <param name="projectId">Project identifier</param>
-        private long AddCompanyRelationship(long companyId, long projectId)
+        public long AddCompanyRelationship(long companyId, long projectId)
         {
             var projectCompany = new CompanyProject
             {

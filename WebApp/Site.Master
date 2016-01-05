@@ -306,10 +306,9 @@
                         <li><a href="#"><span class="pull-left">Account</span> <i class="pull-right fa fa-user"></i></a></li>
                         <li><a href="#"><span class="pull-left">Settings</span> <i class="pull-right fa fa-cog"></i></a></li>
                         <li class="divider"></li>
-                        <li><a href="#"><span class="pull-left">Earnings</span> <i class="pull-right fa fa-line-chart"></i></a></li>
+                        <li><asp:HyperLink runat="server" NavigateUrl="~/Account/SetProject.aspx"><span class="pull-left">Projects</span> <i class="pull-right fa fa-line-chart"></i></asp:HyperLink></li>
                         <li>
-                            <asp:HyperLink runat="server" NavigateUrl="~/Account/SetCompany.aspx"><span class="pull-left">Company</span> <i class="pull-right fa fa-list-alt"></i></asp:HyperLink></li>
-                        <li><a href="#"><span class="pull-left">Withdrawals</span> <i class="pull-right fa fa-dollar"></i></a></li>
+                            <asp:HyperLink runat="server" NavigateUrl="~/Account/SetCompany.aspx"><span class="pull-left">Companies</span> <i class="pull-right fa fa-list-alt"></i></asp:HyperLink></li>
                         <li class="divider"></li>
                         <li>
                             <asp:LinkButton runat="server" ID="SignOutButton" OnClick="SignOutButton_OnClick"><span class="pull-left">Sign Out</span> <i class="pull-right fa fa-sign-out"></i></asp:LinkButton></li>

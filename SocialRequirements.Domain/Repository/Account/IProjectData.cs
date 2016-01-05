@@ -34,5 +34,19 @@ namespace SocialRequirements.Domain.Repository.Account
         /// <param name="personId">User Id</param>
         /// <returns>List of projects</returns>
         List<ProjectDto> GetProjectsByUser(long personId);
+
+        /// <summary>
+        /// Gets a list of projects that aren't related to the specified companies
+        /// </summary>
+        /// <param name="companies">Companies</param>
+        /// <returns>List of projects</returns>
+        List<ProjectDto> GetUnrelatedProjects(List<CompanyDto> companies);
+
+        /// <summary>
+        /// Creates a relationship between a company and a project
+        /// </summary>
+        /// <param name="companyId">Company identifier</param>
+        /// <param name="projectId">Project identifier</param>
+        long AddCompanyRelationship(long companyId, long projectId);
     }
 }

@@ -13,12 +13,15 @@ namespace SocialRequirements.Business.Account
         private readonly IPersonData _personData;
         private readonly IProjectData _projectData;
         private readonly IActivityFeedData _activityFeedData;
+        private readonly ICompanyData _companyData;
 
-        public ProjectBusiness(IPersonData personData, IProjectData projectData, IActivityFeedData activityFeedData)
+        public ProjectBusiness(IPersonData personData, IProjectData projectData, IActivityFeedData activityFeedData,
+            ICompanyData companyData)
         {
             _personData = personData;
             _projectData = projectData;
             _activityFeedData = activityFeedData;
+            _companyData = companyData;
         }
         public List<ProjectDto> GetProjectsByCompany(long companyId)
         {
@@ -39,6 +42,23 @@ namespace SocialRequirements.Business.Account
             // add activity feed log
             _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.Project,
                 (int)GeneralCatalog.Detail.EntityActions.Create, projectId, DateTime.Now, personId);
+        }
+
+        public List<ProjectDto> GetUnrelatedProjects(string username)
+        {
+            var personId = _personData.GetPersonId(username);
+            var companies = _companyData.GetCompaniesByUser(personId);
+            return _projectData.GetUnrelatedProjects(companies);
+        }
+        
+        public void AddCompanyRelationship(long companyId, long projectId, string username)
+        {
+            var personId = _personData.GetPersonId(username);
+            var companyProjectId = _projectData.AddCompanyRelationship(companyId, projectId);
+
+            // add activity feed log
+            _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.CompanyProject,
+                (int)GeneralCatalog.Detail.EntityActions.Create, companyProjectId, DateTime.Now, personId);
         }
     }
 }

@@ -48,6 +48,32 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetUnrelatedProjects">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="encUsername" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUnrelatedProjectsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUnrelatedProjectsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetProject">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="projectId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="companyId" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="encUsername" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetProjectResponse">
+        <s:complexType />
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="AddProjectSoapIn">
@@ -68,6 +94,18 @@
   <wsdl:message name="GetByCompanySoapOut">
     <wsdl:part name="parameters" element="tns:GetByCompanyResponse" />
   </wsdl:message>
+  <wsdl:message name="GetUnrelatedProjectsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUnrelatedProjects" />
+  </wsdl:message>
+  <wsdl:message name="GetUnrelatedProjectsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUnrelatedProjectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetProjectSoapIn">
+    <wsdl:part name="parameters" element="tns:SetProject" />
+  </wsdl:message>
+  <wsdl:message name="SetProjectSoapOut">
+    <wsdl:part name="parameters" element="tns:SetProjectResponse" />
+  </wsdl:message>
   <wsdl:portType name="ProjectSoap">
     <wsdl:operation name="AddProject">
       <wsdl:input message="tns:AddProjectSoapIn" />
@@ -80,6 +118,14 @@
     <wsdl:operation name="GetByCompany">
       <wsdl:input message="tns:GetByCompanySoapIn" />
       <wsdl:output message="tns:GetByCompanySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUnrelatedProjects">
+      <wsdl:input message="tns:GetUnrelatedProjectsSoapIn" />
+      <wsdl:output message="tns:GetUnrelatedProjectsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetProject">
+      <wsdl:input message="tns:SetProjectSoapIn" />
+      <wsdl:output message="tns:SetProjectSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ProjectSoap" type="tns:ProjectSoap">
@@ -111,6 +157,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetUnrelatedProjects">
+      <soap:operation soapAction="http://tempuri.org/GetUnrelatedProjects" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetProject">
+      <soap:operation soapAction="http://tempuri.org/SetProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="ProjectSoap12" type="tns:ProjectSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -134,6 +198,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetByCompany">
       <soap12:operation soapAction="http://tempuri.org/GetByCompany" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnrelatedProjects">
+      <soap12:operation soapAction="http://tempuri.org/GetUnrelatedProjects" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetProject">
+      <soap12:operation soapAction="http://tempuri.org/SetProject" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
