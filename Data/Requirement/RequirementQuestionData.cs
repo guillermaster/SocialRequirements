@@ -29,11 +29,7 @@ namespace SocialRequirements.Data.Requirement
         public RequirementQuestionDto Get(long companyId, long projectId, long requirementId, long requirementVersionId,
             long requirementQuestionId, bool getAnswers)
         {
-            var question =
-                _context.RequirementQuestion.FirstOrDefault(
-                    q =>
-                        q.company_id == companyId && q.project_id == projectId && q.requirement_id == requirementId &&
-                        q.requirement_version_id == requirementVersionId && q.id == requirementQuestionId);
+            var question = Get(companyId, projectId, requirementId, requirementVersionId, requirementQuestionId);
 
             return question != null ? GetDtoFromEntity(question, getAnswers) : null;
         }
@@ -57,6 +53,28 @@ namespace SocialRequirements.Data.Requirement
                     .ToList();
 
             return questions.Select(q => GetDtoFromEntity(q, false)).ToList();
+        }
+
+        public void UpdateStatus(long companyId, long projectId, long requirementId, long requirementVersionId,
+            long requirementQuestionId, int statusId)
+        {
+            var question = Get(companyId, projectId, requirementId, requirementVersionId, requirementQuestionId);
+
+            if (question == null) return;
+
+            question.status_id = statusId;
+            _context.SaveChanges();
+        }
+
+        private RequirementQuestion Get(long companyId, long projectId, long requirementId, long requirementVersionId,
+            long requirementQuestionId)
+        {
+            var question =
+                _context.RequirementQuestion.FirstOrDefault(
+                    q =>
+                        q.company_id == companyId && q.project_id == projectId && q.requirement_id == requirementId &&
+                        q.requirement_version_id == requirementVersionId && q.id == requirementQuestionId);
+            return question;
         }
 
         private static RequirementQuestion GetEntityFromDto(RequirementQuestionDto questionDto)

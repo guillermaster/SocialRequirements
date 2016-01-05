@@ -38,5 +38,17 @@ namespace SocialRequirements.Domain.Repository.Requirement
         /// <param name="projectIds">Projects ID</param>
         /// <returns>List of questions</returns>
         List<RequirementQuestionDto> GetAll(List<long> projectIds);
+
+        /// <summary>
+        /// Updatdes the status of a specified requirement question
+        /// </summary>
+        /// <param name="companyId">Company Id</param>
+        /// <param name="projectId">Project ID</param>
+        /// <param name="requirementId">Requirement ID</param>
+        /// <param name="requirementVersionId">Requirement version ID</param>
+        /// <param name="requirementQuestionId">Requirement question ID</param>
+        /// <param name="statusId">Status Id to be set</param>
+        void UpdateStatus(long companyId, long projectId, long requirementId, long requirementVersionId,
+            long requirementQuestionId, int statusId);
     }
 }
