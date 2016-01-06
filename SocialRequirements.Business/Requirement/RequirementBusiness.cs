@@ -28,7 +28,8 @@ namespace SocialRequirements.Business.Requirement
 
         public bool HaveRequirements(long companyId)
         {
-            var numRequirements = _requirementData.GetNumberOfRequirements(companyId);
+            var projects = _projectData.GetProjectsByCompany(companyId);
+            var numRequirements = _requirementData.GetNumberOfRequirements(projects);
             return numRequirements > 0;
         }
 

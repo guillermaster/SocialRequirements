@@ -29,10 +29,13 @@ namespace SocialRequirements.Business.General
         public List<ActivityFeedDto> GetLatestActivity(string username)
         {
             var activityFeed = new List<ActivityFeedDto>();
-            var userCompanies = _companyBusiness.GetCompaniesByUser(username);
-            foreach (var company in userCompanies)
+
+            var personId = _personData.GetPersonId(username);
+            var projects = _projectData.GetProjectsByUser(personId);
+
+            foreach (var project in projects)
             {
-                activityFeed.AddRange(_activityFeedData.GetLatestActivity(company.Id));
+                activityFeed.AddRange(_activityFeedData.GetLatestActivity(project.Id));
             }
             return activityFeed.OrderByDescending(a => a.Createdon).ToList();
         }

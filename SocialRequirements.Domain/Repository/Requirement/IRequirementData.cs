@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using SocialRequirements.Domain.DTO.Account;
 using SocialRequirements.Domain.DTO.Requirement;
 
 namespace SocialRequirements.Domain.Repository.Requirement
@@ -11,6 +12,13 @@ namespace SocialRequirements.Domain.Repository.Requirement
         /// <param name="companyId">Company identifier</param>
         /// <returns>Number of requirements</returns>
         int GetNumberOfRequirements(long companyId);
+
+        /// <summary>
+        /// Returns the total number of requirements in the specified projects
+        /// </summary>
+        /// <param name="projects">The projects</param>
+        /// <returns>Number of requirements</returns
+        int GetNumberOfRequirements(List<ProjectDto> projects);
 
         /// <summary>
         /// Adds a new requirement to the database

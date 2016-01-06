@@ -12,11 +12,11 @@ namespace SocialRequirements.Domain.Repository.General
 
         /// <summary>
         /// Returns a list of all latest activities performed in the system
-        /// under the specified company
+        /// under the specified project
         /// </summary>
-        /// <param name="companyId">Company identifier</param>
+        /// <param name="projectId">Project identifier</param>
         /// <returns>List of performed activities</returns>
-        List<ActivityFeedDto> GetLatestActivity(long companyId);
+        List<ActivityFeedDto> GetLatestActivity(long projectId);
 
         /// <summary>
         /// Returns a summary of most recent activities performed in the system

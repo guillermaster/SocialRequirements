@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using SocialRequirements.Context;
 using SocialRequirements.Domain.DTO.Requirement;
+using SocialRequirements.Domain.DTO.Account;
 using SocialRequirements.Domain.Repository.Requirement;
 using SocialRequirements.Utilities;
 
@@ -30,6 +31,13 @@ namespace SocialRequirements.Data.Requirement
         public int GetNumberOfRequirements(long companyId)
         {
             var numReq = _context.Requirement.Count(r => r.company_id == companyId);
+            return numReq;
+        }
+
+        public int GetNumberOfRequirements(List<ProjectDto> projects)
+        {
+            var projectsIds = projects.Select(p => p.Id).ToList();
+            var numReq = _context.Requirement.Count(r => projectsIds.Contains(r.project_id));
             return numReq;
         }
 

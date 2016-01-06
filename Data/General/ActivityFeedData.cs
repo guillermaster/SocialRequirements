@@ -65,9 +65,9 @@ namespace SocialRequirements.Data.General
             catch (UpdateException) { }
         }
 
-        public List<ActivityFeedDto> GetLatestActivity(long companyId)
+        public List<ActivityFeedDto> GetLatestActivity(long projectId)
         {
-            var activities = _context.ActivityFeed.Where(af => af.company_id == companyId).ToList();
+            var activities = _context.ActivityFeed.Where(af => af.project_id == projectId).ToList();
 
             return activities.Select(GetDtoFromEntity).ToList();
         }
