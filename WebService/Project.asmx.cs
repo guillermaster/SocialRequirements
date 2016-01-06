@@ -51,10 +51,9 @@ namespace WebService
         }
 
         [WebMethod]
-        public string GetUnrelatedProjects(string encUsername)
+        public string GetUnrelatedProjects(long companyId)
         {
-            var username = Encryption.Decrypt(encUsername);
-            var projects = ProjectBusiness.GetUnrelatedProjects(username);
+            var projects = ProjectBusiness.GetUnrelatedProjects(companyId);
             var serializer = new ObjectSerializer<List<ProjectDto>>(projects);
             return serializer.ToXmlString();
         }

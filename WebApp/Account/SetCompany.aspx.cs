@@ -16,7 +16,7 @@ namespace SocialRequirements.Account
 
             if (Page.IsPostBack) return;
 
-            SetCompanies(CompaniesDropDownList);
+            SetAllCompanies(CompaniesDropDownList);
             SetCompanyType();
         }
 

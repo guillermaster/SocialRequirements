@@ -38,9 +38,9 @@ namespace SocialRequirements.Domain.Repository.Account
         /// <summary>
         /// Gets a list of projects that aren't related to the specified companies
         /// </summary>
-        /// <param name="companies">Companies</param>
+        /// <param name="companyId">Company ID</param>
         /// <returns>List of projects</returns>
-        List<ProjectDto> GetUnrelatedProjects(List<CompanyDto> companies);
+        List<ProjectDto> GetUnrelatedProjects(long companyId);
 
         /// <summary>
         /// Creates a relationship between a company and a project

@@ -44,11 +44,9 @@ namespace SocialRequirements.Business.Account
                 (int)GeneralCatalog.Detail.EntityActions.Create, projectId, DateTime.Now, personId);
         }
 
-        public List<ProjectDto> GetUnrelatedProjects(string username)
+        public List<ProjectDto> GetUnrelatedProjects(long companyId)
         {
-            var personId = _personData.GetPersonId(username);
-            var companies = _companyData.GetCompaniesByUser(personId);
-            return _projectData.GetUnrelatedProjects(companies);
+            return _projectData.GetUnrelatedProjects(companyId);
         }
         
         public void AddCompanyRelationship(long companyId, long projectId, string username)

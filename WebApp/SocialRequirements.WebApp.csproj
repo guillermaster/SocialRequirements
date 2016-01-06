@@ -2212,6 +2212,9 @@
     <Content Include="Service References\CompanyService\SocialRequirements.CompanyService.GetAllCompaniesResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Service References\CompanyService\SocialRequirements.CompanyService.GetRelatedCompaniesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Service References\GeneralService\General.wsdl" />
     <Content Include="Service References\GeneralService\SocialRequirements.GeneralService.LatestActivityFeedResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>

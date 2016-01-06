@@ -25,34 +25,29 @@ namespace SocialRequirements.Data.Account
         public List<ProjectDto> GetProjectsByUser(long personId)
         {
             var projectsQry = from cu in _context.CompanyPerson
-                join cp in _context.CompanyProject on cu.company_id equals cp.company_id
-                join p in _context.Project on cp.project_id equals p.id
-                where cu.person_id == personId
-                select new ProjectDto
-                {
-                    Id = p.id,
-                    Name = p.name,
-                    Description = p.description
-                };
+                              join cp in _context.CompanyProject on cu.company_id equals cp.company_id
+                              join p in _context.Project on cp.project_id equals p.id
+                              where cu.person_id == personId
+                              select new ProjectDto
+                              {
+                                  Id = p.id,
+                                  Name = p.name,
+                                  Description = p.description
+                              };
 
             return projectsQry.ToList();
         }
 
-        public List<ProjectDto> GetUnrelatedProjects(List<CompanyDto> companies)
+        public List<ProjectDto> GetUnrelatedProjects(long companyId)
         {
-            var companiesIds = companies.Select(company => company.Id).ToList();
-
-            var compProjects = _context.CompanyProject.Where(compProj => !companiesIds.Contains(compProj.company_id)).ToList();
+            var compProjects = _context.CompanyProject.Where(compProj => compProj.company_id != companyId).ToList();
             var unrelatedProject = new List<ProjectDto>();
 
             foreach (var project in compProjects)
             {
-                foreach (var companyId in companiesIds)
+                if (_context.CompanyProject.Count(compProj => compProj.company_id == companyId) == 0)
                 {
-                    if (_context.CompanyProject.Count(compProj => compProj.company_id == companyId) == 0)
-                    {
-                        unrelatedProject.Add(GetProjectDto(project));
-                    }
+                    unrelatedProject.Add(GetProjectDto(project));
                 }
             }
 

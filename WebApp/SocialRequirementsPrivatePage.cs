@@ -131,6 +131,26 @@ namespace SocialRequirements
         protected void SetCompanies(ListControl companyList)
         {
             var companySrv = new CompanySoapClient();
+            var companies = companySrv.GetRelatedCompanies(GetUsernameEncrypted());
+
+            var serializer = new ObjectSerializer<List<CompanyDto>>();
+            var result = serializer.Deserialize(companies);
+
+            companyList.DataSource = (List<CompanyDto>)result;
+            companyList.DataTextField = CustomExpression.GetPropertyName<CompanyDto>(p => p.Name);
+            companyList.DataValueField = CustomExpression.GetPropertyName<CompanyDto>(p => p.Id);
+            companyList.DataBind();
+            companyList.Items.Insert(0, new ListItem("- Select Company -", string.Empty));
+            companyList.SelectedIndex = 0;
+        }
+
+        /// <summary>
+        /// Sets the datasource for a company list control
+        /// </summary>
+        /// <param name="companyList">Control to update</param>
+        protected void SetAllCompanies(ListControl companyList)
+        {
+            var companySrv = new CompanySoapClient();
             var companies = companySrv.GetAllCompanies();
 
             var serializer = new ObjectSerializer<List<CompanyDto>>();

@@ -62,6 +62,20 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetRelatedCompanies">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="encUsername" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRelatedCompaniesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRelatedCompaniesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="GetCompanyTypesSoapIn">
@@ -94,6 +108,12 @@
   <wsdl:message name="GetAllCompaniesSoapOut">
     <wsdl:part name="parameters" element="tns:GetAllCompaniesResponse" />
   </wsdl:message>
+  <wsdl:message name="GetRelatedCompaniesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRelatedCompanies" />
+  </wsdl:message>
+  <wsdl:message name="GetRelatedCompaniesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRelatedCompaniesResponse" />
+  </wsdl:message>
   <wsdl:portType name="CompanySoap">
     <wsdl:operation name="GetCompanyTypes">
       <wsdl:input message="tns:GetCompanyTypesSoapIn" />
@@ -114,6 +134,10 @@
     <wsdl:operation name="GetAllCompanies">
       <wsdl:input message="tns:GetAllCompaniesSoapIn" />
       <wsdl:output message="tns:GetAllCompaniesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRelatedCompanies">
+      <wsdl:input message="tns:GetRelatedCompaniesSoapIn" />
+      <wsdl:output message="tns:GetRelatedCompaniesSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="CompanySoap" type="tns:CompanySoap">
@@ -163,6 +187,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetRelatedCompanies">
+      <soap:operation soapAction="http://tempuri.org/GetRelatedCompanies" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="CompanySoap12" type="tns:CompanySoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -204,6 +237,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAllCompanies">
       <soap12:operation soapAction="http://tempuri.org/GetAllCompanies" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRelatedCompanies">
+      <soap12:operation soapAction="http://tempuri.org/GetRelatedCompanies" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

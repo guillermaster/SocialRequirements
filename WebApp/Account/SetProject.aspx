@@ -26,12 +26,12 @@
                 <div class="bigcard_body" style="padding: 20px;">
                     <div style="margin: 10px auto;">
                         Company:
-                        <asp:DropDownList runat="server" ID="CompanyAvailableProject" />
+                        <asp:DropDownList runat="server" ID="CompanyAvailableProject" AutoPostBack="True" OnSelectedIndexChanged="CompanyAvailableProject_OnSelectedIndexChanged" />
                     </div>
                     <br />
                     <div style="margin: 10px auto;">
                         Project:
-                        <asp:DropDownList runat="server" ID="ProjectDropDownList" AutoPostBack="True" OnSelectedIndexChanged="ProjectDropDownList_OnSelectedIndexChanged" />
+                        <asp:DropDownList runat="server" ID="ProjectDropDownList" AutoPostBack="True" Enabled="False" OnSelectedIndexChanged="ProjectDropDownList_OnSelectedIndexChanged" />
                     </div>
                     <br />
                     <asp:Button runat="server" ID="SetProjectButton" ClientIDMode="Static" OnClick="SetProjectButton_Click" Visible="False" Text="Set company" />

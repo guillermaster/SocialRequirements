@@ -63,6 +63,15 @@ namespace WebService
             var serializer = new ObjectSerializer<List<CompanyDto>>(companies);
             return serializer.ToXmlString();
         }
+
+        [WebMethod]
+        public string GetRelatedCompanies(string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            var companies = CompanyBusiness.GetCompaniesByUser(username);
+            var serializer = new ObjectSerializer<List<CompanyDto>>(companies);
+            return serializer.ToXmlString();
+        }
     }
 }
 

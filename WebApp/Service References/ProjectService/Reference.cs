@@ -45,7 +45,7 @@ namespace SocialRequirements.ProjectService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetByCompany", ReplyAction="*")]
         System.Threading.Tasks.Task<SocialRequirements.ProjectService.GetByCompanyResponse> GetByCompanyAsync(SocialRequirements.ProjectService.GetByCompanyRequest request);
         
-        // CODEGEN: Generating message contract since element name encUsername from namespace http://tempuri.org/ is not marked nillable
+        // CODEGEN: Generating message contract since element name GetUnrelatedProjectsResult from namespace http://tempuri.org/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetUnrelatedProjects", ReplyAction="*")]
         SocialRequirements.ProjectService.GetUnrelatedProjectsResponse GetUnrelatedProjects(SocialRequirements.ProjectService.GetUnrelatedProjectsRequest request);
         
@@ -292,14 +292,14 @@ namespace SocialRequirements.ProjectService {
     [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
     public partial class GetUnrelatedProjectsRequestBody {
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string encUsername;
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public long companyId;
         
         public GetUnrelatedProjectsRequestBody() {
         }
         
-        public GetUnrelatedProjectsRequestBody(string encUsername) {
-            this.encUsername = encUsername;
+        public GetUnrelatedProjectsRequestBody(long companyId) {
+            this.companyId = companyId;
         }
     }
     
@@ -518,10 +518,10 @@ namespace SocialRequirements.ProjectService {
             return base.Channel.GetUnrelatedProjects(request);
         }
         
-        public string GetUnrelatedProjects(string encUsername) {
+        public string GetUnrelatedProjects(long companyId) {
             SocialRequirements.ProjectService.GetUnrelatedProjectsRequest inValue = new SocialRequirements.ProjectService.GetUnrelatedProjectsRequest();
             inValue.Body = new SocialRequirements.ProjectService.GetUnrelatedProjectsRequestBody();
-            inValue.Body.encUsername = encUsername;
+            inValue.Body.companyId = companyId;
             SocialRequirements.ProjectService.GetUnrelatedProjectsResponse retVal = ((SocialRequirements.ProjectService.ProjectSoap)(this)).GetUnrelatedProjects(inValue);
             return retVal.Body.GetUnrelatedProjectsResult;
         }
@@ -531,10 +531,10 @@ namespace SocialRequirements.ProjectService {
             return base.Channel.GetUnrelatedProjectsAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SocialRequirements.ProjectService.GetUnrelatedProjectsResponse> GetUnrelatedProjectsAsync(string encUsername) {
+        public System.Threading.Tasks.Task<SocialRequirements.ProjectService.GetUnrelatedProjectsResponse> GetUnrelatedProjectsAsync(long companyId) {
             SocialRequirements.ProjectService.GetUnrelatedProjectsRequest inValue = new SocialRequirements.ProjectService.GetUnrelatedProjectsRequest();
             inValue.Body = new SocialRequirements.ProjectService.GetUnrelatedProjectsRequestBody();
-            inValue.Body.encUsername = encUsername;
+            inValue.Body.companyId = companyId;
             return ((SocialRequirements.ProjectService.ProjectSoap)(this)).GetUnrelatedProjectsAsync(inValue);
         }
         

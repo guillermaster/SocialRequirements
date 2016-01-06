@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Web.UI.WebControls;
 using SocialRequirements.Domain.DTO.Account;
 using SocialRequirements.ProjectService;
 using SocialRequirements.Utilities;
@@ -15,7 +16,6 @@ namespace SocialRequirements.Account
 
             if (Page.IsPostBack) return;
 
-            SetAvailableProjects();
             SetCompanies(DdlCompany);
             SetCompanies(CompanyAvailableProject);
         }
@@ -30,7 +30,7 @@ namespace SocialRequirements.Account
 
         protected void ProjectDropDownList_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            SetProjectButton.Visible = false;
+            SetProjectButton.Visible = long.Parse(ProjectDropDownList.SelectedValue) > 0;
         }
 
         protected void ProjectNotFoundButton_Click(object sender, EventArgs e)
@@ -52,6 +52,21 @@ namespace SocialRequirements.Account
             catch
             {
                 SetErrorMessage("An error has occurred");
+            }
+        }
+
+        protected void CompanyAvailableProject_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            var companyId = long.Parse(CompanyAvailableProject.SelectedValue);
+
+            if (companyId > 0)
+            {
+                SetAvailableProjects(companyId);
+                ProjectDropDownList.Enabled = true;
+            }
+            else
+            {
+                ProjectDropDownList.Enabled = false;
             }
         }
         #endregion
@@ -99,21 +114,22 @@ namespace SocialRequirements.Account
             ClientScript.RegisterStartupScript(GetType(), "hash", "location.hash = '#ErrorPanel';", true);
         }
 
-        private void SetAvailableProjects()
+        private void SetAvailableProjects(long companyId)
         {
-            ProjectDropDownList.DataSource = GetUnrelatedProjects();
+            ProjectDropDownList.DataSource = GetUnrelatedProjects(companyId);
             ProjectDropDownList.DataTextField = CustomExpression.GetPropertyName<ProjectDto>(p => p.Name);
             ProjectDropDownList.DataValueField = CustomExpression.GetPropertyName<ProjectDto>(p => p.Id);
             ProjectDropDownList.DataBind();
+            ProjectDropDownList.Items.Insert(0, new ListItem("- Select -", "0"));
         }
         #endregion
 
         #region Data Load
 
-        private List<ProjectDto> GetUnrelatedProjects()
+        private List<ProjectDto> GetUnrelatedProjects(long companyId)
         {
             var projectSrv = new ProjectSoapClient();
-            var projects = projectSrv.GetUnrelatedProjects(GetUsernameEncrypted());
+            var projects = projectSrv.GetUnrelatedProjects(companyId);
 
             var serializer = new ObjectSerializer<List<ProjectDto>>();
             return (List<ProjectDto>)serializer.Deserialize(projects);
