@@ -85,6 +85,7 @@ namespace SocialRequirements
             
             if (IsPostBack) return;
 
+            HideInfobarToggleButton();
             RequiredActionPanel.Visible = false;
             if (!CheckRelatedCompanies()) return;
             if (!CheckProjects()) return;

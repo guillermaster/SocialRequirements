@@ -200,6 +200,16 @@ namespace SocialRequirements
                                                         CommonConstants.QueryStringParams.Filter + "=" +
                                                         CommonConstants.Filters.Unanswered;
         }
+
+        public void HideInfobarToggleButton()
+        {
+            ToggleInfobarLink.Visible = false;
+        }
+
+        public void ShowInfobarToggleButton()
+        {
+            ToggleInfobarLink.Visible = true;
+        }
     }
 
 }

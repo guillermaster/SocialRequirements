@@ -233,7 +233,9 @@
             <asp:HyperLink runat="server" NavigateUrl="~/Default.aspx" CssClass="navbar-brand">Social Requirements</asp:HyperLink>
 
             <span id="trigger-infobar" class="toolbar-trigger toolbar-icon-bg">
-                <a data-toggle="tooltips" data-placement="left" title="Toggle Infobar"><span class="icon-bg"><i class="fa fa-fw fa-bars"></i></span></a>
+                <asp:HyperLink runat="server" ID="ToggleInfobarLink" data-toggle="tooltips" data-placement="left" ToolTip="Toggle Infobar">
+                    <span class="icon-bg"><i class="fa fa-fw fa-bars"></i></span>
+                </asp:HyperLink>
             </span>
 
             <ul class="nav navbar-nav toolbar pull-right">
@@ -298,7 +300,7 @@
                         </div>
                     </div>
                 </li>
-                
+
                 <li class="dropdown toolbar-icon-bg">
                     <a href="#" class="dropdown-toggle" data-toggle='dropdown'><span class="icon-bg"><i class="fa fa-fw fa-user"></i></span></a>
                     <ul class="dropdown-menu userinfo arrow">
@@ -306,7 +308,8 @@
                         <li><a href="#"><span class="pull-left">Account</span> <i class="pull-right fa fa-user"></i></a></li>
                         <%--<li><a href="#"><span class="pull-left">Settings</span> <i class="pull-right fa fa-cog"></i></a></li>--%>
                         <li class="divider"></li>
-                        <li><asp:HyperLink runat="server" NavigateUrl="~/Account/SetProject.aspx"><span class="pull-left">Projects</span> <i class="pull-right fa fa-line-chart"></i></asp:HyperLink></li>
+                        <li>
+                            <asp:HyperLink runat="server" NavigateUrl="~/Account/SetProject.aspx"><span class="pull-left">Projects</span> <i class="pull-right fa fa-line-chart"></i></asp:HyperLink></li>
                         <li>
                             <asp:HyperLink runat="server" NavigateUrl="~/Account/SetCompany.aspx"><span class="pull-left">Companies</span> <i class="pull-right fa fa-list-alt"></i></asp:HyperLink></li>
                         <li class="divider"></li>
@@ -394,7 +397,18 @@
                                                     <asp:HyperLink runat="server" ID="RequirementsQuestionsUnanswered">Unanswered questions</asp:HyperLink></li>
                                             </ul>
                                         </li>
-                                        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <br />
                                     </ul>
                                 </nav>
                             </div>

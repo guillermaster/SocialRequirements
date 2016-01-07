@@ -24,6 +24,7 @@ namespace SocialRequirements
             SetUserData();
             SetUserFullName();
             LoadNotifications();
+            ShowInfobarToggleButton();
         }
 
         protected void ValidateUserLoggedIn()
@@ -31,6 +32,19 @@ namespace SocialRequirements
             if (UserLoggedIn()) return;
             var siteMaster = (SiteMaster)Master;
             if (siteMaster != null) siteMaster.RedirectToLogin();
+        }
+
+        protected void HideInfobarToggleButton()
+        {
+            var siteMaster = (SiteMaster)Master;
+            if (siteMaster != null) siteMaster.HideInfobarToggleButton();
+        }
+
+        protected void ShowInfobarToggleButton()
+        {
+            if (UserLoggedIn()) return;
+            var siteMaster = (SiteMaster)Master;
+            if (siteMaster != null) siteMaster.ShowInfobarToggleButton();
         }
 
         /// <summary>
