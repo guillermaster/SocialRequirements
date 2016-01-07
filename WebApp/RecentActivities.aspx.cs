@@ -39,6 +39,7 @@ namespace SocialRequirements
         private const string CtrlIdCompanyIdComment = "CompanyIdComment";
         private const string CtrlIdProjectIdComment = "ProjectIdComment";
         private const string CtrlIdParentIdComment = "ParentIdComment";
+        private const string CtrlIdEntityInstanceLink = "EntityInstanceLink";
         #endregion
         #region Properties
 
@@ -161,14 +162,52 @@ namespace SocialRequirements
 
             var activity = (ActivityFeedDto) e.Item.DataItem;
             var actionsPanel = (Panel) e.Item.FindControl(CtrlIdActivityActionsPanel);
+            var link = (HyperLink)e.Item.FindControl(CtrlIdEntityInstanceLink);
 
             switch (activity.EntityId)
             {
                 case (int)GeneralCatalog.Detail.Entity.Requirement:
+                    actionsPanel.Visible = activity.EntityActionId == (int)GeneralCatalog.Detail.EntityActions.Create ||
+                                           activity.EntityActionId == (int)GeneralCatalog.Detail.EntityActions.SubmitForApproval;
+                    if (activity.ProjectId.HasValue)
+                        link.NavigateUrl = GetUrlForRequirement(activity.CompanyId, activity.ProjectId.Value, activity.RecordId);
+                    break;
+
                 case (int)GeneralCatalog.Detail.Entity.RequirementModification:
                     actionsPanel.Visible = activity.EntityActionId == (int)GeneralCatalog.Detail.EntityActions.Create ||
                                            activity.EntityActionId == (int)GeneralCatalog.Detail.EntityActions.SubmitForApproval;
+                    if (activity.ProjectId.HasValue && activity.ParentId.HasValue)
+                    {
+                        link.NavigateUrl = GetUrlForRequirementModification(activity.CompanyId, activity.ProjectId.Value,
+                            activity.ParentId.Value, activity.RecordId);
+                    }
                     break;
+
+                case (int)GeneralCatalog.Detail.Entity.RequirementQuestion:
+                case (int)GeneralCatalog.Detail.Entity.RequirementQuestionAnswer:
+                    actionsPanel.Visible = false;
+                    if (activity.ProjectId.HasValue && activity.ParentId.HasValue)
+                    {
+                        link.NavigateUrl = GetUrlForRequirementQuestion(activity.CompanyId, activity.ProjectId.Value,
+                            activity.ParentId.Value, activity.RecordId);
+                    }
+                    break;
+
+                case (int)GeneralCatalog.Detail.Entity.RequirementComment:
+                    actionsPanel.Visible = false;
+                    if (activity.ProjectId.HasValue)
+                        link.NavigateUrl = GetUrlForRequirement(activity.CompanyId, activity.ProjectId.Value, activity.RecordId);
+                    break;
+
+                case (int)GeneralCatalog.Detail.Entity.RequirementModificationComment:
+                    actionsPanel.Visible = false;
+                    if (activity.ProjectId.HasValue && activity.ParentId.HasValue)
+                    {
+                        link.NavigateUrl = GetUrlForRequirementModification(activity.CompanyId, activity.ProjectId.Value,
+                            activity.ParentId.Value, activity.RecordId);
+                    }
+                    break;
+
                 default:
                     actionsPanel.Visible = false;
                     break;

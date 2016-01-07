@@ -21,6 +21,8 @@ namespace SocialRequirements.Domain.DTO.General
 
         public long? ParentId { get; set; }
 
+        public long? GrandparentId { get; set; }
+
         public long RecordId { get; set; }
 
         public DateTime Createdon { get; set; }

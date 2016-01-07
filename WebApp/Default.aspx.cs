@@ -205,6 +205,7 @@ namespace SocialRequirements
                     if(activity.ProjectId.HasValue)
                         link.NavigateUrl = GetUrlForRequirement(activity.CompanyId, activity.ProjectId.Value, activity.RecordId);
                     break;
+
                 case (int)GeneralCatalog.Detail.Entity.RequirementModification:
                     actionsPanel.Visible = activity.EntityActionId == (int) GeneralCatalog.Detail.EntityActions.Create ||
                                            activity.EntityActionId == (int) GeneralCatalog.Detail.EntityActions.SubmitForApproval;
@@ -214,11 +215,23 @@ namespace SocialRequirements
                             activity.ParentId.Value, activity.RecordId);
                     }
                     break;
+                    
+                case (int)GeneralCatalog.Detail.Entity.RequirementQuestion:
+                case (int)GeneralCatalog.Detail.Entity.RequirementQuestionAnswer:
+                    actionsPanel.Visible = false;
+                    if (activity.ProjectId.HasValue && activity.ParentId.HasValue && activity.GrandparentId.HasValue)
+                    {
+                        link.NavigateUrl = GetUrlForRequirementQuestion(activity.CompanyId, activity.ProjectId.Value,
+                            activity.ParentId.Value, activity.GrandparentId.Value, activity.RecordId);
+                    }
+                    break;
+                    
                 case (int)GeneralCatalog.Detail.Entity.RequirementComment:
                     actionsPanel.Visible = false;
                     if (activity.ProjectId.HasValue)
                         link.NavigateUrl = GetUrlForRequirement(activity.CompanyId, activity.ProjectId.Value, activity.RecordId);
                     break;
+
                 case (int)GeneralCatalog.Detail.Entity.RequirementModificationComment:
                     actionsPanel.Visible = false;
                     if (activity.ProjectId.HasValue && activity.ParentId.HasValue)
@@ -227,14 +240,7 @@ namespace SocialRequirements
                             activity.ParentId.Value, activity.RecordId);
                     }
                     break;
-                case (int)GeneralCatalog.Detail.Entity.RequirementQuestion:
-                    actionsPanel.Visible = false;
-                    if (activity.ProjectId.HasValue && activity.ParentId.HasValue)
-                    {
-                        link.NavigateUrl = GetUrlForRequirementQuestion(activity.CompanyId, activity.ProjectId.Value,
-                            activity.ParentId.Value, activity.RecordId);
-                    }
-                    break;
+
                 default:
                     actionsPanel.Visible = false;
                     break;

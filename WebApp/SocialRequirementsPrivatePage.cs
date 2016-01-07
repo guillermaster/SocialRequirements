@@ -285,12 +285,14 @@ namespace SocialRequirements
             return url;
         }
 
-        protected string GetUrlForRequirementQuestion(long companyId, long projectId, long requirementId, long requirementQuestionId)
+        protected string GetUrlForRequirementQuestion(long companyId, long projectId, long requirementId,
+            long requirementVersionId, long requirementQuestionId)
         {
             var url = CommonConstants.FormsUrl.RequirementQuestion + "?" + CommonConstants.QueryStringParams.Id + "=" +
                       requirementQuestionId + "&" + CommonConstants.QueryStringParams.CompanyId + "=" + companyId + "&" +
                       CommonConstants.QueryStringParams.ProjectId + "=" + projectId + "&" +
-                      CommonConstants.QueryStringParams.RequirementId + "=" + requirementId;
+                      CommonConstants.QueryStringParams.RequirementId + "=" + requirementId + "&" +
+                      CommonConstants.QueryStringParams.RequirementVersionId + "=" + requirementVersionId;
             return url;
         }
     }

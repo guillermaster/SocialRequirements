@@ -58,7 +58,7 @@
                             <td>
                                 <a href="#"><%# Eval("CreatedByName") %> <%# Eval("CreatedByLastname") %></a>
                                 <strong><%# Eval("EntityActionPastTense") %></strong>&nbsp;
-                                        <a href="#"><%# Eval("EntitySingular") %> </a>
+                                <asp:HyperLink runat="server" ID="EntityInstanceLink"><%# Eval("EntitySingular") %> </asp:HyperLink>
                             </td>
                         </tr>
                         <tr>

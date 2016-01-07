@@ -43,7 +43,7 @@ namespace SocialRequirements.Business.Requirement
 
             // add activity feed log
             _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.RequirementQuestionAnswer,
-                (int)GeneralCatalog.Detail.EntityActions.Create, answerId, DateTime.Now, personId);
+                (int)GeneralCatalog.Detail.EntityActions.Create, answerId, DateTime.Now, personId, requirementId, requirementVersionId);
         }
 
         public List<RequirementQuestionAnswerDto> Get(long companyId, long projectId, long requirementId,

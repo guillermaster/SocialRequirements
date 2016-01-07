@@ -8,7 +8,7 @@ namespace SocialRequirements.Domain.Repository.General
     public interface IActivityFeedData
     {
         void Add(long companyId, long? projectId, int entityId, int actionId, long recordId, DateTime createdon,
-            long personId, long? parentId = null);
+            long personId, long? parentId = null, long? grandparentId = null);
 
         /// <summary>
         /// Returns a list of all latest activities performed in the system

@@ -41,7 +41,7 @@ namespace SocialRequirements.Data.General
         }
 
         public void Add(long companyId, long? projectId, int entityId, int actionId, long recordId, DateTime createdon,
-            long personId, long? parentId = null)
+            long personId, long? parentId = null, long? grandparentId = null)
         {
             var activityFeed = new ActivityFeed
             {
@@ -52,7 +52,8 @@ namespace SocialRequirements.Data.General
                 createdon = createdon,
                 createdby_id = personId,
                 action_id = actionId,
-                parent_id = parentId
+                parent_id = parentId,
+                grandparent_id = grandparentId
             };
 
             try
@@ -307,6 +308,7 @@ namespace SocialRequirements.Data.General
                 EntityId = activity.entity_id,
                 RecordId = activity.record_id,
                 ParentId = activity.parent_id,
+                GrandparentId = activity.grandparent_id,
                 Createdon = activity.createdon,
                 CreatedbyId = activity.createdby_id,
                 CreatedByLastname = activity.Person.last_name,
