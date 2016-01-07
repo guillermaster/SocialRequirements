@@ -267,5 +267,31 @@ namespace SocialRequirements
             if (masterPage == null) throw new InvalidDataException("Invalid master page or not found.");
             return success ? masterPage.GetSuccessMessage() : masterPage.GetErrorMessage();
         }
+
+        protected string GetUrlForRequirement(long companyId, long projectId, long requirementId)
+        {
+            var url = CommonConstants.FormsUrl.Requirement + "?" + CommonConstants.QueryStringParams.Id + "=" +
+                      requirementId + "&" + CommonConstants.QueryStringParams.CompanyId + "=" + companyId + "&" +
+                      CommonConstants.QueryStringParams.ProjectId + "=" + projectId;
+            return url;
+        }
+
+        protected string GetUrlForRequirementModification(long companyId, long projectId, long requirementId, long requirementModificationId)
+        {
+            var url = CommonConstants.FormsUrl.RequirementModification + "?" + CommonConstants.QueryStringParams.Id + "=" +
+                      requirementModificationId + "&" + CommonConstants.QueryStringParams.CompanyId + "=" + companyId + "&" +
+                      CommonConstants.QueryStringParams.ProjectId + "=" + projectId + "&" +
+                      CommonConstants.QueryStringParams.RequirementId + "=" + requirementId;
+            return url;
+        }
+
+        protected string GetUrlForRequirementQuestion(long companyId, long projectId, long requirementId, long requirementQuestionId)
+        {
+            var url = CommonConstants.FormsUrl.RequirementQuestion + "?" + CommonConstants.QueryStringParams.Id + "=" +
+                      requirementQuestionId + "&" + CommonConstants.QueryStringParams.CompanyId + "=" + companyId + "&" +
+                      CommonConstants.QueryStringParams.ProjectId + "=" + projectId + "&" +
+                      CommonConstants.QueryStringParams.RequirementId + "=" + requirementId;
+            return url;
+        }
     }
 }
