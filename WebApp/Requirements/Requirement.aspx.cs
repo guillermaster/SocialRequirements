@@ -4,6 +4,7 @@ using System.Data.SqlTypes;
 using System.Globalization;
 using SocialRequirements.Domain.DTO.Requirement;
 using SocialRequirements.Domain.General;
+using SocialRequirements.RequirementQuestionService;
 using SocialRequirements.RequirementService;
 using SocialRequirements.Utilities;
 
@@ -225,6 +226,11 @@ namespace SocialRequirements.Requirements
         {
             throw new NotImplementedException();
         }
+
+        protected void btn_PostQuestionButton_Click(object sender, EventArgs e)
+        {
+            AddQuestion(QuestionInput.Text);
+        }
         #endregion
 
         #region Comments Events
@@ -272,6 +278,23 @@ namespace SocialRequirements.Requirements
 
             var serializer = new ObjectSerializer<List<RequirementCommentDto>>();
             return (List<RequirementCommentDto>) serializer.Deserialize(comments);
+        }
+        #endregion
+
+        #region Data Update
+
+        private void AddQuestion(string question)
+        {
+            try
+            {
+                var questionSrv = new RequirementQuestionSoapClient();
+                questionSrv.AddQuestion(CompanyId, ProjectId, RequirementId, question, GetUsernameEncrypted());
+                SetFadeOutMessage("The question has been posted.", true);
+            }
+            catch
+            {
+                SetFadeOutMessage("An error has occurred, please try again.", false);
+            }
         }
         #endregion
 

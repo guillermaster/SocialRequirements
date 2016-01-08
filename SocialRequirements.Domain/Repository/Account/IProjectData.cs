@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Odbc;
 using SocialRequirements.Domain.DTO.Account;
 
 namespace SocialRequirements.Domain.Repository.Account
@@ -48,5 +49,12 @@ namespace SocialRequirements.Domain.Repository.Account
         /// <param name="companyId">Company identifier</param>
         /// <param name="projectId">Project identifier</param>
         long AddCompanyRelationship(long companyId, long projectId);
+        
+        /// <summary>
+        /// Gets the title/name of a project
+        /// </summary>
+        /// <param name="projectId">Project ID</param>
+        /// <returns>Project name/title</returns>
+        string GetTitle(long projectId);
     }
 }

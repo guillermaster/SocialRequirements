@@ -22,6 +22,7 @@
     <link type="text/css" href='<%= Page.ResolveClientUrl("~/assets/fonts/font-awesome/css/font-awesome.min.css") %>' rel="stylesheet">
     <!-- Font Awesome -->
     <link type="text/css" href='<%= Page.ResolveClientUrl("~/assets/css/styles.css") %>' rel="stylesheet">
+    <link type="text/css" href='<%= Page.ResolveClientUrl("~/assets/css/jquery-ui-1.10.3.css") %>' rel="stylesheet">
     <!-- Core CSS with all styles -->
     <link type="text/css" href='<%= Page.ResolveClientUrl("~/assets/plugins/codeprettifier/prettify.css") %>' rel="stylesheet">
     <!-- Code Prettifier -->

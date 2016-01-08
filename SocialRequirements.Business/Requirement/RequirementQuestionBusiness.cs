@@ -42,8 +42,9 @@ namespace SocialRequirements.Business.Requirement
             var questionId = _questionData.Add(questionDto);
 
             // add activity feed log
-            _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.RequirementQuestion,
-                (int)GeneralCatalog.Detail.EntityActions.Create, questionId, DateTime.Now, personId);
+            _activityFeedData.Add(companyId, projectId, (int) GeneralCatalog.Detail.Entity.RequirementQuestion,
+                (int) GeneralCatalog.Detail.EntityActions.Create, questionId, DateTime.Now, personId, requirementId,
+                requirementLatestVersion.Id);
         }
 
         public RequirementQuestionDto Get(long companyId, long projectId, long requirementId, long requirementVersionId,

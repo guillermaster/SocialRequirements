@@ -37,6 +37,15 @@ namespace SocialRequirements.Domain.Repository.Requirement
         RequirementDto Get(long companyId, long projectId, long requirementId);
 
         /// <summary>
+        /// Returns the title of the specified requirement
+        /// </summary>
+        /// <param name="companyId">Company ID</param>
+        /// <param name="projectId">Project ID</param>
+        /// <param name="requirementId">Requirement ID</param>
+        /// <returns>Requirement's title</returns>
+        string GetTitle(long companyId, long projectId, long requirementId);
+
+        /// <summary>
         /// Adds a like to the specified requirement
         /// </summary>
         /// <param name="companyId">Company ID</param>

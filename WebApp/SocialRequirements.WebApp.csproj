@@ -122,6 +122,7 @@
     <Content Include="Account\SetCompany.aspx" />
     <Content Include="Account\SetProject.aspx" />
     <Content Include="assets\css\.gitignore" />
+    <Content Include="assets\css\jquery-ui-1.10.3.css" />
     <Content Include="assets\css\styles-blessed1.css" />
     <Content Include="assets\css\styles-blessed2.css" />
     <Content Include="assets\css\styles-blessed3.css" />

@@ -117,6 +117,12 @@ namespace SocialRequirements.Data.Account
             return projectCompany.id;
         }
 
+        public string GetTitle(long projectId)
+        {
+            var project = _context.Project.FirstOrDefault(p => p.id == projectId);
+            return project != null ? project.name : string.Empty;
+        }
+
         private static ProjectDto GetProjectDto(CompanyProject companyProject)
         {
             var project = new ProjectDto

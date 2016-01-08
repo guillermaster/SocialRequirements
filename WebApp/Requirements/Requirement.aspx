@@ -1,9 +1,35 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Requirement.aspx.cs" Inherits="SocialRequirements.Requirements.Requirement" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Requirement.aspx.cs" Inherits="SocialRequirements.Requirements.Requirement" EnableEventValidation="false" %>
 
 <asp:Content ID="TitleContent" ContentPlaceHolderID="TitleContent" runat="server">
     Requirement
 </asp:Content>
 <asp:Content ID="ToolbarContent" ContentPlaceHolderID="ToolbarContent" runat="server">
+    <script>
+        function showQuestionDialog() {
+            
+            var fileUploadDialog = $('#questionDiv').dialog({
+                autoOpen: false,
+                height: 290,
+                width: 640,
+                modal: true,
+                buttons: {
+                    Post: function () {
+                        fileUploadDialog.dialog("close");
+                        <%=Page.ClientScript.GetPostBackEventReference(PostQuestionButton, "") %>
+                    },
+                    Cancel: function () {
+                        fileUploadDialog.dialog("close");
+                    }
+                },
+                open: function (e, ui) {
+                    $(this).parent().addClass(".ui-dialog");
+                }
+            });
+            fileUploadDialog.parent().appendTo(jQuery("form:first"));
+            //$(".selector").dialog({ appendTo: "#someElem" });
+            fileUploadDialog.dialog("open");
+        }
+    </script>
     <ul class="demo-btns">
         <li>
             <asp:LinkButton runat="server" CssClass="btn btn-default" ID="SubmitButton" OnClick="SubmitButton_Click" ToolTip="Submit for approval">
@@ -50,9 +76,13 @@
                 <i class="fa fa-fw fa-comments-o">
                     <asp:Label runat="server" ID="CommentCounter" /></i>
             </asp:LinkButton></li>
-        <li>
+        <%--<li>
             <asp:LinkButton runat="server" CssClass="btn btn-default" ID="HistoryButton" OnClick="HistoryButton_OnClick" ToolTip="View version history">
                 <i class="fa fa-fw fa-history"></i>
+            </asp:LinkButton></li>--%>
+        <li>
+            <asp:LinkButton runat="server" CssClass="btn btn-default" ID="AddQuestionButton" OnClientClick="javascript:showQuestionDialog();" ToolTip="Ask question">
+                <i class="fa fa-fw fa-question"></i>
             </asp:LinkButton></li>
         <li>
             <asp:LinkButton runat="server" CssClass="btn btn-default" ID="UploadButton" OnClick="UploadButton_OnClick" ToolTip="Upload file">
@@ -61,7 +91,6 @@
     </ul>
 </asp:Content>
 <asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
-
     <asp:Panel ID="PostSuccessPanel" runat="server" Visible="False" CssClass="alert alert-success" ClientIDMode="Static">
         <p>
             <asp:Label runat="server" ID="PostSuccessMessage" />
@@ -74,11 +103,12 @@
     </asp:Panel>
     <div class="bigcard">
         <div class="bigcard_title">
-            <h4><asp:Label runat="server" ID="RequirementTitle" /></h4>
+            <h4>
+                <asp:Label runat="server" ID="RequirementTitle" /></h4>
             <asp:TextBox runat="server" ID="RequirementTitleInput" Visible="False" />
         </div>
         <div class="bigcard_subtitle">
-            <asp:Label runat="server" ID="ProjectName"/>
+            <asp:Label runat="server" ID="ProjectName" />
         </div>
         <div class="bigcard_body">
             <asp:Label runat="server" ID="RequirementDescription" />
@@ -88,18 +118,19 @@
             <div class="bigcard_footer left">
                 Status:
                     <asp:Label runat="server" ID="RequirementStatus" />
-                <asp:HiddenField runat="server" ID="RequirementStatusId"/><br/>
+                <asp:HiddenField runat="server" ID="RequirementStatusId" />
+                <br />
                 Version:
                     <asp:Label runat="server" ID="RequirementVersion" />
             </div>
             <div class="bigcard_footer right">
                 Created by:
                     <asp:Label runat="server" ID="CreatedByName" />
-                    &nbsp;On:
+                &nbsp;On:
                     <asp:Label runat="server" ID="CreatedOn" /><br />
                 Last modified by:
                     <asp:Label runat="server" ID="ModifiedByName" />
-                    &nbsp;On:
+                &nbsp;On:
                     <asp:Label runat="server" ID="ModifiedOn" />
             </div>
         </div>
@@ -130,5 +161,11 @@
         </asp:Repeater>
         <asp:TextBox runat="server" TextMode="MultiLine" ID="NewCommentInput" Rows="6" Columns="100" placeholder="Type your comment here" /><br />
         <asp:Button runat="server" ID="AddNewCommentButton" Text="Add comment" OnClick="AddNewCommentButton_Click" />
+
     </asp:Panel>
+
+    <div id="questionDiv" style="display: none" title="Ask a question">
+        <asp:TextBox runat="server" TextMode="MultiLine" ID="QuestionInput" Rows="7" Columns="70" placeholder="Type your question here" />
+    </div>
+    <asp:Button runat="server" ID="PostQuestionButton" Text="Post" OnClick="btn_PostQuestionButton_Click" Visible="False" />
 </asp:Content>

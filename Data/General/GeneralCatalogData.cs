@@ -23,6 +23,12 @@ namespace SocialRequirements.Data.General
             return catalogDetails.Select(GetDtoFromEntity).ToList();
         }
 
+        public string GetTitle(int generalCatalodDetId)
+        {
+            var catalogDet = _context.GeneralCatalogDetails.FirstOrDefault(cat => cat.id == generalCatalodDetId);
+            return catalogDet != null ? catalogDet.name : string.Empty;
+        }
+
         private static GeneralCatalogDetailDto GetDtoFromEntity(GeneralCatalogDetail catalogDetail)
         {
             var catalogDetailDto = new GeneralCatalogDetailDto

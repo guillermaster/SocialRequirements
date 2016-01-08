@@ -93,6 +93,12 @@ namespace SocialRequirements.Data.Requirement
             return requirement != null ? GetDtoFromEntity(requirement) : null;
         }
 
+        public string GetTitle(long companyId, long projectId, long requirementId)
+        {
+            var requirement = GetEntity(companyId, projectId, requirementId);
+            return requirement != null ? requirement.title : string.Empty;
+        }
+
         public void Like(long companyId, long projectId, long requirementId, long personId)
         {
             using (var scope = _context.Database.BeginTransaction())

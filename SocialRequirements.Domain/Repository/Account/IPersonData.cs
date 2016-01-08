@@ -15,5 +15,7 @@ namespace SocialRequirements.Domain.Repository.Account
         long GetPersonId(string username);
 
         PersonDto Get(long personId);
+
+        string GetFullName(long personId);
     }
 }

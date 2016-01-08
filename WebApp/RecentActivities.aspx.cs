@@ -186,10 +186,10 @@ namespace SocialRequirements
                 case (int)GeneralCatalog.Detail.Entity.RequirementQuestion:
                 case (int)GeneralCatalog.Detail.Entity.RequirementQuestionAnswer:
                     actionsPanel.Visible = false;
-                    if (activity.ProjectId.HasValue && activity.ParentId.HasValue)
+                    if (activity.ProjectId.HasValue && activity.ParentId.HasValue && activity.GrandparentId.HasValue)
                     {
                         link.NavigateUrl = GetUrlForRequirementQuestion(activity.CompanyId, activity.ProjectId.Value,
-                            activity.ParentId.Value, activity.RecordId);
+                            activity.ParentId.Value, activity.GrandparentId.Value, activity.RecordId);
                     }
                     break;
 

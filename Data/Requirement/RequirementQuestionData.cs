@@ -4,6 +4,8 @@ using System.Linq;
 using SocialRequirements.Context;
 using SocialRequirements.Context.Entities;
 using SocialRequirements.Domain.DTO.Requirement;
+using SocialRequirements.Domain.Repository.Account;
+using SocialRequirements.Domain.Repository.General;
 using SocialRequirements.Domain.Repository.Requirement;
 
 namespace SocialRequirements.Data.Requirement
@@ -11,12 +13,22 @@ namespace SocialRequirements.Data.Requirement
     public class RequirementQuestionData : IRequirementQuestionData
     {
         private readonly ContextModel _context;
-        private IRequirementQuestionAnswerData _requirementQuestionAnswerData;
+        private readonly IRequirementQuestionAnswerData _requirementQuestionAnswerData;
+        private readonly IRequirementData _requirementData;
+        private readonly IProjectData _projectData;
+        private readonly IGeneralCatalogData _catalogData;
+        private readonly IPersonData _personData;
 
-        public RequirementQuestionData(ContextModel context, IRequirementQuestionAnswerData requirementQuestionAnswerData)
+        public RequirementQuestionData(ContextModel context,
+            IRequirementQuestionAnswerData requirementQuestionAnswerData, IRequirementData requirementData,
+            IProjectData projectData, IGeneralCatalogData catalogData, IPersonData personData)
         {
             _context = context;
             _requirementQuestionAnswerData = requirementQuestionAnswerData;
+            _requirementData = requirementData;
+            _projectData = projectData;
+            _catalogData = catalogData;
+            _personData = personData;
         }
 
         public long Add(RequirementQuestionDto questionDto)
@@ -110,11 +122,13 @@ namespace SocialRequirements.Data.Requirement
                 Createdon = question.createdon,
                 ModifiedbyId = question.modifiedby_id,
                 Modifiedon = question.modifiedon,
-                RequirementTitle = question.Requirement.title,
-                ProjectName = question.Project.name,
-                Status = question.GeneralCatalogDetail.name,
-                CreatedByName = Utilities.StringUtilities.GetPersonFullName(question.Person),
-                ModifiedByName = Utilities.StringUtilities.GetPersonFullName(question.Person1),
+                RequirementTitle = question.Requirement != null ? 
+                        question.Requirement.title :
+                        _requirementData.GetTitle(question.company_id, question.project_id, question.requirement_id),
+                ProjectName = question.Project != null ? question.Project.name : _projectData.GetTitle(question.project_id),
+                Status = question.GeneralCatalogDetail != null ? question.GeneralCatalogDetail.name : _catalogData.GetTitle(question.status_id),
+                CreatedByName = question.Person != null ? Utilities.StringUtilities.GetPersonFullName(question.Person) : _personData.GetFullName(question.createdby_id),
+                ModifiedByName = question.Person1 != null ? Utilities.StringUtilities.GetPersonFullName(question.Person1) : _personData.GetFullName(question.modifiedby_id),
                 AnswersQuantity = _requirementQuestionAnswerData.GetNumberOfAnswers(question.company_id, question.project_id,
                                     question.requirement_id, question.requirement_version_id, question.id),
                 Answers = getAnswers ? _requirementQuestionAnswerData.Get(question.company_id, question.project_id,

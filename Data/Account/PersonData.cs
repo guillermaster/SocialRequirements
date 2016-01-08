@@ -57,6 +57,13 @@ namespace SocialRequirements.Data.Account
             return new PersonDto(user);
         }
 
+        public string GetFullName(long personId)
+        {
+            var user = _context.Person.FirstOrDefault(person => person.id == personId);
+            return user != null ? user.first_name + user.last_name : string.Empty;
+        }
+    
+
         private static Person CreatePersonEntityInstance(string firstName, string lastName, DateTime birthdate, string primaryEmail, string secondaryEmail,
             string phone, string mobilePhone, string username, string password)
         {
