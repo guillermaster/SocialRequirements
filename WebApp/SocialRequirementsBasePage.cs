@@ -19,7 +19,7 @@ namespace SocialRequirements
             set { Session["UserData"] = value; }
         }
         
-        protected bool UserLoggedIn()
+        public bool UserLoggedIn()
         {
             return Username != null;
         }

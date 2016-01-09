@@ -133,7 +133,7 @@ namespace SocialRequirements
             return companies.All(company => companySrv.HaveProjects(company.Id));
         }
 
-        protected string GetUsernameEncrypted()
+        public string GetUsernameEncrypted()
         {
             return Encryption.Encrypt(Username);
         }
@@ -268,7 +268,7 @@ namespace SocialRequirements
             return success ? masterPage.GetSuccessMessage() : masterPage.GetErrorMessage();
         }
 
-        protected string GetUrlForRequirement(long companyId, long projectId, long requirementId)
+        public string GetUrlForRequirement(long companyId, long projectId, long requirementId)
         {
             var url = CommonConstants.FormsUrl.Requirement + "?" + CommonConstants.QueryStringParams.Id + "=" +
                       requirementId + "&" + CommonConstants.QueryStringParams.CompanyId + "=" + companyId + "&" +
@@ -276,7 +276,7 @@ namespace SocialRequirements
             return url;
         }
 
-        protected string GetUrlForRequirementModification(long companyId, long projectId, long requirementId, long requirementModificationId)
+        public string GetUrlForRequirementModification(long companyId, long projectId, long requirementId, long requirementModificationId)
         {
             var url = CommonConstants.FormsUrl.RequirementModification + "?" + CommonConstants.QueryStringParams.Id + "=" +
                       requirementModificationId + "&" + CommonConstants.QueryStringParams.CompanyId + "=" + companyId + "&" +
@@ -285,7 +285,7 @@ namespace SocialRequirements
             return url;
         }
 
-        protected string GetUrlForRequirementQuestion(long companyId, long projectId, long requirementId,
+        public string GetUrlForRequirementQuestion(long companyId, long projectId, long requirementId,
             long requirementVersionId, long requirementQuestionId)
         {
             var url = CommonConstants.FormsUrl.RequirementQuestion + "?" + CommonConstants.QueryStringParams.Id + "=" +

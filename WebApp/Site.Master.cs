@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SocialRequirements.Domain.DTO.General;
 using SocialRequirements.Domain.General;
+using SocialRequirements.GeneralService;
+using SocialRequirements.Utilities;
 
 namespace SocialRequirements
 {
@@ -13,6 +16,7 @@ namespace SocialRequirements
         private const string CtrlIdNotificationLink = "NotificationLink";
         private const string AntiXsrfTokenKey = "__AntiXsrfToken";
         private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
+        private const string CtrlIdEntityInstanceLink = "EntityInstanceLink";
         private string _antiXsrfTokenValue;
 
         protected void Page_Init(object sender, EventArgs e)
@@ -53,17 +57,18 @@ namespace SocialRequirements
             {
                 // Set Anti-XSRF token
                 ViewState[AntiXsrfTokenKey] = Page.ViewStateUserKey;
-                ViewState[AntiXsrfUserNameKey] = Context.User.Identity.Name ?? String.Empty;
+                ViewState[AntiXsrfUserNameKey] = Context.User.Identity.Name ?? string.Empty;
             }
             else
             {
                 // Validate the Anti-XSRF token
                 if ((string)ViewState[AntiXsrfTokenKey] != _antiXsrfTokenValue
-                    || (string)ViewState[AntiXsrfUserNameKey] != (Context.User.Identity.Name ?? String.Empty))
+                    || (string)ViewState[AntiXsrfUserNameKey] != (Context.User.Identity.Name ?? string.Empty))
                 {
                     throw new InvalidOperationException("Validation of Anti-XSRF token failed.");
                 }
             }
+            LoadActivityFeed();
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -210,6 +215,67 @@ namespace SocialRequirements
         {
             ToggleInfobarLink.Visible = true;
         }
+
+        protected void RecentActivityFeedRepeater_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType != ListItemType.Item) return;
+
+            var activity = (ActivityFeedDto)e.Item.DataItem;
+            var link = (HyperLink)e.Item.FindControl(CtrlIdEntityInstanceLink);
+            var privatePage = new SocialRequirementsPrivatePage();
+
+            switch (activity.EntityId)
+            {
+                case (int)GeneralCatalog.Detail.Entity.Requirement:
+                    if (activity.ProjectId.HasValue)
+                        link.NavigateUrl = privatePage.GetUrlForRequirement(activity.CompanyId, activity.ProjectId.Value, activity.RecordId);
+                    break;
+
+                case (int)GeneralCatalog.Detail.Entity.RequirementModification:
+                    if (activity.ProjectId.HasValue && activity.ParentId.HasValue)
+                    {
+                        link.NavigateUrl = privatePage.GetUrlForRequirementModification(activity.CompanyId, activity.ProjectId.Value,
+                            activity.ParentId.Value, activity.RecordId);
+                    }
+                    break;
+
+                case (int)GeneralCatalog.Detail.Entity.RequirementQuestion:
+                case (int)GeneralCatalog.Detail.Entity.RequirementQuestionAnswer:
+                    if (activity.ProjectId.HasValue && activity.ParentId.HasValue && activity.GrandparentId.HasValue)
+                    {
+                        link.NavigateUrl = privatePage.GetUrlForRequirementQuestion(activity.CompanyId, activity.ProjectId.Value,
+                            activity.ParentId.Value, activity.GrandparentId.Value, activity.RecordId);
+                    }
+                    break;
+
+                case (int)GeneralCatalog.Detail.Entity.RequirementComment:
+                    if (activity.ProjectId.HasValue)
+                        link.NavigateUrl = privatePage.GetUrlForRequirement(activity.CompanyId, activity.ProjectId.Value, activity.RecordId);
+                    break;
+
+                case (int)GeneralCatalog.Detail.Entity.RequirementModificationComment:
+                    if (activity.ProjectId.HasValue && activity.ParentId.HasValue)
+                    {
+                        link.NavigateUrl = privatePage.GetUrlForRequirementModification(activity.CompanyId, activity.ProjectId.Value,
+                            activity.ParentId.Value, activity.RecordId);
+                    }
+                    break;
+            }
+        }
+
+        private void LoadActivityFeed()
+        {
+            var privatePage = new SocialRequirementsPrivatePage();
+            if (!privatePage.UserLoggedIn()) return;
+
+            var generalSrv = new GeneralSoapClient();
+            var activityFeedXmlStr = generalSrv.LatestActivityFeed(privatePage.GetUsernameEncrypted());
+            var serializer = new ObjectSerializer<List<ActivityFeedDto>>();
+            var recentActivity = (List<ActivityFeedDto>)serializer.Deserialize(activityFeedXmlStr);
+            RecentActivityFeedRepeater.DataSource = recentActivity;
+            RecentActivityFeedRepeater.DataBind();
+        }
+
     }
 
 }
