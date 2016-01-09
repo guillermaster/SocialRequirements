@@ -6,16 +6,41 @@
 <asp:Content ID="ToolbarContent" ContentPlaceHolderID="ToolbarContent" runat="server">
     <script>
         function showQuestionDialog() {
-            
-            var fileUploadDialog = $('#questionDiv').dialog({
+
+            var questionDialog = $('#questionDiv').dialog({
                 autoOpen: false,
                 height: 290,
                 width: 640,
                 modal: true,
                 buttons: {
                     Post: function () {
-                        fileUploadDialog.dialog("close");
+                        questionDialog.dialog("close");
                         <%=Page.ClientScript.GetPostBackEventReference(PostQuestionButton, "") %>
+                    },
+                    Cancel: function () {
+                        questionDialog.dialog("close");
+                    }
+                },
+                open: function (e, ui) {
+                    $(this).parent().addClass(".ui-dialog");
+                }
+            });
+            questionDialog.parent().appendTo(jQuery("form:first"));
+            //$(".selector").dialog({ appendTo: "#someElem" });
+            questionDialog.dialog("open");
+        }
+
+        function showFileUploadDialog() {
+
+            var fileUploadDialog = $('#fileUploadDivDialog').dialog({
+                autoOpen: false,
+                height: 180,
+                width: 410,
+                modal: true,
+                buttons: {
+                    Upload: function () {
+                        fileUploadDialog.dialog("close");
+                        <%=Page.ClientScript.GetPostBackEventReference(UploadFileButton, "") %>
                     },
                     Cancel: function () {
                         fileUploadDialog.dialog("close");
@@ -85,7 +110,7 @@
                 <i class="fa fa-fw fa-question"></i>
             </asp:LinkButton></li>
         <li>
-            <asp:LinkButton runat="server" CssClass="btn btn-default" ID="UploadButton" OnClick="UploadButton_OnClick" ToolTip="Upload file">
+            <asp:LinkButton runat="server" CssClass="btn btn-default" ID="UploadButton" OnClientClick="javascript:showFileUploadDialog();" ToolTip="Upload file">
                 <i class="fa fa-fw fa-upload"></i>
             </asp:LinkButton></li>
     </ul>
@@ -164,8 +189,19 @@
 
     </asp:Panel>
 
+    <!-- content for question popup -->
     <div id="questionDiv" style="display: none" title="Ask a question">
         <asp:TextBox runat="server" TextMode="MultiLine" ID="QuestionInput" Rows="7" Columns="70" placeholder="Type your question here" />
     </div>
     <asp:Button runat="server" ID="PostQuestionButton" Text="Post" OnClick="btn_PostQuestionButton_Click" Visible="False" />
+
+</asp:Content>
+
+
+<asp:Content ID="FileUploadContent" ContentPlaceHolderID="ContentPlaceHolderFileUpload" runat="server">
+    <!-- content for file upload popup -->
+    <div id="fileUploadDivDialog" style="display: none" title="Upload attachement">
+                <asp:FileUpload ID="FileUploader" runat="server" />
+            </div>
+            <asp:Button runat="server" ID="UploadFileButton" Text="Upload" OnClick="UploadFileButton_Click" Visible="False" />
 </asp:Content>

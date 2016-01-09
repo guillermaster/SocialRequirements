@@ -191,10 +191,7 @@ namespace SocialRequirements.Requirements
             throw new NotImplementedException();
         }
 
-        protected override void UploadButton_OnClick(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        
         #endregion
 
         #region Comments events

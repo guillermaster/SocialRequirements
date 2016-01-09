@@ -1,9 +1,34 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RequirementModify.aspx.cs" Inherits="SocialRequirements.Requirements.RequirementModify" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RequirementModify.aspx.cs" Inherits="SocialRequirements.Requirements.RequirementModify" EnableEventValidation="false" %>
 
 <asp:Content ID="TitleContent" ContentPlaceHolderID="TitleContent" runat="server">
     Requirement Modification
 </asp:Content>
 <asp:Content ID="ToolbarContent" ContentPlaceHolderID="ToolbarContent" runat="server">
+    <script>
+        function showFileUploadDialog() {
+
+            var fileUploadDialog = $('#fileUploadDivDialog').dialog({
+                autoOpen: false,
+                height: 290,
+                width: 640,
+                modal: true,
+                buttons: {
+                    Post: function () {
+                        fileUploadDialog.dialog("close");
+                        <%=Page.ClientScript.GetPostBackEventReference(UploadFileButton, "") %>
+                    },
+                    Cancel: function () {
+                        fileUploadDialog.dialog("close");
+                    }
+                },
+                open: function (e, ui) {
+                    $(this).parent().addClass(".ui-dialog");
+                }
+            });
+            fileUploadDialog.parent().appendTo(jQuery("form:first"));
+            fileUploadDialog.dialog("open");
+        }
+    </script>
     <ul class="demo-btns">
         <li>
             <asp:LinkButton runat="server" CssClass="btn btn-default" ID="SubmitButton" OnClick="SubmitButton_Click" ToolTip="Submit for approval">
@@ -54,12 +79,7 @@
             </asp:LinkButton>
         </li>
         <li>
-            <asp:LinkButton runat="server" CssClass="btn btn-default" ID="HistoryButton" OnClick="HistoryButton_OnClick" ToolTip="View version history">
-                <i class="fa fa-fw fa-history"></i>
-            </asp:LinkButton>
-        </li>
-        <li>
-            <asp:LinkButton runat="server" CssClass="btn btn-default" ID="UploadButton" OnClick="UploadButton_OnClick" ToolTip="Upload file">
+            <asp:LinkButton runat="server" CssClass="btn btn-default" ID="UploadButton" OnClientClick="javascript:showFileUploadDialog();" ToolTip="Upload file">
                 <i class="fa fa-fw fa-upload"></i>
             </asp:LinkButton>
         </li>
@@ -154,5 +174,13 @@
         <asp:TextBox runat="server" TextMode="MultiLine" ID="NewCommentInput" Rows="6" Columns="100" placeholder="Type your comment here" /><br />
         <asp:Button runat="server" ID="AddNewCommentButton" Text="Add comment" OnClick="AddNewCommentButton_Click" />
     </asp:Panel>
+    
+</asp:Content>
 
+<asp:Content ID="FileUploadContent" ContentPlaceHolderID="ContentPlaceHolderFileUpload" runat="server">
+    <!-- content for file upload popup -->
+    <div id="fileUploadDivDialog" style="display: none" title="Upload attachement">
+                <asp:FileUpload ID="FileUploader" runat="server" />
+            </div>
+            <asp:Button runat="server" ID="UploadFileButton" Text="Upload" OnClick="UploadFileButton_Click" Visible="False" />
 </asp:Content>

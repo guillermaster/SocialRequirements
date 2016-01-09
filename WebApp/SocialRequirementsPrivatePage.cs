@@ -34,6 +34,13 @@ namespace SocialRequirements
             if (siteMaster != null) siteMaster.RedirectToLogin();
         }
 
+        protected void RegisterTrigger(Control control)
+        {
+            if (!UserLoggedIn()) return;
+            var siteMaster = (SiteMaster)Master;
+            if (siteMaster != null) siteMaster.RegisterPostBackTrigger(control);
+        }
+
         protected void HideInfobarToggleButton()
         {
             var siteMaster = (SiteMaster)Master;

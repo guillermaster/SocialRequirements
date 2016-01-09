@@ -4,6 +4,7 @@ using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.WebSockets;
 using SocialRequirements.Domain.DTO.General;
 using SocialRequirements.Domain.General;
 using SocialRequirements.GeneralService;
@@ -274,6 +275,14 @@ namespace SocialRequirements
             var recentActivity = (List<ActivityFeedDto>)serializer.Deserialize(activityFeedXmlStr);
             RecentActivityFeedRepeater.DataSource = recentActivity;
             RecentActivityFeedRepeater.DataBind();
+        }
+
+        public void RegisterPostBackTrigger(Control control)
+        {
+            //var trigger = new PostBackTrigger {ControlID = control.UniqueID};
+
+            //MainUpdatePanel.Triggers.Add(trigger);
+            MainScriptManager.RegisterPostBackControl(control);
         }
 
     }

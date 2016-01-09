@@ -493,6 +493,8 @@
                     </footer>
                 </div>
                 <!-- end of main content area -->
+                <asp:ContentPlaceHolder ID="ContentPlaceHolderFileUpload" runat="server">
+                </asp:ContentPlaceHolder>
             </div>
         </div>
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlTypes;
 using System.Globalization;
+using System.IO;
 using SocialRequirements.Domain.DTO.Requirement;
 using SocialRequirements.Domain.General;
 using SocialRequirements.RequirementQuestionService;
@@ -61,6 +62,7 @@ namespace SocialRequirements.Requirements
             var message = Request.QueryString[CommonConstants.QueryStringParams.Message];
             if (!string.IsNullOrWhiteSpace(message))
                 SetFadeOutMessage(GetMainUpdatePanel(this), PostSuccessPanel, PostSuccessMessage, message);
+
         }
 
         protected virtual void SubmitButton_Click(object sender, EventArgs e)
@@ -221,15 +223,17 @@ namespace SocialRequirements.Requirements
         {
             throw new NotImplementedException();
         }
-
-        protected virtual void UploadButton_OnClick(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
+        
         protected void btn_PostQuestionButton_Click(object sender, EventArgs e)
         {
             AddQuestion(QuestionInput.Text);
+        }
+
+        protected void UploadFileButton_Click(object sender, EventArgs e)
+        {
+            if (!FileUploader.HasFile) return;
+
+            UploadFile(FileUploader.FileBytes);
         }
         #endregion
 
@@ -290,6 +294,19 @@ namespace SocialRequirements.Requirements
                 var questionSrv = new RequirementQuestionSoapClient();
                 questionSrv.AddQuestion(CompanyId, ProjectId, RequirementId, question, GetUsernameEncrypted());
                 SetFadeOutMessage("The question has been posted.", true);
+            }
+            catch
+            {
+                SetFadeOutMessage("An error has occurred, please try again.", false);
+            }
+        }
+
+        protected void UploadFile(byte[] fileContent)
+        {
+            try
+            {
+                throw new NotImplementedException();
+                SetFadeOutMessage("The file has been uploaded.", true);
             }
             catch
             {
@@ -381,5 +398,6 @@ namespace SocialRequirements.Requirements
             CommentCounter.Text = comments.Count.ToString();
         }
         #endregion
+        
     }
 }
