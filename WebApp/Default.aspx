@@ -50,7 +50,6 @@
                         <form>
                             <ul class="list-inline" id="list_PostActions">
                                 <li class="active"><a href="#">Add requirement</a></li>
-                                <li><a href="#">Ask question</a></li>
                             </ul>
                             <asp:TextBox runat="server" ID="TxtContentPost" TextMode="MultiLine" CssClass="form-control vresize"
                                 Columns="140" Rows="5" placeholder="What's in your mind?" />
