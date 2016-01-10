@@ -52,6 +52,11 @@ namespace SocialRequirements.Context.Entities
 
         public int version_number { get; set; }
 
+        public byte[] attachment { get; set; }
+
+        [StringLength(100)]
+        public string attachment_title { get; set; }
+
         public virtual Company Company { get; set; }
 
         public virtual Project Project { get; set; }

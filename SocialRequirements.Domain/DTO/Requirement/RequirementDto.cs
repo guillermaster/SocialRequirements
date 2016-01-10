@@ -82,12 +82,13 @@ namespace SocialRequirements.Domain.DTO.Requirement
         public long VersionId { get; set; }
 
         public int VersionNumber { get; set; }
-
+        
         // NON-ENTITY PROPERTIES
         public string ShortDescription { get; set; }
         public string Project { get; set; }
         public string Status { get; set; }
         public string CreatedByName { get; set; }
         public string ModifiedByName { get; set; }
+        public string AttachmentTitle { get; set; }
     }
 }

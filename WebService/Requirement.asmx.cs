@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.Security.Cryptography;
 using System.Web.Services;
 using Ninject;
 using Ninject.Web;
@@ -283,6 +284,38 @@ namespace WebService
             var requirements = RequirementModificationBusiness.GetListDraft(username);
             var serializer = new ObjectSerializer<List<RequirementModificationDto>>(requirements);
             return serializer.ToXmlString();
+        }
+
+        [WebMethod]
+        public void AddAttachment(long companyId, long projectId, long requirementId,
+            string fileName, byte[] fileContent, string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+
+            RequirementBusiness.UploadAttachment(companyId, projectId, requirementId, fileName,
+                fileContent, username);
+        }
+
+        [WebMethod]
+        public byte[] GetAttachment(long companyId, long projectId, long requirementId)
+        {
+            return RequirementBusiness.GetAttachment(companyId, projectId, requirementId);
+        }
+
+        [WebMethod]
+        public void AddModificationAttachment(long companyId, long projectId, long requirementId, long requirementModifId,
+            string fileName, byte[] fileContent, string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+
+            RequirementModificationBusiness.UploadAttachment(companyId, projectId, requirementId, requirementModifId, fileName,
+                fileContent, username);
+        }
+
+        [WebMethod]
+        public byte[] GetModificationAttachment(long companyId, long projectId, long requirementId, long requirementModifId)
+        {
+            return RequirementModificationBusiness.GetAttachment(companyId, projectId, requirementId, requirementModifId);
         }
     }
 }

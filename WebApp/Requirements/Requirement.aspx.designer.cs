@@ -139,6 +139,15 @@ namespace SocialRequirements.Requirements {
         protected global::System.Web.UI.WebControls.LinkButton UploadButton;
         
         /// <summary>
+        /// DownloadButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton DownloadButton;
+        
+        /// <summary>
         /// PostSuccessPanel control.
         /// </summary>
         /// <remarks>
@@ -353,6 +362,15 @@ namespace SocialRequirements.Requirements {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload FileUploader;
+        
+        /// <summary>
+        /// FileOverwriteWarning control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label FileOverwriteWarning;
         
         /// <summary>
         /// UploadFileButton control.

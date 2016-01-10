@@ -1,5 +1,4 @@
-﻿using SocialRequirements.Context.Entities;
-using SocialRequirements.Domain.DTO.Requirement;
+﻿using SocialRequirements.Domain.DTO.Requirement;
 
 namespace SocialRequirements.Domain.Repository.Requirement
 {
@@ -22,6 +21,10 @@ namespace SocialRequirements.Domain.Repository.Requirement
         /// <param name="requirementModificationId">Requirement modification ID</param>
         /// <param name="requirementModifVersionId">Version identifier</param>
         RequirementModificationDto Get(long companyId, long projectId, long requirementId, long requirementModificationId, long? requirementModifVersionId = null);
+
+        string GetAttachmentTitle(long companyId, long projectId, long requirementId, long requirementModificationId, long? requirementModifVersionId = null);
+
+        byte[] GetAttachment(long companyId, long projectId, long requirementId, long requirementModificationId, long? requirementModifVersionId = null);
 
         /// <summary>
         /// Adds like to a specific requirement modification request version
@@ -71,5 +74,19 @@ namespace SocialRequirements.Domain.Repository.Requirement
         /// <param name="personId">User that triggered the update</param>
         void Update(string title, string description, long companyId, long projectId, long requirementId,
             long requirementModificationId,  long versionId, long personId);
+
+        /// <summary>
+        /// Uploads a file to the DB server as part of the requirement version record
+        /// </summary>
+        /// <param name="companyId">Company ID</param>
+        /// <param name="projectId">Project ID</param>
+        /// <param name="requirementId">Requirement ID</param>
+        /// <param name="requirementModificationId">Requirement modification ID</param>
+        /// <param name="versionId">Version ID</param>
+        /// <param name="fileName">File name</param>
+        /// <param name="fileContent">File content in bytes</param>
+        /// <param name="personId">Modification user ID</param>
+        void UploadAttachment(long companyId, long projectId, long requirementId, long requirementModificationId, long versionId,
+            string fileName, byte[] fileContent, long personId);
     }
 }

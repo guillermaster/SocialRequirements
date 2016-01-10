@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Web;
 using SocialRequirements.Domain.DTO.Requirement;
 using SocialRequirements.Domain.General;
 using SocialRequirements.RequirementService;
@@ -42,6 +43,7 @@ namespace SocialRequirements.Requirements
 
             LoadRequirement();
             ToggleModification();
+            RegisterTrigger(DownloadButton);
         }
 
         protected override void SaveButton_Click(object sender, EventArgs e)
@@ -238,6 +240,41 @@ namespace SocialRequirements.Requirements
 
             var serializer = new ObjectSerializer<List<RequirementModificationCommentDto>>();
             return (List<RequirementModificationCommentDto>)serializer.Deserialize(comments);
+        }
+
+        protected override void DownloadFile()
+        {
+            var requirementSrv = new RequirementSoapClient();
+            var fileBytes = requirementSrv.GetModificationAttachment(CompanyId, ProjectId, RequirementId,
+                RequirementModificationId);
+
+            Response.Clear();
+            Response.AddHeader("Content-Disposition", "attachement;filename=" + HttpUtility.UrlEncode(FileName));
+            Response.AddHeader("Content-Length", fileBytes.Length.ToString());
+            Response.BinaryWrite(fileBytes);
+            Response.Flush();
+            Response.Close();
+        }
+        #endregion
+
+        #region Data Update
+
+        protected override void UploadFile(string fileName, byte[] fileContent)
+        {
+            try
+            {
+                var reqSrv = new RequirementSoapClient();
+                reqSrv.AddModificationAttachment(CompanyId, ProjectId, RequirementId, RequirementModificationId,
+                    fileName, fileContent, GetUsernameEncrypted());
+
+                FileName = fileName;
+                DownloadButton.Visible = true;
+                SetFadeOutMessage("The file has been uploaded.", true);
+            }
+            catch
+            {
+                SetFadeOutMessage("An error has occurred, please try again.", false);
+            }
         }
         #endregion
 

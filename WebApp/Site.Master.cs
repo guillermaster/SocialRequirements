@@ -279,12 +279,10 @@ namespace SocialRequirements
 
         public void RegisterPostBackTrigger(Control control)
         {
-            //var trigger = new PostBackTrigger {ControlID = control.UniqueID};
-
-            //MainUpdatePanel.Triggers.Add(trigger);
-            MainScriptManager.RegisterPostBackControl(control);
+            var scriptManager = ScriptManager.GetCurrent(Page);
+            if (scriptManager != null)
+                scriptManager.RegisterPostBackControl(control);
         }
-
     }
 
 }

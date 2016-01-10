@@ -16,14 +16,17 @@ namespace SocialRequirements.Business.Requirement
         private readonly IRequirementModificationData _requirementModifData;
         private readonly IActivityFeedData _activityFeedData;
         private readonly IProjectData _projectData;
+        private readonly IRequirementModificationVersionData _requirementModifVersionData;
 
         public RequirementModificationBusiness(IPersonData personData, IRequirementModificationData requirementModifData,
-            IActivityFeedData activityFeedData, IProjectData projectData)
+            IActivityFeedData activityFeedData, IProjectData projectData,
+            IRequirementModificationVersionData requirementModifVersionData)
         {
             _personData = personData;
             _requirementModifData = requirementModifData;
             _activityFeedData = activityFeedData;
             _projectData = projectData;
+            _requirementModifVersionData = requirementModifVersionData;
         }
         
         public RequirementModificationDto Add(long companyId, long projectId, long requirementId, string title, string description,
@@ -44,7 +47,10 @@ namespace SocialRequirements.Business.Requirement
 
         public RequirementModificationDto Get(long companyId, long projectId, long requirementId, long requirementModificationId)
         {
-            return _requirementModifData.Get(companyId, projectId, requirementId, requirementModificationId);
+            var requirementModif = _requirementModifData.Get(companyId, projectId, requirementId, requirementModificationId);
+            requirementModif.AttachmentTitle = _requirementModifVersionData.GetAttachmentTitle(companyId, projectId,
+                requirementId, requirementModificationId);
+            return requirementModif;
         }
 
         public RequirementModificationDto Get(long companyId, long projectId, long requirementId)
@@ -171,6 +177,40 @@ namespace SocialRequirements.Business.Requirement
                 allRequirementsModif.Where(
                     requirementModif => requirementModif.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.Draft)
                     .ToList();
+        }
+
+        public void UploadAttachment(long companyId, long projectId, long requirementId, long requirementModificationId,
+            string fileName, byte[] fileContent, string username)
+        {
+            var personId = _personData.GetPersonId(username);
+            var requirementlastestVersion = _requirementModifVersionData.Get(companyId, projectId, requirementId, requirementModificationId);
+
+            _requirementModifVersionData.UploadAttachment(companyId, projectId, requirementId, requirementModificationId,
+                requirementlastestVersion.VersionId, fileName, fileContent, personId);
+
+            // add activity feed log
+            _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.RequirementModification,
+                (int)GeneralCatalog.Detail.EntityActions.UploadAttachment, requirementModificationId, DateTime.Now, personId, requirementId);
+        }
+
+        public void UploadAttachment(long companyId, long projectId, long requirementId, long requirementModificationId,
+            long requirementModifVersionId, string fileName, byte[] fileContent, string username)
+        {
+            var personId = _personData.GetPersonId(username);
+
+            _requirementModifVersionData.UploadAttachment(companyId, projectId, requirementId, requirementModificationId,
+                requirementModifVersionId, fileName, fileContent, personId);
+
+            // add activity feed log
+            _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.RequirementModification,
+                (int)GeneralCatalog.Detail.EntityActions.UploadAttachment, requirementModificationId, DateTime.Now, personId, requirementId);
+        }
+
+        public byte[] GetAttachment(long companyId, long projectId, long requirementId, long requirementModificationId,
+            long? requirementModifVersionId = null)
+        {
+            return _requirementModifVersionData.GetAttachment(companyId, projectId, requirementId,
+                requirementModificationId, requirementModifVersionId);
         }
     }
 }

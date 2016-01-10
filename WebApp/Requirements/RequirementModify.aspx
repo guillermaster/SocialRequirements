@@ -9,7 +9,7 @@
 
             var fileUploadDialog = $('#fileUploadDivDialog').dialog({
                 autoOpen: false,
-                height: 290,
+                height: 310,
                 width: 640,
                 modal: true,
                 buttons: {
@@ -83,6 +83,10 @@
                 <i class="fa fa-fw fa-upload"></i>
             </asp:LinkButton>
         </li>
+        <li>
+            <asp:LinkButton runat="server" CssClass="btn btn-default" ID="DownloadButton" OnClick="DownloadButton_OnClick" ToolTip="Download attachment">
+                <i class="fa fa-fw fa-download"></i>
+            </asp:LinkButton></li>
     </ul>
 </asp:Content>
 <asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
@@ -180,7 +184,9 @@
 <asp:Content ID="FileUploadContent" ContentPlaceHolderID="ContentPlaceHolderFileUpload" runat="server">
     <!-- content for file upload popup -->
     <div id="fileUploadDivDialog" style="display: none" title="Upload attachement">
-                <asp:FileUpload ID="FileUploader" runat="server" />
-            </div>
-            <asp:Button runat="server" ID="UploadFileButton" Text="Upload" OnClick="UploadFileButton_Click" Visible="False" />
+        <asp:FileUpload ID="FileUploader" runat="server" />
+        <asp:Label runat="server" ID="FileOverwriteWarning" CssClass="label-warning" style="font-size: 75%"
+            Text="Uploading a new file will overwrite the currently uploaded attachment" Visible="False"/>
+    </div>
+    <asp:Button runat="server" ID="UploadFileButton" Text="Upload" OnClick="UploadFileButton_Click" Visible="False" />
 </asp:Content>

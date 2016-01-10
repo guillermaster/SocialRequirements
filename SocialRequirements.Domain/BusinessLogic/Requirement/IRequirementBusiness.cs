@@ -86,7 +86,7 @@ namespace SocialRequirements.Domain.BusinessLogic.Requirement
         /// <param name="requirementId">Requirement ID</param>
         /// <returns>Requirement</returns>
         RequirementDto Get(long companyId, long projectId, long requirementId);
-
+        
         /// <summary>
         /// Sets a requirement as approved
         /// </summary>
@@ -124,5 +124,33 @@ namespace SocialRequirements.Domain.BusinessLogic.Requirement
         /// <param name="requirementId">Requirement ID</param>
         /// <param name="username">User that submitted the requirement</param>
         void SubmitForApproval(long companyId, long projectId, long requirementId, string username);
+
+        /// <summary>
+        /// Uploads a file to the DB server as part of the lastest requirement version record
+        /// </summary>
+        /// <param name="companyId">Company ID</param>
+        /// <param name="projectId">Project ID</param>
+        /// <param name="requirementId">Requirement ID</param>
+        /// <param name="fileName">File name</param>
+        /// <param name="fileContent">File content in bytes</param>
+        /// <param name="username">Modification username</param>
+        void UploadAttachment(long companyId, long projectId, long requirementId, 
+            string fileName, byte[] fileContent, string username);
+
+        /// <summary>
+        /// Uploads a file to the DB server as part of a specific requirement version record
+        /// </summary>
+        /// <param name="companyId">Company ID</param>
+        /// <param name="projectId">Project ID</param>
+        /// <param name="requirementId">Requirement ID</param>
+        /// <param name="requirementVersionId">Requirement version ID</param>
+        /// <param name="fileName">File name</param>
+        /// <param name="fileContent">File content in bytes</param>
+        /// <param name="username">Modification username</param>
+        void UploadAttachment(long companyId, long projectId, long requirementId, long requirementVersionId,
+            string fileName,
+            byte[] fileContent, string username);
+
+        byte[] GetAttachment(long companyId, long projectId, long requirementId, long? requirementVersionId = null);
     }
 }

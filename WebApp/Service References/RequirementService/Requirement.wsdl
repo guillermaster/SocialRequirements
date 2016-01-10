@@ -460,6 +460,70 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="AddAttachment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="companyId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="projectId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requirementId" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileContent" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="encUsername" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddAttachmentResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAttachment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="companyId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="projectId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requirementId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAttachmentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAttachmentResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddModificationAttachment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="companyId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="projectId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requirementId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requirementModifId" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileContent" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="encUsername" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddModificationAttachmentResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetModificationAttachment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="companyId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="projectId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requirementId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requirementModifId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetModificationAttachmentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetModificationAttachmentResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="AddRequirementSoapIn">
@@ -648,6 +712,30 @@
   <wsdl:message name="GetDraftRequirementsModificationListSoapOut">
     <wsdl:part name="parameters" element="tns:GetDraftRequirementsModificationListResponse" />
   </wsdl:message>
+  <wsdl:message name="AddAttachmentSoapIn">
+    <wsdl:part name="parameters" element="tns:AddAttachment" />
+  </wsdl:message>
+  <wsdl:message name="AddAttachmentSoapOut">
+    <wsdl:part name="parameters" element="tns:AddAttachmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAttachmentSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAttachment" />
+  </wsdl:message>
+  <wsdl:message name="GetAttachmentSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAttachmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddModificationAttachmentSoapIn">
+    <wsdl:part name="parameters" element="tns:AddModificationAttachment" />
+  </wsdl:message>
+  <wsdl:message name="AddModificationAttachmentSoapOut">
+    <wsdl:part name="parameters" element="tns:AddModificationAttachmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetModificationAttachmentSoapIn">
+    <wsdl:part name="parameters" element="tns:GetModificationAttachment" />
+  </wsdl:message>
+  <wsdl:message name="GetModificationAttachmentSoapOut">
+    <wsdl:part name="parameters" element="tns:GetModificationAttachmentResponse" />
+  </wsdl:message>
   <wsdl:portType name="RequirementSoap">
     <wsdl:operation name="AddRequirement">
       <wsdl:input message="tns:AddRequirementSoapIn" />
@@ -772,6 +860,22 @@
     <wsdl:operation name="GetDraftRequirementsModificationList">
       <wsdl:input message="tns:GetDraftRequirementsModificationListSoapIn" />
       <wsdl:output message="tns:GetDraftRequirementsModificationListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddAttachment">
+      <wsdl:input message="tns:AddAttachmentSoapIn" />
+      <wsdl:output message="tns:AddAttachmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAttachment">
+      <wsdl:input message="tns:GetAttachmentSoapIn" />
+      <wsdl:output message="tns:GetAttachmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddModificationAttachment">
+      <wsdl:input message="tns:AddModificationAttachmentSoapIn" />
+      <wsdl:output message="tns:AddModificationAttachmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetModificationAttachment">
+      <wsdl:input message="tns:GetModificationAttachmentSoapIn" />
+      <wsdl:output message="tns:GetModificationAttachmentSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="RequirementSoap" type="tns:RequirementSoap">
@@ -1055,6 +1159,42 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="AddAttachment">
+      <soap:operation soapAction="http://tempuri.org/AddAttachment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAttachment">
+      <soap:operation soapAction="http://tempuri.org/GetAttachment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddModificationAttachment">
+      <soap:operation soapAction="http://tempuri.org/AddModificationAttachment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetModificationAttachment">
+      <soap:operation soapAction="http://tempuri.org/GetModificationAttachment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="RequirementSoap12" type="tns:RequirementSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -1330,6 +1470,42 @@
     </wsdl:operation>
     <wsdl:operation name="GetDraftRequirementsModificationList">
       <soap12:operation soapAction="http://tempuri.org/GetDraftRequirementsModificationList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddAttachment">
+      <soap12:operation soapAction="http://tempuri.org/AddAttachment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAttachment">
+      <soap12:operation soapAction="http://tempuri.org/GetAttachment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddModificationAttachment">
+      <soap12:operation soapAction="http://tempuri.org/AddModificationAttachment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetModificationAttachment">
+      <soap12:operation soapAction="http://tempuri.org/GetModificationAttachment" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

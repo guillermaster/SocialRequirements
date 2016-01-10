@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlTypes;
 using System.Globalization;
 using System.IO;
+using System.Web;
 using SocialRequirements.Domain.DTO.Requirement;
 using SocialRequirements.Domain.General;
 using SocialRequirements.RequirementQuestionService;
@@ -42,6 +43,12 @@ namespace SocialRequirements.Requirements
             get { return ViewState["EditionMode"] != null && bool.Parse(ViewState["EditionMode"].ToString()); }
             set { ViewState["EditionMode"] = value; }
         }
+
+        protected string FileName
+        {
+            get { return ViewState["FileName"] != null ? ViewState["FileName"].ToString() : string.Empty; }
+            set { ViewState["FileName"] = value; }
+        }
         #endregion
 
         #region Main Events
@@ -63,6 +70,7 @@ namespace SocialRequirements.Requirements
             if (!string.IsNullOrWhiteSpace(message))
                 SetFadeOutMessage(GetMainUpdatePanel(this), PostSuccessPanel, PostSuccessMessage, message);
 
+            RegisterTrigger(DownloadButton);
         }
 
         protected virtual void SubmitButton_Click(object sender, EventArgs e)
@@ -233,7 +241,12 @@ namespace SocialRequirements.Requirements
         {
             if (!FileUploader.HasFile) return;
 
-            UploadFile(FileUploader.FileBytes);
+            UploadFile(FileUploader.FileName, FileUploader.FileBytes);
+        }
+
+        protected void DownloadButton_OnClick(object sender, EventArgs e)
+        {
+            DownloadFile();
         }
         #endregion
 
@@ -283,6 +296,19 @@ namespace SocialRequirements.Requirements
             var serializer = new ObjectSerializer<List<RequirementCommentDto>>();
             return (List<RequirementCommentDto>) serializer.Deserialize(comments);
         }
+
+        protected virtual void DownloadFile()
+        {
+            var requirementSrv = new RequirementSoapClient();
+            var fileBytes = requirementSrv.GetAttachment(CompanyId, ProjectId, RequirementId);
+
+            Response.Clear();
+            Response.AddHeader("Content-Disposition", "attachement;filename=" + HttpUtility.UrlEncode(FileName));
+            Response.AddHeader("Content-Length", fileBytes.Length.ToString());
+            Response.BinaryWrite(fileBytes);
+            Response.Flush();
+            Response.Close();
+        }
         #endregion
 
         #region Data Update
@@ -301,11 +327,15 @@ namespace SocialRequirements.Requirements
             }
         }
 
-        protected void UploadFile(byte[] fileContent)
+        protected virtual void UploadFile(string fileName, byte[] fileContent)
         {
             try
             {
-                throw new NotImplementedException();
+                var reqSrv = new RequirementSoapClient();
+                reqSrv.AddAttachment(CompanyId, ProjectId, RequirementId, fileName, fileContent, GetUsernameEncrypted());
+
+                FileName = fileName;
+                DownloadButton.Visible = true;
                 SetFadeOutMessage("The file has been uploaded.", true);
             }
             catch
@@ -359,6 +389,9 @@ namespace SocialRequirements.Requirements
             LikeCounter.Text = requirement.Agreed.ToString();
             DislikeCounter.Text = requirement.Disagreed.ToString();
             CommentCounter.Text = requirement.CommentsQuantity.ToString();
+            FileName = requirement.AttachmentTitle;
+            DownloadButton.Visible = !string.IsNullOrWhiteSpace(FileName);
+            FileOverwriteWarning.Visible = !string.IsNullOrWhiteSpace(FileName);
 
             // set action buttons visibility
             SaveButton.Visible = false;
@@ -398,6 +431,5 @@ namespace SocialRequirements.Requirements
             CommentCounter.Text = comments.Count.ToString();
         }
         #endregion
-        
     }
 }

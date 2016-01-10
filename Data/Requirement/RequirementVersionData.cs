@@ -46,6 +46,36 @@ namespace SocialRequirements.Data.Requirement
             return requirementVersion != null ? GetDtoFromEntity(requirementVersion) : null;
         }
 
+        public string GetAttachmentTitle(long companyId, long projectId, long requirementId, long? requirementVersionId = null)
+        {
+            var requirement = Get(companyId, projectId, requirementId, requirementVersionId);
+            return requirement != null ? requirement.AttachmentTitle : string.Empty;
+        }
+
+        public byte[] GetAttachment(long companyId, long projectId, long requirementId, long? requirementVersionId = null)
+        {
+            if (requirementVersionId == null)
+            {
+                var requirementVersion =
+                    _context.RequirementVersion.Where(
+                        rv => rv.company_id == companyId && rv.project_id == projectId && rv.requirement_id == requirementId)
+                        .OrderByDescending(v => v.id)
+                        .FirstOrDefault();
+
+                return requirementVersion != null ? requirementVersion.attachment : null;
+            }
+            else
+            {
+                var requirementVersion =
+               _context.RequirementVersion.FirstOrDefault(
+                   rv =>
+                       rv.company_id == companyId && rv.project_id == projectId && rv.requirement_id == requirementId &&
+                       rv.id == requirementVersionId);
+
+                return requirementVersion != null ? requirementVersion.attachment : null;
+            }
+        }
+
         public void Like(long companyId, long projectId, long requirementId, long requirementVersionId, long personId)
         {
             var requirementVersion = Get(companyId, projectId, requirementId, requirementVersionId);
@@ -86,6 +116,15 @@ namespace SocialRequirements.Data.Requirement
             requirementVersion.description = description;
             requirementVersion.modifiedby_id = personId;
             requirementVersion.modifiedon = DateTime.Now;
+            _context.SaveChanges();
+        }
+
+        public void UploadAttachment(long companyId, long projectId, long requirementId, long requirementVersionId, string fileName,
+            byte[] fileContent, long personId)
+        {
+            var requirementVers = Get(companyId, projectId, requirementId, requirementVersionId);
+            requirementVers.attachment_title = fileName;
+            requirementVers.attachment = fileContent;
             _context.SaveChanges();
         }
 
@@ -161,7 +200,8 @@ namespace SocialRequirements.Data.Requirement
                 ApprovedbyId = requirementVersion.approvedby_id,
                 Approvedon = requirementVersion.approvedon,
                 VersionId = requirementVersion.id,
-                VersionNumber = requirementVersion.version_number
+                VersionNumber = requirementVersion.version_number,
+                AttachmentTitle = requirementVersion.attachment_title
             };
             return requirementDto;
         }

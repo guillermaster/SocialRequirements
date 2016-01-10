@@ -10,6 +10,7 @@ using SocialRequirements.Domain.DTO.Account;
 using SocialRequirements.Domain.DTO.General;
 using SocialRequirements.Domain.DTO.Requirement;
 using SocialRequirements.Domain.General;
+using SocialRequirements.Domain.Repository.Account;
 using SocialRequirements.Domain.Repository.General;
 using SocialRequirements.Domain.Repository.Requirement;
 using SocialRequirements.Utilities;
@@ -24,13 +25,16 @@ namespace SocialRequirements.Data.General
         private readonly IRequirementModificationVersionData _requirementModificationVersionData;
         private readonly IRequirementCommentData _requirementCommentData;
         private readonly IRequirementModificationCommentData _requirementModificationCommentData;
+        private readonly IPersonData _personData;
+        private readonly IGeneralCatalogData _catalogData;
         private const int MaxDescriptionLength = 1700;
         private const int MaxShortDescriptionLength = 600;
 
         public ActivityFeedData(ContextModel context, IRequirementData requirementData,
             IRequirementVersionData requirementVersionData, IRequirementCommentData requirementCommentData,
             IRequirementModificationVersionData requirementModificationVersionData,
-            IRequirementModificationCommentData requirementModificationCommentData)
+            IRequirementModificationCommentData requirementModificationCommentData,
+            IPersonData personData, IGeneralCatalogData catalogData)
         {
             _context = context;
             _requirementData = requirementData;
@@ -38,6 +42,8 @@ namespace SocialRequirements.Data.General
             _requirementCommentData = requirementCommentData;
             _requirementModificationVersionData = requirementModificationVersionData;
             _requirementModificationCommentData = requirementModificationCommentData;
+            _personData = personData;
+            _catalogData = catalogData;
         }
 
         public void Add(long companyId, long? projectId, int entityId, int actionId, long recordId, DateTime createdon,
@@ -311,13 +317,15 @@ namespace SocialRequirements.Data.General
                 GrandparentId = activity.grandparent_id,
                 Createdon = activity.createdon,
                 CreatedbyId = activity.createdby_id,
-                CreatedByLastname = activity.Person.last_name,
-                CreatedByName = activity.Person.first_name,
-                EntityName = activity.GeneralCatalogDetail.name,
-                EntitySingular = activity.GeneralCatalogDetail.description,
+                CreatedByLastname = activity.Person != null ? activity.Person.first_name : _personData.GetLastname(activity.createdby_id),
+                CreatedByName = activity.Person != null ? activity.Person.first_name : _personData.GetName(activity.createdby_id),
+
+                EntityName = activity.GeneralCatalogDetail != null ? activity.GeneralCatalogDetail.name : _catalogData.GetTitle(activity.entity_id),
+                EntitySingular = activity.GeneralCatalogDetail != null ? activity.GeneralCatalogDetail.description : _catalogData.GetDescription(activity.entity_id),
+                
                 EntityActionId = activity.action_id,
-                EntityAction = activity.GeneralCatalogDetail1.name,
-                EntityActionPastTense = activity.GeneralCatalogDetail1.description
+                EntityAction = activity.GeneralCatalogDetail1 != null ? activity.GeneralCatalogDetail1.name : _catalogData.GetTitle(activity.action_id),
+                EntityActionPastTense = activity.GeneralCatalogDetail1 != null ? activity.GeneralCatalogDetail1.description : _catalogData.GetDescription(activity.action_id)
             };
 
             // set description according to the entity

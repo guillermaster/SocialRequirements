@@ -31,6 +31,10 @@ namespace SocialRequirements.Domain.Repository.Requirement
         /// <param name="personId">Person ID</param>
         void Like(long companyId, long projectId, long requirementId, long requirementVersionId, long personId);
 
+        string GetAttachmentTitle(long companyId, long projectId, long requirementId, long? requirementVersionId = null);
+
+        byte[] GetAttachment(long companyId, long projectId, long requirementId, long? requirementVersionId = null);
+
         /// <summary>
         /// Adds dislike to a specific requirement version
         /// </summary>
@@ -64,5 +68,18 @@ namespace SocialRequirements.Domain.Repository.Requirement
         /// <param name="versionId">Version ID</param>
         /// <param name="personId">User that triggered the update</param>
         void Update(string title, string description, long companyId, long projectId, long requirementId, long versionId, long personId);
+
+        /// <summary>
+        /// Uploads a file to the DB server as part of the requirement version record
+        /// </summary>
+        /// <param name="companyId">Company ID</param>
+        /// <param name="projectId">Project ID</param>
+        /// <param name="requirementId">Requirement ID</param>
+        /// <param name="requirementVersionId">Requirement version ID</param>
+        /// <param name="fileName">File name</param>
+        /// <param name="fileContent">File content in bytes</param>
+        /// <param name="personId">Modification user ID</param>
+        void UploadAttachment(long companyId, long projectId, long requirementId, long requirementVersionId,
+            string fileName, byte[] fileContent, long personId);
     }
 }

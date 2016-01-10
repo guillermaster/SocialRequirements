@@ -138,5 +138,27 @@ namespace SocialRequirements.Domain.BusinessLogic.Requirement
         /// <param name="username">Username related to the requirements</param>
         /// <returns>List of requirements</returns>
         List<RequirementModificationDto> GetListDraft(string username);
+
+        void UploadAttachment(long companyId, long projectId, long requirementId, long requirementModificationId,
+            string fileName, byte[] fileContent, string username);
+
+        /// <summary>
+        /// Uploads a file to the DB server as part of a specific requirement version record
+        /// </summary>
+        /// <param name="companyId">Company ID</param>
+        /// <param name="projectId">Project ID</param>
+        /// <param name="requirementId">Requirement ID</param>
+        /// <param name="requirementModificationId">Requirement modification ID</param>
+        /// <param name="requirementModifVersionId">Requirement version ID</param>
+        /// <param name="fileName">File name</param>
+        /// <param name="fileContent">File content in bytes</param>
+        /// <param name="username">Modification username</param>
+        void UploadAttachment(long companyId, long projectId, long requirementId, long requirementModificationId, 
+            long requirementModifVersionId,
+            string fileName,
+            byte[] fileContent, string username);
+
+        byte[] GetAttachment(long companyId, long projectId, long requirementId, long requirementModificationId,
+            long? requirementModifVersionId = null);
     }
 }

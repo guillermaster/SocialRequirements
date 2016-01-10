@@ -16,14 +16,16 @@ namespace SocialRequirements.Business.Requirement
         private readonly IRequirementData _requirementData;
         private readonly IActivityFeedData _activityFeedData;
         private readonly IProjectData _projectData;
+        private readonly IRequirementVersionData _requirementVersionData;
 
         public RequirementBusiness(IPersonData personData, IRequirementData requirementData,
-            IActivityFeedData activityFeedData, IProjectData projectData)
+            IActivityFeedData activityFeedData, IProjectData projectData, IRequirementVersionData requirementVersionData)
         {
             _personData = personData;
             _requirementData = requirementData;
             _activityFeedData = activityFeedData;
             _projectData = projectData;
+            _requirementVersionData = requirementVersionData;
         }
 
         public bool HaveRequirements(long companyId)
@@ -119,7 +121,9 @@ namespace SocialRequirements.Business.Requirement
 
         public RequirementDto Get(long companyId, long projectId, long requirementId)
         {
-            return _requirementData.Get(companyId, projectId, requirementId);
+            var requirement = _requirementData.Get(companyId, projectId, requirementId);
+            requirement.AttachmentTitle = _requirementVersionData.GetAttachmentTitle(companyId, projectId, requirementId);
+            return requirement;
         }
 
         public void Approve(long companyId, long projectId, long requirementId, string username)
@@ -167,6 +171,38 @@ namespace SocialRequirements.Business.Requirement
             // add activity feed log
             _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.Requirement,
                 (int)GeneralCatalog.Detail.EntityActions.SubmitForApproval, requirementId, DateTime.Now, personId);
+        }
+
+        public void UploadAttachment(long companyId, long projectId, long requirementId, string fileName,
+            byte[] fileContent, string username)
+        {
+            var personId = _personData.GetPersonId(username);
+            var requirementlastestVersion = _requirementVersionData.Get(companyId, projectId, requirementId);
+
+            _requirementVersionData.UploadAttachment(companyId, projectId, requirementId, requirementlastestVersion.VersionId, fileName,
+                fileContent, personId);
+
+            // add activity feed log
+            _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.Requirement,
+                (int)GeneralCatalog.Detail.EntityActions.UploadAttachment, requirementId, DateTime.Now, personId);
+        }
+
+        public void UploadAttachment(long companyId, long projectId, long requirementId, long requirementVersionId, string fileName,
+            byte[] fileContent, string username)
+        {
+            var personId = _personData.GetPersonId(username);
+
+            _requirementVersionData.UploadAttachment(companyId, projectId, requirementId, requirementVersionId, fileName,
+                fileContent, personId);
+
+            // add activity feed log
+            _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.Requirement,
+                (int)GeneralCatalog.Detail.EntityActions.UploadAttachment, requirementId, DateTime.Now, personId);
+        }
+
+        public byte[] GetAttachment(long companyId, long projectId, long requirementId, long? requirementVersionId = null)
+        {
+            return _requirementVersionData.GetAttachment(companyId, projectId, requirementId, requirementVersionId);
         }
     }
 }

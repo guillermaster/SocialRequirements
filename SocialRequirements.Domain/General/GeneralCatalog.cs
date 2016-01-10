@@ -61,7 +61,8 @@
                 Remove = 13,
                 Like = 14,
                 Dislike = 15,
-                SubmitForApproval = 18
+                SubmitForApproval = 18,
+                UploadAttachment = 30
             }
         }
     }

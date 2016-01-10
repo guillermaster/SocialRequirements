@@ -8,5 +8,7 @@ namespace SocialRequirements.Domain.Repository.General
         List<GeneralCatalogDetailDto> Get(int generalCatalogHeaderId);
 
         string GetTitle(int generalCatalodDetId);
+
+        string GetDescription(int generalCatalodDetId);
     }
 }

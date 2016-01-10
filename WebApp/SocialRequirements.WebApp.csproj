@@ -2413,6 +2413,18 @@
     <Content Include="Service References\RequirementService\SocialRequirements.RequirementService.GetRequirementsModificationListResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Service References\RequirementService\SocialRequirements.RequirementService.AddAttachmentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RequirementService\SocialRequirements.RequirementService.GetAttachmentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RequirementService\SocialRequirements.RequirementService.AddModificationAttachmentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RequirementService\SocialRequirements.RequirementService.GetModificationAttachmentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
