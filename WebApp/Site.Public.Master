@@ -45,7 +45,7 @@
 <body class="infobar-overlay sidebar-hideon-collpase sidebar-scroll sidebar-collapsed">
 
     <header id="topnav" class="navbar navbar-midnightblue navbar-fixed-top clearfix" role="banner">
-        <a class="navbar-brand" href="index.html">Social Requirements</a>
+        <asp:HyperLink runat="server" NavigateUrl="~/Default.aspx" CssClass="navbar-brand">Social Requirements</asp:HyperLink>
     </header>
 
     <div id="wrapper">

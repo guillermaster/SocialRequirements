@@ -7,9 +7,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls;
-
 namespace SocialRequirements {
     
     
@@ -22,7 +19,7 @@ namespace SocialRequirements {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected HtmlForm MainForm;
+        protected global::System.Web.UI.HtmlControls.HtmlForm MainForm;
         
         /// <summary>
         /// TitleContent control.
@@ -31,7 +28,7 @@ namespace SocialRequirements {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected ContentPlaceHolder TitleContent;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder TitleContent;
         
         /// <summary>
         /// ToolbarContent control.
@@ -40,7 +37,7 @@ namespace SocialRequirements {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected ContentPlaceHolder ToolbarContent;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder ToolbarContent;
         
         /// <summary>
         /// MainContent control.
@@ -49,6 +46,6 @@ namespace SocialRequirements {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected ContentPlaceHolder MainContent;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
     }
 }

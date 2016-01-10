@@ -317,7 +317,7 @@ namespace SocialRequirements.Data.General
                 GrandparentId = activity.grandparent_id,
                 Createdon = activity.createdon,
                 CreatedbyId = activity.createdby_id,
-                CreatedByLastname = activity.Person != null ? activity.Person.first_name : _personData.GetLastname(activity.createdby_id),
+                CreatedByLastname = activity.Person != null ? activity.Person.last_name : _personData.GetLastname(activity.createdby_id),
                 CreatedByName = activity.Person != null ? activity.Person.first_name : _personData.GetName(activity.createdby_id),
 
                 EntityName = activity.GeneralCatalogDetail != null ? activity.GeneralCatalogDetail.name : _catalogData.GetTitle(activity.entity_id),
