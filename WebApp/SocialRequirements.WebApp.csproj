@@ -100,9 +100,6 @@
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.1.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.1.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web.Providers">
       <HintPath>..\packages\Microsoft.AspNet.Providers.Core.2.0.0\lib\net40\System.Web.Providers.dll</HintPath>
     </Reference>
@@ -1920,8 +1917,8 @@
     <Content Include="assets\plugins\summernote\src\less\summernote.less" />
     <Content Include="assets\plugins\switchery\README.md" />
     <Content Include="assets\plugins\wijets\.DS_Store" />
-    <None Include="Properties\PublishProfiles\SocialRequirements - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\SocialRequirements - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\socialrequirements - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\socialrequirements - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Requirements\RequirementQuestion.aspx" />
     <Content Include="Requirements\RequirementModify.aspx" />
@@ -2064,7 +2061,9 @@
     </None>
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Bundle.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Site.Mobile.Master" />
@@ -2436,14 +2435,6 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Data\SocialRequirements.Data.csproj">
-      <Project>{caa6be76-bd4b-4309-b067-0e940e50ef1f}</Project>
-      <Name>SocialRequirements.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SocialRequirements.CompositionRoot\SocialRequirements.CompositionRoot.csproj">
-      <Project>{29d1745d-ec8a-4a56-a5b1-68d17671749e}</Project>
-      <Name>SocialRequirements.CompositionRoot</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SocialRequirements.Domain\SocialRequirements.Domain.csproj">
       <Project>{6195F799-B266-474F-B5BA-D870B9A082A6}</Project>
       <Name>SocialRequirements.Domain</Name>

@@ -5,7 +5,7 @@
 </asp:Content>
 
 <asp:Content runat="server" ID="ToolbarContent" ContentPlaceHolderID="ToolbarContent">
-    <a href="#" class="btn btn-default"><i class="fa fa-fw fa-wrench"></i></a>
+    
 </asp:Content>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">

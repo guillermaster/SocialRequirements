@@ -83,7 +83,6 @@
     <Content Include="Company.asmx" />
     <Content Include="General.asmx" />
     <Content Include="packages.config" />
-    <None Include="Properties\PublishProfiles\AzureWebService.pubxml" />
     <None Include="Properties\PublishProfiles\Localhost.pubxml" />
     <None Include="Properties\PublishProfiles\SocialRequirementsService - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\SocialRequirementsService - Web Deploy.pubxml" />

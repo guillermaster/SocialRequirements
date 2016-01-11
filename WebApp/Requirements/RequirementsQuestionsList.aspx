@@ -3,7 +3,7 @@
     Requirement Questions
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ToolbarContent" runat="server">
-    <a href="#" class="btn btn-default"><i class="fa fa-fw fa-wrench"></i></a>
+    
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
     
