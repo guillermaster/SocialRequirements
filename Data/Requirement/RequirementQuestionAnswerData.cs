@@ -4,6 +4,8 @@ using System.Linq;
 using SocialRequirements.Context;
 using SocialRequirements.Context.Entities;
 using SocialRequirements.Domain.DTO.Requirement;
+using SocialRequirements.Domain.Repository.Account;
+using SocialRequirements.Domain.Repository.General;
 using SocialRequirements.Domain.Repository.Requirement;
 using SocialRequirements.Utilities;
 
@@ -12,10 +14,15 @@ namespace SocialRequirements.Data.Requirement
     public class RequirementQuestionAnswerData : IRequirementQuestionAnswerData
     {
         private readonly ContextModel _context;
+        private readonly IGeneralCatalogData _generalCatalogData;
+        private readonly IPersonData _personData;
 
-        public RequirementQuestionAnswerData(ContextModel context)
+        public RequirementQuestionAnswerData(ContextModel context, IGeneralCatalogData generalCatalogData,
+            IPersonData personData)
         {
             _context = context;
+            _generalCatalogData = generalCatalogData;
+            _personData = personData;
         }
 
         public long Add(RequirementQuestionAnswerDto answerDto)
@@ -47,7 +54,7 @@ namespace SocialRequirements.Data.Requirement
                         answer.requirement_question_id == requirementQuestionId);
         }
 
-        private static RequirementQuestionAnswerDto GetDtoFromEntity(RequirementQuestionAnswer answer)
+        private RequirementQuestionAnswerDto GetDtoFromEntity(RequirementQuestionAnswer answer)
         {
             var answerDto = new RequirementQuestionAnswerDto
             {
@@ -63,9 +70,9 @@ namespace SocialRequirements.Data.Requirement
                 ModifiedbyId = answer.modifiedby_id,
                 Modifiedon = answer.modifiedon,
                 StatusId = answer.status_id,
-                Status = answer.GeneralCatalogDetail.name,
-                CreatedByName = StringUtilities.GetPersonFullName(answer.Person),
-                ModifiedByName = StringUtilities.GetPersonFullName(answer.Person1)
+                Status = answer.GeneralCatalogDetail != null ? answer.GeneralCatalogDetail.name : _generalCatalogData.GetTitle(answer.status_id),
+                CreatedByName = answer.Person != null ? StringUtilities.GetPersonFullName(answer.Person) : _personData.GetFullName(answer.createdby_id),
+                ModifiedByName = answer.Person1 != null ? StringUtilities.GetPersonFullName(answer.Person1) : _personData.GetFullName(answer.modifiedby_id),
             };
             return answerDto;
         }
