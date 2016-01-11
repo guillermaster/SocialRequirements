@@ -4,6 +4,8 @@ using System.Linq;
 using SocialRequirements.Context;
 using SocialRequirements.Domain.DTO.Requirement;
 using SocialRequirements.Domain.DTO.Account;
+using SocialRequirements.Domain.Repository.Account;
+using SocialRequirements.Domain.Repository.General;
 using SocialRequirements.Domain.Repository.Requirement;
 using SocialRequirements.Utilities;
 
@@ -14,6 +16,9 @@ namespace SocialRequirements.Data.Requirement
         private readonly ContextModel _context;
         private IRequirementVersionData _requirementVersionData;
         private readonly IRequirementCommentData _requirementCommentData;
+        private readonly IGeneralCatalogData _generalCatalogData;
+        private readonly IPersonData _personData;
+        private readonly IProjectData _projectData;
         private const int MaxShortDescriptionLength = 590;
 
         public RequirementData(ContextModel context)
@@ -21,11 +26,16 @@ namespace SocialRequirements.Data.Requirement
             _context = context;
         }
 
-        public RequirementData(ContextModel context, IRequirementVersionData requirementVersionData, IRequirementCommentData requirementCommentData)
+        public RequirementData(ContextModel context, IRequirementVersionData requirementVersionData,
+            IRequirementCommentData requirementCommentData, IGeneralCatalogData generalCatalogData,
+            IPersonData personData, IProjectData projectData)
         {
             _context = context;
             _requirementVersionData = requirementVersionData;
             _requirementCommentData = requirementCommentData;
+            _generalCatalogData = generalCatalogData;
+            _personData = personData;
+            _projectData = projectData;
         }
 
         public int GetNumberOfRequirements(long companyId)
@@ -266,10 +276,10 @@ namespace SocialRequirements.Data.Requirement
                 ApprovedbyId = requirement.approvedby_id,
                 Approvedon = requirement.approvedon,
                 ShortDescription = StringUtilities.GetShort(requirement.description, MaxShortDescriptionLength),
-                Project = requirement.Project.name,
-                Status = requirement.GeneralCatalogDetail.name,
-                CreatedByName = StringUtilities.GetPersonFullName(requirement.Person),
-                ModifiedByName = StringUtilities.GetPersonFullName(requirement.Person1),
+                Project = requirement.Project != null ? requirement.Project.name : _projectData.GetTitle(requirement.project_id),
+                Status = requirement.GeneralCatalogDetail != null ? requirement.GeneralCatalogDetail.name : _generalCatalogData.GetTitle(requirement.status_id),
+                CreatedByName = requirement.Person != null ? StringUtilities.GetPersonFullName(requirement.Person) : _personData.GetFullName(requirement.createdby_id),
+                ModifiedByName = requirement.Person1 != null ? StringUtilities.GetPersonFullName(requirement.Person1) : _personData.GetFullName(requirement.modifiedby_id),
                 CommentsQuantity = _requirementCommentData.GetQuantity(requirement.id, requirement.company_id, 
                                         requirement.project_id, requirement.requirement_version_id)
             };
