@@ -25,14 +25,14 @@ namespace WebService
         [Inject]
         public IRequirementQuestionAnswerBusiness RequirementQuestionAnswerBusiness { get; set; }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public void AddQuestion(long companyId, long projectId, long requirementId, string question, string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
             RequirementQuestionBusiness.Add(companyId, projectId, requirementId, question, username);
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public string GetQuestion(long companyId, long projectId, long requirementId, long requirementVersionId,
             long requirementQuestionId, bool getAnswers)
         {
@@ -42,7 +42,7 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 60)]
         public string GetAllQuestions(string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
@@ -51,7 +51,7 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 60)]
         public string GetAnsweredQuestions(string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
@@ -60,7 +60,7 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 60)]
         public string GetUnansweredQuestions(string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
@@ -69,7 +69,7 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public void AddAnswer(long companyId, long projectId, long requirementId, long requirementVersionId,
             long requirementQuestionId, string answer, string encUsername)
         {
@@ -78,7 +78,7 @@ namespace WebService
                 requirementQuestionId, answer, username);
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public string GetAnswers(long companyId, long projectId, long requirementId, long requirementVersionId,
             long requirementQuestionId)
         {

@@ -71,12 +71,6 @@ namespace SocialRequirements
             }
             set { ViewState["Projects"] = value; }
         }
-
-        protected List<ActivityFeedDto> ActivityFeed
-        {
-            get { return ViewState["ActivityFeed"] != null ? (List<ActivityFeedDto>)ViewState["ActivityFeed"] : new List<ActivityFeedDto>(); }
-            set { ViewState["ActivityFeed"] = value; }
-        }
         #endregion
 
         #region Main Events
@@ -165,6 +159,7 @@ namespace SocialRequirements
 
             SetProjectsForNewPost(long.Parse(ddlCompany.SelectedValue));
             DdlProjectPost.Visible = true;
+            TxtContentPostTitle.Visible = true;
         }
         
         protected void BtnPost_Click(object sender, EventArgs e)
@@ -376,13 +371,13 @@ namespace SocialRequirements
                 requirementSrv.AddRequirement(TxtContentPostTitle.Text, TxtContentPost.Text,
                     long.Parse(DdlCompanyPost.SelectedValue), long.Parse(DdlProjectPost.SelectedValue),
                     GetUsernameEncrypted());
-                
-                SetFadeOutMessage("The requirement has been successfully posted.", true);
 
                 TxtContentPost.Text = string.Empty;
                 TxtContentPostTitle.Text = string.Empty;
 
-                LoadActivityFeed();
+                //LoadActivityFeed();
+
+                SetFadeOutMessage("The requirement has been successfully posted.", true);
             }
             catch(Exception ex)
             {
@@ -418,8 +413,6 @@ namespace SocialRequirements
         private static void LoadRequirementComments(ActivityFeedDto activity,
             Repeater commentsCtrl, Control commentsPnl)
         {
-            if (!activity.ProjectId.HasValue) throw new InvalidDataException("Project ID cannot be null");
-
             switch (activity.EntityId)
             {
                 case (int)GeneralCatalog.Detail.Entity.Requirement:

@@ -37,7 +37,7 @@ namespace WebService
             RequirementBusiness.Add(companyId, projectId, title, description, username);
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public string CommentRequirement(long companyId, long projectId, long requirementId, 
             string comment, string encUsername)
         {
@@ -47,21 +47,21 @@ namespace WebService
             return GetRequirementComments(companyId, projectId, requirementId);
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public void LikeRequirement(long companyId, long projectId, long requirementId, string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
             RequirementBusiness.Like(companyId, projectId, requirementId, username);
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public void DislikeRequirement(long companyId, long projectId, long requirementId, string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
             RequirementBusiness.Dislike(companyId, projectId, requirementId, username);
         }
-        
-        [WebMethod]
+
+        [WebMethod(CacheDuration = 30)]
         public string GetRequirementsList(string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
@@ -70,7 +70,7 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 30)]
         public string GetApprovedRequirementsList(string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
@@ -79,7 +79,7 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 30)]
         public string GetRejectedRequirementsList(string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
@@ -88,7 +88,7 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 30)]
         public string GetPendingApprovalRequirementsList(string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
@@ -97,7 +97,7 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 30)]
         public string GetDraftRequirementsList(string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
@@ -106,7 +106,7 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public string GetRequirement(long companyId, long projectId, long requirementId)
         {
             var requirement = RequirementBusiness.Get(companyId, projectId, requirementId);
@@ -114,7 +114,7 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public string GetRequirementComments(long companyId, long projectId, long requirementId)
         {
             var comments = RequirementCommentBusiness.Get(requirementId, companyId, projectId);
@@ -122,21 +122,21 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public void ApproveRequirement(long companyId, long projectId, long requirementId, string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
             RequirementBusiness.Approve(companyId, projectId, requirementId, username);
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public void RejectRequirement(long companyId, long projectId, long requirementId, string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
             RequirementBusiness.Reject(companyId, projectId, requirementId, username);
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public long AddRequirementModification(string title, string description, long companyId, long projectId,
             long requirementId, string encUsername)
         {
@@ -145,7 +145,7 @@ namespace WebService
             return requirementModif.Id;
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public string GetRequirementModification(long companyId, long projectId, long requirementId, long requirementModificationId)
         {
             var requirementModif = RequirementModificationBusiness.Get(companyId, projectId, requirementId, requirementModificationId);
@@ -153,7 +153,7 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public string GetCurrentRequirementModification(long companyId, long projectId, long requirementId)
         {
             var requirementModif = RequirementModificationBusiness.Get(companyId, projectId, requirementId) ??
@@ -163,7 +163,7 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public void UpdateRequirement(string title, string description, long companyId, long projectId,
             long requirementId, string encUsername)
         {
@@ -171,7 +171,7 @@ namespace WebService
             RequirementBusiness.Update(title, description, companyId, projectId, requirementId, username);
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public void UpdateRequirementModification(string title, string description, long companyId, long projectId,
             long requirementId, long requirementModifId, string encUsername)
         {
@@ -180,49 +180,49 @@ namespace WebService
                 requirementModifId, username);
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public void SubmitRequirementForApproval(long companyId, long projectId, long requirementId, string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
             RequirementBusiness.SubmitForApproval(companyId, projectId, requirementId, username);
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public void SubmitRequirementModificationForApproval(long companyId, long projectId, long requirementId, long requirementModificationId, string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
             RequirementModificationBusiness.SubmitForApproval(companyId, projectId, requirementId, requirementModificationId, username);
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public void ApproveRequirementModification(long companyId, long projectId, long requirementId, long requirementModificationId, string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
             RequirementModificationBusiness.Approve(companyId, projectId, requirementId, requirementModificationId, username);
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public void RejectRequirementModification(long companyId, long projectId, long requirementId, long requirementModificationId, string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
             RequirementModificationBusiness.Reject(companyId, projectId, requirementId, requirementModificationId, username);
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public void LikeRequirementModification(long companyId, long projectId, long requirementId, long requirementModificationId, string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
             RequirementModificationBusiness.Like(companyId, projectId, requirementId, requirementModificationId, username);
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public void DislikeRequirementModification(long companyId, long projectId, long requirementId, long requirementModificationId, string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
             RequirementModificationBusiness.Dislike(companyId, projectId, requirementId, requirementModificationId, username);
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public string CommentRequirementModification(long companyId, long projectId, long requirementId, long requirementModificationId,
             string comment, string encUsername)
         {
@@ -232,7 +232,7 @@ namespace WebService
             return GetRequirementModificationComments(companyId, projectId, requirementId, requirementModificationId);
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public string GetRequirementModificationComments(long companyId, long projectId, long requirementId,
             long requirementModificationId)
         {
@@ -241,7 +241,7 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 60)]
         public string GetRequirementsModificationList(string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
@@ -250,7 +250,7 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 60)]
         public string GetApprovedRequirementsModificationList(string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
@@ -259,7 +259,7 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 60)]
         public string GetRejectedRequirementsModificationList(string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
@@ -268,7 +268,7 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 60)]
         public string GetPendingApprovalRequirementsModificationList(string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
@@ -277,7 +277,7 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 60)]
         public string GetDraftRequirementsModificationList(string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
@@ -286,7 +286,7 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public void AddAttachment(long companyId, long projectId, long requirementId,
             string fileName, byte[] fileContent, string encUsername)
         {
@@ -296,13 +296,13 @@ namespace WebService
                 fileContent, username);
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 120)]
         public byte[] GetAttachment(long companyId, long projectId, long requirementId)
         {
             return RequirementBusiness.GetAttachment(companyId, projectId, requirementId);
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public void AddModificationAttachment(long companyId, long projectId, long requirementId, long requirementModifId,
             string fileName, byte[] fileContent, string encUsername)
         {
@@ -312,7 +312,7 @@ namespace WebService
                 fileContent, username);
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public byte[] GetModificationAttachment(long companyId, long projectId, long requirementId, long requirementModifId)
         {
             return RequirementModificationBusiness.GetAttachment(companyId, projectId, requirementId, requirementModifId);

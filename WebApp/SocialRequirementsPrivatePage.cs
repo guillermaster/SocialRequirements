@@ -18,6 +18,12 @@ namespace SocialRequirements
 {
     public class SocialRequirementsPrivatePage : SocialRequirementsBasePage
     {
+        public List<ActivityFeedDto> ActivityFeed
+        {
+            get { return Session["ActivityFeed"] != null ? (List<ActivityFeedDto>)Session["ActivityFeed"] : new List<ActivityFeedDto>(); }
+            set { Session["ActivityFeed"] = value; }
+        }
+
         protected virtual void Page_Load(object sender, EventArgs e)
         {
             ValidateUserLoggedIn();

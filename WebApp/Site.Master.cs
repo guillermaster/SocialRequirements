@@ -19,7 +19,7 @@ namespace SocialRequirements
         private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
         private const string CtrlIdEntityInstanceLink = "EntityInstanceLink";
         private string _antiXsrfTokenValue;
-
+        
         protected void Page_Init(object sender, EventArgs e)
         {
             // The code below helps to protect against XSRF attacks
@@ -279,11 +279,14 @@ namespace SocialRequirements
             var privatePage = new SocialRequirementsPrivatePage();
             if (!privatePage.UserLoggedIn()) return;
 
-            var generalSrv = new GeneralSoapClient();
-            var activityFeedXmlStr = generalSrv.LatestActivityFeed(privatePage.GetUsernameEncrypted());
-            var serializer = new ObjectSerializer<List<ActivityFeedDto>>();
-            var recentActivity = (List<ActivityFeedDto>)serializer.Deserialize(activityFeedXmlStr);
-            RecentActivityFeedRepeater.DataSource = recentActivity;
+            if (privatePage.ActivityFeed == null || privatePage.ActivityFeed.Count == 0)
+            {
+                var generalSrv = new GeneralSoapClient();
+                var activityFeedXmlStr = generalSrv.LatestActivityFeed(privatePage.GetUsernameEncrypted());
+                var serializer = new ObjectSerializer<List<ActivityFeedDto>>();
+                privatePage.ActivityFeed = (List<ActivityFeedDto>)serializer.Deserialize(activityFeedXmlStr);
+            }
+            RecentActivityFeedRepeater.DataSource = privatePage.ActivityFeed;
             RecentActivityFeedRepeater.DataBind();
         }
 

@@ -24,7 +24,7 @@ namespace WebService
         [Inject]
         public IActivityFeedBusiness ActivityFeedBusiness { get; set; }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 60)]
         public string LatestActivityFeed(string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
@@ -33,7 +33,7 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 360)]
         public string GetActivitiesSummary(string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
@@ -42,7 +42,7 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 120)]
         public string GetLatestActivities(long projectId, int entityId, int actionId)
         {
             var activities = ActivityFeedBusiness.GetRecentActivities(projectId, entityId, actionId);
@@ -50,7 +50,7 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 360)]
         public string GetAllActivitiesNotifications(string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);

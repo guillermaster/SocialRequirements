@@ -5,7 +5,6 @@
 </asp:Content>
 
 <asp:Content runat="server" ID="ToolbarContent" ContentPlaceHolderID="ToolbarContent">
-    
 </asp:Content>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
@@ -42,37 +41,47 @@
     </asp:Panel>
 
     <!-- POST CONTENT -->
-    <asp:Panel runat="server" ID="PostContent" Visible="False">
-        <div>
-            <div class="row">
+
+    <asp:UpdatePanel runat="server" ID="PostContentUpdatePanel">
+        <ContentTemplate>
+            <asp:Panel runat="server" ID="PostContent" Visible="False">
+
                 <div>
-                    <div class="well well-sm well-social-post">
-                        <form>
-                            <ul class="list-inline" id="list_PostActions">
-                                <li class="active"><a href="#">Add requirement</a></li>
-                            </ul>
-                            <asp:TextBox runat="server" ID="TxtContentPost" TextMode="MultiLine" CssClass="form-control vresize"
-                                Columns="140" Rows="5" placeholder="What's in your mind?" />
-                            <ul class="list-inline post-actions">
-                                <li>
-                                    <asp:DropDownList runat="server" ID="DdlCompanyPost" OnSelectedIndexChanged="DdlCompanyPost_SelectedIndexChanged" AutoPostBack="True" /></li>
-                                <li>
-                                    <asp:DropDownList runat="server" ID="DdlProjectPost" Visible="False" /></li>
-                                <li>
-                                    <asp:TextBox runat="server" ID="TxtContentPostTitle" placehoder="Title your requirement here" /></li>
-                                <li><a href="#"><span class="glyphicon glyphicon-camera"></span></a></li>
-                                <li><a href="#" class="glyphicon glyphicon-user"></a></li>
-                                <li><a href="#" class="glyphicon glyphicon-map-marker"></a></li>
-                                <li class="pull-right">
-                                    <asp:LinkButton runat="server" Text="Post" ID="BtnPost" CssClass="btn btn-primary btn-m" OnClick="BtnPost_Click" />
-                                </li>
-                            </ul>
-                        </form>
+                    <div class="row">
+                        <div>
+                            <div class="well well-sm well-social-post">
+                                <form>
+                                    <ul class="list-inline" id="list_PostActions">
+                                        <li class="active"><a href="#">Add requirement</a></li>
+                                    </ul>
+                                    <asp:TextBox runat="server" ID="TxtContentPost" TextMode="MultiLine" CssClass="form-control vresize"
+                                        Columns="140" Rows="5" placeholder="What's in your mind?" />
+                                    <ul class="list-inline post-actions">
+                                        <li>
+                                            <asp:DropDownList runat="server" ID="DdlCompanyPost" OnSelectedIndexChanged="DdlCompanyPost_SelectedIndexChanged" AutoPostBack="True" /></li>
+                                        <li>
+                                            <asp:DropDownList runat="server" ID="DdlProjectPost" Visible="False" /></li>
+                                        <li>
+                                            <asp:TextBox runat="server" ID="TxtContentPostTitle" placehoder="Requirement title" Visible="False" /></li>
+                                        <li><a href="#"><span class="glyphicon glyphicon-camera"></span></a></li>
+                                        <li><a href="#" class="glyphicon glyphicon-user"></a></li>
+                                        <li><a href="#" class="glyphicon glyphicon-map-marker"></a></li>
+                                        <li class="pull-right">
+                                            <asp:LinkButton runat="server" Text="Post" ID="BtnPost" CssClass="btn btn-primary btn-m" OnClick="BtnPost_Click" />
+                                        </li>
+                                    </ul>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </asp:Panel>
+            </asp:Panel>
+        </ContentTemplate>
+        <Triggers>
+            <asp:AsyncPostBackTrigger ControlID="BtnPost" EventName="Click" />
+            <asp:AsyncPostBackTrigger ControlID="DdlCompanyPost" EventName="SelectedIndexChanged" />
+        </Triggers>
+    </asp:UpdatePanel>
     <!-- END OF POST CONTENT -->
 
     <!-- ACTIVITY FEED -->
@@ -102,13 +111,13 @@
                         </tr>
                     </table>
                 </div>
-                <div class="activity description">
-                    <asp:Label runat="server" ID="DescriptionLabel" Text='<%# Eval("ShortDescription") %>' />
-                    <asp:LinkButton runat="server" ID="ReadMoreButton" Text="Read more" Visible='<%# Eval("ShortDescription").ToString().Length < Eval("Description").ToString().Length %>' CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.ReadMore %>"></asp:LinkButton>
-                    <asp:LinkButton runat="server" ID="ReadEvenMoreButton" Text="Read even more" Visible="False" CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.ReadEvenMore %>"></asp:LinkButton>
-                </div>
                 <asp:UpdatePanel runat="server" ID="InnerUpdatePanel">
                     <ContentTemplate>
+                        <div class="activity description">
+                            <asp:Label runat="server" ID="DescriptionLabel" Text='<%# Eval("ShortDescription") %>' />
+                            <asp:LinkButton runat="server" ID="ReadMoreButton" Text="Read more" Visible='<%# Eval("ShortDescription").ToString().Length < Eval("Description").ToString().Length %>' CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.ReadMore %>"></asp:LinkButton>
+                            <asp:LinkButton runat="server" ID="ReadEvenMoreButton" Text="Read even more" Visible="False" CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.ReadEvenMore %>"></asp:LinkButton>
+                        </div>
                         <asp:Panel runat="server" ID="ActivityActionsPanel" Visible="False" CssClass="actions_wrapper">
                             <ul class="activity actions">
                                 <li>
@@ -160,6 +169,8 @@
                         <asp:AsyncPostBackTrigger ControlID="CommentButton" EventName="Click" />
                         <asp:AsyncPostBackTrigger ControlID="DislikeButton" EventName="Click" />
                         <asp:AsyncPostBackTrigger ControlID="LikeButton" EventName="Click" />
+                        <asp:AsyncPostBackTrigger ControlID="ReadMoreButton" EventName="Click" />
+                        <asp:AsyncPostBackTrigger ControlID="AddNewCommentButton" EventName="Click" />
                     </Triggers>
                 </asp:UpdatePanel>
 

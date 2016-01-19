@@ -37,7 +37,7 @@ namespace SocialRequirements.Business.General
             {
                 activityFeed.AddRange(_activityFeedData.GetLatestActivity(project.Id));
             }
-            return activityFeed.OrderByDescending(a => a.Createdon).ToList();
+            return activityFeed.ToList();
         }
 
         public List<ActivityFeedSummaryDto> GetRecentActivitiesSummary(string username)

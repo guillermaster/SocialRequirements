@@ -110,9 +110,9 @@
                 <i class="fa fa-fw fa-question"></i>
             </asp:LinkButton></li>
         <li>
-            <asp:LinkButton runat="server" CssClass="btn btn-default" ID="UploadButton" OnClientClick="javascript:showFileUploadDialog();" ToolTip="Upload attachment">
+            <asp:HyperLink runat="server" CssClass="btn btn-default" ID="UploadButtonLink" onclick="javascript:showFileUploadDialog();" ToolTip="Upload attachment">
                 <i class="fa fa-fw fa-upload"></i>
-            </asp:LinkButton></li>
+            </asp:HyperLink>
         <li>
             <asp:LinkButton runat="server" CssClass="btn btn-default" ID="DownloadButton" OnClick="DownloadButton_OnClick" ToolTip="Download attachment">
                 <i class="fa fa-fw fa-download"></i>

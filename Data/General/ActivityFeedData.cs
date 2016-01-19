@@ -74,7 +74,11 @@ namespace SocialRequirements.Data.General
 
         public List<ActivityFeedDto> GetLatestActivity(long projectId)
         {
-            var activities = _context.ActivityFeed.Where(af => af.project_id == projectId).ToList();
+            var activities =
+                _context.ActivityFeed.Where(af => af.project_id == projectId)
+                    .OrderByDescending(a => a.createdon)
+                    .Take(30)
+                    .ToList();
 
             return activities.Select(GetDtoFromEntity).ToList();
         }
