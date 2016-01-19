@@ -29,7 +29,7 @@ namespace WebService
         [Inject]
         public IProjectBusiness ProjectBusiness { get; set; }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 30)]
         public string GetCompanyTypes()
         {
             var types = CompanyBusiness.GetCompanyTypes();
@@ -37,26 +37,26 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public void AddCompany(string name, int type, string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
             CompanyBusiness.Add(name, type, username);
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public bool HaveRequirements(long companyId)
         {
             return RequirementBusiness.HaveRequirements(companyId);
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public bool HaveProjects(long companyId)
         {
             return ProjectBusiness.HaveProjects(companyId);
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public string GetAllCompanies()
         {
             var companies = CompanyBusiness.GetAll();
@@ -64,7 +64,7 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public string GetRelatedCompanies(string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);

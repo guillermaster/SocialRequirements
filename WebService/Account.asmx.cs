@@ -29,7 +29,7 @@ namespace WebService
         [Inject]
         public ICompanyBusiness CompanyBusiness { get; set; }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public int CreateNewUser(string name, string lastname, string encPrimaryemail, string encSecondaryemail,
             string encPassword, string birthdate, string phone, string mobilephone)
         {
@@ -59,7 +59,7 @@ namespace WebService
             }
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public bool ValidatePassword(string encUsername, string encPassword)
         {
             var username = Encryption.Decrypt(encUsername);
@@ -67,7 +67,7 @@ namespace WebService
             return PersonBusiness.ValidatePassword(username, password);
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 60)]
         public string GetUserCompanies(string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
@@ -76,14 +76,14 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public void SetCompany(long companyId, string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
             CompanyBusiness.Set(companyId, username);
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 120)]
         public string GetUserData(string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
