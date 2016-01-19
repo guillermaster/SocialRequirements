@@ -234,7 +234,7 @@ namespace SocialRequirements
             }
         }
 
-        protected void SetFadeOutMessage(string message, bool success)
+        protected void SetFadeOutMessage(string message, bool success, string exception = null)
         {
             var messageLabel = GetMessageControl(this, success);
             messageLabel.Text = message;
@@ -242,8 +242,20 @@ namespace SocialRequirements
             var parentPanel = GetMessageParentPanel(this, success);
             parentPanel.Visible = true;
 
-            ScriptManager.RegisterClientScriptBlock(GetMainUpdatePanel(this), parentPanel.GetType(),
-                "posterrorfadeout", "fadeOutControl('#" + parentPanel.ID + "')", true);
+            var viewExceptionButton = GetViewErrorExceptionLink(this);
+            viewExceptionButton.Visible = false;
+
+            if (!string.IsNullOrWhiteSpace(exception))
+            {
+                var exceptionLabel = GetErrorExceptionMessageControl(this);
+                exceptionLabel.Text = exception;
+                viewExceptionButton.Visible = true;
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(GetMainUpdatePanel(this), parentPanel.GetType(),
+                    "posterrorfadeout", "fadeOutControl('#" + parentPanel.ID + "')", true);
+            }
         }
 
         protected void SetFadeOutMessage(UpdatePanel updatePanel, Panel parentPanel, Label messageLabel, string message)
@@ -273,6 +285,20 @@ namespace SocialRequirements
             var masterPage = (SiteMaster)page.Master;
             if (masterPage == null) throw new InvalidDataException("Invalid master page or not found.");
             return success ? masterPage.GetSuccessMessage() : masterPage.GetErrorMessage();
+        }
+
+        protected Label GetErrorExceptionMessageControl(Page page)
+        {
+            var masterPage = (SiteMaster)page.Master;
+            if (masterPage == null) throw new InvalidDataException("Invalid master page or not found.");
+            return masterPage.GetErrorExceptionMessage();
+        }
+
+        protected HyperLink GetViewErrorExceptionLink(Page page)
+        {
+            var masterPage = (SiteMaster)page.Master;
+            if (masterPage == null) throw new InvalidDataException("Invalid master page or not found.");
+            return masterPage.GetErrorExceptionLink();
         }
 
         public string GetUrlForRequirement(long companyId, long projectId, long requirementId)

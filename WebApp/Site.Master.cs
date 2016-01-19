@@ -97,6 +97,16 @@ namespace SocialRequirements
             return PostSuccessMessageMaster;
         }
 
+        public Label GetErrorExceptionMessage()
+        {
+            return ErrorMessage;
+        }
+
+        public HyperLink GetErrorExceptionLink()
+        {
+            return ViewExceptionButtonLink;
+        }
+
         public Panel GetErrorMessageParentPanel()
         {
             return PostErrorPanelMaster;

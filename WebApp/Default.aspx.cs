@@ -386,7 +386,7 @@ namespace SocialRequirements
             }
             catch(Exception ex)
             {
-                SetFadeOutMessage("An error has occurred, please try again.", false);
+                SetFadeOutMessage("An error has occurred, please try again.", false, ex.InnerException != null ? ex.InnerException.Message : ex.Message);
             }
         }
 
