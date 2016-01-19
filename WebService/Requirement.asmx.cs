@@ -30,8 +30,7 @@ namespace WebService
         [Inject]
         public IRequirementModificationCommentBusiness RequirementModificationCommentBusiness { get; set; }
 
-        [WebMethod]
-        [AspNetCacheProfile("NoCacheProfile")]
+        [WebMethod(CacheDuration = 0)]
         public void AddRequirement(string title, string description, long companyId, long projectId, string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
