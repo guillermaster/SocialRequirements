@@ -33,7 +33,7 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod(CacheDuration = 360)]
+        [WebMethod(CacheDuration = 120)]
         public string GetActivitiesSummary(string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
@@ -50,7 +50,7 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod(CacheDuration = 360)]
+        [WebMethod(CacheDuration = 120)]
         public string GetAllActivitiesNotifications(string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);

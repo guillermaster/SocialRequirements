@@ -23,14 +23,14 @@ namespace WebService
         [Inject]
         public IProjectBusiness ProjectBusiness { get; set; }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public void AddProject(string name, string description, long companyId, string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
             ProjectBusiness.Add(name, description, companyId, username);
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public string GetByCompanies(List<long> companiesIdList)
         {
             var projects = new List<ProjectDto>();
@@ -42,7 +42,7 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public string GetByCompany(long companyId)
         {
             var projects = ProjectBusiness.GetProjectsByCompany(companyId);
@@ -50,7 +50,7 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public string GetUnrelatedProjects(long companyId)
         {
             var projects = ProjectBusiness.GetUnrelatedProjects(companyId);
@@ -58,7 +58,7 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod]
+        [WebMethod(CacheDuration = 0)]
         public void SetProject(long projectId, long companyId, string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);

@@ -7,9 +7,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.Web.UI;
-using System.Web.UI.WebControls;
-
 namespace SocialRequirements.Account {
     
     
@@ -22,7 +19,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected ScriptManager MainScriptManager;
+        protected global::System.Web.UI.ScriptManager MainScriptManager;
         
         /// <summary>
         /// updProgress control.
@@ -31,7 +28,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected UpdateProgress updProgress;
+        protected global::System.Web.UI.UpdateProgress updProgress;
         
         /// <summary>
         /// UserRegistrationUpdatePanel control.
@@ -40,7 +37,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected UpdatePanel UserRegistrationUpdatePanel;
+        protected global::System.Web.UI.UpdatePanel UserRegistrationUpdatePanel;
         
         /// <summary>
         /// SuccessPanel control.
@@ -49,7 +46,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected Panel SuccessPanel;
+        protected global::System.Web.UI.WebControls.Panel SuccessPanel;
         
         /// <summary>
         /// SuccessMessage control.
@@ -58,7 +55,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected Label SuccessMessage;
+        protected global::System.Web.UI.WebControls.Label SuccessMessage;
         
         /// <summary>
         /// ContinueLinkButton control.
@@ -67,7 +64,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected LinkButton ContinueLinkButton;
+        protected global::System.Web.UI.WebControls.LinkButton ContinueLinkButton;
         
         /// <summary>
         /// ErrorPanel control.
@@ -76,7 +73,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected Panel ErrorPanel;
+        protected global::System.Web.UI.WebControls.Panel ErrorPanel;
         
         /// <summary>
         /// ErrorMessage control.
@@ -85,7 +82,25 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected Literal ErrorMessage;
+        protected global::System.Web.UI.WebControls.Literal ErrorMessage;
+        
+        /// <summary>
+        /// ViewExceptionButtonLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink ViewExceptionButtonLink;
+        
+        /// <summary>
+        /// ExceptionMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ExceptionMessage;
         
         /// <summary>
         /// InputFormPanel control.
@@ -94,7 +109,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected Panel InputFormPanel;
+        protected global::System.Web.UI.WebControls.Panel InputFormPanel;
         
         /// <summary>
         /// Name control.
@@ -103,7 +118,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected TextBox Name;
+        protected global::System.Web.UI.WebControls.TextBox Name;
         
         /// <summary>
         /// Lastname control.
@@ -112,7 +127,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected TextBox Lastname;
+        protected global::System.Web.UI.WebControls.TextBox Lastname;
         
         /// <summary>
         /// Email control.
@@ -121,7 +136,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected TextBox Email;
+        protected global::System.Web.UI.WebControls.TextBox Email;
         
         /// <summary>
         /// SecondaryEmail control.
@@ -130,7 +145,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected TextBox SecondaryEmail;
+        protected global::System.Web.UI.WebControls.TextBox SecondaryEmail;
         
         /// <summary>
         /// Password control.
@@ -139,7 +154,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected TextBox Password;
+        protected global::System.Web.UI.WebControls.TextBox Password;
         
         /// <summary>
         /// ConfirmPassword control.
@@ -148,7 +163,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected TextBox ConfirmPassword;
+        protected global::System.Web.UI.WebControls.TextBox ConfirmPassword;
         
         /// <summary>
         /// Birthdate control.
@@ -157,7 +172,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected TextBox Birthdate;
+        protected global::System.Web.UI.WebControls.TextBox Birthdate;
         
         /// <summary>
         /// Phone control.
@@ -166,7 +181,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected TextBox Phone;
+        protected global::System.Web.UI.WebControls.TextBox Phone;
         
         /// <summary>
         /// MobilePhone control.
@@ -175,6 +190,6 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected TextBox MobilePhone;
+        protected global::System.Web.UI.WebControls.TextBox MobilePhone;
     }
 }

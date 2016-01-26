@@ -5,9 +5,15 @@
 </asp:Content>
 
 <asp:Content runat="server" ID="ToolbarContent" ContentPlaceHolderID="ToolbarContent">
+    
 </asp:Content>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
+    <script>
+        function ViewException(exceptionLabel) {
+            document.getElementById(exceptionLabel).style.visibility = "visible";
+        }
+    </script>
     <asp:ScriptManager runat="server" ID="MainScriptManager" />
     <asp:UpdateProgress ID="updProgress" DisplayAfter="10" AssociatedUpdatePanelID="UserRegistrationUpdatePanel" runat="server">
         <ProgressTemplate>
@@ -30,7 +36,10 @@
                 <asp:Panel ID="ErrorPanel" runat="server" Visible="False" CssClass="alert alert-danger">
                     <a name="ErrorPanel"></a>
                     <p class="text-danger">
-                        <asp:Literal runat="server" ID="ErrorMessage" />
+                        <asp:Literal runat="server" ID="ErrorMessage"/><br/>
+                        <asp:HyperLink runat="server" ID="ViewExceptionButtonLink" Visible="False" onclick="javascript: ViewException('ExceptionMessage');">View error</asp:HyperLink><br />
+                        <br/>
+                        <asp:Label runat="server" ID="ExceptionMessage" ClientIDMode="Static" Style="visibility: hidden" />
                     </p>
                 </asp:Panel>
                 <asp:Panel ID="InputFormPanel" runat="server">

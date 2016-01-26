@@ -53,10 +53,6 @@ namespace WebService
             {
                 return (int)PersonResponse.PersonRegistration.UserAlreadyExists;
             }
-            catch (Exception ex)
-            {
-                return (int)PersonResponse.PersonRegistration.UnknownError;
-            }
         }
 
         [WebMethod(CacheDuration = 0)]
@@ -67,7 +63,7 @@ namespace WebService
             return PersonBusiness.ValidatePassword(username, password);
         }
 
-        [WebMethod(CacheDuration = 60)]
+        [WebMethod(CacheDuration = 0)]
         public string GetUserCompanies(string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
@@ -83,7 +79,7 @@ namespace WebService
             CompanyBusiness.Set(companyId, username);
         }
 
-        [WebMethod(CacheDuration = 120)]
+        [WebMethod(CacheDuration = 60)]
         public string GetUserData(string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);

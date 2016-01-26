@@ -29,7 +29,7 @@ namespace WebService
         [Inject]
         public IProjectBusiness ProjectBusiness { get; set; }
 
-        [WebMethod(CacheDuration = 30)]
+        [WebMethod(CacheDuration = 0)]
         public string GetCompanyTypes()
         {
             var types = CompanyBusiness.GetCompanyTypes();
