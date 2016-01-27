@@ -61,7 +61,7 @@ namespace WebService
             RequirementBusiness.Dislike(companyId, projectId, requirementId, username);
         }
 
-        [WebMethod(CacheDuration = 30)]
+        [WebMethod(CacheDuration = 0)]
         public string GetRequirementsList(string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
@@ -70,7 +70,7 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod(CacheDuration = 30)]
+        [WebMethod(CacheDuration = 0)]
         public string GetApprovedRequirementsList(string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
@@ -79,7 +79,7 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod(CacheDuration = 30)]
+        [WebMethod(CacheDuration = 0)]
         public string GetRejectedRequirementsList(string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
@@ -88,7 +88,7 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod(CacheDuration = 30)]
+        [WebMethod(CacheDuration = 0)]
         public string GetPendingApprovalRequirementsList(string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
@@ -97,7 +97,7 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod(CacheDuration = 30)]
+        [WebMethod(CacheDuration = 0)]
         public string GetDraftRequirementsList(string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
@@ -241,7 +241,7 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod(CacheDuration = 30)]
+        [WebMethod(CacheDuration = 0)]
         public string GetRequirementsModificationList(string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
@@ -250,7 +250,7 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod(CacheDuration = 30)]
+        [WebMethod(CacheDuration = 0)]
         public string GetApprovedRequirementsModificationList(string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
@@ -259,7 +259,7 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod(CacheDuration = 30)]
+        [WebMethod(CacheDuration = 0)]
         public string GetRejectedRequirementsModificationList(string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
@@ -268,7 +268,7 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod(CacheDuration = 30)]
+        [WebMethod(CacheDuration = 0)]
         public string GetPendingApprovalRequirementsModificationList(string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
@@ -277,7 +277,7 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod(CacheDuration = 30)]
+        [WebMethod(CacheDuration = 0)]
         public string GetDraftRequirementsModificationList(string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);

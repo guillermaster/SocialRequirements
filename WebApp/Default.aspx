@@ -42,8 +42,6 @@
 
     <!-- POST CONTENT -->
 
-    <asp:UpdatePanel runat="server" ID="PostContentUpdatePanel">
-        <ContentTemplate>
             <asp:Panel runat="server" ID="PostContent" Visible="False">
 
                 <div>
@@ -76,12 +74,6 @@
                     </div>
                 </div>
             </asp:Panel>
-        </ContentTemplate>
-        <Triggers>
-            <asp:AsyncPostBackTrigger ControlID="BtnPost" EventName="Click" />
-            <asp:AsyncPostBackTrigger ControlID="DdlCompanyPost" EventName="SelectedIndexChanged" />
-        </Triggers>
-    </asp:UpdatePanel>
     <!-- END OF POST CONTENT -->
 
     <!-- ACTIVITY FEED -->

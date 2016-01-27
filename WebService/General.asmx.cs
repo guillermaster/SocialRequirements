@@ -24,7 +24,7 @@ namespace WebService
         [Inject]
         public IActivityFeedBusiness ActivityFeedBusiness { get; set; }
 
-        [WebMethod(CacheDuration = 60)]
+        [WebMethod(CacheDuration = 0)]
         public string LatestActivityFeed(string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);

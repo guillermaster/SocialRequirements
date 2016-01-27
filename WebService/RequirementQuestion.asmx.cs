@@ -42,7 +42,7 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod(CacheDuration = 30)]
+        [WebMethod(CacheDuration = 0)]
         public string GetAllQuestions(string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
@@ -51,7 +51,7 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod(CacheDuration = 30)]
+        [WebMethod(CacheDuration = 0)]
         public string GetAnsweredQuestions(string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
@@ -60,7 +60,7 @@ namespace WebService
             return serializer.ToXmlString();
         }
 
-        [WebMethod(CacheDuration = 30)]
+        [WebMethod(CacheDuration = 0)]
         public string GetUnansweredQuestions(string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
