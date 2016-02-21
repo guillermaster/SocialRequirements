@@ -69,11 +69,16 @@
                                     <asp:HiddenField runat="server" ID="HdnContentPost"/>
                                     <ul class="list-inline post-actions">
                                         <li>
-                                            <asp:DropDownList runat="server" ID="DdlCompanyPost"  OnSelectedIndexChanged="DdlCompanyPost_SelectedIndexChanged" AutoPostBack="True" /></li>
+                                            Company: <asp:DropDownList runat="server" ID="DdlCompanyPost"  OnSelectedIndexChanged="DdlCompanyPost_SelectedIndexChanged" AutoPostBack="True" /></li>
                                         <li>
-                                            <asp:DropDownList runat="server" ID="DdlProjectPost" Visible="True" /></li>
+                                            Project: <asp:DropDownList runat="server" ID="DdlProjectPost" Visible="True" /></li>
                                         <li>
-                                            <asp:TextBox runat="server" ID="TxtContentPostTitle" ClientIDMode="Static" placehoder="Requirement title" Visible="True" /></li>
+                                            Requirement Title: <asp:TextBox runat="server" ID="TxtContentPostTitle" ClientIDMode="Static" placehoder="Requirement title" Visible="True" Width="300px" />
+                                            <asp:RequiredFieldValidator runat="server" ControlToValidate="TxtContentPostTitle"></asp:RequiredFieldValidator>
+                                            <asp:Label runat="server" ID="NoTitleLabel" Text="Don't forget to set the title!" Visible="False"/>
+                                            <asp:Label runat="server" ID="NoCompanyLabel" Text="Don't forget to select the company!" Visible="False"/>
+                                            <asp:Label runat="server" ID="NoProjectLabel" Text="Don't forget to select the project!" Visible="False"/>
+                                        </li>
                                         <li><a href="#"><span class="glyphicon glyphicon-camera"></span></a></li>
                                         <li><a href="#" class="glyphicon glyphicon-user"></a></li>
                                         <li><a href="#" class="glyphicon glyphicon-map-marker"></a></li>

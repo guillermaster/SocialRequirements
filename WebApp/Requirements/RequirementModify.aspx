@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RequirementModify.aspx.cs" Inherits="SocialRequirements.Requirements.RequirementModify" EnableEventValidation="false" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RequirementModify.aspx.cs" Inherits="SocialRequirements.Requirements.RequirementModify" ValidateRequest="false" EnableEventValidation="false" %>
 
 <asp:Content ID="TitleContent" ContentPlaceHolderID="TitleContent" runat="server">
     Requirement Modification
@@ -27,6 +27,21 @@
             });
             fileUploadDialog.parent().appendTo(jQuery("form:first"));
             fileUploadDialog.dialog("open");
+        }
+
+        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler_Page);
+
+        function EndRequestHandler_Page(sender, args) {
+            tinyMCE.execCommand('mceRemoveControl', false, "<%= RequirementDescriptionInput.ClientID %>");
+            initTinyMCE();
+        }
+
+        function BeforePostback() {
+            var requirementInput = document.getElementById('<%= RequirementDescriptionInput.ClientID %>');
+            if (requirementInput == null) return;
+
+            var text = tinyMCE.get('<%= RequirementDescriptionInput.ClientID %>').getContent();
+            document.getElementById('<%= HdnRequirementDescriptionInput.ClientID %>').value = text;
         }
     </script>
     <ul class="demo-btns">
@@ -112,6 +127,7 @@
         <div class="bigcard_body">
             <asp:Label runat="server" ID="RequirementDescription" />
             <asp:TextBox runat="server" ID="RequirementDescriptionInput" Visible="False" TextMode="MultiLine" Width="100%" Rows="20" />
+            <asp:HiddenField runat="server" ID="HdnRequirementDescriptionInput"/>
         </div>
 
         <div class="bigcard_footer">

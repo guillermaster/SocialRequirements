@@ -89,10 +89,9 @@ namespace SocialRequirements.Requirements
                 SetFadeOutMessage(GetMainUpdatePanel(this), PostSuccessPanel, PostSuccessMessage,
                    "The requirement has been successfully submitted for approval.");
             }
-            catch
+            catch (Exception ex)
             {
-                SetFadeOutMessage(GetMainUpdatePanel(this), PostErrorPanel, PostErrorMessage,
-                    "An error occurred while submitting the requirement.");
+                SetFadeOutMessage("An error has occurred, please try again.", false, ex.InnerException != null ? ex.InnerException.Message : ex.Message);
             }
         }
 
@@ -112,10 +111,9 @@ namespace SocialRequirements.Requirements
                 SetFadeOutMessage(GetMainUpdatePanel(this), PostSuccessPanel, PostSuccessMessage,
                    "The requirement has been successfully updated.");
             }
-            catch
+            catch (Exception ex)
             {
-                SetFadeOutMessage(GetMainUpdatePanel(this), PostErrorPanel, PostErrorMessage,
-                    "An error occurred while updating the requirement.");
+                SetFadeOutMessage("An error has occurred, please try again.", false, ex.InnerException != null ? ex.InnerException.Message : ex.Message);
             }
         }
 
@@ -130,10 +128,9 @@ namespace SocialRequirements.Requirements
 
                 LoadRequirement();
             }
-            catch
+            catch (Exception ex)
             {
-                SetFadeOutMessage(GetMainUpdatePanel(this), PostErrorPanel, PostErrorMessage,
-                    "An error occurred while approving the requirement..");
+                SetFadeOutMessage("An error has occurred, please try again.", false, ex.InnerException != null ? ex.InnerException.Message : ex.Message);
             }
         }
 
@@ -148,10 +145,9 @@ namespace SocialRequirements.Requirements
 
                 LoadRequirement();
             }
-            catch
+            catch (Exception ex)
             {
-                SetFadeOutMessage(GetMainUpdatePanel(this), PostErrorPanel, PostErrorMessage,
-                    "An error occurred while rejecting the requirement..");
+                SetFadeOutMessage("An error has occurred, please try again.", false, ex.InnerException != null ? ex.InnerException.Message : ex.Message);
             }
         }
         
@@ -198,10 +194,9 @@ namespace SocialRequirements.Requirements
 
                 ToggleModification();
             }
-            catch
+            catch (Exception ex)
             {
-                SetFadeOutMessage(GetMainUpdatePanel(this), PostErrorPanel, PostErrorMessage,
-                    "An error occurred.");
+                SetFadeOutMessage("An error has occurred, please try again.", false, ex.InnerException != null ? ex.InnerException.Message : ex.Message);
             }
         }
 
@@ -216,10 +211,9 @@ namespace SocialRequirements.Requirements
 
                 ToggleModification();
             }
-            catch
+            catch (Exception ex)
             {
-                SetFadeOutMessage(GetMainUpdatePanel(this), PostErrorPanel, PostErrorMessage,
-                    "An error occurred.");
+                SetFadeOutMessage("An error has occurred, please try again.", false, ex.InnerException != null ? ex.InnerException.Message : ex.Message);
             }
         }
 
@@ -322,9 +316,9 @@ namespace SocialRequirements.Requirements
                 questionSrv.AddQuestion(CompanyId, ProjectId, RequirementId, question, GetUsernameEncrypted());
                 SetFadeOutMessage("The question has been posted.", true);
             }
-            catch
+            catch (Exception ex)
             {
-                SetFadeOutMessage("An error has occurred, please try again.", false);
+                SetFadeOutMessage("An error has occurred, please try again.", false, ex.InnerException != null ? ex.InnerException.Message : ex.Message);
             }
         }
 
@@ -339,9 +333,9 @@ namespace SocialRequirements.Requirements
                 DownloadButton.Visible = true;
                 SetFadeOutMessage("The file has been uploaded.", true);
             }
-            catch
+            catch (Exception ex)
             {
-                SetFadeOutMessage("An error has occurred, please try again.", false);
+                SetFadeOutMessage("An error has occurred, please try again.", false, ex.InnerException != null ? ex.InnerException.Message : ex.Message);
             }
         }
         #endregion

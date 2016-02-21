@@ -94,6 +94,33 @@ namespace SocialRequirements {
         protected global::System.Web.UI.WebControls.TextBox TxtContentPostTitle;
         
         /// <summary>
+        /// NoTitleLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label NoTitleLabel;
+        
+        /// <summary>
+        /// NoCompanyLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label NoCompanyLabel;
+        
+        /// <summary>
+        /// NoProjectLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label NoProjectLabel;
+        
+        /// <summary>
         /// BtnPost control.
         /// </summary>
         /// <remarks>

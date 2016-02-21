@@ -364,8 +364,22 @@ namespace SocialRequirements
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(DdlCompanyPost.SelectedValue)) return;
-                if (string.IsNullOrWhiteSpace(DdlProjectPost.SelectedValue)) return;
+                if (string.IsNullOrWhiteSpace(DdlCompanyPost.SelectedValue))
+                {
+                    NoCompanyLabel.Visible = true;
+                    return;
+                }
+                if (string.IsNullOrWhiteSpace(DdlProjectPost.SelectedValue))
+                {
+                    NoProjectLabel.Visible = true;
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(TxtContentPostTitle.Text))
+                {
+                    NoTitleLabel.Visible = true;
+                    return;
+                }
 
                 var requirementSrv = new RequirementSoapClient();
                 requirementSrv.AddRequirement(TxtContentPostTitle.Text, HdnContentPost.Value,
@@ -374,7 +388,9 @@ namespace SocialRequirements
 
                 TxtContentPost.Text = string.Empty;
                 TxtContentPostTitle.Text = string.Empty;
-
+                NoTitleLabel.Visible = false;
+                NoCompanyLabel.Visible = false;
+                NoProjectLabel.Visible = false;
                 //LoadActivityFeed();
 
                 SetFadeOutMessage("The requirement has been successfully posted.", true);
