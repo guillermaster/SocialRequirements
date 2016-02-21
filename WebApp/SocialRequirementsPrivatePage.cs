@@ -33,6 +33,12 @@ namespace SocialRequirements
             ShowInfobarToggleButton();
         }
 
+        protected void RegisterJsBeforePostback(string functionName)
+        {
+            var siteMaster = (SiteMaster)Master;
+            if (siteMaster != null) siteMaster.RegisterJsFunctionBeforePostback(this, functionName);
+        }
+
         protected void ValidateUserLoggedIn()
         {
             if (UserLoggedIn()) return;

@@ -229,6 +229,15 @@ namespace SocialRequirements.Requirements {
         protected global::System.Web.UI.WebControls.TextBox RequirementDescriptionInput;
         
         /// <summary>
+        /// HdnRequirementDescriptionInput control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HdnRequirementDescriptionInput;
+        
+        /// <summary>
         /// RequirementStatus control.
         /// </summary>
         /// <remarks>

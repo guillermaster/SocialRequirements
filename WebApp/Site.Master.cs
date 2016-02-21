@@ -82,6 +82,15 @@ namespace SocialRequirements
             
         }
 
+        public void RegisterJsFunctionBeforePostback(Page currentPage, string function)
+        {
+            var scriptManager = ScriptManager.GetCurrent(currentPage);
+            if (scriptManager != null && !scriptManager.IsInAsyncPostBack)
+            {
+                ScriptManager.RegisterOnSubmitStatement(currentPage, GetType(), "tinymcetriggersave", function);
+            }
+        }
+
         public UpdatePanel GetUpdatePanel()
         {
             return MainUpdatePanel;

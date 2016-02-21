@@ -71,6 +71,7 @@ namespace SocialRequirements.Requirements
                 SetFadeOutMessage(GetMainUpdatePanel(this), PostSuccessPanel, PostSuccessMessage, message);
 
             RegisterTrigger(DownloadButton);
+            RegisterJsBeforePostback("BeforePostback();");
         }
 
         protected virtual void SubmitButton_Click(object sender, EventArgs e)
@@ -100,7 +101,7 @@ namespace SocialRequirements.Requirements
             try
             {
                 var requirementSrv = new RequirementSoapClient();
-                requirementSrv.UpdateRequirement(RequirementTitleInput.Text, RequirementDescriptionInput.Text, CompanyId,
+                requirementSrv.UpdateRequirement(RequirementTitleInput.Text, HdnRequirementDescriptionInput.Value, CompanyId,
                     ProjectId, RequirementId, GetUsernameEncrypted());
 
                 EditionMode = false;

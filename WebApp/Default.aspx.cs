@@ -90,11 +90,7 @@ namespace SocialRequirements
             SetProjectsForNewPost(long.Parse(DdlCompanyPost.SelectedValue));
             PostContent.Visible = true;
             LoadActivityFeed();
-
-            if (!ScriptManager.GetCurrent(this).IsInAsyncPostBack)
-            {
-                ScriptManager.RegisterOnSubmitStatement(this, GetType(), "tinymcetriggersave", "BeforePostback();");
-            }
+            RegisterJsBeforePostback("BeforePostback();");
         }
         #endregion
 
