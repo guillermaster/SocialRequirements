@@ -75,9 +75,9 @@
                                         <li>
                                             Requirement Title: <asp:TextBox runat="server" ID="TxtContentPostTitle" ClientIDMode="Static" placehoder="Requirement title" Visible="True" Width="300px" />
                                             <asp:RequiredFieldValidator runat="server" ControlToValidate="TxtContentPostTitle"></asp:RequiredFieldValidator>
-                                            <asp:Label runat="server" ID="NoTitleLabel" Text="Don't forget to set the title!" Visible="False"/>
-                                            <asp:Label runat="server" ID="NoCompanyLabel" Text="Don't forget to select the company!" Visible="False"/>
-                                            <asp:Label runat="server" ID="NoProjectLabel" Text="Don't forget to select the project!" Visible="False"/>
+                                            <asp:Label runat="server" ID="NoTitleLabel" Text="Don't forget to set the title!" Visible="False" ForeColor="#FF0000"/>
+                                            <asp:Label runat="server" ID="NoCompanyLabel" Text="Don't forget to select the company!" Visible="False" ForeColor="#FF0000"/>
+                                            <asp:Label runat="server" ID="NoProjectLabel" Text="Don't forget to select the project!" Visible="False" ForeColor="#FF0000"/>
                                         </li>
                                         <li><a href="#"><span class="glyphicon glyphicon-camera"></span></a></li>
                                         <li><a href="#" class="glyphicon glyphicon-user"></a></li>
