@@ -77,7 +77,7 @@ namespace SocialRequirements
         protected override void Page_Load(object sender, EventArgs e)
         {
             base.Page_Load(sender, e);
-            
+
             if (IsPostBack) return;
 
             HideInfobarToggleButton();
@@ -87,8 +87,14 @@ namespace SocialRequirements
             CheckRequirements();
             SetCompanies(DdlCompanyPost);
             LoadProjectsByCompany((List<CompanyDto>)DdlCompanyPost.DataSource);
+            SetProjectsForNewPost(long.Parse(DdlCompanyPost.SelectedValue));
             PostContent.Visible = true;
             LoadActivityFeed();
+
+            if (!ScriptManager.GetCurrent(this).IsInAsyncPostBack)
+            {
+                ScriptManager.RegisterOnSubmitStatement(this, GetType(), "tinymcetriggersave", "BeforePostback();");
+            }
         }
         #endregion
 
@@ -154,14 +160,12 @@ namespace SocialRequirements
         #region New Post Events
         protected void DdlCompanyPost_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var ddlCompany = (DropDownList) sender;
+            var ddlCompany = (DropDownList)sender;
             if (string.IsNullOrWhiteSpace(ddlCompany.SelectedValue)) return;
 
             SetProjectsForNewPost(long.Parse(ddlCompany.SelectedValue));
-            DdlProjectPost.Visible = true;
-            TxtContentPostTitle.Visible = true;
         }
-        
+
         protected void BtnPost_Click(object sender, EventArgs e)
         {
             AddRequirement();
@@ -179,7 +183,7 @@ namespace SocialRequirements
             DdlProjectPost.DataValueField = CustomExpression.GetPropertyName<ProjectDto>(p => p.Id);
             DdlProjectPost.DataBind();
         }
-        
+
         #endregion
 
         #region Activity Feed Events
@@ -188,29 +192,29 @@ namespace SocialRequirements
         {
             if (!(e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)) return;
 
-            var activity = (ActivityFeedDto) e.Item.DataItem;
-            var actionsPanel = (Panel) e.Item.FindControl(CtrlIdActivityActionsPanel);
-            var link = (HyperLink) e.Item.FindControl(CtrlIdEntityInstanceLink);
+            var activity = (ActivityFeedDto)e.Item.DataItem;
+            var actionsPanel = (Panel)e.Item.FindControl(CtrlIdActivityActionsPanel);
+            var link = (HyperLink)e.Item.FindControl(CtrlIdEntityInstanceLink);
 
             switch (activity.EntityId)
             {
                 case (int)GeneralCatalog.Detail.Entity.Requirement:
                     actionsPanel.Visible = activity.EntityActionId == (int)GeneralCatalog.Detail.EntityActions.Create ||
                                            activity.EntityActionId == (int)GeneralCatalog.Detail.EntityActions.SubmitForApproval;
-                    if(activity.ProjectId.HasValue)
+                    if (activity.ProjectId.HasValue)
                         link.NavigateUrl = GetUrlForRequirement(activity.CompanyId, activity.ProjectId.Value, activity.RecordId);
                     break;
 
                 case (int)GeneralCatalog.Detail.Entity.RequirementModification:
-                    actionsPanel.Visible = activity.EntityActionId == (int) GeneralCatalog.Detail.EntityActions.Create ||
-                                           activity.EntityActionId == (int) GeneralCatalog.Detail.EntityActions.SubmitForApproval;
+                    actionsPanel.Visible = activity.EntityActionId == (int)GeneralCatalog.Detail.EntityActions.Create ||
+                                           activity.EntityActionId == (int)GeneralCatalog.Detail.EntityActions.SubmitForApproval;
                     if (activity.ProjectId.HasValue && activity.ParentId.HasValue)
                     {
                         link.NavigateUrl = GetUrlForRequirementModification(activity.CompanyId, activity.ProjectId.Value,
                             activity.ParentId.Value, activity.RecordId);
                     }
                     break;
-                    
+
                 case (int)GeneralCatalog.Detail.Entity.RequirementQuestion:
                 case (int)GeneralCatalog.Detail.Entity.RequirementQuestionAnswer:
                     actionsPanel.Visible = false;
@@ -220,7 +224,7 @@ namespace SocialRequirements
                             activity.ParentId.Value, activity.GrandparentId.Value, activity.RecordId);
                     }
                     break;
-                    
+
                 case (int)GeneralCatalog.Detail.Entity.RequirementComment:
                     actionsPanel.Visible = false;
                     if (activity.ProjectId.HasValue)
@@ -249,11 +253,11 @@ namespace SocialRequirements
             switch (e.CommandName)
             {
                 case CommonConstants.SocialActionsCommands.ReadMore:
-                    var descriptionText = (Label) e.Item.FindControl(CtrlIdActivityDescription);
+                    var descriptionText = (Label)e.Item.FindControl(CtrlIdActivityDescription);
                     descriptionText.Text = activity.Description;
-                    var sourceButton = (LinkButton) e.CommandSource;
+                    var sourceButton = (LinkButton)e.CommandSource;
                     sourceButton.Visible = false;
-                    var readEvenMoreButton = (LinkButton) e.Item.FindControl(CtrlIdActivityReadEvenMore);
+                    var readEvenMoreButton = (LinkButton)e.Item.FindControl(CtrlIdActivityReadEvenMore);
                     readEvenMoreButton.Visible = activity.HasEvenLongerDescription;
                     break;
                 case CommonConstants.SocialActionsCommands.ReadEvenMore:
@@ -267,9 +271,9 @@ namespace SocialRequirements
                     Dislike(activity.CompanyId, activity.ProjectId, activity.RecordId, activity.EntityId, activity.ParentId);
                     LoadActivityFeed();
                     break;
-                case CommonConstants.SocialActionsCommands.Comment: 
+                case CommonConstants.SocialActionsCommands.Comment:
                     var commentsCtrl = (Repeater)e.Item.FindControl(CtrlIdCommentsList);
-                    var commentsPanl = (Panel) e.Item.FindControl(CtrlIdCommentsPanel);
+                    var commentsPanl = (Panel)e.Item.FindControl(CtrlIdCommentsPanel);
                     LoadRequirementComments(activity, commentsCtrl, commentsPanl);
                     break;
             }
@@ -277,7 +281,7 @@ namespace SocialRequirements
 
         protected void AddNewCommentButton_Click(object sender, EventArgs e)
         {
-            var parent = ((Control) sender).Parent;
+            var parent = ((Control)sender).Parent;
 
             var companyIdCtrl = (HiddenField)parent.FindControl(CtrlIdCompanyIdComment);
             if (companyIdCtrl == null) throw new InvalidDataException("No company ID hidden control found.");
@@ -289,16 +293,16 @@ namespace SocialRequirements
             if (parentIdCtrl == null) throw new InvalidDataException("No parent ID hidden control found.");
 
             var recordIdCtrl = (HiddenField)parent.FindControl(CtrlIdRecordIdComment);
-            if(recordIdCtrl == null) throw new InvalidDataException("No record ID hidden control found.");
+            if (recordIdCtrl == null) throw new InvalidDataException("No record ID hidden control found.");
 
             var entityIdCtrl = (HiddenField)parent.FindControl(CtrlIdEntityIdComment);
             if (entityIdCtrl == null) throw new InvalidDataException("No entity ID hidden control found.");
 
             var commentCtrl = (TextBox)parent.FindControl(CtrlIdNewComment);
-            if(commentCtrl == null) throw new InvalidDataException("No comment input textbox founded.");
+            if (commentCtrl == null) throw new InvalidDataException("No comment input textbox founded.");
 
             var commentsListCtrl = (Repeater)parent.FindControl(CtrlIdCommentsList);
-            if(commentsListCtrl == null) throw new InvalidDataException("No requirement list control found");
+            if (commentsListCtrl == null) throw new InvalidDataException("No requirement list control found");
 
             long? parentId;
             if (string.IsNullOrWhiteSpace(parentIdCtrl.Value))
@@ -311,7 +315,7 @@ namespace SocialRequirements
 
             commentCtrl.Text = string.Empty;
         }
-        
+
         #endregion
 
         #region Data Load
@@ -368,7 +372,7 @@ namespace SocialRequirements
                 if (string.IsNullOrWhiteSpace(DdlProjectPost.SelectedValue)) return;
 
                 var requirementSrv = new RequirementSoapClient();
-                requirementSrv.AddRequirement(TxtContentPostTitle.Text, TxtContentPost.Text,
+                requirementSrv.AddRequirement(TxtContentPostTitle.Text, HdnContentPost.Value,
                     long.Parse(DdlCompanyPost.SelectedValue), long.Parse(DdlProjectPost.SelectedValue),
                     GetUsernameEncrypted());
 
@@ -379,7 +383,7 @@ namespace SocialRequirements
 
                 SetFadeOutMessage("The requirement has been successfully posted.", true);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 SetFadeOutMessage("An error has occurred, please try again.", false, ex.InnerException != null ? ex.InnerException.Message : ex.Message);
             }
@@ -399,7 +403,7 @@ namespace SocialRequirements
                     commentsCtrl.DataBind();
                     break;
                 case (int)GeneralCatalog.Detail.Entity.RequirementModification:
-                    if(parentId == null) throw new InvalidDataException("Requirement ID is required");
+                    if (parentId == null) throw new InvalidDataException("Requirement ID is required");
                     var requirementModifSrv = new RequirementSoapClient();
                     var reqModifComments = requirementModifSrv.CommentRequirementModification(companyId, projectId,
                         parentId.Value, recordId, comment, GetUsernameEncrypted());
@@ -428,6 +432,6 @@ namespace SocialRequirements
             }
         }
         #endregion
-        
+
     }
 }

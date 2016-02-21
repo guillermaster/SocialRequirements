@@ -58,6 +58,15 @@ namespace SocialRequirements {
         protected global::System.Web.UI.WebControls.TextBox TxtContentPost;
         
         /// <summary>
+        /// HdnContentPost control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HdnContentPost;
+        
+        /// <summary>
         /// DdlCompanyPost control.
         /// </summary>
         /// <remarks>

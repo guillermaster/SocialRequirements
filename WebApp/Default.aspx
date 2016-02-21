@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="SocialRequirements.Default" EnableEventValidation="false" %>
+﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" ValidateRequest="false" CodeBehind="Default.aspx.cs" Inherits="SocialRequirements.Default" EnableEventValidation="false" %>
 
 <asp:Content runat="server" ID="TitleContent" ContentPlaceHolderID="TitleContent">
     Updates Feed
@@ -27,6 +27,18 @@
             });
         });
 
+        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler_Page);
+
+        function EndRequestHandler_Page(sender, args) {
+            tinyMCE.execCommand('mceRemoveControl', false, "<%= TxtContentPost.ClientID %>");
+            initTinyMCE();
+        }
+
+        function BeforePostback() {
+            var text = tinyMCE.get('<%= TxtContentPost.ClientID %>').getContent();
+            document.getElementById('<%= HdnContentPost.ClientID %>').value = text;
+        }
+
     </script>
 
     <asp:Panel runat="server" ID="RequiredActionPanel" Visible="False">
@@ -53,19 +65,20 @@
                                         <li class="active"><a href="#">Add requirement</a></li>
                                     </ul>
                                     <asp:TextBox runat="server" ID="TxtContentPost" TextMode="MultiLine" CssClass="form-control vresize"
-                                        Columns="140" Rows="5" placeholder="What's in your mind?" />
+                                        Columns="140" Rows="5" placeholder="What's in your mind?" ReadOnly="True" />
+                                    <asp:HiddenField runat="server" ID="HdnContentPost"/>
                                     <ul class="list-inline post-actions">
                                         <li>
-                                            <asp:DropDownList runat="server" ID="DdlCompanyPost" OnSelectedIndexChanged="DdlCompanyPost_SelectedIndexChanged" AutoPostBack="True" /></li>
+                                            <asp:DropDownList runat="server" ID="DdlCompanyPost"  OnSelectedIndexChanged="DdlCompanyPost_SelectedIndexChanged" AutoPostBack="True" /></li>
                                         <li>
-                                            <asp:DropDownList runat="server" ID="DdlProjectPost" Visible="False" /></li>
+                                            <asp:DropDownList runat="server" ID="DdlProjectPost" Visible="True" /></li>
                                         <li>
-                                            <asp:TextBox runat="server" ID="TxtContentPostTitle" placehoder="Requirement title" Visible="False" /></li>
+                                            <asp:TextBox runat="server" ID="TxtContentPostTitle" ClientIDMode="Static" placehoder="Requirement title" Visible="True" /></li>
                                         <li><a href="#"><span class="glyphicon glyphicon-camera"></span></a></li>
                                         <li><a href="#" class="glyphicon glyphicon-user"></a></li>
                                         <li><a href="#" class="glyphicon glyphicon-map-marker"></a></li>
                                         <li class="pull-right">
-                                            <asp:LinkButton runat="server" Text="Post" ID="BtnPost" CssClass="btn btn-primary btn-m" OnClick="BtnPost_Click" />
+                                            <asp:LinkButton runat="server" Text="Post" ID="BtnPost"  CssClass="btn btn-primary btn-m" OnClick="BtnPost_Click" />
                                         </li>
                                     </ul>
                                 </form>

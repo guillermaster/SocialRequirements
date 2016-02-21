@@ -167,7 +167,6 @@ namespace SocialRequirements
             companyList.DataTextField = CustomExpression.GetPropertyName<CompanyDto>(p => p.Name);
             companyList.DataValueField = CustomExpression.GetPropertyName<CompanyDto>(p => p.Id);
             companyList.DataBind();
-            companyList.Items.Insert(0, new ListItem("- Select Company -", string.Empty));
             companyList.SelectedIndex = 0;
         }
 
