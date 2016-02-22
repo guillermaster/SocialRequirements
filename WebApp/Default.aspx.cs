@@ -77,6 +77,7 @@ namespace SocialRequirements
         protected override void Page_Load(object sender, EventArgs e)
         {
             base.Page_Load(sender, e);
+            SetDefaultRequirementsLink();
 
             if (IsPostBack) return;
 
@@ -169,6 +170,12 @@ namespace SocialRequirements
         #endregion
 
         #region New Post UI Setup
+
+        private void SetDefaultRequirementsLink()
+        {
+            var siteMaster = (SiteMaster) Page.Master;
+            if (siteMaster != null) siteMaster.SetMainMenuLinks();
+        }
 
         private void SetProjectsForNewPost(long companyId)
         {

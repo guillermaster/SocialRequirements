@@ -259,8 +259,11 @@ var Utility = {
         }
     },
 
-    initScroller: function() {
-        $(".scroll-pane").nanoScroller({ paneClass: 'scroll-track',  sliderClass: 'scroll-thumb', contentClass: 'scroll-content' });
+    initScroller: function () {
+        try {
+            $(".scroll-pane").nanoScroller({ paneClass: 'scroll-track', sliderClass: 'scroll-thumb', contentClass: 'scroll-content' });
+        }
+        catch (err){ }
     }
     
 };

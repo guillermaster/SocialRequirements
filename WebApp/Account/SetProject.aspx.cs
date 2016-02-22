@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.UI.WebControls;
+using SocialRequirements.CompanyService;
 using SocialRequirements.Domain.DTO.Account;
 using SocialRequirements.ProjectService;
 using SocialRequirements.Utilities;
@@ -18,6 +19,7 @@ namespace SocialRequirements.Account
 
             SetCompanies(DdlCompany);
             SetCompanies(CompanyAvailableProject);
+            SetAvailableProjects();
         }
 
         protected void ContinueLinkButton_Click(object sender, EventArgs e)
@@ -57,17 +59,7 @@ namespace SocialRequirements.Account
 
         protected void CompanyAvailableProject_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            var companyId = long.Parse(CompanyAvailableProject.SelectedValue);
-
-            if (companyId > 0)
-            {
-                SetAvailableProjects(companyId);
-                ProjectDropDownList.Enabled = true;
-            }
-            else
-            {
-                ProjectDropDownList.Enabled = false;
-            }
+            SetAvailableProjects();
         }
         #endregion
 
@@ -114,13 +106,18 @@ namespace SocialRequirements.Account
             ClientScript.RegisterStartupScript(GetType(), "hash", "location.hash = '#ErrorPanel';", true);
         }
 
-        private void SetAvailableProjects(long companyId)
+        private void SetAvailableProjects()
         {
-            ProjectDropDownList.DataSource = GetUnrelatedProjects(companyId);
-            ProjectDropDownList.DataTextField = CustomExpression.GetPropertyName<ProjectDto>(p => p.Name);
-            ProjectDropDownList.DataValueField = CustomExpression.GetPropertyName<ProjectDto>(p => p.Id);
-            ProjectDropDownList.DataBind();
-            ProjectDropDownList.Items.Insert(0, new ListItem("- Select -", "0"));
+            try
+            {
+                var companyId = long.Parse(CompanyAvailableProject.SelectedValue);
+                ProjectDropDownList.DataSource = GetUnrelatedProjects(companyId);
+                ProjectDropDownList.DataTextField = CustomExpression.GetPropertyName<ProjectDto>(p => p.Name);
+                ProjectDropDownList.DataValueField = CustomExpression.GetPropertyName<ProjectDto>(p => p.Id);
+                ProjectDropDownList.DataBind();
+                ProjectDropDownList.Items.Insert(0, new ListItem("- Select -", "0"));
+            }
+            catch { }
         }
         #endregion
 

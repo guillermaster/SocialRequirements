@@ -172,6 +172,15 @@ namespace SocialRequirements
                                     CommonConstants.QueryStringParams.ActionId + "=" + activitySumm.ActionId;
         }
 
+        /// <summary>
+        /// This function should only be invoked by Default.aspx
+        /// </summary>
+        public void SetMainMenuLinks()
+        {
+            RequirementsLink.NavigateUrl = CommonConstants.FormsUrl.RequirementsList;
+            RequirementsQuestions.NavigateUrl = CommonConstants.FormsUrl.RequirementsQuestionsList;
+        }
+
         private void SetupRequirementsMenuLinks()
         {
             // requirements links

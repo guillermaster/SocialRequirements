@@ -67,6 +67,15 @@ namespace SocialRequirements {
         protected global::System.Web.UI.WebControls.Label UserFullName;
         
         /// <summary>
+        /// RequirementsLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink RequirementsLink;
+        
+        /// <summary>
         /// RequirementsAllLink control.
         /// </summary>
         /// <remarks>
@@ -155,6 +164,15 @@ namespace SocialRequirements {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink RequirementsModifDraftLink;
+        
+        /// <summary>
+        /// RequirementsQuestions control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink RequirementsQuestions;
         
         /// <summary>
         /// RequirementsQuestionsAll control.

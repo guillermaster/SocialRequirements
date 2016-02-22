@@ -14,16 +14,9 @@
 
     <link href='http://fonts.googleapis.com/css?family=RobotoDraft:300,400,400italic,500,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,600,700' rel='stylesheet' type='text/css'>
-    <!--<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>-->
     <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/Scripts/tiny_mce/tiny_mce.js") %>'></script>
     <script>
-
-        //function BeforePostback() {
-        //    //alert(text);
-        //    tinyMCE.triggerSave(false, true);
-        //    //__doPostBack('ctl00$MainContent$BtnPost', '');
-        //}
-
+        
         function initTinyMCE() {
             tinyMCE.init({
                 mode: "textareas",
@@ -41,7 +34,7 @@
 
         initTinyMCE();
     </script>
-
+    
     <!--[if lt IE 10]>
         <script type="text/javascript" src="assets/js/media.match.min.js"></script>
         <script type="text/javascript" src="assets/js/placeholder.min.js"></script>
@@ -124,7 +117,6 @@
     <!-- BS Switch -->
     <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/assets/plugins/switchery/switchery.js") %>'></script>
     <!-- Switchery -->
-
     <script>
         $(function () {
             $('input.bootstrap-switch').bootstrapSwitch();
@@ -389,9 +381,10 @@
 				<li><a href="metrics-dashboard.html">Metrics Dashboard</a></li>
 			</ul>
 		</li> -->
-                                        <li><a href="javascript:;"><i class="fa fa-columns"></i><span>Requirements</span>
+                                        <li><asp:HyperLink runat="server" ID="RequirementsLink">
+                                                <i class="fa fa-columns"></i><span>Requirements</span>
                                             <%--<span class="badge badge-primary">8</span>--%>
-                                            </a>
+                                            </asp:HyperLink>
                                             <ul class="acc-menu">
                                                 <li>
                                                     <asp:HyperLink runat="server" ID="RequirementsAllLink">All requirements</asp:HyperLink></li>
@@ -421,7 +414,7 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a href="javascript:;"><i class="fa fa-tasks"></i><span>Questions</span></a>
+                                        <li><asp:HyperLink runat="server" ID="RequirementsQuestions"><i class="fa fa-tasks"></i><span>Questions</span></asp:HyperLink>
                                             <ul class="acc-menu">
                                                 <li>
                                                     <asp:HyperLink runat="server" ID="RequirementsQuestionsAll">All questions</asp:HyperLink></li>

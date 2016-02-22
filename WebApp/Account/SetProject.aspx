@@ -31,7 +31,7 @@
                     <br />
                     <div style="margin: 10px auto;">
                         Project:
-                        <asp:DropDownList runat="server" ID="ProjectDropDownList" AutoPostBack="True" Enabled="False" OnSelectedIndexChanged="ProjectDropDownList_OnSelectedIndexChanged" />
+                        <asp:DropDownList runat="server" ID="ProjectDropDownList" AutoPostBack="True" OnSelectedIndexChanged="ProjectDropDownList_OnSelectedIndexChanged" />
                     </div>
                     <br />
                     <asp:Button runat="server" ID="SetProjectButton" ClientIDMode="Static" OnClick="SetProjectButton_Click" Visible="False" Text="Set company" />
