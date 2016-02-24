@@ -156,7 +156,7 @@
         </div>
         <div class="bigcard_body">
             <asp:Label runat="server" ID="RequirementDescription" />
-            <asp:TextBox runat="server" ID="RequirementDescriptionInput" Visible="False" TextMode="MultiLine" Width="100%" Rows="20" />
+            <asp:TextBox runat="server" ID="RequirementDescriptionInput" CssClass="mceEditor" Visible="False" TextMode="MultiLine" Width="100%" Rows="20" />
             <asp:HiddenField runat="server" ID="HdnRequirementDescriptionInput"/>
         </div>
         <div class="bigcard_footer">

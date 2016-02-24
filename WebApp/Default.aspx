@@ -64,7 +64,7 @@
                                     <ul class="list-inline" id="list_PostActions">
                                         <li class="active"><a href="#">Add requirement</a></li>
                                     </ul>
-                                    <asp:TextBox runat="server" ID="TxtContentPost" TextMode="MultiLine" CssClass="form-control vresize"
+                                    <asp:TextBox runat="server" ID="TxtContentPost" TextMode="MultiLine" CssClass="form-control vresize mceEditor"
                                         Columns="140" Rows="5" placeholder="What's in your mind?" ReadOnly="True" />
                                     <asp:HiddenField runat="server" ID="HdnContentPost"/>
                                     <ul class="list-inline post-actions">
