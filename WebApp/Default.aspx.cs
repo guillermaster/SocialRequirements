@@ -77,7 +77,6 @@ namespace SocialRequirements
         protected override void Page_Load(object sender, EventArgs e)
         {
             base.Page_Load(sender, e);
-            SetDefaultRequirementsLink();
 
             if (IsPostBack) return;
 
