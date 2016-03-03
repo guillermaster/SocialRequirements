@@ -2185,6 +2185,7 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="SearchResults.aspx" />
     <Content Include="Service References\AccountService\SocialRequirements.AccountService.SetCompanyResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -2215,6 +2216,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Service References\GeneralService\SocialRequirements.GeneralService.GetAllActivitiesNotificationsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\GeneralService\SocialRequirements.GeneralService.GetSearchResultsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Service References\ProjectService\Project.disco" />
@@ -2581,6 +2585,13 @@
     </Compile>
     <Compile Include="Requirements\RequirementsQuestionsList.aspx.designer.cs">
       <DependentUpon>RequirementsQuestionsList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SearchResults.aspx.cs">
+      <DependentUpon>SearchResults.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SearchResults.aspx.designer.cs">
+      <DependentUpon>SearchResults.aspx</DependentUpon>
     </Compile>
     <Compile Include="Service References\AccountService\Reference.cs">
       <AutoGen>True</AutoGen>

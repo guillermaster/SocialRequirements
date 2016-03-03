@@ -318,7 +318,7 @@ namespace SocialRequirements
 
         protected void SearchButton_OnClick(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            Response.Redirect(CommonConstants.FormsUrl.SearchResults + "?" + CommonConstants.QueryStringParams.Filter + "=" + SearchText.Text.Trim());
         }
     }
 

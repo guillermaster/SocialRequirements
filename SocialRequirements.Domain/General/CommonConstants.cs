@@ -20,6 +20,7 @@
             public const string RequirementsQuestionsList = "~/Requirements/RequirementsQuestionsList.aspx";
             public const string RequirementQuestion = "~/Requirements/RequirementQuestion";
             public const string RecentActivities = "~/RecentActivities.aspx";
+            public const string SearchResults = "~/SearchResults.aspx";
         }
 
         public class QueryStringParams

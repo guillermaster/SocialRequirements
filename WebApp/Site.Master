@@ -34,6 +34,7 @@
 
         function focusOnSearch() {
             var searchTextbox = document.getElementById('<%= SearchText.ClientID %>');
+            searchTextbox.value = "test";
             searchTextbox.focus();
         }
 
