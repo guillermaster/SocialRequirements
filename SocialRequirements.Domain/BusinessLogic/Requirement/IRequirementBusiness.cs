@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using SocialRequirements.Domain.DTO.General;
 using SocialRequirements.Domain.DTO.Requirement;
 
 namespace SocialRequirements.Domain.BusinessLogic.Requirement
@@ -152,5 +153,12 @@ namespace SocialRequirements.Domain.BusinessLogic.Requirement
             byte[] fileContent, string username);
 
         byte[] GetAttachment(long companyId, long projectId, long requirementId, long? requirementVersionId = null);
+
+        /// <summary>
+        /// Search for requirements matching the text
+        /// </summary>
+        /// <param name="text">Search criteria</param>
+        /// <returns>List of requirements as search results</returns>
+        List<SearchResultDto> SearchRequirement(string text);
     }
 }

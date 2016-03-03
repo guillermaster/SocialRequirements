@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using SocialRequirements.Domain.BusinessLogic.Requirement;
+using SocialRequirements.Domain.DTO.General;
 using SocialRequirements.Domain.DTO.Requirement;
 using SocialRequirements.Domain.General;
 using SocialRequirements.Domain.Repository.Account;
@@ -203,6 +204,16 @@ namespace SocialRequirements.Business.Requirement
         public byte[] GetAttachment(long companyId, long projectId, long requirementId, long? requirementVersionId = null)
         {
             return _requirementVersionData.GetAttachment(companyId, projectId, requirementId, requirementVersionId);
+        }
+
+        /// <summary>
+        /// Search for requirements matching the text
+        /// </summary>
+        /// <param name="text">Search criteria</param>
+        /// <returns>List of requirements</returns>
+        public List<SearchResultDto> SearchRequirement(string text)
+        {
+            return _requirementData.SearchRequirement(text);
         }
     }
 }

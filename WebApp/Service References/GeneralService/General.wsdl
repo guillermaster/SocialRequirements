@@ -60,6 +60,20 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetSearchResults">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="text" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSearchResultsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSearchResultsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="LatestActivityFeedSoapIn">
@@ -86,6 +100,12 @@
   <wsdl:message name="GetAllActivitiesNotificationsSoapOut">
     <wsdl:part name="parameters" element="tns:GetAllActivitiesNotificationsResponse" />
   </wsdl:message>
+  <wsdl:message name="GetSearchResultsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSearchResults" />
+  </wsdl:message>
+  <wsdl:message name="GetSearchResultsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSearchResultsResponse" />
+  </wsdl:message>
   <wsdl:portType name="GeneralSoap">
     <wsdl:operation name="LatestActivityFeed">
       <wsdl:input message="tns:LatestActivityFeedSoapIn" />
@@ -102,6 +122,10 @@
     <wsdl:operation name="GetAllActivitiesNotifications">
       <wsdl:input message="tns:GetAllActivitiesNotificationsSoapIn" />
       <wsdl:output message="tns:GetAllActivitiesNotificationsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSearchResults">
+      <wsdl:input message="tns:GetSearchResultsSoapIn" />
+      <wsdl:output message="tns:GetSearchResultsSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="GeneralSoap" type="tns:GeneralSoap">
@@ -142,6 +166,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetSearchResults">
+      <soap:operation soapAction="http://tempuri.org/GetSearchResults" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="GeneralSoap12" type="tns:GeneralSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -174,6 +207,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAllActivitiesNotifications">
       <soap12:operation soapAction="http://tempuri.org/GetAllActivitiesNotifications" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSearchResults">
+      <soap12:operation soapAction="http://tempuri.org/GetSearchResults" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

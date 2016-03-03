@@ -4,6 +4,7 @@ using System.Linq;
 using SocialRequirements.Context;
 using SocialRequirements.Domain.DTO.Requirement;
 using SocialRequirements.Domain.DTO.Account;
+using SocialRequirements.Domain.General;
 using SocialRequirements.Domain.Repository.Account;
 using SocialRequirements.Domain.Repository.General;
 using SocialRequirements.Domain.Repository.Requirement;
@@ -20,7 +21,8 @@ namespace SocialRequirements.Data.Requirement
         private readonly IPersonData _personData;
         private readonly IProjectData _projectData;
         private const int MaxShortDescriptionLength = 590;
-
+        private const int MaxSearchResultDescription = 100;
+        
         public RequirementData(ContextModel context)
         {
             _context = context;
@@ -111,6 +113,19 @@ namespace SocialRequirements.Data.Requirement
             requirement.requirement_version_id = requirementDto.VersionId;
 
             _context.SaveChanges();
+        }
+
+        /// <summary>
+        /// Search for requirements matching the text
+        /// </summary>
+        /// <param name="text">Search criteria</param>
+        /// <returns>List of requirements</returns>
+        public List<Domain.DTO.General.SearchResultDto> SearchRequirement(string text)
+        {
+            var requirements =
+                _context.Requirement.Where(req => req.title.Contains(text) || req.description.Contains(text)).ToList();
+
+            return requirements.Select(GetSearchResultDtoFromRequirementEntity).ToList();
         }
 
         public RequirementDto Get(long companyId, long projectId, long requirementId)
@@ -301,6 +316,24 @@ namespace SocialRequirements.Data.Requirement
             };
             
             return requirementDto;
+        }
+
+        private static Domain.DTO.General.SearchResultDto GetSearchResultDtoFromRequirementEntity(
+            Context.Entities.Requirement requirement)
+        {
+            var searchResult = new Domain.DTO.General.SearchResultDto
+            {
+                Id = requirement.id,
+                Title = requirement.title,
+                Description = requirement.description.Length > MaxSearchResultDescription ? 
+                              requirement.description.Substring(0, MaxSearchResultDescription) : requirement.description,
+                Url = CommonConstants.FormsUrl.Requirement + "?" + 
+                      CommonConstants.QueryStringParams.Id + "=" + requirement.id + "&" + 
+                      CommonConstants.QueryStringParams.CompanyId + "=" + requirement.company_id + "&" + 
+                      CommonConstants.QueryStringParams.ProjectId + "=" + requirement.project_id
+            };
+
+            return searchResult;
         }
     }
 }

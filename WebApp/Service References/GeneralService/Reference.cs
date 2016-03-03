@@ -42,6 +42,13 @@ namespace SocialRequirements.GeneralService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetAllActivitiesNotifications", ReplyAction="*")]
         System.Threading.Tasks.Task<SocialRequirements.GeneralService.GetAllActivitiesNotificationsResponse> GetAllActivitiesNotificationsAsync(SocialRequirements.GeneralService.GetAllActivitiesNotificationsRequest request);
+        
+        // CODEGEN: Generating message contract since element name text from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetSearchResults", ReplyAction="*")]
+        SocialRequirements.GeneralService.GetSearchResultsResponse GetSearchResults(SocialRequirements.GeneralService.GetSearchResultsRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetSearchResults", ReplyAction="*")]
+        System.Threading.Tasks.Task<SocialRequirements.GeneralService.GetSearchResultsResponse> GetSearchResultsAsync(SocialRequirements.GeneralService.GetSearchResultsRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -324,6 +331,74 @@ namespace SocialRequirements.GeneralService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetSearchResultsRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetSearchResults", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.GeneralService.GetSearchResultsRequestBody Body;
+        
+        public GetSearchResultsRequest() {
+        }
+        
+        public GetSearchResultsRequest(SocialRequirements.GeneralService.GetSearchResultsRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetSearchResultsRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string text;
+        
+        public GetSearchResultsRequestBody() {
+        }
+        
+        public GetSearchResultsRequestBody(string text) {
+            this.text = text;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetSearchResultsResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetSearchResultsResponse", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.GeneralService.GetSearchResultsResponseBody Body;
+        
+        public GetSearchResultsResponse() {
+        }
+        
+        public GetSearchResultsResponse(SocialRequirements.GeneralService.GetSearchResultsResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetSearchResultsResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string GetSearchResultsResult;
+        
+        public GetSearchResultsResponseBody() {
+        }
+        
+        public GetSearchResultsResponseBody(string GetSearchResultsResult) {
+            this.GetSearchResultsResult = GetSearchResultsResult;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface GeneralSoapChannel : SocialRequirements.GeneralService.GeneralSoap, System.ServiceModel.IClientChannel {
     }
@@ -453,6 +528,31 @@ namespace SocialRequirements.GeneralService {
             inValue.Body = new SocialRequirements.GeneralService.GetAllActivitiesNotificationsRequestBody();
             inValue.Body.encUsername = encUsername;
             return ((SocialRequirements.GeneralService.GeneralSoap)(this)).GetAllActivitiesNotificationsAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SocialRequirements.GeneralService.GetSearchResultsResponse SocialRequirements.GeneralService.GeneralSoap.GetSearchResults(SocialRequirements.GeneralService.GetSearchResultsRequest request) {
+            return base.Channel.GetSearchResults(request);
+        }
+        
+        public string GetSearchResults(string text) {
+            SocialRequirements.GeneralService.GetSearchResultsRequest inValue = new SocialRequirements.GeneralService.GetSearchResultsRequest();
+            inValue.Body = new SocialRequirements.GeneralService.GetSearchResultsRequestBody();
+            inValue.Body.text = text;
+            SocialRequirements.GeneralService.GetSearchResultsResponse retVal = ((SocialRequirements.GeneralService.GeneralSoap)(this)).GetSearchResults(inValue);
+            return retVal.Body.GetSearchResultsResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SocialRequirements.GeneralService.GetSearchResultsResponse> SocialRequirements.GeneralService.GeneralSoap.GetSearchResultsAsync(SocialRequirements.GeneralService.GetSearchResultsRequest request) {
+            return base.Channel.GetSearchResultsAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SocialRequirements.GeneralService.GetSearchResultsResponse> GetSearchResultsAsync(string text) {
+            SocialRequirements.GeneralService.GetSearchResultsRequest inValue = new SocialRequirements.GeneralService.GetSearchResultsRequest();
+            inValue.Body = new SocialRequirements.GeneralService.GetSearchResultsRequestBody();
+            inValue.Body.text = text;
+            return ((SocialRequirements.GeneralService.GeneralSoap)(this)).GetSearchResultsAsync(inValue);
         }
     }
 }

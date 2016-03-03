@@ -314,6 +314,12 @@ namespace SocialRequirements
             if (scriptManager != null)
                 scriptManager.RegisterPostBackControl(control);
         }
+
+
+        protected void SearchButton_OnClick(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

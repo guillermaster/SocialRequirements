@@ -5,6 +5,7 @@ using System.Web.Services;
 using Ninject;
 using Ninject.Web;
 using SocialRequirements.Domain.BusinessLogic.General;
+using SocialRequirements.Domain.BusinessLogic.Requirement;
 using SocialRequirements.Domain.DTO.General;
 using SocialRequirements.Utilities;
 using SocialRequirements.Utilities.Security;
@@ -23,6 +24,8 @@ namespace WebService
     {
         [Inject]
         public IActivityFeedBusiness ActivityFeedBusiness { get; set; }
+        [Inject]
+        public IRequirementBusiness RequirementBusiness { get; set; }
 
         [WebMethod(CacheDuration = 0)]
         public string LatestActivityFeed(string encUsername)
@@ -56,6 +59,15 @@ namespace WebService
             var username = Encryption.Decrypt(encUsername);
             var activities = ActivityFeedBusiness.GetRecentActivities(username);
             var serializer = new ObjectSerializer<List<ActivityFeedDto>>(activities);
+            return serializer.ToXmlString();
+        }
+
+        [WebMethod(CacheDuration = 60)]
+        public string GetSearchResults(string text)
+        {
+            var requirements = RequirementBusiness.SearchRequirement(text);
+
+            var serializer = new ObjectSerializer<List<SearchResultDto>>(requirements);
             return serializer.ToXmlString();
         }
     }

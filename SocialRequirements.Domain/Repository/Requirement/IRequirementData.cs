@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using SocialRequirements.Domain.DTO.Account;
+using SocialRequirements.Domain.DTO.General;
 using SocialRequirements.Domain.DTO.Requirement;
 
 namespace SocialRequirements.Domain.Repository.Requirement
@@ -97,5 +98,12 @@ namespace SocialRequirements.Domain.Repository.Requirement
         /// </summary>
         /// <param name="requirementDto">Requirement</param>
         void UpdateVersionNumber(RequirementDto requirementDto);
+
+        /// <summary>
+        /// Search for requirements matching the text
+        /// </summary>
+        /// <param name="text">Search criteria</param>
+        /// <returns>List of requirements as search results</returns>
+        List<SearchResultDto> SearchRequirement(string text);
     }
 }
