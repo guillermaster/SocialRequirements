@@ -34,8 +34,12 @@
 
         function focusOnSearch() {
             var searchTextbox = document.getElementById('<%= SearchText.ClientID %>');
-            searchTextbox.value = "test";
             searchTextbox.focus();
+        }
+
+        function loadSearchResults(text) {
+            var url = '<%= SearchResultsFormUrl %>';
+            window.location.href = url + text;
         }
 
         initTinyMCE();
@@ -288,7 +292,7 @@
                         <div class="input-group">
                             <asp:TextBox runat="server" ID="SearchText" CssClass="form-control"/>
                             <span class="input-group-btn">
-                                <asp:Button runat="server" ID="SearchButton" CssClass="btn btn-primary" Text="Search" OnClick="SearchButton_OnClick"/>
+                                <a class="btn btn-primary" href="javascript: loadSearchResults(document.getElementById('<%= SearchText.ClientID %>').value)">Search</a>
                             </span>
                         </div>
                     </div>

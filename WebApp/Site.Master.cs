@@ -19,6 +19,16 @@ namespace SocialRequirements
         private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
         private const string CtrlIdEntityInstanceLink = "EntityInstanceLink";
         private string _antiXsrfTokenValue;
+
+        protected string SearchResultsFormUrl
+        {
+            get
+            {
+                return Request.Url.Scheme + "://" + Request.Url.Authority +
+                       VirtualPathUtility.ToAbsolute(CommonConstants.FormsUrl.SearchResults) + "?" +
+                       CommonConstants.QueryStringParams.Filter + "=";
+            }
+        }
         
         protected void Page_Init(object sender, EventArgs e)
         {
@@ -314,12 +324,7 @@ namespace SocialRequirements
             if (scriptManager != null)
                 scriptManager.RegisterPostBackControl(control);
         }
-
-
-        protected void SearchButton_OnClick(object sender, EventArgs e)
-        {
-            Response.Redirect(CommonConstants.FormsUrl.SearchResults + "?" + CommonConstants.QueryStringParams.Filter + "=" + SearchText.Text.Trim());
-        }
+        
     }
 
 }
