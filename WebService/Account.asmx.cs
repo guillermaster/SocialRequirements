@@ -87,5 +87,15 @@ namespace WebService
             var serializer = new ObjectSerializer<PersonDto>(userdata);
             return serializer.ToXmlString();
         }
+
+        [WebMethod(CacheDuration = 0)]
+        public string GetPermissionsPerProject(string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            var permissions = PersonBusiness.GetPermissionsInProjects(username);
+
+            var serializer = new ObjectSerializer<List<ProjectPermissions>>(permissions);
+            return serializer.ToXmlString();
+        }
     }
 }

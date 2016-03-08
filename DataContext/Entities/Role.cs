@@ -11,6 +11,7 @@ namespace SocialRequirements.Context.Entities
         {
             CompanyPersonRole = new HashSet<CompanyPersonRole>();
             CompanyProjectPersonRole = new HashSet<CompanyProjectPersonRole>();
+            Permission = new HashSet<Permission>();
         }
 
         public long id { get; set; }
@@ -22,5 +23,7 @@ namespace SocialRequirements.Context.Entities
         public virtual ICollection<CompanyPersonRole> CompanyPersonRole { get; set; }
 
         public virtual ICollection<CompanyProjectPersonRole> CompanyProjectPersonRole { get; set; }
+
+        public virtual ICollection<Permission> Permission { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using SocialRequirements.Domain.BusinessLogic.Account;
 using SocialRequirements.Domain.DTO.Account;
 using SocialRequirements.Domain.Exception.Account;
@@ -77,6 +78,12 @@ namespace SocialRequirements.Business.Account
         {
             var personId = _personData.GetPersonId(username);
             return _personData.Get(personId);
+        }
+
+        public List<ProjectPermissions> GetPermissionsInProjects(string username)
+        {
+            var personId = _personData.GetPersonId(username);
+            return _personData.GetPermissionsInProjects(personId);
         }
     }
 }

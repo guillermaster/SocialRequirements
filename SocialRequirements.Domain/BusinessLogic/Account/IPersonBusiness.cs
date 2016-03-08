@@ -1,4 +1,5 @@
-﻿using SocialRequirements.Domain.DTO.Account;
+﻿using System.Collections.Generic;
+using SocialRequirements.Domain.DTO.Account;
 
 namespace SocialRequirements.Domain.BusinessLogic.Account
 {
@@ -12,5 +13,7 @@ namespace SocialRequirements.Domain.BusinessLogic.Account
         bool ValidatePassword(string username, string password);
 
         PersonDto Get(string username);
+
+        List<ProjectPermissions> GetPermissionsInProjects(string username);
     }
 }

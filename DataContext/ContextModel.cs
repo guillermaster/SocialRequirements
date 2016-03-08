@@ -28,6 +28,7 @@ namespace SocialRequirements.Context
         public virtual DbSet<RequirementQuestionAnswer> RequirementQuestionAnswer { get; set; }
         public virtual DbSet<RequirementVersion> RequirementVersion { get; set; }
         public virtual DbSet<Role> Role { get; set; }
+        public virtual DbSet<Permission> Permission { get; set; }
         public virtual DbSet<GeneralCatalogDetail> GeneralCatalogDetails { get; set; }
         public virtual DbSet<GeneralCatalogHeader> GeneralCatalogHeaders { get; set; }
 
@@ -378,6 +379,11 @@ namespace SocialRequirements.Context
                 .HasMany(e => e.CompanyProjectPersonRole)
                 .WithRequired(e => e.Role)
                 .HasForeignKey(e => e.role_id);
+
+            modelBuilder.Entity<Permission>()
+                .HasMany(e => e.Role)
+                .WithMany(e => e.Permission)
+                .Map(m => m.ToTable("RolePermission").MapLeftKey("permission_id").MapRightKey("role_id"));
             
             modelBuilder.Entity<Company>()
                 .HasMany(e => e.CompanyPerson)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using SocialRequirements.Context;
 using SocialRequirements.Context.Entities;
@@ -74,7 +75,21 @@ namespace SocialRequirements.Data.Account
             var user = _context.Person.FirstOrDefault(person => person.id == personId);
             return user != null ? user.last_name : string.Empty;
         }
-    
+
+        public List<ProjectPermissions> GetPermissionsInProjects(long personId)
+        {
+            var permissions = from projectRole in _context.CompanyProjectPersonRole
+                              join role in _context.Role on projectRole.role_id equals role.id
+                              where projectRole.person_id == personId
+                              select new ProjectPermissions
+                              {
+                                  ProjectId = projectRole.project_id,
+                                  PermissionsIds = role.Permission.Select(perm => perm.id).ToList()
+                              };
+
+            return permissions.ToList();
+        }
+
 
         private static Person CreatePersonEntityInstance(string firstName, string lastName, DateTime birthdate, string primaryEmail, string secondaryEmail,
             string phone, string mobilePhone, string username, string password)

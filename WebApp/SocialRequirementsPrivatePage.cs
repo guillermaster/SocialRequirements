@@ -24,6 +24,20 @@ namespace SocialRequirements
             set { Session["ActivityFeed"] = value; }
         }
 
+        /// <summary>
+        /// Dictionary of that stores in-session the permissions of the current user by project
+        /// </summary>
+        protected Dictionary<long, List<int>> UserPermissionsInProject
+        {
+            get
+            {
+                return Session["UserPermissionsInProject"] != null
+                    ? (Dictionary<long, List<int>>)Session["UserPermissionsInProject"]
+                    : new Dictionary<long, List<int>>();
+            }
+            set { Session["UserPermissionsInProject"] = value; }
+        }
+
         protected virtual void Page_Load(object sender, EventArgs e)
         {
             ValidateUserLoggedIn();

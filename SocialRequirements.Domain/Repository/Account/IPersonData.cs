@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using SocialRequirements.Domain.DTO.Account;
 
 namespace SocialRequirements.Domain.Repository.Account
@@ -21,5 +22,7 @@ namespace SocialRequirements.Domain.Repository.Account
         string GetName(long personId);
 
         string GetLastname(long personId);
+
+        List<ProjectPermissions> GetPermissionsInProjects(long personId);
     }
 }

@@ -9,7 +9,7 @@ namespace SocialRequirements.Tests
         [TestMethod]
         public void TestEncryption()
         {
-            var input = "guillermaster@gmail.com";
+            var input = "guillermo.pincay@negentek.com";
             var encrypted = Encryption.Encrypt(input);
             var decrypted = Encryption.Decrypt(encrypted);
 
