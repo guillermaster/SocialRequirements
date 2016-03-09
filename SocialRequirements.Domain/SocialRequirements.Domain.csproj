@@ -52,7 +52,7 @@
     <Compile Include="DTO\Account\CompanyDto.cs" />
     <Compile Include="DTO\Account\PersonDto.cs" />
     <Compile Include="DTO\Account\ProjectDto.cs" />
-    <Compile Include="DTO\Account\ProjectPermissions.cs" />
+    <Compile Include="DTO\Account\ProjectPermissionsDto.cs" />
     <Compile Include="DTO\General\ActivityFeedDto.cs" />
     <Compile Include="DTO\General\ActivityFeedSummaryDto.cs" />
     <Compile Include="DTO\General\GeneralCatalogDetailDto.cs" />

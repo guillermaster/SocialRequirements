@@ -14,6 +14,6 @@ namespace SocialRequirements.Domain.BusinessLogic.Account
 
         PersonDto Get(string username);
 
-        List<ProjectPermissions> GetPermissionsInProjects(string username);
+        List<ProjectPermissionsDto> GetPermissionsInProjects(string username);
     }
 }

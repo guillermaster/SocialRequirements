@@ -80,7 +80,7 @@ namespace SocialRequirements.Business.Account
             return _personData.Get(personId);
         }
 
-        public List<ProjectPermissions> GetPermissionsInProjects(string username)
+        public List<ProjectPermissionsDto> GetPermissionsInProjects(string username)
         {
             var personId = _personData.GetPersonId(username);
             return _personData.GetPermissionsInProjects(personId);

@@ -23,6 +23,6 @@ namespace SocialRequirements.Domain.Repository.Account
 
         string GetLastname(long personId);
 
-        List<ProjectPermissions> GetPermissionsInProjects(long personId);
+        List<ProjectPermissionsDto> GetPermissionsInProjects(long personId);
     }
 }

@@ -76,12 +76,12 @@ namespace SocialRequirements.Data.Account
             return user != null ? user.last_name : string.Empty;
         }
 
-        public List<ProjectPermissions> GetPermissionsInProjects(long personId)
+        public List<ProjectPermissionsDto> GetPermissionsInProjects(long personId)
         {
             var permissions = from projectRole in _context.CompanyProjectPersonRole
                               join role in _context.Role on projectRole.role_id equals role.id
                               where projectRole.person_id == personId
-                              select new ProjectPermissions
+                              select new ProjectPermissionsDto
                               {
                                   ProjectId = projectRole.project_id,
                                   PermissionsIds = role.Permission.Select(perm => perm.id).ToList()

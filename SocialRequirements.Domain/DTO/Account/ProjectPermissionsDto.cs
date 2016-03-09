@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SocialRequirements.Domain.DTO.Account
 {
-    public class ProjectPermissions
+    [Serializable]
+    public class ProjectPermissionsDto
     {
         public long ProjectId { get; set; }
         public List<int> PermissionsIds { get; set; }

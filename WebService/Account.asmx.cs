@@ -94,7 +94,7 @@ namespace WebService
             var username = Encryption.Decrypt(encUsername);
             var permissions = PersonBusiness.GetPermissionsInProjects(username);
 
-            var serializer = new ObjectSerializer<List<ProjectPermissions>>(permissions);
+            var serializer = new ObjectSerializer<List<ProjectPermissionsDto>>(permissions);
             return serializer.ToXmlString();
         }
     }

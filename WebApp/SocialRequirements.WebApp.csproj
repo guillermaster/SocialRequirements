@@ -2192,6 +2192,9 @@
     <Content Include="Service References\AccountService\SocialRequirements.AccountService.GetUserDataResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Service References\AccountService\SocialRequirements.AccountService.GetPermissionsPerProjectResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Service References\CompanyService\Company.disco" />
     <None Include="Service References\CompanyService\configuration91.svcinfo" />
     <None Include="Service References\CompanyService\configuration.svcinfo" />

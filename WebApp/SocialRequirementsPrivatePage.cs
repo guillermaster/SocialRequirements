@@ -24,18 +24,19 @@ namespace SocialRequirements
             set { Session["ActivityFeed"] = value; }
         }
 
+
         /// <summary>
-        /// Dictionary of that stores in-session the permissions of the current user by project
+        /// Stores all permissions IDs for current user per each project
         /// </summary>
-        protected Dictionary<long, List<int>> UserPermissionsInProject
+        protected List<ProjectPermissionsDto> PermissionsByProject
         {
             get
             {
-                return Session["UserPermissionsInProject"] != null
-                    ? (Dictionary<long, List<int>>)Session["UserPermissionsInProject"]
-                    : new Dictionary<long, List<int>>();
+                return Session["PermissionsByProject"] != null
+                    ? (List<ProjectPermissionsDto>) Session["PermissionsByProject"]
+                    : null;
             }
-            set { Session["UserPermissionsInProject"] = value; }
+            set { Session["PermissionsByProject"] = value; }
         }
 
         protected virtual void Page_Load(object sender, EventArgs e)
@@ -45,6 +46,7 @@ namespace SocialRequirements
             SetUserFullName();
             LoadNotifications();
             ShowInfobarToggleButton();
+            LoadPermissionsPerProject();
         }
 
         protected void RegisterJsBeforePostback(string functionName)
@@ -58,6 +60,23 @@ namespace SocialRequirements
             if (UserLoggedIn()) return;
             var siteMaster = (SiteMaster)Master;
             if (siteMaster != null) siteMaster.RedirectToLogin();
+        }
+
+        protected void LoadPermissionsPerProject()
+        {
+            if (PermissionsByProject != null) return;
+
+            var accountService = new AccountSoapClient();
+            var permissionsStr = accountService.GetPermissionsPerProject(Encryption.Encrypt(Username));
+            var serializer = new ObjectSerializer<List<ProjectPermissionsDto>>();
+            PermissionsByProject = (List<ProjectPermissionsDto>)serializer.Deserialize(permissionsStr);
+        }
+
+        protected bool HasPermission(long projectId, Permissions.Codes permission)
+        {
+            if (PermissionsByProject == null) return false;
+            var projectPerm = PermissionsByProject.FirstOrDefault(p => p.ProjectId == projectId);
+            return projectPerm != null && projectPerm.PermissionsIds.Any(perm => perm == (int) permission);
         }
 
         protected void RegisterTrigger(Control control)
