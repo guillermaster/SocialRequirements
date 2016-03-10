@@ -153,6 +153,7 @@
         </div>
         <div class="bigcard_subtitle">
             <asp:Label runat="server" ID="ProjectName" />
+            <asp:DropDownList runat="server" ID="ProjectInput" Visible="False"/>
         </div>
         <div class="bigcard_body">
             <asp:Label runat="server" ID="RequirementDescription" />

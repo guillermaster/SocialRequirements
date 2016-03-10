@@ -105,7 +105,7 @@ namespace SocialRequirements.Data.Requirement
         /// <param name="requirementDto">Requirement</param>
         public void UpdateVersionNumber(RequirementDto requirementDto)
         {
-            var requirement = GetEntity(requirementDto.CompanyId, requirementDto.ProjectId, requirementDto.Id);
+            var requirement = GetEntity(requirementDto.CompanyId, requirementDto.Id);
 
             if (requirement == null) return;
 
@@ -130,13 +130,13 @@ namespace SocialRequirements.Data.Requirement
 
         public RequirementDto Get(long companyId, long projectId, long requirementId)
         {
-            var requirement = GetEntity(companyId, projectId, requirementId);
+            var requirement = GetEntity(companyId, requirementId);
             return requirement != null ? GetDtoFromEntity(requirement) : null;
         }
 
         public string GetTitle(long companyId, long projectId, long requirementId)
         {
-            var requirement = GetEntity(companyId, projectId, requirementId);
+            var requirement = GetEntity(companyId, requirementId);
             return requirement != null ? requirement.title : string.Empty;
         }
 
@@ -147,7 +147,7 @@ namespace SocialRequirements.Data.Requirement
                 try
                 {
                     // update like on requirement
-                    var requirement = GetEntity(companyId, projectId, requirementId);
+                    var requirement = GetEntity(companyId, requirementId);
                     if (requirement == null) return;
                     requirement.agreed++;
                     _context.SaveChanges();
@@ -173,7 +173,7 @@ namespace SocialRequirements.Data.Requirement
                 try
                 {
                     // update like on requirement
-                    var requirement = GetEntity(companyId, projectId, requirementId);
+                    var requirement = GetEntity(companyId, requirementId);
                     if (requirement == null) return;
                     requirement.disagreed++;
                     _context.SaveChanges();
@@ -208,7 +208,7 @@ namespace SocialRequirements.Data.Requirement
                 try
                 {
                     // get requirement and update it
-                    var requirement = GetEntity(companyId, projectId, requirementId);
+                    var requirement = GetEntity(companyId, requirementId);
                     requirement.status_id = statusId;
                     requirement.modifiedby_id = personId;
                     requirement.modifiedon = DateTime.Now;
@@ -229,24 +229,25 @@ namespace SocialRequirements.Data.Requirement
             }
         }
 
-        public void Update(string title, string description, long companyId, long projectId, long requirementId, long personId)
+        public void Update(string title, string description, long newProjectId, long companyId, long projectId, long requirementId, long personId)
         {
             using (var scope = _context.Database.BeginTransaction())
             {
                 try
                 {
                     // get requirement and update it
-                    var requirement = GetEntity(companyId, projectId, requirementId);
+                    var requirement = GetEntity(companyId, requirementId);
                     requirement.title = title;
                     requirement.description = description;
+                    requirement.project_id = newProjectId;
                     requirement.modifiedby_id = personId;
                     requirement.modifiedon = DateTime.Now;
                     _context.SaveChanges();
 
                     // update requirement version
                     _requirementVersionData = new RequirementVersionData(_context);
-                    _requirementVersionData.Update(title, description, companyId, projectId, requirementId,
-                        requirement.requirement_version_id, personId);
+                    _requirementVersionData.Update(title, description, newProjectId, companyId, projectId, 
+                        requirementId, requirement.requirement_version_id, personId);
 
                     scope.Commit();
                 }
@@ -258,11 +259,11 @@ namespace SocialRequirements.Data.Requirement
             }
         }
 
-        public Context.Entities.Requirement GetEntity(long companyId, long projectId, long requirementId)
+        public Context.Entities.Requirement GetEntity(long companyId, long requirementId)
         {
             return
                 _context.Requirement.FirstOrDefault(
-                    r => r.company_id == companyId && r.project_id == projectId && r.id == requirementId);
+                    r => r.company_id == companyId && r.id == requirementId);
         }
 
         private static Context.Entities.Requirement GetEntityFromDto(RequirementDto requirementDto)

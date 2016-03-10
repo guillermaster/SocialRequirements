@@ -16,20 +16,18 @@ namespace SocialRequirements.Domain.Repository.Requirement
         /// Returns requirement modification request data matching criteria specified by input params
         /// </summary>
         /// <param name="companyId">Company ID</param>
-        /// <param name="projectId">Project ID</param>
         /// <param name="requirementId">Requirement ID</param>
         /// <param name="requirementModificationId">Requirement modification ID</param>
         /// <returns>Requirement</returns>
-        RequirementModificationDto Get(long companyId, long projectId, long requirementId, long requirementModificationId);
+        RequirementModificationDto Get(long companyId, long requirementId, long requirementModificationId);
 
         /// <summary>
         /// Returns the current active requirement modification request
         /// </summary>
         /// <param name="companyId">Company ID</param>
-        /// <param name="projectId">Project ID</param>
         /// <param name="requirementId">Requirement ID</param>
         /// <returns>Current active requirement modification request, null when no active modifiaction request is found</returns>
-        RequirementModificationDto Get(long companyId, long projectId, long requirementId);
+        RequirementModificationDto Get(long companyId, long requirementId);
 
         /// <summary>
         /// Query requirements modifications by projects

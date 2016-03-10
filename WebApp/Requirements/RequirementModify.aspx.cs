@@ -40,7 +40,8 @@ namespace SocialRequirements.Requirements
             RequirementId = long.Parse(Request.QueryString[CommonConstants.QueryStringParams.RequirementId]);
             CompanyId = long.Parse(Request.QueryString[CommonConstants.QueryStringParams.CompanyId]);
             ProjectId = long.Parse(Request.QueryString[CommonConstants.QueryStringParams.ProjectId]);
-
+            SetFormPermissions();
+            
             LoadRequirement();
             ToggleModification();
             RegisterTrigger(DownloadButton);

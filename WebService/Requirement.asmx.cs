@@ -164,11 +164,11 @@ namespace WebService
         }
 
         [WebMethod(CacheDuration = 0)]
-        public void UpdateRequirement(string title, string description, long companyId, long projectId,
+        public void UpdateRequirement(string title, string description, long newProjectId, long companyId, long projectId,
             long requirementId, string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
-            RequirementBusiness.Update(title, description, companyId, projectId, requirementId, username);
+            RequirementBusiness.Update(title, description, newProjectId, companyId, projectId, requirementId, username);
         }
 
         [WebMethod(CacheDuration = 0)]

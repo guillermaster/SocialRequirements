@@ -329,7 +329,9 @@ namespace SocialRequirements.Data.General
                 
                 EntityActionId = activity.action_id,
                 EntityAction = activity.GeneralCatalogDetail1 != null ? activity.GeneralCatalogDetail1.name : _catalogData.GetTitle(activity.action_id),
-                EntityActionPastTense = activity.GeneralCatalogDetail1 != null ? activity.GeneralCatalogDetail1.description : _catalogData.GetDescription(activity.action_id)
+                EntityActionPastTense = activity.GeneralCatalogDetail1 != null ? activity.GeneralCatalogDetail1.description : _catalogData.GetDescription(activity.action_id),
+                Description = string.Empty,
+                ShortDescription = string.Empty
             };
 
             // set description according to the entity

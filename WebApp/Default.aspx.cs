@@ -327,14 +327,11 @@ namespace SocialRequirements
         /// </summary>
         private void LoadProjectsByCompany(IEnumerable<CompanyDto> companies)
         {
-            var projectSrv = new ProjectSoapClient();
             var projectsByComp = Projects;
 
             foreach (var company in companies)
             {
-                var projectXmlStr = projectSrv.GetByCompany(company.Id);
-                var serializer = new ObjectSerializer<List<ProjectDto>>();
-                var projects = (List<ProjectDto>)serializer.Deserialize(projectXmlStr);
+                var projects = GetProjectsByCompany(company.Id);
 
                 foreach (var project in projects)
                 {

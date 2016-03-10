@@ -151,11 +151,11 @@ namespace SocialRequirements.Business.Requirement
                 (int)GeneralCatalog.Detail.EntityActions.Reject, requirementId, DateTime.Now, personId);
         }
 
-        public void Update(string title, string description, long companyId, long projectId, long requirementId, string username)
+        public void Update(string title, string description, long newProjectId, long companyId, long projectId, long requirementId, string username)
         {
             var personId = _personData.GetPersonId(username);
 
-            _requirementData.Update(title, description, companyId, projectId, requirementId, personId);
+            _requirementData.Update(title, description, newProjectId, companyId, projectId, requirementId, personId);
 
             // add activity feed log
             _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.Requirement,

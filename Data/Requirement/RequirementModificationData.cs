@@ -68,19 +68,19 @@ namespace SocialRequirements.Data.Requirement
             }
         }
 
-        public RequirementModificationDto Get(long companyId, long projectId, long requirementId, long requirementModificationId)
+        public RequirementModificationDto Get(long companyId, long requirementId, long requirementModificationId)
         {
-            var requirementModif = GetEntity(companyId, projectId, requirementId, requirementModificationId);
+            var requirementModif = GetEntity(companyId, requirementId, requirementModificationId);
             return requirementModif != null ? GetDtoFromEntity(requirementModif) : null;
         }
 
-        public RequirementModificationDto Get(long companyId, long projectId, long requirementId)
+        public RequirementModificationDto Get(long companyId, long requirementId)
         {
             // only one modification request with status 'pending' must exists per requirement
             var requirementModif =
                 _context.RequirementModification.FirstOrDefault(
                     r =>
-                        r.company_id == companyId && r.project_id == projectId && r.requirement_id == requirementId &&
+                        r.company_id == companyId && r.requirement_id == requirementId &&
                         r.status_id == (int) GeneralCatalog.Detail.RequirementStatus.Draft);
 
             return requirementModif != null ? GetDtoFromEntity(requirementModif) : null;
@@ -101,7 +101,7 @@ namespace SocialRequirements.Data.Requirement
         /// <param name="requirementModifDto">Requirement modification</param>
         private void UpdateVersionNumber(RequirementModificationDto requirementModifDto)
         {
-            var requirement = GetEntity(requirementModifDto.CompanyId, requirementModifDto.ProjectId,
+            var requirement = GetEntity(requirementModifDto.CompanyId, 
                 requirementModifDto.RequirementId, requirementModifDto.Id);
 
             if (requirement == null) return;
@@ -120,7 +120,7 @@ namespace SocialRequirements.Data.Requirement
                 {
                     // update requirement modification status to approved
                     // get requirement and update it
-                    var requirementModif = GetEntity(companyId, projectId, requirementId, requirementModificationId);
+                    var requirementModif = GetEntity(companyId, requirementId, requirementModificationId);
                     requirementModif.status_id = (int)GeneralCatalog.Detail.RequirementStatus.Approved;
                     requirementModif.modifiedby_id = personId;
                     requirementModif.modifiedon = DateTime.Now;
@@ -132,7 +132,7 @@ namespace SocialRequirements.Data.Requirement
                         requirementModif.requirement_modification_version_id, requirementModif.status_id, personId);
 
                     // get all requirement modification data
-                    var requirementModifDto = Get(companyId, projectId, requirementId, requirementModificationId);
+                    var requirementModifDto = Get(companyId, requirementId, requirementModificationId);
 
                     // add new requirement version
                     var reqVersionData = new RequirementVersionData(_context);
@@ -144,7 +144,7 @@ namespace SocialRequirements.Data.Requirement
 
                     // update requirement
                     // get requirement and update it
-                    var requirement = reqData.GetEntity(companyId, projectId, requirementId);
+                    var requirement = reqData.GetEntity(companyId, requirementId);
                     requirement.title = requirementDto.Title;
                     requirement.description = requirementDto.Description;
                     requirement.modifiedby_id = personId;
@@ -168,7 +168,7 @@ namespace SocialRequirements.Data.Requirement
                 try
                 {
                     // update like on requirement
-                    var requirementModif = GetEntity(companyId, projectId, requirementId, requirementModificationId);
+                    var requirementModif = GetEntity(companyId, requirementId, requirementModificationId);
                     if (requirementModif == null) return;
                     requirementModif.agreed++;
                     _context.SaveChanges();
@@ -196,7 +196,7 @@ namespace SocialRequirements.Data.Requirement
                 try
                 {
                     // update like on requirement
-                    var requirementModif = GetEntity(companyId, projectId, requirementId, requirementModificationId);
+                    var requirementModif = GetEntity(companyId, requirementId, requirementModificationId);
                     if (requirementModif == null) return;
                     requirementModif.disagreed++;
                     _context.SaveChanges();
@@ -224,7 +224,7 @@ namespace SocialRequirements.Data.Requirement
                 try
                 {
                     // get requirement and update it
-                    var requirementModif = GetEntity(companyId, projectId, requirementId, requirementModificationId);
+                    var requirementModif = GetEntity(companyId, requirementId, requirementModificationId);
                     requirementModif.status_id = statusId;
                     requirementModif.modifiedby_id = personId;
                     requirementModif.modifiedon = DateTime.Now;
@@ -252,7 +252,7 @@ namespace SocialRequirements.Data.Requirement
                 try
                 {
                     // get requirement and update it
-                    var requirement = GetEntity(companyId, projectId, requirementId, requirementModificationId);
+                    var requirement = GetEntity(companyId, requirementId, requirementModificationId);
                     requirement.title = title;
                     requirement.description = description;
                     requirement.modifiedby_id = personId;
@@ -274,12 +274,12 @@ namespace SocialRequirements.Data.Requirement
             }
         }
 
-        private RequirementModification GetEntity(long companyId, long projectId, long requirementId, long requirementModificationId)
+        private RequirementModification GetEntity(long companyId, long requirementId, long requirementModificationId)
         {
             return
                 _context.RequirementModification.FirstOrDefault(
                     r =>
-                        r.company_id == companyId && r.project_id == projectId && r.requirement_id == requirementId &&
+                        r.company_id == companyId && r.requirement_id == requirementId &&
                         r.id == requirementModificationId);
         }
 

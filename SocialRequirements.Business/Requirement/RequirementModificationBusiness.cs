@@ -47,7 +47,7 @@ namespace SocialRequirements.Business.Requirement
 
         public RequirementModificationDto Get(long companyId, long projectId, long requirementId, long requirementModificationId)
         {
-            var requirementModif = _requirementModifData.Get(companyId, projectId, requirementId, requirementModificationId);
+            var requirementModif = _requirementModifData.Get(companyId, requirementId, requirementModificationId);
             requirementModif.AttachmentTitle = _requirementModifVersionData.GetAttachmentTitle(companyId, projectId,
                 requirementId, requirementModificationId);
             return requirementModif;

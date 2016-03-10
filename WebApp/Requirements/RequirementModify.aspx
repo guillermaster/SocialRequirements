@@ -51,7 +51,7 @@
             </asp:LinkButton>
         </li>
         <li>
-            <asp:LinkButton runat="server" CssClass="btn btn-default" ID="SaveButton" OnClick="SaveButton_Click" ToolTip="Save">
+            <asp:LinkButton runat="server" CssClass="btn btn-default" ID="SaveButton" OnClick="SaveButton_Click" ToolTip="Save" CausesValidation="False">
                 <i class="fa fa-fw fa-save"></i>
             </asp:LinkButton>
         </li>
@@ -123,10 +123,11 @@
         </div>
         <div class="bigcard_subtitle">
             <asp:Label runat="server" ID="ProjectName" />
+            <asp:DropDownList runat="server" ID="ProjectInput" Visible="False"/>
         </div>
         <div class="bigcard_body">
             <asp:Label runat="server" ID="RequirementDescription" />
-            <asp:TextBox runat="server" ID="RequirementDescriptionInput" Visible="False" TextMode="MultiLine" Width="100%" Rows="20" />
+            <asp:TextBox runat="server" ID="RequirementDescriptionInput" CssClass="mceEditor" Visible="False" TextMode="MultiLine" Width="100%" Rows="20" />
             <asp:HiddenField runat="server" ID="HdnRequirementDescriptionInput"/>
         </div>
 

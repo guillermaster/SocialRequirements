@@ -10,6 +10,7 @@ using SocialRequirements.Domain.DTO.Account;
 using SocialRequirements.Domain.DTO.General;
 using SocialRequirements.Domain.General;
 using SocialRequirements.GeneralService;
+using SocialRequirements.ProjectService;
 using SocialRequirements.RequirementService;
 using SocialRequirements.Utilities;
 using SocialRequirements.Utilities.Security;
@@ -33,7 +34,7 @@ namespace SocialRequirements
             get
             {
                 return Session["PermissionsByProject"] != null
-                    ? (List<ProjectPermissionsDto>) Session["PermissionsByProject"]
+                    ? (List<ProjectPermissionsDto>)Session["PermissionsByProject"]
                     : null;
             }
             set { Session["PermissionsByProject"] = value; }
@@ -76,7 +77,7 @@ namespace SocialRequirements
         {
             if (PermissionsByProject == null) return false;
             var projectPerm = PermissionsByProject.FirstOrDefault(p => p.ProjectId == projectId);
-            return projectPerm != null && projectPerm.PermissionsIds.Any(perm => perm == (int) permission);
+            return projectPerm != null && projectPerm.PermissionsIds.Any(perm => perm == (int)permission);
         }
 
         protected void RegisterTrigger(Control control)
@@ -173,6 +174,18 @@ namespace SocialRequirements
 
             var serializer = new ObjectSerializer<List<CompanyDto>>();
             return (List<CompanyDto>)serializer.Deserialize(companies);
+        }
+
+        /// <summary>
+        /// Loads all projects by company and store them in a ViewState var
+        /// </summary>
+        protected List<ProjectDto> GetProjectsByCompany(long companyId)
+        {
+            var projectSrv = new ProjectSoapClient();
+            var projectXmlStr = projectSrv.GetByCompany(companyId);
+            var serializer = new ObjectSerializer<List<ProjectDto>>();
+            var projects = (List<ProjectDto>)serializer.Deserialize(projectXmlStr);
+            return projects.OrderByDescending(p => p.Id).ToList();
         }
 
         /// <summary>
@@ -312,8 +325,8 @@ namespace SocialRequirements
 
         protected UpdatePanel GetMainUpdatePanel(Page page)
         {
-            var masterPage = (SiteMaster) page.Master;
-            if(masterPage == null) throw new InvalidDataException("Invalid update panel or not found.");
+            var masterPage = (SiteMaster)page.Master;
+            if (masterPage == null) throw new InvalidDataException("Invalid update panel or not found.");
             return masterPage.GetUpdatePanel();
         }
 

@@ -111,11 +111,12 @@ namespace SocialRequirements.Domain.BusinessLogic.Requirement
         /// </summary>
         /// <param name="title">Requirement title</param>
         /// <param name="description">Description title</param>
+        /// <param name="newProjectId">Project ID (to move the requirement to another project)</param>
         /// <param name="companyId">Company ID</param>
         /// <param name="projectId">Project ID</param>
         /// <param name="requirementId">Requirement ID</param>
         /// <param name="username">User that triggered the update</param>
-        void Update(string title, string description, long companyId, long projectId, long requirementId, string username);
+        void Update(string title, string description, long newProjectId, long companyId, long projectId, long requirementId, string username);
 
         /// <summary>
         /// Submits a requirement for its aproval

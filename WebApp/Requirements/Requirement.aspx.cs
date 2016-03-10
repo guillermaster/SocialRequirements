@@ -4,6 +4,7 @@ using System.Data.SqlTypes;
 using System.Globalization;
 using System.IO;
 using System.Web;
+using SocialRequirements.Domain.DTO.Account;
 using SocialRequirements.Domain.DTO.Requirement;
 using SocialRequirements.Domain.General;
 using SocialRequirements.RequirementQuestionService;
@@ -55,6 +56,7 @@ namespace SocialRequirements.Requirements
             get { return ViewState["CanApproveRequirement"] != null && bool.Parse(ViewState["CanApproveRequirement"].ToString()); }
             set { ViewState["CanApproveRequirement"] = value; }
         }
+
         #endregion
 
         #region Main Events
@@ -106,10 +108,12 @@ namespace SocialRequirements.Requirements
         {
             try
             {
+                var newProjectId = long.Parse(ProjectInput.SelectedValue);
                 var requirementSrv = new RequirementSoapClient();
-                requirementSrv.UpdateRequirement(RequirementTitleInput.Text, HdnRequirementDescriptionInput.Value, CompanyId,
-                    ProjectId, RequirementId, GetUsernameEncrypted());
+                requirementSrv.UpdateRequirement(RequirementTitleInput.Text, HdnRequirementDescriptionInput.Value, newProjectId,
+                    CompanyId, ProjectId, RequirementId, GetUsernameEncrypted());
 
+                ProjectId = newProjectId;
                 EditionMode = false;
                 ToggleModification();
 
@@ -274,10 +278,16 @@ namespace SocialRequirements.Requirements
         protected virtual RequirementDto GetRequirement()
         {
             var requirementSrv = new RequirementSoapClient();
-            var requirement = requirementSrv.GetRequirement(CompanyId, ProjectId, RequirementId);
+            var requirementStr = requirementSrv.GetRequirement(CompanyId, ProjectId, RequirementId);
+            
 
             var serializer = new ObjectSerializer<RequirementDto>();
-            return (RequirementDto)serializer.Deserialize(requirement);
+            var requirement = (RequirementDto)serializer.Deserialize(requirementStr);
+
+            CompanyId = requirement.CompanyId;
+            ProjectId = requirement.ProjectId;
+
+            return requirement;
         }
 
         private long GetCurrentModificationId()
@@ -310,6 +320,17 @@ namespace SocialRequirements.Requirements
             Response.BinaryWrite(fileBytes);
             Response.Flush();
             Response.Close();
+        }
+
+        private void LoadProjects()
+        {
+            var projects = GetProjectsByCompany(CompanyId);
+            ProjectInput.DataSource = projects;
+            ProjectInput.DataValueField = CustomExpression.GetPropertyName<ProjectDto>(p => p.Id);
+            ProjectInput.DataTextField = CustomExpression.GetPropertyName<ProjectDto>(p => p.Name);
+            ProjectInput.DataBind();
+
+            ProjectInput.SelectedValue = ProjectId.ToString();
         }
         #endregion
 
@@ -353,7 +374,7 @@ namespace SocialRequirements.Requirements
         {
             // get requirement data
             var requirement = GetRequirement();
-
+            
             // set requirement data in form
             SetFormData(requirement);
         }
@@ -407,12 +428,16 @@ namespace SocialRequirements.Requirements
             SubmitButton.Visible = requirement.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.Draft;
             ApproveButton.Visible = requirement.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.PendingApproval && CanApproveRequirement;
             RejectButton.Visible = requirement.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.PendingApproval && CanApproveRequirement;
+
+            LoadProjects();
         }
 
         protected virtual void ToggleModification()
         {
             RequirementTitle.Visible = !EditionMode;
             RequirementTitleInput.Visible = EditionMode;
+            ProjectName.Visible = !EditionMode;
+            ProjectInput.Visible = EditionMode;
             RequirementDescription.Visible = !EditionMode;
             RequirementDescriptionInput.Visible = EditionMode;
             SaveButton.Visible = EditionMode;
