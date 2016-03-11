@@ -423,7 +423,7 @@ namespace SocialRequirements.Requirements
             // set action buttons visibility
             SaveButton.Visible = false;
             UndoEditButton.Visible = false;
-            EditButton.Visible = true;
+            EditButton.Visible = requirement.StatusId != (int)GeneralCatalog.Detail.RequirementStatus.PendingApproval;
             SubmitButton.Visible = requirement.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.Draft;
             ApproveButton.Visible = requirement.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.PendingApproval && CanApproveRequirement;
             RejectButton.Visible = requirement.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.PendingApproval && CanApproveRequirement;
