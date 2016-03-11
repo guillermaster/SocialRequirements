@@ -385,8 +385,7 @@ namespace SocialRequirements.Requirements
         /// <returns></returns>
         protected bool HasBeenApproved()
         {
-            return int.Parse(RequirementStatusId.Value) == (int) GeneralCatalog.Detail.RequirementStatus.Approved ||
-                   int.Parse(RequirementStatusId.Value) == (int) GeneralCatalog.Detail.RequirementStatus.Rejected;
+            return int.Parse(RequirementStatusId.Value) == (int) GeneralCatalog.Detail.RequirementStatus.Approved;
         }
 
         protected bool IsPendingApproval()

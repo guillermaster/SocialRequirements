@@ -215,9 +215,11 @@ namespace SocialRequirements.Requirements
             // if there requirement modification request has not been created yet
             if (!ModificationRequestExists())
             {
-                var requirement = requirementSrv.GetRequirement(CompanyId, ProjectId, RequirementId);
+                var requirementStr = requirementSrv.GetRequirement(CompanyId, ProjectId, RequirementId);
                 var serializer = new ObjectSerializer<RequirementDto>();
-                return (RequirementDto) serializer.Deserialize(requirement);
+                var requirement = (RequirementDto) serializer.Deserialize(requirementStr);
+                requirement.StatusId = (int) GeneralCatalog.Detail.RequirementStatus.Draft;
+                return requirement;
             }
             else
             {

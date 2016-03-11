@@ -117,6 +117,13 @@ namespace SocialRequirements.Data.Requirement
             requirementVersion.description = description;
             requirementVersion.modifiedby_id = personId;
             requirementVersion.modifiedon = DateTime.Now;
+
+            // if requirement being updated was previously rejected, then set as draft
+            if (requirementVersion.status_id == (int)GeneralCatalog.Detail.RequirementStatus.Rejected)
+            {
+                requirementVersion.status_id = (int)GeneralCatalog.Detail.RequirementStatus.Draft;
+            }
+
             _context.SaveChanges();
         }
 
