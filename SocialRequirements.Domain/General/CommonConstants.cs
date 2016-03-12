@@ -23,6 +23,11 @@
             public const string SearchResults = "~/SearchResults.aspx";
         }
 
+        public class FormsFileName
+        {
+            public const string Requirement = "Requirement.aspx";
+        }
+
         public class QueryStringParams
         {
             public const string Id = "id";

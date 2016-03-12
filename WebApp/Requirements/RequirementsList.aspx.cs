@@ -32,6 +32,7 @@ namespace SocialRequirements.Requirements
 
             SetRequirementsList();
         }
+
         #endregion
 
         #region Requirements Repeater Events
@@ -57,16 +58,40 @@ namespace SocialRequirements.Requirements
         }
         #endregion
 
+        #region Requirements GridView Events
+
+        protected void RequirementsListGrid_OnRowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType != DataControlRowType.DataRow) return;
+
+            var requirement = (RequirementDto)e.Row.DataItem;
+
+            e.Row.Attributes.Add("onclick",
+                "location.href='" + CommonConstants.FormsFileName.Requirement + "?" + CommonConstants.QueryStringParams.Id +
+                "=" + requirement.Id + "&" + CommonConstants.QueryStringParams.CompanyId + "=" + requirement.CompanyId +
+                "&" + CommonConstants.QueryStringParams.ProjectId + "=" + requirement.ProjectId + "'");
+        }
+        #endregion
+
         #region Form Setup
 
         /// <summary>
         /// Sets the requirements list data 
         /// </summary>
-        private void SetRequirementsList()
+        private void SetRequirementsList(bool reloadRequirements = true)
         {
-            LoadRequirements();
+            if (reloadRequirements)
+                LoadRequirements();
             RequirementsListRepeater.DataSource = Requirements;
             RequirementsListRepeater.DataBind();
+
+            SetRequirementsGrid();
+        }
+
+        private void SetRequirementsGrid()
+        {
+            RequirementsListGrid.DataSource = Requirements;
+            RequirementsListGrid.DataBind();
         }
         #endregion
 
@@ -107,5 +132,6 @@ namespace SocialRequirements.Requirements
             Requirements = (List<RequirementDto>)serializer.Deserialize(requirementsXmlStr);
         }
         #endregion
+
     }
 }
