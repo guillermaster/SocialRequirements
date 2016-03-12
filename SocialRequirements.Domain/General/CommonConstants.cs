@@ -26,6 +26,7 @@
         public class FormsFileName
         {
             public const string Requirement = "Requirement.aspx";
+            public const string RequirementModification = "RequirementModify.aspx";
         }
 
         public class QueryStringParams

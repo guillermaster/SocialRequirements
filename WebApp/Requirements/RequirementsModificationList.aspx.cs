@@ -59,16 +59,43 @@ namespace SocialRequirements.Requirements
         }
         #endregion
 
+        #region Requirements GridView Events
+
+        protected void RequirementsListGrid_OnRowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType != DataControlRowType.DataRow) return;
+
+            var requirementModif = (RequirementModificationDto)e.Row.DataItem;
+
+            e.Row.Attributes.Add("onclick",
+                "location.href='" + CommonConstants.FormsFileName.RequirementModification + 
+                "?" + CommonConstants.QueryStringParams.CompanyId + "=" + requirementModif.CompanyId + 
+                "&" + CommonConstants.QueryStringParams.ProjectId + "=" + requirementModif.ProjectId +
+                "&" + CommonConstants.QueryStringParams.RequirementId + "=" + requirementModif.RequirementId +
+                "&" + CommonConstants.QueryStringParams.Id + "=" + requirementModif.Id +
+                "'");
+        }
+        #endregion
+
         #region Form Setup
 
         /// <summary>
         /// Sets the requirements list data 
         /// </summary>
-        private void SetRequirementsList()
+        private void SetRequirementsList(bool reloadRequirements = true)
         {
-            LoadRequirements();
+            if (reloadRequirements)
+                LoadRequirements();
             RequirementsListRepeater.DataSource = Requirements;
             RequirementsListRepeater.DataBind();
+
+            SetRequirementsGrid();
+        }
+
+        private void SetRequirementsGrid()
+        {
+            RequirementsListGrid.DataSource = Requirements;
+            RequirementsListGrid.DataBind();
         }
         #endregion
 
