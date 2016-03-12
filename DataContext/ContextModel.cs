@@ -31,6 +31,8 @@ namespace SocialRequirements.Context
         public virtual DbSet<Permission> Permission { get; set; }
         public virtual DbSet<GeneralCatalogDetail> GeneralCatalogDetails { get; set; }
         public virtual DbSet<GeneralCatalogHeader> GeneralCatalogHeaders { get; set; }
+        public virtual DbSet<RequirementHashtag> RequirementHashtag { get; set; }
+        public virtual DbSet<RequirementModificationHashtag> RequirementModificationHashtag { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -148,6 +150,12 @@ namespace SocialRequirements.Context
                 .HasForeignKey(e => e.status_id)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<GeneralCatalogDetail>()
+                .HasMany(e => e.RequirementModificationHashtag)
+                .WithRequired(e => e.GeneralCatalogDetail)
+                .HasForeignKey(e => e.status_id)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Person>()
                 .HasMany(e => e.CompanyPersonRole)
                 .WithRequired(e => e.Person)
@@ -227,6 +235,18 @@ namespace SocialRequirements.Context
                 .HasMany(e => e.RequirementQuestionAnswer1)
                 .WithRequired(e => e.Person1)
                 .HasForeignKey(e => e.modifiedby_id)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Person>()
+                .HasMany(e => e.RequirementHashtag)
+                .WithRequired(e => e.Person)
+                .HasForeignKey(e => e.createdby_id)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Person>()
+                .HasMany(e => e.RequirementModificationHashtag)
+                .WithRequired(e => e.Person)
+                .HasForeignKey(e => e.createdby_id)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Project>()
@@ -317,6 +337,11 @@ namespace SocialRequirements.Context
                 .HasForeignKey(e => e.requirement_id)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<Requirement>()
+                .HasMany(e => e.RequirementHashtag)
+                .WithRequired(e => e.Requirement)
+                .HasForeignKey(e => e.requirement_id);
+
             modelBuilder.Entity<RequirementComment>()
                 .Property(e => e.comment)
                 .IsUnicode(false);
@@ -332,6 +357,12 @@ namespace SocialRequirements.Context
 
             modelBuilder.Entity<RequirementModification>()
                 .HasMany(e => e.RequirementModificationComment)
+                .WithRequired(e => e.RequirementModification)
+                .HasForeignKey(e => e.requirement_modification_id)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<RequirementModification>()
+                .HasMany(e => e.RequirementModificationHashtag)
                 .WithRequired(e => e.RequirementModification)
                 .HasForeignKey(e => e.requirement_modification_id)
                 .WillCascadeOnDelete(false);
