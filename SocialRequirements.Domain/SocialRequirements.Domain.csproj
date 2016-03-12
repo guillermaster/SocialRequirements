@@ -76,8 +76,10 @@
     <Compile Include="Repository\General\IGeneralCatalogData.cs" />
     <Compile Include="Repository\Requirement\IRequirementCommentData.cs" />
     <Compile Include="Repository\Requirement\IRequirementData.cs" />
+    <Compile Include="Repository\Requirement\IRequirementHashtagData.cs" />
     <Compile Include="Repository\Requirement\IRequirementModificationCommentData.cs" />
     <Compile Include="Repository\Requirement\IRequirementModificationData.cs" />
+    <Compile Include="Repository\Requirement\IRequirementModificationHashtagData.cs" />
     <Compile Include="Repository\Requirement\IRequirementModificationVersionData.cs" />
     <Compile Include="Repository\Requirement\IRequirementQuestionAnswerData.cs" />
     <Compile Include="Repository\Requirement\IRequirementQuestionData.cs" />

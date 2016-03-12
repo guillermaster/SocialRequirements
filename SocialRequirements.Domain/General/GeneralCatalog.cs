@@ -64,6 +64,13 @@
                 SubmitForApproval = 18,
                 UploadAttachment = 30
             }
+
+            public enum HashtagsStatus
+            {
+                Approved = 31,
+                New = 32,
+                Remove = 33
+            }
         }
     }
 }

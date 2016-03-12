@@ -68,6 +68,10 @@ namespace SocialRequirements.Data.Requirement
                     var reqVersionData = new RequirementVersionData(_context);
                     requirement = reqVersionData.Add(requirement);
 
+                    // add hashtags
+                    var reqHashtagData = new RequirementHashtagData(_context);
+                    reqHashtagData.Add(requirement.Id, requirement.Hashtags, requirement.CreatedbyId);
+
                     // set version keys to currently added requirement
                     UpdateVersionNumber(requirement);
 

@@ -17,25 +17,32 @@ namespace SocialRequirements.Business.Requirement
         private readonly IActivityFeedData _activityFeedData;
         private readonly IProjectData _projectData;
         private readonly IRequirementModificationVersionData _requirementModifVersionData;
+        private readonly IRequirementHashtagData _requirementHashtagData;
 
         public RequirementModificationBusiness(IPersonData personData, IRequirementModificationData requirementModifData,
             IActivityFeedData activityFeedData, IProjectData projectData,
-            IRequirementModificationVersionData requirementModifVersionData)
+            IRequirementModificationVersionData requirementModifVersionData, IRequirementHashtagData requirementHashtagData)
         {
             _personData = personData;
             _requirementModifData = requirementModifData;
             _activityFeedData = activityFeedData;
             _projectData = projectData;
             _requirementModifVersionData = requirementModifVersionData;
+            _requirementHashtagData = requirementHashtagData;
         }
         
         public RequirementModificationDto Add(long companyId, long projectId, long requirementId, string title, string description,
-            string username)
+            string[] hashtagsToAdd, string[] hashtagsToRemove, string username)
         {
             var personId = _personData.GetPersonId(username);
 
+            // get hashtags for currently approved requirement
+            var approvedHashtags = _requirementHashtagData.Get(requirementId);
+
             // add new requirement modification request
-            var requirementModif = new RequirementModificationDto(companyId, projectId, requirementId, title, description, personId);
+            var requirementModif = new RequirementModificationDto(companyId, projectId, requirementId, title,
+                description, approvedHashtags, hashtagsToAdd, hashtagsToRemove, personId);
+            
             requirementModif.Id = _requirementModifData.Add(requirementModif);
 
             // add activity feed log

@@ -10,7 +10,8 @@ namespace SocialRequirements.Domain.DTO.Requirement
         {
         }
 
-        public RequirementModificationDto(long companyId, long projectId, long requirementId, string title, string description, long personId)
+        public RequirementModificationDto(long companyId, long projectId, long requirementId, string title,
+            string description, string[] approvedHashtags, string[] hashtagsToAdd, string[] hashtagsToRemove, long personId)
         {
             CompanyId = companyId;
             ProjectId = projectId;
@@ -26,8 +27,13 @@ namespace SocialRequirements.Domain.DTO.Requirement
             Modifiedon = DateTime.Now;
             ApprovedbyId = null;
             Approvedon = null;
+            HashtagsToAdd = hashtagsToAdd;
+            HashtagsToRemove = hashtagsToRemove;
+            Hashtags = approvedHashtags;
         }
 
         public long RequirementId { get; set; }
+        public string[] HashtagsToAdd { get; set; }
+        public string[] HashtagsToRemove { get; set; }
     }
 }
