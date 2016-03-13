@@ -385,9 +385,10 @@ namespace SocialRequirements
                 }
 
                 var requirementSrv = new RequirementSoapClient();
+                
                 requirementSrv.AddRequirement(TxtContentPostTitle.Text, HdnContentPost.Value,
                     long.Parse(DdlCompanyPost.SelectedValue), long.Parse(DdlProjectPost.SelectedValue),
-                    GetUsernameEncrypted());
+                    GetHashtags(), GetUsernameEncrypted());
 
                 TxtContentPost.Text = string.Empty;
                 TxtContentPostTitle.Text = string.Empty;
@@ -402,6 +403,14 @@ namespace SocialRequirements
             {
                 SetFadeOutMessage("An error has occurred, please try again.", false, ex.InnerException != null ? ex.InnerException.Message : ex.Message);
             }
+        }
+
+        private ArrayOfString GetHashtags()
+        {
+            var hashtagsArray = HdnHashtags.Value.Trim().Split(' ');
+            var hashtags = new ArrayOfString();
+            hashtags.AddRange(hashtagsArray);
+            return hashtags;
         }
 
         private void AddComment(long companyId, long projectId, long? parentId, long recordId, int entityId,

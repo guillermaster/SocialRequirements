@@ -138,11 +138,11 @@ namespace WebService
 
         [WebMethod(CacheDuration = 0)]
         public long AddRequirementModification(string title, string description, long companyId, long projectId,
-            long requirementId, string hashtagsToAdd, string hashtagsToRemove, string encUsername)
+            long requirementId, string[] hashtagsToAdd, string[] hashtagsToRemove, string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
             var requirementModif = RequirementModificationBusiness.Add(companyId, projectId, requirementId, title,
-                description, hashtagsToAdd.Split(','), hashtagsToRemove.Split(','), username);
+                description, hashtagsToAdd, hashtagsToRemove, username);
             return requirementModif.Id;
         }
 

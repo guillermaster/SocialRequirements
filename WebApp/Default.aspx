@@ -36,7 +36,119 @@
 
         function BeforePostback() {
             var text = tinyMCE.get('<%= TxtContentPost.ClientID %>').getContent();
+            var hashtags = document.getElementById('<%= Hashtags.ClientID %>').innerHTML;
             document.getElementById('<%= HdnContentPost.ClientID %>').value = text;
+            document.getElementById('<%= HdnHashtags.ClientID %>').value = hashtags;
+        }
+
+        function setHashtagInput() {
+            var hashtagTextbox = document.getElementById('<%= HashtagInput.ClientID %>');
+            hashtagTextbox.style.display = '';
+            hashtagTextbox.focus();
+
+            var hashtagLink = document.getElementById('AddHashtagLink');
+            hashtagLink.style.display = '';
+
+            var cancelHashtagLink = document.getElementById('CancelHashtagLink');
+            cancelHashtagLink.style.display = '';
+
+            var hashtagsVal = document.getElementById('<%= Hashtags.ClientID %>');
+            hashtagsVal.style.display = 'none';
+
+            var setHashtagsLink = document.getElementById('SetHashtagInputLink');
+            setHashtagsLink.style.display = 'none';
+        }
+
+        function addHashtag() {
+            var hashtagTextbox = document.getElementById('<%= HashtagInput.ClientID %>');
+            var hashtag = hashtagTextbox.value; // the hashtag
+            hashtagTextbox.value = '';
+            hashtagTextbox.style.display = 'none';
+            
+            var hashtagLink = document.getElementById('AddHashtagLink');
+            hashtagLink.style.display = 'none';
+
+            var cancelHashtagLink = document.getElementById('CancelHashtagLink');
+            cancelHashtagLink.style.display = 'none';
+
+            var hashtagsVal = document.getElementById('<%= Hashtags.ClientID %>');
+            hashtagsVal.innerHTML = hashtagsVal.innerHTML + ' ' + hashtag;
+            hashtagsVal.style.display = '';
+
+            var setHashtagsLink = document.getElementById('SetHashtagInputLink');
+            setHashtagsLink.innerText = 'Add another hashtag';
+            setHashtagsLink.style.display = '';
+
+            // increase counter
+            var numHashtags = +document.getElementById('<%= HdnHashtagsCounter.ClientID %>').value;
+            numHashtags++;
+            document.getElementById('<%= HdnHashtagsCounter.ClientID %>').value = numHashtags;
+
+            if (numHashtags === 5) {
+                setHashtagsLink.style.display = 'none';
+                var hashtagLimit = document.getElementById('<%= MaxHashtagsReached.ClientID %>');
+                hashtagLimit.display = '';
+            }
+        }
+
+        function cancelHashtag() {
+            var hashtagTextbox = document.getElementById('<%= HashtagInput.ClientID %>');
+            hashtagTextbox.value = '';
+            hashtagTextbox.style.display = 'none';
+
+            var hashtagLink = document.getElementById('AddHashtagLink');
+            hashtagLink.style.display = 'none';
+
+            var cancelHashtagLink = document.getElementById('CancelHashtagLink');
+            cancelHashtagLink.style.display = 'none';
+
+            var hashtagsVal = document.getElementById('<%= Hashtags.ClientID %>');
+            hashtagsVal.style.display = '';
+
+            var setHashtagsLink = document.getElementById('SetHashtagInputLink');
+            if (hashtagsVal.innerText === '') {
+                setHashtagsLink.innerText = "You haven't set any hashtag to your new requirement, click here to set one.";
+            } else {
+                setHashtagsLink.innerText = 'Add another hashtag';
+            }
+            setHashtagsLink.style.display = '';
+        }
+
+        function spacecheck(e) {
+            var hashtag = document.getElementById('<%= HashtagInput.ClientID %>').value;
+
+            var evt = e || window.event;
+            
+            if (evt) {
+                var keyCode = evt.charCode || evt.keyCode;
+
+                if (keyCode === 13) { //if is ENTER
+                    addHashtag();
+                    if (evt.preventDefault) {
+                        evt.preventDefault();
+                    } else {
+                        evt.returnValue = false;
+                    }
+                } else {
+                    if (!(keyCode >= 48 && keyCode <= 57) && !(keyCode >= 65 && keyCode <= 90) && keyCode !== 8) {
+                        if (evt.preventDefault) {
+                            evt.preventDefault();
+                        } else {
+                            evt.returnValue = false;
+                        }
+                    } else {
+                        if (hashtag === '' && keyCode !== 51) { //keycode 51 is #
+                            document.getElementById('<%= HashtagInput.ClientID %>').value = '#';
+                        } else if (hashtag !== '' && keyCode === 51) {
+                            if (evt.preventDefault) {
+                                evt.preventDefault();
+                            } else {
+                                evt.returnValue = false;
+                            }
+                        }
+                    }
+                }
+            }
         }
 
     </script>
@@ -86,6 +198,16 @@
                                             <asp:LinkButton runat="server" Text="Post" ID="BtnPost"  CssClass="btn btn-primary btn-m" OnClick="BtnPost_Click" />
                                         </li>
                                     </ul>
+                                    <div>
+                                        Hashtags: <asp:Label runat="server" ID="Hashtags" Text="" style="display: none"/>
+                                        <asp:HiddenField runat="server" ID="HdnHashtags"/>
+                                        <asp:HiddenField runat="server" ID="HdnHashtagsCounter" Value="0"/>
+                                        <asp:TextBox runat="server" ID="HashtagInput" placeholder="#AddHereYourHashtag" style="display: none" onkeydown="spacecheck()"/>
+                                        <a href="Javascript: setHashtagInput();" id="SetHashtagInputLink">You haven't set any hashtag to your new requirement, click here to set one.</a>
+                                        <a href="Javascript: addHashtag();" style="display: none;" id="AddHashtagLink">Add</a>&nbsp;
+                                        <a href="Javascript: cancelHashtag();" style="display: none;" id="CancelHashtagLink">Cancel</a>
+                                        <asp:Label runat="server" ID="MaxHashtagsReached" Text="You've reached the limit of hashtags" style="display: none"/>
+                                    </div>
                                 </form>
                             </div>
                         </div>

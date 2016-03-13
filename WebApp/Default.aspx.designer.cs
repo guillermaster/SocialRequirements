@@ -130,6 +130,51 @@ namespace SocialRequirements {
         protected global::System.Web.UI.WebControls.LinkButton BtnPost;
         
         /// <summary>
+        /// Hashtags control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Hashtags;
+        
+        /// <summary>
+        /// HdnHashtags control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HdnHashtags;
+        
+        /// <summary>
+        /// HdnHashtagsCounter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HdnHashtagsCounter;
+        
+        /// <summary>
+        /// HashtagInput control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox HashtagInput;
+        
+        /// <summary>
+        /// MaxHashtagsReached control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label MaxHashtagsReached;
+        
+        /// <summary>
         /// ActivityFeedRepeater control.
         /// </summary>
         /// <remarks>

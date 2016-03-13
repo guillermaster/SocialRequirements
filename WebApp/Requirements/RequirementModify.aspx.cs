@@ -58,7 +58,7 @@ namespace SocialRequirements.Requirements
                 {
                     RequirementModificationId = requirementSrv.AddRequirementModification(RequirementTitleInput.Text,
                         HdnRequirementDescriptionInput.Value,
-                        CompanyId, ProjectId, RequirementId, GetUsernameEncrypted());
+                        CompanyId, ProjectId, RequirementId, new ArrayOfString(), new ArrayOfString(), GetUsernameEncrypted());
 
                     SetFadeOutMessage(GetMainUpdatePanel(this), PostSuccessPanel, PostSuccessMessage,
                         "The requirement modification request has been successfully created.");
