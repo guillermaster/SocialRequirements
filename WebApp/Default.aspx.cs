@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SocialRequirements.Domain;
@@ -40,6 +41,7 @@ namespace SocialRequirements
         private const string CtrlIdProjectIdComment = "ProjectIdComment";
         private const string CtrlIdParentIdComment = "ParentIdComment";
         private const string CtrlIdEntityInstanceLink = "EntityInstanceLink";
+        private const string CtrlIdActivityFeedHashtagsRep = "RequirementsHashtagsRepeater";
         #endregion
         #region Properties
 
@@ -188,6 +190,16 @@ namespace SocialRequirements
 
         #endregion
 
+        #region Form Setup
+
+        protected string GetRequirementsListByHashtagUrl(string hashtag)
+        {
+            return CommonConstants.FormsUrl.RequirementsList + "?" + CommonConstants.QueryStringParams.Filter + "=" +
+                   CommonConstants.Filters.Hashtag + "&" + CommonConstants.QueryStringParams.Hashtag + "=" +
+                   HttpUtility.UrlEncode(hashtag);
+        }
+        #endregion
+
         #region Activity Feed Events
 
         protected void ActivityFeedRepeater_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -197,6 +209,7 @@ namespace SocialRequirements
             var activity = (ActivityFeedDto)e.Item.DataItem;
             var actionsPanel = (Panel)e.Item.FindControl(CtrlIdActivityActionsPanel);
             var link = (HyperLink)e.Item.FindControl(CtrlIdEntityInstanceLink);
+            var hashtagsRepeater = (Repeater) e.Item.FindControl(CtrlIdActivityFeedHashtagsRep);
 
             switch (activity.EntityId)
             {
@@ -205,6 +218,8 @@ namespace SocialRequirements
                                            activity.EntityActionId == (int)GeneralCatalog.Detail.EntityActions.SubmitForApproval;
                     if (activity.ProjectId.HasValue)
                         link.NavigateUrl = GetUrlForRequirement(activity.CompanyId, activity.ProjectId.Value, activity.RecordId);
+                    hashtagsRepeater.DataSource = activity.Hashtag;
+                    hashtagsRepeater.DataBind();
                     break;
 
                 case (int)GeneralCatalog.Detail.Entity.RequirementModification:

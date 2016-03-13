@@ -80,6 +80,21 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetRequirementsByHashtag">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hashtag" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="encUsername" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRequirementsByHashtagResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRequirementsByHashtagResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="GetApprovedRequirementsList">
         <s:complexType>
           <s:sequence>
@@ -565,6 +580,12 @@
   <wsdl:message name="GetRequirementsListSoapOut">
     <wsdl:part name="parameters" element="tns:GetRequirementsListResponse" />
   </wsdl:message>
+  <wsdl:message name="GetRequirementsByHashtagSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRequirementsByHashtag" />
+  </wsdl:message>
+  <wsdl:message name="GetRequirementsByHashtagSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRequirementsByHashtagResponse" />
+  </wsdl:message>
   <wsdl:message name="GetApprovedRequirementsListSoapIn">
     <wsdl:part name="parameters" element="tns:GetApprovedRequirementsList" />
   </wsdl:message>
@@ -766,6 +787,10 @@
       <wsdl:input message="tns:GetRequirementsListSoapIn" />
       <wsdl:output message="tns:GetRequirementsListSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetRequirementsByHashtag">
+      <wsdl:input message="tns:GetRequirementsByHashtagSoapIn" />
+      <wsdl:output message="tns:GetRequirementsByHashtagSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetApprovedRequirementsList">
       <wsdl:input message="tns:GetApprovedRequirementsListSoapIn" />
       <wsdl:output message="tns:GetApprovedRequirementsListSoapOut" />
@@ -927,6 +952,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetRequirementsList">
       <soap:operation soapAction="http://tempuri.org/GetRequirementsList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRequirementsByHashtag">
+      <soap:operation soapAction="http://tempuri.org/GetRequirementsByHashtag" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1245,6 +1279,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetRequirementsList">
       <soap12:operation soapAction="http://tempuri.org/GetRequirementsList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRequirementsByHashtag">
+      <soap12:operation soapAction="http://tempuri.org/GetRequirementsByHashtag" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

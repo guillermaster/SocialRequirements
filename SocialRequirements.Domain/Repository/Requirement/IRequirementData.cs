@@ -18,7 +18,7 @@ namespace SocialRequirements.Domain.Repository.Requirement
         /// Returns the total number of requirements in the specified projects
         /// </summary>
         /// <param name="projects">The projects</param>
-        /// <returns>Number of requirements</returns
+        /// <returns>Number of requirements</returns>
         int GetNumberOfRequirements(List<ProjectDto> projects);
 
         /// <summary>
@@ -70,6 +70,14 @@ namespace SocialRequirements.Domain.Repository.Requirement
         /// <param name="projectIds">List of project identifiers </param>
         /// <returns>List of requirements</returns>
         List<RequirementDto> GetList(List<long> projectIds);
+
+        /// <summary>
+        /// Query requirements by projects
+        /// </summary>
+        /// <param name="projectIds">List of project identifiers </param>
+        /// <param name="hashtag">Hashtag of the requirement to look for</param>
+        /// <returns>List of requirements</returns>
+        List<RequirementDto> GetList(List<long> projectIds, string hashtag);
 
         /// <summary>
         /// Updates the status of a requirement. Tf the status is approved, the approval user is set.

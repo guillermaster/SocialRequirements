@@ -33,6 +33,14 @@ namespace SocialRequirements.Data.Requirement
             return reqHashtags.ToArray();
         }
 
+        public long[] GetRequirementsId(string hashtag)
+        {
+            var requirementsId =
+                _context.RequirementHashtag.Where(reqHash => reqHash.hashtag == hashtag)
+                    .ToList();
+            return requirementsId.Select(reqHash => reqHash.requirement_id).ToArray();
+        }
+
         private static RequirementHashtag CreateRequirementHashtag(long requirementId, string hashtag, long personId)
         {
             var requirementHashtag = new RequirementHashtag

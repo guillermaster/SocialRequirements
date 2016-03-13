@@ -54,5 +54,7 @@ namespace SocialRequirements.Domain.DTO.General
         public string EntityActionPastTense { get; set; }
 
         public string EntitySingular { get; set; }
+
+        public string[] Hashtag { get; set; }
     }
 }

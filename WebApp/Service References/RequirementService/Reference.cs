@@ -59,6 +59,13 @@ namespace SocialRequirements.RequirementService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetRequirementsList", ReplyAction="*")]
         System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetRequirementsListResponse> GetRequirementsListAsync(SocialRequirements.RequirementService.GetRequirementsListRequest request);
         
+        // CODEGEN: Generating message contract since element name hashtag from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetRequirementsByHashtag", ReplyAction="*")]
+        SocialRequirements.RequirementService.GetRequirementsByHashtagResponse GetRequirementsByHashtag(SocialRequirements.RequirementService.GetRequirementsByHashtagRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetRequirementsByHashtag", ReplyAction="*")]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetRequirementsByHashtagResponse> GetRequirementsByHashtagAsync(SocialRequirements.RequirementService.GetRequirementsByHashtagRequest request);
+        
         // CODEGEN: Generating message contract since element name encUsername from namespace http://tempuri.org/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetApprovedRequirementsList", ReplyAction="*")]
         SocialRequirements.RequirementService.GetApprovedRequirementsListResponse GetApprovedRequirementsList(SocialRequirements.RequirementService.GetApprovedRequirementsListRequest request);
@@ -646,6 +653,78 @@ namespace SocialRequirements.RequirementService {
         
         public GetRequirementsListResponseBody(string GetRequirementsListResult) {
             this.GetRequirementsListResult = GetRequirementsListResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetRequirementsByHashtagRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetRequirementsByHashtag", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementService.GetRequirementsByHashtagRequestBody Body;
+        
+        public GetRequirementsByHashtagRequest() {
+        }
+        
+        public GetRequirementsByHashtagRequest(SocialRequirements.RequirementService.GetRequirementsByHashtagRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetRequirementsByHashtagRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string hashtag;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string encUsername;
+        
+        public GetRequirementsByHashtagRequestBody() {
+        }
+        
+        public GetRequirementsByHashtagRequestBody(string hashtag, string encUsername) {
+            this.hashtag = hashtag;
+            this.encUsername = encUsername;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetRequirementsByHashtagResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetRequirementsByHashtagResponse", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementService.GetRequirementsByHashtagResponseBody Body;
+        
+        public GetRequirementsByHashtagResponse() {
+        }
+        
+        public GetRequirementsByHashtagResponse(SocialRequirements.RequirementService.GetRequirementsByHashtagResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetRequirementsByHashtagResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string GetRequirementsByHashtagResult;
+        
+        public GetRequirementsByHashtagResponseBody() {
+        }
+        
+        public GetRequirementsByHashtagResponseBody(string GetRequirementsByHashtagResult) {
+            this.GetRequirementsByHashtagResult = GetRequirementsByHashtagResult;
         }
     }
     
@@ -3106,6 +3185,33 @@ namespace SocialRequirements.RequirementService {
             inValue.Body = new SocialRequirements.RequirementService.GetRequirementsListRequestBody();
             inValue.Body.encUsername = encUsername;
             return ((SocialRequirements.RequirementService.RequirementSoap)(this)).GetRequirementsListAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SocialRequirements.RequirementService.GetRequirementsByHashtagResponse SocialRequirements.RequirementService.RequirementSoap.GetRequirementsByHashtag(SocialRequirements.RequirementService.GetRequirementsByHashtagRequest request) {
+            return base.Channel.GetRequirementsByHashtag(request);
+        }
+        
+        public string GetRequirementsByHashtag(string hashtag, string encUsername) {
+            SocialRequirements.RequirementService.GetRequirementsByHashtagRequest inValue = new SocialRequirements.RequirementService.GetRequirementsByHashtagRequest();
+            inValue.Body = new SocialRequirements.RequirementService.GetRequirementsByHashtagRequestBody();
+            inValue.Body.hashtag = hashtag;
+            inValue.Body.encUsername = encUsername;
+            SocialRequirements.RequirementService.GetRequirementsByHashtagResponse retVal = ((SocialRequirements.RequirementService.RequirementSoap)(this)).GetRequirementsByHashtag(inValue);
+            return retVal.Body.GetRequirementsByHashtagResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetRequirementsByHashtagResponse> SocialRequirements.RequirementService.RequirementSoap.GetRequirementsByHashtagAsync(SocialRequirements.RequirementService.GetRequirementsByHashtagRequest request) {
+            return base.Channel.GetRequirementsByHashtagAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetRequirementsByHashtagResponse> GetRequirementsByHashtagAsync(string hashtag, string encUsername) {
+            SocialRequirements.RequirementService.GetRequirementsByHashtagRequest inValue = new SocialRequirements.RequirementService.GetRequirementsByHashtagRequest();
+            inValue.Body = new SocialRequirements.RequirementService.GetRequirementsByHashtagRequestBody();
+            inValue.Body.hashtag = hashtag;
+            inValue.Body.encUsername = encUsername;
+            return ((SocialRequirements.RequirementService.RequirementSoap)(this)).GetRequirementsByHashtagAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]

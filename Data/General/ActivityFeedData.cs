@@ -27,6 +27,7 @@ namespace SocialRequirements.Data.General
         private readonly IRequirementModificationCommentData _requirementModificationCommentData;
         private readonly IPersonData _personData;
         private readonly IGeneralCatalogData _catalogData;
+        private readonly IRequirementHashtagData _requirementHashtagData;
         private const int MaxDescriptionLength = 1700;
         private const int MaxShortDescriptionLength = 600;
 
@@ -34,6 +35,7 @@ namespace SocialRequirements.Data.General
             IRequirementVersionData requirementVersionData, IRequirementCommentData requirementCommentData,
             IRequirementModificationVersionData requirementModificationVersionData,
             IRequirementModificationCommentData requirementModificationCommentData,
+            IRequirementHashtagData requirementHashtagData,
             IPersonData personData, IGeneralCatalogData catalogData)
         {
             _context = context;
@@ -42,6 +44,7 @@ namespace SocialRequirements.Data.General
             _requirementCommentData = requirementCommentData;
             _requirementModificationVersionData = requirementModificationVersionData;
             _requirementModificationCommentData = requirementModificationCommentData;
+            _requirementHashtagData = requirementHashtagData;
             _personData = personData;
             _catalogData = catalogData;
         }
@@ -331,7 +334,9 @@ namespace SocialRequirements.Data.General
                 EntityAction = activity.GeneralCatalogDetail1 != null ? activity.GeneralCatalogDetail1.name : _catalogData.GetTitle(activity.action_id),
                 EntityActionPastTense = activity.GeneralCatalogDetail1 != null ? activity.GeneralCatalogDetail1.description : _catalogData.GetDescription(activity.action_id),
                 Description = string.Empty,
-                ShortDescription = string.Empty
+                ShortDescription = string.Empty,
+
+                Hashtag = activity.entity_id == (int)GeneralCatalog.Detail.Entity.Requirement ? _requirementHashtagData.Get(activity.record_id) : new string[0]
             };
 
             // set description according to the entity

@@ -71,6 +71,15 @@ namespace WebService
         }
 
         [WebMethod(CacheDuration = 0)]
+        public string GetRequirementsByHashtag(string hashtag, string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            var requirements = RequirementBusiness.GetListByHashtag(hashtag, username);
+            var serializer = new ObjectSerializer<List<RequirementDto>>(requirements);
+            return serializer.ToXmlString();
+        }
+
+        [WebMethod(CacheDuration = 0)]
         public string GetApprovedRequirementsList(string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);

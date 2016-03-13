@@ -80,6 +80,13 @@ namespace SocialRequirements.Business.Requirement
             return _requirementData.GetList(projects.Select(p => p.Id).ToList());
         }
 
+        public List<RequirementDto> GetListByHashtag(string hashtag, string username)
+        {
+            var personId = _personData.GetPersonId(username);
+            var projects = _projectData.GetProjectsByUser(personId);
+            return _requirementData.GetList(projects.Select(p => p.Id).ToList(), hashtag);
+        }
+
         public List<RequirementDto> GetListApproved(string username)
         {
             var allRequirements = GetList(username);

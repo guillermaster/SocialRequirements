@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Web;
 using System.Web.UI.WebControls;
 using SocialRequirements.Domain.DTO.Requirement;
 using SocialRequirements.Domain.General;
@@ -122,6 +123,10 @@ namespace SocialRequirements.Requirements
                     break;
                 case CommonConstants.Filters.Draft:
                     requirementsXmlStr = requirementSrv.GetDraftRequirementsList(GetUsernameEncrypted());
+                    break;
+                case CommonConstants.Filters.Hashtag:
+                    var hashtag = HttpUtility.UrlDecode(Request.QueryString[CommonConstants.QueryStringParams.Hashtag]);
+                    requirementsXmlStr = requirementSrv.GetRequirementsByHashtag(hashtag, GetUsernameEncrypted());
                     break;
                 default:
                     requirementsXmlStr = requirementSrv.GetRequirementsList(GetUsernameEncrypted());

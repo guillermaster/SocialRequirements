@@ -40,6 +40,7 @@
             public const string ActionId = "aid";
             public const string Message = "msg";
             public const string Filter = "filter";
+            public const string Hashtag = "hashtag";
         }
 
         public class Filters
@@ -50,6 +51,7 @@
             public const string Draft = "draft";
             public const string Answered = "answered";
             public const string Unanswered = "unanswered";
+            public const string Hashtag = "hashtag";
         }
     }
 }

@@ -53,6 +53,14 @@ namespace SocialRequirements.Domain.BusinessLogic.Requirement
         List<RequirementDto> GetList(string username);
 
         /// <summary>
+        /// Query requirements by hashtag and user from all of his projects and companies
+        /// </summary>
+        /// <param name="hashtag">Hashtag of requirements to look for</param>
+        /// <param name="username">Username related to the requirements</param>
+        /// <returns>List of requirements</returns>
+        List<RequirementDto> GetListByHashtag(string hashtag, string username);
+
+        /// <summary>
         /// Query approved requirements by user from all of his projects and companies
         /// </summary>
         /// <param name="username">Username related to the requirements</param>

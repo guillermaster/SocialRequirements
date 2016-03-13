@@ -20,6 +20,7 @@ namespace SocialRequirements.Data.Requirement
         private readonly IGeneralCatalogData _generalCatalogData;
         private readonly IPersonData _personData;
         private readonly IProjectData _projectData;
+        private readonly IRequirementHashtagData _requirementHashtagData;
         private const int MaxShortDescriptionLength = 590;
         private const int MaxSearchResultDescription = 100;
         
@@ -30,7 +31,7 @@ namespace SocialRequirements.Data.Requirement
 
         public RequirementData(ContextModel context, IRequirementVersionData requirementVersionData,
             IRequirementCommentData requirementCommentData, IGeneralCatalogData generalCatalogData,
-            IPersonData personData, IProjectData projectData)
+            IPersonData personData, IProjectData projectData, IRequirementHashtagData requirementHashtagData)
         {
             _context = context;
             _requirementVersionData = requirementVersionData;
@@ -38,6 +39,7 @@ namespace SocialRequirements.Data.Requirement
             _generalCatalogData = generalCatalogData;
             _personData = personData;
             _projectData = projectData;
+            _requirementHashtagData = requirementHashtagData;
         }
 
         public int GetNumberOfRequirements(long companyId)
@@ -200,6 +202,16 @@ namespace SocialRequirements.Data.Requirement
         {
             var requirements =
                 _context.Requirement.Where(req => projectIds.Contains(req.project_id))
+                    .OrderByDescending(reqDate => reqDate.modifiedon)
+                    .ToList();
+            return requirements.Select(GetDtoFromEntity).ToList();
+        }
+
+        public List<RequirementDto> GetList(List<long> projectIds, string hashtag)
+        {
+            var requirementsId = _requirementHashtagData.GetRequirementsId(hashtag);
+            var requirements =
+                _context.Requirement.Where(req => requirementsId.Contains(req.id) && projectIds.Contains(req.project_id))
                     .OrderByDescending(reqDate => reqDate.modifiedon)
                     .ToList();
             return requirements.Select(GetDtoFromEntity).ToList();

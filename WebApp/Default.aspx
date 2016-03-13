@@ -227,7 +227,7 @@
                 <div class="activityTitle">
                     <table>
                         <tr>
-                            <td rowspan="2">
+                            <td rowspan="3">
                                 <asp:Image runat="server" CssClass="avatar" ID="UserAvatarImage" ImageUrl="~/assets/img/user_defaultAvatar.png" />
                             </td>
                             <td>
@@ -239,6 +239,17 @@
                         <tr>
                             <td>
                                 <%# Eval("Createdon") %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <!-- hashtags -->
+                                <asp:Repeater ID="RequirementsHashtagsRepeater" runat="server">
+                                    <ItemTemplate>
+                                        <asp:HyperLink runat="server" Text="<%# Container.DataItem %>"
+                                            NavigateUrl="<%# GetRequirementsListByHashtagUrl(Container.DataItem.ToString()) %>"/>
+                                    </ItemTemplate>
+                                </asp:Repeater>
                             </td>
                         </tr>
                     </table>
