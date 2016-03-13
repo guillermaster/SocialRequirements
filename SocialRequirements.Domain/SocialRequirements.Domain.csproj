@@ -45,6 +45,7 @@
     <Compile Include="BusinessLogic\General\IActivityFeedBusiness.cs" />
     <Compile Include="BusinessLogic\Requirement\IRequirementBusiness.cs" />
     <Compile Include="BusinessLogic\Requirement\IRequirementCommentBusiness.cs" />
+    <Compile Include="BusinessLogic\Requirement\IRequirementHashtagBusiness.cs" />
     <Compile Include="BusinessLogic\Requirement\IRequirementModificationBusiness.cs" />
     <Compile Include="BusinessLogic\Requirement\IRequirementModificationCommentBusiness.cs" />
     <Compile Include="BusinessLogic\Requirement\IRequirementQuestionAnswerBusiness.cs" />

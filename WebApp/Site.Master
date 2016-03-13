@@ -16,7 +16,7 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,600,700' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src='<%= Page.ResolveClientUrl("~/Scripts/tiny_mce/tiny_mce.js") %>'></script>
     <script>
-        
+
         function initTinyMCE() {
             tinyMCE.init({
                 mode: "textareas",
@@ -44,7 +44,7 @@
 
         initTinyMCE();
     </script>
-    
+
     <!--[if lt IE 10]>
         <script type="text/javascript" src="assets/js/media.match.min.js"></script>
         <script type="text/javascript" src="assets/js/placeholder.min.js"></script>
@@ -290,7 +290,7 @@
                             <span><a href="#">Advanced search</a></span>
                         </div>
                         <div class="input-group">
-                            <asp:TextBox runat="server" ID="SearchText" CssClass="form-control"/>
+                            <asp:TextBox runat="server" ID="SearchText" CssClass="form-control" />
                             <span class="input-group-btn">
                                 <a class="btn btn-primary" href="javascript: loadSearchResults(document.getElementById('<%= SearchText.ClientID %>').value)">Search</a>
                             </span>
@@ -389,7 +389,8 @@
 				<li><a href="metrics-dashboard.html">Metrics Dashboard</a></li>
 			</ul>
 		</li> -->
-                                        <li><asp:HyperLink runat="server" ID="RequirementsLink">
+                                        <li>
+                                            <asp:HyperLink runat="server" ID="RequirementsLink">
                                                 <i class="fa fa-columns"></i><span>Requirements</span>
                                             <%--<span class="badge badge-primary">8</span>--%>
                                             </asp:HyperLink>
@@ -422,7 +423,8 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><asp:HyperLink runat="server" ID="RequirementsQuestions"><i class="fa fa-tasks"></i><span>Questions</span></asp:HyperLink>
+                                        <li>
+                                            <asp:HyperLink runat="server" ID="RequirementsQuestions"><i class="fa fa-tasks"></i><span>Questions</span></asp:HyperLink>
                                             <ul class="acc-menu">
                                                 <li>
                                                     <asp:HyperLink runat="server" ID="RequirementsQuestionsAll">All questions</asp:HyperLink></li>
@@ -496,9 +498,9 @@
                                                 </asp:Panel>
                                                 <asp:Panel ID="PostErrorPanelMaster" runat="server" Visible="False" CssClass="alert alert-danger" ClientIDMode="Static">
                                                     <p class="text-danger">
-                                                        <asp:Label runat="server" ID="PostErrorMessageMaster"/><br/>
-                                                        <asp:HyperLink runat="server" ID="ViewExceptionButtonLink" Visible="False" onclick="javascript: ViewException('ErrorMessage');">View error</asp:HyperLink><br/>
-                                                        <asp:Label runat="server" ID="ErrorMessage" ClientIDMode="Static" style="visibility: hidden"/>
+                                                        <asp:Label runat="server" ID="PostErrorMessageMaster" /><br />
+                                                        <asp:HyperLink runat="server" ID="ViewExceptionButtonLink" Visible="False" onclick="javascript: ViewException('ErrorMessage');">View error</asp:HyperLink><br />
+                                                        <asp:Label runat="server" ID="ErrorMessage" ClientIDMode="Static" Style="visibility: hidden" />
                                                     </p>
                                                 </asp:Panel>
 
@@ -539,7 +541,23 @@
         <div class="infobar-wrapper scroll-pane">
             <div class="infobar scroll-content">
                 <div id="widgetarea">
-
+                    <!-- HASHTAGS TRENDS -->
+                    <div class="widget-heading">
+                        <a href="javascript:;" data-toggle="collapse" data-target="#hashtagstrends">
+                            <h4>Trends</h4>
+                        </a>
+                    </div>
+                    <div id="hashtagstrends" class="collapse in">
+                        <div class="widget-body">
+                            <asp:Repeater ID="TrendingHashtagsRepeater" runat="server">
+                                <ItemTemplate>
+                                    <asp:HyperLink runat="server" Text="<%# Container.DataItem %>"
+                                        NavigateUrl="<%# GetRequirementsListByHashtagUrl(Container.DataItem.ToString()) %>" />
+                                    &nbsp;&nbsp;&nbsp;
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </div>
+                    </div>
                     <!-- ACTIVITY FEED -->
                     <asp:Repeater ID="RecentActivityFeedRepeater" OnItemDataBound="RecentActivityFeedRepeater_ItemDataBound"
                         ItemType="SocialRequirements.Domain.DTO.General.ActivityFeedDto" runat="server">

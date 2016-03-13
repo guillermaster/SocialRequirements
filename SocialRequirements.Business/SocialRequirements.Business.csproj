@@ -46,6 +46,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requirement\RequirementBusiness.cs" />
     <Compile Include="Requirement\RequirementCommentBusiness.cs" />
+    <Compile Include="Requirement\RequirementHashtagBusiness.cs" />
     <Compile Include="Requirement\RequirementModificationBusiness.cs" />
     <Compile Include="Requirement\RequirementModificationCommentBusiness.cs" />
     <Compile Include="Requirement\RequirementQuestionAnswerBusiness.cs" />

@@ -85,6 +85,7 @@ namespace SocialRequirements
         protected void Page_Load(object sender, EventArgs e)
         {
             SetupRequirementsMenuLinks();
+            LoadTopHashtags();
         }
 
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
@@ -324,7 +325,26 @@ namespace SocialRequirements
             if (scriptManager != null)
                 scriptManager.RegisterPostBackControl(control);
         }
-        
+
+
+        protected string GetRequirementsListByHashtagUrl(string hashtag)
+        {
+            return CommonConstants.FormsUrl.RequirementsList + "?" + CommonConstants.QueryStringParams.Filter + "=" +
+                   CommonConstants.Filters.Hashtag + "&" + CommonConstants.QueryStringParams.Hashtag + "=" +
+                   HttpUtility.UrlEncode(hashtag);
+        }
+
+        protected void LoadTopHashtags()
+        {
+            var privatePage = new SocialRequirementsPrivatePage();
+            if (!privatePage.UserLoggedIn()) return;
+
+            var generalSrv = new GeneralSoapClient();
+            var topHashtagsXmlStr = generalSrv.GetMostUsedHashtags(privatePage.GetUsernameEncrypted());
+            var serializer = new ObjectSerializer<List<string>>();
+            TrendingHashtagsRepeater.DataSource = (List<string>)serializer.Deserialize(topHashtagsXmlStr);
+            TrendingHashtagsRepeater.DataBind();
+        }
     }
 
 }

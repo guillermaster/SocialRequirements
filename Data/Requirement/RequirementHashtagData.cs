@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using SocialRequirements.Context;
 using SocialRequirements.Context.Entities;
@@ -39,6 +40,18 @@ namespace SocialRequirements.Data.Requirement
                 _context.RequirementHashtag.Where(reqHash => reqHash.hashtag == hashtag)
                     .ToList();
             return requirementsId.Select(reqHash => reqHash.requirement_id).ToArray();
+        }
+
+        public List<string> GetMostUsedHashtags(int listSize)
+        {
+            var topHashtags =
+                _context.RequirementHashtag.GroupBy(h => h.hashtag)
+                    .Select(grouped => new {hashtag = grouped.Key, quantity = grouped.Count()})
+                    .OrderByDescending(res => res.quantity)
+                    .Select(ord => ord.hashtag)
+                    .Take(listSize)
+                    .ToList();
+            return topHashtags;
         }
 
         private static RequirementHashtag CreateRequirementHashtag(long requirementId, string hashtag, long personId)
