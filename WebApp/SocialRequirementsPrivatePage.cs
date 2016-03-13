@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SocialRequirements.AccountService;
@@ -384,6 +385,13 @@ namespace SocialRequirements
                       CommonConstants.QueryStringParams.RequirementId + "=" + requirementId + "&" +
                       CommonConstants.QueryStringParams.RequirementVersionId + "=" + requirementVersionId;
             return url;
+        }
+
+        protected string GetRequirementsListByHashtagUrl(string hashtag)
+        {
+            return CommonConstants.FormsUrl.RequirementsList + "?" + CommonConstants.QueryStringParams.Filter + "=" +
+                   CommonConstants.Filters.Hashtag + "&" + CommonConstants.QueryStringParams.Hashtag + "=" +
+                   HttpUtility.UrlEncode(hashtag);
         }
     }
 }

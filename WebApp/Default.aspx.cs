@@ -189,17 +189,7 @@ namespace SocialRequirements
         }
 
         #endregion
-
-        #region Form Setup
-
-        protected string GetRequirementsListByHashtagUrl(string hashtag)
-        {
-            return CommonConstants.FormsUrl.RequirementsList + "?" + CommonConstants.QueryStringParams.Filter + "=" +
-                   CommonConstants.Filters.Hashtag + "&" + CommonConstants.QueryStringParams.Hashtag + "=" +
-                   HttpUtility.UrlEncode(hashtag);
-        }
-        #endregion
-
+        
         #region Activity Feed Events
 
         protected void ActivityFeedRepeater_ItemDataBound(object sender, RepeaterItemEventArgs e)

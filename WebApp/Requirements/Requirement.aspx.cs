@@ -419,6 +419,11 @@ namespace SocialRequirements.Requirements
             FileName = requirement.AttachmentTitle;
             DownloadButton.Visible = !string.IsNullOrWhiteSpace(FileName);
             FileOverwriteWarning.Visible = !string.IsNullOrWhiteSpace(FileName);
+            if (RequirementsHashtagsRepeater != null)
+            {
+                RequirementsHashtagsRepeater.DataSource = requirement.Hashtags;
+                RequirementsHashtagsRepeater.DataBind();
+            }
 
             // set action buttons visibility
             SaveButton.Visible = false;

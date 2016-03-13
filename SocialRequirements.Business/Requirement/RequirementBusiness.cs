@@ -18,15 +18,18 @@ namespace SocialRequirements.Business.Requirement
         private readonly IActivityFeedData _activityFeedData;
         private readonly IProjectData _projectData;
         private readonly IRequirementVersionData _requirementVersionData;
+        private readonly IRequirementHashtagData _requirementHashtagData;
 
         public RequirementBusiness(IPersonData personData, IRequirementData requirementData,
-            IActivityFeedData activityFeedData, IProjectData projectData, IRequirementVersionData requirementVersionData)
+            IActivityFeedData activityFeedData, IProjectData projectData, IRequirementVersionData requirementVersionData,
+            IRequirementHashtagData requirementHashtagData)
         {
             _personData = personData;
             _requirementData = requirementData;
             _activityFeedData = activityFeedData;
             _projectData = projectData;
             _requirementVersionData = requirementVersionData;
+            _requirementHashtagData = requirementHashtagData;
         }
 
         public bool HaveRequirements(long companyId)
@@ -130,6 +133,7 @@ namespace SocialRequirements.Business.Requirement
         public RequirementDto Get(long companyId, long projectId, long requirementId)
         {
             var requirement = _requirementData.Get(companyId, projectId, requirementId);
+            requirement.Hashtags = _requirementHashtagData.Get(requirementId);
             requirement.AttachmentTitle = _requirementVersionData.GetAttachmentTitle(companyId, projectId, requirementId);
             return requirement;
         }

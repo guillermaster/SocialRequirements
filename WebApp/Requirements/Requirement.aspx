@@ -153,12 +153,20 @@
         </div>
         <div class="bigcard_subtitle">
             <asp:Label runat="server" ID="ProjectName" />
-            <asp:DropDownList runat="server" ID="ProjectInput" Visible="False"/>
+            <asp:DropDownList runat="server" ID="ProjectInput" Visible="False" />
+            <br/>
+            <!-- hashtags -->
+            <asp:Repeater ID="RequirementsHashtagsRepeater" runat="server">
+                <ItemTemplate>
+                    <asp:HyperLink runat="server" Text="<%# Container.DataItem %>"
+                        NavigateUrl="<%# GetRequirementsListByHashtagUrl(Container.DataItem.ToString()) %>" />
+                </ItemTemplate>
+            </asp:Repeater>
         </div>
         <div class="bigcard_body">
             <asp:Label runat="server" ID="RequirementDescription" />
             <asp:TextBox runat="server" ID="RequirementDescriptionInput" CssClass="mceEditor" Visible="False" TextMode="MultiLine" Width="100%" Rows="20" />
-            <asp:HiddenField runat="server" ID="HdnRequirementDescriptionInput"/>
+            <asp:HiddenField runat="server" ID="HdnRequirementDescriptionInput" />
         </div>
         <div class="bigcard_footer">
             <div class="bigcard_footer left">
@@ -223,8 +231,8 @@
     <!-- content for file upload popup -->
     <div id="fileUploadDivDialog" style="display: none" title="Upload attachement">
         <asp:FileUpload ID="FileUploader" runat="server" />
-        <asp:Label runat="server" ID="FileOverwriteWarning" CssClass="label-warning" style="font-size: 75%"
-            Text="Uploading a new file will overwrite the currently uploaded attachment" Visible="False"/>
+        <asp:Label runat="server" ID="FileOverwriteWarning" CssClass="label-warning" Style="font-size: 75%"
+            Text="Uploading a new file will overwrite the currently uploaded attachment" Visible="False" />
     </div>
     <asp:Button runat="server" ID="UploadFileButton" Text="Upload" OnClick="UploadFileButton_Click" Visible="False" />
 </asp:Content>
