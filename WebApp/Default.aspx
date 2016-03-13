@@ -72,16 +72,22 @@
             cancelHashtagLink.style.display = 'none';
 
             var hashtagsVal = document.getElementById('<%= Hashtags.ClientID %>');
-            hashtagsVal.innerHTML = hashtagsVal.innerHTML + ' ' + hashtag;
+            if (hashtag.length > 0) {
+                hashtagsVal.innerHTML = hashtagsVal.innerHTML + ' ' + hashtag;
+            }
             hashtagsVal.style.display = '';
 
             var setHashtagsLink = document.getElementById('SetHashtagInputLink');
             setHashtagsLink.innerText = 'Add another hashtag';
             setHashtagsLink.style.display = '';
+            setHashtagsLink.style.fontWeight = 'normal';
+            setHashtagsLink.style.border = 'none';
 
             // increase counter
             var numHashtags = +document.getElementById('<%= HdnHashtagsCounter.ClientID %>').value;
-            numHashtags++;
+            if (hashtag.length > 0) {
+                numHashtags++;
+            }
             document.getElementById('<%= HdnHashtagsCounter.ClientID %>').value = numHashtags;
 
             if (numHashtags === 5) {
@@ -89,6 +95,8 @@
                 var hashtagLimit = document.getElementById('<%= MaxHashtagsReached.ClientID %>');
                 hashtagLimit.display = '';
             }
+
+            HighlightHashtagLink();
         }
 
         function cancelHashtag() {
@@ -107,7 +115,7 @@
 
             var setHashtagsLink = document.getElementById('SetHashtagInputLink');
             if (hashtagsVal.innerText === '') {
-                setHashtagsLink.innerText = "You haven't set any hashtag to your new requirement, click here to set one.";
+                HighlightHashtagLink();
             } else {
                 setHashtagsLink.innerText = 'Add another hashtag';
             }
@@ -148,6 +156,16 @@
                         }
                     }
                 }
+            }
+        }
+
+        function HighlightHashtagLink() {
+            var setHashtagLink = document.getElementById('SetHashtagInputLink');
+            var numHashtags = +document.getElementById('<%= HdnHashtagsCounter.ClientID %>').value;
+            if (numHashtags === 0) {
+                setHashtagLink.style.fontWeight = 'bold';
+                setHashtagLink.style.border = 'thin dotted #FF0000';
+                setHashtagLink.innerText = "You haven't set any hashtag to your new requirement, click here to set one.";
             }
         }
 
@@ -195,7 +213,7 @@
                                         <li><a href="#" class="glyphicon glyphicon-user"></a></li>
                                         <li><a href="#" class="glyphicon glyphicon-map-marker"></a></li>
                                         <li class="pull-right">
-                                            <asp:LinkButton runat="server" Text="Post" ID="BtnPost"  CssClass="btn btn-primary btn-m" OnClick="BtnPost_Click" />
+                                            <asp:LinkButton runat="server" Text="Post" ID="BtnPost" onmouseover="Javascript: HighlightHashtagLink()" CssClass="btn btn-primary btn-m" OnClick="BtnPost_Click" />
                                         </li>
                                     </ul>
                                     <div>
