@@ -220,7 +220,7 @@
                                         Hashtags: <asp:Label runat="server" ID="Hashtags" Text="" style="display: none"/>
                                         <asp:HiddenField runat="server" ID="HdnHashtags"/>
                                         <asp:HiddenField runat="server" ID="HdnHashtagsCounter" Value="0"/>
-                                        <asp:TextBox runat="server" ID="HashtagInput" placeholder="#AddHereYourHashtag" style="display: none" onkeydown="spacecheck()"/>
+                                        <asp:TextBox runat="server" ID="HashtagInput" placeholder="#AddHereYourHashtag" MaxLength="144" style="display: none" onkeydown="spacecheck()"/>
                                         <a href="Javascript: setHashtagInput();" id="SetHashtagInputLink">You haven't set any hashtag to your new requirement, click here to set one.</a>
                                         <a href="Javascript: addHashtag();" style="display: none;" id="AddHashtagLink">Add</a>&nbsp;
                                         <a href="Javascript: cancelHashtag();" style="display: none;" id="CancelHashtagLink">Cancel</a>
