@@ -514,7 +514,7 @@
 
 .divWaiting {
     position: absolute;
-    background-color: #FAFAFA;
+    background-color: #E6E6E6;
     z-index: 2147483647 !important;
     -ms-opacity: 0.6;
     opacity: 0.6;
@@ -954,7 +954,7 @@
 }
 
 .smallcard_title {
-    background: #00BAD2;
+    background: #E6E6E6;
     border: none;
     font-weight: bold;
     margin: 0;
@@ -1078,7 +1078,7 @@
 
 
 .bigcard_title {
-    background: #00BAD2;
+    background: #E6E6E6;
     border: none;
     font-weight: bold;
     margin: 0;
@@ -1145,7 +1145,7 @@
 .Grid {
     background-color: #fff;
     width: 100%;
-    border: thin solid #00BAD2;
+    border: thin solid #E6E6E6;
 }
 
 .Grid td {
@@ -1160,7 +1160,7 @@ font-size: 90%;
 }
 
 .Grid th {
-background: #00BAD2;
+background: #E6E6E6;
 border: none;
 font-weight: bold;
 margin: 0;

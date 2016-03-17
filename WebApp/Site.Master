@@ -177,6 +177,18 @@
         function ViewException(exceptionLabel) {
             document.getElementById(exceptionLabel).style.visibility = "visible";
         }
+
+        function checkForEnter(e) {
+            var evt = e || window.event;
+
+            if (evt) {
+                var keyCode = evt.charCode || evt.keyCode;
+
+                if (keyCode === 13) { //if is ENTER
+                    loadSearchResults(document.getElementById('<%= SearchText.ClientID %>').value);
+                }
+            }
+        }
     </script>
     <!-- End loading page level scripts-->
 
@@ -282,15 +294,17 @@
                 </li>
 
                 <li class="dropdown toolbar-icon-bg demo-search-hidden">
-                    <a href="#" class="dropdown-toggle tooltips" data-toggle="dropdown" onclick="javascript: focusOnSearch()"><span class="icon-bg"><i class="fa fa-fw fa-search"></i></span></a>
+                    <a href="#" class="dropdown-toggle tooltips" data-toggle="dropdown" onclick="javascript: focusOnSearch()">
+                        <span class="icon-bg"><i class="fa fa-fw fa-search"></i></span>
+                    </a>
 
                     <div class="dropdown-menu dropdown-alternate arrow search dropdown-menu-form">
                         <div class="dd-header">
                             <span>Search</span>
-                            <span><a href="#">Advanced search</a></span>
+                            <!--<span><a href="#">Advanced search</a></span>-->
                         </div>
                         <div class="input-group">
-                            <asp:TextBox runat="server" ID="SearchText" CssClass="form-control" />
+                            <asp:TextBox runat="server" ID="SearchText" CssClass="form-control" PlaceHolder="Search for a requirement" onkeydown="checkForEnter()" />
                             <span class="input-group-btn">
                                 <a class="btn btn-primary" href="javascript: loadSearchResults(document.getElementById('<%= SearchText.ClientID %>').value)">Search</a>
                             </span>
@@ -355,8 +369,8 @@
         </header>
 
         <div id="wrapper">
-            <div id="layout-fixed">
-                <div class="static-sidebar-wrapper sidebar-midnightblue sidebar-hideon-collpase sidebar-scroll">
+            <div id="layout-static">
+                <div class="static-sidebar-wrapper sidebar-midnightblue">
                     <div class="static-sidebar">
                         <div class="sidebar">
                             <div class="widget stay-on-collapse" id="widget-welcomebox">

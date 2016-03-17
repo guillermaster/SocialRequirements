@@ -1062,8 +1062,8 @@ body {
   font-family: 'Open Sans', 'Droid Sans', Tahoma, Arial, sans-serif;
   font-size: 13px;
   line-height: 1.54;
-  color: #455a64;
-  background-color: #eeeeee;
+  color: #00649F;
+  background-color: #fff;
 }
 input,
 button,
@@ -1161,7 +1161,7 @@ h6,
   font-family: 'Open Sans', 'Droid Sans', Tahoma, Arial, sans-serif;
   font-weight: 400;
   line-height: 1.25;
-  color: #455a64;
+  color: #00649F;
 }
 h1 small,
 h2 small,
@@ -1527,7 +1527,7 @@ pre {
   line-height: 1.54;
   word-break: break-all;
   word-wrap: break-word;
-  color: #455a64;
+  color: #00649F;
   background-color: #f5f5f5;
   border: 1px solid #cccccc;
   border-radius: 2px;
@@ -2490,7 +2490,7 @@ legend {
   margin-bottom: 20px;
   font-size: 19.5px;
   line-height: inherit;
-  color: #455a64;
+  color: #00649F;
   border: 0;
   border-bottom: 1px solid #eeeeee;
 }
@@ -2964,7 +2964,7 @@ select[multiple].form-group-lg .form-control {
 .btn:hover,
 .btn:focus,
 .btn.focus {
-  color: #455a64;
+  color: #00649F;
   text-decoration: none;
 }
 .btn:active,
@@ -2985,7 +2985,7 @@ fieldset[disabled] .btn {
   box-shadow: none;
 }
 .btn-default {
-  color: #455a64;
+  color: #00649F;
   background-color: #fafafa;
   border-color: #e0e0e0;
 }
@@ -2995,7 +2995,7 @@ fieldset[disabled] .btn {
 .btn-default:active,
 .btn-default.active,
 .open > .dropdown-toggle.btn-default {
-  color: #455a64;
+  color: #00649F;
   background-color: #e1e1e1;
   border-color: #c1c1c1;
 }
@@ -3027,7 +3027,7 @@ fieldset[disabled] .btn-default.active {
 }
 .btn-default .badge {
   color: #fafafa;
-  background-color: #455a64;
+  background-color: #00649F;
 }
 .btn-default:hover {
   background-color: #ededed;
@@ -3037,7 +3037,7 @@ fieldset[disabled] .btn-default.active {
 .btn-default:active,
 .btn-default.active,
 .open > .dropdown-toggle.btn-default {
-  color: #455a64;
+  color: #00649F;
   background-color: #e6e6e6;
   border-color: #c7c7c7;
 }
@@ -3066,7 +3066,7 @@ fieldset[disabled] .btn-default.active {
 }
 .btn-default .badge {
   color: #fafafa;
-  background-color: #455a64;
+  background-color: #00649F;
 }
 .btn-primary {
   color: #ffffff;
@@ -3643,7 +3643,7 @@ tbody.collapse.in {
   clear: both;
   font-weight: normal;
   line-height: 1.54;
-  color: #455a64;
+  color: #00649F;
   white-space: nowrap;
 }
 .dropdown-menu > li > a:hover,
@@ -3754,7 +3754,7 @@ tbody.collapse.in {
   border-bottom-left-radius: 2px;
 }
 a.list-group-item {
-  color: #455a64;
+  color: #00649F;
 }
 a.list-group-item .list-group-item-heading {
   color: #263238;
@@ -3762,7 +3762,7 @@ a.list-group-item .list-group-item-heading {
 a.list-group-item:hover,
 a.list-group-item:focus {
   text-decoration: none;
-  color: #455a64;
+  color: #00649F;
   background-color: #f5f5f5;
 }
 .list-group-item.disabled,
@@ -4985,7 +4985,7 @@ a.thumbnail.active {
 }
 .thumbnail .caption {
   padding: 9px;
-  color: #455a64;
+  color: #00649F;
 }
 .media {
   margin-top: 15px;
@@ -6753,13 +6753,13 @@ select[multiple] {
   border: 1px solid #e0e0e0;
   border-top: 1px solid #dbdbdb;
   padding: 6px 10px;
-  color: #455a64;
+  color: #00649F;
   background: #fafafa;
   -webkit-box-shadow: inset 0 1px 0px rgba(0, 0, 0, 0.01) !important;
   box-shadow: inset 0 1px 0px rgba(0, 0, 0, 0.01) !important;
 }
 select.form-control {
-  color: #455a64;
+  color: #00649F;
   padding: 6px 6px;
 }
 .form-control:focus {
@@ -6906,7 +6906,7 @@ select[multiple] {
   border-top-left-radius: 2px;
 }
 .spinner i {
-  color: #455a64;
+  color: #00649F;
 }
 @media (max-width: 768px) {
   .form-horizontal .control-label,
@@ -7832,7 +7832,7 @@ fieldset[disabled] .btn-deeporange.active {
   border-style: solid;
   -webkit-box-shadow: none;
   box-shadow: none;
-  color: #455a64;
+  color: #00649F;
 }
 .btn-default-alt:hover,
 .btn-default-alt:focus,
