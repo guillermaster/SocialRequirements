@@ -275,6 +275,9 @@
                 <asp:UpdatePanel runat="server" ID="InnerUpdatePanel">
                     <ContentTemplate>
                         <div class="activity description">
+                            <strong><asp:Label runat="server" ID="TitleLabel" Text='<%# Eval("Title") %>' /></strong>
+                        </div>
+                        <div class="activity description">
                             <asp:Label runat="server" ID="DescriptionLabel" Text='<%# Eval("ShortDescription") %>' />
                             <asp:LinkButton runat="server" ID="ReadMoreButton" Text="Read more" Visible='<%# Eval("ShortDescription").ToString().Length < Eval("Description").ToString().Length %>' CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.ReadMore %>"></asp:LinkButton>
                             <asp:LinkButton runat="server" ID="ReadEvenMoreButton" Text="Read even more" Visible="False" CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.ReadEvenMore %>"></asp:LinkButton>

@@ -366,12 +366,15 @@ namespace SocialRequirements.Data.General
 
             if (requirement == null) return activity;
 
+            // set requirement title and description
+            activity.Title = requirement.Title;
+            activity.ShortDescription = StringUtilities.GetShort(requirement.Description, MaxShortDescriptionLength);
+
             switch (activity.EntityActionId)
             {
                 case (int)GeneralCatalog.Detail.EntityActions.Create:
                 case (int)GeneralCatalog.Detail.EntityActions.SubmitForApproval:
                     activity.Description = StringUtilities.GetShort(requirement.Description, MaxDescriptionLength);
-                    activity.ShortDescription = StringUtilities.GetShort(requirement.Description, MaxShortDescriptionLength);
                     activity.HasEvenLongerDescription = activity.Description.Length < requirement.Description.Length;
                     activity.Comment = _requirementCommentData.Get(requirement.Id, requirement.CompanyId,
                                 requirement.ProjectId, requirement.VersionId);
@@ -382,14 +385,11 @@ namespace SocialRequirements.Data.General
                 case (int)GeneralCatalog.Detail.EntityActions.Approve:
                 case (int)GeneralCatalog.Detail.EntityActions.Reject:
                 case (int)GeneralCatalog.Detail.EntityActions.Remove:
-                    activity.Description = StringUtilities.GetShort(requirement.Title, MaxDescriptionLength);
-                    activity.ShortDescription = StringUtilities.GetShort(requirement.Title, MaxShortDescriptionLength);
+                    activity.Description = string.Empty;
                     activity.HasEvenLongerDescription = false;
                     activity.Comment = new List<RequirementCommentDto>();
                     break;
                 default:
-                    activity.Description = string.Empty;
-                    activity.ShortDescription = string.Empty;
                     activity.HasEvenLongerDescription = false;
                     activity.Comment = new List<RequirementCommentDto>();
                     break;
@@ -412,12 +412,15 @@ namespace SocialRequirements.Data.General
 
             if (requirement == null) return activity;
 
+            // set title and description
+            activity.Title = requirement.Title;
+            activity.ShortDescription = StringUtilities.GetShort(requirement.Description, MaxShortDescriptionLength);
+
             switch (activity.EntityActionId)
             {
                 case (int) GeneralCatalog.Detail.EntityActions.Create:
                 case (int) GeneralCatalog.Detail.EntityActions.SubmitForApproval:
                     activity.Description = StringUtilities.GetShort(requirement.Description, MaxDescriptionLength);
-                    activity.ShortDescription = StringUtilities.GetShort(requirement.Description, MaxShortDescriptionLength);
                     activity.HasEvenLongerDescription = activity.Description.Length < requirement.Description.Length;
                     activity.Comment = _requirementModificationCommentData.Get(requirement.CompanyId, requirement.ProjectId,
                         requirement.RequirementId, requirement.Id, requirement.VersionId)
@@ -430,8 +433,7 @@ namespace SocialRequirements.Data.General
                 case (int) GeneralCatalog.Detail.EntityActions.Approve:
                 case (int) GeneralCatalog.Detail.EntityActions.Reject:
                 case (int) GeneralCatalog.Detail.EntityActions.Remove:
-                    activity.Description = StringUtilities.GetShort(requirement.Title, MaxDescriptionLength);
-                    activity.ShortDescription = StringUtilities.GetShort(requirement.Title, MaxShortDescriptionLength);
+                    activity.Description = string.Empty;
                     activity.HasEvenLongerDescription = false;
                     activity.Comment = new List<RequirementCommentDto>();
                     break;
