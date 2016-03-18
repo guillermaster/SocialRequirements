@@ -30,6 +30,7 @@
         Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler_Page);
 
         function EndRequestHandler_Page(sender, args) {
+            tinyMCE.get('<%= TxtContentPost.ClientID %>').setContent('');
             tinyMCE.execCommand('mceRemoveControl', false, "<%= TxtContentPost.ClientID %>");
             initTinyMCE();
         }
