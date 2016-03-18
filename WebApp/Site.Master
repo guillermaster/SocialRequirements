@@ -360,7 +360,7 @@
                             <asp:HyperLink runat="server" NavigateUrl="~/Account/SetCompany.aspx"><span class="pull-left">Companies</span> <i class="pull-right fa fa-list-alt"></i></asp:HyperLink></li>
                         <li class="divider"></li>
                         <li>
-                            <asp:LinkButton runat="server" ID="SignOutButton" OnClick="SignOutButton_OnClick"><span class="pull-left">Sign Out</span> <i class="pull-right fa fa-sign-out"></i></asp:LinkButton></li>
+                            <asp:LinkButton runat="server" ID="SignOutButton" OnClick="SignOutButton_OnClick" CausesValidation="False"><span class="pull-left">Sign Out</span> <i class="pull-right fa fa-sign-out"></i></asp:LinkButton></li>
                     </ul>
                 </li>
 
