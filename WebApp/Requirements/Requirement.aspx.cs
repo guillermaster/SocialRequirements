@@ -51,10 +51,17 @@ namespace SocialRequirements.Requirements
             set { ViewState["FileName"] = value; }
         }
 
-        protected bool CanApproveRequirement
+        protected bool? CanApproveRequirement
         {
-            get { return ViewState["CanApproveRequirement"] != null && bool.Parse(ViewState["CanApproveRequirement"].ToString()); }
-            set { ViewState["CanApproveRequirement"] = value; }
+            get
+            {
+                if (Session["CanApproveRequirement"] != null)
+                {
+                    return bool.Parse(Session["CanApproveRequirement"].ToString());
+                }
+                return null;
+            }
+            set { Session["CanApproveRequirement"] = value; }
         }
 
         #endregion
@@ -395,6 +402,7 @@ namespace SocialRequirements.Requirements
 
         protected void SetFormPermissions()
         {
+            if (CanApproveRequirement != null) return;
             CanApproveRequirement = HasPermission(ProjectId, Permissions.Codes.ApproveRequirements);
         }
 
@@ -430,8 +438,10 @@ namespace SocialRequirements.Requirements
             UndoEditButton.Visible = false;
             EditButton.Visible = requirement.StatusId != (int)GeneralCatalog.Detail.RequirementStatus.PendingApproval;
             SubmitButton.Visible = requirement.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.Draft;
-            ApproveButton.Visible = requirement.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.PendingApproval && CanApproveRequirement;
-            RejectButton.Visible = requirement.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.PendingApproval && CanApproveRequirement;
+            ApproveButton.Visible = requirement.StatusId ==
+                                    (int) GeneralCatalog.Detail.RequirementStatus.PendingApproval &&
+                                    CanApproveRequirement.HasValue && CanApproveRequirement.Value;
+            RejectButton.Visible = ApproveButton.Visible;
 
             LoadProjects();
         }
@@ -446,8 +456,8 @@ namespace SocialRequirements.Requirements
             RequirementDescriptionInput.Visible = EditionMode;
             SaveButton.Visible = EditionMode;
             UndoEditButton.Visible = EditionMode;
-            ApproveButton.Visible = !EditionMode && IsPendingApproval() && CanApproveRequirement;
-            RejectButton.Visible = !EditionMode && IsPendingApproval() && CanApproveRequirement;
+            ApproveButton.Visible = !EditionMode && IsPendingApproval() && CanApproveRequirement.HasValue && CanApproveRequirement.Value;
+            RejectButton.Visible = ApproveButton.Visible;
             EditButton.Visible = !EditionMode;
         }
 
