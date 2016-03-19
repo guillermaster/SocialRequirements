@@ -305,7 +305,8 @@ namespace SocialRequirements.Data.Requirement
                 modifiedby_id = requirementDto.ModifiedbyId,
                 modifiedon = requirementDto.Modifiedon,
                 approvedby_id = requirementDto.ApprovedbyId,
-                approvedon = requirementDto.Approvedon
+                approvedon = requirementDto.Approvedon,
+                priority_id = requirementDto.PriorityId
             };
             return requirementModif;
         }
@@ -329,8 +330,10 @@ namespace SocialRequirements.Data.Requirement
                 Modifiedon = requirement.modifiedon,
                 ApprovedbyId = requirement.approvedby_id,
                 Approvedon = requirement.approvedon,
+                PriorityId = requirement.priority_id,
                 Project = requirement.Project != null ? requirement.Project.name : _projectData.GetTitle(requirement.project_id),
                 Status = requirement.GeneralCatalogDetail != null ? requirement.GeneralCatalogDetail.name : _generalCatalogData.GetTitle(requirement.status_id),
+                Priority = requirement.GeneralCatalogDetail1 != null ? requirement.GeneralCatalogDetail1.name : _generalCatalogData.GetTitle(requirement.priority_id),
                 CreatedByName = requirement.Person != null ? StringUtilities.GetPersonFullName(requirement.Person) : _personData.GetFullName(requirement.createdby_id),
                 ModifiedByName = requirement.Person1 != null ? StringUtilities.GetPersonFullName(requirement.Person1) : _personData.GetFullName(requirement.modifiedby_id),
                 ShortDescription = StringUtilities.GetShort(requirement.description, MaxShortDescriptionLength),

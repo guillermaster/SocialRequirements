@@ -31,10 +31,10 @@ namespace WebService
         public IRequirementModificationCommentBusiness RequirementModificationCommentBusiness { get; set; }
 
         [WebMethod(CacheDuration = 0)]
-        public void AddRequirement(string title, string description, long companyId, long projectId, string[] hashtags, string encUsername)
+        public void AddRequirement(string title, string description, long companyId, long projectId, string[] hashtags, int priorityId, string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
-            RequirementBusiness.Add(companyId, projectId, title, description, hashtags, username);
+            RequirementBusiness.Add(companyId, projectId, title, description, hashtags, priorityId, username);
         }
 
         [WebMethod(CacheDuration = 0)]
@@ -147,11 +147,11 @@ namespace WebService
 
         [WebMethod(CacheDuration = 0)]
         public long AddRequirementModification(string title, string description, long companyId, long projectId,
-            long requirementId, string[] hashtagsToAdd, string[] hashtagsToRemove, string encUsername)
+            long requirementId, string[] hashtagsToAdd, string[] hashtagsToRemove, int priorityId, string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
             var requirementModif = RequirementModificationBusiness.Add(companyId, projectId, requirementId, title,
-                description, hashtagsToAdd, hashtagsToRemove, username);
+                description, hashtagsToAdd, hashtagsToRemove, priorityId, username);
             return requirementModif.Id;
         }
 

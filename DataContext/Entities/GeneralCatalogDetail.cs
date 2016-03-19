@@ -13,11 +13,15 @@ namespace SocialRequirements.Context.Entities
             ActivityFeed1 = new HashSet<ActivityFeed>();
             Companies = new HashSet<Company>();
             Requirement = new HashSet<Requirement>();
+            Requirement1 = new HashSet<Requirement>();
             RequirementModification = new HashSet<RequirementModification>();
+            RequirementModification1 = new HashSet<RequirementModification>();
             RequirementModificationVersion = new HashSet<RequirementModificationVersion>();
+            RequirementModificationVersion1 = new HashSet<RequirementModificationVersion>();
             RequirementQuestion = new HashSet<RequirementQuestion>();
             RequirementQuestionAnswer = new HashSet<RequirementQuestionAnswer>();
             RequirementVersion = new HashSet<RequirementVersion>();
+            RequirementVersion1 = new HashSet<RequirementVersion>();
             RequirementModificationHashtag = new HashSet<RequirementModificationHashtag>();
         }
 
@@ -42,15 +46,23 @@ namespace SocialRequirements.Context.Entities
 
         public virtual ICollection<Requirement> Requirement { get; set; }
 
+        public virtual ICollection<Requirement> Requirement1 { get; set; }
+
         public virtual ICollection<RequirementModification> RequirementModification { get; set; }
 
+        public virtual ICollection<RequirementModification> RequirementModification1 { get; set; }
+
         public virtual ICollection<RequirementModificationVersion> RequirementModificationVersion { get; set; }
+
+        public virtual ICollection<RequirementModificationVersion> RequirementModificationVersion1 { get; set; }
 
         public virtual ICollection<RequirementQuestion> RequirementQuestion { get; set; }
 
         public virtual ICollection<RequirementQuestionAnswer> RequirementQuestionAnswer { get; set; }
 
         public virtual ICollection<RequirementVersion> RequirementVersion { get; set; }
+
+        public virtual ICollection<RequirementVersion> RequirementVersion1 { get; set; }
 
         public virtual ICollection<RequirementModificationHashtag> RequirementModificationHashtag { get; set; }
     }

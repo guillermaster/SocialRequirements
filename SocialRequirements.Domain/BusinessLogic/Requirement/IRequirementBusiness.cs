@@ -22,10 +22,11 @@ namespace SocialRequirements.Domain.BusinessLogic.Requirement
         /// <param name="title">Requirement title</param>
         /// <param name="description">Requirement description</param>
         /// <param name="hashtags">Hashtags for the requirement</param>
+        /// <param name="priorityId">Requirement Priority ID</param>
         /// <param name="username">Creation username</param>
         /// <returns>Requirement DTO with data of the newly created requirement</returns>
         RequirementDto Add(long companyId, long projectId, string title, string description,
-            string[] hashtags, string username);
+            string[] hashtags, int priorityId, string username);
 
         /// <summary>
         /// Adds a like to the specified requirement

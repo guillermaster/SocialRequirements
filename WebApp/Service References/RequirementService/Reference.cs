@@ -315,18 +315,22 @@ namespace SocialRequirements.RequirementService {
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=4)]
         public SocialRequirements.RequirementService.ArrayOfString hashtags;
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=5)]
+        [System.Runtime.Serialization.DataMemberAttribute(Order=5)]
+        public int priorityId;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=6)]
         public string encUsername;
         
         public AddRequirementRequestBody() {
         }
         
-        public AddRequirementRequestBody(string title, string description, long companyId, long projectId, SocialRequirements.RequirementService.ArrayOfString hashtags, string encUsername) {
+        public AddRequirementRequestBody(string title, string description, long companyId, long projectId, SocialRequirements.RequirementService.ArrayOfString hashtags, int priorityId, string encUsername) {
             this.title = title;
             this.description = description;
             this.companyId = companyId;
             this.projectId = projectId;
             this.hashtags = hashtags;
+            this.priorityId = priorityId;
             this.encUsername = encUsername;
         }
     }
@@ -1342,13 +1346,16 @@ namespace SocialRequirements.RequirementService {
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=6)]
         public SocialRequirements.RequirementService.ArrayOfString hashtagsToRemove;
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=7)]
+        [System.Runtime.Serialization.DataMemberAttribute(Order=7)]
+        public int priorityId;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=8)]
         public string encUsername;
         
         public AddRequirementModificationRequestBody() {
         }
         
-        public AddRequirementModificationRequestBody(string title, string description, long companyId, long projectId, long requirementId, SocialRequirements.RequirementService.ArrayOfString hashtagsToAdd, SocialRequirements.RequirementService.ArrayOfString hashtagsToRemove, string encUsername) {
+        public AddRequirementModificationRequestBody(string title, string description, long companyId, long projectId, long requirementId, SocialRequirements.RequirementService.ArrayOfString hashtagsToAdd, SocialRequirements.RequirementService.ArrayOfString hashtagsToRemove, int priorityId, string encUsername) {
             this.title = title;
             this.description = description;
             this.companyId = companyId;
@@ -1356,6 +1363,7 @@ namespace SocialRequirements.RequirementService {
             this.requirementId = requirementId;
             this.hashtagsToAdd = hashtagsToAdd;
             this.hashtagsToRemove = hashtagsToRemove;
+            this.priorityId = priorityId;
             this.encUsername = encUsername;
         }
     }
@@ -3040,7 +3048,7 @@ namespace SocialRequirements.RequirementService {
             return base.Channel.AddRequirement(request);
         }
         
-        public void AddRequirement(string title, string description, long companyId, long projectId, SocialRequirements.RequirementService.ArrayOfString hashtags, string encUsername) {
+        public void AddRequirement(string title, string description, long companyId, long projectId, SocialRequirements.RequirementService.ArrayOfString hashtags, int priorityId, string encUsername) {
             SocialRequirements.RequirementService.AddRequirementRequest inValue = new SocialRequirements.RequirementService.AddRequirementRequest();
             inValue.Body = new SocialRequirements.RequirementService.AddRequirementRequestBody();
             inValue.Body.title = title;
@@ -3048,6 +3056,7 @@ namespace SocialRequirements.RequirementService {
             inValue.Body.companyId = companyId;
             inValue.Body.projectId = projectId;
             inValue.Body.hashtags = hashtags;
+            inValue.Body.priorityId = priorityId;
             inValue.Body.encUsername = encUsername;
             SocialRequirements.RequirementService.AddRequirementResponse retVal = ((SocialRequirements.RequirementService.RequirementSoap)(this)).AddRequirement(inValue);
         }
@@ -3057,7 +3066,7 @@ namespace SocialRequirements.RequirementService {
             return base.Channel.AddRequirementAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SocialRequirements.RequirementService.AddRequirementResponse> AddRequirementAsync(string title, string description, long companyId, long projectId, SocialRequirements.RequirementService.ArrayOfString hashtags, string encUsername) {
+        public System.Threading.Tasks.Task<SocialRequirements.RequirementService.AddRequirementResponse> AddRequirementAsync(string title, string description, long companyId, long projectId, SocialRequirements.RequirementService.ArrayOfString hashtags, int priorityId, string encUsername) {
             SocialRequirements.RequirementService.AddRequirementRequest inValue = new SocialRequirements.RequirementService.AddRequirementRequest();
             inValue.Body = new SocialRequirements.RequirementService.AddRequirementRequestBody();
             inValue.Body.title = title;
@@ -3065,6 +3074,7 @@ namespace SocialRequirements.RequirementService {
             inValue.Body.companyId = companyId;
             inValue.Body.projectId = projectId;
             inValue.Body.hashtags = hashtags;
+            inValue.Body.priorityId = priorityId;
             inValue.Body.encUsername = encUsername;
             return ((SocialRequirements.RequirementService.RequirementSoap)(this)).AddRequirementAsync(inValue);
         }
@@ -3437,7 +3447,7 @@ namespace SocialRequirements.RequirementService {
             return base.Channel.AddRequirementModification(request);
         }
         
-        public long AddRequirementModification(string title, string description, long companyId, long projectId, long requirementId, SocialRequirements.RequirementService.ArrayOfString hashtagsToAdd, SocialRequirements.RequirementService.ArrayOfString hashtagsToRemove, string encUsername) {
+        public long AddRequirementModification(string title, string description, long companyId, long projectId, long requirementId, SocialRequirements.RequirementService.ArrayOfString hashtagsToAdd, SocialRequirements.RequirementService.ArrayOfString hashtagsToRemove, int priorityId, string encUsername) {
             SocialRequirements.RequirementService.AddRequirementModificationRequest inValue = new SocialRequirements.RequirementService.AddRequirementModificationRequest();
             inValue.Body = new SocialRequirements.RequirementService.AddRequirementModificationRequestBody();
             inValue.Body.title = title;
@@ -3447,6 +3457,7 @@ namespace SocialRequirements.RequirementService {
             inValue.Body.requirementId = requirementId;
             inValue.Body.hashtagsToAdd = hashtagsToAdd;
             inValue.Body.hashtagsToRemove = hashtagsToRemove;
+            inValue.Body.priorityId = priorityId;
             inValue.Body.encUsername = encUsername;
             SocialRequirements.RequirementService.AddRequirementModificationResponse retVal = ((SocialRequirements.RequirementService.RequirementSoap)(this)).AddRequirementModification(inValue);
             return retVal.Body.AddRequirementModificationResult;
@@ -3457,7 +3468,7 @@ namespace SocialRequirements.RequirementService {
             return base.Channel.AddRequirementModificationAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SocialRequirements.RequirementService.AddRequirementModificationResponse> AddRequirementModificationAsync(string title, string description, long companyId, long projectId, long requirementId, SocialRequirements.RequirementService.ArrayOfString hashtagsToAdd, SocialRequirements.RequirementService.ArrayOfString hashtagsToRemove, string encUsername) {
+        public System.Threading.Tasks.Task<SocialRequirements.RequirementService.AddRequirementModificationResponse> AddRequirementModificationAsync(string title, string description, long companyId, long projectId, long requirementId, SocialRequirements.RequirementService.ArrayOfString hashtagsToAdd, SocialRequirements.RequirementService.ArrayOfString hashtagsToRemove, int priorityId, string encUsername) {
             SocialRequirements.RequirementService.AddRequirementModificationRequest inValue = new SocialRequirements.RequirementService.AddRequirementModificationRequest();
             inValue.Body = new SocialRequirements.RequirementService.AddRequirementModificationRequestBody();
             inValue.Body.title = title;
@@ -3467,6 +3478,7 @@ namespace SocialRequirements.RequirementService {
             inValue.Body.requirementId = requirementId;
             inValue.Body.hashtagsToAdd = hashtagsToAdd;
             inValue.Body.hashtagsToRemove = hashtagsToRemove;
+            inValue.Body.priorityId = priorityId;
             inValue.Body.encUsername = encUsername;
             return ((SocialRequirements.RequirementService.RequirementSoap)(this)).AddRequirementModificationAsync(inValue);
         }

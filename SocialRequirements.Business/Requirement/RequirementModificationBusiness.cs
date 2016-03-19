@@ -32,7 +32,7 @@ namespace SocialRequirements.Business.Requirement
         }
         
         public RequirementModificationDto Add(long companyId, long projectId, long requirementId, string title, string description,
-            string[] hashtagsToAdd, string[] hashtagsToRemove, string username)
+            string[] hashtagsToAdd, string[] hashtagsToRemove, int priorityId, string username)
         {
             var personId = _personData.GetPersonId(username);
 
@@ -41,7 +41,7 @@ namespace SocialRequirements.Business.Requirement
 
             // add new requirement modification request
             var requirementModif = new RequirementModificationDto(companyId, projectId, requirementId, title,
-                description, approvedHashtags, hashtagsToAdd, hashtagsToRemove, personId);
+                description, approvedHashtags, hashtagsToAdd, hashtagsToRemove, priorityId, personId);
             
             requirementModif.Id = _requirementModifData.Add(requirementModif);
 

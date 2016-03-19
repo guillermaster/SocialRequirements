@@ -53,11 +53,15 @@ namespace SocialRequirements.Context.Entities
 
         public long requirement_modification_version_id { get; set; }
 
+        public int priority_id { get; set; }
+
         public virtual Company Company { get; set; }
 
         public virtual Project Project { get; set; }
 
         public virtual GeneralCatalogDetail GeneralCatalogDetail { get; set; }
+
+        public virtual GeneralCatalogDetail GeneralCatalogDetail1 { get; set; }
 
         public virtual ICollection<RequirementVersion> RequirementVersion { get; set; }
 

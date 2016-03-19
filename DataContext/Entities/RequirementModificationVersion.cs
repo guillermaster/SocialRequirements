@@ -56,11 +56,15 @@ namespace SocialRequirements.Context.Entities
         [StringLength(100)]
         public string attachment_title { get; set; }
 
+        public int priority_id { get; set; }
+
         public virtual Company Company { get; set; }
 
         public virtual Project Project { get; set; }
 
         public virtual GeneralCatalogDetail GeneralCatalogDetail { get; set; }
+
+        public virtual GeneralCatalogDetail GeneralCatalogDetail1 { get; set; }
 
         public virtual ICollection<RequirementModificationComment> RequirementModificationComment { get; set; }
     }

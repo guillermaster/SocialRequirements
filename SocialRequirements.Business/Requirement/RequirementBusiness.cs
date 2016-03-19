@@ -39,12 +39,14 @@ namespace SocialRequirements.Business.Requirement
             return numRequirements > 0;
         }
 
-        public RequirementDto Add(long companyId, long projectId, string title, string description, string[] hashtags, string username)
+        public RequirementDto Add(long companyId, long projectId, string title, string description, string[] hashtags,
+            int priorityId, string username)
         {
             var personId = _personData.GetPersonId(username);
 
             // add new requirement
-            var requirement = new RequirementDto(companyId, projectId, title, description, hashtags, personId);
+            var requirement = new RequirementDto(companyId, projectId, title, description, hashtags, priorityId,
+                personId);
             requirement.Id = _requirementData.Add(requirement);
 
             // add activity feed log

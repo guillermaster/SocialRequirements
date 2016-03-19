@@ -121,15 +121,33 @@ namespace SocialRequirements.Context
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<GeneralCatalogDetail>()
+                .HasMany(e => e.Requirement1)
+                .WithRequired(e => e.GeneralCatalogDetail1)
+                .HasForeignKey(e => e.priority_id)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<GeneralCatalogDetail>()
                 .HasMany(e => e.RequirementModification)
                 .WithRequired(e => e.GeneralCatalogDetail)
                 .HasForeignKey(e => e.status_id)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<GeneralCatalogDetail>()
+               .HasMany(e => e.RequirementModification1)
+               .WithRequired(e => e.GeneralCatalogDetail1)
+               .HasForeignKey(e => e.priority_id)
+               .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<GeneralCatalogDetail>()
                 .HasMany(e => e.RequirementModificationVersion)
                 .WithRequired(e => e.GeneralCatalogDetail)
                 .HasForeignKey(e => e.status_id)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<GeneralCatalogDetail>()
+                .HasMany(e => e.RequirementModificationVersion1)
+                .WithRequired(e => e.GeneralCatalogDetail1)
+                .HasForeignKey(e => e.priority_id)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<GeneralCatalogDetail>()
@@ -148,6 +166,12 @@ namespace SocialRequirements.Context
                 .HasMany(e => e.RequirementVersion)
                 .WithRequired(e => e.GeneralCatalogDetail)
                 .HasForeignKey(e => e.status_id)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<GeneralCatalogDetail>()
+                .HasMany(e => e.RequirementVersion1)
+                .WithRequired(e => e.GeneralCatalogDetail1)
+                .HasForeignKey(e => e.priority_id)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<GeneralCatalogDetail>()

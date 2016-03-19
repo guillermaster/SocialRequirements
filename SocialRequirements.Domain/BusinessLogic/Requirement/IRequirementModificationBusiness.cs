@@ -15,10 +15,11 @@ namespace SocialRequirements.Domain.BusinessLogic.Requirement
         /// <param name="description">Requirement description</param>
         /// <param name="hashtagsToAdd">Hashtags to add to the requirement</param>
         /// <param name="hashtagsToRemove">Hashtags to remove from the requirement</param>
+        /// <param name="priorityId">Requirement priority ID</param>
         /// <param name="username">Creation username</param>
         /// <returns>Requirement DTO with data of the newly created requirement</returns>
         RequirementModificationDto Add(long companyId, long projectId, long requirementId, string title, string description,
-            string[] hashtagsToAdd, string[] hashtagsToRemove, string username);
+            string[] hashtagsToAdd, string[] hashtagsToRemove, int priorityId, string username);
 
         /// <summary>
         /// Returns requirement data matching criteria specified by input params

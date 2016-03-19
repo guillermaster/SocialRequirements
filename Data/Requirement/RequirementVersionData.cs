@@ -184,7 +184,8 @@ namespace SocialRequirements.Data.Requirement
                 modifiedby_id = requirement.ModifiedbyId,
                 modifiedon = requirement.Modifiedon,
                 approvedby_id = requirement.ApprovedbyId,
-                approvedon = requirement.Approvedon
+                approvedon = requirement.Approvedon,
+                priority_id = requirement.PriorityId
             };
             return requirementVersion;
         }
@@ -209,7 +210,8 @@ namespace SocialRequirements.Data.Requirement
                 Approvedon = requirementVersion.approvedon,
                 VersionId = requirementVersion.id,
                 VersionNumber = requirementVersion.version_number,
-                AttachmentTitle = requirementVersion.attachment_title
+                AttachmentTitle = requirementVersion.attachment_title,
+                PriorityId = requirementVersion.priority_id
             };
             return requirementDto;
         }

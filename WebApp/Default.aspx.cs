@@ -406,7 +406,7 @@ namespace SocialRequirements
                 
                 requirementSrv.AddRequirement(TxtContentPostTitle.Text, HdnContentPost.Value,
                     long.Parse(DdlCompanyPost.SelectedValue), long.Parse(DdlProjectPost.SelectedValue),
-                    GetHashtags(), GetUsernameEncrypted());
+                    GetHashtags(), (int) GeneralCatalog.Detail.RequirementPriority.Low, GetUsernameEncrypted());
 
                 TxtContentPost.Text = string.Empty;
                 TxtContentPostTitle.Text = string.Empty;

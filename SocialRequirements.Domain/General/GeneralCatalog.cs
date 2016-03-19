@@ -71,6 +71,13 @@
                 New = 32,
                 Remove = 33
             }
+
+            public enum RequirementPriority
+            {
+                Low = 34,
+                Medium = 35,
+                High = 36
+            }
         }
     }
 }

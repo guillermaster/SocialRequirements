@@ -10,7 +10,7 @@ namespace SocialRequirements.Domain.DTO.Requirement
         {
         }
 
-        public RequirementDto(long companyId, long projectId, string title, string description, string[] hashtags, long personId)
+        public RequirementDto(long companyId, long projectId, string title, string description, string[] hashtags, int priorityId, long personId)
         {
             CompanyId = companyId;
             ProjectId = projectId;
@@ -26,6 +26,7 @@ namespace SocialRequirements.Domain.DTO.Requirement
             ApprovedbyId = null;
             Approvedon = null;
             Hashtags = hashtags;
+            PriorityId = priorityId;
         }
 
         public RequirementDto(RequirementModificationDto requirementModification)
@@ -47,6 +48,7 @@ namespace SocialRequirements.Domain.DTO.Requirement
             Approvedon = requirementModification.Approvedon;
             VersionId = requirementModification.VersionId;
             VersionNumber = requirementModification.VersionNumber;
+            PriorityId = requirementModification.PriorityId;
         }
 
         public long Id { get; set; }
@@ -79,6 +81,8 @@ namespace SocialRequirements.Domain.DTO.Requirement
 
         public DateTime? Approvedon { get; set; }
 
+        public int PriorityId { get; set; }
+
         // Requirement version identifier
         public long VersionId { get; set; }
 
@@ -88,6 +92,7 @@ namespace SocialRequirements.Domain.DTO.Requirement
         public string ShortDescription { get; set; }
         public string Project { get; set; }
         public string Status { get; set; }
+        public string Priority { get; set; }
         public string CreatedByName { get; set; }
         public string ModifiedByName { get; set; }
         public string AttachmentTitle { get; set; }
