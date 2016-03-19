@@ -91,6 +91,7 @@ namespace SocialRequirements
             LoadProjectsByCompany((List<CompanyDto>)DdlCompanyPost.DataSource);
             SetProjectsForNewPost(long.Parse(DdlCompanyPost.SelectedValue));
             PostContent.Visible = true;
+            HideCompanyList();
             LoadActivityFeed();
             RegisterJsBeforePostback("BeforePostback();");
         }
@@ -186,6 +187,18 @@ namespace SocialRequirements
             DdlProjectPost.DataTextField = CustomExpression.GetPropertyName<ProjectDto>(p => p.Name);
             DdlProjectPost.DataValueField = CustomExpression.GetPropertyName<ProjectDto>(p => p.Id);
             DdlProjectPost.DataBind();
+        }
+
+        /// <summary>
+        /// Hides the company dropdownlist if there is only one company
+        /// if more than one company is found, then it is visible
+        /// </summary>
+        private void HideCompanyList()
+        {
+            if (DdlCompanyPost.Items.Count > 1) return;
+
+            DdlCompanyPost.Visible = false;
+            CompanyLabel.Visible = false;
         }
 
         #endregion

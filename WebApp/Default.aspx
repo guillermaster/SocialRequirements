@@ -170,6 +170,10 @@
             }
         }
 
+        function ClearHashtagCounter() {
+            document.getElementById('<%= HdnHashtagsCounter.ClientID %>').value = '0';
+        }
+
     </script>
 
     <asp:Panel runat="server" ID="RequiredActionPanel" Visible="False">
@@ -200,7 +204,7 @@
                                     <asp:HiddenField runat="server" ID="HdnContentPost"/>
                                     <ul class="list-inline post-actions">
                                         <li>
-                                            Company: <asp:DropDownList runat="server" ID="DdlCompanyPost"  OnSelectedIndexChanged="DdlCompanyPost_SelectedIndexChanged" AutoPostBack="True" /></li>
+                                            <asp:Label ID="CompanyLabel" runat="server" Text="Company:"/> <asp:DropDownList runat="server" ID="DdlCompanyPost"  OnSelectedIndexChanged="DdlCompanyPost_SelectedIndexChanged" AutoPostBack="True" /></li>
                                         <li>
                                             Project: <asp:DropDownList runat="server" ID="DdlProjectPost" Visible="True" /></li>
                                         <li>
@@ -214,7 +218,7 @@
                                         <li><a href="#" class="glyphicon glyphicon-user"></a></li>
                                         <li><a href="#" class="glyphicon glyphicon-map-marker"></a></li>
                                         <li class="pull-right">
-                                            <asp:LinkButton runat="server" Text="Post" ID="BtnPost" onmouseover="Javascript: HighlightHashtagLink()" CssClass="btn btn-primary btn-m" OnClick="BtnPost_Click" />
+                                            <asp:LinkButton runat="server" Text="Post" ID="BtnPost" onmouseover="Javascript: HighlightHashtagLink()" CssClass="btn btn-primary btn-m" OnClick="BtnPost_Click" OnClientClick="javascript: ClearHashtagCounter();" />
                                         </li>
                                     </ul>
                                     <div>
