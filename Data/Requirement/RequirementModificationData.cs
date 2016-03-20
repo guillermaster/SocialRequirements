@@ -153,6 +153,7 @@ namespace SocialRequirements.Data.Requirement
                     var requirement = reqData.GetEntity(companyId, requirementId);
                     requirement.title = requirementDto.Title;
                     requirement.description = requirementDto.Description;
+                    requirement.priority_id = requirementDto.PriorityId;
                     requirement.modifiedby_id = personId;
                     requirement.modifiedon = DateTime.Now;
                     _context.SaveChanges();
