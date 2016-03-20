@@ -1688,19 +1688,23 @@ namespace SocialRequirements.RequirementService {
         [System.Runtime.Serialization.DataMemberAttribute(Order=5)]
         public long requirementModifId;
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=6)]
+        [System.Runtime.Serialization.DataMemberAttribute(Order=6)]
+        public int priorityId;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=7)]
         public string encUsername;
         
         public UpdateRequirementModificationRequestBody() {
         }
         
-        public UpdateRequirementModificationRequestBody(string title, string description, long companyId, long projectId, long requirementId, long requirementModifId, string encUsername) {
+        public UpdateRequirementModificationRequestBody(string title, string description, long companyId, long projectId, long requirementId, long requirementModifId, int priorityId, string encUsername) {
             this.title = title;
             this.description = description;
             this.companyId = companyId;
             this.projectId = projectId;
             this.requirementId = requirementId;
             this.requirementModifId = requirementModifId;
+            this.priorityId = priorityId;
             this.encUsername = encUsername;
         }
     }
@@ -3590,7 +3594,7 @@ namespace SocialRequirements.RequirementService {
             return base.Channel.UpdateRequirementModification(request);
         }
         
-        public void UpdateRequirementModification(string title, string description, long companyId, long projectId, long requirementId, long requirementModifId, string encUsername) {
+        public void UpdateRequirementModification(string title, string description, long companyId, long projectId, long requirementId, long requirementModifId, int priorityId, string encUsername) {
             SocialRequirements.RequirementService.UpdateRequirementModificationRequest inValue = new SocialRequirements.RequirementService.UpdateRequirementModificationRequest();
             inValue.Body = new SocialRequirements.RequirementService.UpdateRequirementModificationRequestBody();
             inValue.Body.title = title;
@@ -3599,6 +3603,7 @@ namespace SocialRequirements.RequirementService {
             inValue.Body.projectId = projectId;
             inValue.Body.requirementId = requirementId;
             inValue.Body.requirementModifId = requirementModifId;
+            inValue.Body.priorityId = priorityId;
             inValue.Body.encUsername = encUsername;
             SocialRequirements.RequirementService.UpdateRequirementModificationResponse retVal = ((SocialRequirements.RequirementService.RequirementSoap)(this)).UpdateRequirementModification(inValue);
         }
@@ -3608,7 +3613,7 @@ namespace SocialRequirements.RequirementService {
             return base.Channel.UpdateRequirementModificationAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SocialRequirements.RequirementService.UpdateRequirementModificationResponse> UpdateRequirementModificationAsync(string title, string description, long companyId, long projectId, long requirementId, long requirementModifId, string encUsername) {
+        public System.Threading.Tasks.Task<SocialRequirements.RequirementService.UpdateRequirementModificationResponse> UpdateRequirementModificationAsync(string title, string description, long companyId, long projectId, long requirementId, long requirementModifId, int priorityId, string encUsername) {
             SocialRequirements.RequirementService.UpdateRequirementModificationRequest inValue = new SocialRequirements.RequirementService.UpdateRequirementModificationRequest();
             inValue.Body = new SocialRequirements.RequirementService.UpdateRequirementModificationRequestBody();
             inValue.Body.title = title;
@@ -3617,6 +3622,7 @@ namespace SocialRequirements.RequirementService {
             inValue.Body.projectId = projectId;
             inValue.Body.requirementId = requirementId;
             inValue.Body.requirementModifId = requirementModifId;
+            inValue.Body.priorityId = priorityId;
             inValue.Body.encUsername = encUsername;
             return ((SocialRequirements.RequirementService.RequirementSoap)(this)).UpdateRequirementModificationAsync(inValue);
         }

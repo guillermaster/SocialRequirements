@@ -250,7 +250,8 @@ namespace SocialRequirements.Data.Requirement
             }
         }
 
-        public void Update(string title, string description, long companyId, long projectId, long requirementId, long requirementModificationId, long personId)
+        public void Update(string title, string description, long companyId, long projectId, long requirementId,
+            long requirementModificationId, int priorityId, long personId)
         {
             using (var scope = _context.Database.BeginTransaction())
             {
@@ -260,6 +261,7 @@ namespace SocialRequirements.Data.Requirement
                     var requirement = GetEntity(companyId, requirementId, requirementModificationId);
                     requirement.title = title;
                     requirement.description = description;
+                    requirement.priority_id = priorityId;
                     requirement.modifiedby_id = personId;
                     requirement.modifiedon = DateTime.Now;
                     _context.SaveChanges();
@@ -267,7 +269,7 @@ namespace SocialRequirements.Data.Requirement
                     // update requirement version
                     _requirementModifVersionData = new RequirementModificationVersionData(_context);
                     _requirementModifVersionData.Update(title, description, companyId, projectId, requirementId, requirementModificationId,
-                        requirement.requirement_modification_version_id, personId);
+                        requirement.requirement_modification_version_id, priorityId, personId);
 
                     scope.Commit();
                 }

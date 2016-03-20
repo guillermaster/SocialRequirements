@@ -59,9 +59,10 @@ namespace SocialRequirements.Domain.BusinessLogic.Requirement
         /// <param name="projectId">Project ID</param>
         /// <param name="requirementId">Requirement ID</param>
         /// <param name="requirementModificationId">Requirement modification ID</param>
+        /// <param name="priorityId">Requirement priority ID</param>
         /// <param name="username">User who updates the requirement modification request</param>
         void Update(string title, string description, long companyId, long projectId, long requirementId,
-            long requirementModificationId, string username);
+            long requirementModificationId, int priorityId, string username);
 
         /// <summary>
         /// Approves a requirement modification requests and

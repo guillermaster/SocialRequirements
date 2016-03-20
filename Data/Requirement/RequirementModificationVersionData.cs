@@ -117,11 +117,12 @@ namespace SocialRequirements.Data.Requirement
         }
 
         public void Update(string title, string description, long companyId, long projectId, long requirementId,
-            long requirementModificationId, long versionId, long personId)
+            long requirementModificationId, long versionId, int priorityId, long personId)
         {
             var requirementVersion = Get(companyId, projectId, requirementId, requirementModificationId, versionId);
             requirementVersion.title = title;
             requirementVersion.description = description;
+            requirementVersion.priority_id = priorityId;
             requirementVersion.modifiedby_id = personId;
             requirementVersion.modifiedon = DateTime.Now;
             _context.SaveChanges();
