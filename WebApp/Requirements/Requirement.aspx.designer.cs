@@ -202,13 +202,13 @@ namespace SocialRequirements.Requirements {
         protected global::System.Web.UI.WebControls.TextBox RequirementTitleInput;
         
         /// <summary>
-        /// Priority control.
+        /// PriorityButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor Priority;
+        protected global::System.Web.UI.WebControls.HyperLink PriorityButton;
         
         /// <summary>
         /// ProjectName control.
@@ -227,6 +227,15 @@ namespace SocialRequirements.Requirements {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ProjectInput;
+        
+        /// <summary>
+        /// PriorityId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField PriorityId;
         
         /// <summary>
         /// RequirementsHashtagsRepeater control.

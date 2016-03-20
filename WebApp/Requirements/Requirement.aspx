@@ -155,9 +155,10 @@
         <div class="bigcard_subtitle">
             <ul class="list-inline" style="margin-bottom: 0;">
                 <li>
-                    <a runat="server" id="Priority">&nbsp;</a>
+                    <asp:HyperLink runat="server" ID="PriorityButton">&nbsp;</asp:HyperLink>
                     <asp:Label runat="server" ID="ProjectName" />
                     <asp:DropDownList runat="server" ID="ProjectInput" Visible="False" />
+                    <asp:HiddenField runat="server" ID="PriorityId"/>
                 </li>
                 <li class="pull-right">
                     <!-- hashtags -->

@@ -67,8 +67,10 @@ namespace SocialRequirements.Domain.Repository.Requirement
         /// <param name="projectId">Project ID</param>
         /// <param name="requirementId">Requirement ID</param>
         /// <param name="versionId">Version ID</param>
+        /// <param name="priorityId">Requirement priority ID</param>
         /// <param name="personId">User that triggered the update</param>
-        void Update(string title, string description, long newProjectId, long companyId, long projectId, long requirementId, long versionId, long personId);
+        void Update(string title, string description, long newProjectId, long companyId, long projectId,
+            long requirementId, long versionId, int priorityId, long personId);
 
         /// <summary>
         /// Uploads a file to the DB server as part of the requirement version record

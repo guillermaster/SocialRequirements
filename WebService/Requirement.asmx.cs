@@ -175,10 +175,11 @@ namespace WebService
 
         [WebMethod(CacheDuration = 0)]
         public void UpdateRequirement(string title, string description, long newProjectId, long companyId, long projectId,
-            long requirementId, string encUsername)
+            long requirementId, int priorityId, string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
-            RequirementBusiness.Update(title, description, newProjectId, companyId, projectId, requirementId, username);
+            RequirementBusiness.Update(title, description, newProjectId, companyId, projectId, requirementId, priorityId,
+                username);
         }
 
         [WebMethod(CacheDuration = 0)]

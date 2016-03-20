@@ -274,6 +274,7 @@
             <s:element minOccurs="1" maxOccurs="1" name="companyId" type="s:long" />
             <s:element minOccurs="1" maxOccurs="1" name="projectId" type="s:long" />
             <s:element minOccurs="1" maxOccurs="1" name="requirementId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="priorityId" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="encUsername" type="s:string" />
           </s:sequence>
         </s:complexType>

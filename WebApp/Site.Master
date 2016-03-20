@@ -44,7 +44,9 @@
         }
 
         function setPriority(ctrlBtnId, ctrlValueId, ctrlContainerId) {
-            document.getElementById(ctrlContainerId).style.border = 'none';
+            if (ctrlContainerId !== '') {
+                document.getElementById(ctrlContainerId).style.border = 'none';
+            }
 
             var priorityValue = document.getElementById(ctrlValueId);
             var priorityButton = document.getElementById(ctrlBtnId);

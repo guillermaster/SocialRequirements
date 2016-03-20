@@ -245,7 +245,8 @@ namespace SocialRequirements.Data.Requirement
             }
         }
 
-        public void Update(string title, string description, long newProjectId, long companyId, long projectId, long requirementId, long personId)
+        public void Update(string title, string description, long newProjectId, long companyId, long projectId,
+            long requirementId, int priorityId, long personId)
         {
             using (var scope = _context.Database.BeginTransaction())
             {
@@ -256,6 +257,7 @@ namespace SocialRequirements.Data.Requirement
                     requirement.title = title;
                     requirement.description = description;
                     requirement.project_id = newProjectId;
+                    requirement.priority_id = priorityId;
                     requirement.modifiedby_id = personId;
                     requirement.modifiedon = DateTime.Now;
 
@@ -270,7 +272,7 @@ namespace SocialRequirements.Data.Requirement
                     // update requirement version
                     _requirementVersionData = new RequirementVersionData(_context);
                     _requirementVersionData.Update(title, description, newProjectId, companyId, projectId, 
-                        requirementId, requirement.requirement_version_id, personId);
+                        requirementId, requirement.requirement_version_id, priorityId, personId);
 
                     scope.Commit();
                 }

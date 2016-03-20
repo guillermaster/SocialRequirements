@@ -124,7 +124,7 @@ namespace SocialRequirements.Requirements
                 var newProjectId = long.Parse(ProjectInput.SelectedValue);
                 var requirementSrv = new RequirementSoapClient();
                 requirementSrv.UpdateRequirement(RequirementTitleInput.Text, HdnRequirementDescriptionInput.Value, newProjectId,
-                    CompanyId, ProjectId, RequirementId, GetUsernameEncrypted());
+                    CompanyId, ProjectId, RequirementId, int.Parse(PriorityId.Value), GetUsernameEncrypted());
 
                 ProjectId = newProjectId;
                 EditionMode = false;
@@ -417,17 +417,17 @@ namespace SocialRequirements.Requirements
             switch (requirement.PriorityId)
             {
                 case (int)GeneralCatalog.Detail.RequirementPriority.Low:
-                    Priority.Attributes.Add("class", PriorityLowCss);
+                    PriorityButton.Attributes.Add("class", PriorityLowCss);
                     break;
                 case (int)GeneralCatalog.Detail.RequirementPriority.Medium:
-                    Priority.Attributes.Add("class", PriorityMedCss);
+                    PriorityButton.Attributes.Add("class", PriorityMedCss);
                     break;
                 case (int)GeneralCatalog.Detail.RequirementPriority.High:
-                    Priority.Attributes.Add("class", PriorityHighCss);
+                    PriorityButton.Attributes.Add("class", PriorityHighCss);
                     break;
             }
-
-            Priority.InnerHtml = requirement.Priority;
+            PriorityId.Value = requirement.PriorityId.ToString();
+            PriorityButton.Text = requirement.Priority;
         }
 
         protected virtual void SetFormData(RequirementDto requirement)
@@ -474,6 +474,42 @@ namespace SocialRequirements.Requirements
             LoadProjects();
         }
 
+        protected virtual void TogglePriorityModification()
+        {
+            if (EditionMode)
+            {
+                switch (int.Parse(PriorityId.Value))
+                {
+                    case (int) GeneralCatalog.Detail.RequirementPriority.Low:
+                        PriorityButton.Attributes.Add("class", EditPriorityLowCss);
+                        break;
+                    case (int) GeneralCatalog.Detail.RequirementPriority.Medium:
+                        PriorityButton.Attributes.Add("class", EditPriorityMedCss);
+                        break;
+                    case (int) GeneralCatalog.Detail.RequirementPriority.High:
+                        PriorityButton.Attributes.Add("class", EditPriorityHighCss);
+                        break;
+                }
+                PriorityButton.Attributes.Add("onclick",
+                    "setPriority('" + PriorityButton.ClientID + "', '" + PriorityId.ClientID + "', '')");
+            }
+            else
+            {
+                switch (int.Parse(PriorityId.Value))
+                {
+                    case (int)GeneralCatalog.Detail.RequirementPriority.Low:
+                        PriorityButton.Attributes.Add("class", PriorityLowCss);
+                        break;
+                    case (int)GeneralCatalog.Detail.RequirementPriority.Medium:
+                        PriorityButton.Attributes.Add("class", PriorityMedCss);
+                        break;
+                    case (int)GeneralCatalog.Detail.RequirementPriority.High:
+                        PriorityButton.Attributes.Add("class", PriorityHighCss);
+                        break;
+                }
+            }
+        }
+
         protected virtual void ToggleModification()
         {
             RequirementTitle.Visible = !EditionMode;
@@ -487,6 +523,7 @@ namespace SocialRequirements.Requirements
             ApproveButton.Visible = !EditionMode && IsPendingApproval() && CanApproveRequirement.HasValue && CanApproveRequirement.Value;
             RejectButton.Visible = ApproveButton.Visible;
             EditButton.Visible = !EditionMode;
+            TogglePriorityModification();
         }
 
         protected void ToggleComments()

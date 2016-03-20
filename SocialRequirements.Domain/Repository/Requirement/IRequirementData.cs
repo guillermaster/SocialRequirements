@@ -99,8 +99,10 @@ namespace SocialRequirements.Domain.Repository.Requirement
         /// <param name="companyId">Company ID</param>
         /// <param name="projectId">Project ID</param>
         /// <param name="requirementId">Requirement ID</param>
+        /// <param name="priorityId">Requirement priority ID</param>
         /// <param name="personId">User that triggered the update</param>
-        void Update(string title, string description, long newProjectId, long companyId, long projectId, long requirementId, long personId);
+        void Update(string title, string description, long newProjectId, long companyId, long projectId,
+            long requirementId, int priorityId, long personId);
 
         /// <summary>
         /// Updates the version number and version ID on the requirement
