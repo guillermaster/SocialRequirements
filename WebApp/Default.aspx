@@ -38,8 +38,10 @@
         function BeforePostback() {
             var text = tinyMCE.get('<%= TxtContentPost.ClientID %>').getContent();
             var hashtags = document.getElementById('<%= Hashtags.ClientID %>').innerHTML;
+            var priority = document.getElementById('PriorityValuePrePostback').value;
             document.getElementById('<%= HdnContentPost.ClientID %>').value = text;
             document.getElementById('<%= HdnHashtags.ClientID %>').value = hashtags;
+            document.getElementById('<%= RequirementPriority.ClientID %>').value = priority;
         }
 
         function setHashtagInput() {
@@ -174,6 +176,23 @@
             document.getElementById('<%= HdnHashtagsCounter.ClientID %>').value = '0';
         }
 
+        function CheckRequirementForm() {
+            var requirementTitleCtrl = document.getElementById('<%= TxtContentPostTitle.ClientID %>');
+            if (requirementTitleCtrl.value === "") {
+                requirementTitleCtrl.style.border = 'thin solid #FF0000';
+            }
+
+            if (document.getElementById('PriorityValuePrePostback').value === "") {
+                document.getElementById('<%= SetPriorityPanel.ClientID %>').style.border = 'thin solid #FF0000';
+            }
+
+            HighlightHashtagLink();
+        }
+
+        function setbordergray() {
+            document.getElementById('<%= TxtContentPostTitle.ClientID %>').style.border = 'thin solid #A9A9A9';
+        }
+
     </script>
 
     <asp:Panel runat="server" ID="RequiredActionPanel" Visible="False">
@@ -203,22 +222,29 @@
                                         Columns="140" Rows="5" placeholder="What's in your mind?" ReadOnly="True" />
                                     <asp:HiddenField runat="server" ID="HdnContentPost"/>
                                     <ul class="list-inline post-actions">
-                                        <li>
-                                            <asp:Label ID="CompanyLabel" runat="server" Text="Company:"/> <asp:DropDownList runat="server" ID="DdlCompanyPost"  OnSelectedIndexChanged="DdlCompanyPost_SelectedIndexChanged" AutoPostBack="True" /></li>
+                                        <li runat="server" ID="CompanyListItem">
+                                            <asp:Label ID="CompanyLabel" runat="server" Text="Company:"/> <asp:DropDownList runat="server" ID="DdlCompanyPost"  OnSelectedIndexChanged="DdlCompanyPost_SelectedIndexChanged" AutoPostBack="True" />
+                                        </li>
                                         <li>
                                             Project: <asp:DropDownList runat="server" ID="DdlProjectPost" Visible="True" /></li>
                                         <li>
-                                            Requirement Title: <asp:TextBox runat="server" ID="TxtContentPostTitle" ClientIDMode="Static" placehoder="Requirement title" Visible="True" Width="300px" />
+                                            Requirement Title: <asp:TextBox runat="server" ID="TxtContentPostTitle" ClientIDMode="Static" placehoder="Requirement title" Visible="True" Width="300px" onkeydown="setbordergray()" />
                                             <asp:RequiredFieldValidator runat="server" ControlToValidate="TxtContentPostTitle"></asp:RequiredFieldValidator>
                                             <asp:Label runat="server" ID="NoTitleLabel" Text="Don't forget to set the title!" Visible="False" ForeColor="#FF0000"/>
                                             <asp:Label runat="server" ID="NoCompanyLabel" Text="Don't forget to select the company!" Visible="False" ForeColor="#FF0000"/>
                                             <asp:Label runat="server" ID="NoProjectLabel" Text="Don't forget to select the project!" Visible="False" ForeColor="#FF0000"/>
                                         </li>
-                                        <li><a href="#"><span class="glyphicon glyphicon-camera"></span></a></li>
-                                        <li><a href="#" class="glyphicon glyphicon-user"></a></li>
-                                        <li><a href="#" class="glyphicon glyphicon-map-marker"></a></li>
+                                        <li>
+                                            <asp:Panel ID="SetPriorityPanel" runat="server">
+                                                <a class="btn btn-info-alt btn-sm" id="SetPriorityButton" onclick="setPriority('SetPriorityButton', 'PriorityValuePrePostback', '<%= SetPriorityPanel.ClientID %>')">
+                                                    SET PRIORITY
+                                                </a>
+                                            </asp:Panel>
+                                            <input type="hidden" id="PriorityValuePrePostback" value=""/>
+                                            <asp:HiddenField runat="server" ID="RequirementPriority" Value=""/>
+                                        </li>
                                         <li class="pull-right">
-                                            <asp:LinkButton runat="server" Text="Post" ID="BtnPost" onmouseover="Javascript: HighlightHashtagLink()" CssClass="btn btn-primary btn-m" OnClick="BtnPost_Click" OnClientClick="javascript: ClearHashtagCounter();" />
+                                            <asp:LinkButton runat="server" Text="Post" ID="BtnPost" onmouseover="Javascript: CheckRequirementForm()" CssClass="btn btn-primary btn-m" OnClick="BtnPost_Click" OnClientClick="javascript: ClearHashtagCounter();" />
                                         </li>
                                     </ul>
                                     <div>

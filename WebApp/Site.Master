@@ -1,4 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="SocialRequirements.SiteMaster" %>
+<%@ Import Namespace="SocialRequirements.Domain.General" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -40,6 +41,35 @@
         function loadSearchResults(text) {
             var url = '<%= SearchResultsFormUrl %>';
             window.location.href = url + text;
+        }
+
+        function setPriority(ctrlBtnId, ctrlValueId, ctrlContainerId) {
+            document.getElementById(ctrlContainerId).style.border = 'none';
+
+            var priorityValue = document.getElementById(ctrlValueId);
+            var priorityButton = document.getElementById(ctrlBtnId);
+            var priority = +priorityValue.value;
+
+            if (priority === 0) {
+                priorityButton.innerHTML = "Low Priority";
+                priorityButton.className = "btn btn-default btn-sm";
+                priorityValue.value = "<%= (int)GeneralCatalog.Detail.RequirementPriority.Low %>";
+            } else {
+                
+                if (priority === <%= (int)GeneralCatalog.Detail.RequirementPriority.Low %>) {
+                    priorityButton.innerHTML = "Medium Priority";
+                    priorityButton.className = "<%= SocialRequirements.Requirements.Requirement.PriorityMedCss %>";
+                    priorityValue.value = "<%= (int)GeneralCatalog.Detail.RequirementPriority.Medium %>";
+                }else if (priority === <%= (int)GeneralCatalog.Detail.RequirementPriority.Medium %>) {
+                    priorityButton.innerHTML = "High Priority";
+                    priorityButton.className = "<%= SocialRequirements.Requirements.Requirement.PriorityHighCss %>";
+                    priorityValue.value = "<%= (int)GeneralCatalog.Detail.RequirementPriority.High %>";
+                }else if (priority === <%= (int)GeneralCatalog.Detail.RequirementPriority.High %>) {
+                    priorityButton.innerHTML = "Low Priority";
+                    priorityButton.className = "<%= SocialRequirements.Requirements.Requirement.PriorityLowCss %>";
+                    priorityValue.value = "<%= (int)GeneralCatalog.Detail.RequirementPriority.Low %>";
+                }
+            }
         }
 
         initTinyMCE();

@@ -18,6 +18,9 @@ namespace SocialRequirements.Requirements
         #region Constants
         private const string ViewCommentsLabel = "View comments";
         private const string HideCommentsLabel = "Hide comments";
+        public const string PriorityLowCss = "btn disabled btn-default btn-sm";
+        public const string PriorityMedCss = "btn disabled btn-inverse btn-sm";
+        public const string PriorityHighCss = "btn disabled btn-midnightblue btn-sm";
         #endregion
 
         #region Properties
@@ -406,6 +409,24 @@ namespace SocialRequirements.Requirements
             CanApproveRequirement = HasPermission(ProjectId, Permissions.Codes.ApproveRequirements);
         }
 
+        protected void SetPriority(RequirementDto requirement)
+        {
+            switch (requirement.PriorityId)
+            {
+                case (int)GeneralCatalog.Detail.RequirementPriority.Low:
+                    Priority.Attributes.Add("class", PriorityLowCss);
+                    break;
+                case (int)GeneralCatalog.Detail.RequirementPriority.Medium:
+                    Priority.Attributes.Add("class", PriorityMedCss);
+                    break;
+                case (int)GeneralCatalog.Detail.RequirementPriority.High:
+                    Priority.Attributes.Add("class", PriorityHighCss);
+                    break;
+            }
+
+            Priority.InnerHtml = requirement.Priority;
+        }
+
         protected virtual void SetFormData(RequirementDto requirement)
         {
             // set requirement data in UI controls
@@ -427,6 +448,10 @@ namespace SocialRequirements.Requirements
             FileName = requirement.AttachmentTitle;
             DownloadButton.Visible = !string.IsNullOrWhiteSpace(FileName);
             FileOverwriteWarning.Visible = !string.IsNullOrWhiteSpace(FileName);
+
+            SetPriority(requirement);
+
+            // hashtags
             if (RequirementsHashtagsRepeater != null)
             {
                 RequirementsHashtagsRepeater.DataSource = requirement.Hashtags;

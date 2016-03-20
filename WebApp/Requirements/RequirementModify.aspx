@@ -118,12 +118,28 @@
     </asp:Panel>
     <div class="bigcard">
         <div class="bigcard_title">
-            <asp:Label runat="server" ID="RequirementTitle" />
+            <h4>
+                <asp:Label runat="server" ID="RequirementTitle" />
+            </h4>
             <asp:TextBox runat="server" ID="RequirementTitleInput" Visible="False" />
         </div>
         <div class="bigcard_subtitle">
-            <asp:Label runat="server" ID="ProjectName" />
-            <asp:DropDownList runat="server" ID="ProjectInput" Visible="False"/>
+            <ul class="list-inline" style="margin-bottom: 0;">
+                <li>
+                    <a runat="server" id="Priority">&nbsp;</a>
+                    <asp:Label runat="server" ID="ProjectName" />
+                    <asp:DropDownList runat="server" ID="ProjectInput" Visible="False"/>
+                </li>
+                <li class="pull-right">
+                    <!-- hashtags -->
+                    <asp:Repeater ID="RequirementsHashtagsRepeater" runat="server">
+                        <ItemTemplate>
+                            <asp:HyperLink runat="server" Text="<%# Container.DataItem %>"
+                                NavigateUrl="<%# GetRequirementsListByHashtagUrl(Container.DataItem.ToString()) %>" />
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </li>
+            </ul>
         </div>
         <div class="bigcard_body">
             <asp:Label runat="server" ID="RequirementDescription" />

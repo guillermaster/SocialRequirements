@@ -199,6 +199,37 @@ namespace SocialRequirements
 
             DdlCompanyPost.Visible = false;
             CompanyLabel.Visible = false;
+            CompanyListItem.Visible = false;
+        }
+
+        private bool RequirementPostFormIsValid()
+        {
+            var isValid = true;
+
+            if (string.IsNullOrWhiteSpace(DdlCompanyPost.SelectedValue))
+            {
+                NoCompanyLabel.Visible = true;
+                isValid = false;
+            }
+            if (string.IsNullOrWhiteSpace(DdlProjectPost.SelectedValue))
+            {
+                NoProjectLabel.Visible = true;
+                isValid = false;
+            }
+
+            if (string.IsNullOrWhiteSpace(TxtContentPostTitle.Text))
+            {
+                TxtContentPostTitle.Style.Add("border", "thin solid #FF0000");
+                isValid = false;
+            }
+
+            if (string.IsNullOrWhiteSpace(RequirementPriority.Value))
+            {
+                SetPriorityPanel.Style.Add("border", "thin solid #FF0000");
+                isValid = false;
+            }
+
+            return isValid;
         }
 
         #endregion
@@ -385,28 +416,13 @@ namespace SocialRequirements
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(DdlCompanyPost.SelectedValue))
-                {
-                    NoCompanyLabel.Visible = true;
-                    return;
-                }
-                if (string.IsNullOrWhiteSpace(DdlProjectPost.SelectedValue))
-                {
-                    NoProjectLabel.Visible = true;
-                    return;
-                }
-
-                if (string.IsNullOrWhiteSpace(TxtContentPostTitle.Text))
-                {
-                    NoTitleLabel.Visible = true;
-                    return;
-                }
+                if (!RequirementPostFormIsValid()) return;
 
                 var requirementSrv = new RequirementSoapClient();
                 
                 requirementSrv.AddRequirement(TxtContentPostTitle.Text, HdnContentPost.Value,
                     long.Parse(DdlCompanyPost.SelectedValue), long.Parse(DdlProjectPost.SelectedValue),
-                    GetHashtags(), (int) GeneralCatalog.Detail.RequirementPriority.Low, GetUsernameEncrypted());
+                    GetHashtags(), int.Parse(RequirementPriority.Value), GetUsernameEncrypted());
 
                 TxtContentPost.Text = string.Empty;
                 TxtContentPostTitle.Text = string.Empty;

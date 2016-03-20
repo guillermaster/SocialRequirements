@@ -1198,3 +1198,7 @@ background: #363670 url(Images/grid-pgr.png) repeat-x top;
         color: #000;
         text-decoration: none;
     }
+
+.priorityButton {
+    border: none;
+}
