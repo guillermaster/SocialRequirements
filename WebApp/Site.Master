@@ -52,21 +52,21 @@
 
             if (priority === 0) {
                 priorityButton.innerHTML = "Low Priority";
-                priorityButton.className = "btn btn-default btn-sm";
+                priorityButton.className = "<%= SocialRequirements.Requirements.Requirement.EditPriorityLowCss %>";
                 priorityValue.value = "<%= (int)GeneralCatalog.Detail.RequirementPriority.Low %>";
             } else {
                 
                 if (priority === <%= (int)GeneralCatalog.Detail.RequirementPriority.Low %>) {
                     priorityButton.innerHTML = "Medium Priority";
-                    priorityButton.className = "<%= SocialRequirements.Requirements.Requirement.PriorityMedCss %>";
+                    priorityButton.className = "<%= SocialRequirements.Requirements.Requirement.EditPriorityMedCss %>";
                     priorityValue.value = "<%= (int)GeneralCatalog.Detail.RequirementPriority.Medium %>";
                 }else if (priority === <%= (int)GeneralCatalog.Detail.RequirementPriority.Medium %>) {
                     priorityButton.innerHTML = "High Priority";
-                    priorityButton.className = "<%= SocialRequirements.Requirements.Requirement.PriorityHighCss %>";
+                    priorityButton.className = "<%= SocialRequirements.Requirements.Requirement.EditPriorityHighCss %>";
                     priorityValue.value = "<%= (int)GeneralCatalog.Detail.RequirementPriority.High %>";
                 }else if (priority === <%= (int)GeneralCatalog.Detail.RequirementPriority.High %>) {
                     priorityButton.innerHTML = "Low Priority";
-                    priorityButton.className = "<%= SocialRequirements.Requirements.Requirement.PriorityLowCss %>";
+                    priorityButton.className = "<%= SocialRequirements.Requirements.Requirement.EditPriorityLowCss %>";
                     priorityValue.value = "<%= (int)GeneralCatalog.Detail.RequirementPriority.Low %>";
                 }
             }

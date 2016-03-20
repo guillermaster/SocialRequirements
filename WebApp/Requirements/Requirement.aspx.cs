@@ -21,6 +21,9 @@ namespace SocialRequirements.Requirements
         public const string PriorityLowCss = "btn disabled btn-default btn-sm";
         public const string PriorityMedCss = "btn disabled btn-inverse btn-sm";
         public const string PriorityHighCss = "btn disabled btn-midnightblue btn-sm";
+        public const string EditPriorityLowCss = "btn btn-default btn-sm";
+        public const string EditPriorityMedCss = "btn btn-inverse btn-sm";
+        public const string EditPriorityHighCss = "btn btn-midnightblue btn-sm";
         #endregion
 
         #region Properties
