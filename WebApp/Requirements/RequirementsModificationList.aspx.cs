@@ -147,18 +147,23 @@ namespace SocialRequirements.Requirements
             {
                 case CommonConstants.Filters.Approved:
                     requirementsXmlStr = requirementSrv.GetApprovedRequirementsModificationList(GetUsernameEncrypted());
+                    FormTitle.Text = CommonConstants.Titles.RequirementsModifications.ListApproved;
                     break;
                 case CommonConstants.Filters.Rejected:
                     requirementsXmlStr = requirementSrv.GetRejectedRequirementsModificationList(GetUsernameEncrypted());
+                    FormTitle.Text = CommonConstants.Titles.RequirementsModifications.ListRejected;
                     break;
                 case CommonConstants.Filters.PendingApproval:
                     requirementsXmlStr = requirementSrv.GetPendingApprovalRequirementsModificationList(GetUsernameEncrypted());
+                    FormTitle.Text = CommonConstants.Titles.RequirementsModifications.ListPendingApproval;
                     break;
                 case CommonConstants.Filters.Draft:
                     requirementsXmlStr = requirementSrv.GetDraftRequirementsModificationList(GetUsernameEncrypted());
+                    FormTitle.Text = CommonConstants.Titles.RequirementsModifications.ListDraft;
                     break;
                 default:
                     requirementsXmlStr = requirementSrv.GetRequirementsModificationList(GetUsernameEncrypted());
+                    FormTitle.Text = CommonConstants.Titles.RequirementsModifications.ListAll;
                     break;
             }
 

@@ -143,22 +143,28 @@ namespace SocialRequirements.Requirements
             {
                 case CommonConstants.Filters.Approved:
                     requirementsXmlStr = requirementSrv.GetApprovedRequirementsList(GetUsernameEncrypted());
+                    FormTitle.Text = CommonConstants.Titles.Requirements.ListApproved;
                     break;
                 case CommonConstants.Filters.Rejected:
                     requirementsXmlStr = requirementSrv.GetRejectedRequirementsList(GetUsernameEncrypted());
+                    FormTitle.Text = CommonConstants.Titles.Requirements.ListRejected;
                     break;
                 case CommonConstants.Filters.PendingApproval:
                     requirementsXmlStr = requirementSrv.GetPendingApprovalRequirementsList(GetUsernameEncrypted());
+                    FormTitle.Text = CommonConstants.Titles.Requirements.ListPendingApproval;
                     break;
                 case CommonConstants.Filters.Draft:
                     requirementsXmlStr = requirementSrv.GetDraftRequirementsList(GetUsernameEncrypted());
+                    FormTitle.Text = CommonConstants.Titles.Requirements.ListDraft;
                     break;
                 case CommonConstants.Filters.Hashtag:
                     var hashtag = HttpUtility.UrlDecode(Request.QueryString[CommonConstants.QueryStringParams.Hashtag]);
                     requirementsXmlStr = requirementSrv.GetRequirementsByHashtag(hashtag, GetUsernameEncrypted());
+                    FormTitle.Text = CommonConstants.Titles.Requirements.ListHashtag;
                     break;
                 default:
                     requirementsXmlStr = requirementSrv.GetRequirementsList(GetUsernameEncrypted());
+                    FormTitle.Text = CommonConstants.Titles.Requirements.ListAll;
                     break;
             }
 

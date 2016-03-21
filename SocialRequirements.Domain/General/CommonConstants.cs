@@ -53,5 +53,28 @@
             public const string Unanswered = "unanswered";
             public const string Hashtag = "hashtag";
         }
+
+        public class Titles
+        {
+            public class Requirements
+            {
+                public const string ListAll = "Requirements - All";
+                public const string ListApproved = "Requirements - Approved";
+                public const string ListRejected = "Requirements - Rejected";
+                public const string ListPendingApproval = "Requirements - Pending Approval";
+                public const string ListDraft = "Requirements - Draft";
+                public const string ListHashtag = "Requirements";
+            }
+
+            public class RequirementsModifications
+            {
+                public const string ListAll = "Requirements Modifications - All";
+                public const string ListApproved = "Requirements Modifications - Approved";
+                public const string ListRejected = "Requirements Modifications - Rejected";
+                public const string ListPendingApproval = "Requirements Modifications - Pending Approval";
+                public const string ListDraft = "Requirements Modifications - Draft";
+                public const string ListHashtag = "Requirements Modifications";
+            }
+        }
     }
 }

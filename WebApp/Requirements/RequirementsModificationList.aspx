@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RequirementsModificationList.aspx.cs" Inherits="SocialRequirements.Requirements.RequirementsModificationList" %>
 
 <asp:Content ID="TitleContent" ContentPlaceHolderID="TitleContent" runat="server">
-    Requirements Modifications
+    <asp:Label runat="server" ID="FormTitle"/>
 </asp:Content>
 
 
