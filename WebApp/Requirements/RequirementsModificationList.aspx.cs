@@ -10,6 +10,11 @@ namespace SocialRequirements.Requirements
 {
     public partial class RequirementsModificationList : SocialRequirementsPrivatePage
     {
+        #region Constants
+
+        private const string PriorityButtonId = "PriorityButton";
+        #endregion
+
         #region Properties
         protected List<RequirementModificationDto> Requirements
         {
@@ -57,6 +62,14 @@ namespace SocialRequirements.Requirements
                     break;
             }
         }
+
+        protected void RequirementsListRepeater_OnItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            var requirement = (RequirementDto)e.Item.DataItem;
+            var priorityButton = (HyperLink)e.Item.FindControl(PriorityButtonId);
+            if (requirement == null || priorityButton == null) return;
+            SetRequirementPriority(priorityButton, requirement);
+        }
         #endregion
 
         #region Requirements GridView Events
@@ -96,6 +109,23 @@ namespace SocialRequirements.Requirements
         {
             RequirementsListGrid.DataSource = Requirements;
             RequirementsListGrid.DataBind();
+        }
+
+        private static void SetRequirementPriority(HyperLink priorityCtrl, RequirementDto requirement)
+        {
+            switch (requirement.PriorityId)
+            {
+                case (int)GeneralCatalog.Detail.RequirementPriority.Low:
+                    priorityCtrl.Attributes.Add("class", Requirement.PriorityLowCss);
+                    break;
+                case (int)GeneralCatalog.Detail.RequirementPriority.Medium:
+                    priorityCtrl.Attributes.Add("class", Requirement.PriorityMedCss);
+                    break;
+                case (int)GeneralCatalog.Detail.RequirementPriority.High:
+                    priorityCtrl.Attributes.Add("class", Requirement.PriorityHighCss);
+                    break;
+            }
+            priorityCtrl.Text = requirement.Priority;
         }
         #endregion
 

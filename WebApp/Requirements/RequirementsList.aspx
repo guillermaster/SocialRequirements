@@ -89,6 +89,14 @@
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField>
+                    <HeaderTemplate>
+                        Priority
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                            <asp:Label runat="server" ID="Priority" Text='<%# Eval("Priority") %>' />
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField>
                     <ItemStyle Width="60px" />
                     <HeaderTemplate>
                         Status
@@ -169,7 +177,8 @@
 
     <asp:Panel runat="server" ID="RequirementsRepeaterPanel">
         <asp:Repeater ID="RequirementsListRepeater"
-            ItemType="SocialRequirements.Domain.DTO.Requirement.RequirementDto" runat="server" OnItemCommand="RequirementsListRepeater_ItemCommand">
+            ItemType="SocialRequirements.Domain.DTO.Requirement.RequirementDto" runat="server" 
+            OnItemCommand="RequirementsListRepeater_ItemCommand" OnItemDataBound="RequirementsListRepeater_OnItemDataBound">
             <HeaderTemplate>
                 <div>
             </HeaderTemplate>
@@ -179,7 +188,8 @@
                         onclick="javascript:location.href='<%# SocialRequirements.Domain.General.CommonConstants.FormsFileName.Requirement %>?<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.Id %>=<%# Eval("Id") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.CompanyId %>=<%# Eval("CompanyId") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.ProjectId %>=<%# Eval("ProjectId") %>'">
                         <h5><%# Eval("Title") %></h5>
                     </div>
-                    <div class="smallcard_subtitle" style="cursor: pointer">
+                    <div class="smallcard_subtitle">
+                        <asp:HyperLink runat="server" ID="PriorityButton">&nbsp;</asp:HyperLink>
                         <%# Eval("Project") %>
                     </div>
                     <div class="smallcard_body" style="cursor: pointer"
