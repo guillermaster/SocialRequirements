@@ -316,19 +316,19 @@
                         <asp:Panel runat="server" ID="ActivityActionsPanel" Visible="False" CssClass="actions_wrapper">
                             <ul class="activity actions">
                                 <li>
-                                    <asp:LinkButton runat="server" ID="LikeButton" CssClass="activity_actions_button" CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.Like %>">
+                                    <asp:LinkButton runat="server" ID="LikeButton" CssClass="activity_actions_button" CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.Like %>" CausesValidation="False">
                                         <asp:Label runat="server" ID="LikeQty" Text='<%# Eval("Likes") %>' />
                                         <img src="assets/img/like.png" alt="Like" />
                                     </asp:LinkButton>
                                 </li>
                                 <li>
-                                    <asp:LinkButton runat="server" ID="DislikeButton" CssClass="activity_actions_button" CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.Dislike %>">
+                                    <asp:LinkButton runat="server" ID="DislikeButton" CssClass="activity_actions_button" CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.Dislike %>" CausesValidation="False">
                                         <asp:Label runat="server" ID="DislikeQty" Text='<%# Eval("Dislikes") %>' />
                                         <img src="assets/img/dislike.png" alt="Dislike" />
                                     </asp:LinkButton>
                                 </li>
                                 <li>
-                                    <asp:LinkButton runat="server" ID="CommentButton" CssClass="activity_actions_button" CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.Comment %>">
+                                    <asp:LinkButton runat="server" ID="CommentButton" CssClass="activity_actions_button" CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.Comment %>" CausesValidation="False">
                                         <asp:Label runat="server" ID="CommentsQty" Text='<%# Eval("Comments") %>' />
                                         <img src="assets/img/comment.png" alt="Comment" />
                                     </asp:LinkButton>
