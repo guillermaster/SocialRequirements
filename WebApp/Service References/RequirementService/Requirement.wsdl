@@ -552,6 +552,22 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetRequirementVersionHistory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="companyId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="projectId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requirementId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRequirementVersionHistoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRequirementVersionHistoryResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="AddRequirementSoapIn">
@@ -770,6 +786,12 @@
   <wsdl:message name="GetModificationAttachmentSoapOut">
     <wsdl:part name="parameters" element="tns:GetModificationAttachmentResponse" />
   </wsdl:message>
+  <wsdl:message name="GetRequirementVersionHistorySoapIn">
+    <wsdl:part name="parameters" element="tns:GetRequirementVersionHistory" />
+  </wsdl:message>
+  <wsdl:message name="GetRequirementVersionHistorySoapOut">
+    <wsdl:part name="parameters" element="tns:GetRequirementVersionHistoryResponse" />
+  </wsdl:message>
   <wsdl:portType name="RequirementSoap">
     <wsdl:operation name="AddRequirement">
       <wsdl:input message="tns:AddRequirementSoapIn" />
@@ -914,6 +936,10 @@
     <wsdl:operation name="GetModificationAttachment">
       <wsdl:input message="tns:GetModificationAttachmentSoapIn" />
       <wsdl:output message="tns:GetModificationAttachmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRequirementVersionHistory">
+      <wsdl:input message="tns:GetRequirementVersionHistorySoapIn" />
+      <wsdl:output message="tns:GetRequirementVersionHistorySoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="RequirementSoap" type="tns:RequirementSoap">
@@ -1242,6 +1268,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetRequirementVersionHistory">
+      <soap:operation soapAction="http://tempuri.org/GetRequirementVersionHistory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="RequirementSoap12" type="tns:RequirementSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -1562,6 +1597,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetModificationAttachment">
       <soap12:operation soapAction="http://tempuri.org/GetModificationAttachment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRequirementVersionHistory">
+      <soap12:operation soapAction="http://tempuri.org/GetRequirementVersionHistory" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using SocialRequirements.Context;
 using SocialRequirements.Context.Entities;
@@ -136,6 +137,14 @@ namespace SocialRequirements.Data.Requirement
             requirementVers.attachment_title = fileName;
             requirementVers.attachment = fileContent;
             _context.SaveChanges();
+        }
+
+        public List<RequirementDto> GetVersionHistory(long companyId, long projectId, long requirementId)
+        {
+            var requirementVersions =
+                _context.RequirementVersion.Where(
+                    rv => rv.company_id == companyId && rv.project_id == projectId && rv.requirement_id == requirementId);
+            return requirementVersions.Select(GetDtoFromEntity).ToList();
         }
 
         private RequirementVersion Get(long companyId, long projectId, long requirementId, long requirementVersionId)

@@ -29,6 +29,8 @@ namespace WebService
         public IRequirementCommentBusiness RequirementCommentBusiness { get; set; }
         [Inject]
         public IRequirementModificationCommentBusiness RequirementModificationCommentBusiness { get; set; }
+        [Inject]
+        public IRequirementVersionBusiness RequirementVersionBusiness { get; set; }
 
         [WebMethod(CacheDuration = 0)]
         public void AddRequirement(string title, string description, long companyId, long projectId, string[] hashtags, int priorityId, string encUsername)
@@ -327,6 +329,14 @@ namespace WebService
         public byte[] GetModificationAttachment(long companyId, long projectId, long requirementId, long requirementModifId)
         {
             return RequirementModificationBusiness.GetAttachment(companyId, projectId, requirementId, requirementModifId);
+        }
+
+        [WebMethod(CacheDuration = 30)]
+        public string GetRequirementVersionHistory(long companyId, long projectId, long requirementId)
+        {
+            var requirementVersions = RequirementVersionBusiness.GetVersionHistory(companyId, projectId, requirementId);
+            var serializer = new ObjectSerializer<List<RequirementDto>>(requirementVersions);
+            return serializer.ToXmlString();
         }
     }
 }

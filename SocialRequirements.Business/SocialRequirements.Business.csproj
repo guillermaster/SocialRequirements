@@ -51,6 +51,7 @@
     <Compile Include="Requirement\RequirementModificationCommentBusiness.cs" />
     <Compile Include="Requirement\RequirementQuestionAnswerBusiness.cs" />
     <Compile Include="Requirement\RequirementQuestionBusiness.cs" />
+    <Compile Include="Requirement\RequirementVersionBusiness.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SocialRequirements.Domain\SocialRequirements.Domain.csproj">

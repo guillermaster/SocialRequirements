@@ -1,4 +1,5 @@
-﻿using SocialRequirements.Domain.DTO.Requirement;
+﻿using System.Collections.Generic;
+using SocialRequirements.Domain.DTO.Requirement;
 
 namespace SocialRequirements.Domain.Repository.Requirement
 {
@@ -84,5 +85,14 @@ namespace SocialRequirements.Domain.Repository.Requirement
         /// <param name="personId">Modification user ID</param>
         void UploadAttachment(long companyId, long projectId, long requirementId, long requirementVersionId,
             string fileName, byte[] fileContent, long personId);
+
+        /// <summary>
+        /// Gets all versions of the specified requirement
+        /// </summary>
+        /// <param name="companyId">Company ID</param>
+        /// <param name="projectId">Project ID</param>
+        /// <param name="requirementId">Requirement ID</param>
+        /// <returns>List of requirement version</returns>
+        List<RequirementDto> GetVersionHistory(long companyId, long projectId, long requirementId);
     }
 }

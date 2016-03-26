@@ -50,6 +50,7 @@
     <Compile Include="BusinessLogic\Requirement\IRequirementModificationCommentBusiness.cs" />
     <Compile Include="BusinessLogic\Requirement\IRequirementQuestionAnswerBusiness.cs" />
     <Compile Include="BusinessLogic\Requirement\IRequirementQuestionBusiness.cs" />
+    <Compile Include="BusinessLogic\Requirement\IRequirementVersionBusiness.cs" />
     <Compile Include="DTO\Account\CompanyDto.cs" />
     <Compile Include="DTO\Account\PersonDto.cs" />
     <Compile Include="DTO\Account\ProjectDto.cs" />
