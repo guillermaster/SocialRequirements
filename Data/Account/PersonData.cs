@@ -42,6 +42,15 @@ namespace SocialRequirements.Data.Account
             return user.password;
         }
 
+        public void SetPassword(string username, string password)
+        {
+            var user = _context.Person.FirstOrDefault(p => p.user_name == username);
+            if (user == null) throw new AccountException.UserNotFound();
+
+            user.password = password;
+            _context.SaveChanges();
+        }
+
         public long GetPersonId(string username)
         {
             var user = _context.Person.FirstOrDefault(p => p.user_name == username);

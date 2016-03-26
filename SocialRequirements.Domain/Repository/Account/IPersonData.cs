@@ -13,6 +13,8 @@ namespace SocialRequirements.Domain.Repository.Account
 
         string GetPassword(string username);
 
+        void SetPassword(string username, string password);
+
         long GetPersonId(string username);
 
         PersonDto Get(long personId);

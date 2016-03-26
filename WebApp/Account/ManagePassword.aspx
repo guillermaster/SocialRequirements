@@ -1,16 +1,36 @@
-﻿<%@ Page Title="Manage Password" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ManagePassword.aspx.cs" Inherits="SocialRequirements.Account.ManagePassword" %>
+﻿<%@ Page Title="Manage Password" Language="C#" MasterPageFile="~/Site.Public.Master" AutoEventWireup="true" CodeBehind="ManagePassword.aspx.cs" Inherits="SocialRequirements.Account.ManagePassword" %>
+
+<asp:Content runat="server" ID="TitleContent" ContentPlaceHolderID="TitleContent">
+    Password
+</asp:Content>
+
+<asp:Content runat="server" ID="ToolbarContent" ContentPlaceHolderID="ToolbarContent">
+</asp:Content>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2><%: Title %>.</h2>
+    
     <div class="form-horizontal">
         <section id="passwordForm">
-            <asp:PlaceHolder runat="server" ID="setPassword" Visible="false">
-                <p>
-                    You do not have a local password for this site. Add a local
-                        password so you can log in without an external login.
+            <asp:Panel ID="SuccessPanel" runat="server" Visible="False" CssClass="alert alert-success">
+                    <p>
+                        <asp:Label runat="server" ID="SuccessMessage" />
+                    </p>
+                    <asp:LinkButton runat="server" ID="ContinueLinkButton" Text="Continue" OnClick="ContinueLinkButton_Click" />
+                </asp:Panel>
+
+            <asp:Panel ID="ErrorPanel" runat="server" Visible="False" CssClass="alert alert-danger">
+                <a name="ErrorPanel"></a>
+                <p class="text-danger">
+                    <asp:Literal runat="server" ID="ErrorMessage" /><br />
+                    <asp:HyperLink runat="server" ID="ViewExceptionButtonLink" Visible="False" onclick="javascript: ViewException('ExceptionMessage');">View error</asp:HyperLink><br />
+                    <br />
+                    <asp:Label runat="server" ID="ExceptionMessage" ClientIDMode="Static" Style="visibility: hidden" />
                 </p>
+            </asp:Panel>
+
+            <asp:PlaceHolder runat="server" ID="setPassword" Visible="false">
                 <div class="form-horizontal">
-                    <h4>Set Password Form</h4>
+                    <h4>Set Password</h4>
                     <asp:ValidationSummary runat="server" ShowModelStateErrors="true" CssClass="text-danger" />
                     <hr />
                     <div class="form-group">
@@ -48,7 +68,7 @@
 
             <asp:PlaceHolder runat="server" ID="changePasswordHolder" Visible="false">
                 <div class="form-horizontal">
-                    <h4>Change Password Form</h4>
+                    <h4>Change Password</h4>
                     <hr />
                     <asp:ValidationSummary runat="server" ShowModelStateErrors="true" CssClass="text-danger" />
                     <div class="form-group">

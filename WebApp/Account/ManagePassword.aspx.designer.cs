@@ -7,12 +7,73 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.Web.UI.WebControls;
-
 namespace SocialRequirements.Account {
     
     
     public partial class ManagePassword {
+        
+        /// <summary>
+        /// SuccessPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel SuccessPanel;
+        
+        /// <summary>
+        /// SuccessMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label SuccessMessage;
+        
+        /// <summary>
+        /// ContinueLinkButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton ContinueLinkButton;
+        
+        /// <summary>
+        /// ErrorPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel ErrorPanel;
+        
+        /// <summary>
+        /// ErrorMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ErrorMessage;
+        
+        /// <summary>
+        /// ViewExceptionButtonLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink ViewExceptionButtonLink;
+        
+        /// <summary>
+        /// ExceptionMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ExceptionMessage;
         
         /// <summary>
         /// setPassword control.
@@ -21,7 +82,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected PlaceHolder setPassword;
+        protected global::System.Web.UI.WebControls.PlaceHolder setPassword;
         
         /// <summary>
         /// password control.
@@ -30,7 +91,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected TextBox password;
+        protected global::System.Web.UI.WebControls.TextBox password;
         
         /// <summary>
         /// confirmPassword control.
@@ -39,7 +100,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected TextBox confirmPassword;
+        protected global::System.Web.UI.WebControls.TextBox confirmPassword;
         
         /// <summary>
         /// changePasswordHolder control.
@@ -48,7 +109,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected PlaceHolder changePasswordHolder;
+        protected global::System.Web.UI.WebControls.PlaceHolder changePasswordHolder;
         
         /// <summary>
         /// CurrentPasswordLabel control.
@@ -57,7 +118,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected Label CurrentPasswordLabel;
+        protected global::System.Web.UI.WebControls.Label CurrentPasswordLabel;
         
         /// <summary>
         /// CurrentPassword control.
@@ -66,7 +127,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected TextBox CurrentPassword;
+        protected global::System.Web.UI.WebControls.TextBox CurrentPassword;
         
         /// <summary>
         /// NewPasswordLabel control.
@@ -75,7 +136,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected Label NewPasswordLabel;
+        protected global::System.Web.UI.WebControls.Label NewPasswordLabel;
         
         /// <summary>
         /// NewPassword control.
@@ -84,7 +145,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected TextBox NewPassword;
+        protected global::System.Web.UI.WebControls.TextBox NewPassword;
         
         /// <summary>
         /// ConfirmNewPasswordLabel control.
@@ -93,7 +154,7 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected Label ConfirmNewPasswordLabel;
+        protected global::System.Web.UI.WebControls.Label ConfirmNewPasswordLabel;
         
         /// <summary>
         /// ConfirmNewPassword control.
@@ -102,6 +163,6 @@ namespace SocialRequirements.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected TextBox ConfirmNewPassword;
+        protected global::System.Web.UI.WebControls.TextBox ConfirmNewPassword;
     }
 }

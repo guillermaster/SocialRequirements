@@ -27,6 +27,7 @@
         {
             public const string Requirement = "Requirement.aspx";
             public const string RequirementModification = "RequirementModify.aspx";
+            public const string SetPassword = "ManagePassword.aspx";
         }
 
         public class QueryStringParams
@@ -41,6 +42,7 @@
             public const string Message = "msg";
             public const string Filter = "filter";
             public const string Hashtag = "hashtag";
+            public const string Have = "have";
         }
 
         public class Filters

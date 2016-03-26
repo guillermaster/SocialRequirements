@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Web.UI;
+using SocialRequirements.AccountService;
+using SocialRequirements.Domain.General;
+using SocialRequirements.Utilities;
+using SocialRequirements.Utilities.Security;
 
 namespace SocialRequirements.Account
 {
@@ -11,25 +15,34 @@ namespace SocialRequirements.Account
 
         protected void Forgot(object sender, EventArgs e)
         {
-            if (IsValid)
+            if (!IsValid) return;
+
+            // Validate the user's email address
+            var personService = new AccountSoapClient();
+            var encEmail = Encryption.Encrypt(Email.Text);
+            if (!personService.UserExists(encEmail))
             {
-                // Validate the user's email address
-                //var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                //ApplicationUser user = manager.FindByName(Email.Text);
-                //if (user == null || !manager.IsEmailConfirmed(user.Id))
-                //{
-                //    FailureText.Text = "The user either does not exist or is not confirmed.";
-                //    ErrorMessage.Visible = true;
-                //    return;
-                //}
-                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                // Send email with the code and the redirect to reset password page
-                //string code = manager.GeneratePasswordResetToken(user.Id);
-                //string callbackUrl = IdentityHelper.GetResetPasswordRedirectUrl(code, Request);
-                //manager.SendEmail(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>.");
-                loginForm.Visible = false;
-                DisplayEmail.Visible = true;
+                FailureText.Text = "The user either does not exist or is not confirmed.";
+                ErrorMessage.Visible = true;
+                return;
             }
+            
+            SendEmail(GetSetPasswordUrl(encEmail));
+            loginForm.Visible = false;
+            DisplayEmail.Visible = true;
+        }
+
+        private string GetSetPasswordUrl(string encEmail)
+        {
+            var url = ResolveUrl(CommonConstants.FormsUrl.SetPassword);
+            url += "?" + CommonConstants.QueryStringParams.Id + "=" + encEmail;
+            return url;
+        }
+
+        private void SendEmail(string url)
+        {
+            var body = "Please reset your password by clicking <a href=\"" + url + "\">here</a>.";
+            
         }
     }
 }

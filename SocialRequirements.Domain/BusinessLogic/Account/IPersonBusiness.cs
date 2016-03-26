@@ -12,6 +12,8 @@ namespace SocialRequirements.Domain.BusinessLogic.Account
 
         bool ValidatePassword(string username, string password);
 
+        void SetPassword(string username, string password);
+
         PersonDto Get(string username);
 
         List<ProjectPermissionsDto> GetPermissionsInProjects(string username);

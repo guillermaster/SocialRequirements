@@ -14,6 +14,7 @@ namespace SocialRequirements
             Username = username;
             RedirectToPrivateArea();
         }
+
         
         private void RedirectToPrivateArea()
         {

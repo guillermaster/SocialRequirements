@@ -74,6 +74,11 @@ namespace SocialRequirements.Business.Account
             }
         }
 
+        public void SetPassword(string username, string password)
+        {
+            _personData.SetPassword(username, PasswordHash.CreateHash(password));
+        }
+
         public PersonDto Get(string username)
         {
             var personId = _personData.GetPersonId(username);

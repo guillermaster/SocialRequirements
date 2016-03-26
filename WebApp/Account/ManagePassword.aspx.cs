@@ -1,93 +1,110 @@
 ﻿using System;
+using System.Runtime.Remoting.Messaging;
 using System.Web.UI;
 using Microsoft.AspNet.Identity;
+using SocialRequirements.AccountService;
+using SocialRequirements.Domain.General;
+using SocialRequirements.Utilities.Security;
 
 namespace SocialRequirements.Account
 {
-    public partial class ManagePassword : Page
+    public partial class ManagePassword : SocialRequirementsPublicPage
     {
-        protected string SuccessMessage
+        private string Email
         {
-            get;
-            private set;
+            get { return ViewState["Email"].ToString(); }
+            set { ViewState["Email"] = value; }
         }
 
-        //private bool HasPassword(ApplicationUserManager manager)
-        //{
-        //    return manager.HasPassword(User.Identity.GetUserId());
-        //}
+        #region Page Events
 
-        protected void Page_Load(object sender, EventArgs e)
+        protected override void Page_Load(object sender, EventArgs e)
         {
-            //var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            if (IsPostBack) return;
+            if (Request.QueryString.Count == 0) return;
+            if (Request.QueryString[CommonConstants.QueryStringParams.Id] == null) return;
 
-            //if (!IsPostBack)
-            //{
-            //    // Determine the sections to render
-            //    if (HasPassword(manager))
-            //    {
-            //        changePasswordHolder.Visible = true;
-            //    }
-            //    else
-            //    {
-            //        setPassword.Visible = true;
-            //        changePasswordHolder.Visible = false;
-            //    }
+            Email = Encryption.Decrypt(Request.QueryString[CommonConstants.QueryStringParams.Id]);
 
-            //    // Render success message
-            //    var message = Request.QueryString["m"];
-            //    if (message != null)
-            //    {
-            //        // Strip the query string from action
-            //        Form.Action = ResolveUrl("~/Account/Manage");
-            //    }
-            //}
+            if (HasPassword())
+            {
+                if (UserLoggedIn())
+                {
+                    changePasswordHolder.Visible = true;
+                    setPassword.Visible = false;
+                }
+                else
+                {
+                    SetErrorMessage("You must login to access this form", string.Empty);
+                }
+            }
+            else
+            {
+                setPassword.Visible = true;
+                changePasswordHolder.Visible = false;
+            }
         }
 
         protected void ChangePassword_Click(object sender, EventArgs e)
         {
-            if (IsValid)
-            {
-                //var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                //var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
-                //IdentityResult result = manager.ChangePassword(User.Identity.GetUserId(), CurrentPassword.Text, NewPassword.Text);
-                //if (result.Succeeded)
-                //{
-                //    var user = manager.FindById(User.Identity.GetUserId());
-                //    signInManager.SignIn( user, isPersistent: false, rememberBrowser: false);
-                //    Response.Redirect("~/Account/Manage?m=ChangePwdSuccess");
-                //}
-                //else
-                //{
-                //    AddErrors(result);
-                //}
-            }
+            throw new NotImplementedException();
         }
 
         protected void SetPassword_Click(object sender, EventArgs e)
         {
-            ////if (IsValid)
-            ////{
-            ////    // Create the local login info and link the local account to the user
-            ////    var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            ////    IdentityResult result = manager.AddPassword(User.Identity.GetUserId(), password.Text);
-            ////    if (result.Succeeded)
-            ////    {
-            ////        Response.Redirect("~/Account/Manage?m=SetPwdSuccess");
-            ////    }
-            ////    else
-            ////    {
-            ////        AddErrors(result);
-            ////    }
-            ////}
-        }
+            if (!IsValid) return;
 
-        private void AddErrors(IdentityResult result)
-        {
-            foreach (var error in result.Errors)
+            if (password.Text != confirmPassword.Text)
             {
-                ModelState.AddModelError("", error);
+                SetErrorMessage("The password and its confirmation does not match.", string.Empty);
+                return;
+            }
+
+            try
+            {
+                var personService = new AccountSoapClient();
+                var encEmail = Encryption.Encrypt(Email);
+                var encPassword = Encryption.Encrypt(password.Text);
+                personService.SetPassword(encEmail, encPassword);
+                SetSuccessMessage("The password has been successfully updated");
+            }
+            catch (Exception ex)
+            {
+                SetErrorMessage("An unknown error has occurred", ex.Message);
             }
         }
+        
+        protected void ContinueLinkButton_Click(object sender, EventArgs e)
+        {
+            InitUserSession(Email);
+        }
+        #endregion
+
+        private bool HasPassword()
+        {
+            return Request.QueryString[CommonConstants.QueryStringParams.Have] != null &&
+                   int.Parse(Request.QueryString[CommonConstants.QueryStringParams.Have]) == 1;
+        }
+
+        #region Form Setup
+
+
+        private void SetSuccessMessage(string message)
+        {
+            SuccessMessage.Text = message;
+            SuccessPanel.Visible = true;
+            ErrorPanel.Visible = false;
+        }
+
+        private void SetErrorMessage(string message, string exception)
+        {
+            ErrorMessage.Text = message;
+            ExceptionMessage.Text = exception;
+            ErrorPanel.Visible = true;
+            SuccessPanel.Visible = false;
+            ErrorPanel.Focus();
+            ClientScript.RegisterStartupScript(this.GetType(), "hash", "location.hash = '#ErrorPanel';", true);
+        }
+        #endregion
     }
 }
