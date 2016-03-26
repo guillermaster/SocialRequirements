@@ -21,13 +21,13 @@
             public const string RequirementQuestion = "~/Requirements/RequirementQuestion";
             public const string RecentActivities = "~/RecentActivities.aspx";
             public const string SearchResults = "~/SearchResults.aspx";
+            public const string SetPassword = "~/ManagePassword.aspx";
         }
 
         public class FormsFileName
         {
             public const string Requirement = "Requirement.aspx";
             public const string RequirementModification = "RequirementModify.aspx";
-            public const string SetPassword = "ManagePassword.aspx";
         }
 
         public class QueryStringParams
