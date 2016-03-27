@@ -56,6 +56,13 @@ namespace SocialRequirements.GeneralService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetMostUsedHashtags", ReplyAction="*")]
         System.Threading.Tasks.Task<SocialRequirements.GeneralService.GetMostUsedHashtagsResponse> GetMostUsedHashtagsAsync(SocialRequirements.GeneralService.GetMostUsedHashtagsRequest request);
+        
+        // CODEGEN: Generating message contract since element name GetCatalogResult from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetCatalog", ReplyAction="*")]
+        SocialRequirements.GeneralService.GetCatalogResponse GetCatalog(SocialRequirements.GeneralService.GetCatalogRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetCatalog", ReplyAction="*")]
+        System.Threading.Tasks.Task<SocialRequirements.GeneralService.GetCatalogResponse> GetCatalogAsync(SocialRequirements.GeneralService.GetCatalogRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -474,6 +481,74 @@ namespace SocialRequirements.GeneralService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetCatalogRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetCatalog", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.GeneralService.GetCatalogRequestBody Body;
+        
+        public GetCatalogRequest() {
+        }
+        
+        public GetCatalogRequest(SocialRequirements.GeneralService.GetCatalogRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetCatalogRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public int catalogHeaderId;
+        
+        public GetCatalogRequestBody() {
+        }
+        
+        public GetCatalogRequestBody(int catalogHeaderId) {
+            this.catalogHeaderId = catalogHeaderId;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetCatalogResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetCatalogResponse", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.GeneralService.GetCatalogResponseBody Body;
+        
+        public GetCatalogResponse() {
+        }
+        
+        public GetCatalogResponse(SocialRequirements.GeneralService.GetCatalogResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetCatalogResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string GetCatalogResult;
+        
+        public GetCatalogResponseBody() {
+        }
+        
+        public GetCatalogResponseBody(string GetCatalogResult) {
+            this.GetCatalogResult = GetCatalogResult;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface GeneralSoapChannel : SocialRequirements.GeneralService.GeneralSoap, System.ServiceModel.IClientChannel {
     }
@@ -653,6 +728,31 @@ namespace SocialRequirements.GeneralService {
             inValue.Body = new SocialRequirements.GeneralService.GetMostUsedHashtagsRequestBody();
             inValue.Body.encUsername = encUsername;
             return ((SocialRequirements.GeneralService.GeneralSoap)(this)).GetMostUsedHashtagsAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SocialRequirements.GeneralService.GetCatalogResponse SocialRequirements.GeneralService.GeneralSoap.GetCatalog(SocialRequirements.GeneralService.GetCatalogRequest request) {
+            return base.Channel.GetCatalog(request);
+        }
+        
+        public string GetCatalog(int catalogHeaderId) {
+            SocialRequirements.GeneralService.GetCatalogRequest inValue = new SocialRequirements.GeneralService.GetCatalogRequest();
+            inValue.Body = new SocialRequirements.GeneralService.GetCatalogRequestBody();
+            inValue.Body.catalogHeaderId = catalogHeaderId;
+            SocialRequirements.GeneralService.GetCatalogResponse retVal = ((SocialRequirements.GeneralService.GeneralSoap)(this)).GetCatalog(inValue);
+            return retVal.Body.GetCatalogResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SocialRequirements.GeneralService.GetCatalogResponse> SocialRequirements.GeneralService.GeneralSoap.GetCatalogAsync(SocialRequirements.GeneralService.GetCatalogRequest request) {
+            return base.Channel.GetCatalogAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SocialRequirements.GeneralService.GetCatalogResponse> GetCatalogAsync(int catalogHeaderId) {
+            SocialRequirements.GeneralService.GetCatalogRequest inValue = new SocialRequirements.GeneralService.GetCatalogRequest();
+            inValue.Body = new SocialRequirements.GeneralService.GetCatalogRequestBody();
+            inValue.Body.catalogHeaderId = catalogHeaderId;
+            return ((SocialRequirements.GeneralService.GeneralSoap)(this)).GetCatalogAsync(inValue);
         }
     }
 }

@@ -9,7 +9,8 @@
             RequirementStatus = 3,
             EntityActions = 4,
             RequirementQuestionStatus = 5,
-            RequirementQuestionAnswerStatus = 6
+            RequirementQuestionAnswerStatus = 6,
+            RequirementPriority = 8
         }
 
         public class Detail

@@ -50,12 +50,12 @@ namespace SocialRequirements.CompositionRoot
             Bind<IRequirementQuestionAnswerBusiness>().To<RequirementQuestionAnswerBusiness>();
             Bind<IRequirementHashtagBusiness>().To<RequirementHashtagBusiness>();
             Bind<IRequirementVersionBusiness>().To<RequirementVersionBusiness>();
+            Bind<IGeneralCatalogBusiness>().To<GeneralCatalogBusiness>();
         }
 
         private static ContextModel GetContext()
         {
             return new ContextModel();
-            // new ContextModel(ConfigurationManager.ConnectionStrings["cnxSocialRequirementsDB"].ConnectionString);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RequirementsList.aspx.cs" Inherits="SocialRequirements.Requirements.RequirementsList" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RequirementsList.aspx.cs" Inherits="SocialRequirements.Requirements.RequirementsList" EnableEventValidation="false" %>
 
 <asp:Content ID="TitleContent" ContentPlaceHolderID="TitleContent" runat="server">
     <asp:Label runat="server" ID="FormTitle"/>
@@ -42,9 +42,39 @@
             if (viewListButton != null)
                 viewListButton.style.display = 'none';
         }
+
+        function showFilterDialog() {
+
+            var questionDialog = $('#filterDiv').dialog({
+                autoOpen: false,
+                height: 240,
+                width: 440,
+                modal: true,
+                buttons: {
+                    Post: function () {
+                        questionDialog.dialog("close");
+                        <%=Page.ClientScript.GetPostBackEventReference(SetFilterButton, "") %>
+                    },
+                    Cancel: function () {
+                        questionDialog.dialog("close");
+                    }
+                },
+                open: function (e, ui) {
+                    $(this).parent().addClass(".ui-dialog");
+                }
+            });
+            questionDialog.parent().appendTo(jQuery("form:first"));
+            //$(".selector").dialog({ appendTo: "#someElem" });
+            questionDialog.dialog("open");
+        }
     </script>
 
     <ul class="demo-btns">
+        <li>
+            <a id="FilterButton" title="Filter this list" class="btn btn-default" href="javascript: showFilterDialog();">
+                <i class="fa fa-fw fa-filter"></i>
+            </a>
+        </li>
         <li>
             <a id="GridViewButton" title="View as a grid" class="btn btn-default" href="javascript: showGridView();">
                 <i class="fa fa-fw fa-table"></i>
@@ -238,5 +268,33 @@
             </ItemTemplate>
         </asp:Repeater>
     </asp:Panel>
-        
+    
+    <!-- content for question popup -->
+    <div id="filterDiv" style="display: none" title="Select a filter criteria for this list">
+        <div class="col-xs-12">
+            <asp:CheckBox ID="FilterByProjectSelection" runat="server" Text="Project" />
+            <asp:DropDownList runat="server" ID="FilterOptionsProject" />
+        </div>
+        <div class="col-xs-6">
+            <asp:CheckBox ID="FilterByPrioritySelection" runat="server" Text="Priority" />
+            <asp:DropDownList runat="server" ID="FilterOptionsPriority" />
+        </div>
+        <div class="col-xs-6">
+            <asp:CheckBox ID="FilterByStatusSelection" runat="server" Text="Status" />
+            <asp:DropDownList runat="server" ID="FilterOptionsStatus" />
+        </div>
+        <div class="col-xs-10">
+            <asp:CheckBox ID="FilterByCreatedBySelection" runat="server" Text="Created by" />
+            <asp:DropDownList runat="server" ID="FilterOptionCreatedBy" />
+        </div>
+        <div class="col-xs-10">
+            <asp:CheckBox ID="FilterByModifiedBySelection" runat="server" Text="Modified by" />
+            <asp:DropDownList runat="server" ID="FilterOptionModifiedBy" />
+        </div>
+        <div class="col-xs-10">
+            <asp:CheckBox ID="FilterByApprovedBySelection" runat="server" Text="Approved by" />
+            <asp:DropDownList runat="server" ID="FilterOptionApprovedBy" />
+        </div>
+    </div>
+    <asp:Button runat="server" ID="SetFilterButton" Text="Set Filter" OnClick="SetFilterButton_OnClick" Visible="False" />    
 </asp:Content>

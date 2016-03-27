@@ -2234,6 +2234,9 @@
     <Content Include="Service References\GeneralService\SocialRequirements.GeneralService.GetMostUsedHashtagsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Service References\GeneralService\SocialRequirements.GeneralService.GetCatalogResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Service References\ProjectService\Project.disco" />
     <None Include="Service References\ProjectService\configuration91.svcinfo" />
     <None Include="Service References\ProjectService\configuration.svcinfo" />

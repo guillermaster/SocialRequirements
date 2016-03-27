@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Web;
 using System.Web.UI.WebControls;
+using SocialRequirements.Domain.DTO.Account;
+using SocialRequirements.Domain.DTO.General;
 using SocialRequirements.Domain.DTO.Requirement;
 using SocialRequirements.Domain.General;
 using SocialRequirements.RequirementService;
@@ -14,6 +16,7 @@ namespace SocialRequirements.Requirements
         #region Constants
 
         private const string PriorityButtonId = "PriorityButton";
+
         #endregion
         #region Properties
         protected List<RequirementDto> Requirements
@@ -26,6 +29,12 @@ namespace SocialRequirements.Requirements
             }
             set { ViewState["Requirements"] = value; }
         }
+
+        protected List<CompanyDto> UserCompanies
+        {
+            get { return ViewState["UserCompanies"] != null ? (List<CompanyDto>)ViewState["UserCompanies"] : new List<CompanyDto>(); }
+            set { ViewState["UserCompanies"] = value; }
+        }
         #endregion
 
         #region Main Events
@@ -35,9 +44,15 @@ namespace SocialRequirements.Requirements
 
             if (IsPostBack) return;
 
+            UserCompanies = GetRelatedCompanies();
+            LoadFilters();
             SetRequirementsList();
         }
 
+        protected void SetFilterButton_OnClick(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         #region Requirements Repeater Events
@@ -170,6 +185,44 @@ namespace SocialRequirements.Requirements
 
             var serializer = new ObjectSerializer<List<RequirementDto>>();
             Requirements = (List<RequirementDto>)serializer.Deserialize(requirementsXmlStr);
+        }
+
+        #endregion
+
+        #region Filters Data Load
+
+        private void LoadFilters()
+        {
+            LoadProjectFilterOptions();
+            LoadPriorityFilterOptions();
+            LoadPriorityStatusOptions();
+        }
+
+        private void LoadProjectFilterOptions()
+        {
+            var projects = GetProjectsByCompanies(UserCompanies);
+            FilterOptionsProject.DataSource = projects;
+            FilterOptionsProject.DataValueField = CustomExpression.GetPropertyName<ProjectDto>(p => p.Id);
+            FilterOptionsProject.DataTextField = CustomExpression.GetPropertyName<ProjectDto>(p => p.Name);
+            FilterOptionsProject.DataBind();
+        }
+
+        private void LoadPriorityFilterOptions()
+        {
+            var priorities = GetCatalogOptions(GeneralCatalog.Header.RequirementPriority);
+            FilterOptionsPriority.DataSource = priorities;
+            FilterOptionsPriority.DataValueField = CustomExpression.GetPropertyName<GeneralCatalogDetailDto>(c => c.Id);
+            FilterOptionsPriority.DataTextField = CustomExpression.GetPropertyName<GeneralCatalogDetailDto>(c => c.Name);
+            FilterOptionsPriority.DataBind();
+        }
+
+        private void LoadPriorityStatusOptions()
+        {
+            var status = GetCatalogOptions(GeneralCatalog.Header.RequirementStatus);
+            FilterOptionsStatus.DataSource = status;
+            FilterOptionsStatus.DataValueField = CustomExpression.GetPropertyName<GeneralCatalogDetailDto>(c => c.Id);
+            FilterOptionsStatus.DataTextField = CustomExpression.GetPropertyName<GeneralCatalogDetailDto>(c => c.Name);
+            FilterOptionsStatus.DataBind();
         }
         #endregion
     }

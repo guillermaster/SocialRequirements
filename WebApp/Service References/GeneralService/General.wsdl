@@ -88,6 +88,20 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetCatalog">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="catalogHeaderId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCatalogResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCatalogResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="LatestActivityFeedSoapIn">
@@ -126,6 +140,12 @@
   <wsdl:message name="GetMostUsedHashtagsSoapOut">
     <wsdl:part name="parameters" element="tns:GetMostUsedHashtagsResponse" />
   </wsdl:message>
+  <wsdl:message name="GetCatalogSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCatalog" />
+  </wsdl:message>
+  <wsdl:message name="GetCatalogSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCatalogResponse" />
+  </wsdl:message>
   <wsdl:portType name="GeneralSoap">
     <wsdl:operation name="LatestActivityFeed">
       <wsdl:input message="tns:LatestActivityFeedSoapIn" />
@@ -150,6 +170,10 @@
     <wsdl:operation name="GetMostUsedHashtags">
       <wsdl:input message="tns:GetMostUsedHashtagsSoapIn" />
       <wsdl:output message="tns:GetMostUsedHashtagsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCatalog">
+      <wsdl:input message="tns:GetCatalogSoapIn" />
+      <wsdl:output message="tns:GetCatalogSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="GeneralSoap" type="tns:GeneralSoap">
@@ -208,6 +232,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetCatalog">
+      <soap:operation soapAction="http://tempuri.org/GetCatalog" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="GeneralSoap12" type="tns:GeneralSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -258,6 +291,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetMostUsedHashtags">
       <soap12:operation soapAction="http://tempuri.org/GetMostUsedHashtags" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCatalog">
+      <soap12:operation soapAction="http://tempuri.org/GetCatalog" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

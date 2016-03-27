@@ -43,6 +43,7 @@
     <Compile Include="BusinessLogic\Account\IPersonBusiness.cs" />
     <Compile Include="BusinessLogic\Account\IProjectBusiness.cs" />
     <Compile Include="BusinessLogic\General\IActivityFeedBusiness.cs" />
+    <Compile Include="BusinessLogic\General\IGeneralCatalogBusiness.cs" />
     <Compile Include="BusinessLogic\Requirement\IRequirementBusiness.cs" />
     <Compile Include="BusinessLogic\Requirement\IRequirementCommentBusiness.cs" />
     <Compile Include="BusinessLogic\Requirement\IRequirementHashtagBusiness.cs" />

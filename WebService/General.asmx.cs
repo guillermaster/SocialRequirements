@@ -28,6 +28,8 @@ namespace WebService
         public IRequirementBusiness RequirementBusiness { get; set; }
         [Inject]
         public IRequirementHashtagBusiness RequirementHashtagBusiness { get; set; }
+        [Inject]
+        public IGeneralCatalogBusiness GeneralCatalogBusiness { get; set; }
 
         [WebMethod(CacheDuration = 0)]
         public string LatestActivityFeed(string encUsername)
@@ -79,6 +81,14 @@ namespace WebService
             var username = Encryption.Decrypt(encUsername);
             var topHashtags = RequirementHashtagBusiness.GetMostUsedHashtags(20);
             var serializer = new ObjectSerializer<List<string>>(topHashtags);
+            return serializer.ToXmlString();
+        }
+
+        [WebMethod(CacheDuration = 320)]
+        public string GetCatalog(int catalogHeaderId)
+        {
+            var catalog = GeneralCatalogBusiness.Get(catalogHeaderId);
+            var serializer = new ObjectSerializer<List<GeneralCatalogDetailDto>>(catalog);
             return serializer.ToXmlString();
         }
     }

@@ -191,6 +191,29 @@ namespace SocialRequirements
         }
 
         /// <summary>
+        /// Loads all projects by company and store them in a ViewState var
+        /// </summary>
+        protected List<ProjectDto> GetProjectsByCompanies(List<CompanyDto> companies)
+        {
+            var projectSrv = new ProjectSoapClient();
+            var companiesId = new ArrayOfLong();
+            companiesId.AddRange(companies.Select(company => company.Id));
+
+            var projectXmlStr = projectSrv.GetByCompanies(companiesId);
+            var serializer = new ObjectSerializer<List<ProjectDto>>();
+            var projects = (List<ProjectDto>)serializer.Deserialize(projectXmlStr);
+            return projects.OrderByDescending(p => p.Id).ToList();
+        }
+
+        protected List<GeneralCatalogDetailDto> GetCatalogOptions(GeneralCatalog.Header catalogHeader)
+        {
+            var generalSrv = new GeneralSoapClient();
+            var catalogOptionsStr = generalSrv.GetCatalog((int) catalogHeader);
+            var serializer = new ObjectSerializer<List<GeneralCatalogDetailDto>>();
+            return (List<GeneralCatalogDetailDto>) serializer.Deserialize(catalogOptionsStr);
+        }
+
+        /// <summary>
         /// Check if there is at least one project for the specified companies
         /// </summary>
         /// <returns>True if there is at least one project, false when none.</returns>
