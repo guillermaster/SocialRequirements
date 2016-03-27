@@ -338,5 +338,15 @@ namespace WebService
             var serializer = new ObjectSerializer<List<RequirementDto>>(requirementVersions);
             return serializer.ToXmlString();
         }
+
+        [WebMethod(CacheDuration = 30)]
+        public string GetRequirementVersion(long companyId, long projectId, long requirementId,
+            long requirementVersionId)
+        {
+            var requirementVersion = RequirementVersionBusiness.Get(companyId, projectId, requirementId,
+                requirementVersionId);
+            var serializer = new ObjectSerializer<RequirementDto>(requirementVersion);
+            return serializer.ToXmlString();
+        }
     }
 }

@@ -1,7 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Requirement.aspx.cs" Inherits="SocialRequirements.Requirements.Requirement" ValidateRequest="false" EnableEventValidation="false" %>
 
+
 <asp:Content ID="TitleContent" ContentPlaceHolderID="TitleContent" runat="server">
-    Requirement
+    <asp:Label runat="server" ID="PageTitle" Text="Requirement"/>
 </asp:Content>
 <asp:Content ID="ToolbarContent" ContentPlaceHolderID="ToolbarContent" runat="server">
     <script>
@@ -69,6 +70,7 @@
             var text = tinyMCE.get('<%= RequirementDescriptionInput.ClientID %>').getContent();
             document.getElementById('<%= HdnRequirementDescriptionInput.ClientID %>').value = text;
         }
+
     </script>
     <ul class="demo-btns">
         <li>
@@ -116,10 +118,10 @@
                 <i class="fa fa-fw fa-comments-o">
                     <asp:Label runat="server" ID="CommentCounter" /></i>
             </asp:LinkButton></li>
-        <%--<li>
+        <li>
             <asp:LinkButton runat="server" CssClass="btn btn-default" ID="HistoryButton" OnClick="HistoryButton_OnClick" ToolTip="View version history">
                 <i class="fa fa-fw fa-history"></i>
-            </asp:LinkButton></li>--%>
+            </asp:LinkButton></li>
         <li>
             <asp:LinkButton runat="server" CssClass="btn btn-default" ID="AddQuestionButton" OnClientClick="javascript:showQuestionDialog();" ToolTip="Ask question">
                 <i class="fa fa-fw fa-question"></i>
@@ -221,6 +223,7 @@
                 </div>
             </FooterTemplate>
         </asp:Repeater>
+        <asp:Label runat="server" ID="NoComments" Text="There are no comments for this requirement" Visible="False"/><br/>
         <asp:TextBox runat="server" TextMode="MultiLine" ID="NewCommentInput" Rows="6" Columns="100" placeholder="Type your comment here" /><br />
         <asp:Button runat="server" ID="AddNewCommentButton" Text="Add comment" OnClick="AddNewCommentButton_Click" />
 

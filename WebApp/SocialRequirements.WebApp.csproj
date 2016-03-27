@@ -1933,6 +1933,7 @@
     <Content Include="Requirements\RequirementsModificationList.aspx" />
     <Content Include="Requirements\RequirementsList.aspx" />
     <Content Include="Requirements\RequirementsQuestionsList.aspx" />
+    <Content Include="Requirements\RequirementVersionHistory.aspx" />
     <Content Include="Scripts\tiny_mce\langs\en.js" />
     <Content Include="Scripts\tiny_mce\license.txt" />
     <Content Include="Scripts\tiny_mce\plugins\advhr\css\advhr.css" />
@@ -2433,6 +2434,13 @@
     <Content Include="Service References\RequirementService\SocialRequirements.RequirementService.GetRequirementsByHashtagResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Service References\RequirementService\SocialRequirements.RequirementService.GetRequirementVersionHistoryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Site.Popup.Master" />
+    <Content Include="Service References\RequirementService\SocialRequirements.RequirementService.GetRequirementVersionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2601,6 +2609,13 @@
     <Compile Include="Requirements\RequirementsQuestionsList.aspx.designer.cs">
       <DependentUpon>RequirementsQuestionsList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Requirements\RequirementVersionHistory.aspx.cs">
+      <DependentUpon>RequirementVersionHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Requirements\RequirementVersionHistory.aspx.designer.cs">
+      <DependentUpon>RequirementVersionHistory.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SearchResults.aspx.cs">
       <DependentUpon>SearchResults.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2637,6 +2652,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Site.Popup.Master.cs">
+      <DependentUpon>Site.Popup.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Popup.Master.designer.cs">
+      <DependentUpon>Site.Popup.Master</DependentUpon>
     </Compile>
     <Compile Include="Site.Public.Master.cs">
       <DependentUpon>Site.Public.Master</DependentUpon>

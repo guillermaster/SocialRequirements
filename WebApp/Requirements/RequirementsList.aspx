@@ -114,6 +114,7 @@
                     </HeaderTemplate>
                     <ItemTemplate>
                         <div style="text-align: center;">
+                            <asp:Label runat="server" ID="Status" Text='<%# Eval("VersionNumber") %>' />
                         </div>
                     </ItemTemplate>
                 </asp:TemplateField>

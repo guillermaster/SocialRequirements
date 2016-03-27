@@ -140,6 +140,7 @@ namespace SocialRequirements
         {
             var siteMaster = (SiteMaster)Master;
             if (siteMaster == null) return;
+            if (siteMaster.Notifications == null) return;
 
             var generalSrv = new GeneralSoapClient();
             var activitySummaryStr = generalSrv.GetActivitiesSummary(GetUsernameEncrypted());

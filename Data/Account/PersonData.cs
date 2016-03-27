@@ -70,7 +70,7 @@ namespace SocialRequirements.Data.Account
         public string GetFullName(long personId)
         {
             var user = _context.Person.FirstOrDefault(person => person.id == personId);
-            return user != null ? user.first_name + user.last_name : string.Empty;
+            return user != null ? user.first_name + " " + user.last_name : string.Empty;
         }
 
         public string GetName(long personId)

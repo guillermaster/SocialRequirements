@@ -282,6 +282,13 @@ namespace SocialRequirements.RequirementService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetRequirementVersionHistory", ReplyAction="*")]
         System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetRequirementVersionHistoryResponse> GetRequirementVersionHistoryAsync(SocialRequirements.RequirementService.GetRequirementVersionHistoryRequest request);
+        
+        // CODEGEN: Generating message contract since element name GetRequirementVersionResult from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetRequirementVersion", ReplyAction="*")]
+        SocialRequirements.RequirementService.GetRequirementVersionResponse GetRequirementVersion(SocialRequirements.RequirementService.GetRequirementVersionRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetRequirementVersion", ReplyAction="*")]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetRequirementVersionResponse> GetRequirementVersionAsync(SocialRequirements.RequirementService.GetRequirementVersionRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -3107,6 +3114,86 @@ namespace SocialRequirements.RequirementService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetRequirementVersionRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetRequirementVersion", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementService.GetRequirementVersionRequestBody Body;
+        
+        public GetRequirementVersionRequest() {
+        }
+        
+        public GetRequirementVersionRequest(SocialRequirements.RequirementService.GetRequirementVersionRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetRequirementVersionRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public long companyId;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=1)]
+        public long projectId;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=2)]
+        public long requirementId;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=3)]
+        public long requirementVersionId;
+        
+        public GetRequirementVersionRequestBody() {
+        }
+        
+        public GetRequirementVersionRequestBody(long companyId, long projectId, long requirementId, long requirementVersionId) {
+            this.companyId = companyId;
+            this.projectId = projectId;
+            this.requirementId = requirementId;
+            this.requirementVersionId = requirementVersionId;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetRequirementVersionResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetRequirementVersionResponse", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementService.GetRequirementVersionResponseBody Body;
+        
+        public GetRequirementVersionResponse() {
+        }
+        
+        public GetRequirementVersionResponse(SocialRequirements.RequirementService.GetRequirementVersionResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetRequirementVersionResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string GetRequirementVersionResult;
+        
+        public GetRequirementVersionResponseBody() {
+        }
+        
+        public GetRequirementVersionResponseBody(string GetRequirementVersionResult) {
+            this.GetRequirementVersionResult = GetRequirementVersionResult;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface RequirementSoapChannel : SocialRequirements.RequirementService.RequirementSoap, System.ServiceModel.IClientChannel {
     }
@@ -4248,6 +4335,37 @@ namespace SocialRequirements.RequirementService {
             inValue.Body.projectId = projectId;
             inValue.Body.requirementId = requirementId;
             return ((SocialRequirements.RequirementService.RequirementSoap)(this)).GetRequirementVersionHistoryAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SocialRequirements.RequirementService.GetRequirementVersionResponse SocialRequirements.RequirementService.RequirementSoap.GetRequirementVersion(SocialRequirements.RequirementService.GetRequirementVersionRequest request) {
+            return base.Channel.GetRequirementVersion(request);
+        }
+        
+        public string GetRequirementVersion(long companyId, long projectId, long requirementId, long requirementVersionId) {
+            SocialRequirements.RequirementService.GetRequirementVersionRequest inValue = new SocialRequirements.RequirementService.GetRequirementVersionRequest();
+            inValue.Body = new SocialRequirements.RequirementService.GetRequirementVersionRequestBody();
+            inValue.Body.companyId = companyId;
+            inValue.Body.projectId = projectId;
+            inValue.Body.requirementId = requirementId;
+            inValue.Body.requirementVersionId = requirementVersionId;
+            SocialRequirements.RequirementService.GetRequirementVersionResponse retVal = ((SocialRequirements.RequirementService.RequirementSoap)(this)).GetRequirementVersion(inValue);
+            return retVal.Body.GetRequirementVersionResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetRequirementVersionResponse> SocialRequirements.RequirementService.RequirementSoap.GetRequirementVersionAsync(SocialRequirements.RequirementService.GetRequirementVersionRequest request) {
+            return base.Channel.GetRequirementVersionAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetRequirementVersionResponse> GetRequirementVersionAsync(long companyId, long projectId, long requirementId, long requirementVersionId) {
+            SocialRequirements.RequirementService.GetRequirementVersionRequest inValue = new SocialRequirements.RequirementService.GetRequirementVersionRequest();
+            inValue.Body = new SocialRequirements.RequirementService.GetRequirementVersionRequestBody();
+            inValue.Body.companyId = companyId;
+            inValue.Body.projectId = projectId;
+            inValue.Body.requirementId = requirementId;
+            inValue.Body.requirementVersionId = requirementVersionId;
+            return ((SocialRequirements.RequirementService.RequirementSoap)(this)).GetRequirementVersionAsync(inValue);
         }
     }
 }

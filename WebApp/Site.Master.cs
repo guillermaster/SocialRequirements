@@ -4,7 +4,6 @@ using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.WebSockets;
 using SocialRequirements.Domain.DTO.General;
 using SocialRequirements.Domain.General;
 using SocialRequirements.GeneralService;
@@ -151,6 +150,7 @@ namespace SocialRequirements
 
         public void SetUserFullName(string fullname)
         {
+            if (UserFullName == null) return;
             UserFullName.Text = fullname;
         }
 

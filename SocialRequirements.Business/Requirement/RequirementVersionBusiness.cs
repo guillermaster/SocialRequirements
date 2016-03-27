@@ -18,5 +18,10 @@ namespace SocialRequirements.Business.Requirement
         {
             return _requirementVersionData.GetVersionHistory(companyId, projectId, requirementId);
         }
+
+        public RequirementDto Get(long companyId, long projectId, long requirementId, long? requirementVersionId = null)
+        {
+            return _requirementVersionData.Get(companyId, projectId, requirementId, requirementVersionId);
+        }
     }
 }

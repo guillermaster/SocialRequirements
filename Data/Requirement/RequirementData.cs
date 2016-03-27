@@ -21,7 +21,7 @@ namespace SocialRequirements.Data.Requirement
         private readonly IPersonData _personData;
         private readonly IProjectData _projectData;
         private readonly IRequirementHashtagData _requirementHashtagData;
-        private const int MaxShortDescriptionLength = 590;
+        public const int MaxShortDescriptionLength = 590;
         private const int MaxSearchResultDescription = 100;
         
         public RequirementData(ContextModel context)
@@ -334,6 +334,7 @@ namespace SocialRequirements.Data.Requirement
                 ApprovedbyId = requirement.approvedby_id,
                 Approvedon = requirement.approvedon,
                 PriorityId = requirement.priority_id,
+                VersionNumber = requirement.version_number,
                 ShortDescription = StringUtilities.GetShort(requirement.description, MaxShortDescriptionLength),
                 Project = requirement.Project != null ? requirement.Project.name : _projectData.GetTitle(requirement.project_id),
                 Status = requirement.GeneralCatalogDetail != null ? requirement.GeneralCatalogDetail.name : _generalCatalogData.GetTitle(requirement.status_id),

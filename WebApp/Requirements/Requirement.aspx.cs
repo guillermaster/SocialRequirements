@@ -24,24 +24,36 @@ namespace SocialRequirements.Requirements
         public const string EditPriorityLowCss = "btn btn-default btn-sm";
         public const string EditPriorityMedCss = "btn btn-inverse btn-sm";
         public const string EditPriorityHighCss = "btn btn-midnightblue btn-sm";
+        private const string CssDisabled = " disabled";
         #endregion
 
         #region Properties
         protected long CompanyId
         {
-            get { return ViewState["CompanyId"] != null ? int.Parse(ViewState["CompanyId"].ToString()) : 0; }
+            get { return ViewState["CompanyId"] != null ? long.Parse(ViewState["CompanyId"].ToString()) : 0; }
             set { ViewState["CompanyId"] = value; }
         }
 
         protected long RequirementId
         {
-            get { return ViewState["RequirementId"] != null ? int.Parse(ViewState["RequirementId"].ToString()) : 0; }
+            get { return ViewState["RequirementId"] != null ? long.Parse(ViewState["RequirementId"].ToString()) : 0; }
             set { ViewState["RequirementId"] = value; }
+        }
+
+        protected long? RequirementVersionId
+        {
+            get
+            {
+                if (ViewState["RequirementVersionId"] != null)
+                    return long.Parse(ViewState["RequirementVersionId"].ToString());
+                return null;
+            }
+            set { ViewState["RequirementVersionId"] = value; }
         }
 
         protected long ProjectId
         {
-            get { return ViewState["ProjectId"] != null ? int.Parse(ViewState["ProjectId"].ToString()) : 0; }
+            get { return ViewState["ProjectId"] != null ? long.Parse(ViewState["ProjectId"].ToString()) : 0; }
             set { ViewState["ProjectId"] = value; }
         }
 
@@ -83,6 +95,13 @@ namespace SocialRequirements.Requirements
             RequirementId = long.Parse(Request.QueryString[CommonConstants.QueryStringParams.Id]);
             CompanyId = long.Parse(Request.QueryString[CommonConstants.QueryStringParams.CompanyId]);
             ProjectId = long.Parse(Request.QueryString[CommonConstants.QueryStringParams.ProjectId]);
+            if (Request.QueryString[CommonConstants.QueryStringParams.RequirementVersionId] != null)
+            {
+                RequirementVersionId =
+                    long.Parse(Request.QueryString[CommonConstants.QueryStringParams.RequirementVersionId]);
+                PageTitle.Text += " Version History";
+            }
+
             SetFormPermissions();
             
             LoadRequirement();
@@ -245,11 +264,6 @@ namespace SocialRequirements.Requirements
         {
             ToggleComments();
         }
-
-        protected virtual void HistoryButton_OnClick(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
         
         protected void btn_PostQuestionButton_Click(object sender, EventArgs e)
         {
@@ -266,6 +280,14 @@ namespace SocialRequirements.Requirements
         protected void DownloadButton_OnClick(object sender, EventArgs e)
         {
             DownloadFile();
+        }
+
+        protected void HistoryButton_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect(CommonConstants.FormsUrl.RequirementVersionHistory + "?" +
+                              CommonConstants.QueryStringParams.Id + "=" + RequirementId + "&" +
+                              CommonConstants.QueryStringParams.CompanyId + "=" + CompanyId + "&" +
+                              CommonConstants.QueryStringParams.ProjectId + "=" + ProjectId);
         }
         #endregion
 
@@ -301,6 +323,16 @@ namespace SocialRequirements.Requirements
             ProjectId = requirement.ProjectId;
 
             return requirement;
+        }
+
+        private RequirementDto GetRequirementVersion()
+        {
+            if(!RequirementVersionId.HasValue) throw new InvalidDataException("The ID of the requirement version has not been set.");
+
+            var requirementSrv = new RequirementSoapClient();
+            var requirementTxt = requirementSrv.GetRequirementVersion(CompanyId, ProjectId, RequirementId, RequirementVersionId.Value);
+            var serializer = new ObjectSerializer<RequirementDto>();
+            return (RequirementDto)serializer.Deserialize(requirementTxt);
         }
 
         private long GetCurrentModificationId()
@@ -386,7 +418,7 @@ namespace SocialRequirements.Requirements
         protected virtual void LoadRequirement()
         {
             // get requirement data
-            var requirement = GetRequirement();
+            var requirement = !IsVersionHistoryView() ? GetRequirement() : GetRequirementVersion();
             
             // set requirement data in form
             SetFormData(requirement);
@@ -471,6 +503,24 @@ namespace SocialRequirements.Requirements
                                     CanApproveRequirement.HasValue && CanApproveRequirement.Value;
             RejectButton.Visible = ApproveButton.Visible;
 
+            if (IsVersionHistoryView())
+            {
+                EditButton.Visible = false;
+                SubmitButton.Visible = false;
+                ApproveButton.Visible = false;
+                UploadButtonLink.Visible = false;
+                AddQuestionButton.Visible = false;
+                LikeButton.Enabled = false;
+                DislikeButton.Enabled = false;
+                CommentsButton.Enabled = false;
+                LikeButton.CssClass += CssDisabled;
+                DislikeButton.CssClass += CssDisabled;
+                CommentsButton.CssClass += CssDisabled;
+                ToggleComments();
+                HideNewCommentsUi();
+                return;
+            }
+
             LoadProjects();
         }
 
@@ -534,12 +584,25 @@ namespace SocialRequirements.Requirements
             SetRequirementComments();
         }
 
+        private void HideNewCommentsUi()
+        {
+            ViewHideCommentsButton.Visible = false;
+            NewCommentInput.Visible = false;
+            AddNewCommentButton.Visible = false;
+        }
+
         protected virtual void SetRequirementComments()
         {
             var comments = GetComments();
             CommentsList.DataSource = comments;
             CommentsList.DataBind();
             CommentCounter.Text = comments.Count.ToString();
+            NoComments.Visible = comments.Count == 0;
+        }
+
+        private bool IsVersionHistoryView()
+        {
+            return RequirementVersionId.HasValue;
         }
         #endregion
     }

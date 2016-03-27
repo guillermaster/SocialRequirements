@@ -186,12 +186,6 @@ namespace SocialRequirements.Requirements
             }
         }
         
-        protected override void HistoryButton_OnClick(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        
         #endregion
 
         #region Comments events

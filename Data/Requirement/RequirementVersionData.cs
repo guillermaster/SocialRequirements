@@ -5,17 +5,32 @@ using SocialRequirements.Context;
 using SocialRequirements.Context.Entities;
 using SocialRequirements.Domain.DTO.Requirement;
 using SocialRequirements.Domain.General;
+using SocialRequirements.Domain.Repository.Account;
+using SocialRequirements.Domain.Repository.General;
 using SocialRequirements.Domain.Repository.Requirement;
+using SocialRequirements.Utilities;
 
 namespace SocialRequirements.Data.Requirement
 {
     public class RequirementVersionData : IRequirementVersionData
     {
         private readonly ContextModel _context;
+        private readonly IGeneralCatalogData _generalCatalogData;
+        private readonly IPersonData _personData;
+        private readonly IProjectData _projectData;
 
         public RequirementVersionData(ContextModel context)
         {
             _context = context;
+        }
+
+        public RequirementVersionData(ContextModel context, IGeneralCatalogData generalCatalogData,
+            IPersonData personData, IProjectData projectData)
+        {
+            _context = context;
+            _generalCatalogData = generalCatalogData;
+            _personData = personData;
+            _projectData = projectData;
         }
 
         public RequirementDto Add(RequirementDto requirement)
@@ -143,7 +158,9 @@ namespace SocialRequirements.Data.Requirement
         {
             var requirementVersions =
                 _context.RequirementVersion.Where(
-                    rv => rv.company_id == companyId && rv.project_id == projectId && rv.requirement_id == requirementId);
+                    rv => rv.company_id == companyId && rv.project_id == projectId && rv.requirement_id == requirementId)
+                    .OrderByDescending(v => v.version_number)
+                    .ToList();
             return requirementVersions.Select(GetDtoFromEntity).ToList();
         }
 
@@ -201,7 +218,7 @@ namespace SocialRequirements.Data.Requirement
             return requirementVersion;
         }
 
-        private static RequirementDto GetDtoFromEntity(RequirementVersion requirementVersion)
+        private RequirementDto GetDtoFromEntity(RequirementVersion requirementVersion)
         {
             var requirementDto = new RequirementDto
             {
@@ -222,7 +239,13 @@ namespace SocialRequirements.Data.Requirement
                 VersionId = requirementVersion.id,
                 VersionNumber = requirementVersion.version_number,
                 AttachmentTitle = requirementVersion.attachment_title,
-                PriorityId = requirementVersion.priority_id
+                PriorityId = requirementVersion.priority_id,
+                ShortDescription = StringUtilities.GetShort(requirementVersion.description, RequirementData.MaxShortDescriptionLength),
+                Project = requirementVersion.Project != null ? requirementVersion.Project.name : _projectData.GetTitle(requirementVersion.project_id),
+                Status = requirementVersion.GeneralCatalogDetail != null ? requirementVersion.GeneralCatalogDetail.name : _generalCatalogData.GetTitle(requirementVersion.status_id),
+                Priority = requirementVersion.GeneralCatalogDetail1 != null ? requirementVersion.GeneralCatalogDetail1.name : _generalCatalogData.GetTitle(requirementVersion.priority_id),
+                CreatedByName = _personData.GetFullName(requirementVersion.createdby_id),
+                ModifiedByName = _personData.GetFullName(requirementVersion.modifiedby_id),
             };
             return requirementDto;
         }

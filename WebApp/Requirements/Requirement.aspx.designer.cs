@@ -13,6 +13,15 @@ namespace SocialRequirements.Requirements {
     public partial class Requirement {
         
         /// <summary>
+        /// PageTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label PageTitle;
+        
+        /// <summary>
         /// SubmitButton control.
         /// </summary>
         /// <remarks>
@@ -119,6 +128,15 @@ namespace SocialRequirements.Requirements {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label CommentCounter;
+        
+        /// <summary>
+        /// HistoryButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton HistoryButton;
         
         /// <summary>
         /// AddQuestionButton control.
@@ -362,6 +380,15 @@ namespace SocialRequirements.Requirements {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater CommentsList;
+        
+        /// <summary>
+        /// NoComments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label NoComments;
         
         /// <summary>
         /// NewCommentInput control.
