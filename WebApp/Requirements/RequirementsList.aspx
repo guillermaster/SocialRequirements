@@ -200,7 +200,7 @@
                     <div class="smallcard_footer">
                         <div class="smallcard_footer left">
                             Status: <%# Eval("Status") %><br />
-                            Version:
+                            Version: <%# Eval("VersionNumber") %>
                         </div>
                         <div class="smallcard_footer right">
                             Last modified
