@@ -27,7 +27,7 @@ namespace SocialRequirements.Account
                 return;
             }
             
-            SendEmail(GetSetPasswordUrl(encEmail));
+            SendEmail(Email.Text, GetSetPasswordUrl(encEmail));
             loginForm.Visible = false;
             DisplayEmail.Visible = true;
         }
@@ -39,10 +39,11 @@ namespace SocialRequirements.Account
             return url;
         }
 
-        private void SendEmail(string url)
+        private static void SendEmail(string to, string url)
         {
-            var body = "Please reset your password by clicking <a href=\"" + url + "\">here</a>.";
-            
+            var bodyHtml = "Please reset your password by clicking <a href=\"" + url + "\">here</a>.";
+            var bodyPlain = "Please reset your password by copying this URL in your broswer address bar:  " + url;
+            EmailUtilities.SendEmail(to, "Password recovery", bodyPlain, bodyHtml);
         }
     }
 }
