@@ -15,5 +15,7 @@ namespace SocialRequirements.Domain.BusinessLogic.Account
         void Set(long companyId, string username);
 
         List<CompanyDto> GetAll();
+
+        List<CompanyDto> GetCompaniesByProject(long projectId);
     }
 }

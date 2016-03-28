@@ -99,6 +99,37 @@ namespace SocialRequirements.Data.Account
             return permissions.ToList();
         }
 
+        public List<PersonDto> GetUsersByCompany(long companyId)
+        {
+            var companiesPersons = _context.CompanyPerson.Where(cp => cp.company_id == companyId).ToList();
+            return companiesPersons.Select(cp => cp.Person).ToList().Select(GetDtoFromEntity).ToList();
+        }
+
+        public List<PersonDto> GetUsersByProjectRole(long projectId, long roleId)
+        {
+            var projectsRoles =
+                _context.CompanyProjectPersonRole.Where(cppr => cppr.project_id == projectId && cppr.role_id == roleId)
+                    .ToList();
+            return projectsRoles.Select(pr => pr.Person).ToList().Select(GetDtoFromEntity).ToList();
+        }
+
+        private static PersonDto GetDtoFromEntity(Person person)
+        {
+            var personDto = new PersonDto
+            {
+                Id = person.id,
+                FirstName = person.first_name,
+                LastName = person.last_name,
+                BirthDate = person.birth_date,
+                MobilePhone = person.mobile_phone,
+                Phone = person.phone,
+                PrimaryEmail = person.primary_email,
+                SecondaryEmail = person.secondary_email,
+                UserName = person.user_name
+            };
+            return personDto;
+        }
+
 
         private static Person CreatePersonEntityInstance(string firstName, string lastName, DateTime birthdate, string primaryEmail, string secondaryEmail,
             string phone, string mobilePhone, string username, string password)

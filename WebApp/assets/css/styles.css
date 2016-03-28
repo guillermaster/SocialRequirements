@@ -1202,3 +1202,8 @@ background: #363670 url(Images/grid-pgr.png) repeat-x top;
 .priorityButton {
     border: none;
 }
+
+.filterOption:disabled {
+    background-color: #EBEBEB;
+    color: #969EA2;
+}

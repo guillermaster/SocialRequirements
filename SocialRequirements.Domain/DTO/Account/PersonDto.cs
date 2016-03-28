@@ -29,6 +29,8 @@ namespace SocialRequirements.Domain.DTO.Account
 
         public string LastName { get; set; }
 
+        public string FullName { get { return FirstName + " " + LastName; } }
+
         public DateTime BirthDate { get; set; }
 
         public string PrimaryEmail { get; set; }

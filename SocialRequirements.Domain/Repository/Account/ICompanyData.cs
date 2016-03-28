@@ -21,5 +21,7 @@ namespace SocialRequirements.Domain.Repository.Account
         /// </summary>
         /// <returns>List of companies</returns>
         List<CompanyDto> GetAll();
+
+        List<CompanyDto> GetCompaniesByProject(long projectId);
     }
 }

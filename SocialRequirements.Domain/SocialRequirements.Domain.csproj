@@ -56,6 +56,7 @@
     <Compile Include="DTO\Account\PersonDto.cs" />
     <Compile Include="DTO\Account\ProjectDto.cs" />
     <Compile Include="DTO\Account\ProjectPermissionsDto.cs" />
+    <Compile Include="DTO\Account\RoleDto.cs" />
     <Compile Include="DTO\General\ActivityFeedDto.cs" />
     <Compile Include="DTO\General\ActivityFeedSummaryDto.cs" />
     <Compile Include="DTO\General\GeneralCatalogDetailDto.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Repository\Account\ICompanyData.cs" />
     <Compile Include="Repository\Account\IPersonData.cs" />
     <Compile Include="Repository\Account\IProjectData.cs" />
+    <Compile Include="Repository\Account\IRoleData.cs" />
     <Compile Include="Repository\General\IActivityFeedData.cs" />
     <Compile Include="Repository\General\IGeneralCatalogData.cs" />
     <Compile Include="Repository\Requirement\IRequirementCommentData.cs" />

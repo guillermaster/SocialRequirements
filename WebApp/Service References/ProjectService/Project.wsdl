@@ -74,6 +74,35 @@
       <s:element name="SetProjectResponse">
         <s:complexType />
       </s:element>
+      <s:element name="GetUsers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectsIds" type="tns:ArrayOfLong" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUsersResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsersByPermission">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectsIds" type="tns:ArrayOfLong" />
+            <s:element minOccurs="1" maxOccurs="1" name="permissionId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsersByPermissionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUsersByPermissionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="AddProjectSoapIn">
@@ -106,6 +135,18 @@
   <wsdl:message name="SetProjectSoapOut">
     <wsdl:part name="parameters" element="tns:SetProjectResponse" />
   </wsdl:message>
+  <wsdl:message name="GetUsersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUsers" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersByPermissionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUsersByPermission" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersByPermissionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUsersByPermissionResponse" />
+  </wsdl:message>
   <wsdl:portType name="ProjectSoap">
     <wsdl:operation name="AddProject">
       <wsdl:input message="tns:AddProjectSoapIn" />
@@ -126,6 +167,14 @@
     <wsdl:operation name="SetProject">
       <wsdl:input message="tns:SetProjectSoapIn" />
       <wsdl:output message="tns:SetProjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <wsdl:input message="tns:GetUsersSoapIn" />
+      <wsdl:output message="tns:GetUsersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersByPermission">
+      <wsdl:input message="tns:GetUsersByPermissionSoapIn" />
+      <wsdl:output message="tns:GetUsersByPermissionSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ProjectSoap" type="tns:ProjectSoap">
@@ -175,6 +224,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <soap:operation soapAction="http://tempuri.org/GetUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersByPermission">
+      <soap:operation soapAction="http://tempuri.org/GetUsersByPermission" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="ProjectSoap12" type="tns:ProjectSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -216,6 +283,24 @@
     </wsdl:operation>
     <wsdl:operation name="SetProject">
       <soap12:operation soapAction="http://tempuri.org/SetProject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <soap12:operation soapAction="http://tempuri.org/GetUsers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersByPermission">
+      <soap12:operation soapAction="http://tempuri.org/GetUsersByPermission" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

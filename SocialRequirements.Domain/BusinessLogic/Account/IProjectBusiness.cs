@@ -26,7 +26,7 @@ namespace SocialRequirements.Domain.BusinessLogic.Account
         /// <summary>
         /// Get list of projects that aren't related to the current user
         /// </summary>
-        /// <param name="companyId">Company ID/param>
+        /// <param name="companyId">Company ID</param>
         /// <returns>List of projects</returns>
         List<ProjectDto> GetUnrelatedProjects(long companyId);
 
@@ -37,5 +37,20 @@ namespace SocialRequirements.Domain.BusinessLogic.Account
         /// <param name="projectId">Project identifier</param>
         /// <param name="username">User ID</param>
         void AddCompanyRelationship(long companyId, long projectId, string username);
+
+        /// <summary>
+        /// Gets all users participating in a specific project
+        /// </summary>
+        /// <param name="projectId">Project ID</param>
+        /// <returns>Users by project</returns>
+        List<PersonDto> GetUsers(long projectId);
+
+        /// <summary>
+        /// Gets all users with a specific right in a specific project
+        /// </summary>
+        /// <param name="projectId">Project ID</param>
+        /// <param name="permissionId">Permission to look for</param>
+        /// <returns>List of users matching the specified criteria</returns>
+        List<PersonDto> GetUsers(long projectId, int permissionId);
     }
 }

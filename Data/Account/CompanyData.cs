@@ -28,6 +28,12 @@ namespace SocialRequirements.Data.Account
             return companies.Select(GetCompanyDto).ToList();
         }
 
+        public List<CompanyDto> GetCompaniesByProject(long projectId)
+        {
+            var companiesProjects = _context.CompanyProject.Where(cp => cp.project_id == projectId).ToList();
+            return companiesProjects.Select(cp => cp.Company).ToList().Select(GetCompanyDto).ToList();
+        }
+
         public void Add(string companyName, int companyType, long personId)
         {
             using (var scope = _context.Database.BeginTransaction())

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using SocialRequirements.Domain.BusinessLogic.Account;
 using SocialRequirements.Domain.DTO.Account;
 using SocialRequirements.Domain.General;
@@ -14,14 +15,16 @@ namespace SocialRequirements.Business.Account
         private readonly IProjectData _projectData;
         private readonly IActivityFeedData _activityFeedData;
         private readonly ICompanyData _companyData;
+        private readonly IRoleData _roleData;
 
         public ProjectBusiness(IPersonData personData, IProjectData projectData, IActivityFeedData activityFeedData,
-            ICompanyData companyData)
+            ICompanyData companyData, IRoleData roleData)
         {
             _personData = personData;
             _projectData = projectData;
             _activityFeedData = activityFeedData;
             _companyData = companyData;
+            _roleData = roleData;
         }
         public List<ProjectDto> GetProjectsByCompany(long companyId)
         {
@@ -57,6 +60,37 @@ namespace SocialRequirements.Business.Account
             // add activity feed log
             _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.CompanyProject,
                 (int)GeneralCatalog.Detail.EntityActions.Create, companyProjectId, DateTime.Now, personId);
+        }
+
+        public List<PersonDto> GetUsers(long projectId)
+        {
+            var companies = _companyData.GetCompaniesByProject(projectId);
+            var users = new List<PersonDto>();
+            foreach (var company in companies)
+            {
+                users.AddRange(_personData.GetUsersByCompany(company.Id));
+            }
+            return users;
+        }
+
+        public List<PersonDto> GetUsers(long projectId, int permissionId)
+        {
+            var roles = _roleData.GetRolesByPermission(permissionId);
+            var usersDict = new Dictionary<long, PersonDto>();
+
+            foreach (var role in roles)
+            {
+                var users = _personData.GetUsersByProjectRole(projectId, role.Id);
+                foreach (var user in users.Where(user => !usersDict.ContainsKey(user.Id)))
+                {
+                    usersDict.Add(user.Id, user);
+                }
+            }
+
+            var userslist = new List<PersonDto>();
+            userslist.AddRange(usersDict.Values);
+
+            return userslist;
         }
     }
 }

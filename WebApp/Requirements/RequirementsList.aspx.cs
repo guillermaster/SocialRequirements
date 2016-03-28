@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
 using SocialRequirements.Domain.DTO.Account;
 using SocialRequirements.Domain.DTO.General;
 using SocialRequirements.Domain.DTO.Requirement;
 using SocialRequirements.Domain.General;
+using SocialRequirements.ProjectService;
 using SocialRequirements.RequirementService;
 using SocialRequirements.Utilities;
 
@@ -35,6 +37,12 @@ namespace SocialRequirements.Requirements
             get { return ViewState["UserCompanies"] != null ? (List<CompanyDto>)ViewState["UserCompanies"] : new List<CompanyDto>(); }
             set { ViewState["UserCompanies"] = value; }
         }
+
+        protected List<ProjectDto> Projects
+        {
+            get { return ViewState["Projects"] != null ? (List<ProjectDto>)ViewState["Projects"] : new List<ProjectDto>(); }
+            set { ViewState["Projects"] = value; }
+        }
         #endregion
 
         #region Main Events
@@ -51,7 +59,7 @@ namespace SocialRequirements.Requirements
 
         protected void SetFilterButton_OnClick(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            ApplyFilters();
         }
         #endregion
 
@@ -195,13 +203,15 @@ namespace SocialRequirements.Requirements
         {
             LoadProjectFilterOptions();
             LoadPriorityFilterOptions();
-            LoadPriorityStatusOptions();
+            LoadStatusFilterOptions();
+            LoadCreatedModifiedByFilterOptions();
+            LoadApprovedByFilterOptions();
         }
 
         private void LoadProjectFilterOptions()
         {
-            var projects = GetProjectsByCompanies(UserCompanies);
-            FilterOptionsProject.DataSource = projects;
+            Projects = GetProjectsByCompanies(UserCompanies);
+            FilterOptionsProject.DataSource = Projects;
             FilterOptionsProject.DataValueField = CustomExpression.GetPropertyName<ProjectDto>(p => p.Id);
             FilterOptionsProject.DataTextField = CustomExpression.GetPropertyName<ProjectDto>(p => p.Name);
             FilterOptionsProject.DataBind();
@@ -216,13 +226,108 @@ namespace SocialRequirements.Requirements
             FilterOptionsPriority.DataBind();
         }
 
-        private void LoadPriorityStatusOptions()
+        private void LoadStatusFilterOptions()
         {
             var status = GetCatalogOptions(GeneralCatalog.Header.RequirementStatus);
             FilterOptionsStatus.DataSource = status;
             FilterOptionsStatus.DataValueField = CustomExpression.GetPropertyName<GeneralCatalogDetailDto>(c => c.Id);
             FilterOptionsStatus.DataTextField = CustomExpression.GetPropertyName<GeneralCatalogDetailDto>(c => c.Name);
             FilterOptionsStatus.DataBind();
+        }
+
+        private void LoadCreatedModifiedByFilterOptions()
+        {
+            var users = GetUsersByProjects(Projects);
+
+            FilterOptionCreatedBy.DataSource = users;
+            FilterOptionCreatedBy.DataValueField = CustomExpression.GetPropertyName<PersonDto>(c => c.Id);
+            FilterOptionCreatedBy.DataTextField = CustomExpression.GetPropertyName<PersonDto>(c => c.FullName);
+            FilterOptionCreatedBy.DataBind();
+
+            FilterOptionModifiedBy.DataSource = users;
+            FilterOptionModifiedBy.DataValueField = CustomExpression.GetPropertyName<PersonDto>(c => c.Id);
+            FilterOptionModifiedBy.DataTextField = CustomExpression.GetPropertyName<PersonDto>(c => c.FullName);
+            FilterOptionModifiedBy.DataBind();
+        }
+
+        private void LoadApprovedByFilterOptions()
+        {
+            var users = GetApprovalUsersByProjects(Projects);
+
+            FilterOptionApprovedBy.DataSource = users;
+            FilterOptionApprovedBy.DataValueField = CustomExpression.GetPropertyName<PersonDto>(c => c.Id);
+            FilterOptionApprovedBy.DataTextField = CustomExpression.GetPropertyName<PersonDto>(c => c.FullName);
+            FilterOptionApprovedBy.DataBind();
+        }
+
+        private IEnumerable<PersonDto> GetUsersByProjects(IEnumerable<ProjectDto> projects)
+        {
+            var projectSrv = new ProjectSoapClient();
+            var projectsIds = new ArrayOfLong();
+            projectsIds.AddRange(projects.Select(project => project.Id));
+            var usersStr = projectSrv.GetUsers(projectsIds);
+            var serializer = new ObjectSerializer<List<PersonDto>>();
+            return (List<PersonDto>)serializer.Deserialize(usersStr);
+        }
+
+        private IEnumerable<PersonDto> GetApprovalUsersByProjects(IEnumerable<ProjectDto> projects)
+        {
+            var projectSrv = new ProjectSoapClient();
+            var projectsIds = new ArrayOfLong();
+            projectsIds.AddRange(projects.Select(project => project.Id));
+            var usersStr = projectSrv.GetUsersByPermission(projectsIds, (int) Permissions.Codes.ApproveRequirements);
+            var serializer = new ObjectSerializer<List<PersonDto>>();
+            return (List<PersonDto>)serializer.Deserialize(usersStr);
+        }
+        #endregion
+
+        #region Filter
+
+        private void ApplyFilters()
+        {
+            var requirementsList = Requirements;
+
+            if (FilterByProjectSelection.Checked)
+            {
+                requirementsList =
+                    requirementsList.Where(r => r.ProjectId == long.Parse(FilterOptionsProject.SelectedValue)).ToList();
+            }
+
+            if (FilterByPrioritySelection.Checked)
+            {
+                requirementsList =
+                    requirementsList.Where(r => r.PriorityId == int.Parse(FilterOptionsPriority.SelectedValue)).ToList();
+            }
+
+            if (FilterByStatusSelection.Checked)
+            {
+                requirementsList =
+                    requirementsList.Where(r => r.StatusId == int.Parse(FilterOptionsStatus.SelectedValue)).ToList();
+            }
+
+            if (FilterByCreatedBySelection.Checked)
+            {
+                requirementsList =
+                    requirementsList.Where(r => r.CreatedbyId == long.Parse(FilterOptionCreatedBy.SelectedValue)).ToList();
+            }
+
+            if (FilterByModifiedBySelection.Checked)
+            {
+                requirementsList =
+                    requirementsList.Where(r => r.ModifiedbyId == long.Parse(FilterOptionModifiedBy.SelectedValue)).ToList();
+            }
+
+            if (FilterByApprovedBySelection.Checked)
+            {
+                requirementsList =
+                    requirementsList.Where(r => r.ApprovedbyId == long.Parse(FilterOptionApprovedBy.SelectedValue)).ToList();
+            }
+
+            RequirementsListRepeater.DataSource = requirementsList;
+            RequirementsListRepeater.DataBind();
+
+            RequirementsListGrid.DataSource = requirementsList;
+            RequirementsListGrid.DataBind();
         }
         #endregion
     }

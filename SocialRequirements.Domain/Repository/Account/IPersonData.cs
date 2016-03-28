@@ -26,5 +26,9 @@ namespace SocialRequirements.Domain.Repository.Account
         string GetLastname(long personId);
 
         List<ProjectPermissionsDto> GetPermissionsInProjects(long personId);
+
+        List<PersonDto> GetUsersByCompany(long companyId);
+
+        List<PersonDto> GetUsersByProjectRole(long projectId, long roleId);
     }
 }

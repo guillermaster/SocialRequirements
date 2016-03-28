@@ -90,5 +90,10 @@ namespace SocialRequirements.Business.Account
             var personId = _personData.GetPersonId(username);
             return _personData.GetPermissionsInProjects(personId);
         }
+
+        public List<PersonDto> GetUsersByCompany(long companyId)
+        {
+            return _personData.GetUsersByCompany(companyId);
+        }
     }
 }

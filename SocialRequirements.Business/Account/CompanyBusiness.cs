@@ -58,5 +58,10 @@ namespace SocialRequirements.Business.Account
         {
             return _companyData.GetAll();
         }
+
+        public List<CompanyDto> GetCompaniesByProject(long projectId)
+        {
+            return _companyData.GetCompaniesByProject(projectId);
+        }
     }
 }

@@ -2263,6 +2263,12 @@
     <Content Include="Service References\ProjectService\SocialRequirements.ProjectService.SetProjectResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Service References\ProjectService\SocialRequirements.ProjectService.GetUsersResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ProjectService\SocialRequirements.ProjectService.GetUsersByPermissionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Service References\RequirementQuestionService\RequirementQuestion.wsdl" />
     <Content Include="Service References\RequirementQuestionService\SocialRequirements.RequirementQuestionService.AddQuestionResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>

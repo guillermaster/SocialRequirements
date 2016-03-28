@@ -43,12 +43,21 @@
                 viewListButton.style.display = 'none';
         }
 
-        function showFilterDialog() {
 
+        $(document).ready(function () {
+            FilterByProjectToggle();
+            FilterByPriorityToggle();
+            FilterByStatusToggle();
+            FilterByCreatedByToggle();
+            FilterByModifiedByToggle();
+            FilterByApprovedByToggle();
+        });
+
+        function showFilterDialog() {
             var questionDialog = $('#filterDiv').dialog({
                 autoOpen: false,
-                height: 240,
-                width: 440,
+                height: 320,
+                width: 400,
                 modal: true,
                 buttons: {
                     Post: function () {
@@ -66,6 +75,42 @@
             questionDialog.parent().appendTo(jQuery("form:first"));
             //$(".selector").dialog({ appendTo: "#someElem" });
             questionDialog.dialog("open");
+        }
+
+        function FilterByProjectToggle() {
+            var option = document.getElementById('<%= FilterByProjectSelection.ClientID %>');
+            var filterValue = document.getElementById('<%= FilterOptionsProject.ClientID %>');
+            filterValue.disabled = !option.checked;
+        }
+
+        function FilterByPriorityToggle() {
+            var option = document.getElementById('<%= FilterByPrioritySelection.ClientID %>');
+            var filterValue = document.getElementById('<%= FilterOptionsPriority.ClientID %>');
+            filterValue.disabled = !option.checked;
+        }
+
+        function FilterByStatusToggle() {
+            var option = document.getElementById('<%= FilterByStatusSelection.ClientID %>');
+            var filterValue = document.getElementById('<%= FilterOptionsStatus.ClientID %>');
+            filterValue.disabled = !option.checked;
+        }
+
+        function FilterByCreatedByToggle() {
+            var option = document.getElementById('<%= FilterByCreatedBySelection.ClientID %>');
+            var filterValue = document.getElementById('<%= FilterOptionCreatedBy.ClientID %>');
+            filterValue.disabled = !option.checked;
+        }
+
+        function FilterByModifiedByToggle() {
+            var option = document.getElementById('<%= FilterByModifiedBySelection.ClientID %>');
+            var filterValue = document.getElementById('<%= FilterOptionModifiedBy.ClientID %>');
+            filterValue.disabled = !option.checked;
+        }
+
+        function FilterByApprovedByToggle() {
+            var option = document.getElementById('<%= FilterByApprovedBySelection.ClientID %>');
+            var filterValue = document.getElementById('<%= FilterOptionApprovedBy.ClientID %>');
+            filterValue.disabled = !option.checked;
         }
     </script>
 
@@ -270,30 +315,30 @@
     </asp:Panel>
     
     <!-- content for question popup -->
-    <div id="filterDiv" style="display: none" title="Select a filter criteria for this list">
+    <div id="filterDiv" style="display: none; font-size: 90%" title="Select a filter criteria for this list">
         <div class="col-xs-12">
-            <asp:CheckBox ID="FilterByProjectSelection" runat="server" Text="Project" />
-            <asp:DropDownList runat="server" ID="FilterOptionsProject" />
+            <asp:CheckBox ID="FilterByProjectSelection" runat="server" Text="Project" Width="100px" onclick="javascript: FilterByProjectToggle();" />
+            <asp:DropDownList runat="server" ID="FilterOptionsProject" CssClass="filterOption" />
         </div>
-        <div class="col-xs-6">
-            <asp:CheckBox ID="FilterByPrioritySelection" runat="server" Text="Priority" />
-            <asp:DropDownList runat="server" ID="FilterOptionsPriority" />
+        <div class="col-xs-12">
+            <asp:CheckBox ID="FilterByPrioritySelection" runat="server" Text="Priority" Width="100px" onclick="javascript: FilterByPriorityToggle();" />
+            <asp:DropDownList runat="server" ID="FilterOptionsPriority" CssClass="filterOption" />
         </div>
-        <div class="col-xs-6">
-            <asp:CheckBox ID="FilterByStatusSelection" runat="server" Text="Status" />
-            <asp:DropDownList runat="server" ID="FilterOptionsStatus" />
+        <div class="col-xs-12">
+            <asp:CheckBox ID="FilterByStatusSelection" runat="server" Text="Status" Width="100px" onclick="javascript: FilterByStatusToggle();" />
+            <asp:DropDownList runat="server" ID="FilterOptionsStatus" CssClass="filterOption" />
         </div>
-        <div class="col-xs-10">
-            <asp:CheckBox ID="FilterByCreatedBySelection" runat="server" Text="Created by" />
-            <asp:DropDownList runat="server" ID="FilterOptionCreatedBy" />
+        <div class="col-xs-12">
+            <asp:CheckBox ID="FilterByCreatedBySelection" runat="server" Text="Created by" Width="100px" onclick="javascript: FilterByCreatedByToggle();" />
+            <asp:DropDownList runat="server" ID="FilterOptionCreatedBy" CssClass="filterOption" />
         </div>
-        <div class="col-xs-10">
-            <asp:CheckBox ID="FilterByModifiedBySelection" runat="server" Text="Modified by" />
-            <asp:DropDownList runat="server" ID="FilterOptionModifiedBy" />
+        <div class="col-xs-12">
+            <asp:CheckBox ID="FilterByModifiedBySelection" runat="server" Text="Modified by" Width="100px" onclick="javascript: FilterByModifiedByToggle();" />
+            <asp:DropDownList runat="server" ID="FilterOptionModifiedBy" CssClass="filterOption" />
         </div>
-        <div class="col-xs-10">
-            <asp:CheckBox ID="FilterByApprovedBySelection" runat="server" Text="Approved by" />
-            <asp:DropDownList runat="server" ID="FilterOptionApprovedBy" />
+        <div class="col-xs-12">
+            <asp:CheckBox ID="FilterByApprovedBySelection" runat="server" Text="Approved by" Width="100px" onclick="javascript: FilterByApprovedByToggle();" />
+            <asp:DropDownList runat="server" ID="FilterOptionApprovedBy" CssClass="filterOption" />
         </div>
     </div>
     <asp:Button runat="server" ID="SetFilterButton" Text="Set Filter" OnClick="SetFilterButton_OnClick" Visible="False" />    

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Web.Services;
 using Ninject;
 using Ninject.Web;
@@ -63,6 +64,48 @@ namespace WebService
         {
             var username = Encryption.Decrypt(encUsername);
             ProjectBusiness.AddCompanyRelationship(companyId, projectId, username);
+        }
+
+        [WebMethod(CacheDuration = 320)]
+        public string GetUsers(List<long> projectsIds)
+        {
+            var usersDict = new Dictionary<long, PersonDto>();
+            foreach (var projectId in projectsIds)
+            {
+                var users = ProjectBusiness.GetUsers(projectId);
+                foreach (var user in users.Where(user => !usersDict.ContainsKey(user.Id)))
+                {
+                    usersDict.Add(user.Id, user);
+                }
+            }
+
+            var userslist = new List<PersonDto>();
+            userslist.AddRange(usersDict.Values);
+            userslist = userslist.OrderBy(u => u.FullName).ToList();
+
+            var serializer = new ObjectSerializer<List<PersonDto>>(userslist);
+            return serializer.ToXmlString();
+        }
+
+        [WebMethod(CacheDuration = 120)]
+        public string GetUsersByPermission(List<long> projectsIds, int permissionId)
+        {
+            var usersDict = new Dictionary<long, PersonDto>();
+            foreach (var projectId in projectsIds)
+            {
+                var users = ProjectBusiness.GetUsers(projectId, permissionId);
+                foreach (var user in users.Where(user => !usersDict.ContainsKey(user.Id)))
+                {
+                    usersDict.Add(user.Id, user);
+                }
+            }
+
+            var userslist = new List<PersonDto>();
+            userslist.AddRange(usersDict.Values);
+            userslist = userslist.OrderBy(u => u.FullName).ToList();
+
+            var serializer = new ObjectSerializer<List<PersonDto>>(userslist);
+            return serializer.ToXmlString();
         }
     }
 }
