@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RequirementVersionHistory.aspx.cs" Inherits="SocialRequirements.Requirements.RequirementVersionHistory" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RequirementVersionHistory.aspx.cs" Inherits="SocialRequirements.Requirements.RequirementVersionHistory" EnableEventValidation="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     Requirement Version History
@@ -8,7 +8,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
     <asp:GridView runat="server" ID="RequirementVersionsGrid" ItemType="SocialRequirements.Domain.DTO.Requirement.RequirementDto"
         CssClass="Grid" AutoGenerateColumns="False" OnSelectedIndexChanged="RequirementVersionsGrid_OnSelectedIndexChanged"
-        OnRowCommand="RequirementVersionsGrid_OnRowCommand">
+        OnRowDataBound="RequirementVersionsGrid_OnRowDataBound">
         <Columns>
             <asp:TemplateField>
                 <HeaderTemplate>
@@ -106,22 +106,6 @@
                     <div style="text-align: center;">
                         <asp:Label runat="server" ID="ModifiedBy" Text='<%# Eval("ModifiedByName") %>' />
                     </div>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField>
-                <ItemStyle Width="80px" />
-                <HeaderTemplate>
-                    Last modified on
-                </HeaderTemplate>
-                <ItemTemplate>
-                    <div style="text-align: center;">
-                        <asp:Label runat="server" ID="ModifiedOn" Text='<%# Eval("Modifiedon") %>' />
-                    </div>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField>
-                <ItemTemplate>
-                    <asp:Button runat="server" Text="Tmp Select" CommandArgument='<%# Eval("Id")+"-"+Eval("CompanyId")+"-"+Eval("ProjectId")+"-"+Eval("VersionId") %>' />
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>

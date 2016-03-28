@@ -60,7 +60,7 @@
                 width: 400,
                 modal: true,
                 buttons: {
-                    Post: function () {
+                    Filter: function () {
                         questionDialog.dialog("close");
                         <%=Page.ClientScript.GetPostBackEventReference(SetFilterButton, "") %>
                     },
