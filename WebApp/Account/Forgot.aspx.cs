@@ -26,15 +26,24 @@ namespace SocialRequirements.Account
                 ErrorMessage.Visible = true;
                 return;
             }
-            
-            SendEmail(Email.Text, GetSetPasswordUrl(encEmail));
-            loginForm.Visible = false;
-            DisplayEmail.Visible = true;
+
+            try
+            {
+                SendEmail(Email.Text, GetSetPasswordUrl(encEmail));
+                loginForm.Visible = false;
+                DisplayEmail.Visible = true;
+                ErrorMessage.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage.Visible = true;
+                FailureText.Text = ex.Message;
+            }
         }
 
         private string GetSetPasswordUrl(string encEmail)
         {
-            var url = ResolveUrl(CommonConstants.FormsUrl.SetPassword);
+            var url = Request.Url.AbsoluteUri.Substring(0, Request.Url.AbsoluteUri.LastIndexOf('/') + 1) + CommonConstants.FormsFileName.SetPassword;            
             url += "?" + CommonConstants.QueryStringParams.Id + "=" + encEmail;
             return url;
         }

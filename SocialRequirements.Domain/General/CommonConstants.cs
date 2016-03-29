@@ -21,7 +21,6 @@
             public const string RequirementQuestion = "~/Requirements/RequirementQuestion";
             public const string RecentActivities = "~/RecentActivities.aspx";
             public const string SearchResults = "~/SearchResults.aspx";
-            public const string SetPassword = "~/ManagePassword.aspx";
             public const string RequirementVersionHistory = "~/Requirements/RequirementVersionHistory.aspx";
         }
 
@@ -30,6 +29,7 @@
             public const string Requirement = "Requirement.aspx";
             public const string RequirementModification = "RequirementModify.aspx";
             public const string RequirementVersionHistory = "RequirementVersionHistory.aspx";
+            public const string SetPassword = "ManagePassword.aspx";
         }
 
         public class QueryStringParams
