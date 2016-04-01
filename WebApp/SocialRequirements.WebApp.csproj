@@ -2455,6 +2455,9 @@
     <Content Include="Service References\RequirementService\SocialRequirements.RequirementService.GetRequirementVersionResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Service References\RequirementService\SocialRequirements.RequirementService.GetUsersInvolvedInRequirementResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

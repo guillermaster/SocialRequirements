@@ -300,10 +300,8 @@ namespace SocialRequirements.Requirements
 
         protected virtual void AddNewCommentButton_Click(object sender, EventArgs e)
         {
-            var requirementSrv = new RequirementSoapClient();
-            requirementSrv.CommentRequirement(CompanyId, ProjectId, RequirementId, NewCommentInput.Text,
-                GetUsernameEncrypted());
-            SetRequirementComments();
+            PostComment();
+            SendCommentNotificationEmail(GetInvolvedUsers(), NewCommentInput.Text);
             // clear comment input box
             NewCommentInput.Text = string.Empty;
         }
@@ -315,7 +313,6 @@ namespace SocialRequirements.Requirements
             var requirementSrv = new RequirementSoapClient();
             var requirementStr = requirementSrv.GetRequirement(CompanyId, ProjectId, RequirementId);
             
-
             var serializer = new ObjectSerializer<RequirementDto>();
             var requirement = (RequirementDto)serializer.Deserialize(requirementStr);
 
@@ -377,6 +374,14 @@ namespace SocialRequirements.Requirements
 
             ProjectInput.SelectedValue = ProjectId.ToString();
         }
+
+        private IEnumerable<PersonDto> GetInvolvedUsers()
+        {
+            var requirementSrv = new RequirementSoapClient();
+            var usersStr = requirementSrv.GetUsersInvolvedInRequirement(CompanyId, ProjectId, RequirementId);
+            var serializer = new ObjectSerializer<List<PersonDto>>();
+            return (List<PersonDto>)serializer.Deserialize(usersStr);
+        }
         #endregion
 
         #region Data Update
@@ -409,6 +414,40 @@ namespace SocialRequirements.Requirements
             catch (Exception ex)
             {
                 SetFadeOutMessage("An error has occurred, please try again.", false, ex.InnerException != null ? ex.InnerException.Message : ex.Message);
+            }
+        }
+
+        private void PostComment()
+        {
+            var requirementSrv = new RequirementSoapClient();
+            requirementSrv.CommentRequirement(CompanyId, ProjectId, RequirementId, NewCommentInput.Text,
+                GetUsernameEncrypted());
+
+            SetRequirementComments();
+        }
+
+        private void SendCommentNotificationEmail(IEnumerable<PersonDto> users, string comment)
+        {
+            var commentBy = string.Empty;
+            var masterPage = (SiteMaster) Master;
+            if (masterPage != null)
+                commentBy = masterPage.GetUserFullName();
+
+            var bodyHtml = commentBy + " has posted a new comment to the requirement titled <b>" + RequirementTitle.Text +
+                           "</b>:<br /><br />" + comment;
+            var bodyPlain = commentBy + " has posted a new comment to the requirement titled '" + RequirementTitle.Text + "'" + "\t\n"
+                            + comment;
+
+            foreach (var user in users)
+            {
+                try
+                {
+                    EmailUtilities.SendEmail(user.PrimaryEmail, "New comment on requirement", bodyPlain, bodyHtml);
+                }
+                catch
+                {
+                    // ignored
+                }
             }
         }
         #endregion

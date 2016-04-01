@@ -5,6 +5,7 @@ using System.Web.Services;
 using Ninject;
 using Ninject.Web;
 using SocialRequirements.Domain.BusinessLogic.Requirement;
+using SocialRequirements.Domain.DTO.Account;
 using SocialRequirements.Domain.DTO.Requirement;
 using SocialRequirements.Utilities;
 using SocialRequirements.Utilities.Security;
@@ -346,6 +347,14 @@ namespace WebService
             var requirementVersion = RequirementVersionBusiness.Get(companyId, projectId, requirementId,
                 requirementVersionId);
             var serializer = new ObjectSerializer<RequirementDto>(requirementVersion);
+            return serializer.ToXmlString();
+        }
+
+        [WebMethod(CacheDuration = 0)]
+        public string GetUsersInvolvedInRequirement(long companyId, long projectId, long requirementId)
+        {
+            var users = RequirementVersionBusiness.GetUsersInvolvedInRequirement(companyId, projectId, requirementId);
+            var serializer = new ObjectSerializer<List<PersonDto>>(users);
             return serializer.ToXmlString();
         }
     }

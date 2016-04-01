@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using SocialRequirements.Domain.BusinessLogic.Requirement;
+using SocialRequirements.Domain.DTO.Account;
 using SocialRequirements.Domain.DTO.Requirement;
 using SocialRequirements.Domain.Repository.Requirement;
 
@@ -22,6 +23,11 @@ namespace SocialRequirements.Business.Requirement
         public RequirementDto Get(long companyId, long projectId, long requirementId, long? requirementVersionId = null)
         {
             return _requirementVersionData.Get(companyId, projectId, requirementId, requirementVersionId);
+        }
+
+        public List<PersonDto> GetUsersInvolvedInRequirement(long companyId, long projectId, long requirementId)
+        {
+            return _requirementVersionData.GetUsersInvolvedInRequirement(companyId, projectId, requirementId);
         }
     }
 }

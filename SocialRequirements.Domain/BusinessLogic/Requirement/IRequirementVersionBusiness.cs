@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using SocialRequirements.Domain.DTO.Account;
 using SocialRequirements.Domain.DTO.Requirement;
 
 namespace SocialRequirements.Domain.BusinessLogic.Requirement
@@ -23,5 +24,14 @@ namespace SocialRequirements.Domain.BusinessLogic.Requirement
         /// <param name="requirementId">Requirement identifier</param>
         /// <param name="requirementVersionId">Version identifier</param>
         RequirementDto Get(long companyId, long projectId, long requirementId, long? requirementVersionId = null);
+
+        /// <summary>
+        /// Gets all users that have participated in the requirement elicitation
+        /// </summary>
+        /// <param name="companyId">Company ID</param>
+        /// <param name="projectId">Project ID</param>
+        /// <param name="requirementId">Requirement ID</param>
+        /// <returns>List of persons</returns>
+        List<PersonDto> GetUsersInvolvedInRequirement(long companyId, long projectId, long requirementId);
     }
 }

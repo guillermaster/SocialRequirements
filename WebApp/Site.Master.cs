@@ -154,6 +154,11 @@ namespace SocialRequirements
             UserFullName.Text = fullname;
         }
 
+        public string GetUserFullName()
+        {
+            return UserFullName.Text;
+        }
+
         protected void SignOutButton_OnClick(object sender, EventArgs e)
         {
             Logout();

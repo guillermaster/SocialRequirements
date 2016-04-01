@@ -113,7 +113,7 @@ namespace SocialRequirements.Data.Account
             return projectsRoles.Select(pr => pr.Person).ToList().Select(GetDtoFromEntity).ToList();
         }
 
-        private static PersonDto GetDtoFromEntity(Person person)
+        public static PersonDto GetDtoFromEntity(Person person)
         {
             var personDto = new PersonDto
             {

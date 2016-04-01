@@ -74,5 +74,11 @@ namespace SocialRequirements.Context.Entities
         public virtual ICollection<RequirementComment> RequirementComment { get; set; }
 
         public virtual ICollection<RequirementQuestion> RequirementQuestion { get; set; }
+
+        public virtual Person Person { get; set; }
+
+        public virtual Person Person1 { get; set; }
+
+        public virtual Person Person2 { get; set; }
     }
 }

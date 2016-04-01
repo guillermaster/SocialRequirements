@@ -28,6 +28,9 @@ namespace SocialRequirements.Context.Entities
             RequirementQuestionAnswer1 = new HashSet<RequirementQuestionAnswer>();
             RequirementHashtag = new HashSet<RequirementHashtag>();
             RequirementModificationHashtag = new HashSet<RequirementModificationHashtag>();
+            RequirementVersion = new HashSet<RequirementVersion>();
+            RequirementVersion1 = new HashSet<RequirementVersion>();
+            RequirementVersion2 = new HashSet<RequirementVersion>();
         }
 
         public long id { get; set; }
@@ -99,5 +102,11 @@ namespace SocialRequirements.Context.Entities
         public virtual ICollection<RequirementHashtag> RequirementHashtag { get; set; }
 
         public virtual ICollection<RequirementModificationHashtag> RequirementModificationHashtag { get; set; }
+
+        public virtual ICollection<RequirementVersion> RequirementVersion { get; set; }
+
+        public virtual ICollection<RequirementVersion> RequirementVersion1 { get; set; }
+
+        public virtual ICollection<RequirementVersion> RequirementVersion2 { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using SocialRequirements.Domain.DTO.Account;
 using SocialRequirements.Domain.DTO.Requirement;
 
 namespace SocialRequirements.Domain.Repository.Requirement
@@ -94,5 +95,14 @@ namespace SocialRequirements.Domain.Repository.Requirement
         /// <param name="requirementId">Requirement ID</param>
         /// <returns>List of requirement version</returns>
         List<RequirementDto> GetVersionHistory(long companyId, long projectId, long requirementId);
+
+        /// <summary>
+        /// Gets all users that have participated in the requirement elicitation (creator, last person to modify, and person who approved)
+        /// </summary>
+        /// <param name="companyId">Company ID</param>
+        /// <param name="projectId">Project ID</param>
+        /// <param name="requirementId">Requirement ID</param>
+        /// <returns>List of persons</returns>
+        List<PersonDto> GetUsersInvolvedInRequirement(long companyId, long projectId, long requirementId);
     }
 }

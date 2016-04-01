@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using SocialRequirements.Context;
 using SocialRequirements.Context.Entities;
+using SocialRequirements.Data.Account;
+using SocialRequirements.Domain.DTO.Account;
 using SocialRequirements.Domain.DTO.Requirement;
 using SocialRequirements.Domain.General;
 using SocialRequirements.Domain.Repository.Account;
@@ -164,6 +166,21 @@ namespace SocialRequirements.Data.Requirement
             return requirementVersions.Select(GetDtoFromEntity).ToList();
         }
 
+        public List<PersonDto> GetUsersInvolvedInRequirement(long companyId, long projectId, long requirementId)
+        {
+            var users = new List<PersonDto>();
+            var requirementLastVers = GetLatestVersion(companyId, projectId, requirementId);
+
+            if (requirementLastVers.Person != null)
+                users.Add(PersonData.GetDtoFromEntity(requirementLastVers.Person));
+            if (requirementLastVers.Person1 != null && requirementLastVers.createdby_id != requirementLastVers.modifiedby_id)
+                users.Add(PersonData.GetDtoFromEntity(requirementLastVers.Person1));
+            if (requirementLastVers.Person2 != null && requirementLastVers.createdby_id != requirementLastVers.approvedby_id && requirementLastVers.modifiedby_id != requirementLastVers.approvedby_id)
+                users.Add(PersonData.GetDtoFromEntity(requirementLastVers.Person2));
+
+            return users;
+        }
+
         private RequirementVersion Get(long companyId, long projectId, long requirementId, long requirementVersionId)
         {
             var requirementVersion =
@@ -176,13 +193,18 @@ namespace SocialRequirements.Data.Requirement
 
         private RequirementDto GetLastest(long companyId, long projectId, long requirementId)
         {
-            var requirementVersion =
+            var requirementVersion = GetLatestVersion(companyId, projectId, requirementId);
+
+            return requirementVersion != null ? GetDtoFromEntity(requirementVersion) : null;
+        }
+
+        private RequirementVersion GetLatestVersion(long companyId, long projectId, long requirementId)
+        {
+            return
                 _context.RequirementVersion.Where(
                     rv => rv.company_id == companyId && rv.project_id == projectId && rv.requirement_id == requirementId)
                     .OrderByDescending(v => v.id)
                     .FirstOrDefault();
-
-            return requirementVersion != null ? GetDtoFromEntity(requirementVersion) : null;
         }
 
         private int GetNextVersionNumber(long companyId, long projectId, long requirementId)
