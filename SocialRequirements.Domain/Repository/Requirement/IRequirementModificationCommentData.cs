@@ -30,5 +30,7 @@ namespace SocialRequirements.Domain.Repository.Requirement
         /// <returns>Number of comments</returns>
         int GetQuantity(long companyId, long projectId, long requirementId, long requirementModificationId,
             long requirementModificationVersionId);
+
+        RequirementModificationCommentDto Get(long companyId, long projectId, long commentId);
     }
 }

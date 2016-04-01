@@ -42,7 +42,7 @@ namespace SocialRequirements.Business.Requirement
 
             // add activity feed log
             _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.RequirementModificationComment,
-                (int)GeneralCatalog.Detail.EntityActions.Create, requirementCommentId, DateTime.Now, personId);
+                (int)GeneralCatalog.Detail.EntityActions.Create, requirementCommentId, DateTime.Now, personId, requirementModificationId, requirementId);
         }
 
         public List<RequirementModificationCommentDto> Get(long companyId, long projectId, long requirementId, long requirementModificationId)

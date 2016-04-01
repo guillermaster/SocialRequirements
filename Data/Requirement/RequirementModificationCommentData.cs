@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SocialRequirements.Context;
 using SocialRequirements.Context.Entities;
 using SocialRequirements.Domain.DTO.Requirement;
 using SocialRequirements.Domain.Repository.Requirement;
+using SocialRequirements.Utilities;
 
 namespace SocialRequirements.Data.Requirement
 {
@@ -50,6 +49,15 @@ namespace SocialRequirements.Data.Requirement
                         c.requirement_modification_version_id == requirementModificationVersionId);
         }
 
+        public RequirementModificationCommentDto Get(long companyId, long projectId, long commentId)
+        {
+            var requirementModifComment =
+                _context.RequirementModificationComment.FirstOrDefault(
+                    c => c.company_id == companyId && c.project_id == projectId && c.id == commentId);
+
+            return requirementModifComment != null ? GetDtoFromEntity(requirementModifComment) : new RequirementModificationCommentDto();
+        }
+
         private static RequirementModificationComment GetEntityFromDto(RequirementModificationCommentDto requirementCommentDto)
         {
             var requirementModifComment = new RequirementModificationComment
@@ -79,7 +87,7 @@ namespace SocialRequirements.Data.Requirement
                 Comment = requirementComment.comment,
                 CreatedbyId = requirementComment.createdby_id,
                 Createdon = requirementComment.createdon,
-                CreatedByName = Utilities.StringUtilities.GetPersonFullName(requirementComment.Person)
+                CreatedByName = StringUtilities.GetPersonFullName(requirementComment.Person)
             };
             return requirementModifCommentDto;
         }
