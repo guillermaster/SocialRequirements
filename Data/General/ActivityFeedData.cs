@@ -348,6 +348,9 @@ namespace SocialRequirements.Data.General
                 case (int)GeneralCatalog.Detail.Entity.RequirementModification:
                     activityDto = GetRequirementModificationActivity(activityDto);
                     break;
+                case (int)GeneralCatalog.Detail.Entity.RequirementComment:
+                    activityDto = GetRequirementComment(activityDto);
+                    break;
                 default:
                     activityDto.Description = string.Empty;
                     activityDto.ShortDescription = string.Empty;
@@ -356,6 +359,20 @@ namespace SocialRequirements.Data.General
             }
 
             return activityDto;
+        }
+
+        private ActivityFeedDto GetRequirementComment(ActivityFeedDto activity)
+        {
+            if (activity.ProjectId == null) return activity;
+            var requirementComment = _requirementCommentData.Get(activity.CompanyId, activity.ProjectId.Value,
+                activity.RecordId);
+
+            activity.RecordId = requirementComment.RequirementId;
+            activity.Description = requirementComment.Comment;
+            activity.ShortDescription = requirementComment.Comment;
+            activity.Comment = new List<RequirementCommentDto>();
+
+            return activity;
         }
 
         private ActivityFeedDto GetRequirementActivity(ActivityFeedDto activity)

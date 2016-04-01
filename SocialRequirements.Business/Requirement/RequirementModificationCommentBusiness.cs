@@ -38,11 +38,11 @@ namespace SocialRequirements.Business.Requirement
                 requirementModifLatestVersion.Id, requirementModifLatestVersion.VersionId, personId, comment);
 
             // add the comment
-            _requirementModifCommentData.Add(requirementModifComment);
+            var requirementCommentId = _requirementModifCommentData.Add(requirementModifComment);
 
             // add activity feed log
             _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.RequirementModificationComment,
-                (int)GeneralCatalog.Detail.EntityActions.Create, requirementModificationId, DateTime.Now, personId);
+                (int)GeneralCatalog.Detail.EntityActions.Create, requirementCommentId, DateTime.Now, personId);
         }
 
         public List<RequirementModificationCommentDto> Get(long companyId, long projectId, long requirementId, long requirementModificationId)

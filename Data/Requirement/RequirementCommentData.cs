@@ -43,6 +43,15 @@ namespace SocialRequirements.Data.Requirement
                         c.requirement_version_id == requirementVersionId);
         }
 
+        public RequirementCommentDto Get(long companyId, long projectId, long commentId)
+        {
+            var requirementComment =
+                _context.RequirementComment.FirstOrDefault(
+                    c => c.company_id == companyId && c.project_id == projectId && c.id == commentId);
+
+            return GetDtoFromEntity(requirementComment);
+        }
+
         private static RequirementComment GetEntityFromDto(RequirementCommentDto requirementCommentDto)
         {
             var requirementComment = new RequirementComment

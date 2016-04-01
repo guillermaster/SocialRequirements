@@ -27,5 +27,7 @@ namespace SocialRequirements.Domain.Repository.Requirement
         /// <param name="requirementVersionId">Requirement version ID</param>
         /// <returns>Number of comments</returns>
         int GetQuantity(long requirementId, long companyId, long projectId, long requirementVersionId);
+
+        RequirementCommentDto Get(long companyId, long projectId, long commentId);
     }
 }
