@@ -116,11 +116,18 @@ namespace SocialRequirements.RequirementService {
         System.Threading.Tasks.Task<SocialRequirements.RequirementService.ApproveRequirementResponse> ApproveRequirementAsync(SocialRequirements.RequirementService.ApproveRequirementRequest request);
         
         // CODEGEN: Generating message contract since element name encUsername from namespace http://tempuri.org/ is not marked nillable
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SetRequirementDeveloped", ReplyAction="*")]
-        SocialRequirements.RequirementService.SetRequirementDevelopedResponse SetRequirementDeveloped(SocialRequirements.RequirementService.SetRequirementDevelopedRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SetRequirementDeployed", ReplyAction="*")]
+        SocialRequirements.RequirementService.SetRequirementDeployedResponse SetRequirementDeployed(SocialRequirements.RequirementService.SetRequirementDeployedRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SetRequirementDeveloped", ReplyAction="*")]
-        System.Threading.Tasks.Task<SocialRequirements.RequirementService.SetRequirementDevelopedResponse> SetRequirementDevelopedAsync(SocialRequirements.RequirementService.SetRequirementDevelopedRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SetRequirementDeployed", ReplyAction="*")]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementService.SetRequirementDeployedResponse> SetRequirementDeployedAsync(SocialRequirements.RequirementService.SetRequirementDeployedRequest request);
+        
+        // CODEGEN: Generating message contract since element name encUsername from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SetRequirementUnderTesting", ReplyAction="*")]
+        SocialRequirements.RequirementService.SetRequirementUnderTestingResponse SetRequirementUnderTesting(SocialRequirements.RequirementService.SetRequirementUnderTestingRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SetRequirementUnderTesting", ReplyAction="*")]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementService.SetRequirementUnderTestingResponse> SetRequirementUnderTestingAsync(SocialRequirements.RequirementService.SetRequirementUnderTestingRequest request);
         
         // CODEGEN: Generating message contract since element name encUsername from namespace http://tempuri.org/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SetRequirementUnderDevelopment", ReplyAction="*")]
@@ -1268,15 +1275,15 @@ namespace SocialRequirements.RequirementService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class SetRequirementDevelopedRequest {
+    public partial class SetRequirementDeployedRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="SetRequirementDeveloped", Namespace="http://tempuri.org/", Order=0)]
-        public SocialRequirements.RequirementService.SetRequirementDevelopedRequestBody Body;
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="SetRequirementDeployed", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementService.SetRequirementDeployedRequestBody Body;
         
-        public SetRequirementDevelopedRequest() {
+        public SetRequirementDeployedRequest() {
         }
         
-        public SetRequirementDevelopedRequest(SocialRequirements.RequirementService.SetRequirementDevelopedRequestBody Body) {
+        public SetRequirementDeployedRequest(SocialRequirements.RequirementService.SetRequirementDeployedRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -1285,7 +1292,7 @@ namespace SocialRequirements.RequirementService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class SetRequirementDevelopedRequestBody {
+    public partial class SetRequirementDeployedRequestBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
         public long companyId;
@@ -1299,10 +1306,10 @@ namespace SocialRequirements.RequirementService {
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
         public string encUsername;
         
-        public SetRequirementDevelopedRequestBody() {
+        public SetRequirementDeployedRequestBody() {
         }
         
-        public SetRequirementDevelopedRequestBody(long companyId, long projectId, long requirementId, string encUsername) {
+        public SetRequirementDeployedRequestBody(long companyId, long projectId, long requirementId, string encUsername) {
             this.companyId = companyId;
             this.projectId = projectId;
             this.requirementId = requirementId;
@@ -1314,15 +1321,15 @@ namespace SocialRequirements.RequirementService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class SetRequirementDevelopedResponse {
+    public partial class SetRequirementDeployedResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="SetRequirementDevelopedResponse", Namespace="http://tempuri.org/", Order=0)]
-        public SocialRequirements.RequirementService.SetRequirementDevelopedResponseBody Body;
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="SetRequirementDeployedResponse", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementService.SetRequirementDeployedResponseBody Body;
         
-        public SetRequirementDevelopedResponse() {
+        public SetRequirementDeployedResponse() {
         }
         
-        public SetRequirementDevelopedResponse(SocialRequirements.RequirementService.SetRequirementDevelopedResponseBody Body) {
+        public SetRequirementDeployedResponse(SocialRequirements.RequirementService.SetRequirementDeployedResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -1331,9 +1338,82 @@ namespace SocialRequirements.RequirementService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.Runtime.Serialization.DataContractAttribute()]
-    public partial class SetRequirementDevelopedResponseBody {
+    public partial class SetRequirementDeployedResponseBody {
         
-        public SetRequirementDevelopedResponseBody() {
+        public SetRequirementDeployedResponseBody() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class SetRequirementUnderTestingRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="SetRequirementUnderTesting", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementService.SetRequirementUnderTestingRequestBody Body;
+        
+        public SetRequirementUnderTestingRequest() {
+        }
+        
+        public SetRequirementUnderTestingRequest(SocialRequirements.RequirementService.SetRequirementUnderTestingRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class SetRequirementUnderTestingRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public long companyId;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=1)]
+        public long projectId;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=2)]
+        public long requirementId;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
+        public string encUsername;
+        
+        public SetRequirementUnderTestingRequestBody() {
+        }
+        
+        public SetRequirementUnderTestingRequestBody(long companyId, long projectId, long requirementId, string encUsername) {
+            this.companyId = companyId;
+            this.projectId = projectId;
+            this.requirementId = requirementId;
+            this.encUsername = encUsername;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class SetRequirementUnderTestingResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="SetRequirementUnderTestingResponse", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementService.SetRequirementUnderTestingResponseBody Body;
+        
+        public SetRequirementUnderTestingResponse() {
+        }
+        
+        public SetRequirementUnderTestingResponse(SocialRequirements.RequirementService.SetRequirementUnderTestingResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute()]
+    public partial class SetRequirementUnderTestingResponseBody {
+        
+        public SetRequirementUnderTestingResponseBody() {
         }
     }
     
@@ -3834,33 +3914,63 @@ namespace SocialRequirements.RequirementService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SocialRequirements.RequirementService.SetRequirementDevelopedResponse SocialRequirements.RequirementService.RequirementSoap.SetRequirementDeveloped(SocialRequirements.RequirementService.SetRequirementDevelopedRequest request) {
-            return base.Channel.SetRequirementDeveloped(request);
+        SocialRequirements.RequirementService.SetRequirementDeployedResponse SocialRequirements.RequirementService.RequirementSoap.SetRequirementDeployed(SocialRequirements.RequirementService.SetRequirementDeployedRequest request) {
+            return base.Channel.SetRequirementDeployed(request);
         }
         
-        public void SetRequirementDeveloped(long companyId, long projectId, long requirementId, string encUsername) {
-            SocialRequirements.RequirementService.SetRequirementDevelopedRequest inValue = new SocialRequirements.RequirementService.SetRequirementDevelopedRequest();
-            inValue.Body = new SocialRequirements.RequirementService.SetRequirementDevelopedRequestBody();
+        public void SetRequirementDeployed(long companyId, long projectId, long requirementId, string encUsername) {
+            SocialRequirements.RequirementService.SetRequirementDeployedRequest inValue = new SocialRequirements.RequirementService.SetRequirementDeployedRequest();
+            inValue.Body = new SocialRequirements.RequirementService.SetRequirementDeployedRequestBody();
             inValue.Body.companyId = companyId;
             inValue.Body.projectId = projectId;
             inValue.Body.requirementId = requirementId;
             inValue.Body.encUsername = encUsername;
-            SocialRequirements.RequirementService.SetRequirementDevelopedResponse retVal = ((SocialRequirements.RequirementService.RequirementSoap)(this)).SetRequirementDeveloped(inValue);
+            SocialRequirements.RequirementService.SetRequirementDeployedResponse retVal = ((SocialRequirements.RequirementService.RequirementSoap)(this)).SetRequirementDeployed(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SocialRequirements.RequirementService.SetRequirementDevelopedResponse> SocialRequirements.RequirementService.RequirementSoap.SetRequirementDevelopedAsync(SocialRequirements.RequirementService.SetRequirementDevelopedRequest request) {
-            return base.Channel.SetRequirementDevelopedAsync(request);
+        System.Threading.Tasks.Task<SocialRequirements.RequirementService.SetRequirementDeployedResponse> SocialRequirements.RequirementService.RequirementSoap.SetRequirementDeployedAsync(SocialRequirements.RequirementService.SetRequirementDeployedRequest request) {
+            return base.Channel.SetRequirementDeployedAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SocialRequirements.RequirementService.SetRequirementDevelopedResponse> SetRequirementDevelopedAsync(long companyId, long projectId, long requirementId, string encUsername) {
-            SocialRequirements.RequirementService.SetRequirementDevelopedRequest inValue = new SocialRequirements.RequirementService.SetRequirementDevelopedRequest();
-            inValue.Body = new SocialRequirements.RequirementService.SetRequirementDevelopedRequestBody();
+        public System.Threading.Tasks.Task<SocialRequirements.RequirementService.SetRequirementDeployedResponse> SetRequirementDeployedAsync(long companyId, long projectId, long requirementId, string encUsername) {
+            SocialRequirements.RequirementService.SetRequirementDeployedRequest inValue = new SocialRequirements.RequirementService.SetRequirementDeployedRequest();
+            inValue.Body = new SocialRequirements.RequirementService.SetRequirementDeployedRequestBody();
             inValue.Body.companyId = companyId;
             inValue.Body.projectId = projectId;
             inValue.Body.requirementId = requirementId;
             inValue.Body.encUsername = encUsername;
-            return ((SocialRequirements.RequirementService.RequirementSoap)(this)).SetRequirementDevelopedAsync(inValue);
+            return ((SocialRequirements.RequirementService.RequirementSoap)(this)).SetRequirementDeployedAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SocialRequirements.RequirementService.SetRequirementUnderTestingResponse SocialRequirements.RequirementService.RequirementSoap.SetRequirementUnderTesting(SocialRequirements.RequirementService.SetRequirementUnderTestingRequest request) {
+            return base.Channel.SetRequirementUnderTesting(request);
+        }
+        
+        public void SetRequirementUnderTesting(long companyId, long projectId, long requirementId, string encUsername) {
+            SocialRequirements.RequirementService.SetRequirementUnderTestingRequest inValue = new SocialRequirements.RequirementService.SetRequirementUnderTestingRequest();
+            inValue.Body = new SocialRequirements.RequirementService.SetRequirementUnderTestingRequestBody();
+            inValue.Body.companyId = companyId;
+            inValue.Body.projectId = projectId;
+            inValue.Body.requirementId = requirementId;
+            inValue.Body.encUsername = encUsername;
+            SocialRequirements.RequirementService.SetRequirementUnderTestingResponse retVal = ((SocialRequirements.RequirementService.RequirementSoap)(this)).SetRequirementUnderTesting(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementService.SetRequirementUnderTestingResponse> SocialRequirements.RequirementService.RequirementSoap.SetRequirementUnderTestingAsync(SocialRequirements.RequirementService.SetRequirementUnderTestingRequest request) {
+            return base.Channel.SetRequirementUnderTestingAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SocialRequirements.RequirementService.SetRequirementUnderTestingResponse> SetRequirementUnderTestingAsync(long companyId, long projectId, long requirementId, string encUsername) {
+            SocialRequirements.RequirementService.SetRequirementUnderTestingRequest inValue = new SocialRequirements.RequirementService.SetRequirementUnderTestingRequest();
+            inValue.Body = new SocialRequirements.RequirementService.SetRequirementUnderTestingRequestBody();
+            inValue.Body.companyId = companyId;
+            inValue.Body.projectId = projectId;
+            inValue.Body.requirementId = requirementId;
+            inValue.Body.encUsername = encUsername;
+            return ((SocialRequirements.RequirementService.RequirementSoap)(this)).SetRequirementUnderTestingAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]

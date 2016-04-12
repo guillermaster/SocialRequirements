@@ -2458,10 +2458,13 @@
     <Content Include="Service References\RequirementService\SocialRequirements.RequirementService.GetUsersInvolvedInRequirementResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\RequirementService\SocialRequirements.RequirementService.SetRequirementDevelopedResponse.datasource">
+    <Content Include="Service References\RequirementService\SocialRequirements.RequirementService.SetRequirementUnderDevelopmentResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\RequirementService\SocialRequirements.RequirementService.SetRequirementUnderDevelopmentResponse.datasource">
+    <Content Include="Service References\RequirementService\SocialRequirements.RequirementService.SetRequirementDeployedResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RequirementService\SocialRequirements.RequirementService.SetRequirementUnderTestingResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Web.Debug.config">

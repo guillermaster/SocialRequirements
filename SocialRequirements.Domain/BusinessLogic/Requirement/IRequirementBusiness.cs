@@ -117,13 +117,22 @@ namespace SocialRequirements.Domain.BusinessLogic.Requirement
         void SetUnderDevelopment(long companyId, long projectId, long requirementId, string username);
 
         /// <summary>
-        /// Sets a requirement as developed
+        /// Sets a requirement as under testing stage
         /// </summary>
         /// <param name="companyId">Company ID</param>
         /// <param name="projectId">Project ID</param>
         /// <param name="requirementId">Requirement ID</param>
         /// <param name="username">User who updates the requirement status</param>
-        void SetDeveloped(long companyId, long projectId, long requirementId, string username);
+        void SetUnderTesting(long companyId, long projectId, long requirementId, string username);
+
+        /// <summary>
+        /// Sets a requirement as deployed
+        /// </summary>
+        /// <param name="companyId">Company ID</param>
+        /// <param name="projectId">Project ID</param>
+        /// <param name="requirementId">Requirement ID</param>
+        /// <param name="username">User who updates the requirement status</param>
+        void SetDeployed(long companyId, long projectId, long requirementId, string username);
 
         /// <summary>
         /// Sets a requirement as rejected

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Web;
 using System.Web.UI.WebControls;
 using SocialRequirements.Domain.DTO.Account;
@@ -206,6 +207,7 @@ namespace SocialRequirements.Requirements
             LoadStatusFilterOptions();
             LoadCreatedModifiedByFilterOptions();
             LoadApprovedByFilterOptions();
+            LoadDevelopmentFilterOptions();
         }
 
         private void LoadProjectFilterOptions()
@@ -258,6 +260,20 @@ namespace SocialRequirements.Requirements
             FilterOptionApprovedBy.DataValueField = CustomExpression.GetPropertyName<PersonDto>(c => c.Id);
             FilterOptionApprovedBy.DataTextField = CustomExpression.GetPropertyName<PersonDto>(c => c.FullName);
             FilterOptionApprovedBy.DataBind();
+        }
+
+        private void LoadDevelopmentFilterOptions()
+        {
+            var filter = Request.QueryString[CommonConstants.QueryStringParams.Filter];
+            if (filter != CommonConstants.Filters.Approved) return;
+
+            var status = GetCatalogOptions(GeneralCatalog.Header.RequirementDevelopment);
+
+            FilterOptionDevelopment.DataSource = status;
+            FilterOptionDevelopment.DataValueField = CustomExpression.GetPropertyName<GeneralCatalogDetailDto>(c => c.Id);
+            FilterOptionDevelopment.DataTextField = CustomExpression.GetPropertyName<GeneralCatalogDetailDto>(c => c.Name);
+            FilterOptionDevelopment.DataBind();
+            DevelopmentFilter.Visible = true;
         }
 
         private IEnumerable<PersonDto> GetUsersByProjects(IEnumerable<ProjectDto> projects)
@@ -321,6 +337,12 @@ namespace SocialRequirements.Requirements
             {
                 requirementsList =
                     requirementsList.Where(r => r.ApprovedbyId == long.Parse(FilterOptionApprovedBy.SelectedValue)).ToList();
+            }
+
+            if (FilterDevelopmentSelection.Checked)
+            {
+                requirementsList =
+                    requirementsList.Where(r => r.DevelopmentStatusId == long.Parse(FilterOptionDevelopment.SelectedValue)).ToList();
             }
 
             RequirementsListRepeater.DataSource = requirementsList;

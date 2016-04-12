@@ -142,10 +142,17 @@ namespace WebService
         }
 
         [WebMethod(CacheDuration = 0)]
-        public void SetRequirementDeveloped(long companyId, long projectId, long requirementId, string encUsername)
+        public void SetRequirementDeployed(long companyId, long projectId, long requirementId, string encUsername)
         {
             var username = Encryption.Decrypt(encUsername);
-            RequirementBusiness.SetDeveloped(companyId, projectId, requirementId, username);
+            RequirementBusiness.SetDeployed(companyId, projectId, requirementId, username);
+        }
+
+        [WebMethod(CacheDuration = 0)]
+        public void SetRequirementUnderTesting(long companyId, long projectId, long requirementId, string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            RequirementBusiness.SetUnderTesting(companyId, projectId, requirementId, username);
         }
 
         [WebMethod(CacheDuration = 0)]

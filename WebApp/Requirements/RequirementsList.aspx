@@ -51,6 +51,7 @@
             FilterByCreatedByToggle();
             FilterByModifiedByToggle();
             FilterByApprovedByToggle();
+            FilterByDevelopmentToggle();
         });
 
         function showFilterDialog() {
@@ -110,6 +111,12 @@
         function FilterByApprovedByToggle() {
             var option = document.getElementById('<%= FilterByApprovedBySelection.ClientID %>');
             var filterValue = document.getElementById('<%= FilterOptionApprovedBy.ClientID %>');
+            filterValue.disabled = !option.checked;
+        }
+
+        function FilterByDevelopmentToggle() {
+            var option = document.getElementById('<%= FilterDevelopmentSelection.ClientID %>');
+            var filterValue = document.getElementById('<%= FilterOptionDevelopment.ClientID %>');
             filterValue.disabled = !option.checked;
         }
     </script>
@@ -326,7 +333,7 @@
         </asp:Repeater>
     </asp:Panel>
     
-    <!-- content for question popup -->
+    <!-- content for FILTERS popup -->
     <div id="filterDiv" style="display: none; font-size: 90%" title="Select a filter criteria for this list">
         <div class="col-xs-12">
             <asp:CheckBox ID="FilterByProjectSelection" runat="server" Text="Project" Width="100px" onclick="javascript: FilterByProjectToggle();" />
@@ -352,6 +359,10 @@
             <asp:CheckBox ID="FilterByApprovedBySelection" runat="server" Text="Approved by" Width="100px" onclick="javascript: FilterByApprovedByToggle();" />
             <asp:DropDownList runat="server" ID="FilterOptionApprovedBy" CssClass="filterOption" />
         </div>
+        <asp:Panel CssClass="col-xs-12" ID="DevelopmentFilter" runat="server" Visible="False">
+            <asp:CheckBox ID="FilterDevelopmentSelection" runat="server" Text="Development" Width="105px" onclick="javascript: FilterByDevelopmentToggle();" />
+            <asp:DropDownList runat="server" ID="FilterOptionDevelopment" CssClass="filterOption" />
+        </asp:Panel>
     </div>
     <asp:Button runat="server" ID="SetFilterButton" Text="Set Filter" OnClick="SetFilterButton_OnClick" Visible="False" />    
 </asp:Content>

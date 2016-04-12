@@ -10,7 +10,8 @@
             EntityActions = 4,
             RequirementQuestionStatus = 5,
             RequirementQuestionAnswerStatus = 6,
-            RequirementPriority = 8
+            RequirementPriority = 8,
+            RequirementDevelopment = 9
         }
 
         public class Detail
@@ -44,7 +45,8 @@
             public enum SoftwareDevelopmentStatus
             {
                 UnderDevelopment = 37,
-                Developed = 38
+                UnderTesting = 38,
+                Deployed = 39
             }
 
             public enum RequirementQuestionStatus

@@ -31,13 +31,22 @@ namespace SocialRequirements.Requirements {
         protected global::System.Web.UI.WebControls.LinkButton UnderDevelopmentButton;
         
         /// <summary>
-        /// DevelopedButton control.
+        /// UnderTestingButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton DevelopedButton;
+        protected global::System.Web.UI.WebControls.LinkButton UnderTestingButton;
+        
+        /// <summary>
+        /// DeployedButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton DeployedButton;
         
         /// <summary>
         /// SubmitButton control.

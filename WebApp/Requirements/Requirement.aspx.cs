@@ -150,6 +150,27 @@ namespace SocialRequirements.Requirements
         }
 
 
+        protected void UnderTestingButton_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                var requirementSrv = new RequirementSoapClient();
+                requirementSrv.SetRequirementUnderTesting(CompanyId, ProjectId, RequirementId, GetUsernameEncrypted());
+
+                EditionMode = false;
+                ToggleModification();
+
+                LoadRequirement();
+
+                SetFadeOutMessage(GetMainUpdatePanel(this), PostSuccessPanel, PostSuccessMessage,
+                   "The requirement status has been updated.");
+            }
+            catch (Exception ex)
+            {
+                SetFadeOutMessage("An error has occurred, please try again.", false, ex.InnerException != null ? ex.InnerException.Message : ex.Message);
+            }
+        }
+
         protected void UnderDevelopmentButton_OnClick(object sender, EventArgs e)
         {
             try
@@ -171,12 +192,12 @@ namespace SocialRequirements.Requirements
             }
         }
 
-        protected void DevelopedButton_OnClick(object sender, EventArgs e)
+        protected void DeployedButton_OnClick(object sender, EventArgs e)
         {
             try
             {
                 var requirementSrv = new RequirementSoapClient();
-                requirementSrv.SetRequirementDeveloped(CompanyId, ProjectId, RequirementId, GetUsernameEncrypted());
+                requirementSrv.SetRequirementDeployed(CompanyId, ProjectId, RequirementId, GetUsernameEncrypted());
 
                 EditionMode = false;
                 ToggleModification();
@@ -607,8 +628,12 @@ namespace SocialRequirements.Requirements
                                               CanUpdateDevelopmentStatus.HasValue && CanUpdateDevelopmentStatus.Value &&
                                              !requirement.DevelopmentStatusId.HasValue;
 
-            DevelopedButton.Visible = requirement.DevelopmentStatusId.HasValue && 
+            UnderTestingButton.Visible = requirement.DevelopmentStatusId.HasValue && 
                                       requirement.DevelopmentStatusId == (int) GeneralCatalog.Detail.SoftwareDevelopmentStatus.UnderDevelopment &&
+                                      CanUpdateDevelopmentStatus.HasValue && CanUpdateDevelopmentStatus.Value;
+
+            DeployedButton.Visible = requirement.DevelopmentStatusId.HasValue &&
+                                      requirement.DevelopmentStatusId == (int)GeneralCatalog.Detail.SoftwareDevelopmentStatus.UnderTesting &&
                                       CanUpdateDevelopmentStatus.HasValue && CanUpdateDevelopmentStatus.Value;
 
             if (IsVersionHistoryView())
@@ -724,6 +749,6 @@ namespace SocialRequirements.Requirements
             return RequirementVersionId.HasValue;
         }
         #endregion
-
+        
     }
 }

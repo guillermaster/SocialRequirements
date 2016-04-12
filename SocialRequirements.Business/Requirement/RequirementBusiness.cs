@@ -160,12 +160,20 @@ namespace SocialRequirements.Business.Requirement
                 (int)GeneralCatalog.Detail.SoftwareDevelopmentStatus.UnderDevelopment, personId);
         }
 
-        public void SetDeveloped(long companyId, long projectId, long requirementId, string username)
+        public void SetUnderTesting(long companyId, long projectId, long requirementId, string username)
         {
             var personId = _personData.GetPersonId(username);
 
             _requirementData.UpdateDevelopmentStatus(companyId, projectId, requirementId,
-                (int)GeneralCatalog.Detail.SoftwareDevelopmentStatus.Developed, personId);
+                (int)GeneralCatalog.Detail.SoftwareDevelopmentStatus.UnderTesting, personId);
+        }
+
+        public void SetDeployed(long companyId, long projectId, long requirementId, string username)
+        {
+            var personId = _personData.GetPersonId(username);
+
+            _requirementData.UpdateDevelopmentStatus(companyId, projectId, requirementId,
+                (int)GeneralCatalog.Detail.SoftwareDevelopmentStatus.Deployed, personId);
         }
 
         public void Reject(long companyId, long projectId, long requirementId, string username)

@@ -197,7 +197,7 @@
       <s:element name="ApproveRequirementResponse">
         <s:complexType />
       </s:element>
-      <s:element name="SetRequirementDeveloped">
+      <s:element name="SetRequirementDeployed">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="companyId" type="s:long" />
@@ -207,7 +207,20 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="SetRequirementDevelopedResponse">
+      <s:element name="SetRequirementDeployedResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetRequirementUnderTesting">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="companyId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="projectId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requirementId" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="encUsername" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetRequirementUnderTestingResponse">
         <s:complexType />
       </s:element>
       <s:element name="SetRequirementUnderDevelopment">
@@ -707,11 +720,17 @@
   <wsdl:message name="ApproveRequirementSoapOut">
     <wsdl:part name="parameters" element="tns:ApproveRequirementResponse" />
   </wsdl:message>
-  <wsdl:message name="SetRequirementDevelopedSoapIn">
-    <wsdl:part name="parameters" element="tns:SetRequirementDeveloped" />
+  <wsdl:message name="SetRequirementDeployedSoapIn">
+    <wsdl:part name="parameters" element="tns:SetRequirementDeployed" />
   </wsdl:message>
-  <wsdl:message name="SetRequirementDevelopedSoapOut">
-    <wsdl:part name="parameters" element="tns:SetRequirementDevelopedResponse" />
+  <wsdl:message name="SetRequirementDeployedSoapOut">
+    <wsdl:part name="parameters" element="tns:SetRequirementDeployedResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetRequirementUnderTestingSoapIn">
+    <wsdl:part name="parameters" element="tns:SetRequirementUnderTesting" />
+  </wsdl:message>
+  <wsdl:message name="SetRequirementUnderTestingSoapOut">
+    <wsdl:part name="parameters" element="tns:SetRequirementUnderTestingResponse" />
   </wsdl:message>
   <wsdl:message name="SetRequirementUnderDevelopmentSoapIn">
     <wsdl:part name="parameters" element="tns:SetRequirementUnderDevelopment" />
@@ -928,9 +947,13 @@
       <wsdl:input message="tns:ApproveRequirementSoapIn" />
       <wsdl:output message="tns:ApproveRequirementSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="SetRequirementDeveloped">
-      <wsdl:input message="tns:SetRequirementDevelopedSoapIn" />
-      <wsdl:output message="tns:SetRequirementDevelopedSoapOut" />
+    <wsdl:operation name="SetRequirementDeployed">
+      <wsdl:input message="tns:SetRequirementDeployedSoapIn" />
+      <wsdl:output message="tns:SetRequirementDeployedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetRequirementUnderTesting">
+      <wsdl:input message="tns:SetRequirementUnderTestingSoapIn" />
+      <wsdl:output message="tns:SetRequirementUnderTestingSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="SetRequirementUnderDevelopment">
       <wsdl:input message="tns:SetRequirementUnderDevelopmentSoapIn" />
@@ -1160,8 +1183,17 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="SetRequirementDeveloped">
-      <soap:operation soapAction="http://tempuri.org/SetRequirementDeveloped" style="document" />
+    <wsdl:operation name="SetRequirementDeployed">
+      <soap:operation soapAction="http://tempuri.org/SetRequirementDeployed" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetRequirementUnderTesting">
+      <soap:operation soapAction="http://tempuri.org/SetRequirementUnderTesting" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1532,8 +1564,17 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="SetRequirementDeveloped">
-      <soap12:operation soapAction="http://tempuri.org/SetRequirementDeveloped" style="document" />
+    <wsdl:operation name="SetRequirementDeployed">
+      <soap12:operation soapAction="http://tempuri.org/SetRequirementDeployed" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetRequirementUnderTesting">
+      <soap12:operation soapAction="http://tempuri.org/SetRequirementUnderTesting" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

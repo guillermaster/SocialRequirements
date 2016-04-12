@@ -79,8 +79,13 @@
             </asp:LinkButton>
         </li>
         <li>
-            <asp:LinkButton runat="server" CssClass="btn btn-default" ID="DevelopedButton" OnClick="DevelopedButton_OnClick" ToolTip="Mark as developed">
+            <asp:LinkButton runat="server" CssClass="btn btn-default" ID="UnderTestingButton" OnClick="UnderTestingButton_OnClick" ToolTip="Mark as under testing">
                 <i class="fa fa-fw fa-code-fork"></i>
+            </asp:LinkButton>
+        </li>
+        <li>
+            <asp:LinkButton runat="server" CssClass="btn btn-default" ID="DeployedButton" OnClick="DeployedButton_OnClick" ToolTip="Mark as deployed">
+                <i class="fa fa-fw fa-star"></i>
             </asp:LinkButton>
         </li>
         <li>
