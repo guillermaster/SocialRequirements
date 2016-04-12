@@ -82,6 +82,19 @@ namespace SocialRequirements.Requirements
             set { Session["CanApproveRequirement"] = value; }
         }
 
+        protected bool? CanUpdateDevelopmentStatus
+        {
+            get
+            {
+                if (Session["CanUpdateDevelopmentStatus"] != null)
+                {
+                    return bool.Parse(Session["CanUpdateDevelopmentStatus"].ToString());
+                }
+                return null;
+            }
+            set { Session["CanUpdateDevelopmentStatus"] = value; }
+        }
+
         #endregion
 
         #region Main Events
@@ -129,6 +142,49 @@ namespace SocialRequirements.Requirements
 
                 SetFadeOutMessage(GetMainUpdatePanel(this), PostSuccessPanel, PostSuccessMessage,
                    "The requirement has been successfully submitted for approval.");
+            }
+            catch (Exception ex)
+            {
+                SetFadeOutMessage("An error has occurred, please try again.", false, ex.InnerException != null ? ex.InnerException.Message : ex.Message);
+            }
+        }
+
+
+        protected void UnderDevelopmentButton_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                var requirementSrv = new RequirementSoapClient();
+                requirementSrv.SetRequirementUnderDevelopment(CompanyId, ProjectId, RequirementId, GetUsernameEncrypted());
+
+                EditionMode = false;
+                ToggleModification();
+
+                LoadRequirement();
+
+                SetFadeOutMessage(GetMainUpdatePanel(this), PostSuccessPanel, PostSuccessMessage,
+                   "The requirement status has been updated.");
+            }
+            catch (Exception ex)
+            {
+                SetFadeOutMessage("An error has occurred, please try again.", false, ex.InnerException != null ? ex.InnerException.Message : ex.Message);
+            }
+        }
+
+        protected void DevelopedButton_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                var requirementSrv = new RequirementSoapClient();
+                requirementSrv.SetRequirementDeveloped(CompanyId, ProjectId, RequirementId, GetUsernameEncrypted());
+
+                EditionMode = false;
+                ToggleModification();
+
+                LoadRequirement();
+
+                SetFadeOutMessage(GetMainUpdatePanel(this), PostSuccessPanel, PostSuccessMessage,
+                   "The requirement status has been updated.");
             }
             catch (Exception ex)
             {
@@ -481,6 +537,9 @@ namespace SocialRequirements.Requirements
         {
             if (CanApproveRequirement != null) return;
             CanApproveRequirement = HasPermission(ProjectId, Permissions.Codes.ApproveRequirements);
+
+            if (CanUpdateDevelopmentStatus != null) return;
+            CanUpdateDevelopmentStatus = HasPermission(ProjectId, Permissions.Codes.SetDevelopmentStatus);
         }
 
         protected void SetPriority(RequirementDto requirement)
@@ -537,10 +596,19 @@ namespace SocialRequirements.Requirements
             UndoEditButton.Visible = false;
             EditButton.Visible = requirement.StatusId != (int)GeneralCatalog.Detail.RequirementStatus.PendingApproval;
             SubmitButton.Visible = requirement.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.Draft;
+
             ApproveButton.Visible = requirement.StatusId ==
                                     (int) GeneralCatalog.Detail.RequirementStatus.PendingApproval &&
                                     CanApproveRequirement.HasValue && CanApproveRequirement.Value;
             RejectButton.Visible = ApproveButton.Visible;
+
+            UnderDevelopmentButton.Visible = requirement.StatusId ==
+                                             (int) GeneralCatalog.Detail.RequirementStatus.Approved &&
+                                             CanUpdateDevelopmentStatus.HasValue && CanUpdateDevelopmentStatus.Value;
+
+            DevelopedButton.Visible = requirement.StatusId ==
+                                      (int) GeneralCatalog.Detail.RequirementStatus.UnderDevelopment &&
+                                      CanUpdateDevelopmentStatus.HasValue && CanUpdateDevelopmentStatus.Value;
 
             if (IsVersionHistoryView())
             {
@@ -644,5 +712,6 @@ namespace SocialRequirements.Requirements
             return RequirementVersionId.HasValue;
         }
         #endregion
+
     }
 }

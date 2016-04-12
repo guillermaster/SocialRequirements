@@ -74,6 +74,16 @@
     </script>
     <ul class="demo-btns">
         <li>
+            <asp:LinkButton runat="server" CssClass="btn btn-default" ID="UnderDevelopmentButton" OnClick="UnderDevelopmentButton_OnClick" ToolTip="Mark as under development">
+                <i class="fa fa-fw fa-cogs"></i>
+            </asp:LinkButton>
+        </li>
+        <li>
+            <asp:LinkButton runat="server" CssClass="btn btn-default" ID="DevelopedButton" OnClick="DevelopedButton_OnClick" ToolTip="Mark as developed">
+                <i class="fa fa-fw fa-code-fork"></i>
+            </asp:LinkButton>
+        </li>
+        <li>
             <asp:LinkButton runat="server" CssClass="btn btn-default" ID="SubmitButton" OnClick="SubmitButton_Click" ToolTip="Submit for approval">
                 <i class="fa fa-fw fa-legal"></i>
             </asp:LinkButton>

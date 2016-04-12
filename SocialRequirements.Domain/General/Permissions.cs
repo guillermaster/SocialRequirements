@@ -4,7 +4,8 @@
     {
         public enum Codes
         {
-            ApproveRequirements = 1
+            ApproveRequirements = 1,
+            SetDevelopmentStatus = 2
         }
     }
 }

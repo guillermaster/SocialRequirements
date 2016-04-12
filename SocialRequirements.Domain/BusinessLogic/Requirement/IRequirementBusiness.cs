@@ -108,6 +108,24 @@ namespace SocialRequirements.Domain.BusinessLogic.Requirement
         void Approve(long companyId, long projectId, long requirementId, string username);
 
         /// <summary>
+        /// Sets a requirement as under development
+        /// </summary>
+        /// <param name="companyId">Company ID</param>
+        /// <param name="projectId">Project ID</param>
+        /// <param name="requirementId">Requirement ID</param>
+        /// <param name="username">User who updates the requirement status</param>
+        void SetUnderDevelopment(long companyId, long projectId, long requirementId, string username);
+
+        /// <summary>
+        /// Sets a requirement as developed
+        /// </summary>
+        /// <param name="companyId">Company ID</param>
+        /// <param name="projectId">Project ID</param>
+        /// <param name="requirementId">Requirement ID</param>
+        /// <param name="username">User who updates the requirement status</param>
+        void SetDeveloped(long companyId, long projectId, long requirementId, string username);
+
+        /// <summary>
         /// Sets a requirement as rejected
         /// </summary>
         /// <param name="companyId">Company ID</param>

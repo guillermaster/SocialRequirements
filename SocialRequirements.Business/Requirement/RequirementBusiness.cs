@@ -98,8 +98,10 @@ namespace SocialRequirements.Business.Requirement
 
             return
                 allRequirements.Where(
-                    requirement => requirement.StatusId == (int) GeneralCatalog.Detail.RequirementStatus.Approved)
-                    .ToList();
+                    requirement =>
+                        requirement.StatusId == (int) GeneralCatalog.Detail.RequirementStatus.Approved ||
+                        requirement.StatusId == (int) GeneralCatalog.Detail.RequirementStatus.UnderDevelopment ||
+                        requirement.StatusId == (int) GeneralCatalog.Detail.RequirementStatus.Developed).ToList();
         }
 
         public List<RequirementDto> GetListRejected(string username)
@@ -150,6 +152,22 @@ namespace SocialRequirements.Business.Requirement
             // add activity feed log
             _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.Requirement,
                 (int)GeneralCatalog.Detail.EntityActions.Approve, requirementId, DateTime.Now, personId);
+        }
+
+        public void SetUnderDevelopment(long companyId, long projectId, long requirementId, string username)
+        {
+            var personId = _personData.GetPersonId(username);
+
+            _requirementData.UpdateStatus(companyId, projectId, requirementId,
+                (int)GeneralCatalog.Detail.RequirementStatus.UnderDevelopment, personId);
+        }
+
+        public void SetDeveloped(long companyId, long projectId, long requirementId, string username)
+        {
+            var personId = _personData.GetPersonId(username);
+
+            _requirementData.UpdateStatus(companyId, projectId, requirementId,
+                (int)GeneralCatalog.Detail.RequirementStatus.Developed, personId);
         }
 
         public void Reject(long companyId, long projectId, long requirementId, string username)
