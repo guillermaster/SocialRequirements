@@ -183,6 +183,17 @@
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField>
+                    <ItemStyle Width="60px" />
+                    <HeaderTemplate>
+                        Development
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <div style="text-align: center;">
+                            <asp:Label runat="server" ID="Status" Text='<%# Eval("DevelopmentStatus") %>' />
+                        </div>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField>
                     <ItemStyle Width="40px" />
                     <HeaderTemplate>
                         Version
@@ -275,7 +286,8 @@
                     <div class="smallcard_footer">
                         <div class="smallcard_footer left">
                             Status: <%# Eval("Status") %><br />
-                            Version: <%# Eval("VersionNumber") %>
+                            Version: <%# Eval("VersionNumber") %><br/>
+                            <strong><%# Eval("DevelopmentStatus") %></strong>
                         </div>
                         <div class="smallcard_footer right">
                             Last modified

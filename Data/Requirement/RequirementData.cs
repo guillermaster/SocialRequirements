@@ -245,6 +245,34 @@ namespace SocialRequirements.Data.Requirement
             }
         }
 
+        public void UpdateDevelopmentStatus(long companyId, long projectId, long requirementId, int statusId, long personId)
+        {
+            using (var scope = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    // get requirement and update it
+                    var requirement = GetEntity(companyId, requirementId);
+                    requirement.developmentstatus_id = statusId;
+                    requirement.modifiedby_id = personId;
+                    requirement.modifiedon = DateTime.Now;
+                    _context.SaveChanges();
+
+                    // update requirement version
+                    //_requirementVersionData = new RequirementVersionData(_context);
+                    //_requirementVersionData.UpdateStatus(companyId, projectId, requirementId,
+                    //    requirement.requirement_version_id, requirement.status_id, personId);
+
+                    scope.Commit();
+                }
+                catch
+                {
+                    scope.Rollback();
+                    throw;
+                }
+            }
+        }
+
         public void Update(string title, string description, long newProjectId, long companyId, long projectId,
             long requirementId, int priorityId, long personId)
         {
@@ -327,6 +355,7 @@ namespace SocialRequirements.Data.Requirement
                 Agreed = requirement.agreed,
                 Disagreed = requirement.disagreed,
                 StatusId = requirement.status_id,
+                DevelopmentStatusId = requirement.developmentstatus_id,
                 CreatedbyId = requirement.createdby_id,
                 Createdon = requirement.createdon,
                 ModifiedbyId = requirement.modifiedby_id,
@@ -335,6 +364,7 @@ namespace SocialRequirements.Data.Requirement
                 Approvedon = requirement.approvedon,
                 PriorityId = requirement.priority_id,
                 VersionNumber = requirement.version_number,
+
                 ShortDescription = StringUtilities.GetShort(requirement.description, MaxShortDescriptionLength),
                 Project = requirement.Project != null ? requirement.Project.name : _projectData.GetTitle(requirement.project_id),
                 Status = requirement.GeneralCatalogDetail != null ? requirement.GeneralCatalogDetail.name : _generalCatalogData.GetTitle(requirement.status_id),
@@ -342,7 +372,10 @@ namespace SocialRequirements.Data.Requirement
                 CreatedByName = requirement.Person != null ? StringUtilities.GetPersonFullName(requirement.Person) : _personData.GetFullName(requirement.createdby_id),
                 ModifiedByName = requirement.Person1 != null ? StringUtilities.GetPersonFullName(requirement.Person1) : _personData.GetFullName(requirement.modifiedby_id),
                 CommentsQuantity = _requirementCommentData.GetQuantity(requirement.id, requirement.company_id, 
-                                        requirement.project_id, requirement.requirement_version_id)
+                                        requirement.project_id, requirement.requirement_version_id),
+
+                DevelopmentStatus = requirement.GeneralCatalogDetail2 != null ? requirement.GeneralCatalogDetail2.name : 
+                                   (requirement.developmentstatus_id.HasValue ? _generalCatalogData.GetTitle(requirement.developmentstatus_id.Value) : string.Empty)
             };
             
             return requirementDto;

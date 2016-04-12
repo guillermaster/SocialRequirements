@@ -91,6 +91,16 @@ namespace SocialRequirements.Domain.Repository.Requirement
         void UpdateStatus(long companyId, long projectId, long requirementId, int statusId, long personId);
 
         /// <summary>
+        /// Updates the software development status of a requirement.
+        /// </summary>
+        /// <param name="companyId">Company ID</param>
+        /// <param name="projectId">Project ID</param>
+        /// <param name="requirementId">Requirement ID</param>
+        /// <param name="statusId">Status ID to be set</param>
+        /// <param name="personId">Person ID, to be set as modification user and may be the approval/rejection user.</param>
+        void UpdateDevelopmentStatus(long companyId, long projectId, long requirementId, int statusId, long personId);
+
+        /// <summary>
         /// Updates the title and description for the specified requirement
         /// </summary>
         /// <param name="title">Requirement title</param>

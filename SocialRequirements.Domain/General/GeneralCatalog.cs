@@ -38,7 +38,11 @@
                 Draft = 5,
                 Approved = 6,
                 Rejected = 7,
-                PendingApproval = 17,
+                PendingApproval = 17
+            }
+
+            public enum SoftwareDevelopmentStatus
+            {
                 UnderDevelopment = 37,
                 Developed = 38
             }

@@ -582,6 +582,7 @@ namespace SocialRequirements.Requirements
             DownloadButton.Visible = !string.IsNullOrWhiteSpace(FileName);
             FileOverwriteWarning.Visible = !string.IsNullOrWhiteSpace(FileName);
 
+            SetDevelopmentStatus(requirement);
             SetPriority(requirement);
 
             // hashtags
@@ -602,12 +603,12 @@ namespace SocialRequirements.Requirements
                                     CanApproveRequirement.HasValue && CanApproveRequirement.Value;
             RejectButton.Visible = ApproveButton.Visible;
 
-            UnderDevelopmentButton.Visible = requirement.StatusId ==
-                                             (int) GeneralCatalog.Detail.RequirementStatus.Approved &&
-                                             CanUpdateDevelopmentStatus.HasValue && CanUpdateDevelopmentStatus.Value;
+            UnderDevelopmentButton.Visible = requirement.StatusId == (int) GeneralCatalog.Detail.RequirementStatus.Approved &&
+                                              CanUpdateDevelopmentStatus.HasValue && CanUpdateDevelopmentStatus.Value &&
+                                             !requirement.DevelopmentStatusId.HasValue;
 
-            DevelopedButton.Visible = requirement.StatusId ==
-                                      (int) GeneralCatalog.Detail.RequirementStatus.UnderDevelopment &&
+            DevelopedButton.Visible = requirement.DevelopmentStatusId.HasValue && 
+                                      requirement.DevelopmentStatusId == (int) GeneralCatalog.Detail.SoftwareDevelopmentStatus.UnderDevelopment &&
                                       CanUpdateDevelopmentStatus.HasValue && CanUpdateDevelopmentStatus.Value;
 
             if (IsVersionHistoryView())
@@ -629,6 +630,17 @@ namespace SocialRequirements.Requirements
             }
 
             LoadProjects();
+        }
+
+        protected virtual void SetDevelopmentStatus(RequirementDto requirement)
+        {
+            IconDevStatus.Visible = requirement.DevelopmentStatusId.HasValue;
+            IconDevStatus.Attributes["class"] = requirement.DevelopmentStatusId.HasValue &&
+                                                requirement.DevelopmentStatusId.Value ==
+                                                (int)GeneralCatalog.Detail.SoftwareDevelopmentStatus.UnderDevelopment
+                ? "fa fa-fw fa-cogs"
+                : "fa fa-fw fa-code-fork";
+            DevelopmentStatus.Text = requirement.DevelopmentStatus;
         }
 
         protected virtual void TogglePriorityModification()

@@ -99,9 +99,7 @@ namespace SocialRequirements.Business.Requirement
             return
                 allRequirements.Where(
                     requirement =>
-                        requirement.StatusId == (int) GeneralCatalog.Detail.RequirementStatus.Approved ||
-                        requirement.StatusId == (int) GeneralCatalog.Detail.RequirementStatus.UnderDevelopment ||
-                        requirement.StatusId == (int) GeneralCatalog.Detail.RequirementStatus.Developed).ToList();
+                        requirement.StatusId == (int) GeneralCatalog.Detail.RequirementStatus.Approved).ToList();
         }
 
         public List<RequirementDto> GetListRejected(string username)
@@ -158,16 +156,16 @@ namespace SocialRequirements.Business.Requirement
         {
             var personId = _personData.GetPersonId(username);
 
-            _requirementData.UpdateStatus(companyId, projectId, requirementId,
-                (int)GeneralCatalog.Detail.RequirementStatus.UnderDevelopment, personId);
+            _requirementData.UpdateDevelopmentStatus(companyId, projectId, requirementId,
+                (int)GeneralCatalog.Detail.SoftwareDevelopmentStatus.UnderDevelopment, personId);
         }
 
         public void SetDeveloped(long companyId, long projectId, long requirementId, string username)
         {
             var personId = _personData.GetPersonId(username);
 
-            _requirementData.UpdateStatus(companyId, projectId, requirementId,
-                (int)GeneralCatalog.Detail.RequirementStatus.Developed, personId);
+            _requirementData.UpdateDevelopmentStatus(companyId, projectId, requirementId,
+                (int)GeneralCatalog.Detail.SoftwareDevelopmentStatus.Developed, personId);
         }
 
         public void Reject(long companyId, long projectId, long requirementId, string username)

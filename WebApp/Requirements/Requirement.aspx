@@ -117,36 +117,27 @@
             <asp:LinkButton runat="server" CssClass="btn btn-default" ID="LikeButton" OnClick="LikeButton_OnClick" ToolTip="Like">
                 <i class="fa fa-fw fa-thumbs-o-up">
                     <asp:Label runat="server" ID="LikeCounter" /></i>
-            </asp:LinkButton></li>
-        <li>
+            </asp:LinkButton></li><li>
             <asp:LinkButton runat="server" CssClass="btn btn-default" ID="DislikeButton" OnClick="DislikeButton_OnClick" ToolTip="Like">
                 <i class="fa fa-fw fa-thumbs-o-down">
                     <asp:Label runat="server" ID="DislikeCounter" /></i>
-            </asp:LinkButton></li>
-        <li>
+            </asp:LinkButton></li><li>
             <asp:LinkButton runat="server" CssClass="btn btn-default" ID="CommentsButton" OnClick="CommentsButton_OnClick" ToolTip="Comments">
                 <i class="fa fa-fw fa-comments-o">
                     <asp:Label runat="server" ID="CommentCounter" /></i>
-            </asp:LinkButton></li>
-        <li>
+            </asp:LinkButton></li><li>
             <asp:LinkButton runat="server" CssClass="btn btn-default" ID="HistoryButton" OnClick="HistoryButton_OnClick" ToolTip="View version history">
                 <i class="fa fa-fw fa-history"></i>
-            </asp:LinkButton></li>
-        <li>
+            </asp:LinkButton></li><li>
             <asp:LinkButton runat="server" CssClass="btn btn-default" ID="AddQuestionButton" OnClientClick="javascript:showQuestionDialog();" ToolTip="Ask question">
                 <i class="fa fa-fw fa-question"></i>
-            </asp:LinkButton></li>
-        <li>
+            </asp:LinkButton></li><li>
             <asp:HyperLink runat="server" CssClass="btn btn-default" ID="UploadButtonLink" onclick="javascript:showFileUploadDialog();" ToolTip="Upload attachment">
                 <i class="fa fa-fw fa-upload"></i>
-            </asp:HyperLink>
-        <li>
+            </asp:HyperLink><li>
             <asp:LinkButton runat="server" CssClass="btn btn-default" ID="DownloadButton" OnClick="DownloadButton_OnClick" ToolTip="Download attachment">
                 <i class="fa fa-fw fa-download"></i>
-            </asp:LinkButton></li>
-    </ul>
-</asp:Content>
-<asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
+            </asp:LinkButton></li></ul></asp:Content><asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
     <asp:Panel ID="PostSuccessPanel" runat="server" Visible="False" CssClass="alert alert-success" ClientIDMode="Static">
         <p>
             <asp:Label runat="server" ID="PostSuccessMessage" />
@@ -160,6 +151,7 @@
     <div class="bigcard">
         <div class="bigcard_title">
             <h4>
+                <i ID="IconDevStatus" runat="server" Visible="False"></i>
                 <asp:Label runat="server" ID="RequirementTitle" />
             </h4>
             <asp:TextBox runat="server" ID="RequirementTitleInput" Visible="False" />
@@ -167,8 +159,7 @@
         <div class="bigcard_subtitle">
             <ul class="list-inline" style="margin-bottom: 0;">
                 <li>
-                    <asp:HyperLink runat="server" ID="PriorityButton">&nbsp;</asp:HyperLink>
-                    <asp:Label runat="server" ID="ProjectName" />
+                    <asp:HyperLink runat="server" ID="PriorityButton">&nbsp;</asp:HyperLink><asp:Label runat="server" ID="ProjectName" />
                     <asp:DropDownList runat="server" ID="ProjectInput" Visible="False" />
                     <asp:HiddenField runat="server" ID="PriorityId"/>
                 </li>
@@ -190,38 +181,28 @@
         </div>
         <div class="bigcard_footer">
             <div class="bigcard_footer left">
-                Status:
-                    <asp:Label runat="server" ID="RequirementStatus" />
+                Status: <asp:Label runat="server" ID="RequirementStatus"/>
                 <asp:HiddenField runat="server" ID="RequirementStatusId" />
                 <br />
-                Version:
-                    <asp:Label runat="server" ID="RequirementVersion" />
+                Version: <asp:Label runat="server" ID="RequirementVersion"/><br/>
+                <strong><asp:Label runat="server" ID="DevelopmentStatus" /></strong>
             </div>
             <div class="bigcard_footer right">
-                Created by:
-                    <asp:Label runat="server" ID="CreatedByName" />
-                &nbsp;On:
-                    <asp:Label runat="server" ID="CreatedOn" /><br />
-                Last modified by:
-                    <asp:Label runat="server" ID="ModifiedByName" />
-                &nbsp;On:
-                    <asp:Label runat="server" ID="ModifiedOn" />
+                Created by: <asp:Label runat="server" ID="CreatedByName" />
+                &nbsp;On: <asp:Label runat="server" ID="CreatedOn" /><br />
+                Last modified by: <asp:Label runat="server" ID="ModifiedByName" />
+                &nbsp;On: <asp:Label runat="server" ID="ModifiedOn" />
             </div>
         </div>
     </div>
     <div>
-        <asp:LinkButton runat="server" ID="ViewHideCommentsButton" Text="View comments" OnClick="ViewHideCommentsButton_Click"></asp:LinkButton>
-    </div>
-    <asp:Panel runat="server" ID="CommentsPanel" Visible="False">
+        <asp:LinkButton runat="server" ID="ViewHideCommentsButton" Text="View comments" OnClick="ViewHideCommentsButton_Click"></asp:LinkButton></div><asp:Panel runat="server" ID="CommentsPanel" Visible="False">
         <asp:Repeater runat="server" ID="CommentsList">
             <HeaderTemplate>
                 <div>
-                    <h5>Comments</h5>
-            </HeaderTemplate>
-            <ItemTemplate>
+                    <h5>Comments</h5></HeaderTemplate><ItemTemplate>
                 <div class="card">
-                    <div class="card_tag"><%# Eval("CreatedByName") %>:</div>
-                    <div class="card_body">
+                    <div class="card_tag"><%# Eval("CreatedByName") %>:</div><div class="card_body">
                         <%# Eval("Comment") %>
                     </div>
                     <div class="card_footer">

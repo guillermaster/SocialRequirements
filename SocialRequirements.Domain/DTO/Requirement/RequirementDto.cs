@@ -69,6 +69,8 @@ namespace SocialRequirements.Domain.DTO.Requirement
 
         public int StatusId { get; set; }
 
+        public int? DevelopmentStatusId { get; set; }
+
         public long CreatedbyId { get; set; }
 
         public DateTime Createdon { get; set; }
@@ -92,6 +94,7 @@ namespace SocialRequirements.Domain.DTO.Requirement
         public string ShortDescription { get; set; }
         public string Project { get; set; }
         public string Status { get; set; }
+        public string DevelopmentStatus { get; set; }
         public string Priority { get; set; }
         public string CreatedByName { get; set; }
         public string ModifiedByName { get; set; }

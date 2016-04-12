@@ -55,6 +55,8 @@ namespace SocialRequirements.Context.Entities
 
         public int priority_id { get; set; }
 
+        public int? developmentstatus_id { get; set; }
+
         public virtual Company Company { get; set; }
 
         public virtual Project Project { get; set; }
@@ -76,5 +78,7 @@ namespace SocialRequirements.Context.Entities
         public virtual ICollection<RequirementHashtag> RequirementHashtag { get; set; }
 
         public virtual GeneralCatalogDetail GeneralCatalogDetail1 { get; set; }
+
+        public virtual GeneralCatalogDetail GeneralCatalogDetail2 { get; set; }
     }
 }

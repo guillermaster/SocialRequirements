@@ -220,6 +220,15 @@ namespace SocialRequirements.Requirements {
         protected global::System.Web.UI.WebControls.Label PostErrorMessage;
         
         /// <summary>
+        /// IconDevStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl IconDevStatus;
+        
+        /// <summary>
         /// RequirementTitle control.
         /// </summary>
         /// <remarks>
@@ -335,6 +344,15 @@ namespace SocialRequirements.Requirements {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label RequirementVersion;
+        
+        /// <summary>
+        /// DevelopmentStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label DevelopmentStatus;
         
         /// <summary>
         /// CreatedByName control.

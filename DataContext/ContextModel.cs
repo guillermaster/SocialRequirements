@@ -127,6 +127,12 @@ namespace SocialRequirements.Context
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<GeneralCatalogDetail>()
+                .HasMany(e => e.Requirement2)
+                .WithRequired(e => e.GeneralCatalogDetail2)
+                .HasForeignKey(e => e.developmentstatus_id)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<GeneralCatalogDetail>()
                 .HasMany(e => e.RequirementModification)
                 .WithRequired(e => e.GeneralCatalogDetail)
                 .HasForeignKey(e => e.status_id)
