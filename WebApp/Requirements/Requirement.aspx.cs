@@ -624,9 +624,12 @@ namespace SocialRequirements.Requirements
                                     CanApproveRequirement.HasValue && CanApproveRequirement.Value;
             RejectButton.Visible = ApproveButton.Visible;
 
-            UnderDevelopmentButton.Visible = requirement.StatusId == (int) GeneralCatalog.Detail.RequirementStatus.Approved &&
-                                              CanUpdateDevelopmentStatus.HasValue && CanUpdateDevelopmentStatus.Value &&
-                                             !requirement.DevelopmentStatusId.HasValue;
+            UnderDevelopmentButton.Visible = requirement.StatusId ==
+                                             (int) GeneralCatalog.Detail.RequirementStatus.Approved &&
+                                             CanUpdateDevelopmentStatus.HasValue && CanUpdateDevelopmentStatus.Value &&
+                                             (!requirement.DevelopmentStatusId.HasValue || (requirement.DevelopmentStatusId.HasValue &&
+                                              requirement.DevelopmentStatusId.Value ==
+                                              (int) GeneralCatalog.Detail.SoftwareDevelopmentStatus.PendingDevelopment));
 
             UnderTestingButton.Visible = requirement.DevelopmentStatusId.HasValue && 
                                       requirement.DevelopmentStatusId == (int) GeneralCatalog.Detail.SoftwareDevelopmentStatus.UnderDevelopment &&
@@ -660,11 +663,24 @@ namespace SocialRequirements.Requirements
         protected virtual void SetDevelopmentStatus(RequirementDto requirement)
         {
             IconDevStatus.Visible = requirement.DevelopmentStatusId.HasValue;
-            IconDevStatus.Attributes["class"] = requirement.DevelopmentStatusId.HasValue &&
-                                                requirement.DevelopmentStatusId.Value ==
-                                                (int)GeneralCatalog.Detail.SoftwareDevelopmentStatus.UnderDevelopment
-                ? "fa fa-fw fa-cogs"
-                : "fa fa-fw fa-code-fork";
+            if (!requirement.DevelopmentStatusId.HasValue) return;
+            
+            switch (requirement.DevelopmentStatusId.Value)
+            {
+                case (int)GeneralCatalog.Detail.SoftwareDevelopmentStatus.UnderDevelopment:
+                    IconDevStatus.Attributes["class"] = "fa fa-fw fa-cogs";
+                    break;
+                case (int)GeneralCatalog.Detail.SoftwareDevelopmentStatus.UnderTesting:
+                    IconDevStatus.Attributes["class"] = "fa fa-fw fa-code-fork";
+                    break;
+                case (int)GeneralCatalog.Detail.SoftwareDevelopmentStatus.Deployed:
+                    IconDevStatus.Attributes["class"] = "fa fa-fw fa-star";
+                    break;
+                default:
+                    IconDevStatus.Visible = false;
+                    break;
+            }
+
             DevelopmentStatus.Text = requirement.DevelopmentStatus;
         }
 

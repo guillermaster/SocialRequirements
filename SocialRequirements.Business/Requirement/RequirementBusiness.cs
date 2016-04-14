@@ -147,6 +147,9 @@ namespace SocialRequirements.Business.Requirement
             _requirementData.UpdateStatus(companyId, projectId, requirementId,
                 (int) GeneralCatalog.Detail.RequirementStatus.Approved, personId);
 
+            _requirementData.UpdateDevelopmentStatus(companyId, projectId, requirementId,
+                (int)GeneralCatalog.Detail.SoftwareDevelopmentStatus.PendingDevelopment, personId);
+
             // add activity feed log
             _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.Requirement,
                 (int)GeneralCatalog.Detail.EntityActions.Approve, requirementId, DateTime.Now, personId);

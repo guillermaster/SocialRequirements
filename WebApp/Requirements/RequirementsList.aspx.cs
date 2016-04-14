@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Web;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using SocialRequirements.Domain.DTO.Account;
 using SocialRequirements.Domain.DTO.General;
@@ -19,6 +20,7 @@ namespace SocialRequirements.Requirements
         #region Constants
 
         private const string PriorityButtonId = "PriorityButton";
+        private const string DevelopmentStatusButtonId = "IconDevStatus";
 
         #endregion
         #region Properties
@@ -92,6 +94,28 @@ namespace SocialRequirements.Requirements
             var priorityButton = (HyperLink)e.Item.FindControl(PriorityButtonId);
             if (requirement == null || priorityButton == null) return;
             SetRequirementPriority(priorityButton, requirement);
+
+            if (!requirement.DevelopmentStatusId.HasValue) return;
+
+            var devStatusIcon = (HtmlControl)e.Item.FindControl(DevelopmentStatusButtonId);
+            switch (requirement.DevelopmentStatusId.Value)
+            {
+                case (int)GeneralCatalog.Detail.SoftwareDevelopmentStatus.UnderDevelopment:
+                    devStatusIcon.Attributes["class"] = "fa fa-fw fa-cogs";
+                    devStatusIcon.Visible = true;
+                    break;
+                case (int)GeneralCatalog.Detail.SoftwareDevelopmentStatus.UnderTesting:
+                    devStatusIcon.Attributes["class"] = "fa fa-fw fa-code-fork";
+                    devStatusIcon.Visible = true;
+                    break;
+                case (int)GeneralCatalog.Detail.SoftwareDevelopmentStatus.Deployed:
+                    devStatusIcon.Attributes["class"] = "fa fa-fw fa-star";
+                    devStatusIcon.Visible = true;
+                    break;
+                default:
+                    devStatusIcon.Visible = false;
+                    break;
+            }
         }
         #endregion
 

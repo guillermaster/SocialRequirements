@@ -46,7 +46,8 @@
             {
                 UnderDevelopment = 37,
                 UnderTesting = 38,
-                Deployed = 39
+                Deployed = 39,
+                PendingDevelopment = 40
             }
 
             public enum RequirementQuestionStatus

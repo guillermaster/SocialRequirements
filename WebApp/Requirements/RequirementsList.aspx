@@ -280,7 +280,7 @@
                 <div class="smallcard">
                     <div class="smallcard_title" style="cursor: pointer"
                         onclick="javascript:location.href='<%# SocialRequirements.Domain.General.CommonConstants.FormsFileName.Requirement %>?<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.Id %>=<%# Eval("Id") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.CompanyId %>=<%# Eval("CompanyId") %>&amp;<%# SocialRequirements.Domain.General.CommonConstants.QueryStringParams.ProjectId %>=<%# Eval("ProjectId") %>'">
-                        <h5><%# Eval("Title") %></h5>
+                        <h5><i ID="IconDevStatus" runat="server" Visible="False"></i><%# Eval("Title") %></h5>
                     </div>
                     <div class="smallcard_subtitle">
                         <asp:HyperLink runat="server" ID="PriorityButton">&nbsp;</asp:HyperLink>

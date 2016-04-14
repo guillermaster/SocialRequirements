@@ -77,8 +77,8 @@ namespace SocialRequirements
         protected bool HasPermission(long projectId, Permissions.Codes permission)
         {
             if (PermissionsByProject == null) return false;
-            var projectPerm = PermissionsByProject.FirstOrDefault(p => p.ProjectId == projectId);
-            return projectPerm != null && projectPerm.PermissionsIds.Any(perm => perm == (int)permission);
+            var projectPerms = PermissionsByProject.Where(p => p.ProjectId == projectId).ToList();
+            return projectPerms.Any(projectPerm => projectPerm.PermissionsIds.Contains((int) permission));
         }
 
         protected void RegisterTrigger(Control control)
