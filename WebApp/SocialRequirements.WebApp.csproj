@@ -2467,6 +2467,18 @@
     <Content Include="Service References\RequirementService\SocialRequirements.RequirementService.SetRequirementUnderTestingResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Service References\RequirementService\SocialRequirements.RequirementService.GetDeployedRequirementsListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RequirementService\SocialRequirements.RequirementService.GetPendingDevelopmentRequirementsListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RequirementService\SocialRequirements.RequirementService.GetUnderDevelopmentRequirementsListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RequirementService\SocialRequirements.RequirementService.GetUnderTestingRequirementsListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

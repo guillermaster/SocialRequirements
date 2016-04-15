@@ -218,6 +218,23 @@ namespace SocialRequirements
                                                    CommonConstants.QueryStringParams.Filter + "=" +
                                                    CommonConstants.Filters.Draft;
 
+            // approved requirements links (development)
+            RequirementsPendingDev.NavigateUrl = CommonConstants.FormsUrl.RequirementsList + "?" +
+                                                   CommonConstants.QueryStringParams.Filter + "=" +
+                                                   CommonConstants.Filters.PendingDevelopment;
+
+            RequirementsUnderDev.NavigateUrl = CommonConstants.FormsUrl.RequirementsList + "?" +
+                                                   CommonConstants.QueryStringParams.Filter + "=" +
+                                                   CommonConstants.Filters.UnderDevelopment;
+
+            RequirementsUnderTest.NavigateUrl = CommonConstants.FormsUrl.RequirementsList + "?" +
+                                                   CommonConstants.QueryStringParams.Filter + "=" +
+                                                   CommonConstants.Filters.UnderTesting;
+
+            RequirementsDeployed.NavigateUrl = CommonConstants.FormsUrl.RequirementsList + "?" +
+                                                   CommonConstants.QueryStringParams.Filter + "=" +
+                                                   CommonConstants.Filters.Deployed;
+
             // requirements modification links
 
             RequirementsModifAllLink.NavigateUrl = CommonConstants.FormsUrl.RequirementsModificationList;

@@ -210,6 +210,22 @@ namespace SocialRequirements.Requirements
                     requirementsXmlStr = requirementSrv.GetRequirementsByHashtag(hashtag, GetUsernameEncrypted());
                     FormTitle.Text = CommonConstants.Titles.Requirements.ListHashtag;
                     break;
+                case CommonConstants.Filters.PendingDevelopment:
+                    requirementsXmlStr = requirementSrv.GetPendingDevelopmentRequirementsList(GetUsernameEncrypted());
+                    FormTitle.Text = CommonConstants.Titles.Requirements.ListPendingDevelopment;
+                    break;
+                case CommonConstants.Filters.UnderDevelopment:
+                    requirementsXmlStr = requirementSrv.GetUnderDevelopmentRequirementsList(GetUsernameEncrypted());
+                    FormTitle.Text = CommonConstants.Titles.Requirements.ListUnderDevelopment;
+                    break;
+                case CommonConstants.Filters.UnderTesting:
+                    requirementsXmlStr = requirementSrv.GetUnderTestingRequirementsList(GetUsernameEncrypted());
+                    FormTitle.Text = CommonConstants.Titles.Requirements.ListUnderTesting;
+                    break;
+                case CommonConstants.Filters.Deployed:
+                    requirementsXmlStr = requirementSrv.GetDeployedRequirementsList(GetUsernameEncrypted());
+                    FormTitle.Text = CommonConstants.Titles.Requirements.ListDeployed;
+                    break;
                 default:
                     requirementsXmlStr = requirementSrv.GetRequirementsList(GetUsernameEncrypted());
                     FormTitle.Text = CommonConstants.Titles.Requirements.ListAll;

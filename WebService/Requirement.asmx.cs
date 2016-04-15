@@ -119,6 +119,42 @@ namespace WebService
         }
 
         [WebMethod(CacheDuration = 0)]
+        public string GetPendingDevelopmentRequirementsList(string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            var requirements = RequirementBusiness.GetListPendingDevelopment(username);
+            var serializer = new ObjectSerializer<List<RequirementDto>>(requirements);
+            return serializer.ToXmlString();
+        }
+
+        [WebMethod(CacheDuration = 0)]
+        public string GetUnderDevelopmentRequirementsList(string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            var requirements = RequirementBusiness.GetListUnderDevelopment(username);
+            var serializer = new ObjectSerializer<List<RequirementDto>>(requirements);
+            return serializer.ToXmlString();
+        }
+
+        [WebMethod(CacheDuration = 0)]
+        public string GetUnderTestingRequirementsList(string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            var requirements = RequirementBusiness.GetListUnderTesting(username);
+            var serializer = new ObjectSerializer<List<RequirementDto>>(requirements);
+            return serializer.ToXmlString();
+        }
+
+        [WebMethod(CacheDuration = 0)]
+        public string GetDeployedRequirementsList(string encUsername)
+        {
+            var username = Encryption.Decrypt(encUsername);
+            var requirements = RequirementBusiness.GetListDeployed(username);
+            var serializer = new ObjectSerializer<List<RequirementDto>>(requirements);
+            return serializer.ToXmlString();
+        }
+
+        [WebMethod(CacheDuration = 0)]
         public string GetRequirement(long companyId, long projectId, long requirementId)
         {
             var requirement = RequirementBusiness.Get(companyId, projectId, requirementId);

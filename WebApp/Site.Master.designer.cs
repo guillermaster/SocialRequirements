@@ -94,6 +94,24 @@ namespace SocialRequirements {
         protected global::System.Web.UI.WebControls.HyperLink RequirementsAllLink;
         
         /// <summary>
+        /// RequirementsDraftLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink RequirementsDraftLink;
+        
+        /// <summary>
+        /// RequirementsPendingLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink RequirementsPendingLink;
+        
+        /// <summary>
         /// RequirementsApprovedLink control.
         /// </summary>
         /// <remarks>
@@ -112,22 +130,40 @@ namespace SocialRequirements {
         protected global::System.Web.UI.WebControls.HyperLink RequirementsRejectedLink;
         
         /// <summary>
-        /// RequirementsPendingLink control.
+        /// RequirementsPendingDev control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink RequirementsPendingLink;
+        protected global::System.Web.UI.WebControls.HyperLink RequirementsPendingDev;
         
         /// <summary>
-        /// RequirementsDraftLink control.
+        /// RequirementsUnderDev control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink RequirementsDraftLink;
+        protected global::System.Web.UI.WebControls.HyperLink RequirementsUnderDev;
+        
+        /// <summary>
+        /// RequirementsUnderTest control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink RequirementsUnderTest;
+        
+        /// <summary>
+        /// RequirementsDeployed control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink RequirementsDeployed;
         
         /// <summary>
         /// RequirementsModifAllLink control.

@@ -63,13 +63,15 @@ namespace SocialRequirements.Domain.Repository.Requirement
         /// <param name="requirementId">Requirement ID</param>
         /// <param name="personId">ID of the user who gave the dislike</param>
         void Dislike(long companyId, long projectId, long requirementId, long personId);
-        
+
         /// <summary>
         /// Query requirements by projects
         /// </summary>
         /// <param name="projectIds">List of project identifiers </param>
+        /// <param name="statusId">Filter by this status (optional)</param>
+        /// <param name="developmentStatusId">Filter by this development status (optional)</param>
         /// <returns>List of requirements</returns>
-        List<RequirementDto> GetList(List<long> projectIds);
+        List<RequirementDto> GetList(List<long> projectIds, int? statusId = null, int? developmentStatusId = null);
 
         /// <summary>
         /// Query requirements by projects

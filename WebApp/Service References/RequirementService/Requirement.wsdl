@@ -152,6 +152,62 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetPendingDevelopmentRequirementsList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="encUsername" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPendingDevelopmentRequirementsListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPendingDevelopmentRequirementsListResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUnderDevelopmentRequirementsList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="encUsername" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUnderDevelopmentRequirementsListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUnderDevelopmentRequirementsListResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUnderTestingRequirementsList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="encUsername" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUnderTestingRequirementsListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUnderTestingRequirementsListResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDeployedRequirementsList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="encUsername" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDeployedRequirementsListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDeployedRequirementsListResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="GetRequirement">
         <s:complexType>
           <s:sequence>
@@ -702,6 +758,30 @@
   <wsdl:message name="GetDraftRequirementsListSoapOut">
     <wsdl:part name="parameters" element="tns:GetDraftRequirementsListResponse" />
   </wsdl:message>
+  <wsdl:message name="GetPendingDevelopmentRequirementsListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPendingDevelopmentRequirementsList" />
+  </wsdl:message>
+  <wsdl:message name="GetPendingDevelopmentRequirementsListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPendingDevelopmentRequirementsListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUnderDevelopmentRequirementsListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUnderDevelopmentRequirementsList" />
+  </wsdl:message>
+  <wsdl:message name="GetUnderDevelopmentRequirementsListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUnderDevelopmentRequirementsListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUnderTestingRequirementsListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUnderTestingRequirementsList" />
+  </wsdl:message>
+  <wsdl:message name="GetUnderTestingRequirementsListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUnderTestingRequirementsListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDeployedRequirementsListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDeployedRequirementsList" />
+  </wsdl:message>
+  <wsdl:message name="GetDeployedRequirementsListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDeployedRequirementsListResponse" />
+  </wsdl:message>
   <wsdl:message name="GetRequirementSoapIn">
     <wsdl:part name="parameters" element="tns:GetRequirement" />
   </wsdl:message>
@@ -935,6 +1015,22 @@
       <wsdl:input message="tns:GetDraftRequirementsListSoapIn" />
       <wsdl:output message="tns:GetDraftRequirementsListSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetPendingDevelopmentRequirementsList">
+      <wsdl:input message="tns:GetPendingDevelopmentRequirementsListSoapIn" />
+      <wsdl:output message="tns:GetPendingDevelopmentRequirementsListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUnderDevelopmentRequirementsList">
+      <wsdl:input message="tns:GetUnderDevelopmentRequirementsListSoapIn" />
+      <wsdl:output message="tns:GetUnderDevelopmentRequirementsListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUnderTestingRequirementsList">
+      <wsdl:input message="tns:GetUnderTestingRequirementsListSoapIn" />
+      <wsdl:output message="tns:GetUnderTestingRequirementsListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDeployedRequirementsList">
+      <wsdl:input message="tns:GetDeployedRequirementsListSoapIn" />
+      <wsdl:output message="tns:GetDeployedRequirementsListSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetRequirement">
       <wsdl:input message="tns:GetRequirementSoapIn" />
       <wsdl:output message="tns:GetRequirementSoapOut" />
@@ -1149,6 +1245,42 @@
     </wsdl:operation>
     <wsdl:operation name="GetDraftRequirementsList">
       <soap:operation soapAction="http://tempuri.org/GetDraftRequirementsList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPendingDevelopmentRequirementsList">
+      <soap:operation soapAction="http://tempuri.org/GetPendingDevelopmentRequirementsList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnderDevelopmentRequirementsList">
+      <soap:operation soapAction="http://tempuri.org/GetUnderDevelopmentRequirementsList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnderTestingRequirementsList">
+      <soap:operation soapAction="http://tempuri.org/GetUnderTestingRequirementsList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeployedRequirementsList">
+      <soap:operation soapAction="http://tempuri.org/GetDeployedRequirementsList" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1530,6 +1662,42 @@
     </wsdl:operation>
     <wsdl:operation name="GetDraftRequirementsList">
       <soap12:operation soapAction="http://tempuri.org/GetDraftRequirementsList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPendingDevelopmentRequirementsList">
+      <soap12:operation soapAction="http://tempuri.org/GetPendingDevelopmentRequirementsList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnderDevelopmentRequirementsList">
+      <soap12:operation soapAction="http://tempuri.org/GetUnderDevelopmentRequirementsList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnderTestingRequirementsList">
+      <soap12:operation soapAction="http://tempuri.org/GetUnderTestingRequirementsList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeployedRequirementsList">
+      <soap12:operation soapAction="http://tempuri.org/GetDeployedRequirementsList" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

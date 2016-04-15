@@ -77,12 +77,12 @@ namespace SocialRequirements.Business.Requirement
             _activityFeedData.Add(companyId, projectId, (int)GeneralCatalog.Detail.Entity.Requirement,
                 (int)GeneralCatalog.Detail.EntityActions.Dislike, requirementId, DateTime.Now, personId);
         }
-        
-        public List<RequirementDto> GetList(string username)
+
+        public List<RequirementDto> GetList(string username, int? statusId = null, int? developmentStatusId = null)
         {
             var personId = _personData.GetPersonId(username);
             var projects = _projectData.GetProjectsByUser(personId);
-            return _requirementData.GetList(projects.Select(p => p.Id).ToList());
+            return _requirementData.GetList(projects.Select(p => p.Id).ToList(), statusId, developmentStatusId);
         }
 
         public List<RequirementDto> GetListByHashtag(string hashtag, string username)
@@ -94,42 +94,46 @@ namespace SocialRequirements.Business.Requirement
 
         public List<RequirementDto> GetListApproved(string username)
         {
-            var allRequirements = GetList(username);
-
-            return
-                allRequirements.Where(
-                    requirement =>
-                        requirement.StatusId == (int) GeneralCatalog.Detail.RequirementStatus.Approved).ToList();
+            return GetList(username, (int)GeneralCatalog.Detail.RequirementStatus.Approved);
         }
 
         public List<RequirementDto> GetListRejected(string username)
         {
-            var allRequirements = GetList(username);
-
-            return
-                allRequirements.Where(
-                    requirement => requirement.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.Rejected)
-                    .ToList();
+            return GetList(username, (int)GeneralCatalog.Detail.RequirementStatus.Rejected);
         }
 
         public List<RequirementDto> GetListPending(string username)
         {
-            var allRequirements = GetList(username);
-
-            return
-                allRequirements.Where(
-                    requirement => requirement.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.PendingApproval)
-                    .ToList();
+            return GetList(username, (int)GeneralCatalog.Detail.RequirementStatus.PendingApproval);
         }
 
         public List<RequirementDto> GetListDraft(string username)
         {
-            var allRequirements = GetList(username);
+            return GetList(username, (int)GeneralCatalog.Detail.RequirementStatus.Draft);
+        }
 
-            return
-                allRequirements.Where(
-                    requirement => requirement.StatusId == (int)GeneralCatalog.Detail.RequirementStatus.Draft)
-                    .ToList();
+        public List<RequirementDto> GetListPendingDevelopment(string username)
+        {
+            return GetList(username, (int) GeneralCatalog.Detail.RequirementStatus.Approved,
+                (int) GeneralCatalog.Detail.SoftwareDevelopmentStatus.PendingDevelopment);
+        }
+
+        public List<RequirementDto> GetListUnderDevelopment(string username)
+        {
+            return GetList(username, (int)GeneralCatalog.Detail.RequirementStatus.Approved,
+                (int)GeneralCatalog.Detail.SoftwareDevelopmentStatus.UnderDevelopment);
+        }
+
+        public List<RequirementDto> GetListUnderTesting(string username)
+        {
+            return GetList(username, (int)GeneralCatalog.Detail.RequirementStatus.Approved,
+                (int)GeneralCatalog.Detail.SoftwareDevelopmentStatus.UnderTesting);
+        }
+
+        public List<RequirementDto> GetListDeployed(string username)
+        {
+            return GetList(username, (int)GeneralCatalog.Detail.RequirementStatus.Approved,
+                (int)GeneralCatalog.Detail.SoftwareDevelopmentStatus.Deployed);
         }
 
         public RequirementDto Get(long companyId, long projectId, long requirementId)

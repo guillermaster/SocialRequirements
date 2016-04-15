@@ -50,8 +50,10 @@ namespace SocialRequirements.Domain.BusinessLogic.Requirement
         /// Query requirements by user from all of his projects and companies
         /// </summary>
         /// <param name="username">Username related to the requirements</param>
+        /// <param name="statusId">Filter by this status (optional)</param>
+        /// <param name="developmentStatusId">Filter by this development status (optional)</param>
         /// <returns>List of requirements</returns>
-        List<RequirementDto> GetList(string username);
+        List<RequirementDto> GetList(string username, int? statusId = null, int? developmentStatusId = null);
 
         /// <summary>
         /// Query requirements by hashtag and user from all of his projects and companies
@@ -88,6 +90,34 @@ namespace SocialRequirements.Domain.BusinessLogic.Requirement
         /// <param name="username">Username related to the requirements</param>
         /// <returns>List of requirements</returns>
         List<RequirementDto> GetListDraft(string username);
+
+        /// <summary>
+        /// Query approved requirements pending development, filtered by user from all of his projects and companies
+        /// </summary>
+        /// <param name="username">Username related to the requirements</param>
+        /// <returns>List of requirements</returns>
+        List<RequirementDto> GetListPendingDevelopment(string username);
+
+        /// <summary>
+        /// Query approved requirements under development, filtered by user from all of his projects and companies
+        /// </summary>
+        /// <param name="username">Username related to the requirements</param>
+        /// <returns>List of requirements</returns>
+        List<RequirementDto> GetListUnderDevelopment(string username);
+
+        /// <summary>
+        /// Query approved requirements under testing stage, filtered by user from all of his projects and companies
+        /// </summary>
+        /// <param name="username">Username related to the requirements</param>
+        /// <returns>List of requirements</returns>
+        List<RequirementDto> GetListUnderTesting(string username);
+
+        /// <summary>
+        /// Query approved requirements that have been deployed, filtered by user from all of his projects and companies
+        /// </summary>
+        /// <param name="username">Username related to the requirements</param>
+        /// <returns>List of requirements</returns>
+        List<RequirementDto> GetListDeployed(string username);
 
         /// <summary>
         /// Returns requirement data matching criteria specified by input params

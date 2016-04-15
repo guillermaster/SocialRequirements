@@ -56,6 +56,10 @@
             public const string Answered = "answered";
             public const string Unanswered = "unanswered";
             public const string Hashtag = "hashtag";
+            public const string PendingDevelopment = "pendingdev";
+            public const string UnderDevelopment = "underdev";
+            public const string UnderTesting = "testing";
+            public const string Deployed = "deployed";
         }
 
         public class Titles
@@ -68,6 +72,10 @@
                 public const string ListPendingApproval = "Requirements - Pending Approval";
                 public const string ListDraft = "Requirements - Draft";
                 public const string ListHashtag = "Requirements";
+                public const string ListPendingDevelopment = "Requirements - Pending Development";
+                public const string ListUnderDevelopment = "Requirements - Under Development";
+                public const string ListUnderTesting = "Requirements - Under Testing";
+                public const string ListDeployed = "Requirements - Deployed";
             }
 
             public class RequirementsModifications

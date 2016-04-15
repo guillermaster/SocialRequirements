@@ -198,12 +198,16 @@ namespace SocialRequirements.Data.Requirement
             }
         }
         
-        public List<RequirementDto> GetList(List<long> projectIds)
+        public List<RequirementDto> GetList(List<long> projectIds, int? statusId = null, int? developmentStatusId = null)
         {
-            var requirements =
-                _context.Requirement.Where(req => projectIds.Contains(req.project_id))
-                    .OrderByDescending(reqDate => reqDate.modifiedon)
-                    .ToList();
+            var reqQuery = _context.Requirement.Where(req => projectIds.Contains(req.project_id));
+
+            if (statusId.HasValue) 
+                reqQuery = reqQuery.Where(req => req.status_id == statusId.Value);
+            if (developmentStatusId.HasValue)
+                reqQuery = reqQuery.Where(req => req.developmentstatus_id == developmentStatusId.Value);
+
+            var requirements = reqQuery.OrderByDescending(reqDate => reqDate.modifiedon).ToList();
             return requirements.Select(GetDtoFromEntity).ToList();
         }
 

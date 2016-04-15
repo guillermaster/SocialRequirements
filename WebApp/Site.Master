@@ -444,13 +444,26 @@
                                                 <li>
                                                     <asp:HyperLink runat="server" ID="RequirementsAllLink">All requirements</asp:HyperLink></li>
                                                 <li>
+                                                    <asp:HyperLink runat="server" ID="RequirementsDraftLink">Draft requirements</asp:HyperLink></li>
+                                                <li>
+                                                    <asp:HyperLink runat="server" ID="RequirementsPendingLink">Pending approval</asp:HyperLink></li>
+                                                <li>
                                                     <asp:HyperLink runat="server" ID="RequirementsApprovedLink">Approved requirements</asp:HyperLink></li>
                                                 <li>
                                                     <asp:HyperLink runat="server" ID="RequirementsRejectedLink">Rejected requirements</asp:HyperLink></li>
                                                 <li>
-                                                    <asp:HyperLink runat="server" ID="RequirementsPendingLink">Pending approval</asp:HyperLink></li>
-                                                <li>
-                                                    <asp:HyperLink runat="server" ID="RequirementsDraftLink">Draft requirements</asp:HyperLink></li>
+                                                    <a href="javascript:;">Implemented requirements<!--<span class="badge badge-dark">2</span>--></a>
+                                                    <ul class="acc-menu">
+                                                        <li>
+                                                            <asp:HyperLink runat="server" ID="RequirementsPendingDev">Pending development</asp:HyperLink></li>
+                                                        <li>
+                                                            <asp:HyperLink runat="server" ID="RequirementsUnderDev">Under development</asp:HyperLink></li>
+                                                        <li>
+                                                            <asp:HyperLink runat="server" ID="RequirementsUnderTest">Under testing</asp:HyperLink></li>
+                                                        <li>
+                                                            <asp:HyperLink runat="server" ID="RequirementsDeployed">Deployed</asp:HyperLink></li>
+                                                    </ul>
+                                                </li>
 
                                                 <li>
                                                     <a href="javascript:;">Modification requests<!--<span class="badge badge-dark">2</span>--></a>
