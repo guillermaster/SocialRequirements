@@ -373,6 +373,12 @@ namespace WebService
             return RequirementBusiness.GetAttachment(companyId, projectId, requirementId);
         }
 
+        [WebMethod(CacheDuration = 30)]
+        public string GetAttachmentTitle(long companyId, long projectId, long requirementId)
+        {
+            return RequirementBusiness.GetAttachmentTitle(companyId, projectId, requirementId);
+        }
+
         [WebMethod(CacheDuration = 0)]
         public void AddModificationAttachment(long companyId, long projectId, long requirementId, long requirementModifId,
             string fileName, byte[] fileContent, string encUsername)

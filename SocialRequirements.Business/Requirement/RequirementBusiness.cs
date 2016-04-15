@@ -251,6 +251,11 @@ namespace SocialRequirements.Business.Requirement
             return _requirementVersionData.GetAttachment(companyId, projectId, requirementId, requirementVersionId);
         }
 
+        public string GetAttachmentTitle(long companyId, long projectId, long requirementId, long? requirementVersionId = null)
+        {
+            return _requirementVersionData.GetAttachmentTitle(companyId, projectId, requirementId, requirementVersionId);
+        }
+
         /// <summary>
         /// Search for requirements matching the text
         /// </summary>

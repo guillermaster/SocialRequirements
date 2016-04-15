@@ -325,6 +325,12 @@
                                         <asp:Image runat="server" ID="CommentImage" ImageUrl="~/assets/img/comment.png" ToolTip="Comment" />
                                     </asp:LinkButton>
                                 </li>
+                                <li>
+                                    <asp:LinkButton runat="server" ID="DownloadButton" CssClass="activity_actions_button" ToolTip="Download attachment" CommandName="<%# SocialRequirements.Domain.General.CommonConstants.SocialActionsCommands.Download %>"
+                                        Visible='<%# Eval("Attachment") %>'>
+                                        <i class="fa fa-fw fa-paperclip" title="Download attachment"></i>
+                                    </asp:LinkButton>
+                                </li>
                             </ul>
                         </asp:Panel>
                     </div>

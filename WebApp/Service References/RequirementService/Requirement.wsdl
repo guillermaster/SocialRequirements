@@ -614,6 +614,22 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetAttachmentTitle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="companyId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="projectId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requirementId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAttachmentTitleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAttachmentTitleResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="AddModificationAttachment">
         <s:complexType>
           <s:sequence>
@@ -944,6 +960,12 @@
   <wsdl:message name="GetAttachmentSoapOut">
     <wsdl:part name="parameters" element="tns:GetAttachmentResponse" />
   </wsdl:message>
+  <wsdl:message name="GetAttachmentTitleSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAttachmentTitle" />
+  </wsdl:message>
+  <wsdl:message name="GetAttachmentTitleSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAttachmentTitleResponse" />
+  </wsdl:message>
   <wsdl:message name="AddModificationAttachmentSoapIn">
     <wsdl:part name="parameters" element="tns:AddModificationAttachment" />
   </wsdl:message>
@@ -1138,6 +1160,10 @@
     <wsdl:operation name="GetAttachment">
       <wsdl:input message="tns:GetAttachmentSoapIn" />
       <wsdl:output message="tns:GetAttachmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAttachmentTitle">
+      <wsdl:input message="tns:GetAttachmentTitleSoapIn" />
+      <wsdl:output message="tns:GetAttachmentTitleSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="AddModificationAttachment">
       <wsdl:input message="tns:AddModificationAttachmentSoapIn" />
@@ -1524,6 +1550,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAttachment">
       <soap:operation soapAction="http://tempuri.org/GetAttachment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAttachmentTitle">
+      <soap:operation soapAction="http://tempuri.org/GetAttachmentTitle" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1941,6 +1976,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAttachment">
       <soap12:operation soapAction="http://tempuri.org/GetAttachment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAttachmentTitle">
+      <soap12:operation soapAction="http://tempuri.org/GetAttachmentTitle" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

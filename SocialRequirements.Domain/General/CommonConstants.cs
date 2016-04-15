@@ -7,6 +7,7 @@
             public const string Like = "Like";
             public const string Dislike = "Dislike";
             public const string Comment = "Comment";
+            public const string Download = "Download";
             public const string ReadMore = "ReadMore";
             public const string ReadEvenMore = "ReadEvenMore";
         }

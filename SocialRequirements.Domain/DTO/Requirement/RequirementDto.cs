@@ -85,6 +85,8 @@ namespace SocialRequirements.Domain.DTO.Requirement
 
         public int PriorityId { get; set; }
 
+        public bool Attachment { get; set; }
+
         // Requirement version identifier
         public long VersionId { get; set; }
 

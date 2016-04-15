@@ -85,6 +85,9 @@ namespace SocialRequirements.Requirements
                 case CommonConstants.SocialActionsCommands.Comment:
                     //Comment((int)GeneralCatalog.Detail.Entity.Requirement, requirement.RecordId);
                     break;
+                case CommonConstants.SocialActionsCommands.Download:
+                    DownloadFile(requirement.CompanyId, requirement.ProjectId, requirement.Id);
+                    break;
             }
         }
 
@@ -236,6 +239,19 @@ namespace SocialRequirements.Requirements
             Requirements = (List<RequirementDto>)serializer.Deserialize(requirementsXmlStr);
         }
 
+        protected virtual void DownloadFile(long companyId, long projectId, long requirementId)
+        {
+            var requirementSrv = new RequirementSoapClient();
+            var fileName = requirementSrv.GetAttachmentTitle(companyId, projectId, requirementId);
+            var fileBytes = requirementSrv.GetAttachment(companyId, projectId, requirementId);
+
+            Response.Clear();
+            Response.AddHeader("Content-Disposition", "attachement;filename=" + HttpUtility.UrlEncode(fileName));
+            Response.AddHeader("Content-Length", fileBytes.Length.ToString());
+            Response.BinaryWrite(fileBytes);
+            Response.Flush();
+            Response.Close();
+        }
         #endregion
 
         #region Filters Data Load

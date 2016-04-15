@@ -368,6 +368,7 @@ namespace SocialRequirements.Data.Requirement
                 Approvedon = requirement.approvedon,
                 PriorityId = requirement.priority_id,
                 VersionNumber = requirement.version_number,
+                Attachment = requirement.attachment,
 
                 ShortDescription = StringUtilities.GetShort(requirement.description, MaxShortDescriptionLength),
                 Project = requirement.Project != null ? requirement.Project.name : _projectData.GetTitle(requirement.project_id),

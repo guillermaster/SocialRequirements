@@ -224,6 +224,8 @@ namespace SocialRequirements.Domain.BusinessLogic.Requirement
 
         byte[] GetAttachment(long companyId, long projectId, long requirementId, long? requirementVersionId = null);
 
+        string GetAttachmentTitle(long companyId, long projectId, long requirementId, long? requirementVersionId = null);
+
         /// <summary>
         /// Search for requirements matching the text
         /// </summary>

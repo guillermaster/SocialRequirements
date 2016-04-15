@@ -66,8 +66,23 @@ namespace SocialRequirements.Data.Requirement
 
         public string GetAttachmentTitle(long companyId, long projectId, long requirementId, long? requirementVersionId = null)
         {
-            var requirement = Get(companyId, projectId, requirementId, requirementVersionId);
-            return requirement != null ? requirement.AttachmentTitle : string.Empty;
+            if (requirementVersionId == null)
+            {
+                var reqLastVersion = _context.RequirementVersion.Where(
+                    rv => rv.company_id == companyId && rv.project_id == projectId && rv.requirement_id == requirementId)
+                    .OrderByDescending(v => v.id)
+                    .FirstOrDefault();
+                return reqLastVersion != null ? reqLastVersion.attachment_title : string.Empty;
+            }
+            else
+            {
+                var reqLastVersion =
+                    _context.RequirementVersion.FirstOrDefault(
+                        rv =>
+                            rv.company_id == companyId && rv.project_id == projectId &&
+                            rv.requirement_id == requirementId && rv.id == requirementVersionId.Value);
+                return reqLastVersion != null ? reqLastVersion.attachment_title : string.Empty;
+            }
         }
 
         public byte[] GetAttachment(long companyId, long projectId, long requirementId, long? requirementVersionId = null)

@@ -311,6 +311,13 @@ namespace SocialRequirements.RequirementService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetAttachment", ReplyAction="*")]
         System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetAttachmentResponse> GetAttachmentAsync(SocialRequirements.RequirementService.GetAttachmentRequest request);
         
+        // CODEGEN: Generating message contract since element name GetAttachmentTitleResult from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetAttachmentTitle", ReplyAction="*")]
+        SocialRequirements.RequirementService.GetAttachmentTitleResponse GetAttachmentTitle(SocialRequirements.RequirementService.GetAttachmentTitleRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetAttachmentTitle", ReplyAction="*")]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetAttachmentTitleResponse> GetAttachmentTitleAsync(SocialRequirements.RequirementService.GetAttachmentTitleRequest request);
+        
         // CODEGEN: Generating message contract since element name fileName from namespace http://tempuri.org/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/AddModificationAttachment", ReplyAction="*")]
         SocialRequirements.RequirementService.AddModificationAttachmentResponse AddModificationAttachment(SocialRequirements.RequirementService.AddModificationAttachmentRequest request);
@@ -3424,6 +3431,82 @@ namespace SocialRequirements.RequirementService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetAttachmentTitleRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetAttachmentTitle", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementService.GetAttachmentTitleRequestBody Body;
+        
+        public GetAttachmentTitleRequest() {
+        }
+        
+        public GetAttachmentTitleRequest(SocialRequirements.RequirementService.GetAttachmentTitleRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetAttachmentTitleRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public long companyId;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=1)]
+        public long projectId;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=2)]
+        public long requirementId;
+        
+        public GetAttachmentTitleRequestBody() {
+        }
+        
+        public GetAttachmentTitleRequestBody(long companyId, long projectId, long requirementId) {
+            this.companyId = companyId;
+            this.projectId = projectId;
+            this.requirementId = requirementId;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetAttachmentTitleResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetAttachmentTitleResponse", Namespace="http://tempuri.org/", Order=0)]
+        public SocialRequirements.RequirementService.GetAttachmentTitleResponseBody Body;
+        
+        public GetAttachmentTitleResponse() {
+        }
+        
+        public GetAttachmentTitleResponse(SocialRequirements.RequirementService.GetAttachmentTitleResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetAttachmentTitleResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string GetAttachmentTitleResult;
+        
+        public GetAttachmentTitleResponseBody() {
+        }
+        
+        public GetAttachmentTitleResponseBody(string GetAttachmentTitleResult) {
+            this.GetAttachmentTitleResult = GetAttachmentTitleResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class AddModificationAttachmentRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="AddModificationAttachment", Namespace="http://tempuri.org/", Order=0)]
@@ -5052,6 +5135,35 @@ namespace SocialRequirements.RequirementService {
             inValue.Body.projectId = projectId;
             inValue.Body.requirementId = requirementId;
             return ((SocialRequirements.RequirementService.RequirementSoap)(this)).GetAttachmentAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SocialRequirements.RequirementService.GetAttachmentTitleResponse SocialRequirements.RequirementService.RequirementSoap.GetAttachmentTitle(SocialRequirements.RequirementService.GetAttachmentTitleRequest request) {
+            return base.Channel.GetAttachmentTitle(request);
+        }
+        
+        public string GetAttachmentTitle(long companyId, long projectId, long requirementId) {
+            SocialRequirements.RequirementService.GetAttachmentTitleRequest inValue = new SocialRequirements.RequirementService.GetAttachmentTitleRequest();
+            inValue.Body = new SocialRequirements.RequirementService.GetAttachmentTitleRequestBody();
+            inValue.Body.companyId = companyId;
+            inValue.Body.projectId = projectId;
+            inValue.Body.requirementId = requirementId;
+            SocialRequirements.RequirementService.GetAttachmentTitleResponse retVal = ((SocialRequirements.RequirementService.RequirementSoap)(this)).GetAttachmentTitle(inValue);
+            return retVal.Body.GetAttachmentTitleResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetAttachmentTitleResponse> SocialRequirements.RequirementService.RequirementSoap.GetAttachmentTitleAsync(SocialRequirements.RequirementService.GetAttachmentTitleRequest request) {
+            return base.Channel.GetAttachmentTitleAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SocialRequirements.RequirementService.GetAttachmentTitleResponse> GetAttachmentTitleAsync(long companyId, long projectId, long requirementId) {
+            SocialRequirements.RequirementService.GetAttachmentTitleRequest inValue = new SocialRequirements.RequirementService.GetAttachmentTitleRequest();
+            inValue.Body = new SocialRequirements.RequirementService.GetAttachmentTitleRequestBody();
+            inValue.Body.companyId = companyId;
+            inValue.Body.projectId = projectId;
+            inValue.Body.requirementId = requirementId;
+            return ((SocialRequirements.RequirementService.RequirementSoap)(this)).GetAttachmentTitleAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]

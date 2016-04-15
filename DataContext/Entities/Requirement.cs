@@ -57,6 +57,8 @@ namespace SocialRequirements.Context.Entities
 
         public int? developmentstatus_id { get; set; }
 
+        public bool attachment { get; set; }
+
         public virtual Company Company { get; set; }
 
         public virtual Project Project { get; set; }
