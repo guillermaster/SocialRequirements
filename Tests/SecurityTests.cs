@@ -18,6 +18,13 @@ namespace SocialRequirements.Tests
         }
 
         [TestMethod]
+        public void TestDecrypt()
+        {
+            var encrypted = "4bDGsNDnqPJAj+r9uuP95A==";
+            var decrypted = Encryption.Decrypt(encrypted);
+        }
+
+        [TestMethod]
         public void PasswordHash()
         {
             var input = "123456";

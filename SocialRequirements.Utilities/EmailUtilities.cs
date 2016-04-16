@@ -33,17 +33,17 @@ namespace SocialRequirements.Utilities
 
             // Subject and multipart/alternative Body
             mailMsg.Subject = subject;
-            string text = bodyPlainText;
-            string html = @bodyHtml;
+            var text = bodyPlainText;
+            var html = @bodyHtml;
             mailMsg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(text, null, MediaTypeNames.Text.Plain));
             mailMsg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(html, null, MediaTypeNames.Text.Html));
-
+            
             // Init SmtpClient and send
-            var smtpClient = new SmtpClient(Encryption.Decrypt("D8nV2LLnc4uNseMKLIKWqT6LEE272hiuxzWp7ZZbQUw="), Convert.ToInt32(587));
+            var smtpClient = new SmtpClient(Environment.GetEnvironmentVariable("emailSender"), Convert.ToInt32(587));
             var credentials =
                 new NetworkCredential(
-                    Encryption.Decrypt("uh2pDaREQtqvlCPfyAMSIs8kuX5MSn3dfBOtzUhyt60fDMjAHk5tmwdKgYR79wbZ"),
-                    Encryption.Decrypt("4bDGsNDnqPJAj+r9uuP95A=="));
+                    Environment.GetEnvironmentVariable("emailSenderUser"),
+                    Environment.GetEnvironmentVariable("emailSenderPwd"));
             smtpClient.Credentials = credentials;
 
             if(!async)
