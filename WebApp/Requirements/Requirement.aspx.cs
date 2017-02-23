@@ -624,20 +624,33 @@ namespace SocialRequirements.Requirements
                                     CanApproveRequirement.HasValue && CanApproveRequirement.Value;
             RejectButton.Visible = ApproveButton.Visible;
 
-            UnderDevelopmentButton.Visible = requirement.StatusId ==
-                                             (int) GeneralCatalog.Detail.RequirementStatus.Approved &&
-                                             CanUpdateDevelopmentStatus.HasValue && CanUpdateDevelopmentStatus.Value &&
-                                             (!requirement.DevelopmentStatusId.HasValue || (requirement.DevelopmentStatusId.HasValue &&
-                                              requirement.DevelopmentStatusId.Value ==
-                                              (int) GeneralCatalog.Detail.SoftwareDevelopmentStatus.PendingDevelopment));
+            if (UnderDevelopmentButton != null)
+            {
+                UnderDevelopmentButton.Visible = requirement.StatusId ==
+                                                 (int) GeneralCatalog.Detail.RequirementStatus.Approved &&
+                                                 CanUpdateDevelopmentStatus.HasValue && CanUpdateDevelopmentStatus.Value &&
+                                                 (!requirement.DevelopmentStatusId.HasValue ||
+                                                  (requirement.DevelopmentStatusId.Value ==
+                                                   (int)
+                                                       GeneralCatalog.Detail.SoftwareDevelopmentStatus
+                                                           .PendingDevelopment));
+            }
 
-            UnderTestingButton.Visible = requirement.DevelopmentStatusId.HasValue && 
-                                      requirement.DevelopmentStatusId == (int) GeneralCatalog.Detail.SoftwareDevelopmentStatus.UnderDevelopment &&
-                                      CanUpdateDevelopmentStatus.HasValue && CanUpdateDevelopmentStatus.Value;
+            if (UnderTestingButton != null)
+            {
+                UnderTestingButton.Visible = requirement.DevelopmentStatusId.HasValue &&
+                                             requirement.DevelopmentStatusId ==
+                                             (int) GeneralCatalog.Detail.SoftwareDevelopmentStatus.UnderDevelopment &&
+                                             CanUpdateDevelopmentStatus.HasValue && CanUpdateDevelopmentStatus.Value;
+            }
 
-            DeployedButton.Visible = requirement.DevelopmentStatusId.HasValue &&
-                                      requirement.DevelopmentStatusId == (int)GeneralCatalog.Detail.SoftwareDevelopmentStatus.UnderTesting &&
-                                      CanUpdateDevelopmentStatus.HasValue && CanUpdateDevelopmentStatus.Value;
+            if (DeployedButton != null)
+            {
+                DeployedButton.Visible = requirement.DevelopmentStatusId.HasValue &&
+                                         requirement.DevelopmentStatusId ==
+                                         (int) GeneralCatalog.Detail.SoftwareDevelopmentStatus.UnderTesting &&
+                                         CanUpdateDevelopmentStatus.HasValue && CanUpdateDevelopmentStatus.Value;
+            }
 
             if (IsVersionHistoryView())
             {
@@ -662,6 +675,7 @@ namespace SocialRequirements.Requirements
 
         protected virtual void SetDevelopmentStatus(RequirementDto requirement)
         {
+            if (IconDevStatus == null) return;
             IconDevStatus.Visible = requirement.DevelopmentStatusId.HasValue;
             if (!requirement.DevelopmentStatusId.HasValue) return;
             
